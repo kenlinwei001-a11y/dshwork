@@ -90,6 +90,11 @@ export const skillsMarketCss = `
 .wd-skills .installed-tools .search{margin-left:0;width:250px;min-width:150px}
 @media(max-width:900px){.wd-skills .installed-tools{width:100%;justify-content:flex-start}.wd-skills .installed-tools .search{width:100%}}
 .skill-detail-dialog .detail-title .slug,.catalog-dialog .detail-title .slug{margin:0 0 12px;font:13px/20px ui-monospace,SFMono-Regular,Menlo,monospace;color:#9a9a9a}
+.skill-detail-dialog .rename-row{display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.skill-detail-dialog .rename-row input{flex:1;min-width:0;min-height:38px;padding:7px 12px;border:1px solid #4a4a4a;border-radius:9px;background:#171717;color:#eee;font-size:16px;font-weight:600}
+.skill-detail-dialog .rename-row .save{background:#eee;border-color:#eee;color:#171717;font-weight:600}
+.skill-detail-dialog .detail-title .rename-hint{margin:0 0 12px;font-size:12px;line-height:19px;color:#8f8f8f}
+.skill-detail-dialog .rename-hint .command{display:inline;padding:1px 6px;font-size:12px}
 /* 技能弹框沿用公共 Modal（.wd-dialog）外壳；用更高特异性只收窄技能相关弹框并紧凑化内部，不改公共默认值。 */
 .wd-dialog.skill-detail-dialog{width:min(820px,calc(100vw - 40px))}
 .wd-dialog.catalog-dialog{width:min(720px,calc(100vw - 40px))}

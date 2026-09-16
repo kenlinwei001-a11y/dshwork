@@ -49,6 +49,8 @@ export function SkillsPanel({ toggleNavigation, management, startSkillTask, star
   const [preview, setPreview] = useState<SkillCatalogEntry>();
   const [selected, setSelected] = useState<ManagedSkillDetail>();
   const [editing, setEditing] = useState(false);
+  const [renaming, setRenaming] = useState(false);
+  const [titleDraft, setTitleDraft] = useState('');
   const [skillDocument, setSkillDocument] = useState('');
   const [resource, setResource] = useState<(ManagedSkillResource & { isNew?: boolean })>();
   const [resourceDocument, setResourceDocument] = useState('');
@@ -120,7 +122,7 @@ export function SkillsPanel({ toggleNavigation, management, startSkillTask, star
   };
   const openDetail = async (name: string) => {
     setActionMenu(undefined); setError('');
-    try { const detail = await management.detail(name); setSelected(detail); setSkillDocument(detail.document ?? ''); setEditing(false); setResource(undefined); }
+    try { const detail = await management.detail(name); setSelected(detail); setSkillDocument(detail.document ?? ''); setEditing(false); setRenaming(false); setResource(undefined); }
     catch (cause) { setError(messageOf(cause)); }
   };
   const beginSkillTask = async (kind: SkillTaskKind) => {
@@ -143,6 +145,18 @@ export function SkillsPanel({ toggleNavigation, management, startSkillTask, star
     if (!selected?.revision) return;
     setBusy(true); setError('');
     try { const next = await management.update({ name: selected.name, document: skillDocument, expectedRevision: selected.revision }); setSelected(next); setSkillDocument(next.document ?? ''); setEditing(false); await refresh(); }
+    catch (cause) { setError(messageOf(cause)); setBusy(false); }
+  };
+  const saveTitle = async () => {
+    if (!selected) return;
+    setBusy(true); setError('');
+    try {
+      const draft = titleDraft.trim();
+      await management.setTitle(selected.name, draft || null);
+      setRenaming(false);
+      await refresh();
+      await openDetail(selected.name);
+    }
     catch (cause) { setError(messageOf(cause)); setBusy(false); }
   };
   const uninstall = async () => {
@@ -282,8 +296,8 @@ export function SkillsPanel({ toggleNavigation, management, startSkillTask, star
         <div className="detail-body"><dl><dt>技能标识</dt><dd><code className="command">/{preview.name}</code></dd><dt>分类</dt><dd>{preview.categories.join(' · ') || '未分类'}</dd><dt>版本</dt><dd>{preview.version ?? '未标注'}</dd></dl>{preview.examples?.length ? <><h3>使用示例</h3><ul className="example-list">{preview.examples.map(item => <li key={item}>{item}</li>)}</ul></> : null}</div>
       </article>}
     </Modal>
-    <Modal open={Boolean(selected)} label={selected ? `${selected.name} 技能详情` : '技能详情'} className="skill-detail-dialog" onClose={() => { setSelected(undefined); setEditing(false); setResource(undefined); }}>
-      {selected && <article data-testid="skill-detail"><div className="detail-hero"><SkillMark large name={selected.name} title={selected.title} iconUrl={selected.iconUrl} /><div className="detail-title"><h1>{selected.title ?? selected.name}</h1>{selected.title && selected.title !== selected.name ? <p className="slug">{selected.name}</p> : null}<div className="detail-actions"><button className="try" disabled={selected.state !== 'enabled'} onClick={() => void trial(selected.name)}>去试试</button>{selected.manageable && <><button onClick={() => setEditing(true)}>编辑</button><button onClick={() => void openDirectory(selected)}>打开文件夹</button><button className="danger" onClick={() => void prepareUninstall(selected)}>卸载</button></>}</div></div><button className="switch" role="switch" disabled={!selected.manageable || selected.state === 'invalid'} aria-checked={selected.state === 'enabled'} onClick={() => void setEnabled(selected, selected.state !== 'enabled')} /></div>
+    <Modal open={Boolean(selected)} label={selected ? `${selected.name} 技能详情` : '技能详情'} className="skill-detail-dialog" onClose={() => { setSelected(undefined); setEditing(false); setRenaming(false); setResource(undefined); }}>
+      {selected && <article data-testid="skill-detail"><div className="detail-hero"><SkillMark large name={selected.name} title={selected.title} iconUrl={selected.iconUrl} /><div className="detail-title">{renaming ? <div className="rename-row"><input aria-label="技能显示名称" maxLength={80} placeholder={selected.name} value={titleDraft} autoFocus onChange={event => setTitleDraft(event.currentTarget.value)} onKeyDown={event => { if (event.key === 'Enter') void saveTitle(); if (event.key === 'Escape') setRenaming(false); }} /><button className="save" disabled={busy || titleDraft.trim() === (selected.title ?? '')} onClick={() => void saveTitle()}>保存</button><button onClick={() => setRenaming(false)}>取消</button></div> : <h1>{selected.title ?? selected.name}</h1>}{renaming ? <p className="rename-hint">显示名称只影响界面展示，留空保存即恢复默认；调用标识 <code className="command">/{selected.name}</code> 不变。</p> : selected.title && selected.title !== selected.name ? <p className="slug">{selected.name}</p> : null}<div className="detail-actions"><button className="try" disabled={selected.state !== 'enabled'} onClick={() => void trial(selected.name)}>去试试</button>{selected.manageable && <><button onClick={() => setEditing(true)}>编辑</button><button disabled={renaming} onClick={() => { setTitleDraft(selected.title ?? ''); setRenaming(true); }}>改名</button><button onClick={() => void openDirectory(selected)}>打开文件夹</button><button className="danger" onClick={() => void prepareUninstall(selected)}>卸载</button></>}</div></div><button className="switch" role="switch" disabled={!selected.manageable || selected.state === 'invalid'} aria-checked={selected.state === 'enabled'} onClick={() => void setEnabled(selected, selected.state !== 'enabled')} /></div>
         <p className="detail-summary">{selected.localizedDescription ?? selected.description}</p><h2 className="detail-section-title">{icon('library')}概述</h2>
         <div className="detail-body">{resource ? <><div className="resource-editor-head"><button onClick={() => setResource(undefined)}>返回概述</button><strong>{resource.path}</strong></div><label className="editor-label" htmlFor="resource-document">资源文件</label><textarea id="resource-document" className="skill-editor" value={resourceDocument} onChange={event => setResourceDocument(event.currentTarget.value)} spellCheck={false} /><div className="editor-actions"><button onClick={() => { setResourceDocument(resource.document); setResource(undefined); }}>取消</button><button className="save" disabled={busy || (!resource.isNew && resourceDocument === resource.document)} onClick={() => void saveResource()}>保存资源</button></div></> : editing ? <><label className="editor-label" htmlFor="skill-document">SKILL.md</label><textarea id="skill-document" className="skill-editor" value={skillDocument} onChange={event => setSkillDocument(event.currentTarget.value)} spellCheck={false} /><div className="editor-actions"><button onClick={() => { setSkillDocument(selected.document ?? ''); setEditing(false); }}>取消</button><button className="save" disabled={busy || skillDocument === selected.document} onClick={() => void save()}>保存并重新发现</button></div></> : <><dl><dt>名称</dt><dd>{selected.name}</dd><dt>状态</dt><dd>{selected.state === 'enabled' ? '已启用' : selected.state === 'disabled' ? '已停用' : selected.state === 'invalid' ? '需要修复' : '只读'}</dd><dt>调用方式</dt><dd><code className="command">/{selected.name}</code></dd></dl>{selected.diagnostics?.length ? <section className="validation-errors"><h3>校验问题</h3><ul>{selected.diagnostics.map(item => <li key={`${item.code}-${item.path ?? ''}`}>{item.message}</li>)}</ul><button onClick={() => setEditing(true)}>修复 SKILL.md</button></section> : null}{selected.manageable && <section className="resource-section"><h3>资源文件</h3>{selected.resources.length ? <div className="resource-list">{selected.resources.map(path => <button key={path} onClick={() => void openResource(path)}>{path}</button>)}</div> : <p className="muted">暂无附加资源</p>}<div className="new-resource"><input aria-label="新资源路径" placeholder="例如 references/guide.md" value={newResourcePath} onChange={event => setNewResourcePath(event.currentTarget.value)} /><button disabled={!newResourcePath.trim()} onClick={beginResource}>新建资源</button></div></section>}<pre className="skill-document">{selected.document ?? selected.whenToUse ?? selected.description}</pre></>}{error && <p className="error" role="alert">{error}</p>}</div>
       </article>}

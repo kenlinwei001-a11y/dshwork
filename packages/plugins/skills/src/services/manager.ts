@@ -8,7 +8,8 @@ import { parse } from 'yaml';
 import type { ManagedSkillDetail, ManagedSkillResource, ManagedSkillSummary, SkillBatchRequest, SkillBatchResult, SkillCatalogIcon, SkillCatalogSummary, SkillDependency, SkillDependencyImpact, SkillDiagnostic, SkillDraft, SkillDraftWriteRequest, SkillImportInspection, SkillImportRequest, SkillInstallScope, SkillMutationReceipt, SkillResourceWriteRequest, SkillValidationResult, SkillWriteRequest, TrashedSkillSummary } from '../shared.js';
 import { SkillImportStaging } from './import-staging.js';
 import { SkillCatalogStore } from './catalog.js';
-import type { SkillManagementService, SkillDependencyInspector } from '../shared.js';
+import { SkillTitleStore } from './titles.js';
+import type { SkillManagementService, SkillDependencyInspector, SkillTitleOverride } from '../shared.js';
 import type { RetainedSkillRevision, SkillConsumerRef, SkillRevisionCheck, SkillRevisionRef, SkillRevisionStatus } from 'workdsh-contracts';
 
 declare module '@deepseek-ai/cordis' {
@@ -156,6 +157,7 @@ export class SkillManager extends Service implements SkillManagementService {
   private readonly receiptRoot: string;
   private readonly draftRoot: string;
   private readonly catalogStore: SkillCatalogStore;
+  private readonly titleStore: SkillTitleStore;
   private readonly dependencyInspectors = new Set<SkillDependencyInspector>();
   readonly imports: SkillImportStaging;
 
@@ -172,6 +174,7 @@ export class SkillManager extends Service implements SkillManagementService {
     this.receiptRoot = join(this.stateRoot, 'trash-receipts');
     this.draftRoot = join(this.stateRoot, 'drafts');
     this.catalogStore = new SkillCatalogStore(process.env.WORKDSH_SKILL_CATALOG ?? join(agentsHome, '.workdsh-catalog'));
+    this.titleStore = new SkillTitleStore(this.stateRoot);
     this.imports = new SkillImportStaging(
       join(this.stateRoot, 'imports'),
       (source, signal) => this.inspectImport(source, signal),
@@ -225,7 +228,8 @@ export class SkillManager extends Service implements SkillManagementService {
       if (disabled) rows.push(disabled);
     }
     const metadata = await this.catalogStore.metadata(new Set(rows.map(row => row.name)));
-    return rows.map(row => { const entry = metadata.get(row.name); return entry ? { ...row, ...entry } : row; }).sort((a, b) => a.name.localeCompare(b.name));
+    const merged = rows.map(row => { const entry = metadata.get(row.name); return entry ? { ...row, ...entry } : row; });
+    return (await this.withDisplayTitles(merged)).sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async detail(name: string, signal?: AbortSignal): Promise<ManagedSkillDetail | undefined> {
@@ -233,7 +237,21 @@ export class SkillManager extends Service implements SkillManagementService {
     if (!detail) return undefined;
     const metadata = await this.catalogStore.metadata(new Set([detail.name]));
     const entry = metadata.get(detail.name);
-    return entry ? { ...detail, ...entry } : detail;
+    const [titled] = await this.withDisplayTitles([entry ? { ...detail, ...entry } : detail]);
+    return titled;
+  }
+
+  /** User display-title overrides layer on top of catalog metadata; identity stays untouched. */
+  private async withDisplayTitles<T extends ManagedSkillSummary>(rows: readonly T[]): Promise<T[]> {
+    const overrides = await this.titleStore.all();
+    return rows.map(row => { const title = overrides[row.name]; return title ? { ...row, title } : row; });
+  }
+
+  async setTitle(name: string, title: string | null): Promise<SkillTitleOverride> {
+    this.assertName(name);
+    if (!await this.readDetail(name)) throw new Error('skill/not-found');
+    const next = await this.titleStore.set(name, title);
+    return { name, ...(next ? { title: next } : {}) };
   }
 
   private async readDetail(name: string, signal?: AbortSignal): Promise<ManagedSkillDetail | undefined> {

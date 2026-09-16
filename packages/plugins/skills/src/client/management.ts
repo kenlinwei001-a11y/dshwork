@@ -2,7 +2,7 @@ import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-client-connection/client';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
 import type {} from '@deepseek-ai/dsh-api-session-controller/client';
-import type { ManagedSkillDetail, ManagedSkillResource, ManagedSkillSummary, SkillBatchAction, SkillBatchResult, SkillCatalogSummary, SkillDependencyImpact, SkillInstallScope, SkillMutationReceipt, SkillResourceWriteRequest, SkillWriteRequest, StagedSkillImport, TrashedSkillSummary } from '../shared.js';
+import type { ManagedSkillDetail, ManagedSkillResource, ManagedSkillSummary, SkillBatchAction, SkillBatchResult, SkillCatalogSummary, SkillDependencyImpact, SkillInstallScope, SkillMutationReceipt, SkillResourceWriteRequest, SkillTitleOverride, SkillWriteRequest, StagedSkillImport, TrashedSkillSummary } from '../shared.js';
 
 const path = '/api/workdsh-skills';
 
@@ -53,6 +53,7 @@ export function createSkillManagementClient(ctx: Context, lifetime?: AbortSignal
     resource: (name: string, resourcePath: string) => invoke<ManagedSkillResource>('resource', { name, path: resourcePath }),
     writeResource: (request: SkillResourceWriteRequest) => invoke<ManagedSkillResource>('write-resource', request),
     setEnabled: (name: string, enabled: boolean) => invoke<SkillMutationReceipt>('set-enabled', { name, enabled }),
+    setTitle: (name: string, title: string | null) => invoke<SkillTitleOverride>('set-title', { name, title }),
     dependencyImpact: (name: string) => invoke<SkillDependencyImpact>('dependency-impact', { name }),
     uninstall: (name: string, expectedImpactRevision: string) => invoke<SkillMutationReceipt>('uninstall', { name, expectedImpactRevision }),
     batch: (names: readonly string[], action: SkillBatchAction) => invoke<SkillBatchResult>('batch', { names, action }),

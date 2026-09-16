@@ -50,6 +50,16 @@ export interface SkillMutationReceipt {
   readonly path: string;
 }
 
+/**
+ * Result of setting a WorkDSH-owned display-title override. The skill identity
+ * (frontmatter name, directory, `/name` invocation) never changes; `title`
+ * absent means the override was cleared and the default display resumes.
+ */
+export interface SkillTitleOverride {
+  readonly name: string;
+  readonly title?: string;
+}
+
 export interface SkillDependency {
   readonly kind: string;
   readonly id: string;
@@ -161,7 +171,7 @@ export interface StagedSkillImport {
   readonly expiresAt: string;
 }
 
-export type SkillManagementEndpoint = 'list' | 'detail' | 'update' | 'resource' | 'write-resource' | 'set-enabled' | 'dependency-impact' | 'uninstall' | 'batch' | 'trash-list' | 'restore' | 'commit-import' | 'discard-import' | 'catalog' | 'install-catalog';
+export type SkillManagementEndpoint = 'list' | 'detail' | 'update' | 'resource' | 'write-resource' | 'set-enabled' | 'set-title' | 'dependency-impact' | 'uninstall' | 'batch' | 'trash-list' | 'restore' | 'commit-import' | 'discard-import' | 'catalog' | 'install-catalog';
 export interface SkillManagementFailure { readonly code: string; readonly message: string; }
 export type SkillManagementResult<T> = { readonly ok: true; readonly value: T } | { readonly ok: false; readonly error: SkillManagementFailure };
 
@@ -187,6 +197,11 @@ export interface SkillManagementService extends SkillRevisionProvider {
   inspectImport(source: string, signal?: AbortSignal): Promise<SkillImportInspection>;
   installImport(request: SkillImportRequest, signal?: AbortSignal): Promise<SkillMutationReceipt>;
   setEnabled(name: string, enabled: boolean): Promise<SkillMutationReceipt>;
+  /**
+   * Sets or clears (`null`) the WorkDSH-owned display title for a skill. The
+   * override layers on top of catalog metadata; identity is never touched.
+   */
+  setTitle(name: string, title: string | null): Promise<SkillTitleOverride>;
   /** The consumer owns this registration and must release it with its own effect. */
   registerDependencyInspector(inspector: SkillDependencyInspector): () => void;
   dependencyImpact(name: string): Promise<SkillDependencyImpact>;

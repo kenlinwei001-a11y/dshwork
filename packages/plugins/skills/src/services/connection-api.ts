@@ -18,6 +18,7 @@ function publicFailure(error: unknown): ConnectionRpcResult<never> {
   const code = error instanceof Error && error.message.startsWith('skill/') ? error.message : 'skill/internal';
   const messages: Record<string, string> = {
     'skill/invalid-name': '技能名称无效。',
+    'skill/not-found': '未找到该技能。',
     'skill/not-manageable': '该技能由只读来源提供，不能修改。',
     'skill/revision-conflict': '技能已被其他进程修改，请重新加载后再保存。',
     'skill/name-mismatch': 'SKILL.md 中的名称与当前技能不一致。',
@@ -114,6 +115,11 @@ async function dispatch(manager: SkillManagementService, rawEndpoint: unknown, p
       const enabled = record(payload)?.enabled;
       if (typeof enabled !== 'boolean') return fail('skill/invalid-request', '启用状态无效。');
       return ok(await manager.setEnabled(name, enabled));
+    }
+    if (endpoint === 'set-title') {
+      const title = record(payload)?.title;
+      if (title !== null && typeof title !== 'string') return fail('skill/invalid-request', '技能显示名称无效。');
+      return ok(await manager.setTitle(name, title as string | null));
     }
     if (endpoint === 'install-catalog') {
       const scope = record(payload)?.scope;
