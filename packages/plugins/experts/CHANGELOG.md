@@ -1,3 +1,9 @@
+## 0.1.0-alpha.4 — 2026-09-16
+
+- 增加专家团长任务、浏览器重连、人工停止后原成员继续、任务与消息交接、失败及 Host 冷恢复验收。
+- 增加显式真实模型验收，真实 lead、analyst 与 reviewer 完成两阶段官方 Team 任务交接。
+- 验收凭据只进入一次性 DSH Home，退出时清理并对日志脱敏。
+
 ## 0.1.0-alpha.3 — 2026-09-15
 
 ## Unreleased — DSH 0.1.6 official Team migration

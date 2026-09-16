@@ -93,6 +93,32 @@ export function apply(ctx: Context): void {
       const timer = windowGlobal.setInterval(refresh, 1500);
       return () => { disposed = true; windowGlobal.clearInterval(timer); };
     }, [rootSessionId, isTeam, session.running]);
+    const memberIds = teamView?.members.map(member => String(member.id)).join('|') ?? '';
+    const [memberTerminalPhases, setMemberTerminalPhases] = React.useState<ReadonlyMap<string, 'failed' | 'interrupted'>>(new Map());
+    React.useEffect(() => {
+      const cleanups: Array<() => void> = [];
+      const bindings = memberIds.split('|').filter(Boolean).map(id => {
+        const sessionId = id as Parameters<ISessions['scope']>[0];
+        sessions.scope(sessionId);
+        return sessions.binding(sessionId);
+      }).filter((value): value is NonNullable<typeof value> => !!value);
+      const refresh = () => {
+        const next = new Map<string, 'failed' | 'interrupted'>();
+        for (const memberBinding of bindings) {
+          const memberWindow = memberBinding.eventSource.getSnapshot();
+          const memberSnapshot = memberBinding.session.getSnapshot();
+          const phase = projectActivity(memberWindow?.entries ?? [], memberSnapshot.running).phase;
+          if (phase === 'failed' || phase === 'interrupted') next.set(String(memberBinding.sessionId), phase);
+        }
+        setMemberTerminalPhases(next);
+      };
+      for (const memberBinding of bindings) {
+        cleanups.push(memberBinding.eventSource.subscribe(refresh));
+        cleanups.push(memberBinding.session.subscribe(refresh));
+      }
+      refresh();
+      return () => { for (const cleanup of cleanups) cleanup(); };
+    }, [memberIds]);
 
     React.useEffect(() => { if (!session.running) return; setClock(Date.now()); const timer = windowGlobal.setInterval(() => setClock(Date.now()), 1000); return () => windowGlobal.clearInterval(timer); }, [session.running, props.sessionId]);
     React.useEffect(() => { const update = () => setMotion(readMotion()); windowGlobal.addEventListener('storage', update); return () => windowGlobal.removeEventListener('storage', update); }, []);
@@ -106,7 +132,7 @@ export function apply(ctx: Context): void {
     const elapsed = state.startedAt ? Math.max(0, Math.floor((clock - state.startedAt)/1000)) : 0;
     const stale = session.running && state.lastProgressAt && clock - state.lastProgressAt > 120000;
     const text = stale ? '暂未收到新进展' : activityMessage(state);
-    const teamSummary = summarizeTeamActivity(teamView, String(address?.childSessionId ?? props.sessionId), text);
+    const teamSummary = summarizeTeamActivity(teamView, String(address?.childSessionId ?? props.sessionId), text, memberTerminalPhases);
     const activeIdentity = teamSummary.member
       ? identity?.members?.find(member => member.key === teamSummary.member?.name) ?? { name: teamSummary.member.name, kind: 'expert' as const }
       : identity;
@@ -114,7 +140,7 @@ export function apply(ctx: Context): void {
     const displayText = team
       ? teamSummary.member ? `${activeIdentity?.name ?? teamSummary.member.name} · ${teamSummary.focus ?? '正在处理'}${teamExtra}` : teamSummary.message
       : text;
-    const displayPhase = team && teamSummary.runningCount > 0 ? 'working' : state.phase;
+    const displayPhase = teamSummary.phase ?? (team && teamSummary.runningCount > 0 ? 'working' : state.phase);
     const changeMotion = (value: boolean) => { setMotion(value); try { localStorage.setItem(motionKey, value ? 'on' : 'off'); } catch { /* session-only fallback */ } };
     return <section className="wd-activity" aria-label="活动与协作进度" data-phase={displayPhase} data-motion={motion} data-long={elapsed >= 480} data-team={team}>
       <div className="wd-activity-bar">

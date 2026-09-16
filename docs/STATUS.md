@@ -1,3 +1,11 @@
+## 2026-09-16：专家团长任务、交接、重连与失败恢复验收
+
+新增 `probe:experts:team:resilience` 与显式 `probe:experts:team:real` 发布验收入口。探针把 identity、audit、access、skills、experts、bundle、activity 七个正式包打包并经官方 CLI 安装到仓库外临时 Profile，使用生产 Host、官方 Agent Teams 服务/工具/Web Client 和真实 Chromium。resilience 模式用本地确定性适配器固定等待、中断和一次成员失败；real 模式另建独立执行，使用 `deepseek-official/deepseek-flash` 的真实 lead 与两名真实成员。
+
+六条场景已通过：20 秒成员长任务在两次完整浏览器连接间保持同一成员和 `in_progress` 任务归属；人工停止产生 `aborted` 终态但保留原成员和任务，恢复消息由同一成员继续；任务经官方 reassign 和持久消息从分析成员交给复核成员；失败回合没有错误完成任务，活动条明确显示“本轮未完成”；Host 冷重启后同一成员 ID、任务及所有权恢复且没有重复成员；真实 lead 创建 `REAL-ANALYZE` / `REAL-REVIEW`，通过官方消息、`wait_agent` 与状态读取完成 analyst→reviewer 两阶段交接，两名成员 Session 均新增完成回合。官方成员回合结束后会释放激活实例，因此由 lead 对仍归属于预期成员的任务执行最终签收，探针没有增加自有团队运行表。
+
+真实模式结果为 16 项检查通过、浏览器 pageerror 为 0；活动投影单测为 14/14。结构化回执和截图位于 `.artifacts/dsh-0.1.6-upgrade/native-team-web/`，判定边界见 [专家团韧性验收](evidence/expert-team-resilience.md)。真实密钥只复制到一次性 DSH Home 的凭据引用，退出时删除，命令参数、报告与脱敏日志不含密钥。本次未部署用户 preview，也未运行官方 fork 成员浏览器历史；不将有界真实交接或 20 秒确定性长任务写成小时级专业业务稳定性。
+
 ## 2026-09-16：PPT 原生画布坐标修正
 
 用户实际 16:9 演示稿在右侧编辑器中集中于左上区域。根因不是页面 CSS 对齐，而是 AI 按 PowerPoint 的 960×540 point 页面尺寸写入几何坐标，原生 `pptx-viewer-core` 编辑器实际使用 1280×720 CSS pixel 画布；Office 能力和文档状态此前没有暴露权威画布尺寸，新建页也沿用了 960 宽度尺度。

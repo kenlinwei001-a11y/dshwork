@@ -24,6 +24,10 @@ if (!existsSync(manifestPath)) {
 }
 
 const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+const expectedHarness = manifest.harness;
+if (typeof expectedHarness !== 'string' || expectedHarness.length === 0) {
+  throw new Error('Release manifest does not declare the required Harness version.');
+}
 const packages = new Map(manifest.packages.map(item => [item.name, item]));
 const installOrder = [
   'workdsh-provider-identity-local',
@@ -47,20 +51,35 @@ for (const name of installOrder) {
   if (actual !== item.sha256) throw new Error(`SHA-256 mismatch for ${item.filename}.`);
 }
 
-function run(args) {
+function execute(args, options = {}) {
   console.log(`> ${dsh} ${args.join(' ')}`);
-  if (dryRun) return;
-  const result = spawnSync(dsh, args, { stdio: 'inherit' });
+  if (dryRun && !options.always) return undefined;
+  const result = spawnSync(dsh, args, options.capture
+    ? { encoding: 'utf8' }
+    : { stdio: 'inherit' });
   if (result.error) throw result.error;
   if (result.status !== 0) process.exit(result.status ?? 1);
+  return result;
 }
-
-run(['--profile', profile, '--from-default-profile', 'web', '--dump-config']);
 
 // pnpm blocks dependency lifecycle scripts until the profile makes an explicit
 // decision. protobufjs only runs a version-range warning in postinstall; the
 // runtime library remains installed when this script is disabled.
 const dshHome = resolve(process.env.DSH_HOME || join(homedir(), '.dsh'));
+const versionResult = execute(['--version'], { always: true, capture: true });
+const actualHarness = versionResult?.stdout?.trim();
+if (actualHarness !== expectedHarness) {
+  throw new Error(`WorkDSH ${manifest.version} requires dsh ${expectedHarness}; found ${actualHarness || 'unknown'}. Pass --dsh /absolute/path/to/a-compatible-dsh.`);
+}
+
+const profileManifest = join(dshHome, 'profiles', profile, 'package.json');
+if (existsSync(profileManifest)) {
+  console.log(`Existing profile ${profile} detected; preserving its configuration and stored data.`);
+  execute(['--profile', profile, '--dump-config']);
+} else {
+  execute(['--profile', profile, '--from-default-profile', 'web', '--dump-config']);
+}
+
 const workspaceFile = join(dshHome, 'profiles', profile, 'pnpm-workspace.yaml');
 if (!dryRun && existsSync(workspaceFile)) {
   const current = readFileSync(workspaceFile, 'utf8');
@@ -73,7 +92,7 @@ if (!dryRun && existsSync(workspaceFile)) {
 
 for (const name of installOrder) {
   const item = packages.get(name);
-  run(['plugin', '--profile', profile, 'add', join(directory, item.filename)]);
+  execute(['plugin', '--profile', profile, 'add', join(directory, item.filename)]);
 }
 
 console.log(`\nWorkDSH ${manifest.version} is installed in profile ${profile}.`);

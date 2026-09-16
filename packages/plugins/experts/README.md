@@ -1,6 +1,6 @@
 # WorkDSH 专家插件 / Experts plugin
 
-一个插件管理多个专家与专家团配置。当前源码候选为 `workdsh-plugin-experts@0.1.0-alpha.3`，面向 **DeepSeek Harness 0.1.6-alpha.1 / Cordis 4.0.2**；候选代码与已经发布的安装包分别验收。
+一个插件管理多个专家与专家团配置。当前源码候选为 `workdsh-plugin-experts@0.1.0-alpha.4`，面向 **DeepSeek Harness 0.1.6-alpha.1 / Cordis 4.0.2**；候选代码与已经发布的安装包分别验收。
 
 WorkDSH manages authored expert assets and immutable revisions. Team execution, messaging, tasks and the Web team panel use the official DSH Agent Teams plugins.
 
@@ -47,15 +47,19 @@ corepack pnpm test:integration
 corepack pnpm test:activity
 corepack pnpm probe:experts:team
 corepack pnpm probe:experts:team:web
+corepack pnpm probe:experts:team:resilience
+corepack pnpm probe:experts:team:real
 ```
 
 - `probe:experts:team` 使用真实 Loader、生产资产服务与执行准入、官方 Agent Loop/Team/持久化；仅模型 I/O 和受信本地入口使用夹具。验证并行、各成员角色与技能、fresh/fork、非法成员和跨主体拒绝、任务依赖/CAS、模型工具分派、中断及独立进程恢复。
 - `probe:experts:team:web` 将七个功能包打成 tgz，通过官方 CLI 安装到仓库外临时 Web Profile；使用实际生产 Host、官方 Team Client、真实浏览器和确定性模型检查成员、任务写入、成员会话与冷恢复。
+- `probe:experts:team:resilience` 是同一生产安装探针的发布验收入口，并固定持续运行、人工停止后原成员继续、完整浏览器重连、成员间任务与消息交接、失败状态展示及冷重启恢复。失败由本地模型适配器确定性注入；成员、消息、任务、持久化、Host、Client 和浏览器均走正式实现。
+- `probe:experts:team:real` 显式读取已配置的 preview DeepSeek 凭据，在一次性 DSH Home 中创建独立真实执行；真实 lead 创建两阶段任务并通过官方消息与状态工具交给两名真实成员。凭据不进入命令参数和报告，临时副本在退出时删除。
 - `probe:experts` 保留专家资产与编辑页面的独立打包回归。
 
-本轮证据位于仓库 `.artifacts/dsh-0.1.6-upgrade/native-expert-team/` 和 `native-team-web/`，完整状态以 `docs/STATUS.md` 为准。测试不会修改用户 preview，也不会使用付费模型。
+本轮证据位于仓库 `.artifacts/dsh-0.1.6-upgrade/native-expert-team/` 和 `native-team-web/`，长任务、交接、重连和失败恢复的判定见 `docs/evidence/expert-team-resilience.md`，完整状态以 `docs/STATUS.md` 为准。两种测试都不修改用户 preview；只有显式 `:real` 命令调用付费模型。
 
-官方 Team 在该版本仍为实验性能力。纯官方 fork 历史查询另有可复现的 `seeded session constructor seed must equal its inherited prefix` 问题；公共持久化读取与成员冷恢复的通过不能代替 Web 分叉历史验收。默认使用 fresh 成员。真实模型专业成果、企业远程多用户和完整热卸载仍须分别验收，不宣称本轮已完成。
+官方 Team 在该版本仍为实验性能力。纯官方 fork 历史查询另有可复现的 `seeded session constructor seed must equal its inherited prefix` 问题；公共持久化读取与成员冷恢复的通过不能代替 Web 分叉历史验收。默认使用 fresh 成员。真实模型专业成果质量、企业远程多用户和完整热卸载仍须分别验收，不宣称本轮已完成。
 
 ## 安装候选包
 

@@ -1,6 +1,6 @@
 {
   "name": "workdsh",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.5",
   "private": true,
   "type": "module",
   "description": "WorkDSH planning and plugin workspace",
@@ -41,6 +41,8 @@
     "test:skill-quality": "node --test scripts/quality/audit-skills.test.mjs",
     "probe:experts:team": "node scripts/check-environment.mjs && node scripts/probe-native-expert-team.mjs",
     "probe:experts:team:web": "node scripts/check-environment.mjs && node scripts/probe-native-team-web.mjs",
+    "probe:experts:team:resilience": "node scripts/check-environment.mjs && node scripts/probe-native-team-web.mjs",
+    "probe:experts:team:real": "node scripts/check-environment.mjs && node scripts/probe-native-team-web.mjs --real-model",
     "probe:computer-use:native": "node scripts/probe-computer-use-native.mjs",
     "probe:browser-use:playwright": "node scripts/probe-browser-use-playwright.mjs",
     "probe:mcp:resources": "node scripts/probe-mcp-resources.mjs",

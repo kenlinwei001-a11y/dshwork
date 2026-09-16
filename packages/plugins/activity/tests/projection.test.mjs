@@ -75,3 +75,35 @@ test('completed teammate task no longer masks a running named lead',()=>{
  assert.equal(summary.runningCount,1);
  assert.equal(summary.message,'lead · 正在处理');
 });
+test('failed teammate keeps its unfinished owned task visible instead of falling back to the lead',()=>{
+ const view={members:[
+  {id:'lead-session',name:'lead',role:'lead',status:'running',description:'',diagnostics:[]},
+  {id:'reviewer-session',name:'reviewer',role:'teammate',status:'inactive',description:'复核材料',diagnostics:[]},
+ ],tasks:[{id:'task-failure',revision:6,subject:'失败恢复验收',description:'失败后继续',status:'in_progress',blockedBy:[],writeScopes:[],ownerName:'reviewer',ready:true,writeScopeWarnings:[]}]};
+ const summary=summarizeTeamActivity(view,'lead-session','本轮已结束',new Map([['reviewer-session','failed']]));
+ assert.equal(summary.member.name,'reviewer');
+ assert.equal(summary.task.subject,'失败恢复验收');
+ assert.equal(summary.focus,'失败恢复验收 · 本轮未完成');
+ assert.equal(summary.phase,'failed');
+ assert.equal(summary.message,'reviewer · 失败恢复验收 · 本轮未完成');
+});
+test('inactive teammate with an unfinished owned task remains visible as requiring recovery',()=>{
+ const view={members:[
+  {id:'lead-session',name:'lead',role:'lead',status:'running',description:'',diagnostics:[]},
+  {id:'reviewer-session',name:'reviewer',role:'teammate',status:'inactive',description:'复核材料',diagnostics:[]},
+ ],tasks:[{id:'task-failure',revision:7,subject:'失败恢复验收',description:'失败后继续',status:'in_progress',blockedBy:[],writeScopes:[],ownerName:'reviewer',ready:true,writeScopeWarnings:[]}]};
+ const summary=summarizeTeamActivity(view,'lead-session','本轮已结束');
+ assert.equal(summary.member.name,'reviewer');
+ assert.equal(summary.focus,'失败恢复验收 · 本轮未完成');
+ assert.equal(summary.phase,'failed');
+});
+test('interrupted teammate exposes the retained task as resumable',()=>{
+ const view={members:[
+  {id:'lead-session',name:'lead',role:'lead',status:'running',description:'',diagnostics:[]},
+  {id:'analyst-session',name:'analyst',role:'teammate',status:'inactive',description:'分析材料',diagnostics:[]},
+ ],tasks:[{id:'task-stop',revision:4,subject:'人工停止与恢复验收',description:'停止后继续',status:'in_progress',blockedBy:[],writeScopes:[],ownerName:'analyst',ready:true,writeScopeWarnings:[]}]};
+ const summary=summarizeTeamActivity(view,'lead-session','本轮已结束',new Map([['analyst-session','interrupted']]));
+ assert.equal(summary.member.name,'analyst');
+ assert.equal(summary.focus,'人工停止与恢复验收 · 已停止，可继续');
+ assert.equal(summary.phase,'interrupted');
+});

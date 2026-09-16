@@ -8,10 +8,11 @@ export interface TeamActivitySummary {
   readonly focus?: string;
   readonly message: string;
   readonly runningCount: number;
+  readonly phase?: 'failed' | 'interrupted';
 }
 
 /** Project only official Team view facts; never infer work from model prose. */
-export function summarizeTeamActivity(view: TeamView | undefined, currentSessionId: string, fallback: string): TeamActivitySummary {
+export function summarizeTeamActivity(view: TeamView | undefined, currentSessionId: string, fallback: string, memberTerminalPhases: ReadonlyMap<string, 'failed' | 'interrupted'> = new Map()): TeamActivitySummary {
   const members = view?.members ?? [], tasks = view?.tasks ?? [];
   const ownedTasks = (member: TeamMemberView) => tasks.filter(task => task.ownerName === member.name && task.status !== 'deleted');
   // Official member Sessions can remain `running` briefly after their shared
@@ -19,13 +20,25 @@ export function summarizeTeamActivity(view: TeamView | undefined, currentSession
   // stronger signal; otherwise a finished teammate would mask the active lead.
   const running = members.filter(member => member.status === 'running' && (member.role === 'lead' || ownedTasks(member).length === 0 || ownedTasks(member).some(task => task.status === 'in_progress')));
   const activeTasks = tasks.filter(task => task.status === 'in_progress' && running.some(member => member.name === task.ownerName));
-  const task = activeTasks.reduce<TeamTaskView | undefined>((latest, row) => !latest || row.revision >= latest.revision ? row : latest, undefined);
-  const selected = (task ? running.find(member => member.name === task.ownerName) : undefined)
+  const activeTask = activeTasks.reduce<TeamTaskView | undefined>((latest, row) => !latest || row.revision >= latest.revision ? row : latest, undefined);
+  // The public Session Controller deliberately does not materialize unopened
+  // child Sessions. An inactive Team member that still owns an in-progress
+  // task is therefore the official cross-session recovery signal: the member
+  // is not working and the durable task was not completed.
+  const attentionTasks = tasks.filter(task => task.status === 'in_progress' && members.some(member => member.name === task.ownerName && (member.status === 'failed' || member.status === 'inactive' || memberTerminalPhases.has(String(member.id)))));
+  const attentionTask = attentionTasks.reduce<TeamTaskView | undefined>((latest, row) => !latest || row.revision >= latest.revision ? row : latest, undefined);
+  const task = activeTask ?? attentionTask;
+  const selected = (task ? members.find(member => member.name === task.ownerName) : undefined)
     ?? running.find(member => String(member.id) === currentSessionId)
     ?? running.find(member => member.role === 'lead')
     ?? running[0];
   const selectedTask = selected && tasks.find(row => row.ownerName === selected.name && row.status === 'in_progress');
-  const focus = selectedTask?.subject || selected?.description || (selected ? '正在处理' : undefined);
-  const extra = selected && running.length > 1 ? ` · 另 ${running.length - 1} 位专家处理中` : '';
-  return { member: selected, task: selectedTask, focus, runningCount: running.length, message: selected ? `${selected.name} · ${focus}${extra}` : fallback };
+  const phase = selected ? memberTerminalPhases.get(String(selected.id)) ?? (selected.status === 'failed' || (selected.status === 'inactive' && !!selectedTask) ? 'failed' : undefined) : undefined;
+  const focus = phase === 'failed' && selectedTask
+    ? `${selectedTask.subject} · 本轮未完成`
+    : phase === 'interrupted' && selectedTask
+      ? `${selectedTask.subject} · 已停止，可继续`
+      : selectedTask?.subject || selected?.description || (selected ? '正在处理' : undefined);
+  const extra = selected && running.includes(selected) && running.length > 1 ? ` · 另 ${running.length - 1} 位专家处理中` : '';
+  return { member: selected, task: selectedTask, focus, runningCount: running.length, phase, message: selected ? `${selected.name} · ${focus}${extra}` : fallback };
 }
