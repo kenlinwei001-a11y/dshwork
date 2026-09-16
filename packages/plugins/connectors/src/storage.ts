@@ -11,6 +11,8 @@ export const connectorDefinitionSchema = z.object({
   args: z.array(z.string().max(4096)).max(64).optional(),
   url: z.string().url().max(2048).optional(),
   authorizationCredentialRef: z.string().regex(/^[A-Z_][A-Z0-9_]*$/).max(128).optional(),
+  /** Header carrying the credential value. Defaults to Authorization; catalogs also use X-Api-Key styles. */
+  credentialHeader: z.string().regex(/^[A-Za-z][A-Za-z0-9-]{0,63}$/).optional(),
   enabled: z.boolean(),
   createdAt: z.string().min(1),
   updatedAt: z.string().min(1),

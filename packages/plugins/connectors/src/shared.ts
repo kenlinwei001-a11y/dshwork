@@ -25,6 +25,7 @@ export interface ConnectorConfigView {
   readonly command?: string;
   readonly args?: readonly string[];
   readonly url?: string;
+  readonly credentialHeader?: string;
   readonly authorizationConfigured: boolean;
   readonly authorizationWritable: boolean;
   readonly editable: true;
@@ -38,6 +39,8 @@ export interface ConnectorInput {
   readonly command?: string;
   readonly args?: readonly string[];
   readonly url?: string;
+  /** Header that carries the credential; defaults to Authorization (catalog entries may use X-Api-Key). */
+  readonly credentialHeader?: string;
   /** Transient write-only value. It is stored by ctx.credentials and never returned. */
   readonly authorizationToken?: string;
 }

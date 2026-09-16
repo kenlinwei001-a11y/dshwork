@@ -67,6 +67,7 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
       : { configured: false, writable: true };
     return { id, title: row.title, description: row.description, serverName: row.serverName, transport: row.transport,
       ...(row.command ? { command: row.command } : {}), ...(row.args ? { args: row.args } : {}), ...(row.url ? { url: row.url } : {}),
+      ...(row.credentialHeader ? { credentialHeader: row.credentialHeader } : {}),
       authorizationConfigured: credential.configured, authorizationWritable: credential.writable, editable: true };
   }
 
@@ -93,7 +94,7 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
       const authorizationCredentialRef = current.authorizationCredentialRef ?? (input.authorizationToken?.trim() ? this.credentialName(normalized.serverName) : undefined);
       if (authorizationCredentialRef && input.authorizationToken?.trim()) await this.ctx.credentials.set(refFor(authorizationCredentialRef), input.authorizationToken.trim());
       const next: ConnectorDefinition = { ...current, ...normalized, command: normalized.command, args: normalized.args, url: normalized.url,
-        authorizationCredentialRef, updatedAt: new Date().toISOString() };
+        credentialHeader: normalized.credentialHeader, authorizationCredentialRef, updatedAt: new Date().toISOString() };
       await this.table().put(id, next); this.runtimes.set(id, { state: next.enabled ? 'discovering' : 'disabled' });
       if (next.enabled) await this.start(next).catch(() => undefined);
       this.reapplyRestrictions();
@@ -144,7 +145,7 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
     const authorization = definition.authorizationCredentialRef
       ? await this.ctx.credentials.resolve(refFor(definition.authorizationCredentialRef))
       : undefined;
-    const headers: Record<string, string> = authorization ? { Authorization: authorization.value } : {};
+    const headers: Record<string, string> = authorization ? { [definition.credentialHeader ?? 'Authorization']: authorization.value } : {};
     const transportConfig = definition.transport === 'stdio'
       ? { serverName: definition.serverName, transport: 'stdio' as const, command: definition.command!, args: [...(definition.args ?? [])], env: {} }
       : { serverName: definition.serverName, transport: 'streamable-http' as const, url: definition.url!, headers };
@@ -197,6 +198,7 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
   private normalize(input: ConnectorInput): Omit<ConnectorDefinition, 'id' | 'enabled' | 'createdAt' | 'updatedAt'> {
     const value = connectorDefinitionSchema.omit({ id: true, enabled: true, createdAt: true, updatedAt: true }).parse({
       title: input.title.trim(), description: input.description?.trim() ?? '', serverName: input.serverName.trim(), transport: input.transport,
+      ...(input.credentialHeader?.trim() ? { credentialHeader: input.credentialHeader.trim() } : {}),
       ...(input.transport === 'stdio' ? { command: input.command?.trim(), args: [...(input.args ?? [])] } : { url: input.url?.trim() }),
     });
     if (value.transport === 'stdio' && !value.command) throw new Error('connector/command-required');
