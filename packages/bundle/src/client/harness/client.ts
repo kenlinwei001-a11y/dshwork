@@ -68,6 +68,6 @@ export function apply(ctx: Context): void {
     return dispose;
   });
   if (diagnostics) ctx.slots.inject('sidebar.panellist', () => ctx.slots.register({
-    name: 'sidebar.panellist', id: 'workdsh-probe', label: 'WorkDSH 接入验证', order: 90,
+    name: 'sidebar.panellist', id: 'workdsh-probe', label: 'NexusOne 接入验证', order: 90,
   }, DiagnosticsMark));
 }

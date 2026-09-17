@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LogoMark } from 'workdsh-ui';
 
 export function BrandName() {
-  return <span data-testid="workdsh-brand">WorkDSH</span>;
+  return <span data-testid="workdsh-brand">NexusOne</span>;
 }
 
 export function BrandMark() {
@@ -10,5 +10,5 @@ export function BrandMark() {
 }
 
 export function DiagnosticsMark() {
-  return <span aria-hidden>W</span>;
+  return <span aria-hidden>N</span>;
 }

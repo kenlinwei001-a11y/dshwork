@@ -29,7 +29,7 @@ function draftProjection(draft: Awaited<ReturnType<Context['workdshSkills']['get
 export function registerSkillLifecycleTools(ctx: Context): void {
   ctx.tools.register(defineTool({
     name: 'workdsh_save_skill_draft',
-    description: 'Create or revise a private WorkDSH skill draft. This never installs or overwrites a skill.',
+    description: 'Create or revise a private NexusOne skill draft. This never installs or overwrites a skill.',
     parameters: {
       name: { type: 'string', required: true, description: 'Exact kebab-case skill name.' },
       document: { type: 'string', required: true, description: 'Complete SKILL.md including YAML frontmatter and instructions.' },
@@ -57,7 +57,7 @@ export function registerSkillLifecycleTools(ctx: Context): void {
 
   ctx.tools.register(defineTool({
     name: 'workdsh_validate_skill_draft',
-    description: 'Re-read and validate a persisted WorkDSH skill draft before publication.',
+    description: 'Re-read and validate a persisted NexusOne skill draft before publication.',
     parameters: { draft_id: { type: 'string', required: true, description: 'Draft id returned by workdsh_save_skill_draft.' } },
     output: {
       schema: draftOutput,
@@ -71,7 +71,7 @@ export function registerSkillLifecycleTools(ctx: Context): void {
 
   ctx.tools.register(defineTool({
     name: 'workdsh_publish_skill_draft',
-    description: 'Publish one valid, user-confirmed WorkDSH skill draft into an official Harness skill root. Fails closed on a name collision or stale revision.',
+    description: 'Publish one valid, user-confirmed NexusOne skill draft into an official Harness skill root. Fails closed on a name collision or stale revision.',
     parameters: {
       draft_id: { type: 'string', required: true, description: 'Validated draft id.' },
       expected_revision: { type: 'string', required: true, description: 'Exact validated draft revision.' },

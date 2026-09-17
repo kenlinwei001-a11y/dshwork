@@ -146,7 +146,7 @@ const detailOutput = {
     readiness: { type: 'string' as const, required: true as const },
     revision: { type: 'string' as const, required: true as const, description: '乐观并发令牌；下次 update_draft 传 expected_revision。' },
     draft_revision: { type: 'string' as const, required: true as const, description: '草稿修订；validate 与 request_publish 传此值。' },
-    draft_url: { type: 'string' as const, required: true as const, description: '同一 WorkDSH 页面打开草稿的链接；仅导航，不授权发布。' },
+    draft_url: { type: 'string' as const, required: true as const, description: '同一 NexusOne 页面打开草稿的链接；仅导航，不授权发布。' },
     definition: { ...definitionParameters, required: true as const, properties: {
       ...definitionParameters.properties,
       avatar_ref: { type: 'string' as const },
@@ -387,7 +387,7 @@ export function registerExpertManagementTools(ctx: Context): void {
 
   ctx.tools.register(defineTool({
     name: 'workdsh_expert_list',
-    description: '列出当前主体可见的 WorkDSH 专家（我的专家、内置专家），可按名称/描述/标签搜索与筛选。只读，不修改任何数据。',
+    description: '列出当前主体可见的 NexusOne 专家（我的专家、内置专家），可按名称/描述/标签搜索与筛选。只读，不修改任何数据。',
     parameters: {
       search: { type: 'string', description: '可选搜索词，最多 200 字。' },
       origin: { type: 'string', enum: ['default', 'personal', 'organization'], description: '可选来源筛选。' },
@@ -430,7 +430,7 @@ export function registerExpertManagementTools(ctx: Context): void {
 
   ctx.tools.register(defineTool({
     name: 'workdsh_expert_get',
-    description: '读取一个 WorkDSH 专家的完整详情：草稿定义、并发令牌 revision、草稿修订 draft_revision、就绪状态与校验问题。只读。',
+    description: '读取一个 NexusOne 专家的完整详情：草稿定义、并发令牌 revision、草稿修订 draft_revision、就绪状态与校验问题。只读。',
     parameters: {
       expert_id: { type: 'string', required: true, description: '专家 id。' },
       revision_id: { type: 'string', description: '可选：读取某个已发布修订而非当前草稿。' },
