@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.4",
   "private": false,
   "type": "module",
-  "description": "Local expert management plugin for DeepSeek Harness (D04 / P1-02, expert module 0.1)",
+  "description": "Local expert management plugin for NexusOne (D04 / P1-02, expert module 0.1)",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

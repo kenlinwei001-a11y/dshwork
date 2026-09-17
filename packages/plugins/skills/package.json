@@ -53,7 +53,7 @@
     "fflate": "0.8.3",
     "yaml": "2.9.0"
   },
-  "description": "Local skill management plugin for DeepSeek Harness",
+  "description": "Local skill management plugin for NexusOne",
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"

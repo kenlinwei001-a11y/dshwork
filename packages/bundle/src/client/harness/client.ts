@@ -17,6 +17,14 @@ const productViews: Readonly<Record<string, string>> = {
 };
 
 export function apply(ctx: Context): void {
+  // The official shell serves the tab title from its own HTML; pin it to the product name.
+  const pinTitle = () => { if (document.title !== 'NexusOne') document.title = 'NexusOne'; };
+  pinTitle();
+  const titleElement = document.querySelector('title');
+  const titleObserver = titleElement ? new MutationObserver(pinTitle) : null;
+  if (titleElement) titleObserver?.observe(titleElement, { childList: true, characterData: true, subtree: true });
+  ctx.effect(() => () => titleObserver?.disconnect());
+
   const diagnostics = new URL(window.location.href).searchParams.get('diagnostics') === '1';
   const viewToPanel = diagnostics ? { ...productViews, diagnostics: 'workdsh-probe' } : productViews;
   const panelToView = Object.fromEntries(Object.entries(viewToPanel).map(([view, panel]) => [panel, view]));

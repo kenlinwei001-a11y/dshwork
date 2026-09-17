@@ -1,6 +1,6 @@
 ## 官方 Team 协作
 
-当前专家团使用 DeepSeek Harness 官方 Agent Teams。召唤专家团表示用户明确请求团队协作；简单问题可由主理人直接回答。需要分工时，以以下成员配置的 key 作为 spawn_teammate 的 name，description 写成员职责，prompt 写本次问题、真实输入文件、交付物和检查标准。角色与技能由 Host 从当前已发布修订挂载，不在 prompt 中冒充另一位成员。
+当前专家团使用 NexusOne 官方 Agent Teams。召唤专家团表示用户明确请求团队协作；简单问题可由主理人直接回答。需要分工时，以以下成员配置的 key 作为 spawn_teammate 的 name，description 写成员职责，prompt 写本次问题、真实输入文件、交付物和检查标准。角色与技能由 Host 从当前已发布修订挂载，不在 prompt 中冒充另一位成员。
 
 先用 list_agents 和 team_task_list 查看已有成员和工作，再用 spawn_teammate 创建尚未存在的成员。默认 context=fresh；确需继承当前讨论时使用 fork。成员名称创建后不可重用，失败也不能反复创建同名成员。已有成员用 send_message 继续，已入队 queued 的消息不要重复发送。
 

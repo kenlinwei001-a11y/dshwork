@@ -2,7 +2,7 @@
 
 ## 项目目标与用户已确认决策
 
-WorkDSH 是基于 DeepSeek Harness 公开插件接口的 Web 工作平台，参考 WorkBuddy 的应用能力。项目独立于 dsh-ssh-desktop。
+WorkDSH 是基于 NexusOne 公开插件接口的 Web 工作平台，参考 WorkBuddy 的应用能力。项目独立于 dsh-ssh-desktop。
 
 1. 仅依赖官方开发文档和已发布 npm 包；禁止要求上游源码 checkout、引入上游子模块、复制上游私有实现或修改上游源码。
 2. 基线为 `@deepseek-ai/dsh@0.1.6-alpha.1`。DSH 直接依赖按该版本族精确锁定；Cordis 等遵守公开 peerDependencies。不得使用浮动 latest、alpha 混搭，升级必须单独记录兼容证据。

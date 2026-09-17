@@ -31,7 +31,7 @@ const report = {
   scope: 'expert-team-resilience',
   environment: {
     host: 'production packaged WorkDSH profile',
-    team: 'official DeepSeek Harness Agent Teams service, tools and Web client',
+    team: 'official NexusOne Agent Teams service, tools and Web client',
     browser: 'Playwright Chromium',
     modelIo: realModel ? 'deterministic fault adapter plus explicit DeepSeek real-model handoff' : 'deterministic local adapter',
   },

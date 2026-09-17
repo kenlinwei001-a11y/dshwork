@@ -1,6 +1,6 @@
 ## 0.1.0-alpha.5 — 2026-09-15
 
-- 将 Session、Storage Domain 与工具授权边界适配到 DeepSeek Harness 0.1.6-alpha.1。
+- 将 Session、Storage Domain 与工具授权边界适配到 NexusOne 0.1.6-alpha.1。
 - 配套官方 Team 专家执行链路，保留既有主体、资源授权与审计边界。
 
 # 0.1.0-alpha.3

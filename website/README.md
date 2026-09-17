@@ -1,6 +1,6 @@
 # WorkDSH product website
 
-Static, bilingual marketing site for WorkDSH: an independent open-source implementation of the WorkBuddy style of AI workspace, built on DeepSeek Harness.
+Static, bilingual marketing site for WorkDSH: an independent open-source implementation of the WorkBuddy style of AI workspace, built on NexusOne.
 
 - `zh-CN.html`: Chinese website.
 - `index.html`: English website and the existing GitHub Pages default entry.

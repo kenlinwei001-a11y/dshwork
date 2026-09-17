@@ -2,7 +2,7 @@
 <p align="center"><img src="assets/brand/workdsh-logo.svg" width="104" alt="WorkDSH"></p>
 <h1 align="center">WorkDSH</h1>
 <p align="center"><strong>Give AI a job. Watch it work. Open the result.</strong></p>
-<p align="center">An open-source, WorkBuddy-inspired AI workspace for DeepSeek Harness.</p>
+<p align="center">An open-source, WorkBuddy-inspired AI workspace for NexusOne.</p>
 <p align="center"><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
 <p align="center">
   <a href="https://github.com/techflag/workdsh/releases">Download</a> ·
@@ -13,9 +13,9 @@
   <a href="https://techflag.github.io/workdsh/">Website</a>
 </p>
 
-WorkDSH adds a **local Library, skills, experts, connectors, team activity, browser/computer use, and editable Office deliverables** to the native DeepSeek Harness task experience. You stay in one conversation while the work appears beside it as a real document, spreadsheet, presentation, PDF, webpage, or connected-service result.
+WorkDSH adds a **local Library, skills, experts, connectors, team activity, browser/computer use, and editable Office deliverables** to the native NexusOne task experience. You stay in one conversation while the work appears beside it as a real document, spreadsheet, presentation, PDF, webpage, or connected-service result.
 
-Think of it as an **independent open-source alternative for a WorkBuddy-style workflow**: assign a real job, watch the work unfold, intervene when needed, and receive editable artifacts. WorkDSH is built independently for DeepSeek Harness and is not an official WorkBuddy release.
+Think of it as an **independent open-source alternative for a WorkBuddy-style workflow**: assign a real job, watch the work unfold, intervene when needed, and receive editable artifacts. WorkDSH is built independently for NexusOne and is not an official WorkBuddy release.
 
 ![WorkDSH creating and presenting a real HTML analysis dashboard](docs/assets/screenshots/workdsh-html-dashboard-preview.png)
 
@@ -246,7 +246,7 @@ Packaged probes exercise actual installation, browser interactions, edits, recov
 
 Feature modules live in `packages/plugins/<domain>`, providers in `packages/providers/<name>`, and shared packages in `packages/{contracts,ui,bundle}`. Scaffolds do not imply installable plugins. See the [package guide](packages/plugins/README.md).
 
-Built on [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harness/); interaction references include [WorkBuddy](https://www.workbuddy.cn/). WorkDSH is an independent project, not an official product of either team.
+Built on [NexusOne](https://deepseek-harness.github.io/deepseek-harness/); interaction references include [WorkBuddy](https://www.workbuddy.cn/). WorkDSH is an independent project, not an official product of either team.
 
 ## Current development preview
 
@@ -300,7 +300,7 @@ Thank you to these projects and their maintainers. This list covers major direct
 
 | Project | Use in WorkDSH | License |
 | --- | --- | --- |
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) / Cordis | Native tasks, model execution, skills, Loader, Profile, services and UI extension APIs | MIT |
+| [NexusOne](https://github.com/deepseek-ai/deepseek-harness) / Cordis | Native tasks, model execution, skills, Loader, Profile, services and UI extension APIs | MIT |
 | [React](https://github.com/facebook/react) | Feature pages and editor UI | MIT |
 | [Tiptap](https://github.com/ueberdosis/tiptap) / [ProseMirror](https://github.com/ProseMirror) | Word working-copy editing, tables and images; adapted open-source Tiptap UI components | MIT |
 | [pptx-viewer](https://github.com/ChristopherVR/pptx-viewer) | `pptx-react-viewer` 3.16.5 and `pptx-viewer-core` 3.14.3: the sole current PPT editing, parsing and export implementation | Apache-2.0 |
@@ -314,7 +314,7 @@ Thank you to these projects and their maintainers. This list covers major direct
 | [Lucide](https://github.com/lucide-icons/lucide) | PPT toolbar icons | ISC |
 | [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) | Separately installed spending plugin in the local preview Profile; not bundled in WorkDSH releases | See the independent project's license |
 
-WorkDSH explicitly takes **WorkBuddy / CodeBuddy** as a product-experience reference: a real task should expose its process and end in an editable artifact. Skill-market organization, grouped toolbars, and PPT design guidance also draw on those experiences. WorkDSH is an independent open-source implementation for DeepSeek Harness; it does not reuse WorkBuddy branding or claim an official partnership, endorsement, or Tencent PPT engine integration.
+WorkDSH explicitly takes **WorkBuddy / CodeBuddy** as a product-experience reference: a real task should expose its process and end in an editable artifact. Skill-market organization, grouped toolbars, and PPT design guidance also draw on those experiences. WorkDSH is an independent open-source implementation for NexusOne; it does not reuse WorkBuddy branding or claim an official partnership, endorsement, or Tencent PPT engine integration.
 
 Third-party skills and materials retain their providers' terms. Generated archives retain copyright and license texts for dependencies actually bundled; see [Office third-party notices](packages/plugins/office/THIRD-PARTY-NOTICES.md).
 

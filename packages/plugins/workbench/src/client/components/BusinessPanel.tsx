@@ -32,7 +32,7 @@ export function BusinessPanel({ label, description }: BusinessPanelProps) {
       <h1>{label}</h1>
       <p className="wd-workbench-description">{description}</p>
       <p className="wd-workbench-boundary">
-        当前模块尚未接入领域数据。工作区、会话与新任务继续使用 DeepSeek Harness 原生能力。
+        当前模块尚未接入领域数据。工作区、会话与新任务继续使用 NexusOne 原生能力。
       </p>
     </section>
   );

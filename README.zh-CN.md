@@ -2,7 +2,7 @@
 <p align="center"><img src="assets/brand/workdsh-logo.svg" width="104" alt="WorkDSH"></p>
 <h1 align="center">WorkDSH</h1>
 <p align="center"><strong>交给 AI 一项工作，看着它完成，打开真正的成果。</strong></p>
-<p align="center">面向 DeepSeek Harness、开源实现 WorkBuddy 式体验的 AI 工作台。</p>
+<p align="center">面向 NexusOne、开源实现 WorkBuddy 式体验的 AI 工作台。</p>
 <p align="center"><a href="README.md">English</a> · <strong>简体中文</strong></p>
 <p align="center">
   <a href="https://github.com/techflag/workdsh/releases">下载安装包</a> ·
@@ -13,9 +13,9 @@
   <a href="https://techflag.github.io/workdsh/">产品网站</a>
 </p>
 
-WorkDSH 把**本地资料库、技能、专家、连接器、团队动态、浏览器/电脑操作和可编辑的 Office 成果**装进 DeepSeek Harness 原生任务体验。你不用在聊天、临时网页和本地文件之间来回切换：对话在左边继续，文档、表格、PPT、PDF、网页或外部服务结果在右边实时出现，最后留下可以打开和下载的成果。
+WorkDSH 把**本地资料库、技能、专家、连接器、团队动态、浏览器/电脑操作和可编辑的 Office 成果**装进 NexusOne 原生任务体验。你不用在聊天、临时网页和本地文件之间来回切换：对话在左边继续，文档、表格、PPT、PDF、网页或外部服务结果在右边实时出现，最后留下可以打开和下载的成果。
 
-你可以把它理解为一个**独立开源的 WorkBuddy 式工作台**：交代真实任务，看到执行过程，需要时人工介入，最后拿到可继续编辑的成果。WorkDSH 针对 DeepSeek Harness 独立开发，并非 WorkBuddy 官方开源版本。
+你可以把它理解为一个**独立开源的 WorkBuddy 式工作台**：交代真实任务，看到执行过程，需要时人工介入，最后拿到可继续编辑的成果。WorkDSH 针对 NexusOne 独立开发，并非 WorkBuddy 官方开源版本。
 
 ![WorkDSH 制作并展示真实 HTML 数据分析看板](docs/assets/screenshots/workdsh-html-dashboard-preview.png)
 
@@ -246,7 +246,7 @@ corepack pnpm probe:browser
 
 功能模块位于 `packages/plugins/<domain>`，提供方位于 `packages/providers/<name>`，共享包位于 `packages/{contracts,ui,bundle}`。目录脚手架不等于可安装插件，详见[插件目录说明](packages/plugins/README.md)。
 
-底座采用 [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harness/)，交互参考包括 [WorkBuddy](https://www.workbuddy.cn/)。WorkDSH 是独立项目，并非上述团队的官方产品。
+底座采用 [NexusOne](https://deepseek-harness.github.io/deepseek-harness/)，交互参考包括 [WorkBuddy](https://www.workbuddy.cn/)。WorkDSH 是独立项目，并非上述团队的官方产品。
 
 ## 当前开发预览
 
@@ -270,7 +270,7 @@ corepack pnpm probe:browser
 
 | 项目 | 在 WorkDSH 中的用途 | 许可 |
 | --- | --- | --- |
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) / Cordis | 原生任务、模型执行、技能发现、插件加载、Profile、服务与 UI 扩展底座 | MIT |
+| [NexusOne](https://github.com/deepseek-ai/deepseek-harness) / Cordis | 原生任务、模型执行、技能发现、插件加载、Profile、服务与 UI 扩展底座 | MIT |
 | [React](https://github.com/facebook/react) | 功能页面和编辑器 UI | MIT |
 | [Tiptap](https://github.com/ueberdosis/tiptap) / [ProseMirror](https://github.com/ProseMirror) | Word 工作副本文本、表格、图片与编辑交互；适配 Tiptap 开源 UI 组件 | MIT |
 | [pptx-viewer](https://github.com/ChristopherVR/pptx-viewer) | `pptx-react-viewer` 3.16.5 与 `pptx-viewer-core` 3.14.3，当前唯一 PPT 编辑、解析和导出实现 | Apache-2.0 |
@@ -281,6 +281,6 @@ corepack pnpm probe:browser
 | [Lucide](https://github.com/lucide-icons/lucide) | PPT 工具栏图标 | ISC |
 | [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) | 当前预览 Profile 单独安装的费用统计插件，不内置于 WorkDSH 发布包 | 以其独立项目许可为准 |
 
-WorkDSH 明确以 **WorkBuddy / CodeBuddy** 作为产品体验参考：真实任务应展示工作过程，并以可编辑成果结束；技能市场组织、工具栏分组和 PPT 设计指导也吸收了相关经验。WorkDSH 是面向 DeepSeek Harness 的独立开源实现，不复用 WorkBuddy 品牌，也不代表官方合作、背书或集成了腾讯 PPT 引擎。
+WorkDSH 明确以 **WorkBuddy / CodeBuddy** 作为产品体验参考：真实任务应展示工作过程，并以可编辑成果结束；技能市场组织、工具栏分组和 PPT 设计指导也吸收了相关经验。WorkDSH 是面向 NexusOne 的独立开源实现，不复用 WorkBuddy 品牌，也不代表官方合作、背书或集成了腾讯 PPT 引擎。
 
 第三方技能和素材分别遵循其提供方的许可与使用条件。构建产物保留实际打包依赖的版权和许可文本，见 [Office 第三方声明](packages/plugins/office/THIRD-PARTY-NOTICES.md)。
