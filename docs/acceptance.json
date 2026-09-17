@@ -499,6 +499,51 @@
       "evidence": []
     },
     {
+      "id": "UI11",
+      "phase": "P1",
+      "tasks": [
+        "P1-08"
+      ],
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UI12",
+      "phase": "P1",
+      "tasks": [
+        "P1-08"
+      ],
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UI13",
+      "phase": "P1",
+      "tasks": [
+        "P1-08"
+      ],
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UI14",
+      "phase": "P1",
+      "tasks": [
+        "P1-08"
+      ],
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "UI15",
+      "phase": "P1",
+      "tasks": [
+        "P1-08"
+      ],
+      "status": "pending",
+      "evidence": []
+    },
+    {
       "id": "J07-P3",
       "phase": "P3",
       "tasks": [
@@ -567,8 +612,12 @@
       "tasks": [
         "P1-06"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/library-alpha1.md",
+        "docs/evidence/library-alpha1-office-preview.json",
+        "docs/evidence/library-alpha1-real-model.json"
+      ]
     },
     {
       "id": "B04",

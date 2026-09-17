@@ -26,6 +26,10 @@
     "./activity": {
       "types": "./dist/activity.d.ts",
       "default": "./dist/activity.js"
+    },
+    "./library": {
+      "types": "./dist/library.d.ts",
+      "default": "./dist/library.js"
     }
   },
   "files": [

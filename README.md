@@ -13,7 +13,7 @@
   <a href="https://techflag.github.io/workdsh/">Website</a>
 </p>
 
-WorkDSH adds **skills, experts, connectors, team activity, browser/computer use, and editable Office deliverables** to the native DeepSeek Harness task experience. You stay in one conversation while the work appears beside it as a real document, spreadsheet, presentation, PDF, webpage, or connected-service result.
+WorkDSH adds a **local Library, skills, experts, connectors, team activity, browser/computer use, and editable Office deliverables** to the native DeepSeek Harness task experience. You stay in one conversation while the work appears beside it as a real document, spreadsheet, presentation, PDF, webpage, or connected-service result.
 
 Think of it as an **independent open-source alternative for a WorkBuddy-style workflow**: assign a real job, watch the work unfold, intervene when needed, and receive editable artifacts. WorkDSH is built independently for DeepSeek Harness and is not an official WorkBuddy release.
 
@@ -38,6 +38,7 @@ Already using the Harness `0.1.6-alpha.1` Web Profile? Install the modules you n
 | A report, brief, or dashboard | Reads the task material, writes in visible batches, and keeps revisions | Editable HTML, Word, PDF, or Markdown working copy within the supported format scope |
 | A presentation | Creates or imports a PPTX working copy, edits slides, and keeps human changes | Editable PPTX with download; complex-template fidelity still requires review |
 | A spreadsheet | Opens a workbook beside the task and preserves supported values and formulas | Editable XLSX working copy with format-specific limits |
+| Knowledge capture and reuse | Stores Markdown, text, HTML, PDF, Word, and PPT files locally; browses folders, searches full text, and previews originals | A reusable personal Library whose selected revisions can be sent directly into a new conversation |
 | Repeatable expertise | Installs or creates Markdown skills with resources; experts pin reviewed revisions | Reusable skills and explicit expert identities instead of one-off prompts |
 | Connected services | Adds independent MCP instances, keeps credentials in the official credential service, and selects tools per conversation | A visible connector name beside the prompt and only that connector's MCP namespace in the task |
 | Team execution | Shows the team, members, active state, and task activity in the conversation | A visible collaboration trail; complete TM-01 real-model acceptance is still in progress |
@@ -61,6 +62,19 @@ Already using the Harness `0.1.6-alpha.1` Web Profile? Install the modules you n
 </tr>
 </table>
 
+## Local Library 0.1
+
+![WorkDSH local Library with an original HTML preview](docs/assets/screenshots/workdsh-library-preview.png)
+
+The Library turns task outputs and reference files into local knowledge that can be searched, previewed, and supplied to the model again. It supports folders, recent items, and full-text search; retains original files; and produces deterministic text for Markdown, TXT, HTML, PDF, DOCX, and PPTX content.
+
+- Selecting a file or folder creates a **fixed-revision** reference in a new conversation, so later edits cannot silently change content already sent to the model.
+- Enter `/skill-name` in that conversation to combine a Skill's method with the selected Library material; this composition path is covered by an integration test.
+- HTML and Markdown preview directly. With the Office plugin installed, Word and PPT also receive enhanced original-file previews.
+- The current Alpha targets one local user, with move, rename, delete, disabled restore, and a 5 GiB aggregate revision quota. Scanned-PDF OCR and shared team libraries are not included yet.
+
+[Download the Library Alpha](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1) · [Read the Library package guide](packages/plugins/library/README.md)
+
 ## What makes WorkDSH different
 
 | Characteristic | What you experience |
@@ -68,6 +82,7 @@ Already using the Harness `0.1.6-alpha.1` Web Profile? Install the modules you n
 | **Open-source WorkBuddy-style workflow** | The task, visible process, human checkpoints, and editable result stay together in an implementation you can inspect, install, and extend. |
 | **Real deliverables** | Supported outputs are saved as working copies and downloadable files. A failed tool call is never presented as a finished file. |
 | **Live human–AI editing** | Open a result, correct it directly, and let the model continue from the latest saved revision. |
+| **Reusable local knowledge** | Keep files in folders, search their text, preview originals, and bring fixed revisions into a new conversation together with a Skill. |
 | **Reusable professional capability** | Skills carry instructions and resources; experts bind reviewed skill revisions and an explicit identity instead of relying on a one-off role prompt. |
 | **Conversation-scoped connectors** | Enable multiple MCP instances globally, then choose exactly which connected service a conversation may use. A new conversation starts with none selected. |
 | **Visible team activity** | The conversation can show the expert team, active member, handoff, and task state. Full TM-01 real-model acceptance remains in progress. |
@@ -76,7 +91,7 @@ Already using the Harness `0.1.6-alpha.1` Web Profile? Install the modules you n
 
 ## Current preview status
 
-The latest public Web preview was verified on **Harness `0.1.6-alpha.1`, Node.js `22.23.2`, and macOS** through packaged installation and cold-start checks. Skills, individual experts, MCP connectors, Office working copies, browser/computer use, and collaboration activity are available as alpha modules.
+The latest public Web preview was verified on **Harness `0.1.6-alpha.1`, Node.js `22.23.2`, and macOS** through packaged installation and cold-start checks. The local Library, Skills, individual experts, MCP connectors, Office working copies, browser/computer use, and collaboration activity are available as alpha modules.
 
 This remains a development preview. Real-model acceptance for complete expert-team workflows, arbitrary Office fidelity, and multi-platform behavior is not finished. The default listener is local; this repository does not claim a production-ready internet-facing multi-tenant deployment. Exact versions, checksums, limits, and evidence are documented below.
 
@@ -87,7 +102,7 @@ WorkDSH follows Harness's own extension model: official **Loader + Profile + Cor
 | Principle | What it means |
 | --- | --- |
 | Install capabilities independently | Skill ships its own configuration layer, Host service, Client module, and prebuilt `.tgz`. The presentation package is optional. |
-| Compose through public contracts | Plugins collaborate through injected services. `workdsh-contracts/skills` exposes the Skill service contract for future consumers such as experts. |
+| Compose through public contracts | Experts reference shared Skills; Library fixed references enter native conversations and can use Office's enhanced preview service. |
 | Keep the native runtime | Harness owns conversations, workspaces, model execution, skill discovery and invocation, and plugin loading. WorkDSH contributes management workflows and UI. |
 | Version each module separately | Skill stays on its own `0.1` line. A presentation update does not force a Skill version change. |
 | Preserve user content | Removing the Skill **plugin** preserves skill files and management data. Uninstalling an individual **skill** uses the recoverable management workflow. |
@@ -97,9 +112,11 @@ flowchart TB
   profile[Official Harness Web Profile]
   profile --> native[Native runtime, workspaces and conversations]
   profile --> skills[Independent Skill plugin]
+  profile --> library[Independent Library plugin]
   profile --> presentation[Optional WorkDSH presentation bundle]
   skills --> service[Public Skill management service]
   service --> experts[Independent Experts plugin]
+  library --> office[Optional Office preview]
 ```
 
 A **feature plugin** is an installable software module. A **skill** is a user-managed `SKILL.md` with optional resources. One Skill plugin manages many skills; creating a skill does not require publishing an npm package.
@@ -132,6 +149,7 @@ Each installable module has a matching **GitHub prerelease, versioned package, S
 
 | Module | Package version | Download | Scope |
 | --- | --- | --- | --- |
+| Library | `workdsh-plugin-library@0.1.0-alpha.1` | [Library `.tgz`](https://github.com/techflag/workdsh/releases/download/library-v0.1.0-alpha.1/workdsh-plugin-library-0.1.0-alpha.1.tgz) · [Release](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1) | Local folders, full-text search, original previews, fixed revisions, and new-conversation context. |
 | Skill management | `workdsh-plugin-skills@0.1.0-alpha.29` | [Skill `.tgz`](https://github.com/techflag/workdsh/releases/download/skills-v0.1.0-alpha.29/workdsh-plugin-skills-0.1.0-alpha.29.tgz) · [Release](https://github.com/techflag/workdsh/releases/tag/skills-v0.1.0-alpha.29) | Independently installable feature plugin. |
 | Experts | `workdsh-plugin-experts@0.1.0-alpha.4` | [Expert `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-plugin-experts-0.1.0-alpha.4.tgz) · [Release](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | Expert definitions and reviewed revisions composed with the official DSH Team runtime. |
 | Connectors | `workdsh-plugin-connectors@0.1.0-alpha.1` | [Connector `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-plugin-connectors-0.1.0-alpha.1.tgz) · [Project release](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | Multiple stdio/HTTP MCP instances, official credential storage, health/tool discovery, and per-conversation tool isolation. |
@@ -147,7 +165,7 @@ Workbench `alpha.10` is currently delivered within the presentation bundle. Shar
 
 Use **Node.js 22.19+ on the 22 LTS line, or Node 24+**, **pnpm 10.34.5**, and the official **Harness CLI `0.1.6-alpha.1`**. These commands assume `dsh` resolves to that CLI, rather than an older desktop launcher.
 
-For the complete product, download every asset from [project release `v0.1.0-alpha.5`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) into one directory. Stop the target profile, `cd` to that directory, and use the checksum-verifying installer:
+For the complete product, download every asset from [project release `v0.1.0-alpha.5`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) into one directory. The Library is currently a separate prerelease, so also download the [Library Alpha package](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1). Stop the target profile, `cd` to that directory, install the project bundle, then add the Library package separately:
 
 ```sh
 node install-workdsh.mjs --profile workdsh
@@ -161,6 +179,7 @@ dsh --profile workdsh --from-default-profile web --dump-config
 dsh plugin --profile workdsh add "$PWD/workdsh-provider-identity-local-0.1.0-alpha.5.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-audit-0.1.0-alpha.4.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-access-0.1.0-alpha.5.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-plugin-library-0.1.0-alpha.1.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-skills-0.1.0-alpha.29.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-experts-0.1.0-alpha.3.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-connectors-0.1.0-alpha.1.tgz"
@@ -197,7 +216,8 @@ The preview runs at `http://127.0.0.1:18989`; use the authenticated URL printed 
 | Experts 0.1 | Definitions, drafts, revisions, shared skill references, and task handoff | Alpha available; professional quality and final stability acceptance incomplete. |
 | Office 0.1 | Real-file creation, live editing, preview, and export; PPT is the current source-development focus | Alpha available; PPT template and real-model visual acceptance remain in progress. Word feature expansion is paused. |
 | Connectors 0.1 | Multiple MCP instances, official credential storage, discovery, lifecycle, and per-conversation selection | Alpha available; token authorization is verified, while interactive OAuth remains future work. |
-| Following modules | Library → projects → industry applications → integration | Planned, delivered one module at a time. |
+| Library 0.1 | Local knowledge space, folders, full-text search, original preview, and fixed conversation revisions | Alpha released; the local personal workflow is available, while sharing and OCR remain future work. |
+| Following modules | Projects → industry applications → integration | Planned, delivered one module at a time. |
 | Enterprise | Server + administration Web + Harness execution nodes; organization skills, categories, versions, access, and rollout | Deferred. No public Skill marketplace, SkillHub, or skill suites in this release. |
 
 See the [roadmap](docs/ROADMAP.md), [expert handoff](docs/design/experts/README.md), and [enterprise ToDo](docs/TODO.md). This preview targets a trusted local user; it is not an internet-facing multi-tenant server.
@@ -220,7 +240,7 @@ Packaged probes exercise actual installation, browser interactions, edits, recov
 | --- | --- |
 | [Architecture](docs/ARCHITECTURE.md) · [Plugin composition ADR](docs/adr/0018-composable-feature-plugins-and-shared-skills.md) | Ownership, composition, and public plugin boundaries. |
 | [Official development rules](docs/HARNESS-OFFICIAL-DEVELOPMENT.md) · [Repository rules](AGENTS.md) | Official contracts first; no parallel runtime or upstream modifications. |
-| [Module releases](docs/RELEASES.md) · [Skill package guide](packages/plugins/skills/README.md) | Artifacts, version mapping, installation, and limitations. |
+| [Module releases](docs/RELEASES.md) · [Library package guide](packages/plugins/library/README.md) · [Skill package guide](packages/plugins/skills/README.md) | Artifacts, version mapping, installation, and limitations. |
 | [Verification evidence](docs/evidence/skills-standalone-package.md) · [Status](docs/STATUS.md) | Actual results and remaining work. |
 | [UI specification](docs/UI-DESIGN.md) · [Brand assets](docs/BRAND.md) | Shared components and visual direction. |
 

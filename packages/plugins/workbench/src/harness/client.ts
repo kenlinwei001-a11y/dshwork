@@ -18,7 +18,7 @@ export const inject = ['slots'];
 export function apply(ctx: Context): void {
   ctx.slots.inject('conversation.input.dock', () => ctx.slots.register({ name: 'conversation.input.dock', id: 'workdsh-task-execution-notice' }, TaskExecutionNotice));
   for (const panel of businessPanels) {
-    if ('description' in panel && panel.description) {
+    if ('description' in panel && panel.description && panel.id !== 'workdsh-library') {
       ctx.slots.inject('main', () => ctx.slots.register({
         name: 'main',
         key: panel.id,

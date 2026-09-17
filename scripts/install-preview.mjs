@@ -24,7 +24,7 @@ const run = async (tool, args) => {
 await mkdir(home, { recursive: true }); await mkdir(artifacts, { recursive: true });
 const tarballs = [];
 const packages = [];
-for (const directory of ['packages/providers/identity-local', 'packages/plugins/audit', 'packages/plugins/access', 'packages/plugins/skills', 'packages/plugins/experts', 'packages/plugins/connectors', 'packages/plugins/office', 'packages/plugins/activity', 'packages/bundle']) {
+for (const directory of ['packages/providers/identity-local', 'packages/plugins/audit', 'packages/plugins/access', 'packages/plugins/skills', 'packages/plugins/experts', 'packages/plugins/connectors', 'packages/plugins/office', 'packages/plugins/library', 'packages/plugins/activity', 'packages/bundle']) {
   const manifest = JSON.parse(await readFile(join(root, directory, 'package.json'), 'utf8'));
   await access(join(root, directory, manifest.exports['.'].default));
   await run('pnpm/bin/pnpm.cjs', ['--filter', manifest.name, 'pack', '--pack-destination', artifacts]);
@@ -76,5 +76,5 @@ for (const { directory, manifest } of packages) {
     if (!expected.equals(installed)) throw new Error(`Installed ${manifest.name} ${face} differs from the current build; refusing to report a successful preview update.`);
   }
 }
-console.log('Installed Skill, Expert, Connector, Office and WorkDSH presentation as separate official Profile layers.');
+console.log('Installed Skill, Expert, Connector, Office, Library and WorkDSH presentation as separate official Profile layers.');
 console.log('Start the stopped preview with: corepack pnpm preview');

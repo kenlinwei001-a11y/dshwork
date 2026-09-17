@@ -4,6 +4,7 @@ Static, bilingual marketing site for WorkDSH: an independent open-source impleme
 
 - `zh-CN.html`: Chinese website.
 - `index.html`: English website and the existing GitHub Pages default entry.
+- `changelog.zh-CN.html` and `changelog.html`: concise bilingual release history covering every published Git tag.
 - `style.css`: shared responsive layout and decorative animation.
 - `app.js`: feature tour, screenshot tabs, native image/video dialogs, source navigation and command copying.
 - `assets/`: local brand marks, real application screenshots, and the 24-second product film.
@@ -14,6 +15,8 @@ No build, model credentials, API service or remote font is required. Open either
 
 - Chinese: https://techflag.github.io/workdsh/zh-CN.html
 - English: https://techflag.github.io/workdsh/
+- Chinese changelog: https://techflag.github.io/workdsh/changelog.zh-CN.html
+- English changelog: https://techflag.github.io/workdsh/changelog.html
 
 Push changes under `website/` to `main` to run `.github/workflows/pages.yml`. The workflow publishes this directory to GitHub Pages; it does not build or deploy the WorkDSH application. The folder is also self-contained for deployment to another static host.
 

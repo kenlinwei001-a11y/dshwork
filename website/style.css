@@ -14,6 +14,25 @@
   scroll-behavior:smooth;
   scroll-padding-top:100px
 }
+
+@media(max-width:680px) {
+  .site-header .changelog-nav {
+    position:static;
+    width:auto;
+    padding:0;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+    background:transparent;
+    display:flex!important;
+    grid-template-columns:none;
+    gap:14px!important;
+    font-size:10px!important
+  }
+  .site-header .changelog-nav a {
+    padding:6px 0
+  }
+}
 * {
   box-sizing:border-box
 }
@@ -1271,6 +1290,233 @@ h2 span {
 }
 .footer-fine>span:nth-child(2) {
   margin-left:auto
+}
+/* Changelog */
+.changelog-page {
+  min-height:100vh
+}
+.changelog-nav a[aria-current=page] {
+  color:white
+}
+.changelog-main {
+  max-width:1120px
+}
+.changelog-hero {
+  padding:92px 0 72px;
+  border-bottom:1px solid var(--line)
+}
+.changelog-hero h1 {
+  max-width:780px;
+  margin-top:14px;
+  font-size:clamp(44px,6vw,76px);
+  line-height:1.08;
+  letter-spacing:-3px
+}
+.changelog-hero>p:not(.eyebrow) {
+  max-width:650px;
+  margin-top:24px;
+  color:#9aa8be;
+  font-size:17px
+}
+.changelog-summary {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:32px
+}
+.changelog-summary span {
+  padding:7px 11px;
+  border:1px solid #ffffff17;
+  border-radius:999px;
+  color:#8595ae;
+  font:10px var(--mono);
+  letter-spacing:.3px
+}
+.release-list {
+  position:relative;
+  padding:24px 0 48px
+}
+.release-entry {
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:44px;
+  padding:38px 0;
+  border-bottom:1px solid var(--line)
+}
+.release-entry time {
+  padding-top:5px;
+  color:#64738b;
+  font:10px/1.5 var(--mono);
+  letter-spacing:.6px
+}
+.release-heading {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:22px
+}
+.release-heading h2 {
+  font-size:24px;
+  line-height:1.35;
+  letter-spacing:-.5px
+}
+.release-entry p {
+  max-width:760px;
+  margin-top:13px;
+  color:#98a6bb;
+  font-size:15px;
+  line-height:1.85
+}
+.release-featured {
+  margin-top:18px;
+  padding:34px 28px;
+  border:1px solid #4e86e950;
+  border-radius:14px;
+  background:linear-gradient(120deg,#11213c99,#0d1420 68%)
+}
+.release-featured+.release-entry {
+  margin-top:18px;
+  border-top:1px solid var(--line)
+}
+.tag,.tag-group {
+  flex-shrink:0
+}
+.tag {
+  display:inline-flex;
+  padding:5px 8px;
+  border:1px solid #5e82bd45;
+  border-radius:5px;
+  background:#1a2b472e;
+  color:#8fb6f6;
+  font:9px/1.4 var(--mono);
+  white-space:nowrap
+}
+.tag:hover {
+  border-color:#75a6f48c;
+  color:#c9ddff
+}
+.tag-group {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:6px;
+  max-width:440px
+}
+.release-keywords {
+  margin-top:17px;
+  color:#6681ab;
+  font:9px/1.5 var(--mono);
+  letter-spacing:.4px
+}
+.changelog-cta {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:36px;
+  margin:48px 0 110px;
+  padding:34px 38px;
+  border:1px solid #ffffff14;
+  border-radius:12px;
+  background:#0d1420
+}
+.changelog-cta h2 {
+  font-size:22px
+}
+.changelog-cta p {
+  margin-top:8px;
+  color:#8290a5;
+  font-size:13px
+}
+.changelog-cta .button {
+  flex-shrink:0
+}
+.search-intent {
+  margin:56px 0 0;
+  padding:40px;
+  border-left:2px solid #4c86ea;
+  background:linear-gradient(90deg,#101c2f,#0b1019 74%)
+}
+.search-intent h2 {
+  margin-top:11px;
+  font-size:28px;
+  letter-spacing:-.7px
+}
+.search-intent>p:not(.eyebrow) {
+  max-width:850px;
+  margin-top:15px;
+  color:#9aa8bd;
+  font-size:15px;
+  line-height:1.9
+}
+.search-intent code {
+  padding:2px 5px;
+  border-radius:4px;
+  background:#ffffff0d;
+  color:#b9cef0;
+  font:12px var(--mono)
+}
+.search-intent>div {
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+  margin-top:19px
+}
+.search-intent a {
+  color:#87b1f6;
+  font-size:12px
+}
+.search-intent a:hover {
+  color:white
+}
+@media(max-width:760px) {
+  .changelog-nav {
+    display:flex!important;
+    gap:14px!important;
+    font-size:10px!important
+  }
+  .changelog-nav a:nth-child(2),.changelog-nav a:nth-child(4),.changelog-nav .nav-divider {
+    display:none
+  }
+  .changelog-hero {
+    padding:58px 0 46px
+  }
+  .changelog-hero h1 {
+    font-size:44px;
+    letter-spacing:-2px
+  }
+  .release-entry,.release-featured {
+    grid-template-columns:1fr;
+    gap:13px;
+    padding:28px 0
+  }
+  .release-featured {
+    padding:25px 20px
+  }
+  .release-heading {
+    display:block
+  }
+  .release-heading h2 {
+    font-size:21px
+  }
+  .tag,.tag-group {
+    margin-top:12px
+  }
+  .tag-group {
+    justify-content:flex-start
+  }
+  .changelog-cta {
+    align-items:flex-start;
+    flex-direction:column;
+    margin-bottom:70px;
+    padding:28px 24px
+  }
+  .search-intent {
+    margin-top:38px;
+    padding:28px 22px
+  }
+  .search-intent h2 {
+    font-size:23px
+  }
 }
 /* Dialogs and state */
 body.dialog-open {

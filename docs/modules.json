@@ -196,7 +196,7 @@
     "title": "资料库",
     "phase": "P1",
     "task": "P1-06",
-    "status": "planned",
+    "status": "implemented",
     "directories": [
       "src/domain",
       "src/services",

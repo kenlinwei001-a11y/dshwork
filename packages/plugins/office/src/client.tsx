@@ -12,6 +12,11 @@ import type { ISessions } from "@deepseek-ai/dsh-api-session-controller/client";
 import { downloadSpreadsheet } from "./spreadsheet/xlsx.js";
 import { downloadDocument } from "./live/docx.js";
 import type { OfficeContentSnapshot } from "workdsh-contracts/office";
+import type { LibraryOriginalPreviewRegistry } from "workdsh-contracts/library";
+import { renderAsync } from "docx-preview";
+import { mountPptx } from "./presentation/native-react/editor.js";
+import nativeCss from "./presentation/native-react/native.css";
+import ribbonCss from "./presentation/native-react/ribbon.css";
 import { DocumentPage } from "./live/DocumentPage.js";
 import {
   createDocumentModel,
@@ -23,6 +28,7 @@ declare module "@deepseek-ai/dsh-client-ui-sidebar-right/client" {
     "workdsh-office-live": { documentId?: string; requestId?: string };
   }
 }
+declare module "@deepseek-ai/cordis" { interface Context { workdshLibraryPreview: LibraryOriginalPreviewRegistry; } }
 export const name = "workdsh-office-client";
 declare const __WORKDSH_WORD_ONLY__: boolean;
 export const inject = [
@@ -35,6 +41,20 @@ export const inject = [
   "inputTriggers",
 ];
 export function apply(ctx: Context): void {
+  ctx.inject(["workdshLibraryPreview"], scope => scope.effect(() => scope.workdshLibraryPreview.register(["docx", "pptx"], async (target, input) => {
+    target.replaceChildren();
+    if (input.kind === "docx") {
+      const style = document.createElement("style"); style.textContent = ".docx-wrapper{background:#e9ecf1!important;padding:24px!important;min-height:100%;box-sizing:border-box}.docx-wrapper>section.docx{width:min(816px,calc(100% - 20px))!important;min-height:1056px!important;margin:0 auto 20px!important;padding:72px 80px!important;box-sizing:border-box!important;box-shadow:0 2px 14px #0003}.docx-wrapper table{width:100%!important;table-layout:auto!important}.docx-wrapper td,.docx-wrapper th{min-width:72px!important;word-break:normal!important;overflow-wrap:break-word!important;white-space:normal!important}.docx-wrapper p{word-break:normal!important;overflow-wrap:break-word!important}";
+      target.append(style);
+      const host = document.createElement("div"); host.style.cssText = "height:100%;overflow:auto;background:#e9ecf1"; target.append(host);
+      await renderAsync(input.bytes.slice().buffer, host, undefined, { renderAltChunks: false });
+      return () => target.replaceChildren();
+    }
+    const style = document.createElement("style"); style.textContent = nativeCss + ribbonCss; target.append(style);
+    const host = document.createElement("div"); host.className = "workdsh-ppt-editor"; host.style.cssText = "height:100%;overflow:hidden"; target.append(host);
+    const editor = await mountPptx(host, input.bytes, input.name, () => undefined, () => undefined);
+    return () => { editor.dispose(); target.replaceChildren(); };
+  })));
   ctx.effect(() =>
     ctx.documentPreviews.register({
       id: "workdsh-office",

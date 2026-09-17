@@ -14,8 +14,8 @@
     "check:acceptance": "node scripts/check-acceptance.mjs",
     "check:env": "node scripts/check-environment.mjs",
     "test:planning": "node --test tests/planning/*.test.mjs",
-    "build": "corepack pnpm --filter workdsh-contracts build && corepack pnpm --filter workdsh-provider-identity-local build && corepack pnpm --filter workdsh-plugin-audit build && corepack pnpm --filter workdsh-plugin-access build && corepack pnpm --filter workdsh-plugin-skills build && corepack pnpm --filter workdsh-plugin-experts build && corepack pnpm --filter workdsh-plugin-connectors build && corepack pnpm --filter workdsh-plugin-office build && corepack pnpm --filter workdsh-bundle build && corepack pnpm --filter workdsh-plugin-activity build",
-    "typecheck": "corepack pnpm --filter workdsh-contracts typecheck && corepack pnpm --filter workdsh-provider-identity-local typecheck && corepack pnpm --filter workdsh-plugin-audit typecheck && corepack pnpm --filter workdsh-plugin-access typecheck && corepack pnpm --filter workdsh-plugin-skills typecheck && corepack pnpm --filter workdsh-plugin-experts typecheck && corepack pnpm --filter workdsh-plugin-connectors typecheck && corepack pnpm --filter workdsh-plugin-office typecheck && corepack pnpm --filter workdsh-bundle typecheck && corepack pnpm --filter workdsh-plugin-activity typecheck",
+    "build": "corepack pnpm --filter workdsh-contracts build && corepack pnpm --filter workdsh-provider-identity-local build && corepack pnpm --filter workdsh-plugin-audit build && corepack pnpm --filter workdsh-plugin-access build && corepack pnpm --filter workdsh-plugin-skills build && corepack pnpm --filter workdsh-plugin-experts build && corepack pnpm --filter workdsh-plugin-connectors build && corepack pnpm --filter workdsh-plugin-office build && corepack pnpm --filter workdsh-plugin-library build && corepack pnpm --filter workdsh-bundle build && corepack pnpm --filter workdsh-plugin-activity build",
+    "typecheck": "corepack pnpm --filter workdsh-contracts typecheck && corepack pnpm --filter workdsh-provider-identity-local typecheck && corepack pnpm --filter workdsh-plugin-audit typecheck && corepack pnpm --filter workdsh-plugin-access typecheck && corepack pnpm --filter workdsh-plugin-skills typecheck && corepack pnpm --filter workdsh-plugin-experts typecheck && corepack pnpm --filter workdsh-plugin-connectors typecheck && corepack pnpm --filter workdsh-plugin-office typecheck && corepack pnpm --filter workdsh-plugin-library typecheck && corepack pnpm --filter workdsh-bundle typecheck && corepack pnpm --filter workdsh-plugin-activity typecheck",
     "probe:install": "node scripts/check-environment.mjs && node scripts/probe-install.mjs",
     "probe:activity": "node scripts/probe-activity.mjs",
     "test:activity": "node --test packages/plugins/activity/tests/*.test.mjs",
@@ -36,6 +36,7 @@
     "probe:office:live": "node scripts/probe-office-live.mjs",
     "test:office:content": "node --test tests/integration/office-content.test.mjs",
     "release:office:pack": "node scripts/pack-office-release.mjs",
+    "release:library:pack": "node scripts/pack-library-release.mjs",
     "release:project:pack": "node scripts/pack-project-release.mjs",
     "audit:skills": "node scripts/quality/audit-skills.mjs",
     "test:skill-quality": "node --test scripts/quality/audit-skills.test.mjs",
@@ -47,7 +48,9 @@
     "probe:browser-use:playwright": "node scripts/probe-browser-use-playwright.mjs",
     "probe:mcp:resources": "node scripts/probe-mcp-resources.mjs",
     "probe:connectors": "node scripts/probe-connectors.mjs",
-    "probe:headless": "node scripts/probe-headless-interface.mjs"
+    "probe:headless": "node scripts/probe-headless-interface.mjs",
+    "test:library": "corepack pnpm --filter workdsh-plugin-library test",
+    "probe:library": "node scripts/probe-library-release.mjs"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "4.0.2",
