@@ -1,0 +1,4 @@
+# Keep the bundled patch limited to Skill activation; host profiles own scenario composition.
+- insert:
+    - id: resanity
+      name: resanity

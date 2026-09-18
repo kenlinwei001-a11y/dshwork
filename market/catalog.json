@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "kind": "workdsh-skill-catalog",
+  "generatedAt": "2026-09-18T00:00:00+08:00",
+  "categories": ["数学建模", "学术科研", "金融投研"],
+  "entries": [
+    {
+      "name": "math-modeling",
+      "title": "数学建模竞赛",
+      "description": "面向 CUMCM、MCM/ICM 等建模竞赛的三阶段工作流：建模分析 → Python/MATLAB 代码求解 → DOCX 论文生成。内置优化、预测等算法资源库；可整题通关，也可只执行其中一个阶段。",
+      "categories": ["数学建模"],
+      "version": "1.3.0",
+      "examples": ["用完整三阶段流程解这道建模题", "只帮我做建模分析，不写代码"],
+      "payload": "payloads/math-modeling"
+    },
+    {
+      "name": "auto-mcm",
+      "title": "自动数学建模 AutoMCM",
+      "description": "全栈式自动数学建模：AI 担任 Autopilot 完成建模、编程与论文写作，人类在关键节点监督确认。与「数学建模竞赛」风格互补，自动化程度更高（AutoMCM-Pro，MIT）。",
+      "categories": ["数学建模"],
+      "examples": ["AutoMCM 模式打这场比赛", "先给出建模方案让我确认再动手"],
+      "payload": "payloads/auto-mcm"
+    },
+    {
+      "name": "nature-academic-search",
+      "title": "学术文献检索核验",
+      "description": "用中文描述研究问题，跨学术数据库检索论文、去重、核对引用，导出文献管理器可用的文件。配合 academic-search MCP 服务可解锁全部核验工具（MIT）。",
+      "categories": ["学术科研"],
+      "examples": ["检索 Transformer 在医疗影像分割中的近五年综述", "核对这份参考文献列表的真伪"],
+      "payload": "payloads/nature-academic-search"
+    },
+    {
+      "name": "claude-paper-study",
+      "title": "论文深读",
+      "description": "逐节精读研究论文：概念拆解、方法分析、实验解读与批判性质疑，适合把一篇论文真正吃透（claude-paper，MIT）。",
+      "categories": ["学术科研"],
+      "examples": ["带我精读这篇论文的方法章节", "这篇论文的实验设计有什么漏洞"],
+      "payload": "payloads/claude-paper-study"
+    },
+    {
+      "name": "claude-paper-summary",
+      "title": "论文速读摘要",
+      "description": "几分钟提炼论文的核心思想、方法与结论，快速判断值不值得投入深读（claude-paper，MIT）。",
+      "categories": ["学术科研"],
+      "examples": ["给我这篇论文的三分钟摘要", "这批论文各用一段话概括"],
+      "payload": "payloads/claude-paper-summary"
+    },
+    {
+      "name": "resanity",
+      "title": "投研认知审计",
+      "description": "投资研究的可能性地图、承重主张审计与证据边界检查：以原子主张卡区分观察、推断边界与决策影响，把研究收敛为可检查的主张（reSanity，MIT）。",
+      "categories": ["金融投研"],
+      "examples": ["审计这份做多逻辑的承重主张", "给这个行业利润池画可能性地图"],
+      "payload": "payloads/resanity"
+    },
+    {
+      "name": "stock-data-assistant",
+      "title": "A股数据助手",
+      "description": "A 股行情、财务与智能选股的自然语言查询引导。注意：取数需配合本地 stock_datasource 数据服务（端口 8001/6666），未接入时仅提供方法与流程指导（MIT）。",
+      "categories": ["金融投研"],
+      "examples": ["查 600519.SH 最近十个交易日收盘价", "按 ROE 和现金流筛一批白马股"],
+      "payload": "payloads/stock-data-assistant"
+    },
+    {
+      "name": "stock-mcp-query",
+      "title": "行情数据查询",
+      "description": "通过 stock MCP 工具查询 A 股、港股、ETF、指数的历史行情，结果自动截断防止上下文爆炸。依赖 stock_datasource MCP 服务（MIT）。",
+      "categories": ["金融投研"],
+      "examples": ["用 stock 工具查沪深300 近一年走势", "对比一下两只 ETF 的季度收益"],
+      "payload": "payloads/stock-mcp-query"
+    }
+  ]
+}

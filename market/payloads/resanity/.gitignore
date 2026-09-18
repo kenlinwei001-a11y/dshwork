@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+node_modules
+validation/eval/runs/
+data/
+cases/
+tmp/
+obs.json
+req.json
+*.tgz

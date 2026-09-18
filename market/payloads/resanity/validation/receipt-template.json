@@ -1,0 +1,68 @@
+{
+  "schema_version": "resanity.audit-receipt.v2",
+  "method": {
+    "canonical_skill_sha256": "<64-hex sha256 of canonical SKILL.md>",
+    "profile": {
+      "name": "investing+formal-audit",
+      "sha256": "<profile sha256 from tools/skill_identity.py>"
+    },
+    "active": {
+      "locator": "file:///absolute/path/to/actual/SKILL.md",
+      "skill_sha256": "<64-hex sha256 of the active SKILL.md>",
+      "profile_sha256": "<active profile sha256>"
+    }
+  },
+  "report": {
+    "path": "report.md",
+    "sha256": "<64-hex sha256 of report.md>",
+    "as_of": "2026-08-16"
+  },
+  "runtime": {
+    "host": "codex",
+    "model": "<exact model identifier>"
+  },
+  "budget": {
+    "tool_calls": {"limit": 30},
+    "web_search": {"limit": 15},
+    "tokens_total": {"limit": 150000},
+    "wall_seconds": {"limit": 900}
+  },
+  "artifacts": {
+    "prompt": {
+      "path": "prompt.md",
+      "sha256": "<64-hex sha256 of prompt.md>"
+    },
+    "host_receipt": {
+      "path": "host-receipt.json",
+      "sha256": "<64-hex sha256 of the host receipt>"
+    }
+  },
+  "sources": [
+    {
+      "source_id": "E1",
+      "locator": "https://example.com/primary-source",
+      "publisher": "<publisher>",
+      "temporal_basis": "DATED_PUBLICATION",
+      "published_at": "2026-08-15",
+      "retrieved_at": "2026-08-16",
+      "coverage_through": "2026-08-15",
+      "date_evidence": {
+        "kind": "DOCUMENT_DATE",
+        "value": "2026-08-15",
+        "anchor": "<snapshot heading, metadata field, or line reference>"
+      },
+      "lineage_key": "<upstream-origin:stable-id>",
+      "kind": "PRIMARY",
+      "snapshot_path": "sources/E1.txt",
+      "snapshot_sha256": "<64-hex sha256 of sources/E1.txt>"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "boundary": "FACT",
+      "temporal_mode": "EVENT_BY_DATE",
+      "source_ids": ["E1"]
+    }
+  ]
+}
