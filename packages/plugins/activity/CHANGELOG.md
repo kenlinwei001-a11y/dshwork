@@ -1,3 +1,7 @@
+## 0.1.0-alpha.4 — 2026-09-18
+
+- 适配 DeepSeek Harness 0.1.6-alpha.2：成员会话观测改用官方 `retain`/`ready`/`release` 世代语义（`workdshActivityMember` source），未 retain 的成员会话不强行绑定；运行期卸载可完整撤销。
+
 ## 0.1.0-alpha.3 — 2026-09-16
 
 - 专家成员失败或失活但仍持有进行中任务时，活动条保留专家与任务并显示“本轮未完成”。

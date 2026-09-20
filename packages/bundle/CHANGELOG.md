@@ -1,3 +1,8 @@
+# 0.1.0-alpha.46 — 2026-09-18
+
+- 跟随 DSH 0.1.6-alpha.2 升级：组合包与功能插件的官方依赖精确锁定同步至 `0.1.6-alpha.2`；projects、experts、skills、library、office、activity 六个客户端插件完成 Client Session 迁移。
+- 外部 URL 契约一次性变化（随「助理」「定时任务」「更多」未实现入口隐藏）：`?workdsh-view=assistant|automation|more` 外部链接不再切换视图，静默回落到对话视图且不报错；项目任务改由原生会话导航打开，旧链接遗留的 `?task=` 参数在项目面板打开时被清理。
+
 # 0.1.0-alpha.45 — 2026-09-15
 
 - 显式安装 DSH 0.1.6 官方实验性 Auto review 层。

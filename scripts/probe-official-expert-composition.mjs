@@ -20,7 +20,7 @@ await mkdir(artifacts, { recursive: true });
 await mkdir(join(root, '.test-runtime'), { recursive: true });
 const resumeHome = process.argv.includes('--resume') ? process.argv[process.argv.indexOf('--resume') + 1] : undefined;
 const home = resumeHome ?? await mkdtemp(join(root, '.test-runtime/official-expert-'));
-const version = '0.1.6-alpha.1';
+const version = '0.1.6-alpha.2';
 process.env.DSH_HOME = join(home, 'dsh');
 process.env.DSH_AGENTS_HOME = join(home, 'agents');
 const requireRoot = createRequire(import.meta.url);

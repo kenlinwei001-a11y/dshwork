@@ -1,3 +1,7 @@
+# 0.1.0-alpha.2 — Unreleased（2026-09-18）
+
+- 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改由 `SessionSummary.retainedBy.mainView` 推导；打开会话与资料引用跳转改用官方 `uiWorkspace.openSession`；右栏资料预览继续以官方 `sidebar.right.pane.tab` 注册。
+
 # 0.1.0-alpha.1
 
 - 建立个人本地资料空间和持久目录树。

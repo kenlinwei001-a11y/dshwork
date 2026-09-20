@@ -10,15 +10,17 @@ import type {} from '@deepseek-ai/dsh-client-ui-conversation/client';
 import type {} from '@deepseek-ai/dsh-api-workspace-controller/client';
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
+import type {} from '@deepseek-ai/dsh-client-ui-session/client';
+import type {} from '@deepseek-ai/dsh-client-ui-workspace/client';
 import type {} from '@deepseek-ai/dsh-client-ui-slots';
 import { ExpertsPanel } from './client/ExpertsPanel.js';
 import { PendingExpertDraft, pendingExpertDraftKey, pendingExpertDraftEvent, expertManagerGuide, expertTeamManagerGuide } from './client/drafts.js';
 import { createExpertManagementClient } from './client/management.js';
 
 export const name = 'workdsh-experts-client';
-export const inject = ['slots', 'layout', 'sessions', 'workspaces', 'remote', 'remote.session', 'connection'];
+export const inject = ['slots', 'layout', 'sessions', 'workspaces', 'remote', 'remote.session', 'connection', 'uiWorkspace'];
 
-type SessionId = Parameters<ISessions['open']>[0];
+type SessionId = Awaited<ReturnType<ISessions['create']>>;
 
 /**
  * Expert Client assembly (D04 / P1-02).
@@ -51,8 +53,9 @@ export function apply(ctx: Context): void {
   ctx.inject(['activityPresentation'], (scope) => scope.effect(() => scope.activityPresentation.registerIdentity(async (sessionId, signal) => {
     // Official Team member conversations are continuable child Sessions. Their
     // immutable expert binding belongs to the Lead Session, exactly like the
-    // official Team Client resolves its panel through parentSessionId.
-    const rootSessionId = (sessions.binding(sessionId as SessionId)?.session.getSnapshot().subagent?.address.parentSessionId ?? sessionId) as SessionId;
+    // official Team Client resolves its panel through parentSessionId. alpha.2:
+    // read the discovered address off the controller instead of borrowing a binding.
+    const rootSessionId = (sessions.subagentAddress(sessionId as SessionId)?.parentSessionId ?? sessionId) as SessionId;
     const binding = await management.verifyBinding(rootSessionId, signal);
     const detail = await management.get(binding.expertRevisionRef.expertId, binding.expertRevisionRef.revisionId, signal);
     const definition = detail.revision?.definition;
@@ -71,12 +74,14 @@ export function apply(ctx: Context): void {
   })));
 
 
+  // alpha.2: the list snapshot has no `current`; the shown Session derives from the
+  // view owner's mainView retention (same rule as the official ui-session publishMain).
   const resolveWorkspace = () => {
     const sessionState = sessions.list.getSnapshot();
-    const current = sessionState.current ? sessionState.byId[sessionState.current] : undefined;
+    const currentId = Object.values(sessionState.byId).find(row => (row.retainedBy.mainView ?? 0) > 0)?.id;
     const workspaces = ctx.workspaces.list.getSnapshot().items;
-    return workspaces.find(row => row.sessionIds.includes(sessionState.current!))
-      ?? workspaces.find(row => row.path === current?.cwd)
+    return (currentId ? workspaces.find(row => row.sessionIds.includes(currentId)) : undefined)
+      ?? workspaces.find(row => row.path === (currentId ? sessionState.byId[currentId]?.cwd : undefined))
       ?? workspaces[0];
   };
 
@@ -84,7 +89,7 @@ export function apply(ctx: Context): void {
   const seedDraft = async (sessionId: SessionId, text: string): Promise<void> => {
     window.sessionStorage.setItem(pendingExpertDraftKey, JSON.stringify({ sessionId, text, expiresAt: Date.now() + 60_000 }));
     // Select after staging so the Session overlay mounts with its addressed seed.
-    sessions.open(sessionId);
+    ctx.uiWorkspace.openSession(sessionId);
     window.dispatchEvent(new Event(pendingExpertDraftEvent));
   };
 
@@ -93,7 +98,7 @@ export function apply(ctx: Context): void {
     for (let attempt = 0; attempt < 30; attempt++) {
       lifetime.signal.throwIfAborted();
       await sessions.refresh();
-      if (sessions.list.getSnapshot().byId[sessionId]) { sessions.open(sessionId); return; }
+      if (sessions.list.getSnapshot().byId[sessionId]) { ctx.uiWorkspace.openSession(sessionId); return; }
       await waitForInput(120);
     }
     throw new Error('未能打开专家任务，请稍后在会话列表中查看。');
@@ -126,7 +131,7 @@ export function apply(ctx: Context): void {
     if (!workspace) throw new Error('需要先选择一个工作区再制作专家。');
     const sessionId = await sessions.create({ workspaceId: workspace.workspaceId, cwd: workspace.path });
     lifetime.signal.throwIfAborted();
-    sessions.open(sessionId);
+    ctx.uiWorkspace.openSession(sessionId);
     ctx.layout.selectPanel(null);
     await seedDraft(sessionId, kind === 'team' ? expertTeamManagerGuide : expertManagerGuide);
   };

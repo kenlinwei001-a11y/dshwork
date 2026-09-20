@@ -68,8 +68,12 @@ export async function probeBrowser(address, sessionCookie, screenshotPath, { ins
     await expect(page.getByRole('button', { name: '返回 WorkDSH', exact: true })).toHaveCount(0);
     const newSession = page.getByText(/新会话|New Session/, { exact: true }).first();
     await expect(newSession).toBeVisible();
-    for (const label of ['助理', '项目', '专家 · 技能 · 连接器', '定时任务', '资料库', '更多']) {
+    for (const label of ['项目', '专家 · 技能 · 连接器', '资料库']) {
       await expect(page.getByRole('button', { name: label, exact: true })).toBeVisible();
+    }
+    // 规划中、尚无领域实现的功能不注册导航入口（用户 2026-09-17 决定先隐藏）。
+    for (const label of ['助理', '定时任务', '更多']) {
+      await expect(page.getByRole('button', { name: label, exact: true })).toHaveCount(0);
     }
     await expect(nav).toBeVisible();
 

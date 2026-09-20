@@ -30,7 +30,7 @@ const requireExperts = createRequire(join(root, 'packages/plugins/experts/packag
 const baseUrl = pathToFileURL(dirname(requireRoot.resolve('@deepseek-ai/dsh/package.json')) + '/').href;
 const ctx = new Context();
 const actor = { principalId: 'probe-owner', organizationId: 'probe-org', resolvedBy: 'probe-identity', requestId: 'probe' };
-const report = { home, version: '0.1.6-alpha.1', mode: cold ? 'cold-resume' : 'production-adapter', checks: [], requests: [], notRun: ['real paid model', 'professional content acceptance', 'user preview deployment'] };
+const report = { home, version: '0.1.6-alpha.2', mode: cold ? 'cold-resume' : 'production-adapter', checks: [], requests: [], notRun: ['real paid model', 'professional content acceptance', 'user preview deployment'] };
 const pass = (name, detail) => { report.checks.push({ name, detail }); console.log(`PASS ${name}`); };
 const blocks = text => [{ type: 'text', text }];
 const handles = [];

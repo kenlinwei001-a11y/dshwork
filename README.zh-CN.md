@@ -29,7 +29,7 @@ WorkDSH 把**本地资料库、技能、专家、连接器、团队动态、浏�
 
 WorkDSH 会把参考材料、模型过程、实时成果、人工修改和最终文件放在同一个任务里。你可以边看边改，也可以让 AI 读取最新保存版本后继续，不必从旧提示词重新生成。
 
-已经使用 Harness `0.1.6-alpha.1` Web Profile？从 [Releases](https://github.com/techflag/workdsh/releases) 下载需要的模块，或直接看[快速开始](#快速开始)。WorkDSH 使用官方 `dsh plugin` 生命周期，没有另造第二套运行时。
+已经使用 Harness `0.1.6-alpha.2` Web Profile？从 [Releases](https://github.com/techflag/workdsh/releases) 下载需要的模块，或直接看[快速开始](#快速开始)。WorkDSH 使用官方 `dsh plugin` 生命周期，没有另造第二套运行时。
 
 ## 它能替你交付什么
 
@@ -91,7 +91,7 @@ WorkDSH 会把参考材料、模型过程、实时成果、人工修改和最终
 
 ## 当前预览状态
 
-最新公开 Web 预览已在 **Harness `0.1.6-alpha.1`、Node.js `22.23.2`、macOS** 上完成真实安装包与冷启动验证。本地资料库、技能管理、已发布专家、MCP 连接器、官方 Team 协作、浏览器/电脑操作、Office 工作副本和协作动态均已有 alpha 模块。
+最新公开 Web 预览已在 **Harness `0.1.6-alpha.2`、Node.js `22.23.2`、macOS** 上完成真实安装包与冷启动验证。本地资料库、技能管理、已发布专家、MCP 连接器、官方 Team 协作、浏览器/电脑操作、Office 工作副本和协作动态均已有 alpha 模块。
 
 它仍是开发预览：专家团完整真实模型流程、任意复杂 Office 文件保真和多平台验收尚未完成；默认只监听本机，也不宣称已经具备可直接暴露公网的生产级多租户能力。下文保留精确版本、校验值、能力边界和验证证据。
 
@@ -150,12 +150,12 @@ flowchart TB
 | 模块 | 包版本 | 下载 | 安装范围 |
 | --- | --- | --- | --- |
 | 资料库 | `workdsh-plugin-library@0.1.0-alpha.1` | [资料库 `.tgz`](https://github.com/techflag/workdsh/releases/download/library-v0.1.0-alpha.1/workdsh-plugin-library-0.1.0-alpha.1.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1) | 本地目录、全文搜索、原件预览、固定修订与新对话上下文。 |
-| 技能管理 | `workdsh-plugin-skills@0.1.0-alpha.29` | [技能 `.tgz`](https://github.com/techflag/workdsh/releases/download/skills-v0.1.0-alpha.29/workdsh-plugin-skills-0.1.0-alpha.29.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/skills-v0.1.0-alpha.29) | 可独立安装的 Harness 功能插件。 |
-| 专家 | `workdsh-plugin-experts@0.1.0-alpha.4` | [专家 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-plugin-experts-0.1.0-alpha.4.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | 专家定义、已审阅修订及其与官方 DSH Team 运行时的组合。 |
-| 连接器 | `workdsh-plugin-connectors@0.1.0-alpha.1` | [连接器 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-plugin-connectors-0.1.0-alpha.1.tgz) · [项目发行](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | 多 stdio/HTTP MCP 实例、官方凭据存储、健康与工具发现、按对话隔离工具。 |
-| 工作动态 | `workdsh-plugin-activity@0.1.0-alpha.3` | [动态 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-plugin-activity-0.1.0-alpha.3.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | 显示任务、技能和专家团队工作状态。 |
-| Office | `workdsh-plugin-office@0.1.0-alpha.5` | [Office `.tgz`](https://github.com/techflag/workdsh/releases/download/office-v0.1.0-alpha.5/workdsh-plugin-office-0.1.0-alpha.5.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/office-v0.1.0-alpha.5) | 支持范围内的可编辑工作副本、预览和文件导出。 |
-| WorkDSH 展示组合 | `workdsh-bundle@0.1.0-alpha.45` | [展示 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.5/workdsh-bundle-0.1.0-alpha.45.tgz) · [项目发行](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) | 可选品牌、主题与工作台组合；功能插件按需独立安装。 |
+| 技能管理 | `workdsh-plugin-skills@0.1.0-alpha.30` | [技能 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-plugin-skills-0.1.0-alpha.30.tgz) · [项目发行](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 可独立安装的 Harness 功能插件。 |
+| 专家 | `workdsh-plugin-experts@0.1.0-alpha.5` | [专家 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-plugin-experts-0.1.0-alpha.5.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 专家定义、已审阅修订及其与官方 DSH Team 运行时的组合。 |
+| 连接器 | `workdsh-plugin-connectors@0.1.0-alpha.1` | [连接器 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-plugin-connectors-0.1.0-alpha.1.tgz) · [项目发行](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 多 stdio/HTTP MCP 实例、官方凭据存储、健康与工具发现、按对话隔离工具。 |
+| 工作动态 | `workdsh-plugin-activity@0.1.0-alpha.4` | [动态 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-plugin-activity-0.1.0-alpha.4.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 显示任务、技能和专家团队工作状态。 |
+| Office | `workdsh-plugin-office@0.1.0-alpha.7` | [Office `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-plugin-office-0.1.0-alpha.7.tgz) · [发布页](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 支持范围内的可编辑工作副本、预览和文件导出。 |
+| WorkDSH 展示组合 | `workdsh-bundle@0.1.0-alpha.46` | [展示 `.tgz`](https://github.com/techflag/workdsh/releases/download/v0.1.0-alpha.6/workdsh-bundle-0.1.0-alpha.46.tgz) · [项目发行](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) | 可选品牌、主题与工作台组合；功能插件按需独立安装。 |
 
 Workbench `alpha.10` 目前随展示包交付。共享 UI、contracts 和本地身份/授权/审计基础属于配套包，**不作为面向用户的独立下载项**。完整对应关系见[模块发布说明](docs/RELEASES.md)。
 
@@ -163,9 +163,9 @@ Workbench `alpha.10` 目前随展示包交付。共享 UI、contracts 和本地�
 
 ### 安装预构建插件
 
-使用 **Node.js 22 LTS 的 22.19+ 或 Node 24+**、**pnpm 10.34.5**，以及官方 **Harness CLI `0.1.6-alpha.1`**。以下命令要求 `dsh` 指向该版本 CLI，而不是旧桌面应用的启动器。
+使用 **Node.js 22 LTS 的 22.19+ 或 Node 24+**、**pnpm 10.34.5**，以及官方 **Harness CLI `0.1.6-alpha.2`**。以下命令要求 `dsh` 指向该版本 CLI，而不是旧桌面应用的启动器。
 
-完整产品请把[项目发行 `v0.1.0-alpha.5`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5)的全部资产下载到同一目录；资料库目前是独立预发布，还需下载[资料库 Alpha 安装包](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1)。停止目标 Profile，进入下载目录后先安装项目总包，再单独加入资料库：
+完整产品请把[项目发行 `v0.1.0-alpha.6`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6)的全部资产下载到同一目录；资料库目前是独立预发布，还需下载[资料库 Alpha 安装包](https://github.com/techflag/workdsh/releases/tag/library-v0.1.0-alpha.1)。停止目标 Profile，进入下载目录后先安装项目总包，再单独加入资料库：
 
 ```sh
 node install-workdsh.mjs --profile workdsh
@@ -180,12 +180,12 @@ dsh plugin --profile workdsh add "$PWD/workdsh-provider-identity-local-0.1.0-alp
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-audit-0.1.0-alpha.4.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-access-0.1.0-alpha.5.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-library-0.1.0-alpha.1.tgz"
-dsh plugin --profile workdsh add "$PWD/workdsh-plugin-skills-0.1.0-alpha.29.tgz"
-dsh plugin --profile workdsh add "$PWD/workdsh-plugin-experts-0.1.0-alpha.3.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-plugin-skills-0.1.0-alpha.30.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-plugin-experts-0.1.0-alpha.5.tgz"
 dsh plugin --profile workdsh add "$PWD/workdsh-plugin-connectors-0.1.0-alpha.1.tgz"
-dsh plugin --profile workdsh add "$PWD/workdsh-plugin-activity-0.1.0-alpha.2.tgz"
-dsh plugin --profile workdsh add "$PWD/workdsh-plugin-office-0.1.0-alpha.5.tgz"
-dsh plugin --profile workdsh add "$PWD/workdsh-bundle-0.1.0-alpha.45.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-plugin-activity-0.1.0-alpha.4.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-plugin-office-0.1.0-alpha.7.tgz"
+dsh plugin --profile workdsh add "$PWD/workdsh-bundle-0.1.0-alpha.46.tgz"
 dsh --profile workdsh
 ```
 
@@ -258,7 +258,7 @@ corepack pnpm probe:browser
 
 ### 原生 PPT 编辑预览
 
-[Office alpha.5 预发布与安装包](https://github.com/techflag/workdsh/releases/tag/office-v0.1.0-alpha.5)
+[Office alpha.7 项目发行与安装包](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6)
 
 ![WorkDSH 原生 PPT 编辑](docs/assets/screenshots/workdsh-ppt-live-preview.png)
 

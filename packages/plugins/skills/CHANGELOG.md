@@ -1,3 +1,7 @@
+## 0.1.0-alpha.30 — Unreleased（2026-09-18）
+
+- 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改由 `SessionSummary.retainedBy.mainView` 推导；打开技能会话改用官方 `uiWorkspace.openSession` 导航。
+
 ## 0.1.0-alpha.29 — 2026-09-15
 
 - 六个内置技能统一由 `resources/skills/<name>` 维护并生成注册内容，PPT 只保留一个内置入口。

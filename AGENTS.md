@@ -5,7 +5,7 @@
 WorkDSH 是基于 NexusOne 公开插件接口的 Web 工作平台，参考 WorkBuddy 的应用能力。项目独立于 dsh-ssh-desktop。
 
 1. 仅依赖官方开发文档和已发布 npm 包；禁止要求上游源码 checkout、引入上游子模块、复制上游私有实现或修改上游源码。
-2. 基线为 `@deepseek-ai/dsh@0.1.6-alpha.1`。DSH 直接依赖按该版本族精确锁定；Cordis 等遵守公开 peerDependencies。不得使用浮动 latest、alpha 混搭，升级必须单独记录兼容证据。
+2. 基线为 `@deepseek-ai/dsh@0.1.6-alpha.2`。DSH 直接依赖按该版本族精确锁定；Cordis 等遵守公开 peerDependencies。不得使用浮动 latest、alpha 混搭，升级必须单独记录兼容证据（alpha.1→alpha.2 证据见 [docs/evidence/dsh-0.1.6-alpha.2-upgrade.md](docs/evidence/dsh-0.1.6-alpha.2-upgrade.md)）。
 3. 专家、技能、连接器、行业应用、项目、资料库、自动化、工作台是功能插件。每个插件管理多个业务对象。禁止将每个用户专家强制变为独立 npm 包。
 4. 每个功能的页面操作和 Agent 工具使用同一业务服务；对话式创建专家和技能属于 P1 必做能力。
 5. 插件必须互通：通过公开契约、服务注入和工具组合协作，禁止直接读写其他插件的数据表或导入其内部实现。
@@ -34,11 +34,11 @@ WorkDSH 是基于 NexusOne 公开插件接口的 Web 工作平台，参考 WorkB
 
 ### 2026-09-15 官方 Team 替换决定
 
-用户已明确要求退役自建专家团执行器。本决定覆盖上述旧 TM-01 执行器/SOP 状态机要求：专家和成员修订保留为资产配置，场景是工作指导；执行、消息、共享任务和团队面板使用 0.1.6-alpha.1 官方 Agent Teams。禁止恢复 TeamRunsManager、workdsh_expert_team_*、workdsh-expert provider 或新建等价运行表。旧数据保留只读，旧委派任务不能续跑旧调度器；官方缺陷单独验证和处理，不作为保留旧实现的理由。
+用户已明确要求退役自建专家团执行器。本决定覆盖上述旧 TM-01 执行器/SOP 状态机要求：专家和成员修订保留为资产配置，场景是工作指导；执行、消息、共享任务和团队面板使用 0.1.6-alpha.2 官方 Agent Teams（版本随基线规则第 2 条推进，本决定只限定归属官方）。禁止恢复 TeamRunsManager、workdsh_expert_team_*、workdsh-expert provider 或新建等价运行表。旧数据保留只读，旧委派任务不能续跑旧调度器；官方缺陷单独验证和处理，不作为保留旧实现的理由。
 
 ## Harness 优先复用硬约束
 
-- 所有 Harness 集成开发必须先查阅 `docs/deepseek-harness-docs/` 中与锁定版本相符的官方说明，并按 [Harness 官方开发规范](docs/HARNESS-OFFICIAL-DEVELOPMENT.md) 完成扩展面、依赖、生命周期和验收核对。官网用于发现和交叉核对；发布包 exports/types 与锁定版本实测决定可用接口。
+- 所有 Harness 集成开发必须先查阅 `docs/dsh-v0.1.6-alpha.2/` 中与锁定版本相符的官方说明，并按 [Harness 官方开发规范](docs/HARNESS-OFFICIAL-DEVELOPMENT.md) 完成扩展面、依赖、生命周期和验收核对。官网用于发现和交叉核对；发布包 exports/types 与锁定版本实测决定可用接口。
 - 左侧主导航只通过官方 `sidebar.panellist` 等已声明 Slot 增量贡献，并与 `main` 的同 key 页面配对；不得替换或复制官方 Workspace/Session/New Session/Settings owner。`sidebar-right` 只用于当前 Session 的文件、目录、成果或上下文页面，不承担全局主导航和全局管理页面。
 - 普通 Slot 贡献使用 `ctx.slots.inject(key, callback)` 等待 owner 生命周期；独立 registry/service/listener/timer/watcher/subprocess 等注册必须由 `ctx.effect()`、`ctx.on()` 或官方自动托管 API 拥有并可完整撤销。组件 props 从官方 `PropsRuntime<K>`/标准 owner props 推导，不复制框架 props，也不把 `ctx` 传入 React 组件。
 

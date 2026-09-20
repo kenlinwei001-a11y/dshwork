@@ -1,3 +1,142 @@
+## 2026-09-19：WorkDSH v0.1.0-alpha.6 公开发布回执
+
+按既定项目级发布流程完成 alpha.6 公开发布：源码提交 `debc429`（release: prepare）+ `ab096f0`（installer 测试断言修复）已推送 main（`8ba8626..debc429`），annotated tag `v0.1.0-alpha.6` 指向发布提交；GitHub prerelease [v0.1.0-alpha.6](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) 携带 13 个资产（九包 .tgz + SHA256SUMS + release-manifest.json + RELEASE-NOTES.md + install-workdsh.mjs），未发布 npm。
+
+- 九包版本：identity-local α.5、audit α.4、access α.5、skills α.30、experts α.5、connectors α.1、activity α.4、office α.7、bundle α.46（后五个随 alpha.2 升级与开发推进 bump，其余沿用已验收版本）。
+- 发布门槛（rel01/rel02）：全仓 build + typecheck PASS；集成 110/110、活动 14/14、规划 2/2；`check:plan` PASS（29 模块/50 文档）、`check:versions` PASS（513 条 α2 锁定）；修复升级批次遗留的 `project-installer.test.mjs` 断言（硬编码 `0.1.6-alpha.1` → 常量引用）。
+- 打包（rel04）：先提交 debc429 再重新打包，`release-manifest.json` 的 `sourceCommit` 与 tag 指向同一提交；`shasum -c SHA256SUMS` 九包全 OK。
+- 隔离安装（rel05）：`.test-runtime/release-alpha6-ZKPjiC` 全新 Profile 经官方 CLI 安装九包 → 匿名 401 / 认证 200 → 全模块移除后冷启动 PASS；回执 `.artifacts/release-alpha6-smoke.json`。
+- 公开回读（rel08）：13 个资产无认证下载逐字节一致（`PUBLIC_VERIFY_PASS`，日志 `.artifacts/release-alpha6-public-verify.log`）；GitHub API 回读确认 draft=false、prerelease=true、target_commitish=debc429。
+
+证据：`.artifacts/project-v0.1.0-alpha.6/`（发行制品）、`.artifacts/release-alpha6-{build,typecheck,tests,activity,planning,pack,smoke,public-verify}.log`、`.artifacts/project-alpha6-release.json`。
+
+未执行/边界：Windows 与 Linux 验收、卸载/事务式回滚、签名 SBOM、交互式 OAuth、小时级专家团稳定性仍未签收；projects 与 library α.2 不进入本次安装组合（library 保持独立发行）；npm 未发布（项目策略）。
+
+## 2026-09-19：代码评审修复批次收口（findings 15/16/18/19 + word-only 制品探针）
+
+代码评审对升级分支未提交变更产出的 21 项 findings 已完成逐项核对与修复；finding #3（UI 召唤点击失效）已在上一 T10 条目单独收口，本条目汇总其余修复与批次验证证据。修复细节见各模块 CHANGELOG（projects alpha.2、office alpha.7、bundle alpha.46、contracts alpha.9）。
+
+- finding 15（死代码）：`encode` 已随更早批次清除并经全包 grep 复核无残留；`AssetPicker` 的 `upgradeIds` 只声明未接线，删除（主面板同名状态仍由「更新到最新修订」使用，保留）。
+- finding 16（composer `@`）：改为 `onKeyDown` 拦截（文末、无选区、非 IME 合成时 `preventDefault` 并打开引用菜单）+ `onChange` 精确追加检测（恰好追加单个 `@` 时剥离并开菜单）；快速连按 `@` 不再把字面量留在草稿。
+- finding 18（URL 契约）：bundle alpha.46 CHANGELOG 显式列出——`?workdsh-view=assistant|automation|more` 不再切换视图（静默回落对话视图），`?task=` 在项目面板打开时清理。
+- finding 19（word-only CSV）：office 客户端注册按 `__WORKDSH_WORD_ONLY__` 门控——CSV 预览与侧栏 Tab 不再注册；`workdsh-office` 文件扩展在 word-only 下收窄为 `["docx"]`。
+- 新探针 `probe:office:word-only`（scripts/probe-office-word-only-scope.mjs）：构建两态 Client 产物并在 VM 沙箱 + mock Cordis ctx 中断言注册面；证据 `.artifacts/office-word-only-scope/result.json`（failures: []；word-only 仅 DOCX、normal 保留 CSV；两态 release-scope.json 一致）。
+- esbuild 实证：非 minify 构建不做 `if (!wordOnlyRelease)` 分支消除（CSV 字符串在两产物中均保留），静态字符串断言不可行，故采用 VM 运行时注册断言；沙箱以 `window === globalThis` 自引用 + 最小 DOM 桩（document/DOMMatrix 等）对齐浏览器语义。
+- 预先存在阻塞（如实记录）：word-only 打包仍被许可文本门禁拦截（缺 @ai-sdk/provider-utils 5.0.0/5.0.28、@nodable/entities、@pdf-lib/fontkit、pptx-viewer-mcp；build-office.mjs 与 HEAD 无差异，非本批引入）。探针容忍该门禁验证已写出的 bundle，并以 try/finally 保证结束时恢复 normal dist。
+- 批次验证：`check:plan` PASS（29 模块/50 文档）；`typecheck` 12 包 PASS；`test:office:csv` 2/2、`test:office:content` 21/21、`office-rich-editor` 3/3。
+- 未执行/边界：word-only 制品的真实浏览器端到端验证（受许可门禁阻塞，无法打包）；本探针为 VM 注册级证据；未提交、未推送、未发布 npm。
+
+## 2026-09-19：原生 Office 探针重跑通过（T10 收口：官方缺陷证据链 + 探针适配）
+
+代码评审 finding #3（「UI 召唤前 30s 无 create 请求」）随本批修复收口：全新隔离 Home/Agents 上 `probe:office:native` 重跑全绿——result.json 7 项 checks PASS、`native-docx/pptx/xlsx/csv.png` 四类截图；CSV 第四类分支首次随本探针实际跑通（表头、引号转义与中文单元格断言）。较 09-12 首轮，验收会话由「页面自建 blank」改为「首创建绑定会话」。
+
+- 官方缺陷归属（与升级证据 V3 的 browser-use 跨装 dsh-scope 缺陷同源）：alpha.2 上 Web 客户端**页面加载必消耗首个激活槽**（无会话→自动建 blank；有会话→恢复最近者）；此后任何 create-execution（UI 召唤或 API）均为第二次激活——`prepare-execution succeeded → access.session-bind succeeded → session.create failed gateway/internal → experts/internal`，会话空壳落盘但不激活、无绑定。失败尝试遗留的「未激活会话空壳」已按会话 createdAt 与 audit session-bind 精确对齐取证。
+- 探针适配（不改上游，金丝雀自恢复）：首创建改在**页面加载前**经插件 API 发出（与 UI 召唤同一 prepare/create 业务服务）——第一激活成功并留下真实绑定会话，页面加载恢复该会话；四类 Office 验收全部运行在绑定会话上，修复 fallback 到页面自建 blank 时 DOCX 导入 FORBIDDEN（content service `sessionOwner` 绑定检查）的问题。页面内 UI 召唤降级为**容错金丝雀**：拒绝时 result.json diagnostics 记录真实错误码且不阻塞；上游修复后自动翻回严格 PASS（verify-binding），无需改探针。
+- 侧栏前置（T10 debug7 实证）：`sidebarRight.openTabIn` 对未被面板 adopt 的会话静默 no-op（官方 client.js `actionsFor` undefined 直接返回；侧栏折叠时面板未 mount）。探针改走「展开右栏 + 官方 Start 引导页 Workspace files 卡片」的 UI 原生路径；openTabIn 保留为兜底。
+- fresh-load UI 竞态（如实记录）：全新 Home 首次加载后短窗口内 pointer 点击可持续 15s+15s 超时且无任何请求（prepareSeen=false）；同 Home 二次加载 0.21s 正常。探针以「重试 + DOM click 兜底 + 条件诊断」容忍，不掩盖真实拒绝。待查：`/api/workdsh-office` 每 500ms 轮询（debug3/4 观测，未隶属本缺陷链）。
+
+证据：`.artifacts/office-native/{result.json,native-*.png,files.png,probe-rerun.log}`；失败现场留档 `.artifacts/office-native/t10-rerun1/`；调试脚本 `.test-runtime/t10-ui-debug[1-8].mjs`（隔离临时 Home，不进产品包）。文档同步：`docs/evidence/office-integration.md` 末节。
+
+未执行/边界：不修改上游源码，缺陷修复依赖上游版本；本探针不发送模型消息；未提交、未推送、未发布 npm。
+
+## 2026-09-18：文档镜像刷新为 alpha.2 语料（引用同步 + 审计）
+
+按既定「镜像刷新单独批次」决策，将 alpha.1 语料镜像整批替换为 alpha.2 快照 `docs/dsh-v0.1.6-alpha.2/`（543 文件 / 337 md / 规范对象 171；新增 persistence-changes、postmortem、i18n 等章节；`subsystems/code-runtime.*` 更名重写为 `subsystems/ptc-runtime.*`，`ctx.codeRuntime`→`ctx.ptcRuntime`）。
+
+- 引用同步：全仓 44 文件 117 处旧路径 token 更新；`subsystems/code-runtime`→`subsystems/ptc-runtime`（含 3 个文档的链接标签与 prose 修订：office HARNESS-INTEGRATION、desktop MANAGED-RUNTIME、harness-review-closure）；`.idea` IDE 状态与 `.artifacts` 历史证据不改写。
+- 行号重锚（新语料）：d07 证据 5 处——slots.md:147→:150、persistence-catalog.md:403-407→:473-477、tool-catalog.md:222-228→:624-630、:22→:25（slots.md:25-41 不变）；`docs/HARNESS-OFFICIAL-DEVELOPMENT.md` 基线字样 0.1.5-rc.1→0.1.6-alpha.2（Typert 段保留历史探测表述）。
+- 审计：专项 `p5-doc-mirror-audit` 15/15 PASS（替换完整 543/337、旧 token 全仓白名单扫描、台账 127⊆171、实跑复查；允许残留=更名/升级/依赖历史文件）+ `audit:harness-docs` PASS——127/171 canonical reviewed、44 pending（新语料新增面待后续审查）；台账 `corpusRoot` 已指向新语料；产物 `.artifacts/dsh-0.1.6-alpha.2-upgrade/p5-doc-mirror-audit.{mjs,json}`。
+- delta 复核（新语料 vs 本升级运行面）：① `maxActiveSubagents` 已入 config-catalog（部分收口；`ACTIVATION_LIMIT_REACHED` 术语仍未入镜像，以 `dsh-subagent` 包 README + V3 探针为准）；② `plugin-manager`/`sidebar-browser`/`workspace-changes` 关键词已覆盖（完全收口）；③ `sidebar-right.zh.md` L11 持久化表述仍与 V2 实测矛盾（保持差异记录，以发布包实测为准）；④ `plan.zh.md` 仍缺 client-ui-plan 评审 UI 覆盖（以 V1 实测为准）；⑤ `code-runtime`→`ptc-runtime` 更名（引用已同步）。
+- 文档补记：升级证据文档新增「刷新执行」节；UPGRADE-PLAN §1/§10 补记；DOC-06 条目与升级条目补记（原「仍为 alpha.1 语料」边界解除）。
+
+未执行/边界：44 份新增文档未逐份审查（台账 pending）；Typert Remote 生成器外部 workspace 兼容未重测（沿用既有结论）；`.artifacts` 内部旧路径引用不回溯改写；未提交、未推送、未发布 npm。
+
+## 2026-09-18：项目任务创建语义确认（三项取舍落档）
+
+代码评审指出升级批次的 `client.tsx` 相对 09-17 已记录行为改变了任务创建三项语义且未落档：旧——未选资产默认全量进入会话、技能以 `/技能ID` 前缀放消息开头、项目指令拼入消息体；新——资料仅显式勾选进入、技能与待办以 `@项目/<名称>` 引用文本提交、指令经官方 `system-prompt/assemble` 注入。核对官方锁定版公开面后确认保留新语义，并完成落档：
+
+- 资料显式选择：与 PROJECT-DESIGN「不把整个库塞入提示词」一致；`set-task-selection` 本就是资料库的会话级显式选择通道，不提供全量回退。
+- 技能引用记为已知降级：官方 `skills.zh.md` 中模型调用为 `skill({name})` 按需加载（`modelInvocable` 策略）、用户调用经官方 `/` 菜单、会话挂载由 preset 决定，无「任务创建时激活技能」的公开编程接口；`/技能ID` 前缀同样只是消息文本，不具备确定激活语义。项目技能绑定固定修订与展示，加载由运行时决定，待官方提供会话级激活能力后升级。
+- 指令移出消息体：走公开注入通道（上下文名 `workdsh:project-task`），历史会话回放与导出不再含指令正文，指令修订固定为任务创建时捕获的 ProjectConfigRevision。
+
+落档：PROJECT-DESIGN §3 新增第 7–9 条与 §5 的 ProjectTaskLink 写入时机（会话就绪后、首条消息发送前；会话未就绪不落任务、发送失败保留任务并提示重发）。回归探针按新语义执行，结果随本批修复记录统一登记。
+
+## 2026-09-18：DSH 0.1.6-alpha.2 升级（依赖/编译/运行/新能力全流程 + 收口）
+
+运行基线与全局精确锁定 alpha.1 → alpha.2：根 overrides/devDependencies、12 个功能包 + bundle 的 DSH 依赖、锁文件与脚本引用全量对齐；迁移 alpha.2 破坏性变化（Client Session 多实例化）影响的 6 个插件 client 文件；不改变业务功能范围；contracts 领域模型仅新增项目任务上下文只读契约（补记 α.9 bump，见 P5）。计划与逐项记录：[DSH-0.1.6-alpha.2-UPGRADE-PLAN.md](DSH-0.1.6-alpha.2-UPGRADE-PLAN.md)；命令/结果/未覆盖项：[升级证据](evidence/dsh-0.1.6-alpha.2-upgrade.md)。
+
+- 依赖面（P1）：480 处替换（root 273 + 12 包 198 + scripts/tests 9）；新增 override 9 条（预判 8 + install 暴露 `@deepseek-ai/dsh-lazy-require`）；`check:versions` PASS（513 条锁文件条目全部 α2、Cordis 4.0.2）。
+- 编译面（P2）：6 个 client 文件迁移——projects（startTask 改 retain(`workdshProjectTaskStart`)→ready→轮询 binding.ctx→send→finally release；openTask 改 `uiWorkspace.openSession`）、experts（`subagentAddress` 判成员 + 3 处 openSession）、skills/library（current 改 `retainedBy.mainView` 推导 + openSession）、office（current 推导 ×3）、activity（成员观测 retain(`workdshActivityMember`)→ready→release 重写）；B5 修复（`CsvDocument.tsx` 三变体显式收窄）；全仓 typecheck PASS（13 包）。
+- 运行面（P3）：build + preview:install（clean env）+ 启动 PASS，数据完好（292 会话文件/项目 8 资产）；探针回归全过（chip 正反例、attribution、connectors、library、presets、office、team web 14 项）；startTask/openSession 专项 + 重开复核 v2 强断言 warm/warm2/cold 三次全过。attribution 一轮失败定性=探针历史槽位占满（`(2)~(5).md` 占满 NAME_ATTEMPTS=5 重试），非回归，探针已改动态文件名。
+- 新能力（P4）：运行时卸载验证 `ctx.effect/provide/slot` 可完整撤销（禁用+重启完全卸载、启用+重启恰好一次恢复、无重复监听；UI 静默=官方行为，不改官方代码）；官方新页面实弹核对通过（右栏 Start 卡片与 WorkDSH「文档」卡片共存、Browser 页签、回合文件改动卡片→官方 `Review · turn 2` diff、子代理 lineage）；9 个 `workflow-worker-thread` 旧 preset（0.1.5 时代陈留）挂载失败定性为非 alpha.2 回归（活跃 ptc preset 会话实弹正常对照）；子代理默认值 `maxDepth=1`/`maxActiveSubagents=8` 与专家团 16 成员名册校验核对无冲突（16=名册容量 vs 8=活跃上限）；团队探针复跑全 PASS。
+- 收口（P5）：8 包 bump（bundle α.46、projects α.2、experts α.5、skills α.30、library α.2、office α.7、activity α.4、contracts α.9〔补记 09-17 只读任务上下文契约〕）+ CHANGELOG 适配条目 + MODULE-VERSIONS 当前版本表同步；`AGENTS.md` 基线更新为 `@deepseek-ai/dsh@0.1.6-alpha.2`；`check:plan` PASS（29 模块/50 文档）。
+- 复核补测（V1–V5，同日追加）：V1 计划预览官方 preview 实弹 PASS（`/plan` → chip → `exit_plan_mode` → 评审面板 → Approve → 右栏自动打开 plan tab → 刷新后计划卡片从历史恢复，0 pageerror）；V2 侧栏布局持久化专项 PASS（折叠/展开逐同刷新保持 + server 重启后恢复布局、plan tab 与卡片）；V3 `ACTIVATION_LIMIT_REACHED` 隔离确定性探针 PASS（8 个活跃 child → 第 9 次同步被拒 "active child limit: 8" → `drainContinuableChildren` 释放 1 槽 → 重试 admitted；与 α2 包 README 逐条吻合）；V4 worker-thread 旧 preset 复核完成（编译器只产 ptc + `resolveBasePreset` 硬性 standard；磁盘 16 preset 中 4 孤儿/0 brokenRef，保留只读不批量修复决定成立）；V5 文档镜像定界完成（375 文件/249 md 全为 2026-09-10 alpha.1 批次快照；三类 stale 抽检；刷新维持独立批次；2026-09-18 补记：刷新已执行，见顶部条目）。明细见证据文档「未覆盖项与边界」表与计划 §10 V 条目。
+
+未执行/边界：worker-thread 旧 preset 保留只读（5 个专家当前修订仍引用，重新发布即转 ptc，属后续独立任务）；文档镜像当时仍为 alpha.1 语料（delta 已记账，刷新单独批次；2026-09-18 补记：独立刷新批次已执行，本条原「仍为」表述随之更新，见顶部条目）；README 面向已发布制品的 alpha.1 表述随下次发布批次更新；未提交、未推送、未发布 npm。
+
+## 2026-09-17：项目任务会话顶栏项目 chip 与 present 交付自动归属
+
+两项增量：①项目任务会话标题右侧显示「项目 / 项目名」chip，点击打开项目面板并聚焦该项目；②项目任务对话中模型按官方 present 语义交付的文件自动登记资料库（source=task、记录来源会话）并幂等关联为项目资产。全部走锁定版 `@deepseek-ai/dsh@0.1.6-alpha.1` 公开面，范围 `packages/plugins/projects`（0.1.0-alpha.1，Unreleased）与 contracts 只读任务上下文契约补全（`ProjectTaskContext`/`taskContext`）；当时未同步 contracts 版本线，2026-09-18 补记 bump `0.1.0-alpha.9`，本条原「未改 contracts」表述随之修正。未改 library/ui/bundle。
+
+- chip：经官方槽 `conversation.session.header.actions` 注册（`order:-20`，紧跟标题，与同排官方 chip 齐平）；文案「项目 / 项目名」，非项目会话零渲染；点击走 `?project=` URL 恢复 + 模块级 focus 通道双保险，打开并聚焦项目面板。视觉与官方 chip 同型（22px 高、6px 圆角、12px 字号、`--dsw-alias-fill-tsp-secondary`），保留键盘焦点环，长名称省略（max-width 180px + ellipsis）。
+- 交付归属：Host 新增 `deliverable-attribution.ts`——订阅官方 `session/event` 的 `deliverables/presented`（present 工具成功后的官方交付信号），经 `identity.resolve` → `projects.taskContext` 判定项目任务会话（非项目/子代理整体跳过），`ctx.fs` 读文件后 `library.importAsset(source:'task', sourceTaskId:会话)`，名称冲突自动 ` (n)` 后缀重试（≤5 次），成功后幂等 `addAsset` 关联项目资产；失败仅 warn、无假成功、不写第二状态。新增一个只读 RPC 端点 `task-context` 与 client management 方法；归因子插件静态 inject（`fs`/`workdshLibrary`/`workdshProjects`/`workdshIdentity`），缺失依赖时单独 PENDING，不影响其余能力。
+- 文档：projects CHANGELOG Unreleased 两条；PROJECT-DESIGN §2/§3 补 chip 行为与交付归属语义边界；modules.json 补 `src/client/components/project-lineage`；证据 [D07 项目路径 chip 与交付归属](evidence/d07-projects-lineage-attribution.md)。
+
+验证：项目插件 typecheck/build/test 9/9（含归因纯函数 6 项新用例：跳过/字段/后缀/隔离/去重/幂等）、全仓 `pnpm typecheck` 退出 0、check:plan PASS（29 模块/50 文档）。真实预览 18989 三支探针全绿：chip 正反例 `verify.json` 21/21（文案/位置/键盘焦点/点击聚焦 URL+面板、1440/1920/390 无视口溢出且 chip 保持、专家/blank/draft 会话零 chip）；真实模型 present 归因 `attribution.json` 11/11（`project-deliverable-check.md` 出现在项目资产与资料库，source=task、sourceTaskId 精确匹配，任务行/活动记录/选择器回归全过）；反例 `negatives.json` 12/12、failures 空（手工资产增删复原、预置冲突名→ ` (2)` 后缀落库、zip present 后确定性跳过 approvals 0 且零假资产零库节点、子代理会话真实 emit present 而项目零泄漏）。截图 `.artifacts/project-lineage/verify-0*.png`、`attribution-0*.png`、`negative-0*.png`；全程 pageerror/console error 0。
+
+UI-DESIGN §8 记录：chip 属插件内局部 UI，不新增公共组件；视觉对照与官方 chip 同型（22px/6px/12px 实测）；交互验证键盘焦点保留、长名称省略（180px+ellipsis）、390 视口无溢出；未完成项：超长项目名专项截图、深色主题对照未做。
+
+未执行/边界：不提交、不推送、不发布 npm；重启/HMR 不补历史归因（官方 constructor seeds do not emit）；归因失败 warn 落 cordis 内存 ring buffer，本仓预览 profile 无落盘 exporter，无法从日志文件核对（已由单测 + 行为链断言替代）；重复交付同名文件超 5 次触顶跳过为计划内上限；「同资产新修订」需 library 新公开方法，另立项。人工复验需用新 token URL 打开 18989。
+
+## 2026-09-17：项目任务对话改走官方会话导航（第二套对话管线退役）
+
+用户指出项目任务视图的对话“不对”（对照 WorkBuddy 截图），并明确“不仅仅是 UI，是逻辑”。真实预览对照探针证实：该视图运行第二套会话管线——自定义 feed 只把消息扁平化成纯文本（无思考块、轨迹、用量、操作栏），假 composer（textarea+➤，无 @/附件/模型/队列/权限），自定义运行态判断（“正在项目中处理…”/“该任务还没有消息记录”）；同一 Session 经侧栏打开则完整渲染。处理：任务=原生 Session，打开任务走官方会话导航。
+
+- `client.tsx`：`openTask(sessionId, onFailed?)` 重写为官方导航 `sessions.open(sessionId)` + `ctx.layout.selectPanel(null)`（与官方 ui-workspace `openSession` 等价；保留 25×200ms 重试）；删除 `conversationSource`/`sendTask`、`uiConversation` 注入与注册参数；`startTask` 不再切回项目面板。
+- `ProjectsPanel.tsx`：删除 `ProjectConversationHost`、`ProjectConversation` 自定义渲染器与 `activeSession` 状态、假 composer；`syncUrl` 只保留 `?project=` 并清理历史 `?task=`；任务行与新建任务均经 `openTask` 进入官方会话，失败时面板内提示。
+- `styles.ts`：删除 `.wd-p-main-conversation`、`.wd-p-project-conversation`、`.wd-p-conversation-*`、`.wd-p-message`、`.wd-p-running`、`.wd-p-run-context` 等对话专用规则。
+- 文档：PROJECT-DESIGN 任务条目（§2、§7.1.2、§7.1.3）同步“打开任务=官方会话界面，不进入项目内嵌对话”；CHANGELOG Unreleased 记录。
+
+验证（真实预览 18989，headless 浏览器 + 真实模型）：before 对照 `.artifacts/project-task-probe.mjs`（`comparison.json`：自定义视图仅扁平文本 6 条，原生视图含 Thought/Usage/Ran for）；after `.artifacts/project-task-verify.mjs`：打开已有任务 → `workdsh-view=conversation`、自定义渲染器与 feed 计数 0、原生 composer 存在、消息文本完整渲染；返回 → `?project=` 恢复“项目 / Host持久化验证”详情；从项目输入区创建“只回复：ok” → 自动进入原生会话、真实模型回复 ok、用量/成本统计与连接器 chip（测试 ERP 系统）生效；浏览器 pageerror/console error 0。截图 `05-task-native.png`、`06-return.png`、`07-create-task.png`，报告 `.artifacts/project-task/verify.json`。构建（contracts+tsc+build-projects）通过；`preview:install` 逐字节校验后重启 18989。
+
+未执行/边界：返回路径的任务列表刷新依赖项目快照重取，未单独测试面板不卸载场景；历史遗留空任务（linkTask 成功但 send 未发出）打开后是原生空会话，未清理；未提交、未推送、未发布 npm。人工复验需用新 token URL 打开 18989。
+
+## 2026-09-17：隐藏未实现的侧栏入口（助理/定时任务/更多）
+
+用户看到左侧「助理」「定时任务」「更多」进入的只是“当前模块尚未接入领域数据”占位页，要求先隐藏未实现的功能。处理：workbench 0.1.0-alpha.10→0.1.0-alpha.11，`businessPanels` 增加 `pending` 标记（助理/定时任务/更多 为 true），`harness/client.ts` 对 pending 面板不再注册 `sidebar.panellist` 入口和占位 main 页；项目、专家 · 技能 · 连接器、资料库保持。UI-DESIGN 左侧导航一节与 workbench CHANGELOG 同步记录；probe-browser 断言更新为三项隐藏、三项可见。
+
+验证：bundle build（含 workbench 与客户端重打包）与 workbench typecheck 通过，bundle dist/client.js 确认含 pending 跳过且占位页组件已被剔除；`preview:install`（逐字节校验）后重启 18989，headless 浏览器实测：项目/专家 · 技能 · 连接器/资料库 各 1 个入口可见，助理/定时任务/更多 均为 0，无浏览器错误；截图与 result.json 位于 `.artifacts/sidebar-hide/`（脚本 `.artifacts/sidebar-hide-check.mjs`）。check:plan 通过（29 模块/50 文档）。
+
+未执行/边界：probe-browser.mjs 完整探针本轮未重跑（仅同步断言）；未提交、未推送、未发布 npm。实现后恢复：把对应面板 `pending` 置 false 并接入真实 main 页。
+
+## 2026-09-17：CSV 表格预览与单元格网格线（office alpha.6）
+
+用户两轮反馈：右侧面板打开 CSV 只有溢出纯文本；出现表格后单元格没有框线。实现：CSV 渲染器 `src/csv/CsvDocument.tsx` 与 `csv.css`（表头/行号、单元格网格线四边 1px、冻结表头与行号列、数字右对齐、超长省略悬停），解析经用户选定换用 PapaParse 5.7.0（MIT），字节解码与 1500 行/120 列/24000 单元格上限为自有实现；注册走官方 `ctx.documentPreviews` 与 `sidebar.right.tab.document`，不新增 Tab kind、传输或状态真源，未知扩展继续回退官方纯文本。office 升 0.1.0-alpha.6（未发布）。
+
+验证：解析单测与浏览器渲染测试 2/2、office typecheck/build 通过；alpha.6 经 `preview:install`（逐字节校验）装入 preview Profile 并重启 18989；headless 浏览器 token 登录打开用户文件 `/Users/techflag/project/vipshop/2021040501_可导入数据.csv`，面板 Tab、`region "CSV 表格预览"`、表头 `lineNo`、状态栏 `UTF-8 · 逗号分隔 · 10 列 × 2 行` 与单元格/行号/表头计算边框均 1px 全部断言通过，无浏览器错误；证据 `.artifacts/preview-csv/04-table.png` 与 result.json（脚本 `.artifacts/preview-csv-verify.mjs`，本轮修正了交付卡 Open 按钮选择器）。许可：papaparse MIT 全文随构建自动收集，不在缺文本清单。
+
+未执行/边界：原生 Files Tab 探针（probe-office-native 的 CSV 分支）仍被隔离探针环境 create-execution workspaceId 分支阻塞，待重跑（2026-09-19 补记：已重跑通过，缺陷链见顶部条目）；AI-EDITING 指南无 CSV 条目（只读预览不属于八类 AI 编辑范围），未改；未提交、未推送、未发布 npm。人工复验需用新 token URL 打开 18989。
+
+## 2026-09-17：录入减负演示包（用户导入/创建路径实测）
+
+为客户演示制作「录入减负智能体」全套可导入/可创建制品，全部位于 `.artifacts/entry-demo/`，未修改 packages/ 下任何插件、内置 skill/专家/连接器代码与种子。制品：3 个技能包（workdsh-entry-extract 单据信息提取、workdsh-entry-validate 数据校验清洗、workdsh-entry-export 结构化输出与系统对接，各含 references 规则表与 zip）；4 个专家包（采购/质检/生产/财务单据录入专家，workdsh-expert schemaVersion 1，manifest 含 sha256，skillRequirements 引用上述 3 技能，futureRequirements 声明可选连接器需求）；2 个测试 MCP stdio 服务器（workdsh-erp-test 4 工具、workdsh-mes-test 3 工具，内存数据+种子行）；样单（送货单含 -50 数量阻断异常行、质检报告）与演示手册 README.md。模型共用官方底座，图片理解走官方模型视觉能力；自学习诚实表述为「字段映射模板沉淀 + 专家修订」，未宣称自动微调。
+
+预览 Profile（18989）按用户路径实测：技能页导入 3 个 zip 预检通过并启用；专家页导入 4 个 zip 预检通过（sha256 摘要、3 项技能依赖显示正确）、发布校验通过（技能固定修订 rev-98b708a9/rev-a511e72c/rev-f914231f）、发布成功（采购 rev-749f1f977d05、质检 rev-4346ea4aa2c9、生产 rev-b73352bd4b13、财务 rev-7e365129c665），详情页显示技能配备与连接器需求；连接器页新建「测试 ERP 系统」「测试 MES 系统」stdio 连接器，健康检查 ready、工具名正确（mcp__workdsh-erp-test__query_purchase_orders 等）。会话链路全通：召唤采购录入专家→加载 3 技能与字段映射表→提取（字段/依据/置信度）→校验（日期清洗 2026年9月17日→2026-09-17，第 2 行 -50 标记 quantity-non-negative 阻断）→writable=false 停下人工确认→用户选择「第 2 行暂挂，先回写第 1 行」→展示待写入数据并经批准后调用 mcp__workdsh-erp-test__create_receive_order 回写（返回 GRN20260917002）→query_receive_orders 读回核对 7/7 字段一致→生成 DN20260917002_录入结果.json/.csv 交付物。写入工具仅在用户批准后调用，此前的查重查询为只读调用。
+
+未执行/边界：真实企业 ERP/MES API 对接（测试服务器为内存模拟）、私有化部署路线、真实 OCR 服务（使用官方模型视觉能力）、模型微调；本次未发布 npm、未改版本号，演示制品不入仓库发布。
+
+## 2026-09-17：项目任务会话修复（历史消息、空态与刷新恢复）
+
+按 [项目任务会话交接](PROJECT-CONVERSATION-HANDOFF.md) 修复项目内任务视图的三个运行时 bug，并完成 preview 运行时验证。根因链：仅 `ctx.uiConversation.binding(sessionId)` 不足以让未打开的历史 Session 组装 Chat snapshot，必须由 Session Controller `sessions.open()`（内部 `manager.select` → 事件窗口拉取）先打开该 Session。另两个衍生问题：发送失败遗留的空任务误显“正在项目中处理…”，以及刷新后任务视图丢失（`activeSession` 是纯组件 state）。
+
+- `client.tsx`：`openTask(sessionId, onReady?, onFailed?)` 保留 25×200ms 重试（刷新后 session list 尚未拉取时 `sessions.open` 会抛 `unknown session`）；`conversationSource` 继续经 `ctx.uiConversation.binding`。
+- `ProjectsPanel.tsx`：新增 URL 持久化 `?workdsh-view=projects&project=<id>&task=<sessionId>`（`replaceState`，与官方 NavigationLocation 不冲突），面板挂载时恢复项目/任务并调用 `openTask`，成功后才切换视图、失败则清除 task 参数并提示；新增 `ProjectConversationHost`：binding 调用包 try/catch，会话尚未列入客户端列表时显示“正在载入任务会话…”并在 session list 更新后自动重试，不再整面板 crash（修复前会触发 `uiConversation.binding: unknown session` 并 crash slot entry）。
+- 空态改为读取官方 `SessionSummary.running`/`blank`：不再误报运行中；空任务显示“该任务还没有消息记录…”，仍可发送第一条消息。
+
+运行时验证（Playwright + preview 18989）：11 个任务中 3 个有消息任务正确显示 user/assistant（1/1、1/6、1/2）；8 个空任务全部显示诚实空态且 running-hint=0；打开任务 URL 带 `task`、返回保留 `project`、回列表清空，无漂移；刷新恢复 `inside=1 user=1 assistant=1`，控制台 pageerror/console error 为 0。检查：项目插件测试 3/3、集成测试 108/108、`pnpm typecheck` 退出 0、check:plan 通过（29 模块/50 文档）、`git diff --check` 干净。脚本 `.artifacts/verify-project-task-fix.mjs`，截图 `verify-project-task-messages.png`、`verify-project-task-empty.png`、`verify-project-task-reload.png`（忽略文件）。
+
+未完成/未执行：孤儿任务生命周期标记（交接 #6）、原生引用芯片（#3）、新任务全链路 prompt assembly 验证（#2）；真实模型任务本轮未执行。preview 已重装重启供人工复验；未提交/推送/发布。（本条目的自定义渲染管线已于当日后续条目“项目任务对话改走官方会话导航”中整体退役，保留为历史修复记录。）
+
 ## 2026-09-16：专家团长任务、交接、重连与失败恢复验收
 
 新增 `probe:experts:team:resilience` 与显式 `probe:experts:team:real` 发布验收入口。探针把 identity、audit、access、skills、experts、bundle、activity 七个正式包打包并经官方 CLI 安装到仓库外临时 Profile，使用生产 Host、官方 Agent Teams 服务/工具/Web Client 和真实 Chromium。resilience 模式用本地确定性适配器固定等待、中断和一次成员失败；real 模式另建独立执行，使用 `deepseek-official/deepseek-flash` 的真实 lead 与两名真实成员。
@@ -373,7 +512,7 @@ Office许可证文本收集10项缺项保留原报告；按用户决定用README
 
 ## 2026-09-13：更新并重启 preview
 
-用户授权安装当前插件并重启。首次实际启动发现专家 Host integration 未声明官方 agents/subagents/sessionQuery 服务注入，隔离探针此前未覆盖正式 Loader 消费者的声明。补齐现有公开服务 inject，不修改上游或用户数据；experts build 与 preview:install 退出0，官方 Loader 实际启动成功并监听18989；已打开认证预览页面。未认证请求401符合本地认证要求。未执行付费模型测试、未提交推送。官方复用依据：deepseek-harness-docs/config-catalog.zh.md 的服务 Requires 与锁定 Cordis 运行时报错。
+用户授权安装当前插件并重启。首次实际启动发现专家 Host integration 未声明官方 agents/subagents/sessionQuery 服务注入，隔离探针此前未覆盖正式 Loader 消费者的声明。补齐现有公开服务 inject，不修改上游或用户数据；experts build 与 preview:install 退出0，官方 Loader 实际启动成功并监听18989；已打开认证预览页面。未认证请求401符合本地认证要求。未执行付费模型测试、未提交推送。官方复用依据：dsh-v0.1.6-alpha.2/config-catalog.zh.md 的服务 Requires 与锁定 Cordis 运行时报错。
 
 ## 2026-09-13：按 WorkBuddy 截图拆分专家作品浏览与创建入口
 
@@ -1306,7 +1445,7 @@ D00 设计修订完成，当前 D01 集成验证进行中。已安装并锁定�
 | P1-08 | P1 发布验收 | P1 | todo |
 | P1-09 | 团队基础实现 | P1 | completed |
 | P1-10 | 企业管理后台基础入口 | P1 | todo |
-| P1-11 | 项目配置、待办、任务、资产与交接 | P1 | todo |
+| P1-11 | 项目配置、待办、任务、资产与交接 | P1 | in_progress |
 | P2-01 | 专家团模型及执行映射 | P2 | todo |
 | P2-02 | 专家团失败与取消 | P2 | todo |
 | P2-03 | 自动化配置与调度 | P2 | todo |
@@ -1474,7 +1613,7 @@ ARCHITECTURE 将 preset 提升为跨功能执行组合，区分角色/组合/范
 
 ### DOC-06 Harness 官方文档审查
 
-用户提供 `docs/deepseek-harness-docs` 完整镜像后，将全量能力审查加入 D01 前置。机器盘点为 375 个文件、249 个 Markdown；按中文对侧优先及 5 个无中文对侧英文文档，共 127 份规范审查对象。新增审查计划、逐文件台账与 `audit:harness-docs`，当前 H01 进行中，4/127 已登记，禁止把目录扫描写成全量读完。首批结论确认 Cordis 插件树、Session/agent/能力事件分工、官方 Storage 候选和官方 Skill 执行底座；下一步依固定 H01—H09 审查并反查现有设计，未完成前不进入 D02。
+用户提供 `docs/dsh-v0.1.6-alpha.2` 完整镜像后，将全量能力审查加入 D01 前置。机器盘点为 375 个文件、249 个 Markdown；按中文对侧优先及 5 个无中文对侧英文文档，共 127 份规范审查对象。新增审查计划、逐文件台账与 `audit:harness-docs`，当前 H01 进行中，4/127 已登记，禁止把目录扫描写成全量读完。首批结论确认 Cordis 插件树、Session/agent/能力事件分工、官方 Storage 候选和官方 Skill 执行底座；下一步依固定 H01—H09 审查并反查现有设计，未完成前不进入 D02。（2026-09-18 补记：镜像已整批替换为 alpha.2 快照（`docs/dsh-v0.1.6-alpha.2`，543 文件/337 md、规范对象 171）；原 127 份审查台账顺延、新增 44 份待审；见顶部「文档镜像刷新」条目与 `p5-doc-mirror-audit` 证据。）
 
 H01 已完成，当前 8/127。补充约束：scope-local 能力不会自动传给 subagent，专家团必须显式重算组合与授权；人类命令不经过模型但也不自动成为持久事实；`agent/pre-step` 适配必须继续 waterfall；模块/事件关系不代表团队授权。H02 转为进行中。
 
@@ -1661,7 +1800,7 @@ PDF 当前候选已通过官方 CLI 安装到人工 Preview Profile，并核对 
 
 ### 2026-09-13：公共事实保真修订与不同材料复验结果
 
-指南/参考增加来源属性、未来承诺逐条核对，并要求进入生成专家的 methodology/boundaries/deliverables；不强制短成果展示冗长台账。复用官方 docs/deepseek-harness-docs/subsystems/skills.md、@deepseek-ai/dsh-skill@0.1.5-rc.1 ctx.skills.register/resourceBase 与已有公开专家工具、原生Agent/受信UI，不新增自动评分或Harness执行器。构建/类型检查、16项Host与3项oracle回归、计划/差异检查通过。官方CLI --offline正常更新Preview，Host/Client/参考字节匹配，重启HTTP200，用户冻结专家不变。
+指南/参考增加来源属性、未来承诺逐条核对，并要求进入生成专家的 methodology/boundaries/deliverables；不强制短成果展示冗长台账。复用官方 docs/dsh-v0.1.6-alpha.2/subsystems/skills.md、@deepseek-ai/dsh-skill@0.1.5-rc.1 ctx.skills.register/resourceBase 与已有公开专家工具、原生Agent/受信UI，不新增自动评分或Harness执行器。构建/类型检查、16项Host与3项oracle回归、计划/差异检查通过。官方CLI --offline正常更新Preview，Host/Client/参考字节匹配，重启HTTP200，用户冻结专家不变。
 
 不同holdout材料各一次真实创建/发布/执行/交付：公告不再补路线图或通知承诺，但仍附五个审查小节，部分通过；研究仍添加“内部评测记录”，且把没有独立测试证据写成否，失败。新增边界确实进入生成定义，执行仍有矛盾，不宣称提示词已保证事实保真。模型信息见对应report.json，仅代表当前DeepSeek有限样本。
 
@@ -1732,3 +1871,7 @@ Office build/typecheck 以及 content/download/rich-editor 30 项相关测试通
 ## 2026-09-16：Office 工具兼容一次 JSON 字符串包装
 
 修复部分模型调用 `content_edit` 时把规范对象再次 `JSON.stringify`，导致工具参数层直接报 `invalid arguments: "input" must be an object` 的问题。工具 Schema 现在仍以对象为首选，同时允许一次 JSON 字符串包装；执行入口只解包一层，随后继续使用原有文档类型、操作、权限、批量上限和 CAS 严格校验。畸形 JSON、数组及超限载荷仍会拒绝。Office typecheck 与 21/21 内容集成测试通过；preview 已用 Node 22.23.2 重新安装并重启，安装产物包含兼容入口，18989 返回认证保护的 HTTP 401。
+
+## 2026-09-17：项目输入闭环到原生任务
+
+修复项目输入区只创建 Session 和任务关联、却仅写入草稿并落到空白新会话的问题。项目提交现在经官方 Session Controller `prompt` 接口获得接纳结果后保存项目任务关联，再打开同一个原生会话；任务列表行可重新打开对应会话。真实 preview 提交后显示用户消息、完成模型回合并返回“测试通过”，随后从项目任务列表成功回到相同结果。项目包测试与类型检查通过，证据见 [projects-alpha-task-closure](evidence/projects-alpha-task-closure.md)。

@@ -8,13 +8,14 @@ import { spawnSync } from 'node:child_process';
 
 const root = resolve(import.meta.dirname, '../..');
 const installer = join(root, 'scripts/install-project-release.mjs');
+const harnessVersion = '0.1.6-alpha.2';
 const packageNames = [
   'workdsh-provider-identity-local', 'workdsh-plugin-audit', 'workdsh-plugin-access',
   'workdsh-plugin-skills', 'workdsh-plugin-experts', 'workdsh-plugin-connectors',
   'workdsh-plugin-activity', 'workdsh-plugin-office', 'workdsh-bundle',
 ];
 
-async function fixture(version = '0.1.6-alpha.1') {
+async function fixture(version = harnessVersion) {
   const home = await mkdtemp(join(tmpdir(), 'workdsh-installer-'));
   const release = join(home, 'release');
   await mkdir(release, { recursive: true });
@@ -25,7 +26,7 @@ async function fixture(version = '0.1.6-alpha.1') {
     await writeFile(join(release, filename), bytes);
     packages.push({ name, filename, sha256: createHash('sha256').update(bytes).digest('hex') });
   }
-  await writeFile(join(release, 'release-manifest.json'), JSON.stringify({ version: 'test', harness: '0.1.6-alpha.1', packages }));
+  await writeFile(join(release, 'release-manifest.json'), JSON.stringify({ version: 'test', harness: harnessVersion, packages }));
   const fakeDsh = join(home, 'fake-dsh.mjs');
   await writeFile(fakeDsh, `#!/usr/bin/env node
 import { appendFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
@@ -89,7 +90,7 @@ test('project installer rejects an incompatible Harness before changing a profil
   try {
     const result = run(input, 'blocked');
     assert.notEqual(result.status, 0);
-    assert.match(result.stderr, /requires dsh 0\.1\.6-alpha\.1; found 0\.1\.5-rc\.1/);
+    assert.match(result.stderr, new RegExp(`requires dsh ${harnessVersion.replaceAll('.', '\\.')}; found 0\\.1\\.5-rc\\.1`));
     assert.deepEqual(await calls(input), [['--version']]);
   } finally { await rm(input.home, { recursive: true, force: true }); }
 });

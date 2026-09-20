@@ -165,7 +165,7 @@
     "title": "项目管理",
     "phase": "P1",
     "task": "P1-11",
-    "status": "planned",
+    "status": "in_progress",
     "directories": [
       "src/domain",
       "src/services",
@@ -188,8 +188,11 @@
       "src/client/components/capability-picker",
       "src/client/components/config-panel",
       "src/client/components/project-composer",
+      "src/client/components/project-lineage",
+      "src/runtime",
       "src/domain/discussions"
-    ]
+    ],
+    "moduleVersion": "0.1"
   },
   {
     "path": "packages/plugins/library",

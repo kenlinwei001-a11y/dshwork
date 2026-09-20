@@ -324,8 +324,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-j01.md"
+      ]
     },
     {
       "id": "J02",
@@ -333,8 +335,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-j02.md"
+      ]
     },
     {
       "id": "J03",
@@ -351,8 +355,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-j04.md"
+      ]
     },
     {
       "id": "J05",
@@ -406,7 +412,9 @@
         "P1-08"
       ],
       "status": "pending",
-      "evidence": []
+      "evidence": [
+        "docs/evidence/projects-alpha-archive-lifecycle.md"
+      ]
     },
     {
       "id": "UI01",
@@ -414,8 +422,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui01.md"
+      ]
     },
     {
       "id": "UI02",
@@ -423,8 +433,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui02.md"
+      ]
     },
     {
       "id": "UI03",
@@ -432,8 +444,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui03.md"
+      ]
     },
     {
       "id": "UI04",
@@ -450,8 +464,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui05.md"
+      ]
     },
     {
       "id": "UI06",
@@ -459,8 +475,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui06.md"
+      ]
     },
     {
       "id": "UI07",
@@ -468,8 +486,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui07.md"
+      ]
     },
     {
       "id": "UI08",
@@ -504,8 +524,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui11.md"
+      ]
     },
     {
       "id": "UI12",
@@ -513,8 +535,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui12.md"
+      ]
     },
     {
       "id": "UI13",
@@ -522,8 +546,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui13.md"
+      ]
     },
     {
       "id": "UI14",
@@ -531,8 +557,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui14.md"
+      ]
     },
     {
       "id": "UI15",
@@ -540,8 +568,10 @@
       "tasks": [
         "P1-08"
       ],
-      "status": "pending",
-      "evidence": []
+      "status": "passed",
+      "evidence": [
+        "docs/evidence/projects-alpha-ui15.md"
+      ]
     },
     {
       "id": "J07-P3",

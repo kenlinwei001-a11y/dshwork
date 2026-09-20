@@ -1,5 +1,5 @@
 {
-  "corpusRoot": "docs/deepseek-harness-docs",
+  "corpusRoot": "docs/dsh-v0.1.6-alpha.2",
   "canonicalRule": "Prefer each *.zh.md file; use English *.md only when no Chinese pair exists.",
   "reviewed": [
     "development.zh.md",
@@ -8,7 +8,7 @@
     "i18n/terminology.md",
     "i18n/translation-prompt.md",
     "i18n/translation-rules.zh.md",
-    "subsystems/code-runtime.zh.md",
+    "subsystems/ptc-runtime.zh.md",
     "subsystems/extensions.zh.md",
     "subsystems/feedback.zh.md",
     "subsystems/goal.zh.md",

@@ -7,6 +7,8 @@ import type { InputTriggerSource } from '@deepseek-ai/dsh-client-ui-input-trigge
 import type {} from '@deepseek-ai/dsh-client-ui-input-trigger/client';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-right/client';
+import type {} from '@deepseek-ai/dsh-client-ui-session/client';
+import type {} from '@deepseek-ai/dsh-client-ui-workspace/client';
 import type {} from '@deepseek-ai/dsh-client-ui-slots';
 import type {} from '@deepseek-ai/dsh-api-session-controller/client';
 import type { ISessions } from '@deepseek-ai/dsh-api-session-controller/client';
@@ -22,7 +24,7 @@ declare module '@deepseek-ai/cordis' { interface Context { workdshLibraryPreview
 declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' { interface SidebarRightTabParamsMap { 'workdsh-library-preview': { assetId: string; revisionId: string; name: string; kind: string }; } }
 
 export const name = 'workdsh-library-client';
-export const inject = ['slots', 'layout', 'connection', 'sessions', 'workspaces', 'conversation', 'inputTriggers', 'sidebarRightTabs', 'sidebarRight'];
+export const inject = ['slots', 'layout', 'connection', 'sessions', 'workspaces', 'conversation', 'inputTriggers', 'sidebarRightTabs', 'sidebarRight', 'uiWorkspace'];
 export function apply(ctx: Context): void {
   const lifetime = new AbortController(); ctx.effect(() => () => lifetime.abort(), 'workdsh.library.client');
   const management = createLibraryClient(ctx, lifetime.signal);
@@ -50,17 +52,26 @@ export function apply(ctx: Context): void {
     if (inserted) void management.taskSelection(sessionId).then(current => management.setTaskSelection(sessionId, [...new Set([...current.map(row => row.nodeId), value.nodeId])])).catch(() => []);
     return inserted;
   };
+  // alpha.2: the list snapshot has no `current`; the shown Session derives from the
+  // view owner's mainView retention (same rule as the official ui-session publishMain).
+  const currentSessionId = () => {
+    const state = sessions.list.getSnapshot();
+    return Object.values(state.byId).find(row => (row.retainedBy.mainView ?? 0) > 0)?.id;
+  };
+  const resolveWorkspace = () => {
+    const currentId = currentSessionId();
+    const state = sessions.list.getSnapshot();
+    const workspaces = ctx.workspaces.list.getSnapshot().items;
+    return (currentId ? workspaces.find(row => row.sessionIds.includes(currentId)) : undefined)
+      ?? workspaces.find(row => row.path === (currentId ? state.byId[currentId]?.cwd : undefined))
+      ?? workspaces[0];
+  };
   const startConversation = async (entry: import('workdsh-contracts/library').LibraryTreeEntry): Promise<void> => {
     if (!entry.asset || !entry.revision) throw new Error('文件夹不能添加到对话。');
-    const state = sessions.list.getSnapshot();
-    const current = state.current ? state.byId[state.current] : undefined;
-    const workspaces = ctx.workspaces.list.getSnapshot().items;
-    const workspace = workspaces.find(row => row.sessionIds.includes(state.current!))
-      ?? workspaces.find(row => row.path === current?.cwd)
-      ?? workspaces[0];
+    const workspace = resolveWorkspace();
     if (!workspace) throw new Error('请先选择工作空间。');
     const sessionId = await sessions.create({ workspaceId: workspace.workspaceId, cwd: workspace.path });
-    sessions.open(sessionId);
+    ctx.uiWorkspace.openSession(sessionId);
     ctx.layout.selectPanel(null);
     const value = { assetId: entry.asset.id, revisionId: entry.revision.id, nodeId: entry.id, name: entry.name, kind: entry.asset.kind };
     await waitForInput(150);
@@ -123,7 +134,7 @@ export function apply(ctx: Context): void {
       event.stopImmediatePropagation();
       void management.search(name).then(hits => {
         const hit = hits.find(row => row.name === name) ?? hits[0];
-        const sessionId = sessions.list.getSnapshot().current;
+        const sessionId = currentSessionId();
         if (!hit || !sessionId) return;
         return ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-library-preview', { params: { assetId: hit.assetId, revisionId: hit.revisionId, name: hit.name, kind: hit.kind } });
       }).catch(() => undefined);

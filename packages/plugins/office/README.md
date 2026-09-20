@@ -30,6 +30,7 @@ Word 预览版 `0.1.0-alpha.2`（表格/图片增量；历史文本预览版为 
 | `.xlsx` | Univer 表格编辑、单元格值/普通公式导出副本 | 原生图表不显示，含已检测高级对象禁止导出；不支持结构/格式修改导出 |
 | `.docx` | 浏览器排版预览、正文文字片段修改、更新预览、导出副本 | 不是完整排版编辑器，不能编辑页眉页脚等未列出的内容 |
 | `.pptx` | 当前中文原生幻灯片编辑、图表数据/样式、导出副本 | 复杂 PPTX 往返兼容性仍须逐项验证 |
+| `.csv` | 右侧文件 Tab 只读表格预览（单元格网格线、表头/行号、冻结表头与行号列、UTF-8/GB18030/UTF-16 与逗号/分号/制表符识别） | 只读，不编辑不导出；超过 1500 行/120 列/24000 单元格只显示前缀并提示；混用换行的非规范文件按首个换行风格解析 |
 
 Word/PPT 修改基于原始 ZIP 包，未修改条目保留；多文字 run 保持原有格式边界，编辑面板显示文字片段，不把它们混成整段而丢失格式。复杂对象与高级 Office 保真仍未签收。暂不支持旧 `.doc/.ppt/.xls`、密码文档，当前文件上限10MB；压缩展开限制等生产保护仍待完善。
 
@@ -45,7 +46,7 @@ corepack pnpm preview:install
 
 `probe:office:native` 依赖前一个探针产生的测试文件，在隔离 Home 使用真实七包 Profile＋仅测试的诊断插件验证；不发送模型请求。图形预览不会由构建/测试自动打开。
 
-主要依赖：Univer 0.25.1、ExcelJS 4.4.0、docx-preview 0.4.0、pptx-react-viewer 3.16.5、pptx-viewer-core 3.14.3、PDF.js 5.4.624、pdf-lib 1.17.1、Tiptap 3.31.0。PPT 编辑与展示使用 ChristopherVR/pptx-viewer 的 Apache-2.0 包；没有重新引入已删除的 pptx-preview。
+主要依赖：Univer 0.25.1、ExcelJS 4.4.0、docx-preview 0.4.0、pptx-react-viewer 3.16.5、pptx-viewer-core 3.14.3、PDF.js 5.4.624、pdf-lib 1.17.1、Tiptap 3.31.0、PapaParse 5.7.0。PPT 编辑与展示使用 ChristopherVR/pptx-viewer 的 Apache-2.0 包；CSV 解析使用 PapaParse 的 MIT 包，字节解码与显示上限为自有实现；没有重新引入已删除的 pptx-preview。
 
 导出目前是浏览器下载副本，未实现覆盖 Host 原件及冲突检测。切换文件、刷新或关闭 Tab 可能丢弃未导出内容，请先导出副本。不要用此开发版本覆盖重要原件。
 
@@ -77,7 +78,7 @@ corepack pnpm preview:install
 
 ## 安装、卸载与内容保留
 
-发布物是独立 `.tgz`：Host入口、Client模块、`cordis.patch.yml`、编辑器资源、版本说明和许可说明都随包交付。安装使用官方 `dsh plugin --profile <名称> add <Office.tgz>`，并显式提供本地身份、授权、审计基础插件及匹配 Harness `0.1.6-alpha.1` Web Profile。已有 WorkDSH Profile 可复用这些治理依赖，不需要装专家、技能管理或工作台插件。Word-only 预览制品见 [GitHub prerelease](https://github.com/techflag/workdsh/releases/tag/office-v0.1.0-alpha.1)；不将其宣称为完整 Office 正式版。
+发布物是独立 `.tgz`：Host入口、Client模块、`cordis.patch.yml`、编辑器资源、版本说明和许可说明都随包交付。安装使用官方 `dsh plugin --profile <名称> add <Office.tgz>`，并显式提供本地身份、授权、审计基础插件及匹配 Harness `0.1.6-alpha.2` Web Profile。已有 WorkDSH Profile 可复用这些治理依赖，不需要装专家、技能管理或工作台插件。Word-only 预览制品见 [GitHub prerelease](https://github.com/techflag/workdsh/releases/tag/office-v0.1.0-alpha.1)；不将其宣称为完整 Office 正式版。
 
 通过官方 `dsh plugin --profile <名称> remove workdsh-plugin-office` 移除安装，按官方Profile流程重新启动/加载配置。Office菜单、文档引用来源、六个工具、写作guide、预览与实时页注册一起撤销；保留用户已保存内容和原文件。已存在输入标签属于草稿，不能替用户删除，插件缺失时引用无法解析、发送失败；删除标签后可正常输入。重装对应制品后入口恢复，同一Profile中已保存记录和修订保留；未承诺自动恢复卸载时未保存的浏览器缓冲。
 
@@ -91,7 +92,7 @@ cd /Users/techflag/project/workdsh
 # 安装本地候选包 / Install the local candidate
 DSH_HOME="$PWD/.test-runtime/preview" \
   corepack pnpm exec dsh plugin --profile preview add \
-  "$PWD/.artifacts/office-release/workdsh-plugin-office-0.1.0-alpha.5.tgz"
+  "$PWD/.artifacts/office-release/workdsh-plugin-office-0.1.0-alpha.7.tgz"
 
 # 启动 / Start
 corepack pnpm preview

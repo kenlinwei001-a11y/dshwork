@@ -1,6 +1,6 @@
 {
   "name": "workdsh-contracts",
-  "version": "0.1.0-alpha.8",
+  "version": "0.1.0-alpha.9",
   "private": true,
   "type": "module",
   "exports": {
@@ -30,6 +30,10 @@
     "./library": {
       "types": "./dist/library.d.ts",
       "default": "./dist/library.js"
+    },
+    "./projects": {
+      "types": "./dist/projects.d.ts",
+      "default": "./dist/projects.js"
     }
   },
   "files": [

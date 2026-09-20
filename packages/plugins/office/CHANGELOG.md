@@ -1,3 +1,14 @@
+## 0.1.0-alpha.7 — Unreleased（2026-09-18）
+
+- 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改为按 `SessionSummary.retainedBy.mainView` 推导；CSV 预览按官方 `DocumentContent` 新增的 `renderer` 变体显式收窄三种内容形态。
+- `--word-only` 精简制品不再注册 CSV 表格预览与对应侧栏 Tab，客户端注册范围与 `release-scope.json` 的 `docx` 声明一致；完整制品不受影响。
+
+## 0.1.0-alpha.6 — Unreleased（2026-09-17）
+
+- CSV 文件在右侧文件 Tab 以只读表格打开：单元格网格线、表头与行号、冻结表头/行号列、数字右对齐、超长内容省略并悬停查看，长行不再溢出。
+- 解析复用 PapaParse 5.7.0（MIT）的 RFC 4180 能力与分隔符识别；字节解码（UTF-8/GB18030/UTF-16 BOM）与 1500 行/120 列/24000 单元格显示上限为自有业务差异，超限时明确提示仅显示前缀。
+- 官方“纯文本”渲染器仍作为回退保留；许可文本随构建自动收集（papaparse 不在缺文本清单）。
+
 ## 0.1.0-alpha.5 — 2026-09-15
 
 - 支持从客户 PPTX 模板建立独立工作副本，保留母版、版式、主题、媒体与原文件。

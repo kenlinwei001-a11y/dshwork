@@ -1,3 +1,8 @@
+# 0.1.0-alpha.9 — 2026-09-18
+
+- 新增 `ProjectTaskContext` 与只读 `ProjectService.taskContext(actor, sessionId)`：按 Session 反查所属项目任务及其固定的项目与配置修订；兼容补全（同时用于项目路径 chip、present 交付归属与项目任务上下文注入），既有方法签名不变。
+- 新增 `ProjectService.noteDeliveryGap(actor, projectId, text)`：把交付归属环节的资料库侧跳过（不支持格式、名称冲突重试触顶等）记为项目活动记录，避免只落在内存 warn 中不可见。
+
 # 0.1.0-alpha.8 — 2026-09-15
 
 - 扩展原生 PPTX 模板工作副本契约，支持保留模板包、稳定页面标识和受控文本更新。

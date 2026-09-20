@@ -84,10 +84,10 @@ try {
     tarballs.push(join(artifacts, `${manifest.name}-${manifest.version}.tgz`));
   }
   const fixture = join(home, 'fixture'); await mkdir(fixture);
-  await writeFile(join(fixture, 'package.json'), JSON.stringify({ name: 'workdsh-native-team-probe', version: '0.0.0', type: 'module', exports: { '.': './index.mjs', './client': './client.js' }, peerDependencies: { '@deepseek-ai/dsh-llm': '0.1.6-alpha.1' }, dsh: { bundle: { patch: './patch.yml' }, client: { platform: 'web', inject: ['@deepseek-ai/dsh-api-session-controller'] } } }));
+  await writeFile(join(fixture, 'package.json'), JSON.stringify({ name: 'workdsh-native-team-probe', version: '0.0.0', type: 'module', exports: { '.': './index.mjs', './client': './client.js' }, peerDependencies: { '@deepseek-ai/dsh-llm': '0.1.6-alpha.2' }, dsh: { bundle: { patch: './patch.yml' }, client: { platform: 'web', inject: ['@deepseek-ai/dsh-api-session-controller', '@deepseek-ai/dsh-client-ui-workspace'] } } }));
   await copyFile(join(root, 'tests/fixtures/native-team-web/index.mjs'), join(fixture, 'index.mjs'));
   await writeFile(join(fixture, 'patch.yml'), '- insert:\n    - id: native-team-probe\n      name: workdsh-native-team-probe\n');
-  await writeFile(join(fixture, 'client.js'), `window.__ModuleLoader__.load({id:'workdsh-native-team-probe',factory:function(){return {inject:['sessions'],apply:function(ctx){ctx.effect(function(){window.nativeTeamProbe={open:async function(id){await ctx.sessions.refresh();ctx.sessions.open(id)}};return function(){delete window.nativeTeamProbe}})}}}});`);
+  await writeFile(join(fixture, 'client.js'), `window.__ModuleLoader__.load({id:'workdsh-native-team-probe',factory:function(){return {inject:['sessions','uiWorkspace'],apply:function(ctx){ctx.effect(function(){window.nativeTeamProbe={open:async function(id){await ctx.sessions.refresh();ctx.uiWorkspace.openSession(id)}};return function(){delete window.nativeTeamProbe}})}}}});`);
   await command(pnpm, ['pack', '--pack-destination', artifacts], fixture); tarballs.push(join(artifacts, 'workdsh-native-team-probe-0.0.0.tgz'));
   await command(dsh, ['--profile', 'native-team', '--from-default-profile', 'web', '--dump-config']);
   await command(dsh, ['plugin', '--profile', 'native-team', 'add', ...tarballs, '--offline']);

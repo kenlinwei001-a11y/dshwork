@@ -1,8 +1,8 @@
 # 技能管理插件
 
-> GitHub 模块制品与兼容矩阵：[发布说明](../../../docs/RELEASES.md)。当前验证 Harness **0.1.6-alpha.1 Web**；内置 **0.1.2-rc.1** 的旧桌面入口缺失尚未修复，本包不包含该兼容修复。
+> GitHub 模块制品与兼容矩阵：[发布说明](../../../docs/RELEASES.md)。当前验证 Harness **0.1.6-alpha.2 Web**；内置 **0.1.2-rc.1** 的旧桌面入口缺失尚未修复，本包不包含该兼容修复。
 
-状态：**Skill 0.1 本地面向用户的技能市场与独立安装交付完成**。当前候选制品 `workdsh-plugin-skills@0.1.0-alpha.29`，尚未发布 npm。一个插件管理多个 Skill 业务对象；用户制作技能不需要发布 npm 包。
+状态：**Skill 0.1 本地面向用户的技能市场与独立安装交付完成**。当前候选制品 `workdsh-plugin-skills@0.1.0-alpha.30`，尚未发布 npm。一个插件管理多个 Skill 业务对象；用户制作技能不需要发布 npm 包。
 
 本包提供标准 Host `apply/inject`、独立 Client `apply/inject`、`dsh.bundle` 配置 patch 和 `dsh.client` 浏览器产物。官方 Loader/Profile/Cordis 拥有加载及生命周期；不依赖 WorkDSH 总包或另一个插件框架。独立安装、默认组合、移除与重装见[实际验收](../../../docs/evidence/skills-standalone-package.md)。
 
@@ -12,10 +12,10 @@
 
 ## 安装和组合
 
-兼容基线：Node 22.19+、Harness `0.1.6-alpha.1`、Cordis `4.0.2`、React `19.2.4`。从已配置这些依赖的官方 Web Profile 安装本地 tgz；将以下路径替换为实际制品绝对路径：
+兼容基线：Node 22.19+、Harness `0.1.6-alpha.2`、Cordis `4.0.2`、React `19.2.4`。从已配置这些依赖的官方 Web Profile 安装本地 tgz；将以下路径替换为实际制品绝对路径：
 
 ```sh
-dsh plugin --profile <你的 Web Profile> add /absolute/path/workdsh-plugin-skills-0.1.0-alpha.29.tgz
+dsh plugin --profile <你的 Web Profile> add /absolute/path/workdsh-plugin-skills-0.1.0-alpha.30.tgz
 ```
 
 按官方流程停服修改组合，再重启该 Profile。卸载管理插件用官方 `dsh plugin --profile <Profile> remove workdsh-plugin-skills`；用户技能文件和管理数据保留，重装继续使用。插件移除与页面中“卸载某个技能对象”不同：后者进入可恢复回收站。当前未宣称完整运行中 CLI 热卸载。

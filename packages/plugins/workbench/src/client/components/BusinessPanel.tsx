@@ -9,14 +9,16 @@ export type BusinessPanelDefinition = {
   readonly icon: IconName;
   readonly order: number;
   readonly description?: string;
+  /** 规划中、尚无领域实现的功能：不注册侧栏入口与占位页，实现完成后置 false。 */
+  readonly pending: boolean;
 };
 
 export const businessPanels = [
-  { id: 'workdsh-assistant', label: '助理', icon: 'assistant', order: 10, description: '创建和管理面向具体工作的 AI 助理。' },
-  { id: 'workdsh-projects', label: '项目', icon: 'project', order: 20, description: '组织团队任务、资料、成员和共享能力。' },
-  { id: 'workdsh-automation', label: '定时任务', icon: 'automation', order: 40, description: '查看和管理周期性工作。' },
-  { id: 'workdsh-library', label: '资料库', icon: 'library', order: 50, description: '集中管理工作资料与任务成果。' },
-  { id: 'workdsh-more', label: '更多', icon: 'more', order: 60, description: '进入 NexusOne 的更多业务能力。' },
+  { id: 'workdsh-assistant', label: '助理', icon: 'assistant', order: 10, description: '创建和管理面向具体工作的 AI 助理。', pending: true },
+  { id: 'workdsh-projects', label: '项目', icon: 'project', order: 20, description: '组织团队任务、资料、成员和共享能力。', pending: false },
+  { id: 'workdsh-automation', label: '定时任务', icon: 'automation', order: 40, description: '查看和管理周期性工作。', pending: true },
+  { id: 'workdsh-library', label: '资料库', icon: 'library', order: 50, description: '集中管理工作资料与任务成果。', pending: false },
+  { id: 'workdsh-more', label: '更多', icon: 'more', order: 60, description: '进入 NexusOne 的更多业务能力。', pending: true },
 ] as const satisfies readonly BusinessPanelDefinition[];
 
 export type BusinessPanelProps = PropsRuntime<'main'> & InjectFace<{

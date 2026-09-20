@@ -1,3 +1,9 @@
+## 2026-09-19 WorkDSH 项目级 alpha.6
+
+[`v0.1.0-alpha.6`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) 将项目组合升级到 DeepSeek Harness `0.1.6-alpha.2`。九个可安装包中五个模块随升级与开发推进更新：skills `alpha.30`、experts `alpha.5`、office `alpha.7`、activity `alpha.4`、bundle `alpha.46`；identity-local、audit、access、connectors 沿用当前已验收版本。
+
+六个客户端插件完成 Client Session 迁移：当前会话按官方 `SessionSummary.retainedBy.mainView` 推导，打开会话使用官方 `uiWorkspace.openSession` 导航，专家成员会话改用官方 `sessions.subagentAddress` 解析。Office 新增 CSV 只读表格预览并收窄 word-only 制品范围；安装器集成测试断言已同步到 Harness `0.1.6-alpha.2`。macOS 已覆盖全新 Profile 安装与冷启动；Windows、Linux、卸载与自动回滚仍未验收。projects 与 library 源码同步推进到 `0.1.0-alpha.2`，不进入本次安装组合。
+
 ## 2026-09-16 WorkDSH 项目级 alpha.5
 
 [`v0.1.0-alpha.5`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.5) 修复项目安装器的升级路径。安装器现在区分新 Profile 与现有 Profile：新装时初始化官方 Web Profile，升级时保留原配置、专家、技能、连接器与凭据，不再重复使用 `--from-default-profile`。安装器还会在修改 Profile 前校验 Harness CLI 必须为 `0.1.6-alpha.1`，避免旧 CLI 产生部分安装。

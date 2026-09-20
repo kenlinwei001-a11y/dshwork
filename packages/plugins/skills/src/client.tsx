@@ -10,6 +10,8 @@ import type {} from '@deepseek-ai/dsh-api-workspace-controller/client';
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client';
+import type {} from '@deepseek-ai/dsh-client-ui-session/client';
+import type {} from '@deepseek-ai/dsh-client-ui-workspace/client';
 import type {} from '@deepseek-ai/dsh-client-ui-slots';
 import { PendingSkillDraft, pendingDraftKey, skillManagementDraft, skillTaskDrafts, type SkillTaskKind } from './client/drafts.js';
 import { SkillsPanel } from './client/SkillsPanel.js';
@@ -17,7 +19,7 @@ import { createSkillManagementClient } from './client/management.js';
 import { SkillNavigationIcon } from './client/SkillNavigationIcon.js';
 
 export const name = 'workdsh-skills-client';
-export const inject = ['slots', 'layout', 'sessions', 'workspaces', 'remote', 'remote.session', 'connection'];
+export const inject = ['slots', 'layout', 'sessions', 'workspaces', 'remote', 'remote.session', 'connection', 'uiWorkspace'];
 
 export function apply(ctx: Context): void {
   const lifetime = new AbortController();
@@ -39,29 +41,35 @@ export function apply(ctx: Context): void {
     return new Map(rows.map(row => [row.name, row.title || row.name]));
   })));
 
+  // alpha.2: the list snapshot has no `current`; the shown Session derives from the
+  // view owner's mainView retention (same rule as the official ui-session publishMain).
+  const resolveWorkspace = () => {
+    const state = sessions.list.getSnapshot();
+    const currentId = Object.values(state.byId).find(row => (row.retainedBy.mainView ?? 0) > 0)?.id;
+    const workspaces = ctx.workspaces.list.getSnapshot().items;
+    return (currentId ? workspaces.find(row => row.sessionIds.includes(currentId)) : undefined)
+      ?? workspaces.find(row => row.path === (currentId ? state.byId[currentId]?.cwd : undefined))
+      ?? workspaces[0];
+  };
+
   const startSkillTask = async (kind: SkillTaskKind, name?: string): Promise<void> => {
     lifetime.signal.throwIfAborted();
-    const sessionState = sessions.list.getSnapshot();
-    const current = sessionState.current ? sessionState.byId[sessionState.current] : undefined;
-    const workspaces = ctx.workspaces.list.getSnapshot().items;
-    const workspace = workspaces.find(row => row.sessionIds.includes(sessionState.current!))
-      ?? workspaces.find(row => row.path === current?.cwd)
-      ?? workspaces[0];
+    const workspace = resolveWorkspace();
     if (!workspace) throw new Error('workspace required');
     const draft = kind === 'create' ? skillTaskDrafts[kind] : skillManagementDraft(kind, name!);
     const sessionId = await sessions.create({ workspaceId: workspace.workspaceId, cwd: workspace.path });
     lifetime.signal.throwIfAborted();
     window.sessionStorage.setItem(pendingDraftKey, draft);
-    sessions.open(sessionId);
+    ctx.uiWorkspace.openSession(sessionId);
     ctx.layout.selectPanel(null);
     // Selection/addressability resolves before the native Lexical editor has
     // restored its persisted draft. Seed only after that first paint so the
     // editor's restore effect cannot overwrite this hand-off.
     await waitForInput(150);
     for (let attempt = 0; attempt < 40; attempt++) {
-      const scope = sessions.scope(sessionId);
-      if (scope) {
-        try { scope.conversation.input.for(scope).setDraft(draft); return; }
+      const scope = sessions.scope(sessionId), conversation = scope?.get('conversation');
+      if (scope && conversation) {
+        try { conversation.input.for(scope).setDraft(draft); return; }
         catch { /* Conversation input mounts after the selected Session paints. */ }
       }
       await waitForInput(25);
@@ -74,15 +82,12 @@ export function apply(ctx: Context): void {
   const startSkillTrial = async (skillName: string): Promise<void> => {
     lifetime.signal.throwIfAborted();
     const draft = `/${skillName} `;
-    const sessionState = sessions.list.getSnapshot();
-    const current = sessionState.current ? sessionState.byId[sessionState.current] : undefined;
-    const workspaces = ctx.workspaces.list.getSnapshot().items;
-    const workspace = workspaces.find(row => row.sessionIds.includes(sessionState.current!)) ?? workspaces.find(row => row.path === current?.cwd) ?? workspaces[0];
+    const workspace = resolveWorkspace();
     if (!workspace) throw new Error('workspace required');
     const sessionId = await sessions.create({ workspaceId: workspace.workspaceId, cwd: workspace.path });
     lifetime.signal.throwIfAborted();
     window.sessionStorage.setItem(pendingDraftKey, draft);
-    sessions.open(sessionId);
+    ctx.uiWorkspace.openSession(sessionId);
     ctx.layout.selectPanel(null);
   };
   const openCapability = (key: string): void => { ctx.layout.selectPanel(key as Parameters<typeof ctx.layout.selectPanel>[0]); };

@@ -1,13 +1,13 @@
 # Harness 官方开发规范
 
-状态：强制执行。适用基线：DeepSeek Harness `0.1.5-rc.1`。
+状态：强制执行。适用基线：DeepSeek Harness `0.1.6-alpha.2`。
 
 本文把官方文档转成 WorkDSH 的开发准入规则。它不复制 Harness 上游仓库的内部构建流程；外部插件只使用发布包的公开 exports、类型、服务、Remote、Resource 和 Slot。
 
 ## 1. 依据优先级
 
 1. 锁定版本发布包的 `exports`、类型声明和运行探针。
-2. 仓库内版本化镜像 `docs/deepseek-harness-docs/`。
+2. 仓库内版本化镜像 `docs/dsh-v0.1.6-alpha.2/`。
 3. 官方网站当前文档，用于发现新说明和交叉核对。
 
 网站与锁定包不一致时记录差异并做最小探针，不读取私有实现、不修改 Harness、不静默升级。官方文档中的上游 workspace 路径、聚合 tsconfig、源码生成器和内部发布门禁只适用于 Harness 仓库；WorkDSH 采用其公开包职责、依赖、生命周期和验证原则。
@@ -67,7 +67,7 @@
 
 ### 技能管理传输兼容规则
 
-新的一元业务协议首选 Typert 生成 Remote。锁定的 rc.1 以及隔离验证的 rc.2 在外部 npm workspace 中均无法识别 Remote 装饰器，生成器会错误报告“没有 Remote methods”。Skill 管理使用公开的 `@deepseek-ai/dsh-client-connection` exact Fetch route：缓冲 JSON 操作使用一个精确路径，浏览器文件上传使用另一个 `requestBody: 'streaming'` 精确路径。Host 插件只声明 `connection` 注入；所有 payload 在 Host 做运行时校验；流式路由实施 50 MiB 上限、中止传播和暂存清理；Client 为查询、修改和上传设置有界超时并提供显式取消；错误只返回稳定 code 和公开消息；文件路径只由 Host 管理器从受控根解析，浏览器不得取得或拼接 Host 路径。请求继续经过 Connection 的 Host/Origin 栅栏和浏览器会话认证，业务插件不直接依赖 `webServer`，也不建立第二套 transport。取消必须在原子发布前生效；发布完成后按成功结算并重新读取 Host 事实。Typert 的外部 workspace 生成问题保留为上游兼容事项，不得为其他插件复制 Skill 的 endpoint 形成通用私有协议。
+新的一元业务协议首选 Typert 生成 Remote。此前锁定的 rc.1 以及隔离验证的 rc.2 在外部 npm workspace 中均无法识别 Remote 装饰器，生成器会错误报告“没有 Remote methods”。Skill 管理使用公开的 `@deepseek-ai/dsh-client-connection` exact Fetch route：缓冲 JSON 操作使用一个精确路径，浏览器文件上传使用另一个 `requestBody: 'streaming'` 精确路径。Host 插件只声明 `connection` 注入；所有 payload 在 Host 做运行时校验；流式路由实施 50 MiB 上限、中止传播和暂存清理；Client 为查询、修改和上传设置有界超时并提供显式取消；错误只返回稳定 code 和公开消息；文件路径只由 Host 管理器从受控根解析，浏览器不得取得或拼接 Host 路径。请求继续经过 Connection 的 Host/Origin 栅栏和浏览器会话认证，业务插件不直接依赖 `webServer`，也不建立第二套 transport。取消必须在原子发布前生效；发布完成后按成功结算并重新读取 Host 事实。Typert 的外部 workspace 生成问题保留为上游兼容事项，不得为其他插件复制 Skill 的 endpoint 形成通用私有协议。
 
 “打开文件夹”必须用官方 `ctx.remote.session.openWorkspacePath({ path, action: 'reveal' })`；Client 只能使用 Host 返回的已校验目录。“编辑”读取完整 `SKILL.md`，保存时携带内容摘要 revision，冲突必须重新加载。“停用”移动出官方活动根但保留在 WorkDSH 隔离目录；“卸载”先进入可恢复回收目录。上述操作成功后重新读取 Host 全局列表，不能仅修改浏览器状态伪造结果。
 
@@ -78,16 +78,16 @@
 3. Host/Client 依赖、`inject`、bundle manifest 和 README 一致；无跨插件内部实现导入。
 4. 所有注册可卸载，缺依赖为 PENDING、启动错误为 FAILED、正常运行才是 ACTIVE。
 5. typecheck、build、相关无密钥行为测试和打包安装通过；视觉变更另按 `UI-DESIGN.md` 验证真实 Host。
-6. 官网与 `0.1.5-rc.1` 有差异时，把差异和探针结果写入 `COMPATIBILITY.md`，不能用文档截图代替运行证据。
+6. 官网与 `0.1.6-alpha.2` 有差异时，把差异和探针结果写入 `COMPATIBILITY.md`，不能用文档截图代替运行证据。
 
 ## 官方来源
 
-- [Web Client Slots（本地镜像）](deepseek-harness-docs/subsystems/slots.zh.md)
-- [右侧 Sidebar（本地镜像）](deepseek-harness-docs/subsystems/sidebar-right.zh.md)
-- [添加 workspace 包（本地镜像）](deepseek-harness-docs/cookbook/adding-a-package.zh.md)
-- [技能（本地镜像）](deepseek-harness-docs/subsystems/skills.zh.md)
-- [会话输入（本地镜像）](deepseek-harness-docs/subsystems/conversation.zh.md)
-- [Cordis 入门（本地镜像）](deepseek-harness-docs/cordis-primer.zh.md)
+- [Web Client Slots（本地镜像）](dsh-v0.1.6-alpha.2/subsystems/slots.zh.md)
+- [右侧 Sidebar（本地镜像）](dsh-v0.1.6-alpha.2/subsystems/sidebar-right.zh.md)
+- [添加 workspace 包（本地镜像）](dsh-v0.1.6-alpha.2/cookbook/adding-a-package.zh.md)
+- [技能（本地镜像）](dsh-v0.1.6-alpha.2/subsystems/skills.zh.md)
+- [会话输入（本地镜像）](dsh-v0.1.6-alpha.2/subsystems/conversation.zh.md)
+- [Cordis 入门（本地镜像）](dsh-v0.1.6-alpha.2/cordis-primer.zh.md)
 - [官方右侧 Sidebar](https://deepseek-harness.github.io/deepseek-harness/reference/subsystems/sidebar-right)
 - [官方添加 Package](https://deepseek-harness.github.io/deepseek-harness/reference/cookbook/adding-a-package)
 - [官方 Skills](https://deepseek-harness.github.io/deepseek-harness/reference/subsystems/skills)

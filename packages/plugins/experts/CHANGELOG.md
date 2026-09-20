@@ -1,3 +1,7 @@
+## 0.1.0-alpha.5 — 2026-09-18
+
+- 适配 DeepSeek Harness 0.1.6-alpha.2：成员与子代理根会话改用官方 `sessions.subagentAddress` 解析；打开专家会话改用官方 `uiWorkspace.openSession` 导航。
+
 ## 0.1.0-alpha.4 — 2026-09-16
 
 - 增加专家团长任务、浏览器重连、人工停止后原成员继续、任务与消息交接、失败及 Host 冷恢复验收。

@@ -13,6 +13,7 @@ import { summarizeTeamActivity, type TeamView } from './team-status.js';
 import { css } from './styles.js';
 
 declare module '@deepseek-ai/cordis' { interface Context { activityPresentation: ActivityPresentation; } }
+declare module '@deepseek-ai/dsh-api-session-controller/client' { interface SessionReferenceSourceMap { workdshActivityMember: unknown; } }
 export const name = 'workdsh-activity-client';
 export const inject = ['slots', 'sessions', 'remote'];
 const motionKey = 'workdsh.activity.motion.v1';
@@ -96,28 +97,40 @@ export function apply(ctx: Context): void {
     const memberIds = teamView?.members.map(member => String(member.id)).join('|') ?? '';
     const [memberTerminalPhases, setMemberTerminalPhases] = React.useState<ReadonlyMap<string, 'failed' | 'interrupted'>>(new Map());
     React.useEffect(() => {
+      // alpha.2: borrowing a binding needs a retained generation. Retain every listed
+      // member with this plugin's own source; full teardown releases each reference.
+      let disposed = false;
       const cleanups: Array<() => void> = [];
-      const bindings = memberIds.split('|').filter(Boolean).map(id => {
-        const sessionId = id as Parameters<ISessions['scope']>[0];
-        sessions.scope(sessionId);
-        return sessions.binding(sessionId);
-      }).filter((value): value is NonNullable<typeof value> => !!value);
+      const references = memberIds.split('|').filter(Boolean).flatMap(id => {
+        try { return [sessions.retain(id as Parameters<ISessions['scope']>[0], { source: 'workdshActivityMember' })]; }
+        catch { return []; }
+      });
       const refresh = () => {
         const next = new Map<string, 'failed' | 'interrupted'>();
-        for (const memberBinding of bindings) {
-          const memberWindow = memberBinding.eventSource.getSnapshot();
-          const memberSnapshot = memberBinding.session.getSnapshot();
-          const phase = projectActivity(memberWindow?.entries ?? [], memberSnapshot.running).phase;
-          if (phase === 'failed' || phase === 'interrupted') next.set(String(memberBinding.sessionId), phase);
+        for (const reference of references) {
+          try {
+            const memberWindow = reference.binding.eventSource.getSnapshot();
+            const memberSnapshot = reference.binding.session.getSnapshot();
+            const phase = projectActivity(memberWindow?.entries ?? [], memberSnapshot.running).phase;
+            if (phase === 'failed' || phase === 'interrupted') next.set(String(reference.sessionId), phase);
+          } catch { /* released or generation disposed before it settled */ }
         }
-        setMemberTerminalPhases(next);
+        if (!disposed) setMemberTerminalPhases(next);
       };
-      for (const memberBinding of bindings) {
-        cleanups.push(memberBinding.eventSource.subscribe(refresh));
-        cleanups.push(memberBinding.session.subscribe(refresh));
+      for (const reference of references) {
+        void reference.ready.then(binding => {
+          if (disposed) return;
+          cleanups.push(binding.eventSource.subscribe(refresh));
+          cleanups.push(binding.session.subscribe(refresh));
+          refresh();
+        }).catch(() => { /* member open failed; nothing to observe */ });
       }
       refresh();
-      return () => { for (const cleanup of cleanups) cleanup(); };
+      return () => {
+        disposed = true;
+        for (const cleanup of cleanups) cleanup();
+        for (const reference of references) reference.release();
+      };
     }, [memberIds]);
 
     React.useEffect(() => { if (!session.running) return; setClock(Date.now()); const timer = windowGlobal.setInterval(() => setClock(Date.now()), 1000); return () => windowGlobal.clearInterval(timer); }, [session.running, props.sessionId]);
