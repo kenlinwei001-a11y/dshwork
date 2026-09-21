@@ -26,35 +26,39 @@ function StableNativePresetSeat(props: any) {
   return <Native {...seatProps} load={load}/>;
 }
 
-/** Native controllers stay owned by Harness; expert execution uses the binding-aware summon path. */
+/**
+ * Native controllers stay owned by Harness; expert execution uses the binding-aware summon path.
+ *
+ * Only the new-session control is wrapped: `conversation.hero.agentPreset` is a single-seat
+ * slot, so a later registration takes the seat over. `settings.section` is an additive list
+ * slot (every registration is its own page with no replacement semantics), so wrapping it
+ * only produced a duplicate "Agent 预设" page next to the Harness-owned one. The settings
+ * page stays the Harness owner's; expert presets remain guarded by the Host-side preset
+ * checks, not by a second client page.
+ */
 export function installExpertPresetMenu(ctx: Context, _management: ExpertManagementClient): void {
-  const install = (key: string, entryId?: string) => {
+  const install = (key: string) => {
     let dispose: (() => void) | undefined;
     const ready = () => {
       if (dispose) return;
-      const original = ctx.slots.entriesOfSlot(key as any).find((entry: any) => entryId ? entry.options.id === entryId : !!entry.inject);
+      const original = ctx.slots.entriesOfSlot(key as any).find((entry: any) => !!entry.inject);
       if (!original?.inject) return;
       const Native = original.component as React.ComponentType<any>;
       const projected = new WeakMap<object, any>();
-      const project = (state: any, field: 'rows' | 'options') => {
+      const project = (state: any, field: 'options') => {
         let value = projected.get(state);
         if (!value) { value = { ...state, [field]: nativePresetRows(state[field]) }; projected.set(state, value); }
         return value;
       };
       function PublicPresets(props: any) {
-        if (entryId) {
-          const useSection = (selector: (state: any) => unknown) => props.useAgentPresetSection((state: any) => selector(project(state, 'rows')));
-          return <Native {...props} useAgentPresetSection={useSection} makeDefault={async (id: string) => { requireNativePreset(id); await props.makeDefault(id); }} beginCopy={(id: string) => { requireNativePreset(id); props.beginCopy(id); }}/>;
-        }
         const current = props.useAgentPresetSeat((state: any) => state.current);
         if (current && !isNativePreset(current)) return <SummonedExpertSeat {...props}/>;
         const useSeat = (selector: (state: any) => unknown) => props.useAgentPresetSeat((state: any) => selector(project(state, 'options')));
         return <StableNativePresetSeat Native={Native} {...props} useAgentPresetSeat={useSeat} select={async (id: string) => { requireNativePreset(id); return props.select(id); }} />;
       }
-      dispose = ctx.slots.register({ name: key, ...(entryId ? { id: entryId, order: original.options.order, label: original.options.label } : {}), priority: -10, locale: 'settings.agentPreset', inject: original.inject } as any, PublicPresets);
+      dispose = ctx.slots.register({ name: key, priority: -10, locale: 'settings.agentPreset', inject: original.inject } as any, PublicPresets);
     };
-    ctx.effect(() => { const stop = ctx.slots.subscribe(key as any, ready); ready(); return () => { stop(); dispose?.(); }; }, `workdsh.expert-preset-menu.${entryId ?? 'seat'}`);
+    ctx.effect(() => { const stop = ctx.slots.subscribe(key as any, ready); ready(); return () => { stop(); dispose?.(); }; }, 'workdsh.expert-preset-menu.seat');
   };
   install('conversation.hero.agentPreset');
-  install('settings.section', 'agent-presets');
 }

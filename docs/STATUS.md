@@ -1,3 +1,52 @@
+## 2026-09-20：WorkDSH v0.1.0-alpha.7 公开发布回执
+
+按既定项目级发布流程完成 alpha.7 公开发布：源码提交 `8e29c4c`（release: prepare）已推送 main（`31f68bb..8e29c4c`），annotated tag `v0.1.0-alpha.7` 指向发布提交；GitHub prerelease [v0.1.0-alpha.7](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.7) 携带 13 个资产（九包 .tgz + SHA256SUMS + release-manifest.json + RELEASE-NOTES.md + install-workdsh.mjs），未发布 npm。
+
+- 九包版本：identity-local α.5、audit α.4、access α.5、skills α.31、experts α.7、connectors α.2、activity α.4、office α.7、bundle α.47（本批 bump skills/experts/connectors/bundle 四个模块：外观主题修复与行业应用标签删除）。
+- 发布门槛：全仓 build + typecheck PASS；集成 110/110、活动 14/14、规划 2/2；`check:plan` PASS（29 模块/50 文档）、`check:versions` PASS（513 条 α2 锁定）。
+- 打包（rel04）：提交 8e29c4c 后重新打包，`release-manifest.json` 的 `sourceCommit` 与 tag 指向同一提交；`shasum -c SHA256SUMS` 九包全 OK。
+- 隔离安装（rel05）：`.test-runtime/release-alpha7-jLMzE0` 全新 Profile 经官方 CLI 安装九包 → 匿名 401 / 认证 200 → 全模块移除后冷启动 PASS；回执 `.artifacts/release-alpha7-smoke.json`。
+- 公开发布：13 资产逐一通过 GitHub SHA-256 digest 校验后发布；发布过程中一个未关联 tag 的孤立重复 draft 已删除，正式 release 保留唯一。
+- 公开回读（rel08）：13 个资产无认证下载逐字节一致（`PUBLIC_VERIFY_PASS`，日志 `.artifacts/release-alpha7-public-verify.log`）；GitHub API 回读确认 draft=false、prerelease=true。
+
+证据：`.artifacts/project-v0.1.0-alpha.7/`（发行制品）、`.artifacts/release-alpha7-{build,typecheck,tests,activity,planning,checkplan,versions,pack,smoke,publish,public-verify}.log`、`.artifacts/project-alpha7-release.json`。
+
+未执行/边界：相对 alpha.6，专家团长任务探针、真实模型两阶段交接、连接器隔离探针与腾讯文档实连未在本批制品上复跑（release-manifest limitations 与 RELEASE-NOTES 已声明）；Windows 与 Linux 验收、卸载/事务式回滚、签名 SBOM、交互式 OAuth、小时级专家团稳定性仍未签收；projects 与 library α.2 不进入本次安装组合（library 保持独立发行）；npm 未发布（项目策略）。
+
+## 2026-09-20：外观（主题）切换修复（bundle α.47，用户报告）
+
+用户报告设置→通用设置→外观切换不起作用（附截图）。根因：`packages/bundle/src/client/harness/client.ts` 客户端注册并强制 `workdsh` 深色主题、监听 `theme/change` 把非深色快照拉回。设置页点击实际已写入 settings（settings.yaml 实证 light 已持久化），但 DOM 被立即拉回深色，且激活偏好变成非内置值，三个选项均无选中态。官方 `ui-theme` 偏好与 ThemePresenter 应用链本身完好，问题全部来自该强制层（alpha.1 起引入，对应 UI-DESIGN 旧表述“维持深色呈现”）。
+
+修复：bundle α.46→α.47（随本批发布）删除主题强制块与 `ui-theme` import；`dsh.client.inject` 与 devDependencies 的 ui-theme 引用同步移除；UI-DESIGN 相关表述改写为“外观由官方 ThemeRuntime 与用户偏好驱动，不注册第二套主题、不拦截 theme/change”。构建与 typecheck 通过；重装预览并重启后浏览器实测：加载按 system 解析生效，点「深色」→ themeSource=dark、body 深色，点「浅色」→ 白底且 settings.yaml 同步写入，点「跟随系统」→ source=system，三选项选中态正确显示。
+
+同日 preview 清理：`dsh.profile.bundles` 又出现两个滞留 agent-team bundle（19→17，疑似运行中 UI 操作写回），备份 `.test-runtime/preview/_fix-backup-1789890313/` 后移除，dump-config 无重复 id。
+
+未执行：刷新后持久性的最后一轮浏览器复验被中断（三向切换与 settings 写入当日已实测）；未单独复跑浅色全站深度视觉走查。
+
+## 2026-09-20：能力中心「行业应用」标签删除（用户决定修正）
+
+用户明确指令：删除能力中心「行业应用」标签项（`['apps', '行业应用']`），行业应用暂时用不到；此前批次记录的“隐藏、实现后恢复”处理按此修正为删除。
+
+核对现状：三处 `capabilityTabs`（ExpertsPanel/SkillsPanel/ConnectorsPanel）源码与构建产物均已不含该标签项，能力页保留专家/技能/连接器三标签。文档同步：skills α.31 / experts α.7 / connectors α.2（Unreleased）CHANGELOG、MODULE-VERSIONS 与 UI-DESIGN 措辞由“隐藏（实现后恢复）”改为“删除（暂时用不到）”。应用域规划与模块登记（applications 模块、D08/P1-05）保留，台账与交付顺序未变。
+
+预览生效过程（用户报告界面仍显示「行业应用」）：根因是预览环境装载的是旧制品（skills α.29 / experts α.6 / connectors α.1，均含四标签），源码与工作区 dist 的删除未同步到预览。本批次重新 `npm pack` 三个包并装入 preview（skills α.31 sha256 `aad8517e…5759`、experts α.7 `86453460…ce31`、connectors α.2 `60d440a8…a4ef`），重启后浏览器实测能力中心工具栏为 3 个标签「专家/技能/连接器」，页面全文无「行业应用」（uid 快照与 DOM 统计双证）。未执行：专家/技能/连接器各标签页深度交互复跑（本轮仅验证标签栏与技能页首屏）；未提交、未推送。
+
+## 2026-09-20：preview 启动阻塞修复（滞留 agent-team-profile 层）
+
+用户要求启动 WorkDSH 预览；启动报 `duplicate loader entry id: agent-team`。根因：preview profile 的 `dsh.profile.bundles` 中存在无代码/脚本引用的滞留条目 `@deepseek-ai/dsh-experimental-agent-team-profile`（0.1.6-alpha.2 升级仅作 pnpm.overrides 版本锁定，仓库脚本与文档均无装配引用），其官方 patch 与 workdsh-plugin-experts 的 "Official Team composition" 插入重复的 `agent-team`/`tool-agent-team` 条目。按 2026-09-15 用户授权决定（官方 Team 由 experts 插件装配）移除该滞留条目，保留 experts 装配（maxMembers: 16）；原 package.json 备份于 /tmp/preview-profile-package.json.bak。
+
+验证：dump-config 仅剩一个 `id: agent-team`；`corepack pnpm preview`（Node 22.23.2，heap 8192，隔离 Home .test-runtime/preview）启动成功，18989 token 兑换 303 → 首页 200；Client 启动图含 workdsh-plugin-experts/office/activity 与 client-ui-agent-team。
+
+未执行：浏览器真实交互与专家团真实模型任务；未提交、未推送、未改仓库代码与锁文件。备注：preview 当前制品批次为 Sep 19 安装（experts α.4 / skills α.29 / bundle α.45），落后于已发布 alpha.6 制品（α.5/α.30/α.46），未在本轮重装。
+
+同日续：按用户要求在 WorkDSH 预览环境安装第三方插件 `@wxg-prc-cpg/browser-skill-dsh-plugin@0.3.0`（腾讯 BrowserSkill 的 DSH 插件）。经官方 `dsh plugin --profile preview add`（DSH_HOME=.test-runtime/preview）装入，bundles 追加、dump-config 含 `id: browserskill`；重启预览后经认证 API `/api/workdsh-skills` list 实测技能总数 169、含 `browser-skill`（state=readonly，插件自带技能）。同插件此前已按用户最初命令装入 `~/.dsh/profiles/web`（Host/client 加载已单独验证）。浏览器扩展连接（bsk 0 连接）与 `browser_*` 工具端到端调用未验证；pnpm 忽略构建脚本警告为既有依赖，未处理。
+
+同日续二：修复用户报告的设置面板出现两个「Agent 预设」页。根因：`workdsh-plugin-experts` 的 PresetMenu 为在原生设置页过滤专家预设并拦截对它们的“设为默认/复制”，对 `settings.section` 槽做了包装式注册（复用官方 id/order/label）；但该槽是官方声明的增量 list 槽——每条注册各自成页、无替换语义，包装只会生成第二个同名设置页（实测两条目内容相同、DOM 同图标，且不随开关累积）。`conversation.hero.agentPreset` 是单座槽（后注册者接管），那里的包装仍然有效。按用户选定方案 A 移除包装：`PresetMenu.tsx` 删除 settings.section 包装注册（保留 hero 单座槽接管与守卫），`tests/integration/expert-native-presets.test.mjs` 改为单注册断言并新增防回归（注册项不得含 settings.section）。expert-native-presets 3/3、专家相关（manager/preset-authoring/preset-projection）21/21 通过，构建后 `client.browser.js` 中 settings.section 计数为 0。
+
+experts 由 α.5 bump 至 α.6（Unreleased，含 CHANGELOG/README/MODULE-VERSIONS）；tarball sha256 `80266b1e…f47349`，装入 preview（file: 依赖指向新 tarball）并重启，浏览器实测设置导航 7 项且「Agent 预设」恰好 1 个（修复前 2 个），设置页内容正常、控制台无错误。已知边界：设置页层面的专家预设过滤与守卫随包装移除（依赖官方 Host，官方页自身对 broken 预设提供“加载失败”标记与禁用/删除）。附带发现（与本修复无关，未处理）：预览数据中 3 个自定义预设显示“加载失败”（需求分析顾问、工作复盘顾问、重复的旧钱日清 `wd-exp-member-e65ec2cc5a6d-5503a26730a7`），其 compose 引用 harness 已更名的 `@deepseek-ai/dsh-workflow-worker-thread`（现为 `workflow-ptc`）。新会话 hero 席位的真实选专家任务未复跑。
+
+同日续三（用户追问「agent 为什么会加载失败」，复核并修正上条判断）：从运行界面读取官方悬停原因，3 行完全相同——`row "workflow-worker-thread" names a plugin that cannot be resolved: @deepseek-ai/dsh-workflow-worker-thread`。机制：官方 `dsh-agent-presets` 发现期健康检查（`packageInstalled`）从 harnessBase 逐级向上查 `node_modules/<pkg>/package.json`，任一插件行不可解析即整份预设标 broken（设置页「加载失败」徽标、选择器过滤、不可设为默认/复制）。修正上条：①需求分析顾问（rev-5058e190350f）与工作复盘顾问（rev-5c1bd5347882）**当前发布修订本身**仍是 `workdsh-expert-compiler/0.1` 于 9-12 编译的产物（origin=default 内置种子，并非“已删专家”），专家详情显示「preset 异常／请重新发布后再召唤」且不可召唤，修复路径＝专家页重新发布（`presetIdFor` 将 COMPILER_VERSION 计入摘要，重编必产新目录、必含 `workflow-ptc` 行）；②旧钱日清行 `wd-exp-member-e65ec2cc5a6d-5503a26730a7` 是被 rev-6fde772afe3d 取代的历史修订（rev-d495197e1084，0.1 编译）的残留目录，当前发布的钱日清修订（`…-22b44693c88f`，0.3 编译）健康，不影响钱日清当前使用。主环境 `~/.dsh` 亦有同批 3 个引用 worker-thread 的旧预设（含文档评审顾问），但主环境 node_modules 链仍解析到 0.1.5-rc.1 的该包（全局 dsh 自带、hoisted），按官方解析算法可解析——该失败为 alpha.2 运行环境（预览）特有。未执行：重新发布修复动作本身、残留目录清理、主环境运行态复核。
+
 ## 2026-09-19：WorkDSH v0.1.0-alpha.6 公开发布回执
 
 按既定项目级发布流程完成 alpha.6 公开发布：源码提交 `debc429`（release: prepare）+ `ab096f0`（installer 测试断言修复）已推送 main（`8ba8626..debc429`），annotated tag `v0.1.0-alpha.6` 指向发布提交；GitHub prerelease [v0.1.0-alpha.6](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) 携带 13 个资产（九包 .tgz + SHA256SUMS + release-manifest.json + RELEASE-NOTES.md + install-workdsh.mjs），未发布 npm。

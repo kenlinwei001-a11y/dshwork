@@ -61,17 +61,17 @@ await writeFile(join(destination, 'release-manifest.json'), JSON.stringify({
   verified: [
     'full build and typecheck on Harness 0.1.6-alpha.2',
     '110 integration tests, 14 activity tests and 2 planning tests',
+    'planning and exact-version gates (29 modules / 50 documents; 513 locked entries)',
+    'browser-verified appearance switching (light / dark / system), capability tabs without the industry-apps tab and a single Agent presets settings page in the packaged Web preview',
     'fresh-profile installation of the nine packages on Harness 0.1.6-alpha.2, authenticated 200 / anonymous 401 checks and Host cold start',
-    'planning and exact-version gates',
-    'packaged Web expert-team long task, reconnect, interrupt/resume, handoff, failure visibility and cold recovery',
-    'explicit real-model lead, analyst and reviewer two-stage Team handoff',
-    'connector tool/resource discovery, lifecycle, multi-instance and per-session isolation probe',
-    'real Tencent Docs token connection and read-only account query in WorkDSH',
+    'cold Host startup after all nine modules are removed',
+    'nine-package packing with SHA-256 checksums and a checksum-verifying installer',
   ],
   limitations: [
     'alpha preview; package APIs and stored data may change',
     'interactive OAuth, connector multi-account switching and public authorization are not complete',
     'hour-scale expert-team soak, official fork-member browser history, arbitrary Office fidelity and cross-platform acceptance remain incomplete',
+    'relative to alpha.6, the packaged expert-team long task, real-model two-stage handoff, connector isolation probe and Tencent Docs connection were not re-run on this batch artifacts',
     'packages are GitHub assets and are not published to the npm registry',
   ],
 }, null, 2) + '\n');

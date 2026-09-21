@@ -2,7 +2,7 @@
 
 > GitHub 模块制品与兼容矩阵：[发布说明](../../../docs/RELEASES.md)。当前验证 Harness **0.1.6-alpha.2 Web**；内置 **0.1.2-rc.1** 的旧桌面入口缺失尚未修复，本包不包含该兼容修复。
 
-状态：**Skill 0.1 本地面向用户的技能市场与独立安装交付完成**。当前候选制品 `workdsh-plugin-skills@0.1.0-alpha.30`，尚未发布 npm。一个插件管理多个 Skill 业务对象；用户制作技能不需要发布 npm 包。
+状态：**Skill 0.1 本地面向用户的技能市场与独立安装交付完成**。当前候选制品 `workdsh-plugin-skills@0.1.0-alpha.31`，尚未发布 npm。一个插件管理多个 Skill 业务对象；用户制作技能不需要发布 npm 包。
 
 本包提供标准 Host `apply/inject`、独立 Client `apply/inject`、`dsh.bundle` 配置 patch 和 `dsh.client` 浏览器产物。官方 Loader/Profile/Cordis 拥有加载及生命周期；不依赖 WorkDSH 总包或另一个插件框架。独立安装、默认组合、移除与重装见[实际验收](../../../docs/evidence/skills-standalone-package.md)。
 

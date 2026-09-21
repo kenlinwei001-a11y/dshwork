@@ -1,3 +1,7 @@
+# 0.1.0-alpha.47 — 2026-09-20
+
+- 修复设置页「外观」切换不生效：工作台客户端不再注册并强制 `workdsh` 深色主题、不再拦截 `theme/change`；外观改由官方 ThemeRuntime 与用户偏好驱动，浅色/深色/跟随系统切换即时生效，三个选项的选中态恢复显示。
+
 # 0.1.0-alpha.46 — 2026-09-18
 
 - 跟随 DSH 0.1.6-alpha.2 升级：组合包与功能插件的官方依赖精确锁定同步至 `0.1.6-alpha.2`；projects、experts、skills、library、office、activity 六个客户端插件完成 Client Session 迁移。

@@ -1,3 +1,7 @@
+## 0.1.0-alpha.31 — Unreleased（2026-09-20）
+
+- 按用户决定删除能力中心「行业应用」标签入口（行业应用暂时用不到，暂无领域实现）；能力页工具栏保留专家/技能/连接器三个标签。
+
 ## 0.1.0-alpha.30 — Unreleased（2026-09-18）
 
 - 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改由 `SessionSummary.retainedBy.mainView` 推导；打开技能会话改用官方 `uiWorkspace.openSession` 导航。

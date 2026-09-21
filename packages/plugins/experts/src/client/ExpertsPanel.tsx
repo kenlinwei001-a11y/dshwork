@@ -180,7 +180,7 @@ export function ExpertsPanel({ toggleNavigation, management, openCapability, has
     catch (cause) { setError(messageOf(cause)); } finally { setActing(false); }
   };
 
-  const capabilityTabs = [['experts', '专家'], ['skills', '技能'], ['connectors', '连接器'], ['apps', '行业应用']] as const;
+  const capabilityTabs = [['experts', '专家'], ['skills', '技能'], ['connectors', '连接器']] as const;
   const capabilityKey: Record<string, string> = { experts: 'workdsh-experts', skills: 'workdsh-skills', connectors: 'workdsh-connectors' };
   const isDraft = (summary: ExpertSummary) => summary.publishedRevisionRef === undefined;
   const stateLabel = (summary: ExpertSummary) => isDraft(summary) ? '草稿' : AVAILABILITY_LABEL[summary.availability];

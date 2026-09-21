@@ -36,7 +36,7 @@ export function ConnectorsPanel({ toggleNavigation, management, openCapability, 
   const prefill = (input: ConnectorInput) => { setDraft(fromInput(input)); setAddTab('manual'); };
   const normalized = query.trim().toLowerCase(); const filtered = rows.filter(row => `${row.title} ${row.description} ${row.serverName} ${row.toolNames.join(' ')}`.toLowerCase().includes(normalized));
   const detail = rows.find(row => row.id === expanded);
-  const capabilityTabs = [['experts', '专家'], ['skills', '技能'], ['connectors', '连接器'], ['apps', '行业应用']] as const;
+  const capabilityTabs = [['experts', '专家'], ['skills', '技能'], ['connectors', '连接器']] as const;
   const capabilityKey: Record<string, string> = { experts: 'workdsh-experts', skills: 'workdsh-skills', connectors: 'workdsh-connectors' };
   return <section className="wd-connectors" data-testid="workdsh-connectors"><style>{connectorCss}</style>
     <header className="cap-header"><button className="nav-toggle" onClick={toggleNavigation} aria-label="切换导航">导航</button>

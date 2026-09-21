@@ -1,3 +1,12 @@
+## 0.1.0-alpha.7 — Unreleased（2026-09-20）
+
+- 按用户决定删除能力中心「行业应用」标签入口（行业应用暂时用不到，暂无领域实现）；能力页工具栏保留专家/技能/连接器三个标签。
+
+## 0.1.0-alpha.6 — Unreleased（2026-09-20）
+
+- 修复设置面板出现两个「Agent 预设」页：`settings.section` 是增量 list 槽（每次注册各自成页，无替换语义），PresetMenu 对它的包装注册只会在官方页旁再生成一个同名页。现移除该包装注册，仅保留 `conversation.hero.agentPreset` 单座槽的接管（专家预设过滤与设为默认/复制守卫继续生效）；设置页列表回到官方 Host 行为。
+- 测试同步：`expert-native-presets` 断言单一注册并新增防回归检查（注册项不得包含 `settings.section`）。
+
 ## 0.1.0-alpha.5 — 2026-09-18
 
 - 适配 DeepSeek Harness 0.1.6-alpha.2：成员与子代理根会话改用官方 `sessions.subagentAddress` 解析；打开专家会话改用官方 `uiWorkspace.openSession` 导航。

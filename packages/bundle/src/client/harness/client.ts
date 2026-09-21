@@ -2,14 +2,13 @@ import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client';
-import type {} from '@deepseek-ai/dsh-client-ui-theme/client';
 import * as workbench from 'workdsh-plugin-workbench';
 import { BrandMark, BrandName, DiagnosticsMark } from '../components/Brand.js';
 import { DiagnosticsPanel, type Inventory } from '../components/DiagnosticsPanel.js';
 import { NavigationLocation } from '../components/NavigationLocation.js';
 
 export const name = 'workdsh-client';
-export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory', 'theme'];
+export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory'];
 
 const productViews: Readonly<Record<string, string>> = {
   experts: 'workdsh-experts', skills: 'workdsh-skills', assistant: 'workdsh-assistant', projects: 'workdsh-projects',
@@ -36,23 +35,8 @@ export function apply(ctx: Context): void {
     return selected;
   };
 
-  const previousTheme = ctx.theme.getTheme().preference;
-  const unregisterTheme = ctx.theme.register({ id: 'workdsh', colorScheme: 'dark', tokens: {
-    '--dsw-alias-bg-layer-1': '#121212', '--dsw-alias-bg-layer-2': '#202020',
-    '--dsw-alias-bg-layer-3': '#242424', '--dsw-alias-label-primary': '#e7e7e7',
-    '--dsw-alias-label-secondary': '#a5a5a5', '--dsw-specific-sidebar-fill': '#202020',
-    '--dsw-specific-sidebar-nav-item-active': '#3a3a3a',
-  } });
-  const stopThemeSync = ctx.on('theme/change', snapshot => {
-    if (snapshot.active.colorScheme !== 'dark') ctx.theme.setTheme('workdsh');
-  });
-  ctx.theme.setTheme('workdsh');
-  ctx.effect(() => () => {
-    stopThemeSync();
-    if (ctx.theme.getTheme().active.id === 'workdsh') ctx.theme.setTheme(previousTheme);
-    unregisterTheme();
-  });
-
+  // Appearance follows the official ThemeRuntime and the user's Settings and
+  // system preference; the workbench must not pin a theme or veto theme/change.
   ctx.plugin(workbench);
   ctx.slots.inject('sidebar.brand.name', () => ctx.slots.register({ name: 'sidebar.brand.name', priority: -10 }, BrandName));
   ctx.slots.inject('sidebar.brand.mark', () => ctx.slots.register({ name: 'sidebar.brand.mark', priority: -10 }, BrandMark));

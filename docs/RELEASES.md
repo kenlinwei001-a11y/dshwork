@@ -1,3 +1,9 @@
+## 2026-09-20 WorkDSH 项目级 alpha.7
+
+[`v0.1.0-alpha.7`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.7) 是 Harness `0.1.6-alpha.2` 基线上的维护版。九个可安装包中四个模块更新：skills `alpha.31`、experts `alpha.7`、connectors `alpha.2`、bundle `alpha.47`；identity-local、audit、access、office、activity 沿用当前已验收版本。
+
+修复设置页「外观」切换不生效：工作台客户端不再强制 `workdsh` 深色主题、不再拦截 `theme/change`，外观改由官方 ThemeRuntime 与用户偏好驱动，浅色/深色/跟随系统即时生效。能力中心删除「行业应用」标签（用户决定，暂用不到）；修复设置导航重复的「Agent 预设」页，移除对官方 `settings.section` 增量槽的包装式注册。构建、typecheck、集成 110/110、活动 14/14、规划 2/2 与精确版本门禁通过；macOS 已覆盖九包隔离安装与冷启动；Windows、Linux、卸载与自动回滚仍未验收。相对 alpha.6，专家团长任务探针、真实模型两阶段交接、连接器隔离探针与腾讯文档实连未在本批制品上复跑。
+
 ## 2026-09-19 WorkDSH 项目级 alpha.6
 
 [`v0.1.0-alpha.6`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.6) 将项目组合升级到 DeepSeek Harness `0.1.6-alpha.2`。九个可安装包中五个模块随升级与开发推进更新：skills `alpha.30`、experts `alpha.5`、office `alpha.7`、activity `alpha.4`、bundle `alpha.46`；identity-local、audit、access、connectors 沿用当前已验收版本。
