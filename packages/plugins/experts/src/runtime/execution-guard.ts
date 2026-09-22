@@ -3,9 +3,8 @@ import type { Agent } from '@deepseek-ai/dsh-agent';
 import type {} from '@deepseek-ai/dsh-experimental-agent-team';
 import * as Persona from '@deepseek-ai/dsh-persona';
 import * as SkillFiles from '@deepseek-ai/dsh-skill-filesystem';
-import { writableRoot } from '@deepseek-ai/dsh-agent-presets';
+import { expertPresetDir, readExpertPreset } from './preset-compiler.js';
 import { join } from 'node:path';
-import { parse } from 'yaml';
 import { ExpertsError } from '../domain/values.js';
 import { expertPersonaConfig } from './preset-compiler.js';
 
@@ -44,11 +43,11 @@ export function registerExpertExecutionGuard(ctx: Context): void {
     if (installed.get(agent) === revision.compositionDigest) return;
     signal?.throwIfAborted();
     // Read only our already verified immutable composition, not arbitrary plugins.
-    const rows = parse(await ctx.agentPresets.read(revision.presetRevisionRef)) as { name?: string; config?: SkillFiles.Config }[];
+    const rows = (JSON.parse(await readExpertPreset(revision.presetRevisionRef)) as { plugins: { name?: string; config?: SkillFiles.Config }[] }).plugins;
     const skills = rows.find(row => row.name === '@deepseek-ai/dsh-skill-filesystem')?.config;
     if (!skills) throw new ExpertsError('experts/dependency-missing', '固定专家组合缺少技能目录。');
     const definition = revision.definition;
-    const packageRoot = definition.packageDocuments ? join(writableRoot(ctx.agentPresets.roots, revision.presetRevisionRef), revision.presetRevisionRef, 'expert-package') : undefined;
+    const packageRoot = definition.packageDocuments ? join(expertPresetDir(revision.presetRevisionRef), 'expert-package') : undefined;
     // The official Agent scope owns these providers and their disposal.
     const persona = agent.ctx.plugin(Persona, expertPersonaConfig({ definition, packageRoot, teamMembers: revision.teamMembers }));
     ctx.effect(() => () => persona.dispose());

@@ -12,7 +12,7 @@ export async function apply(ctx:Context){
   await ctx.plugin(ProjectManager);
   await ctx.plugin({
     name:'workdsh-projects-integration',
-    inject:[...inject,'systemPrompt','workdshProjects'],
+    inject:[...inject,'systemPrompt','workdshProjects','workspaceController'],
     apply(integration:Context){registerProjectConnection(integration);registerProjectContextInjection(integration);},
   });
   await ctx.plugin({

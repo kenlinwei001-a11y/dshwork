@@ -1,3 +1,7 @@
+## 0.1.0-alpha.6 — Unreleased（2026-09-22）
+
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。
+
 ## 0.1.0-alpha.5 — 2026-09-15
 
 - 将 Session、Storage Domain 与工具授权边界适配到 DeepSeek Harness 0.1.6-alpha.1。

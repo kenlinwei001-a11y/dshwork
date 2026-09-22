@@ -50,7 +50,7 @@ test(`official Session skill consumption: model invocation ${allowed ? 'allowed'
     const second = JSON.stringify(adapter.requests[1]);
     assert.ok(adapter.schemas[0].some(tool => tool.name === 'skill'));
     assert.equal(first.includes('SESSION_BODY_SENTINEL'), false);
-    const results = adapter.requests[1].flatMap(message => message.content).filter(block => block.type === 'tool-result');
+    const results = adapter.requests[1].filter(message => message.role === 'tool');
     assert.equal(results.length, 1);
     assert.equal(results[0].toolCallId, 'skill-probe-call');
     if (allowed) {

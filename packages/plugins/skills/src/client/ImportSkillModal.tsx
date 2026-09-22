@@ -1,3 +1,4 @@
+import { Button, Select } from 'workdsh-ui';
 import { Modal } from 'workdsh-ui';
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -94,20 +95,20 @@ export function ImportSkillModal({ open, management, onClose, onInstalled }: Imp
         <strong>{busy ? '正在上传并预检…' : '拖拽文件或点击上传'}</strong>
         <small>.zip 技能包或 SKILL.md</small>
       </button>
-      {busy && <button type="button" className="folder-picker" onClick={() => operationAbort.current?.abort()}>取消上传</button>}
+      {busy && <Button type="button" className="folder-picker" onClick={() => operationAbort.current?.abort()}>取消上传</Button>}
       <input ref={fileInput} className="visually-hidden" type="file" accept=".zip,.md,text/markdown,application/zip" onChange={event => { if (event.currentTarget.files) void inspect(event.currentTarget.files); event.currentTarget.value = ''; }} />
       <input ref={folderInput} className="visually-hidden" type="file" multiple {...({ webkitdirectory: '', directory: '' } as React.InputHTMLAttributes<HTMLInputElement>)} onChange={event => { if (event.currentTarget.files) void inspect(event.currentTarget.files); event.currentTarget.value = ''; }} />
-      <button type="button" className="folder-picker" disabled={busy} onClick={() => folderInput.current?.click()}>选择技能文件夹</button>
+      <Button type="button" className="folder-picker" disabled={busy} onClick={() => folderInput.current?.click()}>选择技能文件夹</Button>
       <section className="import-requirements"><h3>文件要求</h3><ul><li>压缩包或文件夹内必须且只能包含一个 SKILL.md</li><li>SKILL.md 的 YAML frontmatter 必须包含合法的 name 和 description</li><li>最多 50 MiB、400 个文件、6 层资源目录</li><li>路径穿越和符号链接会被拒绝；脚本仅作为资源保存，不会在导入时执行</li></ul></section>
     </> : <section className="import-review" data-testid="skill-import-review">
       <div className="import-review-title"><span className="skill-mark" aria-hidden>{staged.inspection.name[0]}</span><div><h3>{staged.inspection.name}</h3><p>{staged.inspection.description}</p></div></div>
-      <dl><dt>来源文件</dt><dd>{staged.fileName}</dd><dt>文件</dt><dd>{staged.inspection.files.length} 个，{sizeOf(staged.inspection.totalBytes)}</dd><dt>安装范围</dt><dd><select value={scope} onChange={event => setScope(event.currentTarget.value as SkillInstallScope)}><option value="shared-agents">所有 WorkDSH 任务（共享）</option><option value="profile">当前 Harness Profile</option></select></dd></dl>
+      <dl><dt>来源文件</dt><dd>{staged.fileName}</dd><dt>文件</dt><dd>{staged.inspection.files.length} 个，{sizeOf(staged.inspection.totalBytes)}</dd><dt>安装范围</dt><dd><Select value={scope} onChange={event => setScope(event.currentTarget.value as SkillInstallScope)}><option value="shared-agents">所有 WorkDSH 任务（共享）</option><option value="profile">当前 Harness Profile</option></Select></dd></dl>
       <details><summary>查看文件清单</summary><ul className="import-file-list">{staged.inspection.files.map(path => <li key={path}>{path}</li>)}</ul></details>
       <p className="import-note">预检已通过。确认后才会写入 Harness 官方技能目录；若已存在同名技能，安装会停止且不会覆盖。</p>
 
     </section>}
     {error && <p className="error" role="alert">{error}</p>}
     </div>
-    {staged && <footer className="import-footer"><div className="import-actions"><button type="button" onClick={() => busy ? operationAbort.current?.abort() : void discard()}>{busy ? '取消安装' : '重新选择'}</button><button type="button" className="install" disabled={busy} onClick={() => void install()}>{busy ? '正在安装…' : '确认安装'}</button></div></footer>}
+    {staged && <footer className="import-footer"><div className="import-actions"><Button type="button" onClick={() => busy ? operationAbort.current?.abort() : void discard()}>{busy ? '取消安装' : '重新选择'}</Button><Button variant="primary" type="button" className="install" disabled={busy} onClick={() => void install()}>{busy ? '正在安装…' : '确认安装'}</Button></div></footer>}
   </Modal>;
 }

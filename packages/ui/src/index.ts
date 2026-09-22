@@ -5,3 +5,5 @@ export { Modal, type ModalProps } from './components/Modal.js';
 export { modalCss } from './styles/modal.js';
 export { navigationCss } from './styles/navigation.js';
 export { tokens, type WorkdshTokens } from './styles/tokens.js';
+export { Button, Input, Select, Textarea } from './components/Controls.js';
+export { controlsCss } from './styles/controls.js';

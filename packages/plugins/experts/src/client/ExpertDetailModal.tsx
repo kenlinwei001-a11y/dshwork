@@ -1,3 +1,4 @@
+import { Button } from 'workdsh-ui';
 import * as React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ExpertAvailability, ExpertDefinition, ExpertDetail, ExpertSkillOption } from '../shared.js';
@@ -71,7 +72,7 @@ export function ExpertDetailModal({ expertId, management, acting, onClose, onSum
   if (busy) return <div className="dialog-scroll"><p className="muted">正在读取专家详情…</p></div>;
   if (error || !detail) return <div className="dialog-scroll">
     <p className="error-text" role="alert">{error || '无法读取专家详情。'}</p>
-    <div className="detail-head-actions" style={{ marginTop: 16 }}><button onClick={() => void load()}>重试</button><button onClick={onClose}>关闭</button></div>
+    <div className="detail-head-actions" style={{ marginTop: 16 }}><Button onClick={() => void load()}>重试</Button><Button onClick={onClose}>关闭</Button></div>
   </div>;
 
   const { expert, revision } = detail;
@@ -91,12 +92,12 @@ export function ExpertDetailModal({ expertId, management, acting, onClose, onSum
         <h1>{definition.name || '（未命名专家）'}</h1>
         <p className="detail-subtitle">{ORIGIN_LABEL[expert.origin] ?? expert.origin} · {kindLabel} · {isDraft ? '草稿' : AVAILABILITY_LABEL[expert.availability]}</p>
       <div className="detail-head-actions">
-        {!isDraft && <button className="summon" disabled={!canSummon || acting} title={canSummon ? `召唤${kindLabel}` : readiness.hint}
-          onClick={() => { setMenuOpen(false); onSummon(expertId, revisionId, undefined); }}>召唤{kindLabel}</button>}
-        {isDraft && detail.canEdit && <button className="summon" onClick={() => { onEditTask(expertId); }}>继续编辑</button>}
+        {!isDraft && <Button variant="primary" className="summon" disabled={!canSummon || acting} title={canSummon ? `召唤${kindLabel}` : readiness.hint}
+          onClick={() => { setMenuOpen(false); onSummon(expertId, revisionId, undefined); }}>召唤{kindLabel}</Button>}
+        {isDraft && detail.canEdit && <Button variant="primary" className="summon" onClick={() => { onEditTask(expertId); }}>继续编辑</Button>}
         {(detail.canManage || detail.canEdit) && <div ref={menu} style={{ position: 'relative' }}>
-          <button aria-label="管理专家" aria-haspopup="menu" aria-expanded={menuOpen} disabled={acting}
-            onClick={() => setMenuOpen(open => !open)}>•••</button>
+          <Button aria-label="管理专家" aria-haspopup="menu" aria-expanded={menuOpen} disabled={acting}
+            onClick={() => setMenuOpen(open => !open)}>•••</Button>
           {menuOpen && <div className="card-menu" role="menu" style={{ right: 0, left: 'auto' }}>
             {detail.canEdit && <button role="menuitem" onClick={() => { setMenuOpen(false); onEditTask(expertId); }}>编辑</button>}
             {detail.canEdit && <button role="menuitem" onClick={() => { setMenuOpen(false); onClose(); onEditDraft(expertId); }}>编辑制作文件</button>}
@@ -113,7 +114,7 @@ export function ExpertDetailModal({ expertId, management, acting, onClose, onSum
 
     {hasUnpublishedChanges && <div className="notice" role="status">
       <div className="notice-body"><strong>草稿有修改，尚未发布</strong><span>当前详情与召唤使用已发布版本。已发布配备 {definition.skillRequirements.length} 个技能，草稿配备 {detail.draft.definition.skillRequirements.length} 个；保存草稿不会更新已发布版本。</span></div>
-      <button disabled={acting} onClick={() => { onClose(); onEditDraft(expertId); }}>审阅草稿</button>
+      <Button disabled={acting} onClick={() => { onClose(); onEditDraft(expertId); }}>审阅草稿</Button>
     </div>}
 
     {definition.description && <p className="detail-desc" style={{ marginTop: 20 }}>{definition.description}</p>}
@@ -140,7 +141,7 @@ export function ExpertDetailModal({ expertId, management, acting, onClose, onSum
     <details className="expert-settings"><summary>配备技能与能力 · {definition.skillRequirements.length}</summary>
     <h2 className="detail-section-title">配备技能 · {definition.skillRequirements.length}</h2>
     <p className="detail-subtitle">{isDraft ? '以下为已保存草稿配备的技能；发布时会固定技能版本。' : '以下为已发布版本配备的技能；简介和状态来自当前已安装目录，召唤时使用发布时固定的技能版本。'}</p>
-    {skillsError && <p role="alert">{skillsError} <button onClick={() => void load()}>重试</button></p>}
+    {skillsError && <p role="alert">{skillsError} <Button onClick={() => void load()}>重试</Button></p>}
     {!skills && !skillsError && <p role="status">正在读取配备技能…</p>}
     <div className="cap-list">
       {skills?.map(skill => <div className={`cap-row ${skill.selectable ? 'ok' : 'missing'}`} key={skill.skillId}>
@@ -168,8 +169,8 @@ export function ExpertDetailModal({ expertId, management, acting, onClose, onSum
     </details>
 
     <div className="detail-head-actions" style={{ marginTop: 28, justifyContent: 'flex-end' }}>
-      <button onClick={onClose}>关闭</button>
-      <button onClick={() => { void load(); onChanged(); }} disabled={busy}>刷新</button>
+      <Button onClick={onClose}>关闭</Button>
+      <Button onClick={() => { void load(); onChanged(); }} disabled={busy}>刷新</Button>
     </div>
   </div>;
 }

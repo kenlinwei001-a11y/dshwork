@@ -1,3 +1,4 @@
+import { Button } from 'workdsh-ui';
 import * as React from 'react';
 import { useState } from 'react';
 import { Modal } from 'workdsh-ui';
@@ -51,8 +52,8 @@ export function PublishConfirmDialog({ expertId, draftRevision, definition, defi
       <p>已发布「{definition.name || '该专家'}」。已有任务保持原版本；新召唤将使用此版本。</p>
       <p className="digest">修订 {receipt.revision.revisionId}</p>
       <div className="confirm-actions">
-        <button onClick={onPublished}>返回我的专家</button>
-        <button className="primary" onClick={() => onSummon(expertId, receipt.revision.revisionId, undefined)}>去试试</button>
+        <Button onClick={onPublished}>返回我的专家</Button>
+        <Button variant="primary" className="primary" onClick={() => onSummon(expertId, receipt.revision.revisionId, undefined)}>去试试</Button>
       </div>
     </Modal>;
   }
@@ -66,8 +67,8 @@ export function PublishConfirmDialog({ expertId, draftRevision, definition, defi
     </div>
     {error && <p className="error-text" role="alert" style={{ marginTop: 12 }}>{error}</p>}
     <div className="confirm-actions">
-      <button onClick={onClose} disabled={busy}>取消</button>
-      <button className="primary" onClick={() => void confirm()} disabled={busy}>{busy ? '正在发布…' : '确认发布此版本'}</button>
+      <Button onClick={onClose} disabled={busy}>取消</Button>
+      <Button variant="primary" className="primary" onClick={() => void confirm()} disabled={busy}>{busy ? '正在发布…' : '确认发布此版本'}</Button>
     </div>
   </Modal>;
 }

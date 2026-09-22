@@ -107,3 +107,10 @@ test('interrupted teammate exposes the retained task as resumable',()=>{
  assert.equal(summary.focus,'人工停止与恢复验收 · 已停止，可继续');
  assert.equal(summary.phase,'interrupted');
 });
+
+test('Session V4 tool messages retain success/error semantics without V3 result blocks', () => {
+ const call=e('tool/call',{name:'skill',callId:'v4',arguments:'{"name":"writing"}'});
+ const result=isError=>e('tool/result',{message:{role:'tool',toolCallId:'v4',isError,content:[{type:'text',text:'result'}]}});
+ assert.equal(projectActivity([call,result(false)],false).skill,'writing');
+ assert.equal(projectActivity([call,result(true)],false).skill,undefined);
+});

@@ -1,3 +1,4 @@
+import { ShellAppearance } from '../components/ShellAppearance.js';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
@@ -11,16 +12,18 @@ export const name = 'workdsh-client';
 export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory'];
 
 const productViews: Readonly<Record<string, string>> = {
-  experts: 'workdsh-experts', skills: 'workdsh-skills', assistant: 'workdsh-assistant', projects: 'workdsh-projects',
+  experts: 'workdsh-experts', skills: 'workdsh-skills', assistant: 'workdsh-assistant', projects: 'workdsh-projects', 'project-detail': 'workdsh-project-detail',
   library: 'workdsh-library', automation: 'workdsh-automation', more: 'workdsh-more',
 };
 
 export function apply(ctx: Context): void {
+  ctx.slots.inject('shell.overlay', () => ctx.slots.register({ name: 'shell.overlay', id: 'workdsh-shell-appearance' }, ShellAppearance));
   const diagnostics = new URL(window.location.href).searchParams.get('diagnostics') === '1';
   const viewToPanel = diagnostics ? { ...productViews, diagnostics: 'workdsh-probe' } : productViews;
   const panelToView = Object.fromEntries(Object.entries(viewToPanel).map(([view, panel]) => [panel, view]));
   const selectView = (view: string | null) => {
-    const requested = view ? viewToPanel[view] : undefined;
+    const target = view === 'projects' && new URL(window.location.href).searchParams.has('project') ? 'project-detail' : view;
+    const requested = target ? viewToPanel[target] : undefined;
     const selected = requested && ctx.slots.entriesOfSlot('main').some(entry => entry.options.key === requested)
       ? requested as Parameters<typeof ctx.layout.selectPanel>[0] : null;
     ctx.layout.selectPanel(selected);

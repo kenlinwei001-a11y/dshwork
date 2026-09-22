@@ -1,6 +1,6 @@
 # 资源授权
 
-状态：**0.1 实现中**。`0.1.0-alpha.5` 提供 Host 侧资源授权、持久 grant、Session owner/runtime binding、受控 Session Host 入口、预期修订更新、撤权和官方工具流水线审计；尚未生成企业外部 Session Remote，也未接入文件与其他 Remote 入口。
+状态：**0.1 实现中**。`0.1.0-alpha.6` 提供 Host 侧资源授权、持久 grant、Session owner/runtime binding、受控 Session Host 入口、预期修订更新、撤权和官方工具流水线审计；尚未生成企业外部 Session Remote，也未接入文件与其他 Remote 入口。
 
 - 实现阶段：P0/P1
 - 主任务：P1-09，详见 [开发计划](../../../docs/PLAN.md)

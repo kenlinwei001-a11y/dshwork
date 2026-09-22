@@ -1,3 +1,11 @@
+## 0.1.0-alpha.3 — Unreleased（2026-09-22）
+
+- 统一管理操作与表单：复用 Harness 原生 Button/Input，Select/Textarea 共用 workdsh-ui；声明原生 UI 依赖，保持主题与交互语义。
+
+- 页面和配置弹窗跟随原生主题明暗变化，移除固定深色。
+- 修复对话右侧资料引用预览的明暗主题：背景、正文、分割线、加载与错误提示使用官方语义颜色，随系统主题即时更新；HTML 原件保留文档本身样式。
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。
+
 # 0.1.0-alpha.2 — Unreleased（2026-09-18）
 
 - 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改由 `SessionSummary.retainedBy.mainView` 推导；打开会话与资料引用跳转改用官方 `uiWorkspace.openSession`；右栏资料预览继续以官方 `sidebar.right.pane.tab` 注册。

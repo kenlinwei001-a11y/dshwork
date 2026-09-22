@@ -1,3 +1,7 @@
+## 0.1.0-alpha.5 — Unreleased（2026-09-22）
+
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。
+
 ## 0.1.0-alpha.4 — 2026-09-15
 
 - 将审计存储依赖升级至 DeepSeek Harness 0.1.6-alpha.1。

@@ -20,9 +20,10 @@ export function projectActivity(entries: readonly Entry[], running: boolean): Ac
     }
     if (event.type === 'tool/result') {
       const message = record(data.message), source = record(message.source);
-      const result = Array.isArray(message.content) ? message.content.map(record).find(block => block.type === 'tool-result') : undefined;
-      if (skills.has(String(source.callId)) && result && !result.isError) skill = skills.get(String(source.callId));
-      if (calls.get(String(source.callId)) === 'ask_user_question') phase = 'working';
+      const result = typeof message.toolCallId === 'string' ? message : Array.isArray(message.content) ? message.content.map(record).find(block => block.type === 'tool-result') : undefined;
+      const callId = String(message.toolCallId ?? source.callId);
+      if (skills.has(callId) && result && !result.isError) skill = skills.get(callId);
+      if (calls.get(callId) === 'ask_user_question') phase = 'working';
       tool = undefined;
     }
     if (event.type === 'subagent/catalog' && typeof data.childId === 'string') children.set(data.childId, { id: data.childId, ...(typeof data.label === 'string' && !data.label.startsWith('delegation-') ? { label: data.label } : {}) });

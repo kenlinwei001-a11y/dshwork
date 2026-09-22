@@ -1,3 +1,4 @@
+import { Button } from 'workdsh-ui';
 import * as React from 'react';
 import { useRef, useState } from 'react';
 import type { ImportPreview } from '../shared.js';
@@ -72,8 +73,8 @@ export function ImportExpertModal({ management, onClose, onImported }: ImportExp
         {error && <p className="error" role="alert">{error}</p>}
       </div>
       <div className="import-actions">
-        <button onClick={() => { setPreview(undefined); setFileName(''); setError(''); }} disabled={busy}>重新选择</button>
-        <button className="install" onClick={() => void commit()} disabled={busy || blocking}>{busy ? '正在导入…' : blocking ? '存在校验问题，无法导入' : '导入为我的草稿'}</button>
+        <Button onClick={() => { setPreview(undefined); setFileName(''); setError(''); }} disabled={busy}>重新选择</Button>
+        <Button variant="primary" className="install" onClick={() => void commit()} disabled={busy || blocking}>{busy ? '正在导入…' : blocking ? '存在校验问题，无法导入' : '导入为我的草稿'}</Button>
       </div>
     </>;
   }
@@ -94,7 +95,7 @@ export function ImportExpertModal({ management, onClose, onImported }: ImportExp
       onChange={event => { const file = event.currentTarget.files?.[0]; if (file) void ingest(file); event.currentTarget.value = ''; }} />
     {error && <p className="error" role="alert">{error}</p>}
     <div className="import-actions">
-      <button onClick={onClose} disabled={busy}>取消</button>
+      <Button onClick={onClose} disabled={busy}>取消</Button>
     </div>
   </>;
 }

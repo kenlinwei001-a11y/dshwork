@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 import { writeFileSync } from 'node:fs';
 const clientResult = await build({
   entryPoints: [fileURLToPath(new URL('../packages/bundle/src/client/index.ts', import.meta.url))], bundle: true, write: false,
-  format: 'cjs', platform: 'browser', target: 'es2022', external: ['react'],
+  format: 'cjs', platform: 'browser', target: 'es2022', external: ['@deepseek-ai/dsh-client-ui-primitives', 'react'],
 });
 // Product presentation and its explicitly registered Workbench child. Skill has
 // its own package, Host row and browser artifact; it is never bundled here.

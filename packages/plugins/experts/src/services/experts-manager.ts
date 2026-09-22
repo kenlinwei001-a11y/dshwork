@@ -6,7 +6,7 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { Context, Service } from '@deepseek-ai/cordis';
 import type { KvTable } from '@deepseek-ai/dsh-storage-domain';
 import type { SessionCreateRequest, SessionCreateValue } from '@deepseek-ai/dsh-api-session-controller';
-import { writableRoot } from '@deepseek-ai/dsh-agent-presets';
+import { expertPresetDir, readExpertPreset, registerExpertPreset } from '../runtime/preset-compiler.js';
 import {
   EXPERT_LIMITS,
   ExpertsError,
@@ -199,7 +199,7 @@ function sanitizeFileName(fileName: string): string {
 
 export class ExpertsManager extends Service implements ExpertsService {
   static inject = [
-    'storageDomain', 'agentPresets', 'sessionController',
+    'loader', 'storageDomain', 'agentPresets', 'sessionController',
     'workdshIdentity', 'workdshAccess', 'workdshAudit', 'workdshSessionAccess', 'workdshSkills',
   ];
 
@@ -235,6 +235,9 @@ export class ExpertsManager extends Service implements ExpertsService {
     this.bindings = domain.table('bindings');
     this.preferences = domain.table('preferences');
     this.operations = domain.table('operations');
+    for (const [, revision] of this.revisions.entries()) {
+      if (revision.compilerVersion === COMPILER_VERSION) await registerExpertPreset(this.ctx, revision.presetRevisionRef, revision.compositionDigest);
+    }
     // Staged uploads are transient; best-effort cleanup when the plugin unloads.
     this.ctx.effect(() => () => { void rm(this.stagingRoot, { recursive: true, force: true }); }, 'workdshExperts.stagingCleanup');
   }
@@ -566,7 +569,7 @@ export class ExpertsManager extends Service implements ExpertsService {
   private async computeReadiness(revision: ExpertRevision | undefined, actor: ActorContext, signal?: AbortSignal): Promise<ExpertReadiness> {
     if (!revision) return 'unknown';
     if (revision.definition.packageDocuments) {
-      try { await verifyPackageFiles(join(writableRoot(this.ctx.agentPresets.roots, revision.presetRevisionRef), revision.presetRevisionRef), revision.definition.packageDocuments, revision.definition.packageAssets); }
+      try { await verifyPackageFiles(expertPresetDir(revision.presetRevisionRef), revision.definition.packageDocuments, revision.definition.packageAssets); }
       catch { return 'missing-dependency'; }
     }
     for (const ref of Object.values(revision.teamMembers ?? {})) {
@@ -1584,8 +1587,8 @@ export class ExpertsManager extends Service implements ExpertsService {
   }
 
   private async verifyRevision(actor: ActorContext, revision: ExpertRevision, signal?: AbortSignal): Promise<void> {
-    if (revision.definition.packageDocuments) await verifyPackageFiles(join(writableRoot(this.ctx.agentPresets.roots, revision.presetRevisionRef), revision.presetRevisionRef), revision.definition.packageDocuments, revision.definition.packageAssets);
-    if (sha256(await this.ctx.agentPresets.read(revision.presetRevisionRef)) !== revision.compositionDigest) {
+    if (revision.definition.packageDocuments) await verifyPackageFiles(expertPresetDir(revision.presetRevisionRef), revision.definition.packageDocuments, revision.definition.packageAssets);
+    if (sha256(await readExpertPreset(revision.presetRevisionRef)) !== revision.compositionDigest) {
       throw new ExpertsError('experts/conflict', '已发布专家 preset 已漂移。');
     }
     for (const ref of revision.dependencyLock) {
