@@ -7,7 +7,6 @@ import type { Context } from "@deepseek-ai/cordis";
 import type {} from "@deepseek-ai/dsh-client-ui-renderer/client";
 import type {} from "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client";
 import { OfficeDocument } from "./OfficeDocument.js";
-import { CsvDocument } from "./csv/CsvDocument.js";
 import type {} from "@deepseek-ai/dsh-client-ui-sidebar-right/client";
 import type { ISessions } from "@deepseek-ai/dsh-api-session-controller/client";
 import type {} from "@deepseek-ai/dsh-client-ui-session/client";
@@ -65,6 +64,7 @@ export function apply(ctx: Context): void {
       id: "workdsh-office",
       extensions: wordOnlyRelease ? ["docx"] : ["xlsx", "docx", "pptx"],
       title: () => "Office 浏览器编辑",
+      priority: "builtin",
       loading: "bytes-complete",
     }),
   );
@@ -74,23 +74,6 @@ export function apply(ctx: Context): void {
       OfficeDocument,
     ),
   );
-  if (!wordOnlyRelease) {
-    ctx.effect(() =>
-      ctx.documentPreviews.register({
-        id: "workdsh-office-csv",
-        extensions: ["csv"],
-        title: () => "CSV 表格",
-        loading: "bytes-complete",
-        wrap: true,
-      }),
-    );
-    ctx.slots.inject("sidebar.right.tab.document", () =>
-      ctx.slots.register(
-        { name: "sidebar.right.tab.document", key: "workdsh-office-csv" },
-        CsvDocument,
-      ),
-    );
-  }
   const lifetime = new AbortController();
   const rpc: Rpc = async <T,>(
     sessionId: string,

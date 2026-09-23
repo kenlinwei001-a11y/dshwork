@@ -1,39 +1,17 @@
 import { assetBytes, validateResources, type PackageAssets } from '../authoring/package-resources.js';
-import { mkdir, readFile, writeFile, readdir, lstat, chmod } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, readdir, lstat, chmod, mkdtemp, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import { randomUUID } from 'node:crypto';
 import { Context } from '@deepseek-ai/cordis';
-import type {} from '@deepseek-ai/dsh-agent-presets';
-import {
-  COMPOSITION_FILE,
-  METADATA_FILE,
-  renderPresetMetadata,
-  writableRoot,
-} from '@deepseek-ai/dsh-agent-presets';
-import { YAMLMap, YAMLSeq, parseDocument } from 'yaml';
+import type { PresetDefinition } from '@deepseek-ai/dsh-agent-preset-registry';
+import type {} from '@deepseek-ai/cordis-plugin-loader';
+import { homedir } from 'node:os';
 import type { ExpertDefinition, ExpertRevisionRef } from 'workdsh-contracts';
 import { readFileSync } from 'node:fs';
 import { compilePersonaPrefix, compilePersonaSuffix } from '../domain/definition.js';
 import { sha256, shortDigest } from '../domain/digest.js';
 
-/**
- * Expert preset compiler (G01, ADR-0017 #4, HLD 5.1).
- *
- * An expert is a READ-ONLY preset. The compiler never accepts user-supplied
- * composition text, npm package names, Cordis services, arbitrary config code or
- * absolute directories: it copies a known-working base preset through the official
- * authoring write (`agentPresets.copy`, a whole-directory copy), then rewrites only
- * two rows of the copied composition from validated definition fields —
- *   - the `@deepseek-ai/dsh-persona` row: preset-scope role, `complete:false` and
- *     `includeRuntimeContext:true` so native tool guidance and runtime context survive;
- *   - the `@deepseek-ai/dsh-skill-filesystem` row: `includeDefaultRoots:true` keeps the
- *     global dynamic pool, `customSkillDirs` mounts the frozen snapshots, `watch:false`
- *     freezes them.
- * The rest of the document (comments, `!!js` gates, every other row) is preserved by
- * mutating the parsed YAML Document in place.
- */
-
-export const COMPILER_VERSION = 'workdsh-expert-compiler/0.3-official-team-migration';
+/** Expert revisions declare official presets; Loader and AgentPresetRegistry own activation. */
+export const COMPILER_VERSION = 'workdsh-expert-compiler/0.4-declarative-presets';
 
 const PERSONA_MODULE = '@deepseek-ai/dsh-persona';
 const SKILL_FS_MODULE = '@deepseek-ai/dsh-skill-filesystem';
@@ -97,80 +75,97 @@ export function presetIdFor(input: CompileInput): string {
  * Compile (or reuse) the immutable preset directory for one expert revision.
  * Idempotent: an existing directory whose composition digest matches is reused.
  */
-export async function compileExpertPreset(ctx: Context, input: CompileInput): Promise<CompiledPreset> {
-  const agentPresets = ctx.agentPresets;
-  if (!agentPresets.authorable) {
-    throw Object.assign(new Error('此部署未配置可写的 preset 根，无法发布专家。'), { code: 'experts/unavailable' });
+export function expertPresetDir(presetId: string): string {
+  if (!/^wd-exp-[a-z0-9-]+$/.test(presetId)) throw new Error('experts/invalid-preset-id');
+  return join(process.env.DSH_AGENTS_HOME ?? join(homedir(), '.agents'), '.workdsh-state', 'experts', 'presets', presetId);
+}
+
+const registrations = new WeakMap<Context, Map<string, Promise<void>>>();
+
+/** Restore only the frozen declaration; never recompile an existing revision against a new base. */
+export async function readExpertPreset(presetId: string): Promise<string> {
+  try { return await readFile(join(expertPresetDir(presetId), 'preset.json'), 'utf8'); }
+  catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') throw Object.assign(new Error('此专家为旧目录预设，请重新发布后创建新任务；历史任务不会自动换用新组合。'), { code: 'experts/preset-broken' });
+    throw error;
   }
-  const roots = agentPresets.roots;
+}
+
+export async function registerExpertPreset(ctx: Context, presetId: string, expectedDigest: string): Promise<void> {
+  const text = await readExpertPreset(presetId);
+  if (sha256(text) !== expectedDigest) throw Object.assign(new Error('专家预设内容已变化，请重新发布。'), { code: 'experts/preset-drift' });
+  let pending = registrations.get(ctx);
+  if (!pending) { pending = new Map(); registrations.set(ctx, pending); }
+  if (!pending.has(presetId)) {
+    const definition = JSON.parse(text) as PresetDefinition;
+    if (definition.id !== presetId) throw Object.assign(new Error('专家预设内容已变化，请重新发布。'), { code: 'experts/preset-drift' });
+    const promise = ctx.agentPresets.register(definition).then(dispose => { ctx.effect(() => dispose); });
+    pending.set(presetId, promise);
+    promise.catch(() => { pending!.delete(presetId); });
+  }
+  await pending.get(presetId);
+}
+
+export async function compileExpertPreset(ctx: Context, input: CompileInput): Promise<CompiledPreset> {
   const presetId = presetIdFor(input);
-  const writable = writableRoot(roots, presetId);
-  const presetDir = join(writable, presetId);
-  const compositionPath = join(presetDir, COMPOSITION_FILE);
-  const manifestPath = join(presetDir, 'workdsh-expert-manifest.json');
+  const presetDir = expertPresetDir(presetId);
   const files = input.definition.packageDocuments ?? {};
   const assets = input.definition.packageAssets ?? {};
   validateResources(files, assets);
-  const rootsInPackage = Object.keys(files).filter(path => /^skills\/[a-z][a-z0-9-]+\/SKILL\.md$/.test(path)).map(path => join(presetDir, 'expert-package', path.slice(0, -9)));
-
-  const expected = renderComposition(input);
-  const expectedDigest = sha256(expected);
-
-  // Idempotent reuse: a prior publish of the same content already produced this directory.
+  const manifestPath = join(presetDir, 'workdsh-expert-manifest.json');
+  const inputDigest = sha256(renderComposition(input));
   try {
-    const existing = await readFile(compositionPath, 'utf8');
-    const manifest = JSON.parse(await readFile(manifestPath, 'utf8')) as { inputDigest?: string; compositionDigest?: string };
-    if (manifest.inputDigest !== expectedDigest || manifest.compositionDigest !== sha256(existing)) {
-      throw Object.assign(new Error('已发布专家 preset 已变化，拒绝覆盖。'), { code: 'experts/preset-broken' });
-    }
+    const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+    if (manifest.inputDigest !== inputDigest) throw Object.assign(new Error('专家预设内容已变化，请重新发布。'), { code: 'experts/preset-drift' });
     await verifyPackageFiles(presetDir, files, assets);
-    return { presetId, presetDir, compositionDigest: sha256(existing), created: false };
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-  }
+    await registerExpertPreset(ctx, presetId, manifest.compositionDigest);
+    return { presetId, presetDir, compositionDigest: manifest.compositionDigest, created: false };
+  } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
 
-  // Official authoring write: whole-directory copy of a known-working base preset.
-  let exists = false;
+  // The public Loader entry contains the effective Profile declaration, including !!js nodes.
+  const base = [...ctx.loader.entries()].find(entry => !entry.disabled && entry.options.name === '@deepseek-ai/dsh-agent-preset' && entry.options.config?.id === input.basePresetId);
+  if (!base) throw Object.assign(new Error('缺少官方标准模式声明，无法发布专家。'), { code: 'experts/preset-broken' });
+  const plugins = JSON.parse(JSON.stringify(base.options.config.plugins)) as PresetDefinition['plugins'];
+  const rootsInPackage = Object.keys(files).filter(path => /^skills\/[a-z][a-z0-9-]+\/SKILL\.md$/.test(path)).map(path => join(presetDir, 'expert-package', path.slice(0, -9)));
+  const packageRoot = Object.keys(files).length || Object.keys(assets).length ? join(presetDir, 'expert-package') : undefined;
+  const persona = expertPersonaConfig({ ...input, packageRoot });
+  const skillConfig = { includeDefaultRoots: true, watch: false, customSkillDirs: [...input.snapshotDirs, ...rootsInPackage].sort() };
+  const rows = [...plugins];
+  for (const [name, config] of [[PERSONA_MODULE, persona], [SKILL_FS_MODULE, skillConfig]] as const) {
+    const index = rows.findIndex(row => row.name === name);
+    const row = { id: name === PERSONA_MODULE ? 'persona' : 'skill-filesystem', name, config };
+    if (index < 0) rows.push(row); else rows[index] = { ...rows[index], config };
+  }
+  if (!rows.some(row => row.name === TOOL_SKILL_MODULE)) rows.push({ id: 'tool-skill', name: TOOL_SKILL_MODULE });
+  const definition: PresetDefinition = { id: presetId, name: input.definition.name, description: input.definition.description, plugins: rows };
+  const text = JSON.stringify(definition);
+  await mkdir(join(presetDir, '..'), { recursive: true });
+  const staging = await mkdtemp(presetDir + '.staging-');
   try {
-    await agentPresets.resolve(presetId);
-    exists = true;
-  } catch {
-    exists = false;
-  }
-  if (!exists) {
-    await agentPresets.copy(input.basePresetId, presetId, input.definition.name);
-  } else {
-    throw Object.assign(new Error('已有专家 preset 缺少可验证清单，拒绝覆盖。'), { code: 'experts/preset-broken' });
-  }
-  await mkdir(presetDir, { recursive: true });
-  for (const [path, text] of Object.entries(files)) {
-    if (path.startsWith('/') || path.includes('\\') || path.split('/').some(part => !part || part === '.' || part === '..')) throw new Error('experts/invalid-package-path');
-    const target = join(presetDir, 'expert-package', path);
-    await mkdir(join(target, '..'), { recursive: true });
-    await writeFile(target, text, 'utf8');
-  }
-
-  for (const [path, asset] of Object.entries(assets)) {
-    const target = join(presetDir, 'expert-package', path);
-    await mkdir(join(target, '..'), { recursive: true });
-    await writeFile(target, assetBytes(path, asset));
-    if (asset.executable) await chmod(target, 0o755);
-  }
-
-  // Rewrite only the persona and skill-filesystem rows; preserve everything else.
-  const baseText = await readFile(compositionPath, 'utf8');
-  const composed = rewriteComposition(baseText, { ...input, packageRoot: Object.keys(files).length ? join(presetDir, 'expert-package') : undefined, snapshotDirs: [...input.snapshotDirs, ...rootsInPackage] });
-  await writeFile(compositionPath, composed, 'utf8');
-  await writeFile(
-    join(presetDir, METADATA_FILE),
-    renderPresetMetadata({ name: input.definition.name, description: input.definition.description }) ?? '',
-    'utf8',
-  );
-
-  // The copy must still read as a healthy composition before we record it.
-  await agentPresets.read(presetId);
-  await writeFile(manifestPath, JSON.stringify({ inputDigest: expectedDigest, compositionDigest: sha256(composed) }), 'utf8');
-  return { presetId, presetDir, compositionDigest: sha256(composed), created: true };
+    await mkdir(join(staging, 'expert-package'), { recursive: true });
+    for (const [path, text] of Object.entries(files)) {
+      const target = join(staging, 'expert-package', path);
+      await mkdir(join(target, '..'), { recursive: true });
+      await writeFile(target, text, 'utf8');
+    }
+    for (const [path, asset] of Object.entries(assets)) {
+      const target = join(staging, 'expert-package', path);
+      await mkdir(join(target, '..'), { recursive: true });
+      await writeFile(target, assetBytes(path, asset));
+      if (asset.executable) await chmod(target, 0o755);
+    }
+    await writeFile(join(staging, 'preset.json'), text, { flag: 'wx' });
+    const compositionDigest = sha256(text);
+    await writeFile(join(staging, 'workdsh-expert-manifest.json'), JSON.stringify({ inputDigest, compositionDigest }), { flag: 'wx' });
+    try { await rename(staging, presetDir); }
+    catch (error) {
+      if (!['EEXIST', 'ENOTEMPTY'].includes((error as NodeJS.ErrnoException).code ?? '')) throw error;
+      // Another publisher won; validate its immutable result instead of overwriting it.
+      return await compileExpertPreset(ctx, input);
+    }
+    await registerExpertPreset(ctx, presetId, compositionDigest);
+    return { presetId, presetDir, compositionDigest, created: true };
+  } finally { await rm(staging, { recursive: true, force: true }); }
 }
 
 /** Render the persona/skill config we intend, used only for the idempotency digest. */
@@ -222,53 +217,4 @@ export function expertPersonaConfig(input: Pick<CompileInput, 'definition' | 'pa
   ] : [authoredPersona]), ...(input.packageRoot ? [`专家作品资源目录：${input.packageRoot}。bin 下的工具已随发布版本安装；用原生 bash 按此路径调用，仍遵守沙箱和审批。`] : [])].join('\n\n');
   const suffix = compilePersonaSuffix(input.definition);
   return { prefix, suffix, complete: false, includeRuntimeContext: true };
-}
-
-/**
- * Mutate the copied composition in place: set the persona row config and the
- * skill-filesystem row config, inserting them when the base somehow lacks them.
- */
-function rewriteComposition(baseText: string, input: CompileInput): string {
-  const doc = parseDocument(baseText);
-  const seq = doc.contents as YAMLSeq | null;
-  if (!seq || !(seq instanceof YAMLSeq)) {
-    throw Object.assign(new Error('基础 preset 组合不是插件行列表，无法编译专家。'), { code: 'experts/preset-broken' });
-  }
-
-  const persona = expertPersonaConfig(input);
-  const personaConfig = doc.createNode(persona);
-  const skillConfig = doc.createNode({
-    includeDefaultRoots: true,
-    watch: false,
-    customSkillDirs: [...input.snapshotDirs].sort(),
-  });
-
-  let sawPersona = false;
-  let sawSkillFs = false;
-  let sawToolSkill = false;
-  for (const item of seq.items) {
-    if (!(item instanceof YAMLMap)) continue;
-    const name = item.get('name');
-    if (name === PERSONA_MODULE) {
-      item.set('config', personaConfig);
-      sawPersona = true;
-    } else if (name === SKILL_FS_MODULE) {
-      item.set('config', skillConfig);
-      sawSkillFs = true;
-    } else if (name === TOOL_SKILL_MODULE) {
-      sawToolSkill = true;
-    }
-  }
-
-  if (!sawPersona) {
-    seq.items.push(doc.createNode({ id: `persona-${randomUUID().slice(0, 8)}`, name: PERSONA_MODULE, config: persona }) as unknown as YAMLMap);
-  }
-  if (!sawSkillFs) {
-    seq.items.push(doc.createNode({ id: `skill-filesystem-${randomUUID().slice(0, 8)}`, name: SKILL_FS_MODULE, config: { includeDefaultRoots: true, watch: false, customSkillDirs: [...input.snapshotDirs].sort() } }) as unknown as YAMLMap);
-  }
-  if (!sawToolSkill) {
-    seq.items.push(doc.createNode({ id: `tool-skill-${randomUUID().slice(0, 8)}`, name: TOOL_SKILL_MODULE }) as unknown as YAMLMap);
-  }
-
-  return doc.toString();
 }

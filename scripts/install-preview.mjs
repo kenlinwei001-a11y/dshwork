@@ -14,12 +14,14 @@ if (typeof baseVersion !== 'string') throw new Error('Missing pinned @deepseek-a
 if (typeof webAppVersion !== 'string') throw new Error('Missing pinned @deepseek-ai/dsh-web-app version in package.json pnpm.overrides.');
 const baseSpec = `@deepseek-ai/dsh-base@${baseVersion}`;
 const webAppSpec = `@deepseek-ai/dsh-web-app@${webAppVersion}`;
+const cliVersion = JSON.parse(await readFile(join(root, 'node_modules/@deepseek-ai/dsh/package.json'), 'utf8')).version;
+if (cliVersion !== baseVersion) throw new Error('Preview CLI and Base must use the same pinned version.');
 const home = resolve(process.env.WORKDSH_PREVIEW_HOME ?? join(root, '.test-runtime/preview'));
 const artifacts = join(root, '.artifacts');
 const env = { ...process.env, DSH_HOME: home, PATH: `${join(root, 'node_modules/.bin')}:${dirname(process.execPath)}:${process.env.PATH}` };
 const exec = promisify(execFile);
 const run = async (tool, args) => {
-  await exec(process.execPath, [join(root, 'node_modules', tool), ...args], { cwd: root, env, timeout: 60_000, maxBuffer: 8 * 1024 * 1024 });
+  await exec(process.execPath, [join(root, 'node_modules', tool), ...args], { cwd: root, env, timeout: 180_000, maxBuffer: 8 * 1024 * 1024 });
 };
 await mkdir(home, { recursive: true }); await mkdir(artifacts, { recursive: true });
 const tarballs = [];
@@ -49,13 +51,19 @@ if (!initialized) await run('@deepseek-ai/dsh/lib/bin.js', ['--profile', 'previe
 // bundle list alone does not upgrade the packages that provide newly added Web
 // surfaces such as Terminal and archived-session recovery.
 await run('@deepseek-ai/dsh/lib/bin.js', ['plugin', '--profile', 'preview', 'add', baseSpec, webAppSpec, ...tarballs]);
+// Boot and ConfigEditor share module-local registration in dsh-app-boot.
+// Keep the official CLI in the Profile dependency graph as well: launching the
+// workspace CLI beside separately installed Profile packages splits that state.
+// Profiles disable automatic peer installation. The platform account adapter
+// also needs its declared native account peer in this standalone runtime.
+await run('pnpm/bin/pnpm.cjs', ['--dir', join(home, 'profiles/preview'), 'add', '--save-exact', `@deepseek-ai/dsh@${cliVersion}`, `@deepseek-ai/dsh-deepseek-account@${cliVersion}`]);
 const installedBase = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@deepseek-ai/dsh-base/package.json'), 'utf8'));
 if (installedBase.version !== baseVersion) throw new Error(`Installed @deepseek-ai/dsh-base ${installedBase.version} does not match pinned ${baseVersion}.`);
 const installedWebApp = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@deepseek-ai/dsh-web-app/package.json'), 'utf8'));
 if (installedWebApp.version !== webAppVersion) throw new Error(`Installed @deepseek-ai/dsh-web-app ${installedWebApp.version} does not match pinned ${webAppVersion}.`);
-// DSH 0.1.6 scopes are module-instance local. Installing only the Web bundle
+// DSH scopes are module-instance local. Installing only the Web bundle
 // beside a CLI-provided Base bundle can load two physical dsh-scope copies: the
-// Agent Loop tags one copy while Agent Presets reads the other, so every new
+// Agent consumers must resolve one shared scope module; otherwise new
 // session fails as an "unscoped context". Resolve both consumers from the
 // Profile and fail installation unless they share the exact same module file.
 const profileRequire = createRequire(join(home, 'profiles/preview/package.json'));
@@ -64,9 +72,12 @@ const resolveProfileDependency = async (consumer, dependency) => {
   const consumerRequire = createRequire(consumerManifest);
   return realpath(consumerRequire.resolve(`${dependency}/package.json`));
 };
+const cliBoot = await resolveProfileDependency('@deepseek-ai/dsh', '@deepseek-ai/dsh-app-boot');
+const settingsBoot = await resolveProfileDependency('@deepseek-ai/dsh-config-editor', '@deepseek-ai/dsh-app-boot');
+if (cliBoot !== settingsBoot) throw new Error('Preview CLI and ConfigEditor resolve different dsh-app-boot instances; settings cannot persist.');
 const loopScope = await resolveProfileDependency('@deepseek-ai/dsh-agent-loop', '@deepseek-ai/dsh-scope');
-const presetScope = await resolveProfileDependency('@deepseek-ai/dsh-agent-presets', '@deepseek-ai/dsh-scope');
-if (loopScope !== presetScope) throw new Error(`Preview loaded split @deepseek-ai/dsh-scope instances: agent-loop=${loopScope}; agent-presets=${presetScope}.`);
+const presetScope = await resolveProfileDependency('@deepseek-ai/dsh-agent-preset-registry', '@deepseek-ai/dsh-scope');
+if (loopScope !== presetScope) throw new Error(`Preview loaded split @deepseek-ai/dsh-scope instances: agent-loop=${loopScope}; agent-preset-registry=${presetScope}.`);
 for (const { directory, manifest } of packages) {
   for (const face of ['.', './client']) {
     const entry = manifest.exports[face]?.default;

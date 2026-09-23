@@ -30,3 +30,5 @@ MCP client 是一种执行适配，复用官方 stdio/Streamable HTTP 生命周�
 按 [项目设计第 7 节](../../../docs/PROJECT-DESIGN.md) 实现本领域相关交互，验收 UI01—UI08 适用项。领域对象与项目关联分离，取消不提交选择，个人连接按当前主体解析。新增目录仍为 planned。
 
 实现前必须阅读 [ADR-0007](../../../docs/adr/0007-execution-and-transfer-boundaries.md)，完成相应 B/Q 边界用例；不可只用提示词或 UI 达成权限保障。
+
+页面及配置弹窗随 Harness 原生主题变化；文件类型图标与文档原文保留自身颜色。

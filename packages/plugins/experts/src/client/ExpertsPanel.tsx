@@ -1,3 +1,4 @@
+import { Button, Input } from 'workdsh-ui';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 // The `main` slot PropsRuntime is augmented by the official layout client module;
@@ -204,38 +205,38 @@ export function ExpertsPanel({ toggleNavigation, management, openCapability, has
           aria-current={active ? 'page' : undefined}
           onClick={() => { if (!active && target) openCapability(target); }}>{icon(key)}{label}</button>;
       })}
-      <input ref={search} className="search" aria-label="搜索专家" placeholder={view === 'mine' ? `搜索我创建的${kind === 'team' ? '专家团' : '专家'}` : `搜索${kindLabel}`} value={query}
+      <Input ref={search} className="search" aria-label="搜索专家" placeholder={view === 'mine' ? `搜索我创建的${kind === 'team' ? '专家团' : '专家'}` : `搜索${kindLabel}`} value={query}
         onChange={event => setQuery(event.currentTarget.value)} />
-      <button className={`mine-toggle ${view === 'mine' ? 'active' : ''}`} aria-pressed={view === 'mine'}
-        onClick={() => { setView('mine'); setQuery(''); }}>我的专家 {mineCount}</button>
+      <Button className={`mine-toggle ${view === 'mine' ? 'active' : ''}`} aria-pressed={view === 'mine'}
+        onClick={() => { setView('mine'); setQuery(''); }}>我的专家 {mineCount}</Button>
       <details className="create-menu"><summary className="create-expert">制作专家</summary><div role="menu">
         <button role="menuitem" disabled={acting} onClick={event => { event.currentTarget.closest('details')?.removeAttribute('open'); void createExpert('agent'); }}>创建专家</button>
         <button role="menuitem" disabled={acting} onClick={event => { event.currentTarget.closest('details')?.removeAttribute('open'); void createExpert('team'); }}>创建专家团</button>
       </div></details>
     </header>
 
-    {view === 'mine' && <button className="back-center" onClick={() => { setView('center'); setQuery(''); setStateFilter('all'); }}>‹ 全部专家</button>}
+    {view === 'mine' && <Button variant="ghost" size="sm" className="back-center" onClick={() => { setView('center'); setQuery(''); setStateFilter('all'); }}>‹ 全部专家</Button>}
     <div className="section-head">
       <nav className="work-types" aria-label={view === 'mine' ? '我的作品类型' : '专家中心类型'}>{([['agent', '专家'], ['team', '专家团']] as const).map(([type, label]) => <button key={type} className={kind === type ? 'active' : ''} aria-pressed={kind === type} onClick={() => { setKind(type); setQuery(''); }}>{label}{view === 'mine' && <span>{typeCounts[type]}</span>}</button>)}</nav>
       <div className="section-actions">
-        <button onClick={() => setImportOpen(true)}>导入</button>
-        <button onClick={refresh} disabled={busy}>刷新</button>
+        <Button onClick={() => setImportOpen(true)}>导入</Button>
+        <Button onClick={refresh} disabled={busy}>刷新</Button>
       </div>
     </div>
 
     {view === 'center'
       ? <nav className="filter-tabs" aria-label="来源过滤">
         {([['all', '全部'], ['default', '默认'], ['personal', '我的']] as const).map(([key, label]) =>
-          <button key={key} className={originFilter === key ? 'active' : ''} aria-current={originFilter === key ? 'page' : undefined}
-            onClick={() => setOriginFilter(key)}>{label}</button>)}
+          <Button key={key} className={originFilter === key ? 'active' : ''} aria-current={originFilter === key ? 'page' : undefined}
+            onClick={() => setOriginFilter(key)}>{label}</Button>)}
       </nav>
       : <nav className="filter-tabs" aria-label="状态过滤">
         {([['all', '全部'], ['draft', '草稿'], ['published', '已发布'], ['disabled', '已停用'], ['archived', '已归档']] as const).map(([key, label]) =>
-          <button key={key} className={stateFilter === key ? 'active' : ''} aria-current={stateFilter === key ? 'page' : undefined}
-            onClick={() => setStateFilter(key)}>{label}</button>)}
+          <Button key={key} className={stateFilter === key ? 'active' : ''} aria-current={stateFilter === key ? 'page' : undefined}
+            onClick={() => setStateFilter(key)}>{label}</Button>)}
       </nav>}
 
-    {notice && <div className={`notice ${notice.kind}`} role="status"><div className="notice-body"><span>{notice.text}</span></div><button onClick={() => setNotice(undefined)} aria-label="关闭提示">×</button></div>}
+    {notice && <div className={`notice ${notice.kind}`} role="status"><div className="notice-body"><span>{notice.text}</span></div><Button onClick={() => setNotice(undefined)} aria-label="关闭提示">×</Button></div>}
     <div role="status" aria-live="polite" className={error ? 'error counts' : 'counts'}>
       {busy ? '正在读取专家目录…' : error || `目录共 ${total} 个${kindLabel} · 当前显示 ${visible.length} 个${debounced ? `（搜索“${debounced}”）` : ''}`}
     </div>
@@ -247,9 +248,9 @@ export function ExpertsPanel({ toggleNavigation, management, openCapability, has
           <strong>{debounced ? `没有匹配的${kindLabel}` : view === 'mine' ? `还没有自己的${kind === 'team' ? '专家团' : '专家'}` : `暂无可用${kindLabel}`}</strong>
           <span className="muted">{debounced ? '保留搜索词，可清除后重试。' : view === 'mine' ? '从默认模板复制，或直接制作一个属于你的专家。' : '默认模板尚未就绪，请稍后重试或制作专家。'}</span>
           <div className="empty-actions">
-            {debounced && <button onClick={() => { setQuery(''); search.current?.focus(); }}>清除搜索</button>}
-            <button className="create-expert" disabled={acting} onClick={() => void createExpert()}>创建{kindLabel}</button>
-            {view === 'mine' && <button onClick={() => setView('center')}>浏览专家中心</button>}
+            {debounced && <Button onClick={() => { setQuery(''); search.current?.focus(); }}>清除搜索</Button>}
+            <Button variant="primary" className="create-expert" disabled={acting} onClick={() => void createExpert()}>创建{kindLabel}</Button>
+            {view === 'mine' && <Button onClick={() => setView('center')}>浏览专家中心</Button>}
           </div>
         </div>
         : <div className="grid">{visible.map(summary => {
@@ -264,8 +265,8 @@ export function ExpertsPanel({ toggleNavigation, management, openCapability, has
                   <span className="card-meta">{summary.profession || (summary.expertType === 'team' ? '专家团' : '专家')}{view === 'mine' && <span> · {stateLabel(summary)}</span>}</span></span>
               </button>
               {summary.canManage && <div className="card-actions">
-                <button className="more-button" aria-label={`管理专家 ${summary.name}`} aria-haspopup="menu" aria-expanded={actionMenu === summary.id}
-                  onClick={() => setActionMenu(current => (current === summary.id ? undefined : summary.id))}>•••</button>
+                <Button variant="ghost" size="sm" className="more-button" aria-label={`管理专家 ${summary.name}`} aria-haspopup="menu" aria-expanded={actionMenu === summary.id}
+                  onClick={() => setActionMenu(current => (current === summary.id ? undefined : summary.id))}>•••</Button>
                 {actionMenu === summary.id && <div className="card-menu" role="menu">
                   {draft
                     ? <button role="menuitem" onClick={() => { void editInConversation(summary.id); }}>继续编辑</button>
@@ -294,7 +295,7 @@ export function ExpertsPanel({ toggleNavigation, management, openCapability, has
         })}{view === 'mine' && <button className="card create-card" disabled={acting} onClick={() => void createExpert()}><span aria-hidden>＋</span>创建{kind === 'team' ? '专家团' : '专家'}</button>}</div>}
 
     {nextCursor && !busy && <div className="empty-actions" style={{ justifyContent: 'center', marginTop: 18 }}>
-      <button disabled={loadingMore} onClick={() => void load(nextCursor)}>{loadingMore ? '正在加载…' : '加载更多'}</button>
+      <Button disabled={loadingMore} onClick={() => void load(nextCursor)}>{loadingMore ? '正在加载…' : '加载更多'}</Button>
     </div>}
 
     <Modal open={Boolean(detailId)} label={detailId ? '专家详情' : '专家详情'} className="expert-dialog" onClose={() => setDetailId(undefined)}>

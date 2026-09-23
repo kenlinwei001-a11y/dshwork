@@ -1,3 +1,7 @@
+## 2026-09-22 WorkDSH 项目级 alpha.8
+
+Harness 基线升级到 `0.1.7-alpha.1`，整包增加项目和资料库，共11个模块。项目主页、菜单、导航与主题统一调整。安装器校验资产并使用 Profile 内匹配的运行时。详见 [alpha.8 更新说明](releases/v0.1.0-alpha.8.md)；旧专家需显式重新发布，历史绑定不自动迁移。
+
 ## 2026-09-20 WorkDSH 项目级 alpha.7
 
 [`v0.1.0-alpha.7`](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.7) 是 Harness `0.1.6-alpha.2` 基线上的维护版。九个可安装包中四个模块更新：skills `alpha.31`、experts `alpha.7`、connectors `alpha.2`、bundle `alpha.47`；identity-local、audit、access、office、activity 沿用当前已验收版本。

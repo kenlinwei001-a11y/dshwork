@@ -1,3 +1,7 @@
+## 0.1.0-alpha.5 — Unreleased（2026-09-22）
+
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。 默认停用重复工作过程界面，交由原生 Conversation/Team 展示；保留轻量身份兼容服务。
+
 ## 0.1.0-alpha.4 — 2026-09-18
 
 - 适配 DeepSeek Harness 0.1.6-alpha.2：成员会话观测改用官方 `retain`/`ready`/`release` 世代语义（`workdshActivityMember` source），未 retain 的成员会话不强行绑定；运行期卸载可完整撤销。

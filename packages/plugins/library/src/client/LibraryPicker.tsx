@@ -11,7 +11,7 @@ type Props = PropsRuntime<'conversation.input.left'> & {
   openPicker: (sessionId: string, draft: string, draftRev: number) => void;
 };
 
-const css = `.wd-library-picker-trigger{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:10px;background:transparent;color:var(--dsw-alias-label-secondary,#aaa);font:inherit;cursor:pointer}.wd-library-picker-trigger:hover{background:var(--dsw-alias-bg-layer-3,#363636);color:#eee}.wd-library-picker-trigger .icon{display:grid;place-items:center;width:23px;height:23px;color:currentColor}`;
+const css = `.wd-library-picker-trigger{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:10px;background:transparent;color:var(--dsw-alias-label-secondary,#aaa);font:inherit;cursor:pointer}.wd-library-picker-trigger:hover{background:var(--dsw-alias-interactive-bg-hover);color:var(--dsw-alias-label-primary)}.wd-library-picker-trigger .icon{display:grid;place-items:center;width:23px;height:23px;color:currentColor}`;
 
 export function LibraryPicker({ sessionId, useInput, openPicker }: Props) {
   const draft = useInput(state => state.draft);

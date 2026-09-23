@@ -1,3 +1,7 @@
+## 0.1.0-alpha.8 — Unreleased（2026-09-22）
+
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。 CSV/TSV 交由原生预览，Office 编辑作为可选渲染器保留。
+
 ## 0.1.0-alpha.7 — Unreleased（2026-09-18）
 
 - 适配 DeepSeek Harness 0.1.6-alpha.2：当前会话改为按 `SessionSummary.retainedBy.mainView` 推导；CSV 预览按官方 `DocumentContent` 新增的 `renderer` 变体显式收窄三种内容形态。

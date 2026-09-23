@@ -1,6 +1,6 @@
 {
   "name": "workdsh-provider-identity-local",
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.0-alpha.6",
   "private": true,
   "type": "module",
   "exports": {
@@ -25,16 +25,16 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@deepseek-ai/schemastery": "3.18.2",
+    "@deepseek-ai/schemastery": "3.18.3",
     "zod": "4.4.3"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.2",
-    "@deepseek-ai/dsh-storage-domain": "^0.1.6-alpha.2"
+    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/dsh-storage-domain": "0.1.7-alpha.1"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.2",
-    "@deepseek-ai/dsh-storage-domain": "0.1.6-alpha.2",
+    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/dsh-storage-domain": "0.1.7-alpha.1",
     "@types/node": "22.19.0",
     "workdsh-contracts": "workspace:*"
   }

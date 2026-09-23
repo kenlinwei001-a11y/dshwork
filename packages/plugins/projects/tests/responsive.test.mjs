@@ -15,7 +15,7 @@ test('project workspace uses a responsive configuration drawer without collabora
     await page.setContent(markup);
     const wide = await page.locator('.wd-p-aside').evaluate(node => ({ position: getComputedStyle(node).position, width: node.getBoundingClientRect().width }));
     assert.equal(wide.position, 'static');
-    assert.ok(wide.width >= 350);
+    assert.ok(wide.width >= 260 && wide.width <= 320, 'compact configuration leaves room for project content');
     assert.equal(await page.getByRole('button', { name: '邀请', exact: true }).count(), 0);
     assert.equal(await page.locator('.wd-p-tabs button').allTextContents().then(rows => rows.join(',')), '活动记录,计划,任务,资产');
     assert.equal(await page.locator('textarea').inputValue(), '保留的项目草稿');

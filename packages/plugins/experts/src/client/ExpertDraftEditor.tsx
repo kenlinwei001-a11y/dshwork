@@ -1,3 +1,4 @@
+import { Button, Select, Textarea, Input } from 'workdsh-ui';
 import * as React from 'react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Modal } from 'workdsh-ui';
@@ -186,8 +187,8 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <h4>草稿冲突</h4>
         <p className="muted">服务端已有更新的草稿。你可以保留当前修改并覆盖，或加载最新版本（将丢弃未保存的本地修改）。</p>
         <div className="conflict-actions">
-          <button onClick={() => { setExpertRevision(conflict.latestExpertRevision); setConflict(undefined); void save(form, conflict.latestExpertRevision); }}>保留我的并覆盖</button>
-          <button onClick={() => { setForm(conflict.latest); setBaseline(JSON.stringify(conflict.latest)); setExpertRevision(conflict.latestExpertRevision); setDraftRevision(conflict.latestDraftRevision); setConflict(undefined); setError(''); }}>加载最新版本</button>
+          <Button onClick={() => { setExpertRevision(conflict.latestExpertRevision); setConflict(undefined); void save(form, conflict.latestExpertRevision); }}>保留我的并覆盖</Button>
+          <Button onClick={() => { setForm(conflict.latest); setBaseline(JSON.stringify(conflict.latest)); setExpertRevision(conflict.latestExpertRevision); setDraftRevision(conflict.latestDraftRevision); setConflict(undefined); setError(''); }}>加载最新版本</Button>
         </div>
       </div>}
 
@@ -201,9 +202,9 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
       {(form.packageDocuments || form.agentDocument) ? <section className="group">
         <h3>专家制作文件</h3>
         <p className="hint">编辑完整角色说明和专业资源；保存时一起校验，发布后作为同一作品使用。</p>
-        {form.packageDocuments && <select aria-label="选择制作文件" value={selectedFile || Object.keys(form.packageDocuments)[0]} onChange={event => setSelectedFile(event.currentTarget.value)}>
+        {form.packageDocuments && <Select aria-label="选择制作文件" value={selectedFile || Object.keys(form.packageDocuments)[0]} onChange={event => setSelectedFile(event.currentTarget.value)}>
           {Object.keys(form.packageDocuments).map(path => <option key={path} value={path}>{path}</option>)}
-        </select>}
+        </Select>}
         {form.packageDocuments && <div>
           <label>添加或替换资源文件<input type="file" onChange={async event => {
             const file = event.currentTarget.files?.[0];
@@ -225,7 +226,7 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
             {path.startsWith('avatars/') && <img alt={path} src={`data:${path.endsWith('.jpg') || path.endsWith('.jpeg') ? 'image/jpeg' : path.endsWith('.webp') ? 'image/webp' : 'image/png'};base64,${asset.base64}`} style={{ width: 112, height: 112, objectFit: 'cover', borderRadius: 12 }} />}
           </div>)}</div>
         </div>}
-        <textarea aria-label="完整制作文件内容" rows={24} style={{ width: '100%', fontFamily: 'monospace' }}
+        <Textarea aria-label="完整制作文件内容" rows={24} style={{ width: '100%', fontFamily: 'monospace' }}
           value={form.packageDocuments ? form.packageDocuments[selectedFile || Object.keys(form.packageDocuments)[0]] : form.agentDocument}
           onChange={event => form.packageDocuments ? set('packageDocuments', { ...form.packageDocuments, [selectedFile || Object.keys(form.packageDocuments)[0]]: event.currentTarget.value }) : set('agentDocument', event.currentTarget.value)} />
       </section> : <>
@@ -234,22 +235,22 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <h3>基本信息</h3>
         <div className={`field ${nameInvalid ? 'invalid' : ''}`}>
           <label htmlFor="ex-name">名称 <Counter value={form.name.length} max={EXPERT_LIMITS.nameMax} /></label>
-          <input id="ex-name" value={form.name} maxLength={EXPERT_LIMITS.nameMax + 20} onChange={event => set('name', event.currentTarget.value)} placeholder="例如：合同审查专家" />
+          <Input id="ex-name" value={form.name} maxLength={EXPERT_LIMITS.nameMax + 20} onChange={event => set('name', event.currentTarget.value)} placeholder="例如：合同审查专家" />
           {nameInvalid && <p className="field-error">名称为必填，且不超过 {EXPERT_LIMITS.nameMax} 个字符。</p>}
         </div>
         <div className={`field ${descInvalid ? 'invalid' : ''}`}>
           <label htmlFor="ex-desc">简介 <Counter value={form.description.length} max={EXPERT_LIMITS.descriptionMax} /></label>
-          <textarea id="ex-desc" value={form.description} onChange={event => set('description', event.currentTarget.value)} placeholder="一句话说明这个专家能帮你做什么" />
+          <Textarea id="ex-desc" value={form.description} onChange={event => set('description', event.currentTarget.value)} placeholder="一句话说明这个专家能帮你做什么" />
           {descInvalid && <p className="field-error">简介不超过 {EXPERT_LIMITS.descriptionMax} 个字符。</p>}
         </div>
         <div className="field">
           <label>标签（最多 {EXPERT_LIMITS.tagsMax} 个，每个 ≤20 字）</label>
           <div className="list-editor tag-editor">
             {form.tags.map((tag, index) => <div className="list-row" key={index}>
-              <input value={tag} maxLength={20} aria-label={`标签 ${index + 1}`} onChange={event => set('tags', form.tags.map((t, i) => (i === index ? event.currentTarget.value : t)))} />
-              <button className="remove" aria-label={`删除标签 ${index + 1}`} onClick={() => set('tags', form.tags.filter((_, i) => i !== index))}>删除</button>
+              <Input value={tag} maxLength={20} aria-label={`标签 ${index + 1}`} onChange={event => set('tags', form.tags.map((t, i) => (i === index ? event.currentTarget.value : t)))} />
+              <Button variant="ghost" size="sm" className="remove" aria-label={`删除标签 ${index + 1}`} onClick={() => set('tags', form.tags.filter((_, i) => i !== index))}>删除</Button>
             </div>)}
-            {form.tags.length < EXPERT_LIMITS.tagsMax && <button className="add-row" onClick={() => set('tags', [...form.tags, ''])}>+ 添加标签</button>}
+            {form.tags.length < EXPERT_LIMITS.tagsMax && <Button className="add-row" onClick={() => set('tags', [...form.tags, ''])}>+ 添加标签</Button>}
           </div>
         </div>
       </section>
@@ -258,11 +259,11 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <h3>专业角色与方法</h3>
         <div className="field">
           <label htmlFor="ex-role">专业角色 <Counter value={form.role.length} max={EXPERT_LIMITS.proseMax} /></label>
-          <textarea id="ex-role" className="prose" value={form.role} onChange={event => set('role', event.currentTarget.value)} placeholder="这个专家是谁、具备哪些专业背景与判断标准" />
+          <Textarea id="ex-role" className="prose" value={form.role} onChange={event => set('role', event.currentTarget.value)} placeholder="这个专家是谁、具备哪些专业背景与判断标准" />
         </div>
         <div className="field">
           <label htmlFor="ex-method">工作方法 <Counter value={form.methodology.length} max={EXPERT_LIMITS.proseMax} /></label>
-          <textarea id="ex-method" className="prose" value={form.methodology} onChange={event => set('methodology', event.currentTarget.value)} placeholder="完成任务时遵循的步骤、方法与产出结构" />
+          <Textarea id="ex-method" className="prose" value={form.methodology} onChange={event => set('methodology', event.currentTarget.value)} placeholder="完成任务时遵循的步骤、方法与产出结构" />
         </div>
       </section>
 
@@ -270,11 +271,11 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <h3>交付要求</h3>
         <div className="field">
           <label htmlFor="ex-bound">边界与约束 <Counter value={form.boundaries.length} max={EXPERT_LIMITS.proseMax} /></label>
-          <textarea id="ex-bound" className="prose" value={form.boundaries} onChange={event => set('boundaries', event.currentTarget.value)} placeholder="不做什么、何时交回用户、需要遵守的约束" />
+          <Textarea id="ex-bound" className="prose" value={form.boundaries} onChange={event => set('boundaries', event.currentTarget.value)} placeholder="不做什么、何时交回用户、需要遵守的约束" />
         </div>
         <div className="field">
           <label htmlFor="ex-deliver">交付物 <Counter value={form.deliverables.length} max={EXPERT_LIMITS.proseMax} /></label>
-          <textarea id="ex-deliver" className="prose" value={form.deliverables} onChange={event => set('deliverables', event.currentTarget.value)} placeholder="最终交付的格式、内容与质量标准" />
+          <Textarea id="ex-deliver" className="prose" value={form.deliverables} onChange={event => set('deliverables', event.currentTarget.value)} placeholder="最终交付的格式、内容与质量标准" />
         </div>
       </section>
 
@@ -284,10 +285,10 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <div className="list-editor">
           {form.skillRequirements.map((req, index) => <div className="equipped-row" key={req.skillId ?? req.name}>
             <strong>{req.name}</strong>
-            <button className="remove" aria-label={`删除依赖 ${index + 1}`} onClick={() => set('skillRequirements', form.skillRequirements.filter((_, i) => i !== index))}>移除</button>
+            <Button variant="ghost" size="sm" className="remove" aria-label={`删除依赖 ${index + 1}`} onClick={() => set('skillRequirements', form.skillRequirements.filter((_, i) => i !== index))}>移除</Button>
           </div>)}
           {!form.skillRequirements.length && <p className="hint">尚未配备技能。</p>}
-          {!pickerOpen && <button className="add-row" onClick={() => setPickerOpen(true)}>+ 添加技能</button>}
+          {!pickerOpen && <Button className="add-row" onClick={() => setPickerOpen(true)}>+ 添加技能</Button>}
         </div>
         {pickerOpen && <SkillPicker expertId={expertId} management={management} selected={form.skillRequirements} onCancel={() => setPickerOpen(false)} onConfirm={value => { set('skillRequirements', value); setPickerOpen(false); }} />}
       </section>
@@ -296,11 +297,11 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
         <h3>示例任务（最多 {EXPERT_LIMITS.examplesMax} 条）</h3>
         <div className="list-editor">
           {form.examples.map((example, index) => <div className="example-editor-row" key={example.id || index}>
-            <input value={example.title} aria-label={`示例 ${index + 1} 标题`} placeholder="示例标题（可选）" onChange={event => set('examples', form.examples.map((e, i) => (i === index ? { ...e, title: event.currentTarget.value } : e)))} />
-            <textarea value={example.prompt} aria-label={`示例 ${index + 1} 内容`} placeholder="点击示例即可用它召唤专家（仅填入草稿）" maxLength={2000} onChange={event => set('examples', form.examples.map((e, i) => (i === index ? { ...e, prompt: event.currentTarget.value } : e)))} />
-            <button className="remove" aria-label={`删除示例 ${index + 1}`} onClick={() => set('examples', form.examples.filter((_, i) => i !== index))}>删除示例</button>
+            <Input value={example.title} aria-label={`示例 ${index + 1} 标题`} placeholder="示例标题（可选）" onChange={event => set('examples', form.examples.map((e, i) => (i === index ? { ...e, title: event.currentTarget.value } : e)))} />
+            <Textarea value={example.prompt} aria-label={`示例 ${index + 1} 内容`} placeholder="点击示例即可用它召唤专家（仅填入草稿）" maxLength={2000} onChange={event => set('examples', form.examples.map((e, i) => (i === index ? { ...e, prompt: event.currentTarget.value } : e)))} />
+            <Button variant="ghost" size="sm" className="remove" aria-label={`删除示例 ${index + 1}`} onClick={() => set('examples', form.examples.filter((_, i) => i !== index))}>删除示例</Button>
           </div>)}
-          {form.examples.length < EXPERT_LIMITS.examplesMax && <button className="add-row" onClick={() => set('examples', [...form.examples, { id: '', title: '', prompt: '' }])}>+ 添加示例任务</button>}
+          {form.examples.length < EXPERT_LIMITS.examplesMax && <Button className="add-row" onClick={() => set('examples', [...form.examples, { id: '', title: '', prompt: '' }])}>+ 添加示例任务</Button>}
         </div>
       </section>
       </>}
@@ -308,9 +309,9 @@ export function ExpertDraftEditor({ expertId, management, onClose, onSaved, onPu
 
     <div className="editor-foot">
       {dirty ? <span className="saved-at">有未保存的修改</span> : <span className="saved-at">{savedAt ? '全部已保存' : '尚未修改'}</span>}
-      <button onClick={onClose}>取消</button>
-      <button onClick={onSave} disabled={saving || !dirty}>{saving ? '正在保存…' : '保存草稿'}</button>
-      <button className="primary" onClick={() => void onPublish()} disabled={saving || nameInvalid}>{saving ? '正在处理…' : '发布'}</button>
+      <Button onClick={onClose}>取消</Button>
+      <Button onClick={onSave} disabled={saving || !dirty}>{saving ? '正在保存…' : '保存草稿'}</Button>
+      <Button variant="primary" className="primary" onClick={() => void onPublish()} disabled={saving || nameInvalid}>{saving ? '正在处理…' : '发布'}</Button>
     </div>
   </Modal>;
 }

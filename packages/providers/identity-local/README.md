@@ -1,6 +1,6 @@
 # 本地身份提供方
 
-状态：**0.1 实现中**。`0.1.0-alpha.5` 已提供可信单用户 Profile 的 Cordis Host 服务，并通过 Harness 官方 Storage Domain 持久化身份、个人组织和 owner 成员关系；统一成员查询供 Access 消费。
+状态：**0.1 实现中**。`0.1.0-alpha.6` 已提供可信单用户 Profile 的 Cordis Host 服务，并通过 Harness 官方 Storage Domain 持久化身份、个人组织和 owner 成员关系；统一成员查询供 Access 消费。
 
 - 实现阶段：P0/P1
 - 主任务：P0-05，详见 [开发计划](../../../docs/PLAN.md)

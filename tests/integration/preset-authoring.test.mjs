@@ -1,34 +1,53 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { discoverPresets, copyComposition, COMPOSITION_FILE } from '@deepseek-ai/dsh-agent-presets';
+import { dirname, join } from 'node:path';
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+import { Context } from '@deepseek-ai/cordis';
+import { AgentPresetRegistry } from '@deepseek-ai/dsh-agent-preset-registry';
+import { compileExpertPreset, registerExpertPreset } from '../../packages/plugins/experts/dist/runtime/preset-compiler.js';
+const require = createRequire(import.meta.url);
+const harnessRequire = createRequire(require.resolve('@deepseek-ai/dsh/package.json'));
+const { default: Loader } = await import(pathToFileURL(harnessRequire.resolve('@deepseek-ai/cordis-plugin-loader')).href);
 
-test('published preset discovery and copying preserve resources without overwriting or escaping roots', async () => {
- const root=await mkdtemp(join(tmpdir(),'workdsh-presets-'));
- try {
-  const sourceRoot=join(root,'system'), userRoot=join(root,'user');
-  await mkdir(join(sourceRoot,'baseline','skills','sample'),{recursive:true});
-  await mkdir(userRoot);
-  await writeFile(join(sourceRoot,'baseline',COMPOSITION_FILE),'[]\n');
-  await writeFile(join(sourceRoot,'baseline','skills','sample','SKILL.md'),'# Sample\nFixture only.\n');
-  const roots=[{path:sourceRoot,trust:'system'},{path:userRoot,trust:'user'}];
-  const base=import.meta.url;
-  const [baseline]=await discoverPresets(roots,base);
-  assert.equal(baseline.id,'baseline');assert.equal(baseline.broken,undefined);
-  await copyComposition(roots,baseline,'workdsh-a','WorkDSH A');
-  await copyComposition(roots,baseline,'workdsh-b','WorkDSH B');
-  let rows=await discoverPresets(roots,base);
-  assert.equal(rows.length,3);assert.equal(rows.find(r=>r.id==='workdsh-a').name,'WorkDSH A');
-  assert.equal(await readFile(join(userRoot,'workdsh-a','skills','sample','SKILL.md'),'utf8'),'# Sample\nFixture only.\n');
-  await assert.rejects(copyComposition(roots,baseline,'workdsh-a'));
-  await assert.rejects(copyComposition(roots,baseline,'../escape'));
-  await writeFile(join(userRoot,'workdsh-a','skills','sample','SKILL.md'),'Changed A');
-  assert.equal(await readFile(join(userRoot,'workdsh-b','skills','sample','SKILL.md'),'utf8'),'# Sample\nFixture only.\n');
-  await mkdir(join(userRoot,'broken'));
-  await writeFile(join(userRoot,'broken',COMPOSITION_FILE),'not: a-plugin-list\n');
-  rows=await discoverPresets(roots,base);
-  assert.ok(rows.find(r=>r.id==='broken').broken,'invalid composition remains visible with reason');
- } finally {await rm(root,{recursive:true,force:true})}
+test('published registry registers frozen expert declaration and restores it after disposal', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'workdsh-presets-'));
+  const oldHome = process.env.DSH_AGENTS_HOME;
+  process.env.DSH_AGENTS_HOME = root;
+  const contexts = [];
+  async function boot() {
+    const ctx = new Context(); ctx.baseUrl = pathToFileURL(dirname(require.resolve('@deepseek-ai/dsh/package.json')) + '/').href; contexts.push(ctx);
+    await ctx.plugin(Loader, { baseUrl: pathToFileURL(dirname(require.resolve('@deepseek-ai/dsh/package.json')) + '/').href });
+    for (const name of ['dsh-session', 'dsh-session-projection', 'dsh-system-prompt', 'dsh-tools', 'dsh-llm', 'dsh-agent', 'dsh-skill']) await ctx.loader.create({name: '@deepseek-ai/' + name});
+    await ctx.plugin(AgentPresetRegistry, { default: 'standard' });
+    await ctx.loader.create({ name: '@deepseek-ai/dsh-agent-preset', config: { id: 'standard', plugins: [] } });
+    return ctx;
+  }
+  try {
+    const ctx = await boot();
+    const input = { expertId: 'declarative', basePresetId: 'standard', snapshotDirs: [], definition: {name:'Frozen expert', description:'Fixture', role:'ROLE_ONE', methodology:'Verify', boundaries:'No invention', deliverables:'Result', tags:[], examples:[], skillRequirements:[], futureRequirements:[]} };
+    assert.ok(ctx.systemPrompt, 'systemPrompt available');
+    const results = await Promise.all([compileExpertPreset(ctx, input), compileExpertPreset(ctx, input)]);
+    assert.equal(results.filter(result => result.created).length, 1);
+    const compiled = results[0];
+    const resolved = await ctx.agentPresets.resolve(compiled.presetId);
+    assert.equal(resolved.id, compiled.presetId);
+    assert.equal(resolved.broken, undefined, JSON.stringify(resolved));
+    assert.equal((await ctx.agentPresets.list()).find(row => row.id === compiled.presetId).name, 'Frozen expert');
+    const before = await readFile(join(compiled.presetDir, 'preset.json'), 'utf8');
+    const repeated = await compileExpertPreset(ctx, input);
+    assert.equal(repeated.created, false);
+    await ctx.fiber.dispose();
+    const restored = await boot();
+    await registerExpertPreset(restored, compiled.presetId, compiled.compositionDigest);
+    assert.equal((await restored.agentPresets.resolve(compiled.presetId)).broken, undefined);
+    assert.equal(await readFile(join(compiled.presetDir, 'preset.json'), 'utf8'), before);
+    await assert.rejects(registerExpertPreset(restored, compiled.presetId, 'wrong'), error => error.code === 'experts/preset-drift');
+  } finally {
+    for (const ctx of contexts) await ctx.fiber.dispose();
+    if (oldHome === undefined) delete process.env.DSH_AGENTS_HOME; else process.env.DSH_AGENTS_HOME = oldHome;
+    await rm(root, {recursive:true, force:true});
+  }
 });

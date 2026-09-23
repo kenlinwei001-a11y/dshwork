@@ -22,7 +22,7 @@
 
 开始模块开发时，必须在 `docs/modules.json` 写入 `moduleVersion`；模块 README、package.json、CHANGELOG、证据和 STATUS 使用同一版本线。`check:plan` 会验证模块版本格式、当前活动切片的版本声明，以及 package.json 的 major/minor 是否匹配。
 
-## 当前版本线（2026-09-18）
+## 当前版本线（2026-09-22）
 
 当前安装包版本与模块实现状态分别列出；公开发行范围以[发行回执](releases/2026-09-14-development-candidate.md)为准，当前待验收项见[STATUS](STATUS.md)。每周排期见[周计划](WEEKLY-RELEASE-PLAN.md)，不要求模块锁步升级。
 
@@ -30,18 +30,18 @@
 | --- | --- | --- | --- |
 | 领域公开契约 | 0.1 | `workdsh-contracts@0.1.0-alpha.9` | implemented |
 | 共享展示组件 | 0.1 | `workdsh-ui@0.1.0-alpha.6` | implemented |
-| 默认组合包 | 0.1 | `workdsh-bundle@0.1.0-alpha.47` | in_progress |
-| 工作台 | 0.1 | `workdsh-plugin-workbench@0.1.0-alpha.11` | implemented |
-| 专家管理 | 0.1 | `workdsh-plugin-experts@0.1.0-alpha.7` | in_progress |
-| 技能管理 | 0.1 | `workdsh-plugin-skills@0.1.0-alpha.31` | implemented |
-| 资源授权 | 0.1 | `workdsh-plugin-access@0.1.0-alpha.5` | implemented |
-| 审计 | 0.1 | `workdsh-plugin-audit@0.1.0-alpha.4` | implemented |
-| 本地身份提供方 | 0.1 | `workdsh-provider-identity-local@0.1.0-alpha.5` | implemented |
-| Office 浏览器编辑插件 | 0.1 | `workdsh-plugin-office@0.1.0-alpha.7` | in_progress |
-| 协作与活动展示 | 0.1 | `workdsh-plugin-activity@0.1.0-alpha.4` | in_progress |
-| 项目管理 | 0.1 | `workdsh-plugin-projects@0.1.0-alpha.2` | in_progress |
-| 资料库 | 0.1 | `workdsh-plugin-library@0.1.0-alpha.2` | implemented |
-| 连接器管理 | 0.1 | `workdsh-plugin-connectors@0.1.0-alpha.2` | in_progress |
+| 默认组合包 | 0.1 | `workdsh-bundle@0.1.0-alpha.48` | in_progress |
+| 工作台 | 0.1 | `workdsh-plugin-workbench@0.1.0-alpha.12` | implemented |
+| 专家管理 | 0.1 | `workdsh-plugin-experts@0.1.0-alpha.8` | in_progress |
+| 技能管理 | 0.1 | `workdsh-plugin-skills@0.1.0-alpha.32` | implemented |
+| 资源授权 | 0.1 | `workdsh-plugin-access@0.1.0-alpha.6` | implemented |
+| 审计 | 0.1 | `workdsh-plugin-audit@0.1.0-alpha.5` | implemented |
+| 本地身份提供方 | 0.1 | `workdsh-provider-identity-local@0.1.0-alpha.6` | implemented |
+| Office 浏览器编辑插件 | 0.1 | `workdsh-plugin-office@0.1.0-alpha.8` | in_progress |
+| 协作与活动展示 | 0.1 | `workdsh-plugin-activity@0.1.0-alpha.5` | in_progress |
+| 项目管理 | 0.1 | `workdsh-plugin-projects@0.1.0-alpha.3` | in_progress |
+| 资料库 | 0.1 | `workdsh-plugin-library@0.1.0-alpha.3` | implemented |
+| 连接器管理 | 0.1 | `workdsh-plugin-connectors@0.1.0-alpha.3` | in_progress |
 
 2026-09-18 更新：bundle、experts、skills、office、activity、projects、library 跟随 DSH 0.1.6-alpha.2 升级 bump；contracts 补 bump α.9（补记 2026-09-17 项目任务上下文只读契约 `ProjectTaskContext`/`taskContext`，属兼容补全）；experts/office/activity 同时携带其未发布批次；公开发行仍以上次 prerelease 为准。
 
@@ -67,3 +67,5 @@
 | 默认组合包 | 0.1 | `workdsh-bundle@0.1.0-alpha.39` | 集成版本；工作台以子插件组合，Skill 为显式独立 Profile 层 |
 
 专家、连接器、资料库等 planned 模块在开始实际开发时再建立各自版本线，不为占位目录虚构版本。
+
+2026-09-22：上述底座依赖发生变化的模块递增 alpha；属于本地未发布升级，验证范围见 DSH-0.1.7-UPGRADE-PLAN.md。

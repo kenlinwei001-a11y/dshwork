@@ -14,13 +14,13 @@ import * as JsonStorage from '@deepseek-ai/dsh-storage-json';
 import * as StorageDomain from '@deepseek-ai/dsh-storage-domain';
 import SkillRegistry from '@deepseek-ai/dsh-skill';
 import * as filesystem from '@deepseek-ai/dsh-skill-filesystem';
-import * as presets from '@deepseek-ai/dsh-agent-presets';
+
 import { AccessManager } from '../../packages/plugins/access/dist/index.js';
 import { AuditJournal } from '../../packages/plugins/audit/dist/index.js';
 import { SkillManager } from '../../packages/plugins/skills/dist/index.js';
 import { ExpertsManager } from '../../packages/plugins/experts/dist/index.js';
 import { registerExpertExecutionGuard } from '../../packages/plugins/experts/dist/runtime/execution-guard.js';
-import { COMPILER_VERSION, compileExpertPreset, expertPersonaConfig } from '../../packages/plugins/experts/dist/runtime/preset-compiler.js';
+import { COMPILER_VERSION, compileExpertPreset, expertPersonaConfig, expertPresetDir, readExpertPreset } from '../../packages/plugins/experts/dist/runtime/preset-compiler.js';
 import { definitionFromDocuments } from '../../packages/plugins/experts/dist/authoring/documents.js';
 import { keys } from '../../packages/plugins/experts/dist/storage/domain.js';
 
@@ -36,7 +36,7 @@ test('authored expert package publishes complete MD and mounts retained bundled 
     const request = await h.experts.requestPublishConfirmation(a, draft.expertId, draft.revision);
     const proof = await h.experts.confirmPublish(a, request.confirmationToken);
     const receipt = await h.experts.publish(a, draft.expertId, draft.revision, validation.dependencyLockDigest, proof, { operationId: 'package-publish' });
-    const composition = await h.ctx.agentPresets.read(receipt.presetRevisionRef);
+    const composition = await readExpertPreset(receipt.presetRevisionRef);
     assert.match(composition, /Complete independent Agent Markdown/);
     assert.match(composition, /expert-package\/skills\/bundled-method/);
     const published = await h.experts.get(a, draft.expertId);
@@ -50,7 +50,7 @@ test('authored expert package publishes complete MD and mounts retained bundled 
     assert.match(updated.definition.agentDocument, /Updated independent/);
     assert.match(updated.definition.methodology, /Updated independent/);
     assert.match((await h.experts.get(a, draft.expertId)).revision.definition.agentDocument, /Complete independent/);
-    const root = h.ctx.agentPresets.roots.find(root => root.trust === 'user').path;
+    const root = dirname(expertPresetDir(receipt.presetRevisionRef));
     const cli = join(root, receipt.presetRevisionRef, 'expert-package/bin/inspect');
     assert.deepEqual(await readFile(cli), Buffer.from(assets['bin/inspect'].base64, 'base64'));
     assert.ok((await stat(cli)).mode & 0o111);
@@ -171,23 +171,17 @@ async function boot(existingRoot) {
     await ctx.plugin(filesystem, { dshHome, agentsHome, watch: false });
     new SkillManager(ctx);
 
-    const roots = [
-      { path: presets.SHIPPED_PRESET_ROOT, trust: 'system' },
-      { path: userPresetRoot, trust: 'user' },
-    ];
+    const definitions = new Map([['standard', { id: 'standard', plugins: [] }], ['ptc', { id: 'ptc', plugins: [] }]]);
+    ctx.provide('loader', { *entries() { yield { disabled: false, options: { name: '@deepseek-ai/dsh-agent-preset', config: definitions.get('standard') } }; } });
     ctx.provide('agentPresets', {
-      get authorable() { return true; },
-      get roots() { return roots; },
       get defaultId() { return 'standard'; },
-      async list() { return presets.discoverPresets(roots, HARNESS_BASE); },
-      async resolve(id) {
-        const want = id ?? 'standard';
-        const row = (await this.list()).find((preset) => preset.id === want);
-        if (!row) throw Object.assign(new Error(`agent-preset/not-found: ${want}`), { code: 'agent-preset/not-found' });
+      async register(definition) { definitions.set(definition.id, definition); return async () => { definitions.delete(definition.id); }; },
+      async list() { return [...definitions.values()].map(({ id, name }) => ({ id, name })); },
+      async resolve(id = 'standard') {
+        const row = (await this.list()).find(row => row.id === id);
+        if (!row) throw Object.assign(new Error(`agent-preset/not-found: ${id}`), { code: 'agent-preset/not-found' });
         return row;
       },
-      async read(id) { return presets.readComposition(await this.resolve(id)); },
-      async copy(from, id, name) { return presets.copyComposition(roots, await this.resolve(from), id, name); },
     });
     ctx.provide('sessionController', {
       async inspect(sessionId) { throw Object.assign(new Error(`session/not-found: ${sessionId}`), { code: 'session/not-found' }); },
@@ -634,8 +628,8 @@ test('G03 native pre-step checks the actual immutable composition and rejects un
     await assert.rejects(admit('fork-unbound', created.binding.presetRevisionRef), error => error.code === 'experts/not-found');
     await assert.rejects(admit(created.sessionId, 'standard'), error => error.code === 'experts/conflict');
     const preset = await h.ctx.agentPresets.resolve(created.binding.presetRevisionRef);
-    const composition = preset.path;
-    const original = await h.ctx.agentPresets.read(created.binding.presetRevisionRef);
+    const composition = join(expertPresetDir(preset.id), 'preset.json');
+    const original = await readExpertPreset(created.binding.presetRevisionRef);
     await writeFile(composition, original + '\n# external mutation\n');
     await assert.rejects(admit(created.sessionId, created.binding.presetRevisionRef), error => error.code === 'experts/conflict');
   } finally { await h.cleanup(); }
@@ -649,8 +643,8 @@ test('G01 compiling identical content reuses the preset and refuses existing dri
     const second = await compileExpertPreset(h.ctx, input);
     assert.equal(second.created, false);
     assert.equal(second.compositionDigest, first.compositionDigest);
-    await writeFile(join(first.presetDir, presets.COMPOSITION_FILE), '[]\n');
-    await assert.rejects(compileExpertPreset(h.ctx, input), error => error.code === 'experts/preset-broken');
+    await writeFile(join(first.presetDir, 'preset.json'), '[]\n');
+    await assert.rejects(compileExpertPreset(h.ctx, input), error => error.code === 'experts/preset-drift');
   } finally { await h.cleanup(); }
 });
 
@@ -725,11 +719,11 @@ test('published expert persona and frozen Skill reach the official Agent Loop wi
       skillRequirements: [{ name: 'sample-skill' }],
     });
     const detail = await h.experts.get(a, expertId);
-    const text = await h.ctx.agentPresets.read(detail.revision.presetRevisionRef);
+    const text = await readExpertPreset(detail.revision.presetRevisionRef);
     const packageRequire = createRequire(new URL('package.json', HARNESS_BASE));
     const expertRequire = createRequire(new URL('../../packages/plugins/experts/package.json', import.meta.url));
     const { parseDocument } = expertRequire('yaml');
-    const rows = parseDocument(text).toJS();
+    const rows = JSON.parse(text).plugins;
     const personaConfig = rows.find(row => row.name === '@deepseek-ai/dsh-persona').config;
     const skillConfig = rows.find(row => row.name === '@deepseek-ai/dsh-skill-filesystem').config;
     const persona = await import(pathToFileURL(packageRequire.resolve('@deepseek-ai/dsh-persona')).href);
@@ -899,7 +893,7 @@ test('complete authored team publishes once with fixed hidden member revisions',
     assert.equal(plan.expertRevisionRef.revisionId, migrated.revision.revisionId);
     assert.notEqual(plan.presetRevisionRef, 'standard');
     assert.equal(h.experts.revisionsTable().get(keys.revision(draft.expertId, legacyRevisionId)).compilerVersion, 'workdsh-expert-compiler/0.2-legacy-team');
-    assert.doesNotMatch(await h.ctx.agentPresets.read(plan.presetRevisionRef), /workdsh_expert_team_/);
+    assert.doesNotMatch(await readExpertPreset(plan.presetRevisionRef), /workdsh_expert_team_/);
     const execution = await h.experts.createExecution(a, plan.executionPlanId, { operationId: 'native-asset-binding' });
     assert.equal((await h.experts.resolveNativeRole(a, execution.sessionId, 'analyst')).revision.revisionId, migrated.revision.teamMembers.analyst.revisionId);
     await h.experts.setAvailability(a, draft.expertId, 'disabled', { operationId: 'native-team-disable' });
@@ -911,4 +905,35 @@ test('complete authored team publishes once with fixed hidden member revisions',
     try { assert.deepEqual((await cold.experts.get(a, draft.expertId)).revision.teamMembers, migrated.revision.teamMembers); }
     finally { await cold.cleanup(); }
   } finally { await h.cleanup(); }
+});
+
+test('0.1.7 legacy directory expert stays immutable, blocks execution, and can be explicitly republished', async () => {
+ const h = await boot();
+ try {
+  const a = actor('owner-a');
+  const {expertId} = await publishCopyOfDefault(h,a,'legacy017');
+  const detail = await h.experts.get(a,expertId);
+  const legacy = {...detail.revision, revisionId:'legacy-directory-017', presetRevisionRef:'wd-exp-legacy-directory-017', compilerVersion:'workdsh-expert-compiler/0.3', compositionDigest:'legacy-digest'};
+  await h.experts.revisionsTable().put(keys.revision(expertId,legacy.revisionId),legacy);
+  await h.experts.expertsTable().update(keys.expert(expertId), row=>({...row,publishedRevisionRef:{expertId,revisionId:legacy.revisionId}}));
+  const cold = await boot(h.root);
+  try {
+   assert.notEqual((await cold.experts.get(a,expertId)).readiness,'ready');
+   const blocked = await cold.experts.prepareExecution(a,expertId);
+   assert.ok(blocked.missing.some(issue=>issue.code==='experts/preset-broken'));
+   await assert.rejects(cold.experts.createExecution(a,blocked.executionPlanId,{operationId:'legacy017-blocked'}));
+   assert.deepEqual(cold.experts.revisionsTable().get(keys.revision(expertId,legacy.revisionId)),legacy);
+   const draft = await cold.experts.updateDraft(a,expertId,{description:'Explicit 0.1.7 publication'},{operationId:'legacy017-edit'});
+   const validation = await cold.experts.validate(a,expertId,draft.revision);
+   assert.equal(validation.publishable,true);
+   const request = await cold.experts.requestPublishConfirmation(a,expertId,draft.revision);
+   const proof = await cold.experts.confirmPublish(a,request.confirmationToken);
+   await cold.experts.publish(a,expertId,draft.revision,validation.dependencyLockDigest,proof,{operationId:'legacy017-republish'});
+   const plan = await cold.experts.prepareExecution(a,expertId);
+   assert.notEqual(plan.expertRevisionRef.revisionId,legacy.revisionId);
+   const created = await cold.experts.createExecution(a,plan.executionPlanId,{operationId:'legacy017-create'});
+   assert.ok(created.sessionId);
+   assert.deepEqual(cold.experts.revisionsTable().get(keys.revision(expertId,legacy.revisionId)),legacy);
+  } finally {await cold.cleanup();}
+ } finally {await h.cleanup();}
 });

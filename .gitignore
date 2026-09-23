@@ -18,3 +18,6 @@ tmp/
 *.py[cod]
 
 packages/plugins/office/src/presentation/native-react/native.css
+
+# Locally generated task deliverables
+/output/

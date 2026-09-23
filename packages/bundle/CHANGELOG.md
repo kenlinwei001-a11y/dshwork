@@ -1,3 +1,7 @@
+## 0.1.0-alpha.48 — Unreleased（2026-09-22）
+
+- 适配 DeepSeek Harness 0.1.7-alpha.1、Cordis 4.0.3，更新精确依赖。
+
 # 0.1.0-alpha.47 — 2026-09-20
 
 - 修复设置页「外观」切换不生效：工作台客户端不再注册并强制 `workdsh` 深色主题、不再拦截 `theme/change`；外观改由官方 ThemeRuntime 与用户偏好驱动，浅色/深色/跟随系统切换即时生效，三个选项的选中态恢复显示。

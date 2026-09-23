@@ -29,7 +29,7 @@ export const name = 'workdsh-plugin-experts';
 
 /** Every service `apply` and `ExpertsManager` require, resolved before load. */
 export const inject = [
-  'storageDomain', 'agentPresets', 'sessionController',
+  'loader', 'storageDomain', 'agentPresets', 'sessionController',
   'workdshIdentity', 'workdshAccess', 'workdshAudit', 'workdshSessionAccess', 'workdshSkills',
   'connection', 'tools', 'skills', 'agents', 'agentTeams', 'sessionQuery', 'fs',
 ];

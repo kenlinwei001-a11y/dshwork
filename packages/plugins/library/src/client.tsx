@@ -18,7 +18,7 @@ import { LibraryPanel } from './client/LibraryPanel.js';
 import { LibraryPicker } from './client/LibraryPicker.js';
 import { LibraryReferencePage } from './client/LibraryReferencePage.js';
 import { createLibraryPreviewRegistry } from './client/preview-registry.js';
-import type { LibraryOriginalPreviewRegistry } from 'workdsh-contracts/library';
+import type { LibraryOriginalPreviewRegistry, LibraryComposerReference } from 'workdsh-contracts/library';
 
 declare module '@deepseek-ai/cordis' { interface Context { workdshLibraryPreview: LibraryOriginalPreviewRegistry; } }
 declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' { interface SidebarRightTabParamsMap { 'workdsh-library-preview': { assetId: string; revisionId: string; name: string; kind: string }; } }
@@ -37,7 +37,7 @@ export function apply(ctx: Context): void {
     const timer = window.setTimeout(() => { lifetime.signal.removeEventListener('abort', abort); resolve(); }, milliseconds);
     lifetime.signal.addEventListener('abort', abort, { once: true });
   });
-  type LibraryRef = { assetId: string; revisionId: string; nodeId: string; name: string; kind: string; sessionId?: string };
+  type LibraryRef = LibraryComposerReference;
   const encodeRef = (value: LibraryRef) => encodeURIComponent(JSON.stringify(value));
   const decodeRef = (value: string) => JSON.parse(decodeURIComponent(value)) as LibraryRef;
   const referenceOf = (value: LibraryRef): ReferenceInsert => ({ source: 'workdsh-library', ref: encodeRef(value), label: value.name, appearance: 'file', clipboardText: `@资料库/${value.name}` });

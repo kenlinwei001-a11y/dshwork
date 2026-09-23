@@ -1,3 +1,4 @@
+import { Textarea } from 'workdsh-ui';
 import * as React from 'react';
 import type { ExpertTeamDefinition } from '../shared.js';
 
@@ -11,7 +12,7 @@ export function TeamContent({ team, onChange }: { team?: ExpertTeamDefinition; o
     {team.members.map((member, index) => <details key={member.key} className="preview-settings">
       <summary>{member.definition.name} · {member.definition.description}</summary>
       {Object.entries(fields).map(([key, title]) => <div className="prose-block" key={key}><h4>{title}</h4>{onChange
-        ? <textarea aria-label={`${member.definition.name} ${title}`} className="prose" style={{ width: '100%', minHeight: 120 }} value={member.definition[key as keyof typeof fields]} onChange={event => onChange({ ...team, members: team.members.map((item, i) => i === index ? { ...item, definition: { ...item.definition, [key]: event.currentTarget.value } } : item) })} />
+        ? <Textarea aria-label={`${member.definition.name} ${title}`} className="prose" style={{ width: '100%', minHeight: 120 }} value={member.definition[key as keyof typeof fields]} onChange={event => onChange({ ...team, members: team.members.map((item, i) => i === index ? { ...item, definition: { ...item.definition, [key]: event.currentTarget.value } } : item) })} />
         : <p style={{ whiteSpace: 'pre-wrap' }}>{member.definition[key as keyof typeof fields]}</p>}</div>)}
       <p>配备技能：{member.definition.skillRequirements.map(skill => skill.name).join('、') || '未单独配备'}</p>
     </details>)}

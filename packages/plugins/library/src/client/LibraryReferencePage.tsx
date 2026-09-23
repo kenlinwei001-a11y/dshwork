@@ -43,9 +43,9 @@ export function LibraryReferencePage({ management, previewRegistry, useTabInfo }
     return () => { active = false; dispose(); };
   }, [office, previewRegistry]);
   useEffect(() => () => { if (url) URL.revokeObjectURL(url); }, [url]);
-  return <section style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#111214', color: '#eee' }}>
-    <header style={{ padding: '12px 16px', borderBottom: '1px solid #ffffff18', fontWeight: 600 }}>{params?.name ?? '资料预览'}</header>
-    <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>{error ? <div style={{ padding: 24, color: '#ff7b7b' }}>{error}</div> : html ? <iframe title={params?.name} sandbox="allow-scripts" srcDoc={isolateHtml(html)} style={{ width: '100%', height: '100%', border: 0, background: '#fff' }} /> : url ? <iframe title={params?.name} src={url} style={{ width: '100%', height: '100%', border: 0 }} /> : office ? <div ref={officeHost} style={{ height: '100%' }} /> : text ? <pre style={{ margin: 0, padding: 24, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontFamily: 'inherit', lineHeight: 1.7 }}>{text}</pre> : <div style={{ padding: 24, color: '#999' }}>正在读取资料…</div>}</div>
+  return <section aria-label="资料引用预览" style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--dsw-alias-bg-base)', color: 'var(--dsw-alias-label-primary)' }}>
+    <header style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--dsw-alias-border-l2)', fontWeight: 600 }}>{params?.name ?? '资料预览'}</header>
+    <div style={{ flex: 1, minHeight: 0, overflow: 'auto' }}>{error ? <div style={{ padding: 24, color: 'var(--dsw-alias-state-error-primary)' }}>{error}</div> : html ? <iframe title={params?.name} sandbox="allow-scripts" srcDoc={isolateHtml(html)} style={{ width: '100%', height: '100%', border: 0, background: '#fff' }} /> : url ? <iframe title={params?.name} src={url} style={{ width: '100%', height: '100%', border: 0 }} /> : office ? <div ref={officeHost} style={{ height: '100%' }} /> : text ? <pre style={{ margin: 0, padding: 24, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontFamily: 'inherit', lineHeight: 1.7 }}>{text}</pre> : <div style={{ padding: 24, color: 'var(--dsw-alias-label-tertiary)' }}>正在读取资料…</div>}</div>
   </section>;
 }
 

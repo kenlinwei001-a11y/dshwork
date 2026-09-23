@@ -145,3 +145,13 @@ export interface LibraryService {
   move(actor: ActorContext, nodeId: string, parentId: string | undefined, signal?: AbortSignal): Promise<LibraryNode>;
   remove(actor: ActorContext, nodeId: string, signal?: AbortSignal): Promise<void>;
 }
+
+/** Payload of the workdsh-library native input-trigger reference; URI-encoded JSON in ReferenceInsert.ref. */
+export interface LibraryComposerReference {
+  readonly assetId: string;
+  readonly revisionId: string;
+  readonly nodeId: string;
+  readonly name: string;
+  readonly kind: string;
+  readonly sessionId?: string;
+}

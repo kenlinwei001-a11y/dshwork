@@ -163,3 +163,6 @@ ProjectConnectorBinding 表示项目选择了某连接定义及授权方式，�
 ## 8. 审查后的执行边界
 
 连接绑定、交接清单及准备/领取重查、正文私有存储与受控副本、Host 自动化所有权遵循 [ADR-0007](adr/0007-execution-and-transfer-boundaries.md)。P1 交接界面只面向同主体，双主体服务测试不算真实多人功能交付。
+
+## 2026-09-22 项目执行目录修正
+新建项目任务由 Host 为当前组织/主体/项目解析独立目录，并通过官方 workspaceController.create/rename 幂等登记为项目同名原生工作区。禁止回退到当前 Session 或第一个 Workspace。目录在 DSH_HOME/workdsh-projects 下（无 DSH_HOME 时 ~/.workdsh/workdsh-projects）；身份与项目 ID 的哈希隔离目录，名称仅作为展示名。同名冲突加项目短 ID，不重命名其他空间。原生 Sidebar/Session 继续拥有分组和执行；历史会话不自动搬迁或改变 cwd。任务列表按创建时间降序。

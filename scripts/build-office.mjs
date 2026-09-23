@@ -51,7 +51,7 @@ const client = await build({
   write: false,
   format: "cjs",
   platform: "browser",
-  external: ["react", "react-dom", "react/jsx-runtime"],
+  external: ["@deepseek-ai/dsh-client-ui-primitives", "react", "react-dom", "react/jsx-runtime"],
   loader:{".css":"text"},
   define: { "process.env.NODE_ENV": '"production"', __WORKDSH_WORD_ONLY__: String(wordOnly) },
   plugins: [

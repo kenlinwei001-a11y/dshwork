@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -17,6 +17,7 @@ const profile = value('--profile', 'workdsh');
 const directory = resolve(value('--directory', dirname(fileURLToPath(import.meta.url))));
 const dsh = value('--dsh', 'dsh');
 const dryRun = has('--dry-run');
+const corepack = value('--corepack', 'corepack');
 const manifestPath = join(directory, 'release-manifest.json');
 
 if (!existsSync(manifestPath)) {
@@ -39,6 +40,8 @@ const installOrder = [
   'workdsh-plugin-connectors',
   'workdsh-plugin-activity',
   'workdsh-plugin-office',
+  'workdsh-plugin-library',
+  'workdsh-plugin-projects',
   'workdsh-bundle',
 ];
 
@@ -80,21 +83,92 @@ if (existsSync(profileManifest)) {
   execute(['--profile', profile, '--from-default-profile', 'web', '--dump-config']);
 }
 
+// Use the release's tested package manager rather than the machine's global pnpm.
+if (!dryRun && existsSync(profileManifest) && /^pnpm@\d+\.\d+\.\d+$/.test(manifest.packageManager ?? '')) {
+  const profilePackage = JSON.parse(readFileSync(profileManifest, 'utf8'));
+  profilePackage.packageManager = manifest.packageManager;
+  writeFileSync(profileManifest, JSON.stringify(profilePackage, null, 2) + '\n');
+}
+
 const workspaceFile = join(dshHome, 'profiles', profile, 'pnpm-workspace.yaml');
 if (!dryRun && existsSync(workspaceFile)) {
-  const current = readFileSync(workspaceFile, 'utf8');
-  if (!/^allowBuilds:/m.test(current)) {
-    writeFileSync(workspaceFile, `${current.trimEnd()}\n\nallowBuilds:\n  protobufjs: false\n`);
-  } else if (!/^\s{2}protobufjs:/m.test(current)) {
-    writeFileSync(workspaceFile, current.replace(/^allowBuilds:\s*$/m, 'allowBuilds:\n  protobufjs: false'));
+  let current = readFileSync(workspaceFile, 'utf8');
+  // Native helpers are required by the official runtime; the other two scripts
+  // are informational/no-op. Preserve any explicit decision made by the owner.
+  const defaults = {
+    '@deepseek-ai/dsh-subprocess-local': true,
+    '@google/genai': false,
+    koffi: true,
+    'node-pty': true,
+    protobufjs: false,
+  };
+  if (!/^allowBuilds:/m.test(current)) current = `${current.trimEnd()}\n\nallowBuilds:\n`;
+  for (const [name, allowed] of Object.entries(defaults)) {
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const row = new RegExp(`^  ['"]?${escaped}['"]?:[^\\n]*$`, 'm');
+    const existing = current.match(row)?.[0];
+    if (existing && /: (true|false)\s*$/.test(existing)) continue;
+    const decision = `  '${name}': ${allowed}`;
+    current = existing ? current.replace(row, decision) : current.replace(/^allowBuilds:\s*$/m, `allowBuilds:\n${decision}`);
   }
+  if (manifest.runtimeOverrides) {
+    if (/^overrides:[^\n]*\S[^\n]*$/m.test(current)) {
+      throw new Error('Profile uses inline overrides; convert them to a YAML block before installing.');
+    }
+    if (!/^overrides:/m.test(current)) current += '\n\noverrides:\n';
+    current = current.replace(/^overrides:[ \t]*\n(?:[ \t]+[^\n]*\n|\n)*/m, block => {
+      let result = block;
+      for (const [name, version] of Object.entries(manifest.runtimeOverrides)) {
+        const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        result = result.replace(new RegExp(`^  ['"]?${escaped}['"]?:[^\\n]*\\n?`, 'm'), '');
+        result += `  ${JSON.stringify(name)}: ${JSON.stringify(version)}\n`;
+      }
+      return result;
+    });
+  }
+  writeFileSync(workspaceFile, current);
 }
+
+execute(['plugin', '--profile', profile, 'add', `@deepseek-ai/dsh-base@${expectedHarness}`, `@deepseek-ai/dsh-web-app@${expectedHarness}`]);
 
 for (const name of installOrder) {
   const item = packages.get(name);
   execute(['plugin', '--profile', profile, 'add', join(directory, item.filename)]);
 }
 
-console.log(`\nWorkDSH ${manifest.version} is installed in profile ${profile}.`);
-console.log(`Start it with: ${dsh} --profile ${profile}`);
-console.log('The conversation header should show “Agent Team”; its panel is supplied by the official DSH Team client.');
+// Keep CLI and ConfigEditor in the same Profile dependency graph (0.1.7).
+const runtimeArgs = ['pnpm', '--dir', join(dshHome, 'profiles', profile), 'add', '--save-exact', `@deepseek-ai/dsh@${expectedHarness}`, `@deepseek-ai/dsh-deepseek-account@${expectedHarness}`, '@deepseek-ai/cordis-plugin-group@1.0.3'];
+console.log(`> ${corepack} ${runtimeArgs.join(' ')}`);
+if (!dryRun) {
+  const result = spawnSync(corepack, runtimeArgs, { stdio: 'inherit' });
+  if (result.error) throw result.error;
+  if (result.status !== 0) process.exit(result.status ?? 1);
+}
+// Profiles disable automatic peers, because WorkDSH's build-only workspace peers
+// are bundled and not published to npm. Install the official runtime peer closure
+// explicitly so a clean Profile can boot without relying on the developer repo.
+if (!dryRun) {
+  const scope = join(dshHome, 'profiles', profile, 'node_modules', '@deepseek-ai');
+  for (let pass = 0; existsSync(scope); pass++) {
+    const missing = new Map();
+    for (const entry of readdirSync(scope)) {
+      const path = join(scope, entry, 'package.json');
+      if (!existsSync(path)) continue;
+      const pkg = JSON.parse(readFileSync(path, 'utf8'));
+      for (const [name, range] of Object.entries(pkg.peerDependencies ?? {})) {
+        if (!name.startsWith('@deepseek-ai/') || pkg.peerDependenciesMeta?.[name]?.optional) continue;
+        if (existsSync(join(scope, name.slice('@deepseek-ai/'.length), 'package.json'))) continue;
+        const version = manifest.runtimeOverrides?.[name] ?? (name.startsWith('@deepseek-ai/dsh-') ? expectedHarness : range);
+        missing.set(name, `${name}@${version}`);
+      }
+    }
+    if (!missing.size) break;
+    if (pass >= 8) throw new Error('Official runtime peer dependencies did not converge.');
+    const result = spawnSync(corepack, ['pnpm', '--dir', join(dshHome, 'profiles', profile), 'add', '--save-exact', ...missing.values()], { stdio: 'inherit' });
+    if (result.error) throw result.error;
+    if (result.status !== 0) process.exit(result.status ?? 1);
+  }
+}
+const profileCli = join(dshHome, 'profiles', profile, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
+console.log(`\nWorkDSH ${manifest.version} ${dryRun ? 'installation plan verified' : 'is installed'} in profile ${profile}.`);
+console.log(`Start it with: node ${JSON.stringify(profileCli)} --profile ${JSON.stringify(profile)}`);
