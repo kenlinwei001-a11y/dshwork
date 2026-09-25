@@ -1,0 +1,65 @@
+{
+  "name": "workdsh-plugin-plate",
+  "version": "0.0.6",
+  "private": true,
+  "type": "module",
+  "description": "AI rich-text documents (Plate) as a parallel, zero-intrusion WorkDSH plugin; all LLM access via the Harness llm service",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./client": {
+      "default": "./dist/client.browser.js"
+    }
+  },
+  "files": [
+    "cordis.patch.yml",
+    "dist",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar-documentpreview",
+        "@deepseek-ai/dsh-client-ui-sidebar-right",
+        "@deepseek-ai/dsh-client-ui-renderer"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node ../../../scripts/build-plate.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@platejs/basic-nodes": "53.0.0",
+    "platejs": "53.3.14",
+    "zod": "4.4.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/dsh-agent-default-model": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-sidebar-documentpreview": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-sidebar-right": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-llm": "0.1.7-alpha.1",
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/dsh-agent-default-model": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-renderer": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-sidebar-documentpreview": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-client-ui-sidebar-right": "0.1.7-alpha.1",
+    "@deepseek-ai/dsh-llm": "0.1.7-alpha.1",
+    "@types/node": "22.19.0",
+    "@types/react": "19.2.14",
+    "react": "19.2.4"
+  }
+}
