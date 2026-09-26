@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
+import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-right/client';
-import { createPlateEditor, Plate, PlateContent } from 'platejs/react';
+import { createPlateEditor, Plate, PlateContent, useEditorVersion } from 'platejs/react';
+import type { PlateEditor } from 'platejs/react';
 import {
   BaseBasicMarksPlugin,
   BaseBasicBlocksPlugin,
@@ -65,6 +67,29 @@ function ToolbarButton(props: { label: string; active?: boolean; onClick: () => 
   );
 }
 
+// Toolbar buttons must live INSIDE <Plate> so useEditorVersion() can resolve
+// the Plate store from context and re-render on every editor change; without
+// the subscription, active marks are evaluated once at mount and never update.
+function PlateToolbarButtons(props: { editor: PlateEditor }) {
+  useEditorVersion();
+  const markActive = (key: string) => (props.editor.api.marks?.() ?? {})[key] === true;
+  return (
+    <>
+      <ToolbarButton label="加粗" active={markActive('bold')} onClick={() => props.editor.tf.toggleMark('bold')} />
+      <ToolbarButton label="斜体" active={markActive('italic')} onClick={() => props.editor.tf.toggleMark('italic')} />
+      <ToolbarButton label="下划线" active={markActive('underline')} onClick={() => props.editor.tf.toggleMark('underline')} />
+      <ToolbarButton label="删除线" active={markActive('strikethrough')} onClick={() => props.editor.tf.toggleMark('strikethrough')} />
+      <ToolbarButton label="代码" active={markActive('code')} onClick={() => props.editor.tf.toggleMark('code')} />
+      <span className="plate-toolbar-sep" />
+      <ToolbarButton label="标题 1" onClick={() => props.editor.tf.toggleBlock('h1')} />
+      <ToolbarButton label="标题 2" onClick={() => props.editor.tf.toggleBlock('h2')} />
+      <ToolbarButton label="标题 3" onClick={() => props.editor.tf.toggleBlock('h3')} />
+      <ToolbarButton label="引用" onClick={() => props.editor.tf.toggleBlock('blockquote')} />
+      <ToolbarButton label="分隔线" onClick={() => props.editor.tf.toggleBlock('hr')} />
+    </>
+  );
+}
+
 function PlateDocEditor(props: { docId: string; title: string; content: SlateContent }) {
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
@@ -84,29 +109,18 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
 
   return (
     <div className="plate-doc-editor">
-      <div className="plate-toolbar">
-        <ToolbarButton label="加粗" active={editor.api.isMarkActive?.('bold')} onClick={() => editor.api.mark?.toggle('bold')} />
-        <ToolbarButton label="斜体" active={editor.api.isMarkActive?.('italic')} onClick={() => editor.api.mark?.toggle('italic')} />
-        <ToolbarButton label="下划线" active={editor.api.isMarkActive?.('underline')} onClick={() => editor.api.mark?.toggle('underline')} />
-        <ToolbarButton label="删除线" active={editor.api.isMarkActive?.('strikethrough')} onClick={() => editor.api.mark?.toggle('strikethrough')} />
-        <ToolbarButton label="代码" active={editor.api.isMarkActive?.('code')} onClick={() => editor.api.mark?.toggle('code')} />
-        <span className="plate-toolbar-sep" />
-        <ToolbarButton label="标题 1" onClick={() => editor.api.block?.toggle('h1')} />
-        <ToolbarButton label="标题 2" onClick={() => editor.api.block?.toggle('h2')} />
-        <ToolbarButton label="标题 3" onClick={() => editor.api.block?.toggle('h3')} />
-        <ToolbarButton label="引用" onClick={() => editor.api.block?.toggle('blockquote')} />
-        <ToolbarButton label="分隔线" onClick={() => editor.api.block?.toggle('hr')} />
-        <span className="plate-toolbar-sep" />
-        <button type="button" className="plate-toolbar-save" disabled={saving} onClick={() => void save()}>
-          {saving ? '保存中…' : '保存'}
-        </button>
-        {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
-      </div>
-      <div className="plate-canvas">
-        <Plate editor={editor}>
+      <Plate editor={editor}>
+        <div className="plate-toolbar">
+          <PlateToolbarButtons editor={editor} />
+          <button type="button" className="plate-toolbar-save" disabled={saving} onClick={() => void save()}>
+            {saving ? '保存中…' : '保存'}
+          </button>
+          {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
+        </div>
+        <div className="plate-canvas">
           <PlateContent placeholder="开始输入…" className="plate-content" />
-        </Plate>
-      </div>
+        </div>
+      </Plate>
     </div>
   );
 }
@@ -211,5 +225,15 @@ export function apply(ctx: Context): void {
       { name: 'sidebar.right.tab.document', key: 'workdsh-plate' },
       PlateDocumentsPanel,
     ),
+  );
+  // Deterministic product entry: a left-nav page (main panel + panellist
+  // entry), the same pattern as the bundle's DiagnosticsPanel.
+  ctx.slots.inject('main', () =>
+    ctx.slots.register({ name: 'main', key: 'workdsh-plate' }, PlateDocumentsPanel),
+  );
+  ctx.slots.inject('sidebar.panellist', () =>
+    ctx.slots.register({
+      name: 'sidebar.panellist', id: 'workdsh-plate', label: 'Plate 文档', order: 70,
+    }, () => <span className="plate-nav-mark">📝</span>),
   );
 }
