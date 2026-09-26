@@ -17,6 +17,7 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('docs-list') }).strict(),
   z.object({ endpoint: z.literal('doc-create'), title: z.string().min(1).max(256), content: slateJson }).strict(),
   z.object({ endpoint: z.literal('doc-open'), docId: docIdParam }).strict(),
+  z.object({ endpoint: z.literal('doc-export'), docId: docIdParam }).strict(),
   z.object({ endpoint: z.literal('rev-append'), docId: docIdParam, content: slateJson, cause: z.enum(['edit', 'ai', 'import']) }).strict(),
   z.object({
     endpoint: z.literal('ai-stream'),
@@ -109,7 +110,7 @@ function registerApi(ctx: Context) {
           return Response.json({ ok: false, code: 'CREATE_FAILED', message: String(error) }, { status: 500 });
         }
       }
-      if (body.endpoint === 'doc-open') {
+      if (body.endpoint === 'doc-open' || body.endpoint === 'doc-export') {
         try {
           return Response.json({ ok: true, ...ctx.workdshPlate.openDocument(body.docId) });
         } catch {

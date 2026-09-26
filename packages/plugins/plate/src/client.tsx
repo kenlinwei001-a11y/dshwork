@@ -323,12 +323,38 @@ function PlateDocumentsPanel() {
     }
   };
 
+  const exportDoc = async (docId: string) => {
+    setBusy(true);
+    try {
+      const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-export', { docId });
+      const payload = {
+        format: 'workdsh-plate',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        title: result.doc.title,
+        content: result.head.slateJson,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = `${result.doc.title.replace(/[\\/:*?"<>|]/g, '_')}.plate`;
+      anchor.click();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+
   if (opened) {
     return (
       <div className="plate-doc-editor">
         <div className="plate-doc-head">
           <button type="button" className="plate-back" onClick={() => setOpened(null)}>← 文档列表</button>
           <span className="plate-doc-title">{opened.title}</span>
+          <button type="button" className="plate-export" disabled={busy} onClick={() => void exportDoc(opened.docId)}>导出 .plate</button>
         </div>
         <PlateDocEditor docId={opened.docId} title={opened.title} content={opened.content} />
       </div>
@@ -372,7 +398,7 @@ function injectStyles(): void {
 .plate-docs { padding: 12px 16px; }
 .plate-doc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .plate-doc-title { font-weight: 600; font-size: 15px; }
-.plate-new, .plate-back { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
+.plate-new, .plate-back, .plate-export { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
 .plate-doc-list { list-style: none; margin: 0; padding: 0; }
 .plate-doc-list li button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; background: #fff; cursor: pointer; }
 .plate-item-time { color: #9ca3af; font-size: 12px; }
