@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, ClipboardEvent } from 'react';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client';
-import type {} from '@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client';
+import type { DocumentPreviewProps } from '@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-right/client';
-import { createPlateEditor, Plate, PlateContent, useEditorVersion } from 'platejs/react';
+import { createPlateEditor, Plate, PlateContent, PlateElement, useEditorVersion } from 'platejs/react';
 import type { PlateEditor } from 'platejs/react';
 import {
   BaseBasicMarksPlugin,
@@ -18,6 +19,19 @@ import {
   BaseBlockquotePlugin,
   BaseHorizontalRulePlugin,
 } from '@platejs/basic-nodes';
+import { insertImage } from '@platejs/media';
+// v53 渲染挂载 = plugin.withComponent(组件)（core docstring 官方范式），
+// 不是 render 字段；Image primitive 从 ElementProvider 上下文读 url。
+import { Image, ImagePlugin } from '@platejs/media/react';
+
+const ImageElement = (props: { element: { url?: string }; children?: unknown }) => (
+  <PlateElement {...props}>
+    <Image />
+    {props.children as never}
+  </PlateElement>
+);
+
+const ImageElementPlugin = ImagePlugin.withComponent(ImageElement as never);
 
 export const name = 'workdsh-plate-client';
 export const inject = ['slots', 'documentPreviews'];
@@ -33,6 +47,7 @@ const plugins = [
   BaseHeadingPlugin,
   BaseBlockquotePlugin,
   BaseHorizontalRulePlugin,
+  ImageElementPlugin,
 ];
 
 type SlateContent = { type?: string; text?: string; children: unknown[] }[];
@@ -104,6 +119,82 @@ function ToolbarButton(props: { label: string; active?: boolean; onClick: () => 
     >
       {props.label}
     </button>
+  );
+}
+
+// S5-b：.plate 文件打开路径。documentPreviews 声明由预览 owner 按扩展名
+// 路由到本组件（keyed slot key === definition id），content.kind 'bytes'
+// 时拿到完整文件字节；解析后只读渲染 + 一键导入到 Plate 文档域。
+function PlateReadOnly(props: { content: SlateContent }) {
+  const editor = useState(() => createPlateEditor({ plugins, value: props.content }))[0];
+  return (
+    <div className="plate-file-body">
+      <Plate editor={editor}>
+        <PlateContent readOnly className="plate-content" />
+      </Plate>
+    </div>
+  );
+}
+
+function PlateFilePreview(props: DocumentPreviewProps) {
+  const [parsed, setParsed] = useState<{ title: string; content: SlateContent } | null>(null);
+  const [error, setError] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [imported, setImported] = useState<string | null>(null);
+  const bytes = props.content.kind === 'bytes' ? props.content.data : null;
+
+  useEffect(() => {
+    setError('');
+    setParsed(null);
+    setImported(null);
+    if (!bytes) return;
+    try {
+      const doc = JSON.parse(new TextDecoder().decode(bytes)) as {
+        format?: string; title?: string; content?: SlateContent;
+      };
+      if (doc.format !== 'workdsh-plate' || !Array.isArray(doc.content)) {
+        throw new Error('不是有效的 workdsh-plate 文件');
+      }
+      const name = decodeURIComponent(props.resourceAddress).split('/').pop()?.split(/[?#]/)[0] ?? '未命名';
+      setParsed({
+        title: typeof doc.title === 'string' && doc.title.trim() ? doc.title : name.replace(/\.plate$/i, ''),
+        content: doc.content,
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : String(e));
+    }
+  }, [bytes, props.resourceAddress]);
+
+  const doImport = async () => {
+    if (!parsed || importing) return;
+    setImporting(true);
+    try {
+      const result = await post<{ doc: DocMeta }>('doc-import', { title: parsed.title, content: parsed.content });
+      setImported(result.doc.id);
+    } catch (e) {
+      setError(String(e));
+    } finally {
+      setImporting(false);
+    }
+  };
+
+  return (
+    <div className="plate-file-preview">
+      {error ? <div className="plate-error">{error}</div> : null}
+      {parsed ? (
+        <>
+          <div className="plate-file-head">
+            <span className="plate-doc-title">{parsed.title}</span>
+            <button type="button" className="plate-import-btn" disabled={importing || !!imported} onClick={() => void doImport()}>
+              {importing ? '导入中…' : imported ? '已导入到 Plate 文档' : '导入到 Plate 文档'}
+            </button>
+          </div>
+          <PlateReadOnly content={parsed.content} />
+        </>
+      ) : error ? null : (
+        <div className="plate-empty">在文件列表中选择一个 .plate 文件查看内容。</div>
+      )}
+    </div>
   );
 }
 
@@ -242,10 +333,80 @@ function PlateToolbarButtons(props: { editor: PlateEditor }) {
   );
 }
 
+// M5：内嵌图片（附件资产 v1）。图片以 data URL 写入 image 节点，文档自
+// 包含、导出 .plate 自然携带；单图 ≤1.5MB 客户端拦截，修订总上限服务端拦截。
+const MAX_IMAGE_BYTES = 1_500_000;
+
+function readImageFile(file: File, editor: PlateEditor, onStatus: (status: string) => void): void {
+  if (!file.type.startsWith('image/')) {
+    onStatus('只支持图片文件');
+    return;
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    onStatus('图片超过 1.5MB 上限');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    insertImage(editor, String(reader.result));
+    onStatus(`已插入 ${file.name}`);
+  };
+  reader.onerror = () => onStatus('读取图片失败');
+  reader.readAsDataURL(file);
+}
+
+function PlateImageButton(props: { editor: PlateEditor }) {
+  const [status, setStatus] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = ''; // 允许连续选择同一文件
+    if (file) readImageFile(file, props.editor, setStatus);
+  };
+  return (
+    <>
+      <button
+        type="button"
+        className="plate-ai-btn"
+        title="插入图片"
+        onMouseDown={(event) => { event.preventDefault(); inputRef.current?.click(); }}
+      >
+        插图
+      </button>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        data-plate-file-input="true"
+        onChange={onChange}
+      />
+      {status ? <span className="plate-image-status">{status}</span> : null}
+    </>
+  );
+}
+
 function PlateDocEditor(props: { docId: string; title: string; content: SlateContent }) {
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
+  const [imageStatus, setImageStatus] = useState('');
   const editor = useState(() => createPlateEditor({ plugins, value: props.content }))[0];
+
+  // 粘贴图片：截获剪贴板里的图片文件，走与插图按钮相同的 data URL 管道。
+  const handlePaste = (event: ClipboardEvent<HTMLDivElement>) => {
+    const items = event.clipboardData?.items;
+    if (!items) return;
+    for (const item of items) {
+      if (item.kind === 'file' && item.type.startsWith('image/')) {
+        const file = item.getAsFile();
+        if (file) {
+          event.preventDefault();
+          readImageFile(file, editor, setImageStatus);
+          return;
+        }
+      }
+    }
+  };
 
   const save = async () => {
     setSaving(true);
@@ -266,12 +427,15 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
           <PlateToolbarButtons editor={editor} />
           <span className="plate-toolbar-sep" />
           <PlateAiSection editor={editor} docId={props.docId} />
+          <span className="plate-toolbar-sep" />
+          <PlateImageButton editor={editor} />
           <button type="button" className="plate-toolbar-save" disabled={saving} onClick={() => void save()}>
             {saving ? '保存中…' : '保存'}
           </button>
           {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
+          {imageStatus ? <span className="plate-image-status">{imageStatus}</span> : null}
         </div>
-        <div className="plate-canvas">
+        <div className="plate-canvas" onPaste={handlePaste}>
           <PlateContent placeholder="开始输入…" className="plate-content" />
         </div>
       </Plate>
@@ -419,6 +583,13 @@ function injectStyles(): void {
 .plate-ai-actions { display: flex; gap: 6px; align-items: center; }
 .plate-ai-actions button { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
 .plate-ai-status { font-size: 12px; color: #6366f1; }
+.plate-file-preview { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+.plate-file-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.plate-import-btn { padding: 4px 12px; border: 1px solid #6366f1; border-radius: 6px; background: #6366f1; color: #fff; cursor: pointer; white-space: nowrap; }
+.plate-import-btn:disabled { background: #c7d2fe; border-color: #c7d2fe; cursor: default; }
+.plate-file-body { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; background: #fff; }
+.plate-image-status { color: #6366f1; font-size: 12px; }
+.plate-content img { max-width: 100%; height: auto; border-radius: 6px; }
 `;
   document.head.appendChild(style);
 }
@@ -435,11 +606,12 @@ export function apply(ctx: Context): void {
       loading: 'bytes-complete',
     }),
   );
-  // S5-b: mount into the right-sidebar document tab, parallel to workdsh-office.
+  // S5-b: the document-tab renderer for .plate files (key matches the
+  // documentPreviews definition id above; the owner delivers file bytes).
   ctx.slots.inject('sidebar.right.tab.document', () =>
     ctx.slots.register(
       { name: 'sidebar.right.tab.document', key: 'workdsh-plate' },
-      PlateDocumentsPanel,
+      PlateFilePreview,
     ),
   );
   // Deterministic product entry: a left-nav page (main panel + panellist

@@ -16,6 +16,7 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('ai-smoke'), prompt: z.string().max(4000).optional() }).strict(),
   z.object({ endpoint: z.literal('docs-list') }).strict(),
   z.object({ endpoint: z.literal('doc-create'), title: z.string().min(1).max(256), content: slateJson }).strict(),
+  z.object({ endpoint: z.literal('doc-import'), title: z.string().min(1).max(256), content: slateJson }).strict(),
   z.object({ endpoint: z.literal('doc-open'), docId: docIdParam }).strict(),
   z.object({ endpoint: z.literal('doc-export'), docId: docIdParam }).strict(),
   z.object({ endpoint: z.literal('rev-append'), docId: docIdParam, content: slateJson, cause: z.enum(['edit', 'ai', 'import']) }).strict(),
@@ -108,6 +109,14 @@ function registerApi(ctx: Context) {
           return Response.json({ ok: true, ...ctx.workdshPlate.createDocument(body.title, body.content) });
         } catch (error) {
           return Response.json({ ok: false, code: 'CREATE_FAILED', message: String(error) }, { status: 500 });
+        }
+      }
+      if (body.endpoint === 'doc-import') {
+        // 从 .plate 文件导入：首修订 cause='import'，与手动新建（'create'）区分。
+        try {
+          return Response.json({ ok: true, ...ctx.workdshPlate.createDocument(body.title, body.content, 'import') });
+        } catch (error) {
+          return Response.json({ ok: false, code: 'IMPORT_FAILED', message: String(error) }, { status: 500 });
         }
       }
       if (body.endpoint === 'doc-open' || body.endpoint === 'doc-export') {

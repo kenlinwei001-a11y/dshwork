@@ -1,6 +1,6 @@
 {
   "name": "workdsh-plugin-plate",
-  "version": "1.0.0",
+  "version": "1.2.2",
   "private": true,
   "type": "module",
   "description": "AI rich-text documents (Plate) as a parallel, zero-intrusion WorkDSH plugin; all LLM access via the Harness llm service",
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@platejs/basic-nodes": "53.0.0",
+    "@platejs/media": "53.1.4",
     "platejs": "53.3.14",
     "zod": "4.4.3"
   },

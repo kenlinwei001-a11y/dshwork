@@ -48,7 +48,11 @@ export class PlateDocService extends Service {
     return { doc, head };
   }
 
-  createDocument(title: string, content: z.infer<typeof slateJson>): { doc: PlateDocument; head: PlateRevision } {
+  createDocument(
+    title: string,
+    content: z.infer<typeof slateJson>,
+    cause: 'create' | 'import' = 'create',
+  ): { doc: PlateDocument; head: PlateRevision } {
     const { documents, revisions } = this.tables();
     const docId = randomUUID();
     const revId = randomUUID();
@@ -65,7 +69,7 @@ export class PlateDocService extends Service {
       docId,
       seq: 0,
       createdAt: now,
-      cause: 'create',
+      cause,
       slateJson: content,
     });
     revisions.put(revId, head);
