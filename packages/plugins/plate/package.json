@@ -1,6 +1,6 @@
 {
   "name": "workdsh-plugin-plate",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "private": true,
   "type": "module",
   "description": "AI rich-text documents (Plate) as a parallel, zero-intrusion WorkDSH plugin; all LLM access via the Harness llm service",
