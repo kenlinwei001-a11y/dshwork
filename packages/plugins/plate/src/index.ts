@@ -5,6 +5,7 @@ import type { GenerateOptions, ReasoningEffortId } from '@deepseek-ai/dsh-llm';
 import { defineTool } from '@deepseek-ai/dsh-tools';
 import { PlateDocService, docIdParam } from './service.js';
 import { slateJson } from './storage.js';
+import { importDocx } from './docx.js';
 import { z } from 'zod';
 
 export const name = 'workdsh-plate';
@@ -30,6 +31,7 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('get-default-editor') }).strict(),
   z.object({ endpoint: z.literal('set-default-editor'), editor: z.enum(['office', 'plate']) }).strict(),
   z.object({ endpoint: z.literal('plate-pending'), sessionId: z.string().max(128) }).strict(),
+  z.object({ endpoint: z.literal('docx-import'), path: z.string().min(1).max(1024) }).strict(),
 ]);
 
 // 汉化层：AI 动作 → 中文提示词模板（设计稿 v0.2 的 prompt 中文化）。
@@ -253,6 +255,16 @@ function registerApi(ctx: Context) {
       }
       if (body.endpoint === 'plate-pending') {
         return Response.json({ ok: true, requests: ctx.workdshPlate.takePending(body.sessionId) });
+      }
+      if (body.endpoint === 'docx-import') {
+        // 「用 PlateAI 打开」：读 docx 文件 → 解析成 Slate JSON → 导入 plate 域。
+        try {
+          const { title, content } = await importDocx(body.path);
+          const { doc, head } = ctx.workdshPlate.createDocument(title, content as unknown as z.infer<typeof slateJson>, 'import');
+          return Response.json({ ok: true, doc, head: { seq: head.seq } });
+        } catch (error) {
+          return Response.json({ ok: false, code: 'DOCX_IMPORT_FAILED', message: String(error) }, { status: 400 });
+        }
       }
       // ai-smoke / ai-stream: build options from the default model selection
       // and stream ctx.llm.stream as SSE text-delta frames.

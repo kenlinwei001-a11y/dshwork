@@ -7,6 +7,7 @@ import type { DocumentPreviewProps } from '@deepseek-ai/dsh-client-ui-sidebar-do
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-right/client';
 import type { PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots';
 import type { ISessions } from '@deepseek-ai/dsh-api-session-controller/client';
+import { Button, SegmentedControl } from '@deepseek-ai/dsh-client-ui-primitives';
 import { createPlateEditor, Plate, PlateContent, PlateElement, useEditorVersion } from 'platejs/react';
 import type { PlateEditor } from 'platejs/react';
 
@@ -115,19 +116,19 @@ async function streamPost(
 
 type DocMeta = { id: string; title: string; updatedAt: string };
 
-const emptyContent: SlateContent = [{ type: 'p', children: [{ text: '' }] }];
-
 function ToolbarButton(props: { label: string; active?: boolean; onClick: () => void }) {
   return (
-    <button
+    <Button
       type="button"
-      className="plate-toolbar-btn"
+      variant="toolbar"
+      size="sm"
+      className={props.active ? 'plate-btn-active' : undefined}
       data-active={props.active ? 'true' : undefined}
       onMouseDown={(event) => { event.preventDefault(); props.onClick(); }}
       title={props.label}
     >
       {props.label}
-    </button>
+    </Button>
   );
 }
 
@@ -145,7 +146,7 @@ function PlateReadOnly(props: { content: SlateContent }) {
   );
 }
 
-function PlateFilePreview(props: DocumentPreviewProps) {
+function PlateFilePreview(props: DocumentPreviewProps & { onImported?: (docId: string) => void }) {
   const [parsed, setParsed] = useState<{ title: string; content: SlateContent } | null>(null);
   const [error, setError] = useState('');
   const [importing, setImporting] = useState(false);
@@ -180,6 +181,8 @@ function PlateFilePreview(props: DocumentPreviewProps) {
     try {
       const result = await post<{ doc: DocMeta }>('doc-import', { title: parsed.title, content: parsed.content });
       setImported(result.doc.id);
+      // 面板已移除：导入后直接打开右侧活编辑器，这也是手动进入编辑器的入口。
+      props.onImported?.(result.doc.id);
     } catch (e) {
       setError(String(e));
     } finally {
@@ -194,9 +197,9 @@ function PlateFilePreview(props: DocumentPreviewProps) {
         <>
           <div className="plate-file-head">
             <span className="plate-doc-title">{parsed.title}</span>
-            <button type="button" className="plate-import-btn" disabled={importing || !!imported} onClick={() => void doImport()}>
+            <Button type="button" variant="outline" size="sm" disabled={importing || !!imported} onClick={() => void doImport()}>
               {importing ? '导入中…' : imported ? '已导入到 Plate 文档' : '导入到 Plate 文档'}
-            </button>
+            </Button>
           </div>
           <PlateReadOnly content={parsed.content} />
         </>
@@ -205,6 +208,44 @@ function PlateFilePreview(props: DocumentPreviewProps) {
       )}
     </div>
   );
+}
+
+// v1.4.0：docx 预览工具条动作——「用 PlateAI 打开」。服务端读文件解析
+// 成 Slate JSON 导入 plate 域，再开右侧活编辑器继续编辑。仅 docx 渲染。
+function OpenInPlateAction(openLiveEditor: (documentId: string) => void) {
+  return function OpenInPlateActionEntry(props: { absolutePath: string }) {
+    const [busy, setBusy] = useState(false);
+    const [error, setError] = useState('');
+    const isDocx = props.absolutePath.toLowerCase().endsWith('.docx');
+    if (!isDocx) return null;
+    const open = async () => {
+      setBusy(true);
+      setError('');
+      try {
+        const result = await post<{ doc: DocMeta }>('docx-import', { path: props.absolutePath });
+        openLiveEditor(result.doc.id);
+      } catch (e) {
+        setError(String(e));
+      } finally {
+        setBusy(false);
+      }
+    };
+    return (
+      <>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="plate-open-in-plate"
+          disabled={busy}
+          onClick={() => void open()}
+        >
+          {busy ? '转换中…' : '用 PlateAI 打开'}
+        </Button>
+        {error ? <span className="plate-error">{error}</span> : null}
+      </>
+    );
+  };
 }
 
 // 汉化层 + M3：AI 动作菜单（润色/续写/扩写/缩写/纠错/翻译），全走
@@ -277,16 +318,17 @@ function PlateAiSection(props: { editor: PlateEditor; docId: string }) {
   return (
     <>
       {AI_ACTIONS.map((a) => (
-        <button
+        <Button
           key={a.key}
           type="button"
-          className="plate-ai-btn"
+          variant="toolbar"
+          size="sm"
           disabled={state?.busy}
           onMouseDown={(event) => { event.preventDefault(); void start(a.key); }}
           title={`AI ${a.label}`}
         >
           {state?.busy && state.action === a.key ? '…' : a.label}
-        </button>
+        </Button>
       ))}
       {state ? (
         <div className="plate-ai-panel">
@@ -300,17 +342,19 @@ function PlateAiSection(props: { editor: PlateEditor; docId: string }) {
             onChange={(event) => setState((prev) => (prev ? { ...prev, text: event.target.value, inserted: false } : prev))}
           />
           <div className="plate-ai-actions">
-            <button type="button" disabled={state.busy || !state.text} onClick={() => void insert()}>
+            <Button type="button" variant="outline" size="sm" disabled={state.busy || !state.text} onClick={() => void insert()}>
               {state.expanded ? '替换选区' : '插入文末'}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="outline"
+              size="sm"
               disabled={!state.text}
               onClick={() => { void navigator.clipboard.writeText(state.text).catch(() => {}); }}
             >
               复制
-            </button>
-            <button type="button" onClick={() => setState(null)}>关闭</button>
+            </Button>
+            <Button type="button" variant="ghost" size="sm" onClick={() => setState(null)}>关闭</Button>
             {state.inserted ? <span className="plate-saved-at">已写入并保存</span> : null}
           </div>
         </div>
@@ -374,14 +418,15 @@ function PlateImageButton(props: { editor: PlateEditor }) {
   };
   return (
     <>
-      <button
+      <Button
         type="button"
-        className="plate-ai-btn"
+        variant="toolbar"
+        size="sm"
         title="插入图片"
         onMouseDown={(event) => { event.preventDefault(); inputRef.current?.click(); }}
       >
         插图
-      </button>
+      </Button>
       <input
         ref={inputRef}
         type="file"
@@ -438,9 +483,9 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
           <PlateAiSection editor={editor} docId={props.docId} />
           <span className="plate-toolbar-sep" />
           <PlateImageButton editor={editor} />
-          <button type="button" className="plate-toolbar-save" disabled={saving} onClick={() => void save()}>
+          <Button type="button" variant="primary" size="sm" disabled={saving} onClick={() => void save()}>
             {saving ? '保存中…' : '保存'}
-          </button>
+          </Button>
           {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
           {imageStatus ? <span className="plate-image-status">{imageStatus}</span> : null}
         </div>
@@ -482,6 +527,27 @@ function PlateLivePage(props: PlateLivePageProps) {
   const [state, setState] = useState<{ docId: string; title: string; content: SlateContent; revision: number } | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  // 「缺省文档编辑器」开关（原面板头部按钮，v1.4.0 随面板移除搬到这里）：
+  // 读服务端设置，点击乐观切换、失败回滚。
+  const [defaultEditor, setDefaultEditor] = useState<'office' | 'plate' | null>(null);
+  const [editorError, setEditorError] = useState('');
+  useEffect(() => {
+    void post<{ editor: 'office' | 'plate' }>('get-default-editor')
+      .then((r) => setDefaultEditor(r.editor))
+      .catch(() => setDefaultEditor('office'));
+  }, []);
+  const changeDefaultEditor = async (editor: 'office' | 'plate') => {
+    if (defaultEditor === null || editor === defaultEditor) return;
+    const previous = defaultEditor;
+    setDefaultEditor(editor);
+    setEditorError('');
+    try {
+      await post('set-default-editor', { editor });
+    } catch (e) {
+      setDefaultEditor(previous);
+      setEditorError(String(e));
+    }
+  };
   // 已渲染内容的 JSON 指纹：agent 新提交（plate_edit）后 diff 命中即重载。
   const renderedRef = useRef('');
 
@@ -529,18 +595,34 @@ function PlateLivePage(props: PlateLivePageProps) {
     <div className="plate-live-page">
       <div className="plate-doc-head">
         <span className="plate-doc-title">{state ? state.title : '正在打开…'}</span>
-        <button
-          type="button"
-          className="plate-export"
-          disabled={!state || busy}
-          onClick={() => {
-            if (state) void exportPlate(state.docId).catch((e) => setError(String(e)));
-          }}
-        >
-          导出 .plate
-        </button>
+        <div className="plate-live-head-actions">
+          <SegmentedControl
+            id="plate-editor-mode"
+            className="plate-editor-mode"
+            value={defaultEditor ?? 'office'}
+            disabled={defaultEditor === null}
+            label="AI 写文档的缺省编辑器"
+            options={[
+              { value: 'office', label: 'Word' },
+              { value: 'plate', label: 'PlateAI' },
+            ]}
+            onChange={(editor) => void changeDefaultEditor(editor)}
+          />
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={!state || busy}
+            onClick={() => {
+              if (state) void exportPlate(state.docId).catch((e) => setError(String(e)));
+            }}
+          >
+            导出 .plate
+          </Button>
+        </div>
       </div>
       {error ? <div className="plate-error">{error}</div> : null}
+      {editorError ? <div className="plate-error">{editorError}</div> : null}
       {state ? (
         <PlateDocEditor key={state.revision} docId={state.docId} title={state.title} content={state.content} />
       ) : (
@@ -550,134 +632,6 @@ function PlateLivePage(props: PlateLivePageProps) {
   );
 }
 
-function PlateDocumentsPanel() {
-  const [docs, setDocs] = useState<DocMeta[]>([]);
-  const [opened, setOpened] = useState<{ docId: string; title: string; content: SlateContent } | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [defaultEditor, setDefaultEditorState] = useState<'office' | 'plate' | null>(null);
-  const [editorError, setEditorError] = useState('');
-
-  const refresh = async () => {
-    try {
-      const result = await post<{ documents: DocMeta[] }>('docs-list');
-      setDocs(result.documents);
-    } catch (e) {
-      setError(String(e));
-    }
-  };
-  useEffect(() => { void refresh(); }, []);
-
-  // 「缺省文档编辑器」开关：读服务端设置，点击乐观切换、失败回滚。
-  useEffect(() => {
-    void post<{ editor: 'office' | 'plate' }>('get-default-editor')
-      .then((r) => setDefaultEditorState(r.editor))
-      .catch(() => setDefaultEditorState('office'));
-  }, []);
-  const toggleEditor = async () => {
-    if (defaultEditor === null) return;
-    const next = defaultEditor === 'plate' ? 'office' : 'plate';
-    const previous = defaultEditor;
-    setDefaultEditorState(next);
-    setEditorError('');
-    try {
-      await post('set-default-editor', { editor: next });
-    } catch (e) {
-      setDefaultEditorState(previous);
-      setEditorError(String(e));
-    }
-  };
-
-  const create = async () => {
-    setBusy(true);
-    try {
-      const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-create', {
-        title: '未命名文档',
-        content: emptyContent,
-      });
-      setOpened({ docId: result.doc.id, title: result.doc.title, content: result.head.slateJson });
-      void refresh();
-    } catch (e) {
-      setError(String(e));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const open = async (docId: string) => {
-    setBusy(true);
-    try {
-      const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-open', { docId });
-      setOpened({ docId: result.doc.id, title: result.doc.title, content: result.head.slateJson });
-    } catch (e) {
-      setError(String(e));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  const exportDoc = async (docId: string) => {
-    setBusy(true);
-    try {
-      await exportPlate(docId);
-    } catch (e) {
-      setError(String(e));
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  if (opened) {
-    return (
-      <div className="plate-doc-editor">
-        <div className="plate-doc-head">
-          <button type="button" className="plate-back" onClick={() => setOpened(null)}>← 文档列表</button>
-          <span className="plate-doc-title">{opened.title}</span>
-          <button type="button" className="plate-export" disabled={busy} onClick={() => void exportDoc(opened.docId)}>导出 .plate</button>
-        </div>
-        <PlateDocEditor docId={opened.docId} title={opened.title} content={opened.content} />
-      </div>
-    );
-  }
-
-  return (
-    <div className="plate-docs">
-      <div className="plate-doc-head">
-        <span className="plate-doc-title">AI 富文本文档</span>
-        <div className="plate-head-actions">
-          <button
-            type="button"
-            className="plate-editor-toggle"
-            disabled={defaultEditor === null}
-            title="AI 写文档的缺省编辑器，点击在 Word 与 PlateAI 之间切换"
-            onClick={() => void toggleEditor()}
-          >
-            缺省：{defaultEditor === 'plate' ? 'PlateAI' : defaultEditor === 'office' ? 'Word' : '…'}
-          </button>
-          <button type="button" className="plate-new" disabled={busy} onClick={() => void create()}>
-            ＋ 新建文档
-          </button>
-        </div>
-      </div>
-      {error ? <div className="plate-error">{error}</div> : null}
-      {editorError ? <div className="plate-error">{editorError}</div> : null}
-      {docs.length === 0 ? (
-        <div className="plate-empty">还没有文档，点「新建文档」开始。</div>
-      ) : (
-        <ul className="plate-doc-list">
-          {docs.map((doc) => (
-            <li key={doc.id}>
-              <button type="button" onClick={() => void open(doc.id)}>
-                <span className="plate-item-title">{doc.title}</span>
-                <span className="plate-item-time">{new Date(doc.updatedAt).toLocaleString('zh-CN')}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
 
 // Self-contained styling: the plugin ships no CSS build step, so the bundle
 // injects one <style> tag at apply time.
@@ -686,38 +640,25 @@ function injectStyles(): void {
   const style = document.createElement('style');
   style.id = 'workdsh-plate-style';
   style.textContent = `
-.plate-docs { padding: 12px 16px; }
 .plate-doc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .plate-doc-title { font-weight: 600; font-size: 15px; }
-.plate-new, .plate-back, .plate-export { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
-.plate-head-actions { display: flex; gap: 6px; align-items: center; }
-.plate-editor-toggle { padding: 4px 10px; border: 1px solid #6366f1; border-radius: 6px; background: #eef2ff; color: #4338ca; cursor: pointer; font-size: 12px; }
-.plate-editor-toggle:disabled { opacity: 0.5; cursor: default; }
+.plate-live-head-actions { display: flex; gap: 8px; align-items: center; }
 .plate-live-page { display: flex; flex-direction: column; min-height: 100%; }
-.plate-doc-list { list-style: none; margin: 0; padding: 0; }
-.plate-doc-list li button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; background: #fff; cursor: pointer; }
-.plate-item-time { color: #9ca3af; font-size: 12px; }
 .plate-empty { color: #9ca3af; padding: 24px 0; text-align: center; }
 .plate-error { color: #dc2626; margin: 4px 0; }
 .plate-doc-editor { display: flex; flex-direction: column; min-height: 320px; }
 .plate-toolbar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 6px 8px; border-bottom: 1px solid #e5e7eb; }
-.plate-toolbar-btn, .plate-ai-btn { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; }
-.plate-toolbar-btn:hover, .plate-ai-btn:hover { background: #f3f4f6; }
-.plate-toolbar-btn[data-active="true"] { background: #e0e7ff; border-color: #6366f1; color: #4338ca; }
+.plate-btn-active { background: #e0e7ff !important; color: #4338ca !important; }
 .plate-toolbar-sep { width: 1px; height: 18px; background: #e5e7eb; margin: 0 4px; }
-.plate-toolbar-save { margin-left: auto; padding: 4px 12px; border: 1px solid #6366f1; border-radius: 6px; background: #6366f1; color: #fff; cursor: pointer; }
 .plate-saved-at { color: #16a34a; font-size: 12px; }
 .plate-canvas { padding: 16px; overflow-y: auto; }
 .plate-content { min-height: 260px; outline: none; }
 .plate-ai-panel { flex-basis: 100%; display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid #c7d2fe; border-radius: 8px; background: #f8faff; margin-top: 4px; }
 .plate-ai-text { width: 100%; min-height: 90px; font-size: 13px; line-height: 1.6; border: 1px solid #d1d5db; border-radius: 6px; padding: 8px; box-sizing: border-box; }
 .plate-ai-actions { display: flex; gap: 6px; align-items: center; }
-.plate-ai-actions button { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
 .plate-ai-status { font-size: 12px; color: #6366f1; }
 .plate-file-preview { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
 .plate-file-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.plate-import-btn { padding: 4px 12px; border: 1px solid #6366f1; border-radius: 6px; background: #6366f1; color: #fff; cursor: pointer; white-space: nowrap; }
-.plate-import-btn:disabled { background: #c7d2fe; border-color: #c7d2fe; cursor: default; }
 .plate-file-body { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; background: #fff; }
 .plate-image-status { color: #6366f1; font-size: 12px; }
 .plate-content img { max-width: 100%; height: auto; border-radius: 6px; }
@@ -737,23 +678,45 @@ export function apply(ctx: Context): void {
       loading: 'bytes-complete',
     }),
   );
+  // plate_open 的 pending 打开：500ms 轮询服务端队列，命中即 openTabIn。
+  const lifetime = new AbortController();
+  const currentSessionId = () => {
+    const state = (ctx.sessions as unknown as ISessions).list.getSnapshot();
+    // retainedBy 的声明键集不含 mainView（office 同款派生），显式窄化。
+    const retainedBy = (row: unknown) => ((row as { retainedBy?: { mainView?: number } }).retainedBy ?? {}).mainView ?? 0;
+    return Object.values(state.byId).find((row) => retainedBy(row) > 0)?.id;
+  };
+  const openLiveEditor = (documentId: string) => {
+    const sessionId = currentSessionId();
+    if (!sessionId) return;
+    ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-plate-live', {
+      params: { documentId },
+    });
+  };
+
   // S5-b: the document-tab renderer for .plate files (key matches the
   // documentPreviews definition id above; the owner delivers file bytes).
+  // v1.4.0：面板已移除，导入成功后直接打开右侧活编辑器作为手动入口。
   ctx.slots.inject('sidebar.right.tab.document', () =>
     ctx.slots.register(
       { name: 'sidebar.right.tab.document', key: 'workdsh-plate' },
-      PlateFilePreview,
+      (props: DocumentPreviewProps) => <PlateFilePreview {...props} onImported={openLiveEditor} />,
     ),
   );
-  // Deterministic product entry: a left-nav page (main panel + panellist
-  // entry), the same pattern as the bundle's DiagnosticsPanel.
-  ctx.slots.inject('main', () =>
-    ctx.slots.register({ name: 'main', key: 'workdsh-plate' }, PlateDocumentsPanel),
-  );
-  ctx.slots.inject('sidebar.panellist', () =>
-    ctx.slots.register({
-      name: 'sidebar.panellist', id: 'workdsh-plate', label: 'Plate 文档', order: 70,
-    }, () => <span className="plate-nav-mark">📝</span>),
+
+  // v1.4.0：文档预览工具条的「用 PlateAI 打开」动作（框架 list 槽，owner
+  // 给 absolutePath；docx 之外的扩展名返回 null 即不渲染）。Word 文档点
+  // 开预览后可一键转成 Plate 文档并在右侧活编辑器继续编辑。
+  ctx.slots.inject('sidebar.right.tab.document.actions', () =>
+    ctx.slots.register(
+      {
+        name: 'sidebar.right.tab.document.actions',
+        id: 'workdsh-plate-open',
+        order: 10,
+        label: '用 PlateAI 打开',
+      },
+      OpenInPlateAction(openLiveEditor),
+    ),
   );
 
   // v1.3.0：右侧活编辑器 tab（与 office 的 workdsh-office-live 平行两阶段注册）。
@@ -778,15 +741,6 @@ export function apply(ctx: Context): void {
       PlateLivePage,
     ),
   );
-
-  // plate_open 的 pending 打开：500ms 轮询服务端队列，命中即 openTabIn。
-  const lifetime = new AbortController();
-  const currentSessionId = () => {
-    const state = (ctx.sessions as unknown as ISessions).list.getSnapshot();
-    // retainedBy 的声明键集不含 mainView（office 同款派生），显式窄化。
-    const retainedBy = (row: unknown) => ((row as { retainedBy?: { mainView?: number } }).retainedBy ?? {}).mainView ?? 0;
-    return Object.values(state.byId).find((row) => retainedBy(row) > 0)?.id;
-  };
   ctx.effect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const seen = new Set<string>();
