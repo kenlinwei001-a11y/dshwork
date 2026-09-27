@@ -5,8 +5,17 @@ import type {} from '@deepseek-ai/dsh-client-ui-renderer/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar/client';
 import type { DocumentPreviewProps } from '@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client';
 import type {} from '@deepseek-ai/dsh-client-ui-sidebar-right/client';
+import type { PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots';
+import type { ISessions } from '@deepseek-ai/dsh-api-session-controller/client';
 import { createPlateEditor, Plate, PlateContent, PlateElement, useEditorVersion } from 'platejs/react';
 import type { PlateEditor } from 'platejs/react';
+
+// v1.3.0：右侧活编辑器 tab 的导航参数（镜像 office 的 workdsh-office-live）。
+declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
+  interface SidebarRightTabParamsMap {
+    'workdsh-plate-live': { documentId?: string };
+  }
+}
 import {
   BaseBasicMarksPlugin,
   BaseBasicBlocksPlugin,
@@ -34,7 +43,7 @@ const ImageElement = (props: { element: { url?: string }; children?: unknown }) 
 const ImageElementPlugin = ImagePlugin.withComponent(ImageElement as never);
 
 export const name = 'workdsh-plate-client';
-export const inject = ['slots', 'documentPreviews'];
+export const inject = ['slots', 'documentPreviews', 'sidebarRightTabs', 'sidebarRight', 'sessions'];
 
 const plugins = [
   BaseBasicMarksPlugin,
@@ -443,11 +452,111 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
   );
 }
 
+// 导出 .plate 的共享实现：doc-export 拉 head 修订 → 组装下载（列表与活编辑器共用）。
+async function exportPlate(docId: string): Promise<void> {
+  const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-export', { docId });
+  const payload = {
+    format: 'workdsh-plate',
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    title: result.doc.title,
+    content: result.head.slateJson,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = `${result.doc.title.replace(/[\\/:*?"<>|]/g, '_')}.plate`;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
+// v1.3.0：缺省编辑器=PlateAI 时的右侧活编辑器。plate_open 落服务端 pending 队列，
+// 客户端轮询命中后 openTabIn 打开本 tab；params.documentId → doc-open → 复用 PlateDocEditor。
+type PlateLivePageProps = PropsRuntime<'sidebar.right.pane.tab'>;
+
+function PlateLivePage(props: PlateLivePageProps) {
+  const info = props.useTabInfo();
+  const params = info.tab.navigation.params as { documentId?: string } | undefined;
+  const docId = params?.documentId;
+  const [state, setState] = useState<{ docId: string; title: string; content: SlateContent; revision: number } | null>(null);
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
+  // 已渲染内容的 JSON 指纹：agent 新提交（plate_edit）后 diff 命中即重载。
+  const renderedRef = useRef('');
+
+  useEffect(() => {
+    setState(null);
+    setError('');
+    renderedRef.current = '';
+    if (!docId) return;
+    let cancelled = false;
+    let first = true;
+    const load = async () => {
+      try {
+        const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent; seq: number } }>('doc-open', { docId });
+        if (cancelled) return;
+        const headJson = JSON.stringify(result.head.slateJson);
+        if (headJson !== renderedRef.current) {
+          // 用户正在编辑器里输入时不重载，保护本地未保存编辑（v1 保守策略）。
+          const editing = document.activeElement !== null
+            && document.querySelector('.plate-live-page')?.contains(document.activeElement);
+          if (!editing) {
+            renderedRef.current = headJson;
+            setState({ docId, title: result.doc.title, content: result.head.slateJson, revision: result.head.seq });
+          }
+        }
+      } catch (e) {
+        if (!cancelled && first) setError(String(e));
+      } finally {
+        if (!cancelled && first) {
+          first = false;
+          setBusy(false);
+        }
+      }
+    };
+    setBusy(true);
+    void load();
+    // 活编辑器的"活"：2.5s 轮询 head，agent 的每次 plate_edit 落地即上屏。
+    const timer = setInterval(() => void load(), 2500);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
+  }, [docId]);
+
+  return (
+    <div className="plate-live-page">
+      <div className="plate-doc-head">
+        <span className="plate-doc-title">{state ? state.title : '正在打开…'}</span>
+        <button
+          type="button"
+          className="plate-export"
+          disabled={!state || busy}
+          onClick={() => {
+            if (state) void exportPlate(state.docId).catch((e) => setError(String(e)));
+          }}
+        >
+          导出 .plate
+        </button>
+      </div>
+      {error ? <div className="plate-error">{error}</div> : null}
+      {state ? (
+        <PlateDocEditor key={state.revision} docId={state.docId} title={state.title} content={state.content} />
+      ) : (
+        <div className="plate-empty">{busy ? '正在打开…' : '等待 AI 打开文档…'}</div>
+      )}
+    </div>
+  );
+}
+
 function PlateDocumentsPanel() {
   const [docs, setDocs] = useState<DocMeta[]>([]);
   const [opened, setOpened] = useState<{ docId: string; title: string; content: SlateContent } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [defaultEditor, setDefaultEditorState] = useState<'office' | 'plate' | null>(null);
+  const [editorError, setEditorError] = useState('');
 
   const refresh = async () => {
     try {
@@ -458,6 +567,26 @@ function PlateDocumentsPanel() {
     }
   };
   useEffect(() => { void refresh(); }, []);
+
+  // 「缺省文档编辑器」开关：读服务端设置，点击乐观切换、失败回滚。
+  useEffect(() => {
+    void post<{ editor: 'office' | 'plate' }>('get-default-editor')
+      .then((r) => setDefaultEditorState(r.editor))
+      .catch(() => setDefaultEditorState('office'));
+  }, []);
+  const toggleEditor = async () => {
+    if (defaultEditor === null) return;
+    const next = defaultEditor === 'plate' ? 'office' : 'plate';
+    const previous = defaultEditor;
+    setDefaultEditorState(next);
+    setEditorError('');
+    try {
+      await post('set-default-editor', { editor: next });
+    } catch (e) {
+      setDefaultEditorState(previous);
+      setEditorError(String(e));
+    }
+  };
 
   const create = async () => {
     setBusy(true);
@@ -490,21 +619,7 @@ function PlateDocumentsPanel() {
   const exportDoc = async (docId: string) => {
     setBusy(true);
     try {
-      const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-export', { docId });
-      const payload = {
-        format: 'workdsh-plate',
-        version: 1,
-        exportedAt: new Date().toISOString(),
-        title: result.doc.title,
-        content: result.head.slateJson,
-      };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
-      anchor.href = url;
-      anchor.download = `${result.doc.title.replace(/[\\/:*?"<>|]/g, '_')}.plate`;
-      anchor.click();
-      URL.revokeObjectURL(url);
+      await exportPlate(docId);
     } catch (e) {
       setError(String(e));
     } finally {
@@ -529,11 +644,23 @@ function PlateDocumentsPanel() {
     <div className="plate-docs">
       <div className="plate-doc-head">
         <span className="plate-doc-title">AI 富文本文档</span>
-        <button type="button" className="plate-new" disabled={busy} onClick={() => void create()}>
-          ＋ 新建文档
-        </button>
+        <div className="plate-head-actions">
+          <button
+            type="button"
+            className="plate-editor-toggle"
+            disabled={defaultEditor === null}
+            title="AI 写文档的缺省编辑器，点击在 Word 与 PlateAI 之间切换"
+            onClick={() => void toggleEditor()}
+          >
+            缺省：{defaultEditor === 'plate' ? 'PlateAI' : defaultEditor === 'office' ? 'Word' : '…'}
+          </button>
+          <button type="button" className="plate-new" disabled={busy} onClick={() => void create()}>
+            ＋ 新建文档
+          </button>
+        </div>
       </div>
       {error ? <div className="plate-error">{error}</div> : null}
+      {editorError ? <div className="plate-error">{editorError}</div> : null}
       {docs.length === 0 ? (
         <div className="plate-empty">还没有文档，点「新建文档」开始。</div>
       ) : (
@@ -563,6 +690,10 @@ function injectStyles(): void {
 .plate-doc-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .plate-doc-title { font-weight: 600; font-size: 15px; }
 .plate-new, .plate-back, .plate-export { padding: 4px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; cursor: pointer; }
+.plate-head-actions { display: flex; gap: 6px; align-items: center; }
+.plate-editor-toggle { padding: 4px 10px; border: 1px solid #6366f1; border-radius: 6px; background: #eef2ff; color: #4338ca; cursor: pointer; font-size: 12px; }
+.plate-editor-toggle:disabled { opacity: 0.5; cursor: default; }
+.plate-live-page { display: flex; flex-direction: column; min-height: 100%; }
 .plate-doc-list { list-style: none; margin: 0; padding: 0; }
 .plate-doc-list li button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 8px; background: #fff; cursor: pointer; }
 .plate-item-time { color: #9ca3af; font-size: 12px; }
@@ -624,4 +755,70 @@ export function apply(ctx: Context): void {
       name: 'sidebar.panellist', id: 'workdsh-plate', label: 'Plate 文档', order: 70,
     }, () => <span className="plate-nav-mark">📝</span>),
   );
+
+  // v1.3.0：右侧活编辑器 tab（与 office 的 workdsh-office-live 平行两阶段注册）。
+  ctx.effect(() =>
+    ctx.sidebarRightTabs.register({
+      id: 'workdsh-plate-live',
+      kind: 'workdsh-plate-live',
+      title: () => 'Plate 文档 · 实时编辑',
+      guide: [
+        {
+          id: 'workdsh-plate-live',
+          order: 46,
+          title: () => 'Plate 文档',
+          description: () => '查看并编辑 AI 正在编写的 Plate 文档',
+        },
+      ],
+    }),
+  );
+  ctx.slots.inject('sidebar.right.pane.tab', () =>
+    ctx.slots.register(
+      { name: 'sidebar.right.pane.tab', key: 'workdsh-plate-live', inject: () => ({}) },
+      PlateLivePage,
+    ),
+  );
+
+  // plate_open 的 pending 打开：500ms 轮询服务端队列，命中即 openTabIn。
+  const lifetime = new AbortController();
+  const currentSessionId = () => {
+    const state = (ctx.sessions as unknown as ISessions).list.getSnapshot();
+    // retainedBy 的声明键集不含 mainView（office 同款派生），显式窄化。
+    const retainedBy = (row: unknown) => ((row as { retainedBy?: { mainView?: number } }).retainedBy ?? {}).mainView ?? 0;
+    return Object.values(state.byId).find((row) => retainedBy(row) > 0)?.id;
+  };
+  ctx.effect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const seen = new Set<string>();
+    async function poll() {
+      const sessionId = currentSessionId();
+      try {
+        if (sessionId && document.visibilityState !== 'hidden') {
+          const result = await post<{ requests: { sessionId: string; documentId: string; requestId: string }[] }>(
+            'plate-pending',
+            { sessionId: String(sessionId) },
+          );
+          for (const request of result.requests) {
+            if (!seen.has(request.requestId)) {
+              ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-plate-live', {
+                params: { documentId: request.documentId },
+              });
+              seen.add(request.requestId);
+            }
+          }
+        }
+      } catch {
+        /* 未绑定会话/宿主暂不可用不影响对话。 */
+      } finally {
+        if (!lifetime.signal.aborted) {
+          timer = setTimeout(poll, document.visibilityState === 'hidden' ? 5000 : 500);
+        }
+      }
+    }
+    void poll();
+    return () => {
+      lifetime.abort();
+      clearTimeout(timer);
+    };
+  });
 }

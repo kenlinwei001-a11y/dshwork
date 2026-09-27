@@ -2,12 +2,13 @@ import type { Context } from '@deepseek-ai/cordis';
 import type { HostConnectionHandle } from '@deepseek-ai/dsh-client-connection';
 import type {} from '@deepseek-ai/dsh-agent-default-model';
 import type { GenerateOptions, ReasoningEffortId } from '@deepseek-ai/dsh-llm';
+import { defineTool } from '@deepseek-ai/dsh-tools';
 import { PlateDocService, docIdParam } from './service.js';
 import { slateJson } from './storage.js';
 import { z } from 'zod';
 
 export const name = 'workdsh-plate';
-export const inject = ['llm', 'agentDefaultModel', 'connection'];
+export const inject = ['llm', 'agentDefaultModel', 'connection', 'tools', 'systemPrompt'];
 
 const PREFIX = '[workdsh-plate]';
 
@@ -26,6 +27,9 @@ const requestShape = z.discriminatedUnion('endpoint', [
     action: z.enum(['polish', 'continue', 'expand', 'condense', 'proofread', 'translate']),
     text: z.string().min(1).max(8000),
   }).strict(),
+  z.object({ endpoint: z.literal('get-default-editor') }).strict(),
+  z.object({ endpoint: z.literal('set-default-editor'), editor: z.enum(['office', 'plate']) }).strict(),
+  z.object({ endpoint: z.literal('plate-pending'), sessionId: z.string().max(128) }).strict(),
 ]);
 
 // 汉化层：AI 动作 → 中文提示词模板（设计稿 v0.2 的 prompt 中文化）。
@@ -56,6 +60,89 @@ const AI_PROMPTS: Record<string, { system: string; user: (text: string) => strin
   },
 };
 
+// 「缺省文档编辑器 = PlateAI」时的 agent 写作指南。作为动态 text provider 注册：
+// 缺省=office 时返回空串，行为与改前逐字节一致；缺省=plate 时注入本段。
+// order 排在 office 指南（TOOL_REPORT）之后，后置+明确禁令覆盖文档类请求；
+// PPT/Excel/PDF/HTML 请求仍走 office（content_* 照常）。
+const plateGuide = `PlateAI live document writing (the default document editor is PlateAI):
+When the user asks you to write a document, report, or Word-style document, use the plate_* tools to write in the live Plate editor on the right. Do NOT use content_* tools for this kind of request; content_* remains only for PPT, Excel, PDF and HTML requests.
+First call plate_open with a title and a unique operationId; this immediately opens an empty Plate document on the right. Do this before lengthy planning. Reuse the same operationId on retries. Do not compose the entire report in chat first.
+Then call plate_edit to write the title and first useful paragraph, and continue in small meaningful batches so the user sees progress. plate_edit REPLACES the entire document: every call must submit the complete Slate JSON — all previous content plus this batch — never a fragment. Content is Slate editor JSON: an array of nodes, e.g. [{"type":"p","children":[{"text":"标题"}]}]; paragraphs use type "p", headings type "h1".."h3", lists/blocks optional. Keep a single edit under roughly 1 MiB; embedded images are base64 data URLs inside the JSON and count toward the 6 MB document limit, so prefer small images. After a human edit, call plate_read first and re-read the latest content before the next plate_edit; never guess the existing text. Do not fabricate citations, claims or figures.
+The deliverable is the live Plate document itself. After finishing, tell the user it is open in the right Plate editor where they can keep editing and click 导出 .plate to download. Do not claim a file was delivered, and do not use Bash/Python or a file-generation skill to build the document.`;
+
+// Tool 参数/输出 schema（镜像 office：string = {type:'string', required:true}）。
+const string = { type: 'string', required: true } as const;
+const slateContentSchema = {
+  type: 'array',
+  required: true,
+  items: { type: 'object', additionalProperties: true },
+} as const;
+const render = (_args: unknown, value: unknown) => [
+  { type: 'text' as const, text: JSON.stringify(value) },
+];
+const permissiveOutput = {
+  schema: { type: 'object', additionalProperties: true } as const,
+  render,
+};
+
+function registerTools(ctx: Context) {
+  for (const toolName of ['plate_open', 'plate_read', 'plate_edit']) {
+    if (ctx.tools.get(toolName)) {
+      throw new Error(`Plate tool name already registered: ${toolName}`);
+    }
+  }
+  ctx.effect(() => ctx.tools.register(defineTool({
+    name: 'plate_open',
+    description:
+      'Create a new Plate document and open it in the live right-hand editor immediately. Use this for document/report/Word-style requests (the default document editor is PlateAI); never use content_* for these. Pass a title and a unique operationId; reuse the same operationId on retries. New documents start with one empty paragraph.',
+    parameters: { title: string, operationId: string },
+    output: permissiveOutput,
+    execute: async (args, exec) => {
+      exec.signal.throwIfAborted();
+      const { doc, head } = ctx.workdshPlate.createDocument(
+        args.title,
+        [{ type: 'p', children: [{ text: '' }] }],
+        'create',
+      );
+      ctx.workdshPlate.pushPending({
+        sessionId: exec.agent ? String(exec.agent.id) : '',
+        documentId: doc.id,
+        requestId: args.operationId,
+      });
+      return { documentId: doc.id, title: doc.title, revision: head.seq };
+    },
+  })));
+  ctx.effect(() => ctx.tools.register(defineTool({
+    name: 'plate_read',
+    description:
+      'Read the latest committed content of a Plate document. Re-read after a human edit or before every plate_edit; never guess the existing text. Returns the complete Slate JSON the next plate_edit must be based on.',
+    parameters: { documentId: string },
+    output: permissiveOutput,
+    execute: async (args, exec) => {
+      exec.signal.throwIfAborted();
+      const { doc, head } = ctx.workdshPlate.openDocument(args.documentId);
+      // JSON 往返保证 wire 安全（同 office 的 jsonValue 过滤思路）。
+      return { documentId: doc.id, title: doc.title, revision: head.seq, content: JSON.parse(JSON.stringify(head.slateJson)) };
+    },
+  })));
+  ctx.effect(() => ctx.tools.register(defineTool({
+    name: 'plate_edit',
+    description:
+      'Replace the ENTIRE content of a Plate document in one commit: submit the complete Slate JSON — all previous content plus this batch — never a fragment. Use after plate_read, in small meaningful batches (title and first paragraph first), so the user sees progress. Paragraphs are {"type":"p","children":[{"text":"..."}]}; headings {"type":"h1".."h3","children":[...]}. Keep one edit under roughly 1 MiB; the whole document must stay under 6 MB (embedded images are base64 data URLs).',
+    parameters: { documentId: string, content: slateContentSchema },
+    output: permissiveOutput,
+    execute: async (args, exec) => {
+      exec.signal.throwIfAborted();
+      const { doc, head } = ctx.workdshPlate.appendRevision(
+        args.documentId,
+        args.content as unknown as z.infer<typeof slateJson>,
+        'ai',
+      );
+      return { documentId: doc.id, revision: head.seq };
+    },
+  })));
+}
+
 export async function apply(ctx: Context) {
   await ctx.plugin(PlateDocService);
 
@@ -67,6 +154,30 @@ export async function apply(ctx: Context) {
   } catch (error) {
     console.log(`${PREFIX} applied; selection probe failed: ${String(error)}`);
   }
+
+  // 「缺省文档编辑器」开关的 agent 侧效果：动态段逐次组装求值，读服务端缓存。
+  // 根插件不能注入自己提供的 workdshPlate（自注入死锁），提示词段与工具、
+  // 连接一样走子插件绕行——否则每次 prompt 组装都会抛 "without inject"。
+  await ctx.plugin({
+    name: 'workdsh-plate-prompt',
+    inject: ['systemPrompt', 'workdshPlate'],
+    apply(api: Context) {
+      api.effect(() => api.systemPrompt.section({
+        name: 'workdsh:plate-authoring',
+        order: api.systemPrompt.getSectionOrder('TOOL_REPORT') + 1,
+        text: () => (api.workdshPlate.getDefaultEditor() === 'plate' ? plateGuide : ''),
+      }));
+    },
+  });
+
+  // plate_* 工具链：与 office 的 content_* 平行的 agent 入口。
+  await ctx.plugin({
+    name: 'workdsh-plate-tools',
+    inject: ['tools', 'workdshPlate'],
+    apply(api: Context) {
+      registerTools(api);
+    },
+  });
 
   // The API entry is a separate loader entry so it can inject the service
   // this plugin provides above (self-injection would deadlock at boot).
@@ -132,6 +243,16 @@ function registerApi(ctx: Context) {
         } catch {
           return Response.json({ ok: false, code: 'NOT_FOUND' }, { status: 404 });
         }
+      }
+      if (body.endpoint === 'get-default-editor') {
+        return Response.json({ ok: true, editor: ctx.workdshPlate.getDefaultEditor() });
+      }
+      if (body.endpoint === 'set-default-editor') {
+        ctx.workdshPlate.setDefaultEditor(body.editor);
+        return Response.json({ ok: true, editor: ctx.workdshPlate.getDefaultEditor() });
+      }
+      if (body.endpoint === 'plate-pending') {
+        return Response.json({ ok: true, requests: ctx.workdshPlate.takePending(body.sessionId) });
       }
       // ai-smoke / ai-stream: build options from the default model selection
       // and stream ctx.llm.stream as SSE text-delta frames.

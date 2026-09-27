@@ -10,12 +10,28 @@ declare module '@deepseek-ai/cordis' {
   }
 }
 
+export type DefaultEditor = 'office' | 'plate';
+
+// agent 会话（exec.agent.id）→ 待客户端轮询打开的活文档。
+export interface PlatePendingEntry {
+  sessionId: string;
+  documentId: string;
+  requestId: string;
+}
+
 export class PlateDocService extends Service {
   static inject = ['storageDomain'];
   private store?: PlateStore;
+  private defaultEditor: DefaultEditor = 'office';
+  private readyResolve!: () => void;
+  readonly ready: Promise<void>;
+  private pending: PlatePendingEntry[] = [];
 
   constructor(ctx: Context) {
     super(ctx, 'workdshPlate');
+    this.ready = new Promise((resolve) => {
+      this.readyResolve = resolve;
+    });
   }
 
   async [Service.init](): Promise<void> {
@@ -24,12 +40,39 @@ export class PlateDocService extends Service {
     this.store = {
       documents: domain.table('documents'),
       revisions: domain.table('revisions'),
+      settings: domain.table('settings'),
     };
+    const saved = this.store.settings.get('default-editor');
+    if (saved && (saved.value === 'office' || saved.value === 'plate')) {
+      this.defaultEditor = saved.value;
+    }
+    this.readyResolve();
   }
 
   private tables(): PlateStore {
     if (!this.store) throw new Error('workdsh-plate: store not initialized');
     return this.store;
+  }
+
+  // 同步读缓存：systemPrompt 段 text provider 每次组装同步求值。
+  getDefaultEditor(): DefaultEditor {
+    return this.defaultEditor;
+  }
+
+  setDefaultEditor(editor: DefaultEditor): DefaultEditor {
+    this.tables().settings.put('default-editor', { key: 'default-editor', value: editor });
+    this.defaultEditor = editor;
+    return editor;
+  }
+
+  pushPending(entry: PlatePendingEntry): void {
+    this.pending.push(entry);
+  }
+
+  takePending(sessionId: string): PlatePendingEntry[] {
+    const mine = this.pending.filter((p) => p.sessionId === sessionId);
+    this.pending = this.pending.filter((p) => p.sessionId !== sessionId);
+    return mine;
   }
 
   listDocuments(): PlateDocument[] {
