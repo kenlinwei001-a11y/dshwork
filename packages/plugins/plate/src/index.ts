@@ -72,8 +72,11 @@ function registerTools(ctx: Context) {
   }
   ctx.effect(() => ctx.tools.register(defineTool({
     name: 'plate_open',
+    // 路由信号只放条件指南（plateGuide，缺省=plate 时注入），工具描述保持中性：
+    // 硬编码「never use content_*」在缺省=office 时是假陈述，会绑架 agent
+    // 选 plate_*，导致 office 文档流（content_* → docx 文件卡）断掉。
     description:
-      'Create a new Plate document and open it in the live right-hand editor immediately. Use this for document/report/Word-style requests (the default document editor is PlateAI); never use content_* for these. Pass a title and a unique operationId; reuse the same operationId on retries. New documents start with one empty paragraph.',
+      'Create a new empty Plate document and open it in the live right-hand editor immediately, for writing that should appear in the live editor. Pass a title and a unique operationId; reuse the same operationId on retries. New documents start with one empty paragraph. Whether to use plate_* or content_* for a document request is decided by the active authoring guidance in the system prompt.',
     parameters: { title: string, operationId: string },
     output: permissiveOutput,
     execute: async (args, exec) => {
