@@ -28,9 +28,17 @@ if (bootFor('@deepseek-ai/dsh') !== bootFor('@deepseek-ai/dsh-config-editor')) {
 }
 
 mkdirSync(previewHome, { recursive: true });
+// 会话内沙箱 bash 继承本进程 PATH。launchd 的默认 PATH 是
+// /usr/bin:/bin:/usr/sbin:/sbin，不含 /usr/local/bin，于是写盘类工具里的
+// `node -e`（如 office content_export 的导出步骤）会 command not found(127)，
+// 表现为「文件写入失败、被策略拒绝或结果未知」。把 node 自身目录与
+// /usr/local/bin 前置，使 PATH 不随启动方式变化。
+const nodeDir = dirname(process.execPath);
+const inheritedPath = process.env.PATH ?? '/usr/bin:/bin:/usr/sbin:/sbin';
+const childPath = [...new Set([nodeDir, '/usr/local/bin', ...inheritedPath.split(':').filter(Boolean)])].join(':');
 const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '--profile', 'preview', '--host', '127.0.0.1', '--port', port, '--no-open'], {
   cwd: root,
-  env: { ...process.env, DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
+  env: { ...process.env, PATH: childPath, DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
   stdio: 'inherit',
 });
 
