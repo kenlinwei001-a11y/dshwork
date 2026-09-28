@@ -10,6 +10,18 @@ import type { ISessions } from '@deepseek-ai/dsh-api-session-controller/client';
 import { Button, SegmentedControl } from '@deepseek-ai/dsh-client-ui-primitives';
 import { createPlateEditor, Plate, PlateContent, PlateElement, useEditorVersion } from 'platejs/react';
 import type { PlateEditor } from 'platejs/react';
+import { Sparkles } from 'lucide-react';
+import { BlockSelectionPlugin } from '@platejs/selection/react';
+import {
+  AIToolbarButton,
+  ToolbarButton,
+  aiChatPlugin,
+  aiLeafPlugin,
+  aiNativeCss,
+  markdownPlugin,
+  setAiAppliedHandler,
+  suggestionPlugin,
+} from './ai-native.js';
 
 // v1.3.0：右侧活编辑器 tab 的导航参数（镜像 office 的 workdsh-office-live）。
 declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
@@ -58,6 +70,11 @@ const plugins = [
   BaseBlockquotePlugin,
   BaseHorizontalRulePlugin,
   ImageElementPlugin,
+  markdownPlugin,
+  suggestionPlugin,
+  BlockSelectionPlugin,
+  aiLeafPlugin,
+  aiChatPlugin,
 ];
 
 type SlateContent = { type?: string; text?: string; children: unknown[] }[];
@@ -74,63 +91,7 @@ async function post<T>(endpoint: string, payload: Record<string, unknown> = {}):
   return body as T;
 }
 
-// SSE variant of post(): consumes data: frames, feeding text deltas to
-// onText; throws on an error frame or a non-SSE (JSON) response.
-async function streamPost(
-  endpoint: string,
-  payload: Record<string, unknown>,
-  onText: (delta: string) => void,
-): Promise<void> {
-  const response = await fetch('/api/workdsh-plate', {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ endpoint, ...payload }),
-  });
-  const contentType = response.headers.get('content-type') ?? '';
-  if (!contentType.includes('text/event-stream')) {
-    const body = await response.json().catch(() => null);
-    throw new Error(body?.code ?? `HTTP ${response.status}`);
-  }
-  const reader = response.body!.getReader();
-  const decoder = new TextDecoder();
-  let buffer = '';
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    buffer += decoder.decode(value, { stream: true });
-    let boundary = buffer.indexOf('\n\n');
-    while (boundary >= 0) {
-      const frame = buffer.slice(0, boundary);
-      buffer = buffer.slice(boundary + 2);
-      const dataLine = frame.split('\n').find((line) => line.startsWith('data: '));
-      if (dataLine) {
-        const event = JSON.parse(dataLine.slice(6)) as { text?: string; error?: string };
-        if (event.error) throw new Error(event.error);
-        if (event.text) onText(event.text);
-      }
-      boundary = buffer.indexOf('\n\n');
-    }
-  }
-}
-
 type DocMeta = { id: string; title: string; updatedAt: string };
-
-function ToolbarButton(props: { label: string; active?: boolean; onClick: () => void }) {
-  return (
-    <Button
-      type="button"
-      variant="toolbar"
-      size="sm"
-      className={props.active ? 'plate-btn-active' : undefined}
-      data-active={props.active ? 'true' : undefined}
-      onMouseDown={(event) => { event.preventDefault(); props.onClick(); }}
-      title={props.label}
-    >
-      {props.label}
-    </Button>
-  );
-}
 
 // S5-b：.plate 文件打开路径。documentPreviews 声明由预览 owner 按扩展名
 // 路由到本组件（keyed slot key === definition id），content.kind 'bytes'
@@ -250,138 +211,26 @@ function OpenInPlateAction(openLiveEditor: (documentId: string) => void) {
 
 // 汉化层 + M3：AI 动作菜单（润色/续写/扩写/缩写/纠错/翻译），全走
 // ctx.llm.stream（/api/workdsh-plate ai-stream），遵循 agent-default-model。
-const AI_ACTIONS = [
-  { key: 'polish', label: '润色' },
-  { key: 'continue', label: '续写' },
-  { key: 'expand', label: '扩写' },
-  { key: 'condense', label: '缩写' },
-  { key: 'proofread', label: '纠错' },
-  { key: 'translate', label: '翻译' },
-] as const;
-
-type AiActionKey = (typeof AI_ACTIONS)[number]['key'];
-
-function PlateAiSection(props: { editor: PlateEditor; docId: string }) {
-  const { editor, docId } = props;
-  const [state, setState] = useState<{
-    action: AiActionKey;
-    busy: boolean;
-    text: string;
-    expanded: boolean;
-    savedRange: typeof editor.selection;
-    inserted: boolean;
-    error: string | null;
-  } | null>(null);
-
-  const start = async (action: AiActionKey) => {
-    // Selection is still live here: the buttons preventDefault on mousedown.
-    const selection = editor.selection;
-    const expanded = !!selection && !editor.api.isCollapsed(selection);
-    const text = expanded
-      ? editor.api.string(selection)
-      : editor.api.string({ anchor: editor.api.start(editor, []), focus: editor.api.end(editor, []) });
-    if (!text.trim()) {
-      setState({ action, busy: false, text: '', expanded, savedRange: expanded ? selection : null, inserted: false, error: '没有可处理的文本，请先输入内容。' });
-      return;
-    }
-    setState({ action, busy: true, text: '', expanded, savedRange: expanded ? selection : null, inserted: false, error: null });
-    try {
-      await streamPost('ai-stream', { docId, action, text }, (delta) => {
-        setState((prev) => (prev ? { ...prev, text: prev.text + delta } : prev));
-      });
-      setState((prev) => (prev ? { ...prev, busy: false } : prev));
-    } catch (error) {
-      setState((prev) => (prev ? { ...prev, busy: false, error: String(error) } : prev));
-    }
-  };
-
-  const insert = async () => {
-    if (!state || state.busy || !state.text) return;
-    if (state.expanded && state.savedRange) {
-      editor.tf.select(state.savedRange);
-      editor.tf.insertText(state.text);
-    } else {
-      editor.tf.select(editor.api.end(editor, []));
-      editor.tf.insertText(`\n${state.text}`);
-    }
-    // AI 修改同样进入修订链，cause='ai' 与手动编辑区分。
-    try {
-      await post('rev-append', { docId, content: editor.children, cause: 'ai' });
-      setState((prev) => (prev ? { ...prev, inserted: true } : prev));
-    } catch (error) {
-      setState((prev) => (prev ? { ...prev, error: String(error) } : prev));
-    }
-  };
-
-  const busyLabel = state?.busy ? `${AI_ACTIONS.find((a) => a.key === state.action)?.label}中…` : null;
-
-  return (
-    <>
-      {AI_ACTIONS.map((a) => (
-        <Button
-          key={a.key}
-          type="button"
-          variant="toolbar"
-          size="sm"
-          disabled={state?.busy}
-          onMouseDown={(event) => { event.preventDefault(); void start(a.key); }}
-          title={`AI ${a.label}`}
-        >
-          {state?.busy && state.action === a.key ? '…' : a.label}
-        </Button>
-      ))}
-      {state ? (
-        <div className="plate-ai-panel">
-          {busyLabel ? <div className="plate-ai-status">{busyLabel}</div> : null}
-          {state.error ? <div className="plate-error">{state.error}</div> : null}
-          <textarea
-            className="plate-ai-text"
-            value={state.text}
-            readOnly={state.busy}
-            placeholder={state.busy ? 'AI 正在生成…' : 'AI 生成结果（可编辑后再写入）'}
-            onChange={(event) => setState((prev) => (prev ? { ...prev, text: event.target.value, inserted: false } : prev))}
-          />
-          <div className="plate-ai-actions">
-            <Button type="button" variant="outline" size="sm" disabled={state.busy || !state.text} onClick={() => void insert()}>
-              {state.expanded ? '替换选区' : '插入文末'}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              disabled={!state.text}
-              onClick={() => { void navigator.clipboard.writeText(state.text).catch(() => {}); }}
-            >
-              复制
-            </Button>
-            <Button type="button" variant="ghost" size="sm" onClick={() => setState(null)}>关闭</Button>
-            {state.inserted ? <span className="plate-saved-at">已写入并保存</span> : null}
-          </div>
-        </div>
-      ) : null}
-    </>
-  );
-}
-
 // Toolbar buttons must live INSIDE <Plate> so useEditorVersion() can resolve
 // the Plate store from context and re-render on every editor change; without
 // the subscription, active marks are evaluated once at mount and never update.
+// v1.5.0：按钮换官方样式的 ToolbarButton（ai-native 移植层），动作逻辑不变。
 function PlateToolbarButtons(props: { editor: PlateEditor }) {
   useEditorVersion();
   const markActive = (key: string) => (props.editor.api.marks?.() ?? {})[key] === true;
   return (
     <>
-      <ToolbarButton label="加粗" active={markActive('bold')} onClick={() => props.editor.tf.toggleMark('bold')} />
-      <ToolbarButton label="斜体" active={markActive('italic')} onClick={() => props.editor.tf.toggleMark('italic')} />
-      <ToolbarButton label="下划线" active={markActive('underline')} onClick={() => props.editor.tf.toggleMark('underline')} />
-      <ToolbarButton label="删除线" active={markActive('strikethrough')} onClick={() => props.editor.tf.toggleMark('strikethrough')} />
-      <ToolbarButton label="代码" active={markActive('code')} onClick={() => props.editor.tf.toggleMark('code')} />
+      <ToolbarButton title="加粗" active={markActive('bold')} onClick={() => props.editor.tf.toggleMark('bold')}>加粗</ToolbarButton>
+      <ToolbarButton title="斜体" active={markActive('italic')} onClick={() => props.editor.tf.toggleMark('italic')}>斜体</ToolbarButton>
+      <ToolbarButton title="下划线" active={markActive('underline')} onClick={() => props.editor.tf.toggleMark('underline')}>下划线</ToolbarButton>
+      <ToolbarButton title="删除线" active={markActive('strikethrough')} onClick={() => props.editor.tf.toggleMark('strikethrough')}>删除线</ToolbarButton>
+      <ToolbarButton title="代码" active={markActive('code')} onClick={() => props.editor.tf.toggleMark('code')}>代码</ToolbarButton>
       <span className="plate-toolbar-sep" />
-      <ToolbarButton label="标题 1" onClick={() => props.editor.tf.toggleBlock('h1')} />
-      <ToolbarButton label="标题 2" onClick={() => props.editor.tf.toggleBlock('h2')} />
-      <ToolbarButton label="标题 3" onClick={() => props.editor.tf.toggleBlock('h3')} />
-      <ToolbarButton label="引用" onClick={() => props.editor.tf.toggleBlock('blockquote')} />
-      <ToolbarButton label="分隔线" onClick={() => props.editor.tf.toggleBlock('hr')} />
+      <ToolbarButton title="标题 1" onClick={() => props.editor.tf.toggleBlock('h1')}>标题 1</ToolbarButton>
+      <ToolbarButton title="标题 2" onClick={() => props.editor.tf.toggleBlock('h2')}>标题 2</ToolbarButton>
+      <ToolbarButton title="标题 3" onClick={() => props.editor.tf.toggleBlock('h3')}>标题 3</ToolbarButton>
+      <ToolbarButton title="引用" onClick={() => props.editor.tf.toggleBlock('blockquote')}>引用</ToolbarButton>
+      <ToolbarButton title="分隔线" onClick={() => props.editor.tf.toggleBlock('hr')}>分隔线</ToolbarButton>
     </>
   );
 }
@@ -446,6 +295,78 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
   const [imageStatus, setImageStatus] = useState('');
   const editor = useState(() => createPlateEditor({ plugins, value: props.content }))[0];
 
+  // 原生 AI 菜单的 Accept / Insert below 落地后，AI 修改进修订链（cause='ai'）。
+  useEffect(() => {
+    setAiAppliedHandler(() => {
+      void post('rev-append', {
+        docId: props.docId,
+        content: editor.children as SlateContent,
+        cause: 'ai',
+      }).catch(() => {});
+    });
+    return () => setAiAppliedHandler(null);
+  }, [props.docId, editor]);
+
+  // 探针调试钩子（不影响 UI）：暴露编辑器状态与确定性光标/块选区操作，供 E2E 用。
+  useEffect(() => {
+    const w = window as unknown as { __workdshPlateProbe?: Record<string, unknown> };
+    w.__workdshPlateProbe = {
+      state: () => {
+        const sel = editor.selection;
+        return {
+          collapsed: !sel || editor.api.isCollapsed(),
+          atEnd: editor.api.isAt({ end: true }),
+          apiEnd: editor.api.end(),
+          selection: sel,
+          blockSome: (() => {
+            try {
+              return editor.getTransforms(BlockSelectionPlugin).isSelectingSome?.();
+            } catch (error) {
+              return `ERR:${String(error).slice(0, 120)}`;
+            }
+          })(),
+          blockPaths: (() => {
+            try {
+              return editor
+                .getApi(BlockSelectionPlugin)
+                .blockSelection.getNodes({ sort: true })
+                .map(([, path]: [unknown, unknown[]]) => path);
+            } catch (error) {
+              return `ERR:${String(error).slice(0, 120)}`;
+            }
+          })(),
+        };
+      },
+      // 终点从最后一块的最后一个 text 子节点确定性计算，不依赖 api.end() 的 null 行为。
+      cursorToEnd: () => {
+        try {
+          const last = editor.api.blocks().at(-1);
+          if (!last) return 'no-blocks';
+          const [node, path] = last;
+          const children = (node.children ?? []) as Array<{ text?: string }>;
+          const offset = children.at(-1)?.text?.length ?? 0;
+          const end = { path: [...path, 0], offset };
+          editor.tf.select({ anchor: end, focus: end });
+          editor.tf.focus();
+          return null;
+        } catch (error) {
+          return `ERR:${String(error).slice(0, 200)}`;
+        }
+      },
+      clearBlocks: () => {
+        try {
+          editor.getApi(BlockSelectionPlugin).blockSelection.deselect();
+          return null;
+        } catch (error) {
+          return `ERR:${String(error).slice(0, 200)}`;
+        }
+      },
+    };
+    return () => {
+      delete w.__workdshPlateProbe;
+    };
+  }, [editor]);
+
   // 粘贴图片：截获剪贴板里的图片文件，走与插图按钮相同的 data URL 管道。
   const handlePaste = (event: ClipboardEvent<HTMLDivElement>) => {
     const items = event.clipboardData?.items;
@@ -480,7 +401,10 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
         <div className="plate-toolbar">
           <PlateToolbarButtons editor={editor} />
           <span className="plate-toolbar-sep" />
-          <PlateAiSection editor={editor} docId={props.docId} />
+          <AIToolbarButton title="AI 菜单" className="pltx-ai-btn">
+            <Sparkles />
+            AI
+          </AIToolbarButton>
           <span className="plate-toolbar-sep" />
           <PlateImageButton editor={editor} />
           <Button type="button" variant="primary" size="sm" disabled={saving} onClick={() => void save()}>
@@ -648,20 +572,16 @@ function injectStyles(): void {
 .plate-error { color: #dc2626; margin: 4px 0; }
 .plate-doc-editor { display: flex; flex-direction: column; min-height: 320px; }
 .plate-toolbar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 6px 8px; border-bottom: 1px solid #e5e7eb; }
-.plate-btn-active { background: #e0e7ff !important; color: #4338ca !important; }
 .plate-toolbar-sep { width: 1px; height: 18px; background: #e5e7eb; margin: 0 4px; }
 .plate-saved-at { color: #16a34a; font-size: 12px; }
-.plate-canvas { padding: 16px; overflow-y: auto; }
+.plate-canvas { padding: 16px; overflow-y: auto; position: relative; }
 .plate-content { min-height: 260px; outline: none; }
-.plate-ai-panel { flex-basis: 100%; display: flex; flex-direction: column; gap: 6px; padding: 8px; border: 1px solid #c7d2fe; border-radius: 8px; background: #f8faff; margin-top: 4px; }
-.plate-ai-text { width: 100%; min-height: 90px; font-size: 13px; line-height: 1.6; border: 1px solid #d1d5db; border-radius: 6px; padding: 8px; box-sizing: border-box; }
-.plate-ai-actions { display: flex; gap: 6px; align-items: center; }
-.plate-ai-status { font-size: 12px; color: #6366f1; }
 .plate-file-preview { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
 .plate-file-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .plate-file-body { border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; background: #fff; }
 .plate-image-status { color: #6366f1; font-size: 12px; }
 .plate-content img { max-width: 100%; height: auto; border-radius: 6px; }
+${aiNativeCss}
 `;
   document.head.appendChild(style);
 }

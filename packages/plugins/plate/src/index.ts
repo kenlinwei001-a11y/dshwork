@@ -3,6 +3,7 @@ import type { HostConnectionHandle } from '@deepseek-ai/dsh-client-connection';
 import type {} from '@deepseek-ai/dsh-agent-default-model';
 import type { GenerateOptions, ReasoningEffortId } from '@deepseek-ai/dsh-llm';
 import { defineTool } from '@deepseek-ai/dsh-tools';
+import { createUIMessageStream, createUIMessageStreamResponse } from 'ai';
 import { PlateDocService, docIdParam } from './service.js';
 import { slateJson } from './storage.js';
 import { importDocx } from './docx.js';
@@ -23,44 +24,20 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('doc-export'), docId: docIdParam }).strict(),
   z.object({ endpoint: z.literal('rev-append'), docId: docIdParam, content: slateJson, cause: z.enum(['edit', 'ai', 'import']) }).strict(),
   z.object({
-    endpoint: z.literal('ai-stream'),
-    docId: docIdParam,
-    action: z.enum(['polish', 'continue', 'expand', 'condense', 'proofread', 'translate']),
-    text: z.string().min(1).max(8000),
-  }).strict(),
+    endpoint: z.literal('ai-command'),
+    // AI SDK transport 会在 body 里附带 id 等自有字段，不 strict。
+    messages: z.unknown().array().max(64),
+    ctx: z.object({
+      children: slateJson,
+      selection: z.unknown().nullable(),
+      toolName: z.enum(['generate', 'edit']),
+    }),
+  }),
   z.object({ endpoint: z.literal('get-default-editor') }).strict(),
   z.object({ endpoint: z.literal('set-default-editor'), editor: z.enum(['office', 'plate']) }).strict(),
   z.object({ endpoint: z.literal('plate-pending'), sessionId: z.string().max(128) }).strict(),
   z.object({ endpoint: z.literal('docx-import'), path: z.string().min(1).max(1024) }).strict(),
 ]);
-
-// 汉化层：AI 动作 → 中文提示词模板（设计稿 v0.2 的 prompt 中文化）。
-const AI_PROMPTS: Record<string, { system: string; user: (text: string) => string }> = {
-  polish: {
-    system: '你是中文写作助手，输出保持原文句子边界，不拆句不合句。',
-    user: (text) => `请润色下面的文本：保持原意，改正生硬与冗余的表达，直接输出润色后的文本，不要任何解释。\n\n${text}`,
-  },
-  continue: {
-    system: '你是中文写作助手，续写风格与原文一致。',
-    user: (text) => `请接着下面的文本继续写下去，语气连贯、风格一致，直接输出续写的内容，不要任何解释。\n\n${text}`,
-  },
-  expand: {
-    system: '你是中文写作助手，扩写时保持原文结构与句子边界。',
-    user: (text) => `请扩写下面的文本：补充必要的细节与论证，不改变原有结构，直接输出扩写后的全文，不要任何解释。\n\n${text}`,
-  },
-  condense: {
-    system: '你是中文写作助手，压缩时保留核心要点与关键数据。',
-    user: (text) => `请压缩下面的文本：保留核心要点与关键数字，删去冗余修饰，直接输出压缩后的文本，不要任何解释。\n\n${text}`,
-  },
-  proofread: {
-    system: '你是中文校对助手，只修正错误，不改写风格。',
-    user: (text) => `请校对下面的文本：修正错别字、语法错误与标点问题，直接输出修正后的全文，不要任何解释。\n\n${text}`,
-  },
-  translate: {
-    system: '你是翻译助手，输出译文时保持原文句子边界。',
-    user: (text) => `请翻译下面的文本：若原文是中文则译为英文，若原文是英文则译为中文，直接输出译文，不要任何解释。\n\n${text}`,
-  },
-};
 
 // 「缺省文档编辑器 = PlateAI」时的 agent 写作指南。作为动态 text provider 注册：
 // 缺省=office 时返回空串，行为与改前逐字节一致；缺省=plate 时注入本段。
@@ -266,48 +243,97 @@ function registerApi(ctx: Context) {
           return Response.json({ ok: false, code: 'DOCX_IMPORT_FAILED', message: String(error) }, { status: 400 });
         }
       }
-      // ai-smoke / ai-stream: build options from the default model selection
-      // and stream ctx.llm.stream as SSE text-delta frames.
+      if (body.endpoint === 'ai-command') {
+        // v1.5.0 原生 AI 菜单的命令流：最后一条用户消息是客户端拼好的完整
+        // 提示词（模板+选区 Markdown），按 AI SDK UI message stream 协议回码。
+        let options: GenerateOptions;
+        try {
+          const selection = ctx.agentDefaultModel.currentSelection();
+          const messages = body.messages as Array<{ parts?: Array<{ type?: string; text?: string }> }>;
+          const lastWithText = [...messages].reverse().find((m) => m.parts?.some((p) => p.type === 'text'));
+          const prompt = lastWithText?.parts?.find((p) => p.type === 'text')?.text?.trim();
+          if (!prompt) {
+            return Response.json({ ok: false, code: 'EMPTY_PROMPT' }, { status: 400 });
+          }
+          options = {
+            provider: selection.provider,
+            model: selection.model,
+            ...(selection.reasoningEffort
+              ? { reasoningEffort: selection.reasoningEffort as ReasoningEffortId }
+              : {}),
+            system: '你是中文写作助手。按用户指令处理文档内容，只输出结果的 Markdown（保留标题、加粗、段落结构），不要任何解释与前后缀。',
+            messages: [{
+              role: 'user',
+              content: [{ type: 'text', text: prompt }],
+            }],
+            maxTokens: 2048,
+            signal: request.signal,
+          };
+        } catch (error) {
+          return Response.json({ ok: false, code: 'SELECTION_FAILED', message: String(error) }, { status: 500 });
+        }
+        console.log(`${PREFIX} ai-command tool=${body.ctx.toolName} provider=${options.provider} model=${options.model}`);
+        return streamUiMessages(ctx, options);
+      }
+      // ai-smoke: build options from the default model selection and stream
+      // ctx.llm.stream as SSE text-delta frames.
       const prompt = body.endpoint === 'ai-smoke'
         ? (body.prompt?.trim() ? body.prompt.trim().slice(0, 4000) : '用一句话介绍富文本编辑器。')
         : null;
-      const aiAction = body.endpoint === 'ai-stream' ? body.action : null;
       let options: GenerateOptions;
       try {
         const selection = ctx.agentDefaultModel.currentSelection();
-        const template = aiAction ? AI_PROMPTS[aiAction] : null;
-        const userText = aiAction && body.endpoint === 'ai-stream' ? body.text : prompt!;
         options = {
           provider: selection.provider,
           model: selection.model,
           ...(selection.reasoningEffort
             ? { reasoningEffort: selection.reasoningEffort as ReasoningEffortId }
             : {}),
-          system: template?.system ?? '你是中文写作助手，回答简洁。',
+          system: '你是中文写作助手，回答简洁。',
           messages: [{
             role: 'user',
-            content: [{ type: 'text', text: template ? template.user(userText) : userText }],
+            content: [{ type: 'text', text: prompt! }],
           }],
-          maxTokens: aiAction ? 2048 : 512,
+          maxTokens: 512,
           signal: request.signal,
         };
       } catch (error) {
         return Response.json({ ok: false, code: 'SELECTION_FAILED', message: String(error) }, { status: 500 });
       }
-      if (body.endpoint === 'ai-stream') {
-        // The stream must target a real document so the client's cause:'ai'
-        // revision lands somewhere; reject unknown ids before burning tokens.
-        try {
-          ctx.workdshPlate.openDocument(body.docId);
-        } catch {
-          return Response.json({ ok: false, code: 'NOT_FOUND' }, { status: 404 });
-        }
-      }
-      console.log(`${PREFIX} ${body.endpoint} action=${aiAction ?? '-'} provider=${options.provider} model=${options.model}`);
+      console.log(`${PREFIX} ${body.endpoint} provider=${options.provider} model=${options.model}`);
       return streamLlm(ctx, options);
     },
   });
   ctx.effect(() => () => unregister());
+}
+
+// v1.5.0：AI SDK UI message stream（text-start/text-delta/text-end/finish）。
+// 协议编码交给 ai 包的 createUIMessageStream —— 客户端 DefaultChatTransport
+// 解码后走官方 AIChat 流式管线（insert 模式流式插入 / edit 模式建议 diff）。
+let uiStreamSeq = 0;
+function streamUiMessages(ctx: Context, options: GenerateOptions): Response {
+  const stream = createUIMessageStream({
+    execute: async ({ writer }) => {
+      uiStreamSeq += 1;
+      const id = `pltx-${Date.now()}-${uiStreamSeq}`;
+      writer.write({ type: 'text-start', id });
+      try {
+        for await (const chunk of ctx.llm.stream(options)) {
+          if (chunk.type === 'text-delta') {
+            writer.write({ type: 'text-delta', id, delta: chunk.text });
+          }
+        }
+        writer.write({ type: 'text-end', id });
+        writer.write({ type: 'finish', finishReason: 'stop' });
+      } catch (error) {
+        // 流中出错：标 error 而非静默空完成，避免客户端把空回当正常结果 Accept。
+        console.error(`${PREFIX} ai-command stream error: ${String(error)}`);
+        writer.write({ type: 'text-end', id });
+        writer.write({ type: 'finish', finishReason: 'error' });
+      }
+    },
+  });
+  return createUIMessageStreamResponse({ stream });
 }
 
 // Shared SSE pipe: text-delta frames with per-chunk timestamps, a usage frame

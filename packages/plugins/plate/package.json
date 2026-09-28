@@ -1,6 +1,6 @@
 {
   "name": "workdsh-plugin-plate",
-  "version": "1.4.0",
+  "version": "1.5.1",
   "private": true,
   "type": "module",
   "description": "AI rich-text documents (Plate) as a parallel, zero-intrusion WorkDSH plugin; all LLM access via the Harness llm service",
@@ -38,9 +38,19 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@ai-sdk/react": "4.0.121",
+    "@platejs/ai": "53.3.12",
     "@platejs/basic-nodes": "53.0.0",
+    "@platejs/markdown": "53.3.12",
     "@platejs/media": "53.1.4",
+    "@platejs/selection": "^53.1.6",
+    "@platejs/suggestion": "^53.2.3",
+    "@radix-ui/react-popover": "^1.1.23",
+    "ai": "7.0.118",
+    "clsx": "^2.1.1",
+    "cmdk": "1.1.1",
     "jszip": "3.10.1",
+    "lucide-react": "1.45.0",
     "platejs": "53.3.14",
     "zod": "4.4.3"
   },
