@@ -59,9 +59,10 @@ export class PlateDocService extends Service {
     return this.defaultEditor;
   }
 
-  setDefaultEditor(editor: DefaultEditor): DefaultEditor {
-    this.tables().settings.put('default-editor', { key: 'default-editor', value: editor });
+  async setDefaultEditor(editor: DefaultEditor): Promise<DefaultEditor> {
+    // 内存缓存同步生效（systemPrompt 段每轮组装同步读它），落盘 await 完才算写完。
     this.defaultEditor = editor;
+    await this.tables().settings.put('default-editor', { key: 'default-editor', value: editor });
     return editor;
   }
 
@@ -91,11 +92,15 @@ export class PlateDocService extends Service {
     return { doc, head };
   }
 
-  createDocument(
+  // 写入必须 await：存储域的 put() 是先落盘、后进内存 records 的异步提交
+  // （dsh-storage-domain lib/index.js put()），不 await 就返回等于把
+  // 「响应已回、记录还读不到」的窗口暴露给调用方——表现为刚导入/刚编辑完
+  // 立刻 doc-open 必 404，50~100ms 后才自愈。
+  async createDocument(
     title: string,
     content: z.infer<typeof slateJson>,
     cause: 'create' | 'import' = 'create',
-  ): { doc: PlateDocument; head: PlateRevision } {
+  ): Promise<{ doc: PlateDocument; head: PlateRevision }> {
     const { documents, revisions } = this.tables();
     const docId = randomUUID();
     const revId = randomUUID();
@@ -115,12 +120,12 @@ export class PlateDocService extends Service {
       cause,
       slateJson: content,
     });
-    revisions.put(revId, head);
-    documents.put(docId, doc);
+    // 先修订后文档：doc-open 同时读两张表，任一未落地都是 404。
+    await Promise.all([revisions.put(revId, head), documents.put(docId, doc)]);
     return { doc, head };
   }
 
-  appendRevision(docId: string, content: z.infer<typeof slateJson>, cause: PlateRevision['cause']): { doc: PlateDocument; head: PlateRevision } {
+  async appendRevision(docId: string, content: z.infer<typeof slateJson>, cause: PlateRevision['cause']): Promise<{ doc: PlateDocument; head: PlateRevision }> {
     const { documents, revisions } = this.tables();
     const doc = documents.get(docId);
     if (!doc) throw new Error('NOT_FOUND');
@@ -136,9 +141,8 @@ export class PlateDocService extends Service {
       cause,
       slateJson: content,
     });
-    revisions.put(revId, head);
     const updated = documentSchema.parse({ ...doc, headRevId: revId, updatedAt: now });
-    documents.put(docId, updated);
+    await Promise.all([revisions.put(revId, head), documents.put(docId, updated)]);
     return { doc: updated, head };
   }
 }

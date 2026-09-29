@@ -81,7 +81,7 @@ function registerTools(ctx: Context) {
     output: permissiveOutput,
     execute: async (args, exec) => {
       exec.signal.throwIfAborted();
-      const { doc, head } = ctx.workdshPlate.createDocument(
+      const { doc, head } = await ctx.workdshPlate.createDocument(
         args.title,
         [{ type: 'p', children: [{ text: '' }] }],
         'create',
@@ -115,7 +115,7 @@ function registerTools(ctx: Context) {
     output: permissiveOutput,
     execute: async (args, exec) => {
       exec.signal.throwIfAborted();
-      const { doc, head } = ctx.workdshPlate.appendRevision(
+      const { doc, head } = await ctx.workdshPlate.appendRevision(
         args.documentId,
         args.content as unknown as z.infer<typeof slateJson>,
         'ai',
@@ -199,7 +199,8 @@ function registerApi(ctx: Context) {
       }
       if (body.endpoint === 'doc-create') {
         try {
-          return Response.json({ ok: true, ...ctx.workdshPlate.createDocument(body.title, body.content) });
+          const created = await ctx.workdshPlate.createDocument(body.title, body.content);
+          return Response.json({ ok: true, ...created });
         } catch (error) {
           return Response.json({ ok: false, code: 'CREATE_FAILED', message: String(error) }, { status: 500 });
         }
@@ -207,7 +208,8 @@ function registerApi(ctx: Context) {
       if (body.endpoint === 'doc-import') {
         // 从 .plate 文件导入：首修订 cause='import'，与手动新建（'create'）区分。
         try {
-          return Response.json({ ok: true, ...ctx.workdshPlate.createDocument(body.title, body.content, 'import') });
+          const imported = await ctx.workdshPlate.createDocument(body.title, body.content, 'import');
+          return Response.json({ ok: true, ...imported });
         } catch (error) {
           return Response.json({ ok: false, code: 'IMPORT_FAILED', message: String(error) }, { status: 500 });
         }
@@ -215,13 +217,17 @@ function registerApi(ctx: Context) {
       if (body.endpoint === 'doc-open' || body.endpoint === 'doc-export') {
         try {
           return Response.json({ ok: true, ...ctx.workdshPlate.openDocument(body.docId) });
-        } catch {
-          return Response.json({ ok: false, code: 'NOT_FOUND' }, { status: 404 });
+        } catch (error) {
+          // 区分「文档不存在」与「文档在但 head 修订读不到」：两者都 404，
+          // 但后者是写入未落地的一致性问题，报同一个码会把归因带偏。
+          const code = error instanceof Error && error.message === 'HEAD_REVISION_MISSING' ? 'HEAD_REVISION_MISSING' : 'NOT_FOUND';
+          return Response.json({ ok: false, code }, { status: 404 });
         }
       }
       if (body.endpoint === 'rev-append') {
         try {
-          return Response.json({ ok: true, ...ctx.workdshPlate.appendRevision(body.docId, body.content, body.cause) });
+          const appended = await ctx.workdshPlate.appendRevision(body.docId, body.content, body.cause);
+          return Response.json({ ok: true, ...appended });
         } catch {
           return Response.json({ ok: false, code: 'NOT_FOUND' }, { status: 404 });
         }
@@ -230,7 +236,7 @@ function registerApi(ctx: Context) {
         return Response.json({ ok: true, editor: ctx.workdshPlate.getDefaultEditor() });
       }
       if (body.endpoint === 'set-default-editor') {
-        ctx.workdshPlate.setDefaultEditor(body.editor);
+        await ctx.workdshPlate.setDefaultEditor(body.editor);
         return Response.json({ ok: true, editor: ctx.workdshPlate.getDefaultEditor() });
       }
       if (body.endpoint === 'plate-pending') {
@@ -240,7 +246,7 @@ function registerApi(ctx: Context) {
         // 「用 PlateAI 打开」：读 docx 文件 → 解析成 Slate JSON → 导入 plate 域。
         try {
           const { title, content } = await importDocx(body.path);
-          const { doc, head } = ctx.workdshPlate.createDocument(title, content as unknown as z.infer<typeof slateJson>, 'import');
+          const { doc, head } = await ctx.workdshPlate.createDocument(title, content as unknown as z.infer<typeof slateJson>, 'import');
           return Response.json({ ok: true, doc, head: { seq: head.seq } });
         } catch (error) {
           return Response.json({ ok: false, code: 'DOCX_IMPORT_FAILED', message: String(error) }, { status: 400 });
