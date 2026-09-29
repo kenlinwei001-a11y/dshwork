@@ -21,7 +21,7 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('doc-create'), title: z.string().min(1).max(256), content: slateJson }).strict(),
   z.object({ endpoint: z.literal('doc-import'), title: z.string().min(1).max(256), content: slateJson }).strict(),
   z.object({ endpoint: z.literal('doc-open'), docId: docIdParam }).strict(),
-  z.object({ endpoint: z.literal('doc-export'), docId: docIdParam }).strict(),
+  // doc-export 随「导出 .plate」功能一并移除（用户 2026-09-29：不需要这个功能）。
   z.object({ endpoint: z.literal('rev-append'), docId: docIdParam, content: slateJson, cause: z.enum(['edit', 'ai', 'import']) }).strict(),
   z.object({
     endpoint: z.literal('ai-command'),
@@ -214,7 +214,7 @@ function registerApi(ctx: Context) {
           return Response.json({ ok: false, code: 'IMPORT_FAILED', message: String(error) }, { status: 500 });
         }
       }
-      if (body.endpoint === 'doc-open' || body.endpoint === 'doc-export') {
+      if (body.endpoint === 'doc-open') {
         try {
           return Response.json({ ok: true, ...ctx.workdshPlate.openDocument(body.docId) });
         } catch (error) {

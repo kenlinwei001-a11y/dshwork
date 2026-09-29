@@ -10,11 +10,9 @@ import type { ISessions } from '@deepseek-ai/dsh-api-session-controller/client';
 import { Button, SegmentedControl } from '@deepseek-ai/dsh-client-ui-primitives';
 import { createPlateEditor, Plate, PlateContent, PlateElement, useEditorVersion } from 'platejs/react';
 import type { PlateEditor } from 'platejs/react';
-import { Sparkles } from 'lucide-react';
 import { BlockSelectionPlugin } from '@platejs/selection/react';
+import { BoldIcon, Code2Icon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from 'lucide-react';
 import {
-  AIToolbarButton,
-  ToolbarButton,
   aiChatPlugin,
   aiLeafPlugin,
   aiNativeCss,
@@ -22,6 +20,17 @@ import {
   setAiAppliedHandler,
   suggestionPlugin,
 } from './ai-native.js';
+// v1.6.0：工具栏换官方 playground 那套（图标按钮 + 分组 + 「转换为」下拉 + 悬浮提示）。
+import {
+  AIToolbarButton,
+  HrToolbarButton,
+  ImageToolbarButton,
+  MarkToolbarButton,
+  Toolbar,
+  ToolbarGroup,
+  TurnIntoToolbarButton,
+  toolbarNativeCss,
+} from './toolbar-native.js';
 
 // v1.3.0：右侧活编辑器 tab 的导航参数（镜像 office 的 workdsh-office-live）。
 declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
@@ -209,29 +218,41 @@ function OpenInPlateAction(openLiveEditor: (documentId: string) => void) {
   };
 }
 
-// 汉化层 + M3：AI 动作菜单（润色/续写/扩写/缩写/纠错/翻译），全走
-// ctx.llm.stream（/api/workdsh-plate ai-stream），遵循 agent-default-model。
-// Toolbar buttons must live INSIDE <Plate> so useEditorVersion() can resolve
-// the Plate store from context and re-render on every editor change; without
-// the subscription, active marks are evaluated once at mount and never update.
-// v1.5.0：按钮换官方样式的 ToolbarButton（ai-native 移植层），动作逻辑不变。
-function PlateToolbarButtons(props: { editor: PlateEditor }) {
+// 工具栏必须嵌在 <Plate> 子树内：Radix 按钮的状态读的是 Plate store。
+// v1.6.0：整条工具栏改用官方 playground 的编排（图标按钮 + 分组分隔 +
+// 「转换为」下拉 + 悬浮提示），不再是自研的中文文字按钮。
+function PlateToolbarButtons(props: { onPickImage: () => void; imageBusy?: boolean }) {
   useEditorVersion();
-  const markActive = (key: string) => (props.editor.api.marks?.() ?? {})[key] === true;
   return (
-    <>
-      <ToolbarButton title="加粗" active={markActive('bold')} onClick={() => props.editor.tf.toggleMark('bold')}>加粗</ToolbarButton>
-      <ToolbarButton title="斜体" active={markActive('italic')} onClick={() => props.editor.tf.toggleMark('italic')}>斜体</ToolbarButton>
-      <ToolbarButton title="下划线" active={markActive('underline')} onClick={() => props.editor.tf.toggleMark('underline')}>下划线</ToolbarButton>
-      <ToolbarButton title="删除线" active={markActive('strikethrough')} onClick={() => props.editor.tf.toggleMark('strikethrough')}>删除线</ToolbarButton>
-      <ToolbarButton title="代码" active={markActive('code')} onClick={() => props.editor.tf.toggleMark('code')}>代码</ToolbarButton>
-      <span className="plate-toolbar-sep" />
-      <ToolbarButton title="标题 1" onClick={() => props.editor.tf.toggleBlock('h1')}>标题 1</ToolbarButton>
-      <ToolbarButton title="标题 2" onClick={() => props.editor.tf.toggleBlock('h2')}>标题 2</ToolbarButton>
-      <ToolbarButton title="标题 3" onClick={() => props.editor.tf.toggleBlock('h3')}>标题 3</ToolbarButton>
-      <ToolbarButton title="引用" onClick={() => props.editor.tf.toggleBlock('blockquote')}>引用</ToolbarButton>
-      <ToolbarButton title="分隔线" onClick={() => props.editor.tf.toggleBlock('hr')}>分隔线</ToolbarButton>
-    </>
+    <Toolbar>
+      <ToolbarGroup>
+        <AIToolbarButton />
+      </ToolbarGroup>
+      <ToolbarGroup>
+        <TurnIntoToolbarButton />
+      </ToolbarGroup>
+      <ToolbarGroup>
+        <MarkToolbarButton nodeType="bold" tooltip="加粗 (⌘+B)">
+          <BoldIcon />
+        </MarkToolbarButton>
+        <MarkToolbarButton nodeType="italic" tooltip="斜体 (⌘+I)">
+          <ItalicIcon />
+        </MarkToolbarButton>
+        <MarkToolbarButton nodeType="underline" tooltip="下划线 (⌘+U)">
+          <UnderlineIcon />
+        </MarkToolbarButton>
+        <MarkToolbarButton nodeType="strikethrough" tooltip="删除线">
+          <StrikethroughIcon />
+        </MarkToolbarButton>
+        <MarkToolbarButton nodeType="code" tooltip="行内代码 (⌘+E)">
+          <Code2Icon />
+        </MarkToolbarButton>
+      </ToolbarGroup>
+      <ToolbarGroup>
+        <ImageToolbarButton disabled={props.imageBusy} onClick={props.onPickImage} />
+        <HrToolbarButton />
+      </ToolbarGroup>
+    </Toolbar>
   );
 }
 
@@ -257,35 +278,26 @@ function readImageFile(file: File, editor: PlateEditor, onStatus: (status: strin
   reader.readAsDataURL(file);
 }
 
-function PlateImageButton(props: { editor: PlateEditor }) {
-  const [status, setStatus] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
+// 隐藏的文件输入：工具栏的「插图」按钮只负责 click()，真正的读取仍在 readImageFile。
+function PlateImageInput(props: {
+  editor: PlateEditor;
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  onStatus: (status: string) => void;
+}) {
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     event.target.value = ''; // 允许连续选择同一文件
-    if (file) readImageFile(file, props.editor, setStatus);
+    if (file) readImageFile(file, props.editor, props.onStatus);
   };
   return (
-    <>
-      <Button
-        type="button"
-        variant="toolbar"
-        size="sm"
-        title="插入图片"
-        onMouseDown={(event) => { event.preventDefault(); inputRef.current?.click(); }}
-      >
-        插图
-      </Button>
-      <input
-        ref={inputRef}
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }}
-        data-plate-file-input="true"
-        onChange={onChange}
-      />
-      {status ? <span className="plate-image-status">{status}</span> : null}
-    </>
+    <input
+      ref={props.inputRef}
+      type="file"
+      accept="image/*"
+      style={{ display: 'none' }}
+      data-plate-file-input="true"
+      onChange={onChange}
+    />
   );
 }
 
@@ -293,6 +305,7 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [imageStatus, setImageStatus] = useState('');
+  const imageRef = useRef<HTMLInputElement>(null);
   const editor = useState(() => createPlateEditor({ plugins, value: props.content }))[0];
 
   // 原生 AI 菜单的 Accept / Insert below 落地后，AI 修改进修订链（cause='ai'）。
@@ -399,19 +412,18 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
     <div className="plate-doc-editor">
       <Plate editor={editor}>
         <div className="plate-toolbar">
-          <PlateToolbarButtons editor={editor} />
-          <span className="plate-toolbar-sep" />
-          <AIToolbarButton title="AI 菜单" className="pltx-ai-btn">
-            <Sparkles />
-            AI
-          </AIToolbarButton>
-          <span className="plate-toolbar-sep" />
-          <PlateImageButton editor={editor} />
+          <PlateToolbarButtons
+            onPickImage={() => imageRef.current?.click()}
+            imageBusy={saving}
+          />
+          <PlateImageInput editor={editor} inputRef={imageRef} onStatus={setImageStatus} />
+          {/* 保存是产品动作，官方工具栏里没有对应物——留在工具栏右端，不进分组。 */}
+          <span className="plate-toolbar-gap" />
+          {imageStatus ? <span className="plate-image-status">{imageStatus}</span> : null}
+          {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
           <Button type="button" variant="primary" size="sm" disabled={saving} onClick={() => void save()}>
             {saving ? '保存中…' : '保存'}
           </Button>
-          {savedAt ? <span className="plate-saved-at">已保存 {savedAt}</span> : null}
-          {imageStatus ? <span className="plate-image-status">{imageStatus}</span> : null}
         </div>
         <div className="plate-canvas" onPaste={handlePaste}>
           <PlateContent placeholder="开始输入…" className="plate-content" />
@@ -419,25 +431,6 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
       </Plate>
     </div>
   );
-}
-
-// 导出 .plate 的共享实现：doc-export 拉 head 修订 → 组装下载（列表与活编辑器共用）。
-async function exportPlate(docId: string): Promise<void> {
-  const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent } }>('doc-export', { docId });
-  const payload = {
-    format: 'workdsh-plate',
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    title: result.doc.title,
-    content: result.head.slateJson,
-  };
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement('a');
-  anchor.href = url;
-  anchor.download = `${result.doc.title.replace(/[\\/:*?"<>|]/g, '_')}.plate`;
-  anchor.click();
-  URL.revokeObjectURL(url);
 }
 
 // v1.3.0：缺省编辑器=PlateAI 时的右侧活编辑器。plate_open 落服务端 pending 队列，
@@ -532,17 +525,6 @@ function PlateLivePage(props: PlateLivePageProps) {
             ]}
             onChange={(editor) => void changeDefaultEditor(editor)}
           />
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            disabled={!state || busy}
-            onClick={() => {
-              if (state) void exportPlate(state.docId).catch((e) => setError(String(e)));
-            }}
-          >
-            导出 .plate
-          </Button>
         </div>
       </div>
       {error ? <div className="plate-error">{error}</div> : null}
@@ -573,6 +555,7 @@ function injectStyles(): void {
 .plate-doc-editor { display: flex; flex-direction: column; min-height: 320px; }
 .plate-toolbar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 6px 8px; border-bottom: 1px solid #e5e7eb; }
 .plate-toolbar-sep { width: 1px; height: 18px; background: #e5e7eb; margin: 0 4px; }
+.plate-toolbar-gap { flex: 1 1 auto; }
 .plate-saved-at { color: #16a34a; font-size: 12px; }
 .plate-canvas { padding: 16px; overflow-y: auto; position: relative; }
 .plate-content { min-height: 260px; outline: none; }
@@ -582,6 +565,7 @@ function injectStyles(): void {
 .plate-image-status { color: #6366f1; font-size: 12px; }
 .plate-content img { max-width: 100%; height: auto; border-radius: 6px; }
 ${aiNativeCss}
+${toolbarNativeCss}
 `;
   document.head.appendChild(style);
 }

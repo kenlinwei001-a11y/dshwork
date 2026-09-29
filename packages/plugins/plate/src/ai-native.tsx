@@ -7,8 +7,11 @@
  *   src/components/ui/ai-menu.tsx                           → AIMenu / AIMenuItems / AILoadingBar / 菜单项
  *   src/components/ui/ai-node.tsx                           → AILeaf / AIAnchorElement
  *   src/components/ui/ai-chat-editor.tsx + editor-static.tsx → AIChatEditor / EditorStatic
- *   src/components/ui/ai-toolbar-button.tsx                 → AIToolbarButton
  *   src/components/editor/plugins/suggestion-base-kit.tsx + ui/suggestion-node-static.tsx → 建议 diff 渲染
+ *
+ * 工具栏（toolbar.tsx / ai-toolbar-button.tsx / mark-toolbar-button.tsx /
+ * turn-into-toolbar-button.tsx / fixed-toolbar-buttons.tsx）在 v1.6.0 迁到
+ * ./toolbar-native.tsx，本文件不再持有工具栏副本。
  *
  * 裁剪（如实声明）：comment/table 工具不移植（需 @platejs/comment/discussion kit，
  * 非本产品需求）；faker mock 流不移植；宿主无 tailwind 工具链 → 官方组件结构与
@@ -720,51 +723,9 @@ export function AILoadingBar() {
   return null;
 }
 
-// ---------------------------------------------------------------------------
-// 工具条按钮（蓝本 toolbar.tsx 的 ToolbarButton/ToolbarToggle 结构；
-// radix toolbar 不引入，等价 button 实现，视觉类同官方）。
-export function ToolbarButton(props: {
-  children?: React.ReactNode;
-  active?: boolean;
-  title?: string;
-  className?: string;
-  onClick?: () => void;
-  onMouseDown?: (event: React.MouseEvent) => void;
-}) {
-  return (
-    <button
-      type="button"
-      className={clsx('pltx-tb', props.active && 'pltx-tb-active', props.className)}
-      data-active={props.active ? 'true' : undefined}
-      title={props.title}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        props.onMouseDown?.(event);
-      }}
-      onClick={() => props.onClick?.()}
-    >
-      {props.children}
-    </button>
-  );
-}
-
-export function AIToolbarButton(
-  props: React.ComponentProps<typeof ToolbarButton>,
-) {
-  const { api } = useEditorPlugin(AIChatPlugin);
-
-  return (
-    <ToolbarButton
-      {...props}
-      onClick={() => {
-        api.aiChat.show();
-      }}
-      onMouseDown={(e) => {
-        e.preventDefault();
-      }}
-    />
-  );
-}
+// 注：v1.6.0 起工具栏的 ToolbarButton / AIToolbarButton 迁到 toolbar-native.tsx
+// （Radix 原语版，与官方 playground 的 ui/toolbar.tsx 对齐）。此处不再保留副本——
+// 同一 UI 有两套实现正是用户否掉的「二开 UI」的由来。
 
 // ---------------------------------------------------------------------------
 // aiChatPlugin（蓝本 ai-kit.tsx 逐行照搬，裁剪 CursorOverlay/comment kit）。
@@ -882,8 +843,4 @@ export const aiNativeCss = `
 .pltx-ai-ic { width: 16px; height: 16px; pointer-events: none; flex-shrink: 0; }
 .pltx-ai-spin { animation: pltx-spin 1s linear infinite; }
 .pltx-editor-static-aichat { max-height: min(70vh,320px); width: 100%; overflow-y: auto; padding: 20px 12px; font-size: 14px; border-bottom: 1px solid #e4e4e7; }
-.pltx-tb { display: inline-flex; height: 32px; min-width: 32px; align-items: center; justify-content: center; gap: 4px; border: 0; border-radius: 6px; background: transparent; padding: 0 8px; color: #3f3f46; font-size: 13px; font-weight: 500; white-space: nowrap; cursor: pointer; }
-.pltx-tb:hover { background: #f4f4f5; color: #52525b; }
-.pltx-tb[data-active="true"] { background: #f4f4f5; color: #18181b; }
-.pltx-tb svg { width: 16px; height: 16px; pointer-events: none; flex-shrink: 0; }
 `;
