@@ -190,7 +190,8 @@ function PlateFilePreview(props: DocumentPreviewProps & { onImported?: (docId: s
 
 // v1.4.0：docx 预览工具条动作——「用 PlateAI 打开」。服务端读文件解析
 // 成 Slate JSON 导入 plate 域，再开右侧活编辑器继续编辑。仅 docx 渲染。
-function OpenInPlateAction(openLiveEditor: (documentId: string) => void) {
+// v1.7.1：打开失败不再是静默的（见 openPlateLiveTab），错误就地显示在按钮旁。
+function OpenInPlateAction(openLiveEditor: (documentId: string) => string | undefined) {
   return function OpenInPlateActionEntry(props: { absolutePath: string }) {
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState('');
@@ -201,7 +202,8 @@ function OpenInPlateAction(openLiveEditor: (documentId: string) => void) {
       setError('');
       try {
         const result = await post<{ doc: DocMeta }>('docx-import', { path: props.absolutePath });
-        openLiveEditor(result.doc.id);
+        const openError = openLiveEditor(result.doc.id);
+        if (openError) setError(openError);
       } catch (e) {
         setError(String(e));
       } finally {
@@ -591,7 +593,7 @@ export function apply(ctx: Context): void {
       loading: 'bytes-complete',
     }),
   );
-  // plate_open 的 pending 打开：500ms 轮询服务端队列，命中即 openTabIn。
+  // plate_open 的 pending 打开：500ms 轮询服务端队列，命中即开右侧活编辑器。
   const lifetime = new AbortController();
   const currentSessionId = () => {
     const state = (ctx.sessions as unknown as ISessions).list.getSnapshot();
@@ -599,13 +601,52 @@ export function apply(ctx: Context): void {
     const retainedBy = (row: unknown) => ((row as { retainedBy?: { mainView?: number } }).retainedBy ?? {}).mainView ?? 0;
     return Object.values(state.byId).find((row) => retainedBy(row) > 0)?.id;
   };
-  const openLiveEditor = (documentId: string) => {
-    const sessionId = currentSessionId();
-    if (!sessionId) return;
-    ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-plate-live', {
-      params: { documentId },
-    });
+
+  // v1.7.1：把「转成 Plate 文档」真正落到屏幕上。
+  //
+  // 宿主源码实证（dsh-client-ui-sidebar-right service.d.ts 原文）：openTabIn 是
+  // Tab 域内部路径，「nothing happens for a session whose store was never adopted
+  // or whose adoption was released」——运行期 `actionsFor()` 返回 undefined 就直接
+  // return，**不抛错也不开**。点「用 PlateAI 打开」时转换已经成功（服务端落了文档），
+  // 却因为这一层静默 no-op 什么都不上屏，用户看到的还是原来那个 Word 页面。
+  //
+  // 公开面 openTab() 作用在**当前挂载的座位**上，宿主保证「The column expands in
+  // the same step, because content the user cannot see is not opened」；没有座位时
+  // 它抛错（"sidebarRight: no session surface is mounted"）而不是沉默。故：
+  // 先 openTab，抛错才回退到指定会话的 openTabIn，并补一次显式展开
+  //（openTabIn 不开栏，开在折叠栏里等于没开）。
+  let lastOpen: { at: number; documentId: string; via: string; error?: string } | null = null;
+  const openPlateLiveTab = (documentId: string): string | undefined => {
+    const options = { params: { documentId } };
+    try {
+      ctx.sidebarRight.openTab('workdsh-plate-live', options as never);
+      lastOpen = { at: Date.now(), documentId, via: 'openTab' };
+      return undefined;
+    } catch (e) {
+      const seatError = String(e);
+      const sessionId = currentSessionId();
+      if (!sessionId) {
+        lastOpen = { at: Date.now(), documentId, via: 'none', error: seatError };
+        return `没有可用的会话，无法在右侧打开：${seatError}`;
+      }
+      ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-plate-live', options as never);
+      try {
+        if (!ctx.sidebarRight.isExpanded()) ctx.sidebarRight.toggleExpanded();
+      } catch {
+        /* 无座位时 isExpanded 恒 false，展开无效；不影响开 tab 的尝试。 */
+      }
+      lastOpen = { at: Date.now(), documentId, via: 'openTabIn' };
+      return undefined;
+    }
   };
+  const openLiveEditor = (documentId: string): string | undefined => openPlateLiveTab(documentId);
+  ctx.effect(() => {
+    const w = window as unknown as { __workdshPlateOpen?: unknown };
+    w.__workdshPlateOpen = () => lastOpen;
+    return () => {
+      delete w.__workdshPlateOpen;
+    };
+  });
 
   // S5-b: the document-tab renderer for .plate files (key matches the
   // documentPreviews definition id above; the owner delivers file bytes).
@@ -667,10 +708,8 @@ export function apply(ctx: Context): void {
           );
           for (const request of result.requests) {
             if (!seen.has(request.requestId)) {
-              ctx.sidebarRight.openTabIn(sessionId as never, 'workdsh-plate-live', {
-                params: { documentId: request.documentId },
-              });
-              seen.add(request.requestId);
+              // 与「用 PlateAI 打开」同一条路：agent 的 plate_open 也要真上屏。
+              if (openPlateLiveTab(request.documentId) === undefined) seen.add(request.requestId);
             }
           }
         }
