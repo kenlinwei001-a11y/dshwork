@@ -1,6 +1,6 @@
 {
   "name": "workdsh-plugin-plate",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "private": true,
   "type": "module",
   "description": "AI rich-text documents (Plate) as a parallel, zero-intrusion WorkDSH plugin; all LLM access via the Harness llm service",
@@ -61,7 +61,7 @@
     "zod": "4.4.3"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/cordis": "4.0.4",
     "@deepseek-ai/dsh-agent-default-model": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-api-session-controller": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.2",
@@ -77,7 +77,7 @@
     "react": "19.2.4"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/cordis": "4.0.4",
     "@deepseek-ai/dsh-agent-default-model": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-api-session-controller": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.2",

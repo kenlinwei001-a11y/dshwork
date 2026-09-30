@@ -50,8 +50,11 @@ import {
 import { Command } from 'cmdk';
 import { Popover, PopoverAnchor, PopoverContent } from '@radix-ui/react-popover';
 import {
+  Album,
+  BadgeHelp,
   Check,
   CornerUpLeft,
+  Feather,
   Languages,
   ListEnd,
   ListMinus,
@@ -59,6 +62,7 @@ import {
   Loader2Icon,
   PauseIcon,
   PenLine,
+  Smile,
   SpellCheck,
   Wand,
   X,
@@ -358,6 +362,56 @@ const aiChatItems: Record<string, MenuItemDef> = {
       });
     },
   },
+  // v1.7.5：把官方有、我之前**私自砍掉**的四项补回来。它们都是纯 AI 动作、
+  // 不依赖任何未安装的插件，当初被裁掉没有技术理由（用户 2026-09-30 追问
+  // 「是否私自做了裁剪」时对照官方 ai-menu.tsx 逐条查出）。
+  // 语义照官方：emojify/simplifyLanguage 走 edit 建议；explain 走 generate；
+  // summarize 是 generate + insert（写进文档，故 onFinish 会触发落库）。
+  emojify: {
+    icon: <Smile />,
+    label: '添加表情',
+    value: 'emojify',
+    onSelect: ({ editor, input }) => {
+      void editor.getApi(AIChatPlugin).aiChat.submit(input, {
+        prompt: `只允许插入少量与上下文相关的表情符号，且只在每个块内添加。不要删除、替换或改写已有文字，也不要改动 Markdown 语法、链接与换行。${DOC_OUTPUT_RULE}\n\n${selectionMarkdown(editor)}`,
+        toolName: 'edit',
+      });
+    },
+  },
+  explain: {
+    icon: <BadgeHelp />,
+    label: '解释',
+    value: 'explain',
+    onSelect: ({ editor, input }) => {
+      void editor.getApi(AIChatPlugin).aiChat.submit(input, {
+        prompt: `请解释以下内容，用通俗的语言说明它的含义与背景。${DOC_OUTPUT_RULE}\n\n${selectionMarkdown(editor)}`,
+        toolName: 'generate',
+      });
+    },
+  },
+  summarize: {
+    icon: <Album />,
+    label: '总结',
+    value: 'summarize',
+    onSelect: ({ editor, input }) => {
+      void editor.getApi(AIChatPlugin).aiChat.submit(input, {
+        mode: 'insert',
+        prompt: `请为以下内容写一段简明的摘要，只输出摘要本身（Markdown）。\n\n${selectionMarkdown(editor)}`,
+        toolName: 'generate',
+      });
+    },
+  },
+  simplifyLanguage: {
+    icon: <Feather />,
+    label: '简化语言',
+    value: 'simplifyLanguage',
+    onSelect: ({ editor, input }) => {
+      void editor.getApi(AIChatPlugin).aiChat.submit(input, {
+        prompt: `请简化以下内容的语言，用更清晰直白的措辞表达，不改变原意、不添加新信息，保留 Markdown 结构。${DOC_OUTPUT_RULE}\n\n${selectionMarkdown(editor)}`,
+        toolName: 'edit',
+      });
+    },
+  },
   // ---- 官方项（原样保留）----
   accept: {
     icon: <Check />,
@@ -408,43 +462,39 @@ const aiChatItems: Record<string, MenuItemDef> = {
 
 // 菜单态（官方同名结构，裁剪 comment 相关组）：
 // 无消息 → 命令菜单；有消息（建议/预览已生成）→ 建议操作菜单。
+// 产品动作全集（无选区＝作用于全文）。顺序：官方原生的四项在前，再接本产品的。
+const productItems: MenuItemDef[] = [
+  aiChatItems.continueWrite,
+  aiChatItems.summarize,
+  aiChatItems.explain,
+  aiChatItems.polish,
+  aiChatItems.makeLonger,
+  aiChatItems.makeShorter,
+  aiChatItems.simplifyLanguage,
+  aiChatItems.emojify,
+  aiChatItems.fixSpelling,
+  aiChatItems.translate,
+];
+
 const menuStateItems: Record<
   'cursorCommand' | 'cursorSuggestion' | 'selectionCommand' | 'selectionSuggestion',
   { items: MenuItemDef[] }[]
 > = {
-  // v1.7.2：无选区时的菜单原来只剩「续写」一项（当初裁剪时只留下了有插件支撑的
-  // 那一个），用户实测报「缺失扩写、缩写等完整选项」。官方模板这里本就是 6 项
-  // （comment/示例×2/续写/summarize/explain），我们缺的是那 6 项里的非核心项，
-  // 但产品动作不该被选区有无切成两套——扩写/缩写这类在无选区时作用于全文
-  // （selectionMarkdown 无选区即取全文），补回完整一套。
-  cursorCommand: [
-    {
-      items: [
-        aiChatItems.continueWrite,
-        aiChatItems.polish,
-        aiChatItems.makeLonger,
-        aiChatItems.makeShorter,
-        aiChatItems.fixSpelling,
-        aiChatItems.translate,
-      ],
-    },
-  ],
+  // v1.7.5：两态共用同一份完整动作集。
+  // 官方把"有无选区"切成两套（cursorCommand 6 项 / selectionCommand 7 项），
+  // 之前我照着切、还只留下有插件支撑的那一两个，用户看到的就是"菜单缺项"。
+  // 产品动作在无选区时本就作用于全文（selectionMarkdown 无选区即取全文），
+  // 没有理由藏起来——两态给同一套，宁可长一点也不要让用户找不到。
+  // 仍未搬的官方项只有两处，都不是裁掉的而是有明确依赖/性质：
+  //   comment（需要 @platejs/comment，未安装）、generateMdxSample /
+  //   generateMarkdownSample（生成假样例的模板 demo，不是产品功能）。
+  cursorCommand: [{ items: productItems }],
   cursorSuggestion: [
     {
       items: [aiChatItems.accept, aiChatItems.discard, aiChatItems.tryAgain],
     },
   ],
-  selectionCommand: [
-    {
-      items: [
-        aiChatItems.polish,
-        aiChatItems.makeLonger,
-        aiChatItems.makeShorter,
-        aiChatItems.fixSpelling,
-        aiChatItems.translate,
-      ],
-    },
-  ],
+  selectionCommand: [{ items: productItems }],
   selectionSuggestion: [
     {
       items: [aiChatItems.accept, aiChatItems.discard, aiChatItems.insertBelow, aiChatItems.tryAgain],

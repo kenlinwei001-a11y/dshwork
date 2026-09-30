@@ -26,7 +26,7 @@
     "test": "corepack pnpm build && node --test tests/*.test.mjs"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/cordis": "4.0.4",
     "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-ui-layout": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-ui-slots": "0.1.7-alpha.2",
@@ -48,7 +48,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "4.0.3",
+    "@deepseek-ai/cordis": "4.0.4",
     "@deepseek-ai/dsh-client-connection": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-ui-layout": "0.1.7-alpha.2",
     "@deepseek-ai/dsh-client-ui-slots": "0.1.7-alpha.2",
