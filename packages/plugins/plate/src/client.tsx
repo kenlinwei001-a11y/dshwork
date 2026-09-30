@@ -311,21 +311,57 @@ function PlateImageInput(props: {
   );
 }
 
-function PlateDocEditor(props: { docId: string; title: string; content: SlateContent }) {
+type SyncRef = { current: { server: string; live: string; dirty: boolean } };
+
+// 把编辑器的 live 指纹同步给父组件的轮询。
+// **必须渲染在 <Plate> 子树内**：useEditorVersion 读的是 Plate store，放在
+// PlateDocEditor 自身（它不在自己的 <Plate> 里）会抛
+// "Plate hooks must be used inside a Plate or PlateController" 并炸掉整个 slot。
+function LiveFingerprint(props: { editor: PlateEditor; syncRef: SyncRef }) {
+  useEditorVersion();
+  const s = props.syncRef.current;
+  const json = JSON.stringify(props.editor.children);
+  if (s.live === '') {
+    s.live = json; // 首次见到：认下这一版，不算改动
+  } else if (json !== s.live) {
+    s.live = json;
+    // 只记「编辑器自上次与服务端对齐后动过」，**不**拿客户端 JSON 去和服务端 JSON
+    // 比字节：存储层回写会补/规整节点 id，两侧序列化本就不保证逐字节一致，
+    // 那样比法会一旦不等就永久卡在 dirty、把实时更新悄悄关掉。
+    s.dirty = true;
+  }
+  return null;
+}
+
+function PlateDocEditor(props: {
+  docId: string;
+  title: string;
+  content: SlateContent;
+  syncRef: SyncRef;
+}) {
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [imageStatus, setImageStatus] = useState('');
   const imageRef = useRef<HTMLInputElement>(null);
   const editor = useState(() => createPlateEditor({ plugins, value: props.content }))[0];
 
-  // 原生 AI 菜单的 Accept / Insert below 落地后，AI 修改进修订链（cause='ai'）。
+  // 原生 AI 菜单的 Accept / Insert below / 流式续写写完 → AI 修改进修订链（cause='ai'）。
+  // 落库成功才把 server 指纹推到最新，否则下次轮询会把这份内容当成"服务端已知"而抹掉。
   useEffect(() => {
     setAiAppliedHandler(() => {
+      const json = JSON.stringify(editor.children);
       void post('rev-append', {
         docId: props.docId,
         content: editor.children as SlateContent,
         cause: 'ai',
-      }).catch(() => {});
+      })
+        .then(() => {
+          // 落库成功 = 与服务端对齐：server 推到这一版，dirty 清掉，
+          // 轮询从此刻起可以继续自动跟进 agent 的改动。
+          props.syncRef.current.server = json;
+          props.syncRef.current.dirty = false;
+        })
+        .catch(() => {});
     });
     return () => setAiAppliedHandler(null);
   }, [props.docId, editor]);
@@ -409,7 +445,11 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
   const save = async () => {
     setSaving(true);
     try {
+      const json = JSON.stringify(editor.children);
       await post('rev-append', { docId: props.docId, content: editor.children as SlateContent, cause: 'edit' });
+      // 存完这一版就是"服务端已知"，轮询从此刻起可以继续自动跟进 agent 的改动。
+      props.syncRef.current.server = json;
+      props.syncRef.current.dirty = false;
       setSavedAt(new Date().toLocaleTimeString('zh-CN'));
     } catch (error) {
       console.error('[workdsh-plate] save failed', error);
@@ -421,6 +461,7 @@ function PlateDocEditor(props: { docId: string; title: string; content: SlateCon
   return (
     <div className="plate-doc-editor">
       <Plate editor={editor}>
+        <LiveFingerprint editor={editor} syncRef={props.syncRef} />
         <div className="plate-toolbar">
           <PlateToolbarButtons
             onPickImage={() => imageRef.current?.click()}
@@ -475,13 +516,15 @@ function PlateLivePage(props: PlateLivePageProps) {
       setEditorError(String(e));
     }
   };
-  // 已渲染内容的 JSON 指纹：agent 新提交（plate_edit）后 diff 命中即重载。
-  const renderedRef = useRef('');
+  // 同步指纹：server = 最后一次「服务端已知」的内容，live = 编辑器当前内容。
+  // 两者不等 ⇒ 本地还有没落库的改动（AI 流式预览 / 手打），此时**绝不**按服务端重绘——
+  // 否则一次自动重载就把用户没保存的内容抹掉，这正是「AI 写完文字消失」的放大器。
+  const syncRef = useRef({ server: '', live: '', dirty: false });
 
   useEffect(() => {
     setState(null);
     setError('');
-    renderedRef.current = '';
+    syncRef.current = { server: '', live: '', dirty: false };
     if (!docId) return;
     let cancelled = false;
     let first = true;
@@ -490,14 +533,10 @@ function PlateLivePage(props: PlateLivePageProps) {
         const result = await post<{ doc: DocMeta; head: { slateJson: SlateContent; seq: number } }>('doc-open', { docId });
         if (cancelled) return;
         const headJson = JSON.stringify(result.head.slateJson);
-        if (headJson !== renderedRef.current) {
-          // 用户正在编辑器里输入时不重载，保护本地未保存编辑（v1 保守策略）。
-          const editing = document.activeElement !== null
-            && document.querySelector('.plate-live-page')?.contains(document.activeElement);
-          if (!editing) {
-            renderedRef.current = headJson;
-            setState({ docId, title: result.doc.title, content: result.head.slateJson, revision: result.head.seq });
-          }
+        // 服务端没变就不动；编辑器有未落库改动（dirty）就保护它不重绘。
+        if (headJson !== syncRef.current.server && !syncRef.current.dirty) {
+          syncRef.current = { server: headJson, live: '', dirty: false };
+          setState({ docId, title: result.doc.title, content: result.head.slateJson, revision: result.head.seq });
         }
       } catch (e) {
         if (!cancelled && first) setError(String(e));
@@ -540,7 +579,13 @@ function PlateLivePage(props: PlateLivePageProps) {
       {error ? <div className="plate-error">{error}</div> : null}
       {editorError ? <div className="plate-error">{editorError}</div> : null}
       {state ? (
-        <PlateDocEditor key={state.revision} docId={state.docId} title={state.title} content={state.content} />
+        <PlateDocEditor
+          key={state.revision}
+          docId={state.docId}
+          title={state.title}
+          content={state.content}
+          syncRef={syncRef}
+        />
       ) : (
         <div className="plate-empty">{busy ? '正在打开…' : '等待 AI 打开文档…'}</div>
       )}

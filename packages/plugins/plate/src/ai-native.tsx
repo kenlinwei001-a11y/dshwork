@@ -412,9 +412,21 @@ const menuStateItems: Record<
   'cursorCommand' | 'cursorSuggestion' | 'selectionCommand' | 'selectionSuggestion',
   { items: MenuItemDef[] }[]
 > = {
+  // v1.7.2：无选区时的菜单原来只剩「续写」一项（当初裁剪时只留下了有插件支撑的
+  // 那一个），用户实测报「缺失扩写、缩写等完整选项」。官方模板这里本就是 6 项
+  // （comment/示例×2/续写/summarize/explain），我们缺的是那 6 项里的非核心项，
+  // 但产品动作不该被选区有无切成两套——扩写/缩写这类在无选区时作用于全文
+  // （selectionMarkdown 无选区即取全文），补回完整一套。
   cursorCommand: [
     {
-      items: [aiChatItems.continueWrite],
+      items: [
+        aiChatItems.continueWrite,
+        aiChatItems.polish,
+        aiChatItems.makeLonger,
+        aiChatItems.makeShorter,
+        aiChatItems.fixSpelling,
+        aiChatItems.translate,
+      ],
     },
   ],
   cursorSuggestion: [
@@ -804,6 +816,12 @@ export const aiChatPlugin = AIChatPlugin.extend({
       },
       onFinish: () => {
         editor.getApi(AIChatPlugin).aiChat.stop();
+        // v1.7.2：insert 模式流完必须落库。流式写入走的是 withoutSaving，屏幕上是
+        // 一份**还没落地的预览**——服务端从头到尾没有这份内容（探针实测：整轮 48s
+        // 零次 rev-append）。于是面板一重挂载/一重开就按服务端上一版重绘，用户
+        // 看到的正是「AI 写完，文字消失了」。这里补上写盘（cause='ai' 进修订链）。
+        // mode 用调用时现读，不依赖闭包里 render 期的值。
+        if (editor.getOptions(AIChatPlugin).mode === 'insert') aiAppliedHandler?.();
       },
     });
   },
