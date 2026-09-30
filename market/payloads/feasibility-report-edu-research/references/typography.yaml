@@ -1,0 +1,177 @@
+# =============================================================================
+# 排版规格（L0）—— 字体、字号、行距、页面
+# -----------------------------------------------------------------------------
+# 一份内容正确但排版不合规的可研，会在收件环节就被退回补正——
+# 收件的人不看内容，看格式。这是最不值得丢的分。
+#
+# 排版要求有两个来源，性质不同：
+#   ① **有明文的**：公文格式国标（GB/T 9704）对行文格式有规定，
+#      不少省市对报审文本另有格式要求，这些可以检索到。
+#   ② **无明文的**：具体审批口的习惯（正文用宋体还是仿宋、要不要加页眉），
+#      查不到，只有做过的人知道——与章节惯例同一性质，必须问客户。
+#
+# 所以这里给的是**预设 + 可覆盖**，而不是一套写死的样式。
+# 默认按最常见的报审文本口径，客户给了要求就用客户的。
+#
+# 技术上有一个坑必须写在这里：python-docx 设 font.name 只设了**西文字体**，
+# 中文会退回默认字体。必须同时设 w:eastAsia，否则文档里中英文会是两种脸，
+# 而且在编制人自己的机器上常常看不出来（本机装了对应字体）。
+# =============================================================================
+
+meta:
+  id: fsr-typography
+  version: 0.1.0
+  layer: L0
+
+# =============================================================================
+# 一、字号对照 —— 中文号数与磅值
+# =============================================================================
+# 中文习惯用号数（三号、小四），Word 的 API 用磅。写规格时用号数，
+# 落地时换算，避免"小四"被写成 12 磅（实际是 12，但"四号"是 14）。
+# =============================================================================
+size_map:
+  初号: 42
+  小初: 36
+  一号: 26
+  小一: 24
+  二号: 22
+  小二: 18
+  三号: 16
+  小三: 15
+  四号: 14
+  小四: 12
+  五号: 10.5
+  小五: 9
+  六号: 7.5
+
+# =============================================================================
+# 二、预设 —— 按报送对象选一套
+# =============================================================================
+presets:
+
+  gov_review:
+    cn: 报审文本（默认）
+    when: 报政府投资主管部门评审，最常见的口径
+    elements:
+      title:        {font: 方正小标宋简体, fallback: 黑体, size: 二号, bold: false, align: center, space_after: 24}
+      heading1:     {font: 黑体, size: 三号, bold: false, align: left, space_before: 12, space_after: 8}
+      heading2:     {font: 黑体, size: 四号, bold: false, space_before: 8, space_after: 6}
+      heading3:     {font: 黑体, size: 小四, bold: false, space_before: 6, space_after: 4}
+      body:         {font: 仿宋_GB2312, fallback: 仿宋, size: 小四, line_spacing: 1.5, first_line_indent: 2}
+      table_header: {font: 黑体, size: 五号, align: center}
+      table_cell:   {font: 宋体, size: 五号}
+      caption:      {font: 黑体, size: 五号, align: center}
+      note:         {font: 楷体_GB2312, fallback: 楷体, size: 五号}
+    page:
+      size: A4
+      margin_cm: {top: 3.7, bottom: 3.5, left: 2.8, right: 2.6}
+      note: 上下左右按公文格式的常见取值。装订线在左，左边距比右边距宽
+
+  enterprise:
+    cn: 企业投资项目
+    when: 报企业内部投委会或备案，格式要求宽松
+    elements:
+      title:        {font: 黑体, size: 二号, bold: true, align: center, space_after: 20}
+      heading1:     {font: 黑体, size: 小三, bold: true, space_before: 12, space_after: 8}
+      heading2:     {font: 黑体, size: 四号, bold: true, space_before: 8, space_after: 6}
+      heading3:     {font: 宋体, size: 小四, bold: true, space_before: 6, space_after: 4}
+      body:         {font: 宋体, size: 小四, line_spacing: 1.5, first_line_indent: 2}
+      table_header: {font: 黑体, size: 五号, align: center}
+      table_cell:   {font: 宋体, size: 五号}
+      caption:      {font: 黑体, size: 五号, align: center}
+      note:         {font: 楷体, size: 五号}
+    page:
+      size: A4
+      margin_cm: {top: 2.54, bottom: 2.54, left: 3.0, right: 2.5}
+
+  compact:
+    cn: 紧凑版
+    when: 客户给了页数上限，且合并章节后仍超
+    elements:
+      title:        {font: 黑体, size: 小二, bold: true, align: center, space_after: 16}
+      heading1:     {font: 黑体, size: 四号, bold: true, space_before: 8, space_after: 6}
+      heading2:     {font: 黑体, size: 小四, bold: true, space_before: 6, space_after: 4}
+      heading3:     {font: 宋体, size: 小四, bold: true, space_before: 4, space_after: 3}
+      body:         {font: 宋体, size: 五号, line_spacing: 1.3, first_line_indent: 2}
+      table_header: {font: 黑体, size: 小五, align: center}
+      table_cell:   {font: 宋体, size: 小五}
+      caption:      {font: 黑体, size: 小五, align: center}
+      note:         {font: 楷体, size: 小五}
+    page:
+      size: A4
+      margin_cm: {top: 2.2, bottom: 2.2, left: 2.5, right: 2.0}
+    caution: |
+      **压排版是最后手段，排在合并章节与移附件之后。**
+      正文降到五号、行距压到 1.3，评审读起来会累——
+      让评审读得累，不是省页数该付的代价。
+
+default_preset: gov_review
+
+# =============================================================================
+# 三、分诊里要问的
+# =============================================================================
+intake:
+  question: 报审文本的格式有无要求？（字体字号、行距、页边距、页眉页脚、装订）
+  cannot_infer: true
+  route: ASK
+  why: |
+    **有明文的部分可检索，具体审批口的习惯查不到。**
+    收件环节不看内容看格式，格式不对当场退回补正——
+    这是最不值得丢的分，也是最容易问清楚的一件事。
+  ask_precisely: |
+    请提供该审批口的报审文本格式要求；若没有成文要求，
+    请提供一份该口近期通过的报告作为参照（我们按它的格式排）。
+  fallback: 客户答"没有特别要求"时用默认预设，并在交付时说明用的是哪一套
+
+# =============================================================================
+# 四、硬规则
+# =============================================================================
+rules:
+
+  T1_eastasia_must_be_set:
+    cn: 中文字体必须单独设置
+    rule: |
+      设 font.name 只设了**西文字体**，中文会退回默认字体。
+      必须同时设 w:eastAsia。
+    why: |
+      不设的后果是文档里中英文两种脸，而**在编制人自己的机器上常常看不出来**
+      （本机装了对应字体）——发出去才被发现，那时已经在评委手里了。
+    severity: 这是实现层的强制要求，不是建议
+
+  T2_no_font_embedding:
+    cn: 不嵌字体
+    rule: 只用常见中文字体，不做字体嵌入
+    why: |
+      嵌字体会让文件体积暴涨，且有授权问题。
+      方正小标宋、仿宋_GB2312 这类不是所有机器都有——
+      所以每个字体都要给 fallback，缺字体时退到黑体/宋体，而不是退到方框。
+
+  T3_numbers_stay_in_placeholders:
+    cn: 排版不改变正文来源
+    rule: 排版只管样式，不碰内容。正文里的数字仍然只能是 {{节点名}}
+    why: 排版是渲染的最后一步，不是往正文里补内容的机会
+
+  T4_state_the_preset:
+    cn: 交付时说明用的哪一套
+    rule: 交付说明里写明采用的预设与来源（客户指定 / 默认）
+    why: 客户拿去报审前能核一遍，比退回来再改省事
+
+  T5_compact_is_last_resort:
+    cn: 压排版是最后手段
+    rule: 页数超限时的顺序是：合并章节 → 移附件 → 才考虑压排版
+    why: 让评审读得累不是省页数该付的代价
+
+# =============================================================================
+# 五、检查
+# =============================================================================
+constraints:
+
+  C16_typography_applied:
+    cn: 排版规格已落地
+    rule: |
+      a) 渲染出的 docx，正文样式的 w:eastAsia 已设置
+      b) 采用的预设已记入交付说明
+    severity: {a: error, b: warning}
+    why: |
+      a 是那个"本机看不出来"的坑的机检出口。
+      它不能保证排版好看，但能保证不会出现中英文两种脸这种低级问题。

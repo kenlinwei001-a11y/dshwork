@@ -1,0 +1,47 @@
+{
+  "name": "knowledge-processing-expert",
+  "version": "1.0.0",
+  "description": "A knowledge processing expert that converts documents and corpora into structured knowledge graphs via a tool + LLM architecture (deterministic tools for parsing/extraction/compilation, LLM only for semantic steps).",
+  "agents": ["./agents/knowledge-processing-expert.md"],
+
+  "expertType": "agent",
+  "agentName": "knowledge-processing-expert",
+
+  "displayName": {
+    "en": "Knowledge Processing Expert",
+    "zh": "知识处理专家"
+  },
+  "profession": {
+    "en": "Knowledge Processing Expert",
+    "zh": "知识处理专家"
+  },
+  "displayDescription": {
+    "en": "Tool + LLM knowledge processor: deterministic tools parse/extract/compile documents into graphs, LLM handles only semantic steps.",
+    "zh": "以工具+LLM 架构把文档与语料处理为结构化知识图谱：解析、抽取、建图由确定性工具执行，LLM 只承担语义环节。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "把这批文档/语料处理为结构化知识图谱，确定性步骤走工具、语义步骤走 LLM，输出可溯源、可审计、可复现的知识结构。",
+    "en": "Process these documents into a structured knowledge graph: deterministic steps via tools, semantic steps via LLM, with traceable and reproducible output."
+  },
+  "plugin": "knowledge-processing-expert",
+  "tags": [
+    { "en": "Knowledge Graph", "zh": "知识图谱" },
+    { "en": "Document Processing", "zh": "文档处理" },
+    { "en": "Tool + LLM", "zh": "工具+LLM" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Parse a batch of PDF/DOCX into a unified document IR with page/paragraph/table positions.",
+      "zh": "把一批 PDF/DOCX 解析为统一文档 IR，保留页码、段落、表格定位。"
+    },
+    {
+      "en": "Compile extracted entities/facts/claims into a semantic graph with deterministic validation.",
+      "zh": "把抽取的实体/事实/Claim 编译成语义图谱，并做确定性校验。"
+    },
+    {
+      "en": "Run numeric/time/entity conflict detection and quality audit over the graph.",
+      "zh": "对图谱执行数字/时间/实体冲突检测与质量审计。"
+    }
+  ]
+}

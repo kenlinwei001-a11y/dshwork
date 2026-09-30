@@ -21,3 +21,7 @@ packages/plugins/office/src/presentation/native-react/native.css
 
 # Locally generated task deliverables
 /output/
+
+# Python 虚拟环境（知识处理专家的 .venv 有 400+MB，绝不入库）
+.venv/
+venv/

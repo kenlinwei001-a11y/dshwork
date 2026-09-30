@@ -1,0 +1,19 @@
+{
+  "sections": [
+    {
+      "level": 1,
+      "title": "第一章 总则"
+    },
+    {
+      "level": 1,
+      "title": "第二章 财务数据"
+    }
+  ],
+  "legal_outline": [],
+  "covered": [
+    "第一章 总则",
+    "第二章 财务数据"
+  ],
+  "missing": [],
+  "coverage_ok": true
+}

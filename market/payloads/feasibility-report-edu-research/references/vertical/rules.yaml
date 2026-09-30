@@ -1,0 +1,223 @@
+# =============================================================================
+# 高校科研用房 派生规则实例（L1）
+# 全部由 references/derivations.yaml 的模板实例化。
+# 标注 validation 的，已在一份真实报告上验算闭合；验证记录留在 base，不随垂类包交付。
+# example 一律是合成算例，仅示范算式形状，**不得当作任何项目的缺省取值**。
+# =============================================================================
+
+meta:
+  id: rules-edu-research
+  extends: fsr-derivations
+  version: 0.1.0
+
+# =============================================================================
+# 规模链 —— 纯指标法
+# =============================================================================
+scale_chain:
+
+  note: |
+    科研用房的规模论证是**指标法**：分类人数 × 人均建筑面积指标。
+    与学生生活用房的根本差别：不做缺额法。
+    因为科研机构多为新设或扩建，没有可比的"现有面积"基数——
+    硬套缺额法会得出无意义的结论。
+    若学校确有存量科研用房要抵扣，按 edu-student-life 垂类的 T16 处理。
+
+  R_unit_demand:
+    template: T1_indexed_demand
+    operator: index
+    target: "program.{staff_class}.demand"
+    formula: "program.{staff_class}.headcount * program.{staff_class}.index"
+    unit: ㎡
+    basis: 建标191-2018
+    serves: D4
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: |
+      合成样例：
+        科研人员           240 人 × 16 ㎡/人 = 3840 ㎡
+        研究生/博士生/访问学者 900 人 × 8 ㎡/人  = 7200 ㎡
+    caution: |
+      人数必须分类。只给总数无法测算，也无法核验（DC1）。
+      「访问学者」归入哪一类要问清楚——常见做法是与研究生并为一档，但这是编制单位的处理，不是规范明文。
+
+  T_support:
+    cn: 公共服务配套用房换算
+    operator: rate
+    target: program.support.demand
+    formula: "program.support.usable / program.support.ratio"
+    unit: ㎡
+    tolerance: 0.01
+    basis: 编制单位口径（非国标）
+    serves: D4
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: 合成样例：使用面积 900 ㎡ ÷ 0.5 = 1800 ㎡
+    caution: |
+      **这个系数没有国标依据**，是编制单位口径，各项目取值不同。
+      必须标为 E1_given 并请客户确认，不得当成 E2_normative 引用。
+      配套用房清单（交流讨论室/接待室/报告厅/活动室/阅览室/档案室/复印室/贮藏室）
+      给的是使用面积，须换算为建筑面积才能与科研用房相加。
+
+  R_rollup:
+    template: T2_demand_rollup
+    operator: aggregate
+    target: scale.demand_total
+    formula: "sum(program.researcher.demand, program.student.demand, program.support.demand)"
+    unit: ㎡
+    serves: D4
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: 合成样例：3840 + 7200 + 1800 = 12840 ㎡
+
+  R_design:
+    operator: aggregate
+    target: scale.design_total
+    formula: "scale.design_above + scale.design_under"
+    unit: ㎡
+    serves: D4
+    example: 合成样例：地上 12600 + 地下 400 = 13000 ㎡
+
+  R_deviation:
+    template: T3_design_vs_demand
+    operator: rate
+    target: scale.deviation
+    formula: "(scale.design_total - scale.demand_total) / scale.demand_total"
+    unit: "1"
+    basis: 建标191-2018
+    serves: D4
+    example: 合成样例：(13000 − 12840) / 12840 = 1.25%
+    note: |
+      结果不参与后续计算，只用于生成 argument_unit 的 qualifier。
+      偏差超阈值时**强制要求填写 rebuttal**——这正是真实报告里最常缺的那一环。
+      正确的 rebuttal 例：超出部分为地下设备用房，不属指标控制范围。
+
+# =============================================================================
+# 造价链
+# =============================================================================
+cost_chain:
+
+  R_contingency:
+    template: T6_contingency
+    operator: rate
+    target: cost.contingency
+    formula: "(cost.construction + cost.other) * cost.contingency_rate"
+    unit: 万元
+    tolerance: 0.005
+    basis: 计价依据
+    serves: D8
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: 合成样例：(8500 + 900) × 5% = 470 万元
+
+  T_demolition:
+    cn: 拆除费
+    operator: index
+    target: cost.demolition
+    formula: "demolition.area * cost.demolition_rate"
+    unit: 万元
+    basis: 造价方提供
+    serves: D8
+    applicable_when: "project.nature == 拆除重建"
+    example: 合成样例：拆除面积 1800 ㎡ × 单价 → 拆除费约 40 万元
+    note: |
+      拆除面积同时驱动三件事：拆除费（本规则）、CH5.4 征收补偿方案（不可豁免）、
+      CH9 社会稳定风险（师生对施工影响的关切）。三者缺一评审都会问。
+
+  R_cost_total:
+    template: T5_cost_rollup
+    operator: aggregate
+    target: cost.total
+    formula: "sum(cost.construction, cost.other, cost.contingency, cost.demolition)"
+    unit: 万元
+    serves: D8
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: 合成样例：8500 + 900 + 470 + 40 = 9910 万元
+
+  R_unit_price:
+    operator: rate
+    target: cost.unit_price
+    formula: "cost.construction * 10000 / scale.design_total"
+    unit: 元/㎡
+    tolerance: 0.001
+    serves: D8
+    example: 合成样例：8500万 / 13000㎡ ≈ 6538 元/㎡
+    note: |
+      单方造价是最有用的横向校核指标，但它是 E5 类比证据的入口。
+      拿它跟同类项目比时必须说明可比性条件（地域/年份/装配率/绿建星级/
+      装修标准/实验室专项配置），否则 C5a 报「类比证据未说明可比性条件」。
+      科研用房的单方造价通常高于普通办公——实验室的通风、排污、供电、
+      防振要求会显著推高，比较时要剔除这部分差异。
+
+# =============================================================================
+# 资金链
+# =============================================================================
+funding_chain:
+
+  R_funding_total:
+    template: T7_funding_balance
+    operator: aggregate
+    target: funding.total
+    formula: "sum(funding.gov, funding.self)"
+    unit: 万元
+    hard_constraint: "funding.total == cost.total"
+    serves: D8
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: 合成样例：国拨 4000 + 自筹 5910 = 9910 == 总投资
+    note: 硬等式，不接受任何容差
+
+  R_annual:
+    template: T8_annual_allocation
+    operator: allocate
+    target: funding.annual
+    serves: D8
+    invariants:
+      - 行合计：每个资金来源的年度和 == 该来源总额
+      - 列合计：每个年度的各来源和 == 该年度合计
+      - 全表合计 == funding.total
+      - 年度范围必须落在 project.duration 内
+    validation: 已在一份真实报告上验算闭合（验证记录留在 base 的 references/validation/，不随垂类包交付）
+    example: |
+      合成样例三向闭合：
+        国拨 1500+2000+500  = 4000
+        自筹 1500+2500+1910 = 5910
+        年度 3000+4500+2410 = 9910
+
+# =============================================================================
+# 资源负荷链
+# =============================================================================
+load_chain:
+  note: |
+    实验室的资源负荷指标显著高于普通办公，不能直接套用办公建筑基准。
+    通风换气次数、排污量、用电负荷都要按实验类型单独取值，并绑定依据。
+
+  R_load:
+    template: T4_load_from_scale
+    operator: index
+    target: "load.{resource}"
+    formula: "scale.design_total * load.{resource}.index"
+    basis: 节能标准 / 用能定额
+    serves: D6
+    caution: 若项目含湿实验室、洁净室、恒温恒湿区，须分区取指标，不可用总面积一刀切
+
+# =============================================================================
+# 复述链
+# =============================================================================
+restatement_chain:
+  R_restate:
+    template: T10_restatement
+    operator: identity
+    typical_nodes:
+      - scale.design_total     # 真实报告中曾出现 11 次，横跨 7 个专业
+      - scale.design_above
+      - scale.design_under
+      - scale.demand_total
+      - demolition.area
+      - cost.total
+      - cost.construction
+      - project.duration
+      - funding.gov / funding.self
+    typical_claims:
+      - 建设必要性充分
+      - 建设条件具备
+      - 建设规模合理
+      - 资金来源有保障
+      - 建成后效益显著
+    note: |
+      真实报告中"总投资在结论章被写错一位"就发生在这条链上（合成样例故意保留了同型缺陷）。
+      SSOT + render.py 的占位符强制之后，这类事故物理上不可能发生。

@@ -1,0 +1,668 @@
+# =============================================================================
+# 专业条件问询（L0）—— 建设内容那一章怎么写实，而不是套模板
+# -----------------------------------------------------------------------------
+# 「建设内容」章是评审专家看得最细的一章，也是最容易被指出"套模板"的一章。
+# 症状很典型：通风写"设置机械通风系统"、供电写"按二级负荷设计"、
+# 消防写"按现行规范设置"——每一句都对，每一句都没说本项目。
+#
+# 根因不是行文能力，是**没问到取值点**。评审专家追问的从来不是
+# "有没有通风系统"，而是"换气次数取几次、通风柜几台、排风量多少"。
+#
+# 但「取值点」不等于「一律去问客户」。可研阶段的设计是**方案深度**，
+# 不是施工图深度，其中很大一部分是规范查表加算术：
+#
+#   规范判定（norm_lookup）——建筑分类、耐火等级、防火分区上限、抗震设防烈度、
+#     用水定额、用电指标。给定项目属性即可由规范定出，agent 该做也能做，
+#     但**必须给出判定依据（哪本规范哪一条）**，不能只给结论。
+#   参数推导（computed）——最高日用水量、计算负荷、变压器容量、冷热负荷、
+#     消防水池容积、人防配建面积。由上面那层算出，不许手填。
+#   方案比选（choice）——结构形式、空调形式与冷热源、装配率与绿建目标。
+#     有多个合规解，agent 给候选与比选要点，**选哪个由客户或设计单位定**。
+#   设计单位专属（design_only）——柱网、构件尺寸、管线走向、平面布置、
+#     实验室的换气次数与防振等级。agent 推不出来，只能要。
+#
+# 把这四层混成一句"去问客户"，会有两个后果：该自己算的推给了客户（客户嫌烦），
+# 该设计单位定的被 agent 编了（最危险）。所以每个取值点都带 resolution 字段。
+#
+# 与 materials.yaml 的分工：
+#   materials 管「这份材料有没有交」；本文件管「交了的材料里，
+#   这些取值点抽到了没有」。素材齐了但取值点空着，照样只能写通用条款。
+# =============================================================================
+
+meta:
+  id: fsr-discipline-probes
+  version: 0.1.0
+  layer: L0
+
+# =============================================================================
+# 一、为什么用问询矩阵，不用提示词模板
+# =============================================================================
+rationale:
+
+  problem: |
+    子类是长尾的。高校科研用房底下就有干实验室、湿实验室、洁净、
+    大型仪器平台、算力中心、工程试验等好几种，每种的专业条件完全不同。
+    给每个子类写一套提示词，写不完，也维护不动；
+    写一套通用提示词，出来的就是通用条款。
+
+  solution: |
+    把可变的部分收敛成**结构化的取值点**，而不是行文指令。
+    取值点是有限的、可枚举的、可继承的：
+      · 一个专业下的取值点，多数子类共用（如供电的负荷等级）
+      · 子类只需声明它额外需要哪些（如洁净室的压差控制）
+    行文由 L0 统一负责（WRITE 路由），子类只提供"必须写实的清单"。
+
+  fallback: |
+    **识别不出子类时不许退回通用条款。**
+    正确做法是把专业清单反过来问客户：
+    「本项目是否涉及以下特殊条件？（逐条列出）有则请提供取值。」
+    客户答"都没有"也是一个有效答案——它让通用条款变成有依据的选择，
+    而不是偷懒的默认。这个区别评审看得出来。
+
+# =============================================================================
+# 二、专业清单 —— 取值点挂在哪些专业下
+# =============================================================================
+disciplines:
+  ARCH:   {cn: 建筑, always: true}
+  STRU:   {cn: 结构, always: true}
+  HVAC:   {cn: 暖通空调, always: true}
+  WSD:    {cn: 给排水, always: true}
+  ELEC:   {cn: 电气, always: true}
+  ICT:    {cn: 智能化, always: true}
+  FIRE:   {cn: 消防, always: true}
+  ENV:    {cn: 环保, always: true}
+  GAS:    {cn: 燃气, always: false}
+  PROC:   {cn: 工艺, always: false}
+  SPEC:   {cn: 特殊专项, always: false}
+
+# =============================================================================
+# 二之二、可研阶段的设计深度 —— agent 做到哪一步
+# -----------------------------------------------------------------------------
+# 可研里的「设计」是方案深度：说清楚**采用什么方案、依据什么规范、
+# 关键取值是多少**，而不是画出怎么建。这个深度里，
+# agent 能承担的比直觉上多得多。
+# =============================================================================
+design_depth:
+
+  agent_does:
+  - layer: norm_lookup
+    cn: 规范判定
+    examples: [建筑分类与耐火等级, 抗震设防烈度与设防类别, 防火分区面积上限,
+               用水定额, 用电指标, 强制配建比例, 排放标准限值]
+    rule: 给定项目属性即可由规范定出。**判定结论必须带条款依据**
+    trap: 只给结论不给依据，评审会当成拍脑袋——而且事后无从复核
+
+  - layer: computed
+    cn: 参数推导
+    examples: [最高日用水量, 计算负荷与变压器容量, 冷热负荷, 消防水池容积, 人防配建面积]
+    rule: 由上一层算出，不许手填。规则模板见 derivations.yaml 的 T18–T23
+    trap: 这些量在人工写作里最常见的问题是各章取值不一致——图上只存一份就没有这个问题
+
+  - layer: draft_with_candidates
+    cn: 方案比选
+    examples: [结构形式, 空调形式与冷热源, 装配率与绿建目标, 外墙与屋面做法]
+    rule: |
+      有多个合规解。agent 给出候选方案 + 比选要点（投资、运行费、管理难度、
+      工期影响），**选哪个由客户或设计单位定**，选定后记为 E1_given。
+    trap: 直接写一个方案不给比选，等于替客户做了决定，而且看不出还有别的选项
+
+  agent_does_not:
+  - layer: design_only
+    cn: 设计单位专属
+    examples: [柱网与构件尺寸, 平面布置与房间划分, 管线走向与管径综合,
+               实验室换气次数与通风柜数量, 微振控制等级, 洁净压差梯度]
+    rule: 推不出来，只能要。缺就写「详见设计单位提供的 XX」并列入素材缺口
+    why: |
+      它们不是查表能定的，取决于工艺、使用方式与专业计算。
+      编一个"合理的值"是这里最危险的做法——数字看起来正常，
+      但会被当成设计依据往下用。
+
+  depth_test: |
+    判断一段技术方案够不够可研深度，问三句：
+      ① 采用什么方案？（有明确结论，不是"根据需要设置"）
+      ② 依据什么？（规范条款 / 客户确认 / 设计单位提供，三者选一）
+      ③ 关键取值是多少？（有数字，不是"满足规范要求"）
+    三句都答得上就够了，不必等施工图。
+
+# =============================================================================
+# 三、通用取值点 —— 任何实体工程项目都要问
+# =============================================================================
+# 垂类的 subtypes.yaml 在此基础上做增量，不重复这一层。
+# =============================================================================
+common_probes:
+
+- id: P_ARCH_CLASS
+  discipline: ARCH
+  cn: 建筑分类与耐火等级
+  resolution: norm_lookup
+  resolve_by: 由建筑高度、层数、使用性质按现行建筑设计防火规范判定
+  must_cite: 判定结论必须带规范条款号；只给结论不给依据，评审会当成拍脑袋
+  ask: 请确认建筑高度、层数与使用性质；分类等级与耐火等级由我们按规范判定后请您复核
+  why_it_matters: 它是枢纽参数——往下牵动消防系统配置、疏散距离、结构耐火极限
+  if_missing: 消防与结构两章都只能写通用条款
+  route: ASK
+  from_material: M3_design
+
+- id: P_STRU_SEISMIC
+  discipline: STRU
+  cn: 抗震设防烈度与设防类别
+  resolution: norm_lookup
+  resolve_by: 烈度与地震动参数按项目所在地查现行抗震设防区划；设防类别按建筑抗震设防分类标准判定
+  must_cite: 设防类别的判定依据要写明——它直接影响结构方案与造价
+  ask: 项目所在地抗震设防烈度、设计基本地震加速度、本项目设防类别？
+  why_it_matters: 设防类别定错会导致结构方案与造价整体偏离
+  route: SEARCH + ASK
+  note: 烈度按所在地可查（SEARCH），设防类别属本项目判定（ASK）
+
+- id: P_ELEC_LOAD
+  discipline: ELEC
+  cn: 用电负荷等级与计算负荷
+  resolution: mixed
+  resolve_by: |
+    负荷**等级**按供配电系统设计规范与本项目功能判定（norm_lookup）；
+    用电**指标**按建筑类型查取（norm_lookup）；
+    计算负荷与变压器容量由指标 × 面积 × 需要系数算出（computed，见 T18/T19）。
+    有无特别重要负荷属客户的使用要求（ASK）。
+  ask: 各类负荷的等级划分？是否有一级负荷或特别重要负荷？计算负荷与变压器容量？
+  why_it_matters: 负荷等级决定供电方案与是否需要双电源、应急电源
+  route: ASK
+  from_material: M3_design
+
+- id: P_HVAC_SYSTEM
+  discipline: HVAC
+  cn: 空调形式与冷热源
+  resolution: choice
+  resolve_by: |
+    冷热负荷指标可按建筑类型查取、负荷由指标 × 面积算出（computed，T20）；
+    但**空调形式与冷热源有多个合规解**——多联机 / 风机盘管+新风 / 集中冷水机组，
+    取决于运行管理能力、能源价格、是否有市政热源。agent 给候选与比选要点，
+    选哪个由客户或设计单位定。
+  ask: 采用什么空调形式？冷热源方案是什么？冷热负荷指标取值？
+  why_it_matters: 冷热负荷→机房面积→反馈修正总面积，这里有一处已知的派生回环
+  route: ASK
+
+- id: P_WSD_QUOTA
+  discipline: WSD
+  cn: 用水定额与消防用水量
+  resolution: norm_lookup
+  resolve_by: |
+    用水定额按建筑类型查建筑给水排水设计标准；消防用水量与火灾延续时间按消防规范查取。
+    最高日用水量、消防水池容积由此算出（computed，T21/T22）。
+    这一整条链 agent 可以自己完成，只需客户确认用水人数口径。
+  ask: 用水定额取值与依据？最高日用水量？消防用水量与水池容积？
+  route: SEARCH + ASK
+
+- id: P_FIRE_STRATEGY
+  discipline: FIRE
+  cn: 防火分区与疏散
+  resolution: mixed
+  resolve_by: |
+    防火分区**面积上限**、疏散距离限值、灭火系统的设置范围按规范判定（norm_lookup）；
+    但**实际分区划分与疏散组织**要看平面布置，属设计单位成果（design_only）。
+    可研阶段写到「按规范本项目防火分区不大于 X ㎡、设置某某灭火系统」即为合格深度。
+  ask: 防火分区划分、疏散距离、灭火系统形式？有无需要性能化设计的部位？
+  why_it_matters: 有性能化设计需求却没提，是评审必问项
+  route: ASK
+
+- id: P_ENV_DISCHARGE
+  discipline: ENV
+  cn: 污染物排放与处置
+  resolution: mixed
+  resolve_by: 排放标准限值可查（norm_lookup）；本项目产生哪些污染物属工艺与使用方式，须问（ASK）
+  ask: 产生哪些污染物？排放去向与处置方式？有无需要预处理的？
+  route: ASK
+
+- id: P_ICT_SCOPE
+  discipline: ICT
+  cn: 智能化系统范围
+  resolution: ask
+  resolve_by: 系统清单可按规范给建议范围，但**是否纳入本次投资**是客户的口径决定，无从推导
+  ask: 智能化系统包含哪些子系统？是否纳入本次投资？
+  why_it_matters: 「是否纳入本次投资」是口径问题，金额不小，漏问会让估算失真
+  route: ASK
+
+
+# ---------------------------------------------------------------------------
+# 以下取值点从一份 5.4 万字的真实高校科研用房可研反推：
+# 它的设计方案章有 331 段定量陈述，逐段回看「这段在定什么值、这个值谁来定」，
+# 归出下面这些。**不是凭空列的**——凭空列会同时犯两个错：
+# 列一堆实际没人问的，和漏掉评审真正会追的。
+# 每条的 resolution 按「可研阶段谁定得了」判，不按「谁最懂」判。
+# ---------------------------------------------------------------------------
+
+- id: P_SITE_PARAMS
+  discipline: ARCH
+  cn: 场地地域参数
+  resolution: norm_lookup
+  resolve_by: |
+    基本风压、基本雪压、抗震设防烈度与设计基本地震加速度、冻土深度、
+    年降雨量与总辐射量，全部按项目所在地查现行规范附表与地方区划。
+    这一组 agent 可以自己查完，**但必须写明查的是哪个地区**。
+  ask: 项目所在地精确到区县？（用于查风雪荷载与抗震区划）
+  why_it_matters: 它是结构与暖通两章一连串取值的输入，错一个下游全错
+  if_missing: 结构章的荷载取值只能写「按规范执行」，等于没写
+  route: SEARCH
+
+- id: P_ARCH_HEIGHT
+  discipline: ARCH
+  cn: 层数、层高与净高
+  resolution: mixed
+  resolve_by: |
+    层高由使用功能与设备管线高度共同决定：实验室、报告厅、机房的层高要求
+    可按规范与工艺条件推（norm_lookup + computed），
+    但**具体定几米是设计单位的决策**（design_only）。
+    可研阶段写到「一层层高 X 米、标准层 Y 米、主要用房净高不低于 Z 米」即够。
+  ask: 层数、各层层高、主要用房净高要求？有无对净高有特殊要求的房间？
+  why_it_matters: 层高直接乘出体积，牵动暖通负荷、造价、幕墙面积
+  if_missing: 建筑章写不出体量，暖通负荷也算不了
+  route: ASK
+  from_material: M3_design
+
+- id: P_ARCH_GRID
+  discipline: ARCH
+  cn: 柱网与平面布局模式
+  resolution: design_only
+  resolve_by: 推不出来。柱网取决于结构选型与使用单元尺寸，是设计单位的成果
+  ask: 柱网尺寸？平面布局采用什么模式（中廊 / 单廊 / 大空间可分隔）？
+  why_it_matters: 实验室类项目的柱网直接决定单元可分性，是使用方最关心的一条
+  if_missing: 留白并写明待设计单位提供。**不编**——这是最难被发现的一种编造
+  route: ASK
+  from_material: M3_design
+
+- id: P_ARCH_FINISH
+  discipline: ARCH
+  cn: 装修标准分级
+  resolution: ask
+  resolve_by: |
+    没有可查的定额。装修标准是客户的口径决定（简装 / 中等 / 精装，
+    是否含实验台与家具），而它对造价的影响是量级性的。
+  ask: 装修标准按什么档次？是否含实验室工艺台、家具、窗帘？哪些部位精装？
+  why_it_matters: 单方造价里装修占比很大，档次不定，投资估算就是个假数
+  if_missing: 投资估算章的单方造价没有依据（C12）
+  route: ASK
+
+- id: P_ARCH_ACCESSIBLE
+  discipline: ARCH
+  cn: 无障碍设计范围
+  resolution: norm_lookup
+  resolve_by: 按现行无障碍设计标准判定应设部位与指标（入口、电梯、卫生间、坡道）
+  must_cite: 结论要带条款依据。**注意标准已换版**，不要沿用旧编号（V1 软约束）
+  ask: 无障碍设施范围由我们按规范判定后请您复核
+  route: SEARCH
+
+- id: P_ARCH_PARKING
+  discipline: ARCH
+  cn: 停车配建与交通组织
+  resolution: mixed
+  resolve_by: |
+    配建指标按项目所在地的地方标准查（norm_lookup，**地标，随地而变**）；
+    实际车位数与出入口组织看总图，属设计单位成果（design_only）。
+  ask: 机动车与非机动车配建指标（按当地标准）？车位数？出入口设几个？
+  why_it_matters: 地下车库面积是地下建筑面积的主要构成，直接进造价
+  route: SEARCH + ASK
+
+- id: P_STRU_SYSTEM
+  discipline: STRU
+  cn: 结构形式
+  resolution: choice
+  resolve_by: |
+    框架 / 框架-剪力墙 / 剪力墙 / 钢结构，多数项目有不止一个合规解，
+    取决于跨度、层数、工期、造价与当地施工条件。
+    agent 给候选与比选要点，**不替客户选**。
+  ask: 采用什么结构形式？有无大跨度或高荷载部位需要特殊处理？
+  why_it_matters: 结构形式定了才谈得上基础、材料、装配率
+  route: ASK
+
+- id: P_STRU_SAFETY
+  discipline: STRU
+  cn: 结构安全等级与设计使用年限
+  resolution: norm_lookup
+  resolve_by: 按建筑结构可靠性设计统一标准与本项目性质判定
+  must_cite: 判定要带条款。使用年限写 50 年还是 100 年，直接影响材料与造价
+  ask: 结构安全等级与设计使用年限由我们按规范判定后请您复核
+  route: SEARCH
+
+- id: P_STRU_LOAD
+  discipline: STRU
+  cn: 楼面与屋面活荷载标准值
+  resolution: norm_lookup
+  resolve_by: |
+    常规房间按建筑结构荷载规范查表。
+    **但实验室、档案室、设备机房、大型仪器区的荷载要按实际设备重量定**，
+    那部分属工艺条件（ASK），查不到。
+  ask: 有无重型设备？设备重量与安装位置？（用于确定局部加强荷载）
+  why_it_matters: |
+    真实报告里这一节列了 22 段取值，是结构章篇幅的主要来源。
+    漏了重型设备荷载，是后期变更最贵的一类。
+  if_missing: 结构章只能写通用荷载表，评审一看就知道没做工艺对接
+  route: SEARCH + ASK
+
+- id: P_STRU_FOUNDATION
+  discipline: STRU
+  cn: 基础形式与埋深
+  resolution: mixed
+  resolve_by: |
+    基础形式的候选可由地质条件与荷载推出（choice），
+    但**必须有地勘报告才谈得上定**（design_only + 素材依赖）。
+    没有地勘就如实写「待地勘后确定」，并进风险章。
+  ask: 有无地勘报告？基础形式与埋深？地下水位与抗浮设防水位？
+  why_it_matters: 基础与地下室是造价里波动最大的一块，也是最常见的超概原因
+  if_missing: 投资估算的基础部分只能按类比估，须显式标注证据降级
+  route: ASK
+  from_material: M6_basic
+
+- id: P_STRU_MATERIAL
+  discipline: STRU
+  cn: 主要结构材料等级
+  resolution: norm_lookup
+  resolve_by: 混凝土强度等级、钢筋牌号、钢材牌号按规范与结构形式确定
+  ask: 主要结构材料等级由我们按规范给出后请设计单位确认
+  route: SEARCH
+
+- id: P_STRU_PREFAB
+  discipline: STRU
+  cn: 装配率目标与预制构件范围
+  resolution: choice
+  resolve_by: |
+    装配率下限多数地区有地方强制要求（norm_lookup，**地标**），
+    但**做到多少、哪些构件预制**是在合规下限之上的选择，影响造价与工期。
+  ask: 本地装配率强制要求是多少？本项目目标装配率？哪些构件采用预制？
+  why_it_matters: 装配率是近年评审必问项，且直接影响单方造价
+  route: SEARCH + ASK
+
+- id: P_WSD_SOURCE
+  discipline: WSD
+  cn: 水源、市政接口与供水压力
+  resolution: ask
+  resolve_by: 市政条件只有当地供水部门与客户知道，查不到
+  ask: 市政给水接口位置与管径？供水压力？是否需要二次加压？
+  why_it_matters: 需不需要加压泵房，是面积与造价的一个跳变点
+  if_missing: 给排水章写不出供水方式，只能通用条款
+  route: ASK
+
+- id: P_WSD_DRAIN
+  discipline: WSD
+  cn: 排水体制、排水量与雨水设计重现期
+  resolution: mixed
+  resolve_by: |
+    排水量按用水量折算（computed，T21）；
+    雨水设计重现期与径流系数按规范和当地要求查（norm_lookup）；
+    **排水体制（分流 / 合流）取决于市政条件**（ASK）。
+  ask: 当地排水体制？污水排放去向？雨水重现期按几年？有无海绵城市指标要求？
+  why_it_matters: 海绵指标是近年地方必查项，漏了会在方案审查阶段被退
+  route: SEARCH + ASK
+
+- id: P_WSD_SPECIAL
+  discipline: WSD
+  cn: 特殊排水与预处理
+  resolution: ask
+  resolve_by: |
+    实验室废水、厨房含油废水、洗涤废水是否需要预处理，
+    取决于本项目实际产生什么——**这是子类差异最大的一条**。
+  ask: 有无实验废水 / 含油废水 / 特殊化学品排放？各自水质与水量？
+  why_it_matters: 实验室类项目漏了废水预处理，环评过不了
+  if_missing: 环保章与给排水章同时缺内容，且是评审必查
+  route: ASK
+
+- id: P_WSD_HOTWATER
+  discipline: WSD
+  cn: 热水供应方式与用量
+  resolution: choice
+  resolve_by: 热水定额可查（norm_lookup）；供应方式（集中 / 分散 / 太阳能 / 热泵）有多个合规解
+  ask: 哪些部位需要热水？采用什么供应方式？
+  route: ASK
+
+- id: P_ELEC_TRANSFORMER
+  discipline: ELEC
+  cn: 变压器容量与台数
+  resolution: computed
+  resolve_by: 由计算负荷与变压器负载率算出（T19）。算完须由设计单位复核
+  ask: 计算结果请设计单位复核；是否需要预留扩容？
+  why_it_matters: 变配电房面积由容量决定，反过来影响总面积——又一处派生回环
+  route: COMPUTE
+
+- id: P_ELEC_SOURCE
+  discipline: ELEC
+  cn: 供电电源与电压等级
+  resolution: ask
+  resolve_by: 市政电源条件只有当地供电部门与客户知道
+  ask: 电源引自哪里？几路进线？电压等级？现有容量是否够用？
+  if_missing: 供电方案写不实，且可能漏掉外线工程投资
+  route: ASK
+
+- id: P_ELEC_LIGHTING
+  discipline: ELEC
+  cn: 照明功率密度与照度标准
+  resolution: norm_lookup
+  resolve_by: 各类房间照度与功率密度限值按建筑照明设计标准查表
+  must_cite: 要带条款。**该标准已换版，不要沿用旧编号**（V1 软约束）
+  ask: 照明标准由我们按规范给出后请您复核；有无对照明有特殊要求的房间？
+  route: SEARCH
+
+- id: P_ELEC_LIGHTNING
+  discipline: ELEC
+  cn: 防雷类别与接地方式
+  resolution: norm_lookup
+  resolve_by: 防雷类别按建筑物防雷设计规范由年预计雷击次数与建筑性质判定
+  must_cite: 判定要带条款与计算依据
+  ask: 由我们按规范判定后请设计单位确认
+  route: SEARCH
+
+- id: P_ELEC_EMERGENCY
+  discipline: ELEC
+  cn: 应急电源与备用电源
+  resolution: mixed
+  resolve_by: |
+    消防负荷的应急电源要求按规范判定（norm_lookup）；
+    **非消防的重要负荷要不要备用电源，是客户的使用要求**（ASK）——
+    科研类项目的低温冰箱、长周期实验设备常有这个需求，且客户不主动提。
+  ask: 有无不能断电的设备？（低温冰箱、恒温恒湿、长周期实验）是否需要 UPS 或发电机？
+  why_it_matters: 这一条不问，客户入驻后自己加发电机，是典型的可研遗漏
+  route: ASK
+
+- id: P_HVAC_PARAMS
+  discipline: HVAC
+  cn: 室内设计参数
+  resolution: mixed
+  resolve_by: |
+    常规房间的温湿度、新风量按规范查（norm_lookup）；
+    **恒温恒湿、洁净、精密仪器房间的参数属工艺条件**（ASK），规范里没有。
+  ask: 有无恒温恒湿或洁净要求的房间？温湿度精度与洁净等级？
+  why_it_matters: 精度要求差一档，空调系统与造价完全是两回事
+  if_missing: 暖通章只能写通用参数表——这正是「套模板」最典型的一节
+  route: SEARCH + ASK
+
+- id: P_HVAC_VENT
+  discipline: HVAC
+  cn: 通风换气次数与排风量
+  resolution: mixed
+  resolve_by: |
+    一般房间换气次数按规范查（norm_lookup）；
+    **实验室换气次数、通风柜台数与排风量必须按实际工艺定**（ASK）。
+    这是评审在实验室类项目上追得最细的一条。
+  ask: 各类实验室换气次数？通风柜台数与单台排风量？有无补风与热回收要求？
+  why_it_matters: |
+    「设置机械通风系统」这句话是通用条款的典型样本。
+    问不到 12 次/小时这个数，写出来的还是那句话。
+  if_missing: 暖通与环保两章同时写空
+  route: ASK
+
+- id: P_HVAC_SMOKE
+  discipline: HVAC
+  cn: 防排烟方式
+  resolution: norm_lookup
+  resolve_by: 自然排烟与机械排烟的适用条件、排烟量按建筑防烟排烟系统技术标准判定
+  must_cite: 要带条款。地下与内区房间是重点
+  ask: 由我们按规范判定后请设计单位确认
+  route: SEARCH
+
+- id: P_HVAC_CONTROL
+  discipline: HVAC
+  cn: 空调自控与计量
+  resolution: choice
+  resolve_by: 自控深度有多个合规解，取决于运行管理能力。按房间计量与否影响后期收费方式
+  ask: 是否需要分区/分户计量？自控深度到什么程度？
+  route: ASK
+
+- id: P_FIRE_SYSTEM
+  discipline: FIRE
+  cn: 灭火系统配置与消防水量
+  resolution: mixed
+  resolve_by: |
+    各类灭火系统的设置范围、消火栓用水量、火灾延续时间按消防规范查（norm_lookup）；
+    消防水池容积由此算出（computed，T22）；
+    **有无贵重仪器需要气体灭火属客户信息**（ASK）。
+  ask: 有无贵重设备或档案需要气体灭火？消防水池是否与生活水池合建？
+  why_it_matters: 气体灭火漏了，是科研类项目最常见的一处漏项
+  route: SEARCH + ASK
+
+- id: P_FIRE_ALARM
+  discipline: FIRE
+  cn: 火灾报警与消防联动范围
+  resolution: norm_lookup
+  resolve_by: 报警系统保护等级与联动范围按规范判定；漏电火灾、防火门监控、应急照明等子系统按规范定设置与否
+  ask: 由我们按规范判定后请设计单位确认
+  route: SEARCH
+
+- id: P_ICT_NETWORK
+  discipline: ICT
+  cn: 网络、机房与综合布线等级
+  resolution: ask
+  resolve_by: |
+    是接入既有校园网还是新建、机房设在哪、布线等级几类，
+    全部取决于客户既有信息化基础——查不到，也推不出。
+  ask: 接入现有网络还是新建机房？机房位置与面积？综合布线等级？
+  why_it_matters: 「接入既有机房」和「新建机房」差一个房间和一笔钱
+  route: ASK
+
+- id: P_ICT_SECURITY
+  discipline: ICT
+  cn: 安防监控与门禁范围
+  resolution: mixed
+  resolve_by: 重点部位的设防要求有规范依据（norm_lookup）；具体覆盖范围与是否兼容既有系统属客户口径（ASK）
+  ask: 安防覆盖范围？是否需与既有系统兼容？有无涉密或管控区域？
+  route: ASK
+
+- id: P_ENV_NOISE
+  discipline: ENV
+  cn: 噪声与振动控制
+  resolution: mixed
+  resolve_by: |
+    场界噪声限值按声环境功能区查（norm_lookup，**注意标准名称与编号易错**）；
+    **有无精密仪器的微振动要求属工艺条件**（ASK）——电镜、天平室是典型。
+  ask: 周边声环境功能区类别？有无对振动敏感的仪器？
+  why_it_matters: 微振动要求会反过来决定结构与选址，发现得越晚代价越大
+  route: SEARCH + ASK
+
+- id: P_ENV_WASTE
+  discipline: ENV
+  cn: 固废与危废处置
+  resolution: ask
+  resolve_by: 产生什么废物只有使用方知道。危废的暂存与转移有强制要求
+  ask: 产生哪些固废？有无危险废物？暂存点设在哪？如何转移？
+  if_missing: 环保章缺内容，且实验室类项目必被追问
+  route: ASK
+
+- id: P_ENERGY_INDEX
+  discipline: ENV
+  cn: 能耗指标与节能目标
+  resolution: mixed
+  resolve_by: |
+    围护结构热工限值、设备能效限值按公共建筑节能设计标准查（norm_lookup，**软约束，注意版本**）；
+    综合能耗由分项指标算出（computed）；
+    **绿建星级目标是选择**（choice），多数地区有强制下限。
+  ask: 本地绿建强制要求？本项目目标星级？有无可再生能源应用比例要求？
+  why_it_matters: 双碳与节能章的全部定量内容都从这里来
+  route: SEARCH + ASK
+
+- id: P_GAS_DEMAND
+  discipline: GAS
+  cn: 燃气用量与接口
+  resolution: ask
+  resolve_by: 有无燃气需求取决于是否设食堂或实验用气，市政接口条件要问
+  ask: 是否用气？用途与用量？市政燃气接口位置？
+  route: ASK
+  note: 无燃气需求时客户明确答「不涉及」也是有效输入，会记为 confirmed_na
+
+# =============================================================================
+# 四、垂类子类契约 —— verticals/<id>/subtypes.yaml 必须长什么样
+# =============================================================================
+subtype_contract:
+
+  required_fields:
+    id: 子类标识
+    cn: 中文名
+    recognize: 识别线索（项目名称关键词 / 素材中的特征 / 分诊回答）
+    probes: 本子类**额外**需要的取值点（继承 common_probes，不重复）
+    generic_clause_ok: 允许写通用条款的专业清单（明确列出，避免默认放行）
+    review_focus: 评审在这一子类上盯什么
+
+  probe_fields:
+    id: 取值点标识
+    discipline: 挂在哪个专业下
+    cn: 中文名
+    ask: 具体问什么。**要问到数字，不要问"有没有"**
+    why_it_matters: 不问到会怎样。这一句决定 agent 会不会偷懒跳过
+    if_missing: 缺了这一条，哪一章只能写通用条款
+    route: ASK / SEARCH / SEARCH + ASK
+    resolution: |
+      norm_lookup  规范查表可定 —— agent 做，但必须给条款依据
+      computed     由已有节点算出 —— agent 做，不许手填
+      choice       多个合规解 —— agent 给候选与比选，客户或设计单位定
+      design_only  设计单位专属 —— agent 推不出来，只能要
+      mixed        一个取值点跨多层，resolve_by 里逐层说明
+      ask          客户的口径或使用要求，无从推导
+    resolve_by: resolution 不是 ask 时，说明怎么定、依据什么
+    must_cite: norm_lookup 类必填 —— 只给结论不给依据，评审会当成拍脑袋
+    from_material: 通常出自哪类素材
+
+  rules:
+  - 子类可以多选。一栋楼同时是湿实验室和洁净区是常态，两组 probes 取并集
+  - 子类识别的结果**须客户确认**，与垂类识别同一规格
+  - generic_clause_ok 必须显式列出。不列 = 不允许写通用条款
+  - 新增子类不需要改任何代码，加一段 YAML 即可
+
+# =============================================================================
+# 五、未识别子类时的兜底
+# =============================================================================
+unrecognized_subtype:
+
+  never: 退回通用条款
+  do: |
+    把本垂类全部子类的 probes 取并集，按专业分组，**反过来问客户**：
+    「本项目是否涉及以下条件？涉及的请提供取值，不涉及的请确认。」
+  why: |
+    客户答"都不涉及"也是有效输入——它把通用条款从"偷懒的默认"
+    变成"有依据的选择"。这个区别评审看得出来：
+    前者会被问"你们考虑过通风吗"，后者可以答"确认过无特殊通风要求"。
+  record: 客户确认"不涉及"的，记为 E1_given，写进项目图。不是留空
+
+# =============================================================================
+# 六、检查
+# =============================================================================
+constraints:
+
+  C12_probe_coverage:
+    cn: 专业取值点覆盖
+    rule: |
+      已识别子类的全部 probes，必须满足以下之一：
+        a) 取到了值（节点存在且有 from）
+        b) 客户明确确认"不涉及"（记为 E1_given）
+        c) 在缺口清单里，且该专业所在章节的 content_status != sourced
+      三者都不满足，即"素材齐了但取值点空着"——这一章会写成通用条款。
+    severity: warning
+    escalate_to_error_when: 该章的 content_status 已标记为 sourced
+    why: |
+      比"缺素材"更隐蔽的一类问题：材料交齐了，但里面根本没有这些取值点，
+      而扫描只看素材类有没有登记，就会报全绿。C12 是补这个洞的。
+
+  C12b_generic_clause_declared:
+    cn: 通用条款须显式声明
+    rule: |
+      正文中标记为通用条款的段落，其所属专业必须在
+      subtypes.yaml 的 generic_clause_ok 里列出；未列出的报错。
+    severity: error
+    why: |
+      通用条款本身不是错——无障碍、绿色施工确实可以写通用的。
+      错的是**在本项目有特殊性的专业上写通用条款**。
+      显式声明把"哪些可以通用"变成一次有记录的决定。

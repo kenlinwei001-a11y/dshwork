@@ -1,0 +1,108 @@
+# =============================================================================
+# 章节正文模板 · 高校科研用房
+# -----------------------------------------------------------------------------
+# 规则只有一条，但它是整个方法论的物理保障：
+#
+#   **正文里不许出现字面数字，只能写 {{节点名}}。**
+#
+# 渲染时由 scripts/render.py 从实例图取值注入，并打上锚点。
+# 引用了图中不存在的节点，渲染直接中止，不生成半成品——
+# 因为带着未解析占位符的稿子一旦流出，就会有人手工把数字填进去，SSOT 当场失效。
+#
+# 例外：不参与一致性检查的纯描述性数字（如"三面临路"）可以直接写。
+#       凡是会在他处被复述、或会被下游计算引用的量，一律用占位符。
+#
+#
+# 插图：客户没提供设计单位的图时，用图上的参数生成示意图。
+#   写法 {type: figure, figure: F_XXX}
+#   只有数据图可以生成（面积构成、投资构成、资金平衡、缺额对比、进度横道）；
+#   设计图（总平面、平面立面剖面、结构布置、机电系统、效果图）**一律不生成**——
+#   那些承载的是设计单位的专业判断，画出来会被当成设计成果审。
+#   缺设计图时正文写「详见设计单位提供的 XX 图」，并列入 M3 素材缺口。
+#   清单见 references/figures.yaml。
+#
+# 节点命名参照 references/vertical/fixture.yaml（合成样例）。
+# =============================================================================
+
+sections:
+
+  - id: CH1
+    blocks:
+      - {type: heading, level: 1, text: 概述}
+
+      - {type: heading, level: 2, text: 项目概况}
+      - type: para
+        text: >-
+          本项目新建总建筑面积{{scale.design_total}}平方米，其中地上建筑面积{{scale.design_above}}平方米，
+          地下建筑面积{{scale.design_under}}平方米。拟拆除既有建筑面积{{demolition.area}}平方米。
+      - type: para
+        text: >-
+          项目总投资{{cost.total}}万元，其中建筑安装工程费{{cost.construction}}万元，
+          工程建设其他费{{cost.other}}万元，基本预备费{{cost.contingency}}万元，
+          原建筑拆除费用{{cost.demolition}}万元。
+
+      - {type: figure, figure: F_AREA_COMPOSITION}
+
+      - {type: heading, level: 2, text: 主要技术经济指标}
+      - type: table
+        title: 表1-1 项目主要技术经济指标表
+        columns: [指标名称, 数量, 单位]
+        rows:
+          - [总建筑面积, "{{scale.design_total}}", ㎡]
+          - [地上建筑面积, "{{scale.design_above}}", ㎡]
+          - [地下建筑面积, "{{scale.design_under}}", ㎡]
+          - [拆除建筑面积, "{{demolition.area}}", ㎡]
+          - [项目总投资, "{{cost.total}}", 万元]
+
+      # 本节每个数字都来自图。第 3 章改了面积，这里自动跟着变。
+      # 这正是"18319 写成 18219"那类事故被消灭的机制。
+
+  - id: CH3
+    blocks:
+      - {type: heading, level: 1, text: 项目需求分析与产出方案}
+
+      - {type: heading, level: 2, text: 各科研机构用房需求测算}
+      - type: para
+        text: >-
+          按现行面积指标测算，科研人员用房需求{{program.researcher.demand}}平方米，
+          研究生、博士生及访问学者用房需求{{program.student.demand}}平方米。
+      - type: para
+        text: >-
+          公共服务配套用房使用面积合计{{program.support.usable}}平方米，
+          按使用面积系数{{program.support.ratio}}换算，建筑面积需求{{program.support.demand}}平方米。
+
+      - {type: heading, level: 2, text: 规模分析小结}
+      - type: table
+        title: 表3-1 项目规模需求汇总表
+        columns: [用房类型, 需求建筑面积（㎡）]
+        rows:
+          - [科研人员用房, "{{program.researcher.demand}}"]
+          - [研究生、博士生、访问学者用房, "{{program.student.demand}}"]
+          - [公共服务配套用房, "{{program.support.demand}}"]
+          - [合计, "{{scale.demand_total}}"]
+      - type: para
+        text: >-
+          需求测算合计{{scale.demand_total}}平方米，项目设计总建筑面积{{scale.design_total}}平方米。
+      # ⚠️ 若设计值超出需求值，此处必须补写超出部分的构成与理由（论断的「反驳」项），
+      #    否则 C4a 会报「已声明限定条件但未写反驳与例外」。
+
+  - id: CH7
+    blocks:
+      - {type: heading, level: 1, text: 项目投融资与财务方案}
+
+      - {type: heading, level: 2, text: 投资估算}
+      - type: table
+        title: 表7-1 项目投资估算表
+        columns: [序号, 工程和费用名称, 金额（万元）]
+        rows:
+          - ["一", 建筑安装工程费, "{{cost.construction}}"]
+          - ["二", 工程建设其他费, "{{cost.other}}"]
+          - ["三", 基本预备费, "{{cost.contingency}}"]
+          - ["四", 原建筑拆除费用, "{{cost.demolition}}"]
+          - ["五", 总投资, "{{cost.total}}"]
+
+      - {type: heading, level: 2, text: 资金筹措方案}
+      - type: para
+        text: >-
+          项目总投资{{cost.total}}万元，其中申请国拨资金{{funding.gov}}万元，
+          学校自筹资金{{funding.self}}万元。

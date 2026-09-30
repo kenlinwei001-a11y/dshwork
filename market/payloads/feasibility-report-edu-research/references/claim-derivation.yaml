@@ -1,0 +1,245 @@
+# =============================================================================
+# 论证推演（L0）—— 这个项目该论证什么，由推演得出，不由垂类写死
+# -----------------------------------------------------------------------------
+# 到这里为止，链条是：
+#   分诊 → 垂类 → 子类 → 素材要什么 → 专业取值点问什么
+# 还差最后一环：**该论证哪些论点、每个论点要什么论据。**
+#
+# 如果这一环靠垂类手写，会有两个必然结果：
+#   ① 写不全 —— 子类是长尾的，穷举不了
+#   ② 会过时 —— 政策变了、大纲变了，几十个垂类要一起改
+#
+# 所以论证需求是**推出来的**：
+#
+#   适用维度（D1–D11 按 applicable_when 判定）
+#     × 项目属性（建设性质、是否经营性、是否分期、投资主体）
+#     × 子类（追加特有论点）
+#   ⇒ 论点清单
+#   ⇒ 每个论点按论据模式展开为论据槽
+#   ⇒ 每个论据槽按来源路由分派 ASK / SEARCH
+#
+# 推演的产物是**待办清单**，不是成品。它回答的是
+# 「还差哪几条论据、各该找谁要」，而不是「论证写好了」。
+# =============================================================================
+
+meta:
+  id: fsr-claim-derivation
+  version: 0.1.0
+  layer: L0
+  depends_on: [ontology-argumentation.yaml, provenance-routing.yaml, external-fit.yaml]
+
+# =============================================================================
+# 一、论据模式 —— 每类论据长什么样、从哪来
+# =============================================================================
+# 论点的形状由维度决定，论据的形状由**论据模式**决定。
+# 模式是有限的（九种），维度是有限的（十一个），子类是长尾的——
+# 所以把可变性压在"子类挑哪几个模式"上，而不是压在"子类自己写论证"上。
+# =============================================================================
+grounds_patterns:
+
+  G1_policy_mandate:
+    cn: 政策驱动
+    form: 上位政策/规划明确要求做这件事
+    evidence: E2_normative
+    route: SEARCH
+    must_pass: external-fit.yaml 适配性评估 + 客户勾选
+    trap: |
+      最常见的假论据。引一份只有原则性表述的规划，说"符合规划要求"，
+      而那份规划里根本没有一条对得上本项目。F6 条款针对性 ≤1 的不能当论据用。
+
+  G2_demand_gap:
+    cn: 需求缺口
+    form: 按指标测算的应有量 − 现有量 = 缺口，本次建设量 ≤ 缺口
+    evidence: E4_derived（依赖 E1 存量 + E2 指标）
+    route: COMPUTE（其输入分别 ASK / SEARCH）
+    trap: 只算应有量不算缺口等于没论证——无法排除重复建设
+
+  G3_status_quo:
+    cn: 现状不足
+    form: 现状的具体困难（拥挤程度、借用外部房源、危房、设备老化）
+    evidence: E1_given
+    route: ASK
+    trap: |
+      **不许 WRITE。** 凭"一般都这样"写出来的现状，恰恰是必要性论证的地基。
+      地基是编的，整章都是空的（provenance-routing X4）。
+
+  G4_upper_plan:
+    cn: 上位规划落位
+    form: 本项目在单位事业发展规划/总体规划中的位置与安排
+    evidence: E1_given（客户内部规划）+ E6（如已批复）
+    route: ASK
+
+  G5_approval:
+    cn: 行政依据
+    form: 立项批复、决议、专项资金下达文件
+    evidence: E6_administrative
+    route: ASK
+    must_capture: [文号, 发文机关, 批复日期, 有效期, 相对批复的调整情况]
+
+  G6_norm_compliance:
+    cn: 规范符合
+    form: 方案取值满足某条规范/地方规定的要求
+    evidence: E2_normative
+    route: SEARCH + COMPUTE
+    trap: 地方规定逐省逐市不同，跨地域套用会被 V2 硬否决
+
+  G7_technical_feasibility:
+    cn: 技术可行
+    form: 具体的技术取值与方案说明（见 discipline-probes.yaml 的取值点）
+    evidence: E1_given（设计单位成果）
+    route: ASK
+    trap: 取值点空着时写出来的一定是通用条款，C12 抓这个
+
+  G8_benchmark:
+    cn: 同类对标
+    form: 与同类项目的指标比较
+    evidence: E5_analogical
+    route: SEARCH
+    hard_rule: |
+      必须写明可比性条件（地域/年份/装配率/绿建/装修/有无地下室/专用设备是否计入）；
+      且**不得用来填本项目的空槽**（no_fabrication NF1）。它只能佐证合理性，不能充当取值。
+
+  G9_capacity:
+    cn: 保障能力
+    form: 资金、用地、能源、人员、运营管理的落实情况
+    evidence: E1_given + E6
+    route: ASK
+
+# =============================================================================
+# 二、维度 → 论据模式 的默认映射
+# =============================================================================
+# 「必需」的模式缺失即论证不成立；「可选」的补强说服力。
+# 子类可以追加，但不能删掉必需项。
+# =============================================================================
+dimension_grounds:
+
+  D1: {cn: 建设必要性, required: [G3_status_quo, G2_demand_gap], optional: [G1_policy_mandate, G4_upper_plan, G5_approval]}
+  D2: {cn: 合规性,     required: [G6_norm_compliance],           optional: [G1_policy_mandate]}
+  D3: {cn: 选址与用地, required: [G6_norm_compliance, G9_capacity], optional: []}
+  D4: {cn: 建设规模,   required: [G2_demand_gap],                optional: [G6_norm_compliance, G8_benchmark]}
+  D5: {cn: 技术方案,   required: [G7_technical_feasibility, G6_norm_compliance], optional: [G8_benchmark]}
+  D6: {cn: 节能环保,   required: [G6_norm_compliance],           optional: [G7_technical_feasibility]}
+  D7: {cn: 实施进度,   required: [G9_capacity],                  optional: []}
+  D8: {cn: 投资估算,   required: [G6_norm_compliance],           optional: [G8_benchmark]}
+  D9: {cn: 资金筹措,   required: [G9_capacity],                  optional: [G5_approval]}
+  D10: {cn: 风险,      required: [G3_status_quo],                optional: [G9_capacity]}
+  D11: {cn: 盈利能力,  required: [G9_capacity],                  optional: [G8_benchmark]}
+
+  note: |
+    D1 的必需项是「现状不足 + 需求缺口」而不是「政策驱动」，这是有意的。
+    「国家重视 → 所以我们要建」是断链论证的标准形态：
+    政策可以说明这件事值得做，说明不了**非本单位、非现在、非这个规模**不可。
+    warrant 必须落在现状与缺口上。
+
+# =============================================================================
+# 三、推演规则 —— 项目属性如何改变论证需求
+# =============================================================================
+derivation_rules:
+
+- id: CD1
+  when: "project.commercial == false"
+  effect: D11 声明不适用
+  requires: 显式理由（C4e），且 D9 财务可持续性的论证要求提高
+  note: 非经营性项目的重点不是能不能赚钱，是运营期的钱从哪来
+
+- id: CD2
+  when: "project.nature == 拆除重建"
+  effect: D1 追加论点「拆除的必要性」；D3 追加论点「腾空与过渡安置可行」
+  grounds: [G3_status_quo, G9_capacity]
+  note: 拆除类最常见的漏项是把"为什么非拆不可"当成不言自明
+
+- id: CD3
+  when: "project.phasing == 分期建设的后续期"
+  effect: D4 追加论点「本期规模与总批复的一致性」
+  grounds: [G5_approval, G2_demand_gap]
+  note: 规模论证要做双口径——总体口径与本期口径，且都要能复现
+
+- id: CD4
+  when: "project.funding_regime == 政府投资"
+  effect: D9 论据必须含 G5_approval（资金渠道的行政依据）
+  note: 自筹部分也要有落实证明，不能只写"学校自行筹措"
+
+- id: CD5
+  when: "project.physical == false"
+  effect: D3 退化为「现状差距 + 运行环境保障」；D5 的取值点改为系统性能指标
+  note: 纯软件/纯服务项目没有选址，但不等于没有 D3
+
+- id: CD6
+  when: "子类被识别"
+  effect: 并入该子类 subtypes.yaml 中声明的 extra_claims
+  note: 多个子类同时命中时取并集，重复的论点按 id 去重
+
+- id: CD7
+  when: "子类未被识别"
+  effect: |
+    **不退回最小论证集。** 把本垂类全部子类的 extra_claims 汇总，
+    按维度分组反过来问客户"本项目是否需要论证以下事项"。
+  note: 见 discipline-probes.yaml 的 unrecognized_subtype。同一条原则
+
+- id: CD8
+  when: "某维度的 required 论据模式全部缺失"
+  effect: 该维度标记为「论证未起步」，依赖它的章节不得起草
+  note: 这比"论证不完整"更早一步——连论据都还没找
+
+# =============================================================================
+# 四、推演产物的形状
+# =============================================================================
+output_shape:
+
+  per_claim:
+    id: 论点标识
+    serves: 服务的维度
+    statement_slot: 论点陈述（待填，属 WRITE）
+    grounds_slots:
+    - pattern: 用了哪个论据模式
+      status: satisfied / missing / partial
+      route: ASK / SEARCH / COMPUTE
+      ask_or_query: 具体问什么，或具体检索什么
+      blocks_sections: 缺了会卡住哪几章
+    warrant_slot: 保证（最常被省略，单独列出来盯）
+    backing_slot: 支撑
+    source: derived_by_rule / vertical_subtype / builtin
+
+  ordering: |
+    按「阻塞章节数 × 缺失论据数」降序。
+    先补能解锁最多章节的那条论证，不按维度编号顺序。
+
+  must_state_per_item: |
+    每条待办要说清三件事：属于哪个维度、缺的那条论据该 ASK 还是 SEARCH、
+    不补会卡住哪几章。少了第三件，客户不知道优先级。
+
+# =============================================================================
+# 五、边界
+# =============================================================================
+boundary:
+
+  what_it_does: 推出**该论证什么、还缺什么论据、各该找谁要**
+  what_it_does_not:
+  - 不生成论点的具体陈述——那是 WRITE，且必须基于已确认的事实
+  - 不判断论证是否成立——那是评审的事，也是客户的责任
+  - 不替客户决定某个维度不适用——推演只提示"该声明不适用了"，声明须客户确认
+
+  honesty: |
+    推演基于 L0 的维度框架与论据模式，它保证的是**不漏掉该论证的事项**，
+    不保证论证充分。一份论据齐全的可研仍然可能因为项目本身不成立而被否——
+    那正是可研该有的结果。
+
+# =============================================================================
+# 六、检查
+# =============================================================================
+constraints:
+
+  C13_claim_coverage:
+    cn: 论点覆盖
+    rule: 每个适用维度至少有一条论点服务于它；未覆盖的维度须显式声明不适用
+    severity: error
+    note: 与 C4e 互补——C4e 管"声明了没有"，C13 管"该声明的都遍历到了没有"
+
+  C13b_required_grounds:
+    cn: 必需论据模式
+    rule: |
+      每条论点的 required 论据模式必须全部有对应的 grounds 条目；
+      缺失的报出并注明该走 ASK 还是 SEARCH。
+    severity: warning
+    escalate_to_error_when: 该论点所服务章节的 content_status 已标记为 sourced
+    why: 章节都写完了论据还缺着，说明那一章是靠行文顶上去的

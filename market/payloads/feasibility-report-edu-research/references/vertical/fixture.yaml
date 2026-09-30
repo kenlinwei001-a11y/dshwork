@@ -1,0 +1,519 @@
+# =============================================================================
+# 合成样例 · 高校科研用房
+# -----------------------------------------------------------------------------
+# 这是一个**虚构项目**，不含任何真实项目的数据。
+#
+# 两个用途：
+#   ① 结构范例——照着它的结构给你的项目建实例图
+#   ② 黄金用例——锁定检查器行为，改坏了测试会红
+#
+# 设计原则：覆盖本垂类的每一条派生规则，并**故意留下几处典型缺陷**，
+# 让检查器的检出能力持续可见。缺陷处均标 [故意]。
+#
+# ⚠️ 其中一切数值都是编出来的，**不得作为任何项目的缺省值或参照**。
+#    规则本身经过真实报告验算（见 rules.yaml 的 validation 字段），但数值不是。
+# =============================================================================
+
+project:
+  id: demo-research-facility
+  name: 某高校智能制造研究院科研楼（合成样例）
+  profile: edu-research
+  # 建设单位全称是检索分面。不带它去查「科研工作及学术交流」，
+  # 查回来的是行业综述，写进单位概况就是套话（section-research R2）
+  owner: 某高校（合成样例）
+  industry: 高校科研用房
+  location: 某省某市
+  nature: 拆除重建
+  approval_stage: 可行性研究
+  duration: {start: 2027-03-01, end: 2029-02-28, months: 24}
+  funding_regime: 政府投资
+  commercial: false
+  physical: true
+  outline_complete: true
+  # 子类可多选。识别是建议，一律须客户确认——与垂类识别同一规格。
+  subtypes: [ST_WET_LAB, ST_PRECISION]
+  # 客户明确确认「不涉及」的取值点。这也是有效输入：
+  # 它把通用条款从偷懒的默认变成有依据的选择，评审看得出区别。
+  probes_confirmed_na: [P_WET_BIO, P_PRE_EMC, P_ICT_SCOPE]
+
+# 已问到的专业取值点。取到值的才算数——
+# 素材交齐但取值点空着，「建设内容」章照样只能写通用条款（C12）。
+probes_answered:
+  P_ARCH_CLASS: {value: 二类高层公共建筑，耐火等级一级, from: {material: M3-01, locator: 设计说明第3页}}
+  P_WET_VENT:   {value: 化学区 12 次/h、生物区 8 次/h；通风柜 24 台，单台排风 1200 m³/h, from: {material: M3-01, locator: 暖通专篇表2}}
+  P_PRE_VIB:    {value: 精密仪器区 VC-C，采用独立基础加隔振垫, from: {material: M3-01, locator: 结构专篇第5页}}
+  # [故意] 其余取值点空着——claim_derive.py 会把它们列成待问清单
+
+as_of: 2026-08-06
+
+# =============================================================================
+# 素材台账 —— 客户交来的东西，登记在这里
+# 未登记的素材等于不存在：抽取时无 from 可写，C8 会点名。
+# =============================================================================
+materials:
+- {id: M1-01, class: M1_approval,       name: 校长办公会关于本项目的决议, provider: 建设单位, date: 2026-03-18, received_at: 2026-07-01}
+- {id: M2-01, class: M2_planning_land,  name: 校园总体规划本地块图则与用地红线图, provider: 建设单位, date: 2025-11-05, received_at: 2026-07-01}
+- {id: M3-01, class: M3_design,         name: 方案设计说明（含建筑面积分项表）, provider: 设计单位, date: 2026-06-20, version: V2, pages: 48, received_at: 2026-07-01}
+- {id: M4-01, class: M4_cost_finance,   name: 投资估算书, provider: 造价咨询单位, date: 2026-06-28, received_at: 2026-07-01}
+- {id: M6-01, class: M6_baseline,       name: 科研团队人员规划数与现有用房台账, provider: 建设单位科研处, date: 2026-05-30, received_at: 2026-07-01}
+
+# [故意] M5 施工与实施类未提供。本项目 nature=拆除重建，
+# 拆除范围、腾空与过渡安置、拆除手续进度都在这一类里——
+# intake_scan.py 会把它列为追料项并给出话术。
+material_gaps:
+- {class: M5_construction, status: pending, asked_at: 2026-07-02, note: 客户答复拆除方案编制中}
+
+nodes:
+
+  # --- 规划人数（客户给定，必须分类）---
+  program.researcher.headcount: {value: 240, unit: 人, provenance: E1_given, source: 建设单位}
+  program.student.headcount:    {value: 900, unit: 人, provenance: E1_given, source: 建设单位}
+
+  # --- 面积指标（须绑定规范）---
+  program.researcher.index: {value: 16, unit: ㎡/人, provenance: E2_normative, source: 面积指标标准}
+  program.student.index:    {value: 8,  unit: ㎡/人, provenance: E2_normative, source: 面积指标标准}
+
+  # --- 公共服务配套（换算系数属编制单位口径，非国标）---
+  program.support.usable: {value: 900, unit: ㎡,  provenance: E1_given, source: 建设单位}
+  program.support.ratio:  {value: 0.5, unit: "1", provenance: E1_given, source: 设计方}
+
+  # --- 面积（声明值，供 C2 比对）---
+  program.researcher.demand: {value: 3840,  unit: ㎡, provenance: E4_derived, source: 第3章}
+  program.student.demand:    {value: 7200,  unit: ㎡, provenance: E4_derived, source: 第3章}
+  program.support.demand:    {value: 1800,  unit: ㎡, provenance: E4_derived, source: 第3章}
+  scale.demand_total:        {value: 12840, unit: ㎡, provenance: E4_derived, source: 第3章}
+  scale.design_above:        {value: 12600, unit: ㎡, provenance: E1_given,   source: 设计方案}
+  scale.design_under:        {value: 400,   unit: ㎡, provenance: E1_given,   source: 设计方案}
+  scale.design_total:        {value: 13000, unit: ㎡, provenance: E4_derived, source: 第3章}
+  demolition.area:           {value: 1800,  unit: ㎡, provenance: E1_given,   source: 建设单位}
+
+  # --- 回退检索得来的参照值：客户给不出，检索候选后由客户选定 ---
+  # 三条标注缺一不可，缺了它就从"诚实的参照值"变成"伪装成实测值的估算"（C14）：
+  #   ① provenance 是真实来源等级，不是 E1_given
+  #   ② adopted_by 说明是谁选的
+  #   ③ refine_when 说明何时必须换成实定值
+  energy.index:
+    value: 65
+    unit: kWh/(㎡·a)
+    provenance: E2_normative
+    source: 民用建筑能耗标准（公共建筑约束值）
+    is_placeholder: true
+    adopted_by: 建设单位基建处（合成样例）
+    adopted_at: 2026-07-20
+    refine_when: 设计单位出具能耗计算书后
+    metric_definition: 按建筑面积计，不含实验工艺用能
+
+  # --- 造价（单价与费率由造价方提供）---
+  # from 指回素材的具体位置。指不回去的不入图——C8 抓的就是这个。
+  cost.construction:      {value: 8500,   unit: 万元,   provenance: E1_given, source: 造价方, price_year: 2026,
+                           from: {material: M4-01, locator: '估算表 表3-1（第9页）', verbatim: '建筑安装工程费 8500 万元'}}
+  cost.other:             {value: 900,    unit: 万元,   provenance: E1_given, source: 造价方, price_year: 2026}
+  cost.demolition_rate:   {value: 0.0222, unit: 万元/㎡, provenance: E1_given, source: 造价方}
+  cost.demolition:        {value: 40,     unit: 万元,   provenance: E4_derived, source: 第7章}
+  cost.contingency_rate:  {value: 0.05,   unit: "1",   provenance: E2_normative, source: 计价依据}
+  cost.contingency:       {value: 470,    unit: 万元,   provenance: E4_derived, source: 第7章}
+  cost.total:             {value: 9910,   unit: 万元,   provenance: E4_derived, source: 第7章}
+  cost.unit_price:        {value: 6538,   unit: 元/㎡,  provenance: E4_derived, source: 第7章}
+
+  # --- 资金 ---
+  funding.gov:   {value: 4000, unit: 万元, provenance: E1_given, source: 建设单位}
+  funding.self:  {value: 5910, unit: 万元, provenance: E1_given, source: 建设单位}
+  funding.total: {value: 9910, unit: 万元, provenance: E4_derived, source: 第7章}
+
+rules:
+
+  - id: R1
+    template: T1_indexed_demand
+    operator: index
+    target: program.researcher.demand
+    formula: "program.researcher.headcount * program.researcher.index"
+    unit: ㎡
+    basis: EV_AREA_INDEX
+    serves: D4
+
+  - id: R2
+    template: T1_indexed_demand
+    operator: index
+    target: program.student.demand
+    formula: "program.student.headcount * program.student.index"
+    unit: ㎡
+    basis: EV_AREA_INDEX
+    serves: D4
+
+  - id: R3
+    template: T_support
+    operator: rate
+    target: program.support.demand
+    formula: "program.support.usable / program.support.ratio"
+    unit: ㎡
+    tolerance: 0.01
+    basis: EV_SUPPORT_RATIO
+    serves: D4
+
+  - id: R4
+    template: T2_demand_rollup
+    operator: aggregate
+    target: scale.demand_total
+    formula: "sum(program.researcher.demand, program.student.demand, program.support.demand)"
+    unit: ㎡
+    serves: D4
+
+  - id: R5
+    operator: aggregate
+    target: scale.design_total
+    formula: "scale.design_above + scale.design_under"
+    unit: ㎡
+    serves: D4
+
+  - id: R6
+    template: T3_design_vs_demand
+    operator: rate
+    target: scale.deviation
+    formula: "(scale.design_total - scale.demand_total) / scale.demand_total"
+    unit: "1"
+    basis: EV_AREA_INDEX
+    serves: D4
+
+  - id: R7
+    template: T_demolition
+    operator: index
+    target: cost.demolition
+    formula: "demolition.area * cost.demolition_rate"
+    unit: 万元
+    tolerance: 0.02
+    basis: EV_PRICING
+    serves: D8
+
+  - id: R8
+    template: T6_contingency
+    operator: rate
+    target: cost.contingency
+    formula: "(cost.construction + cost.other) * cost.contingency_rate"
+    unit: 万元
+    tolerance: 0.005
+    basis: EV_PRICING
+    serves: D8
+
+  - id: R9
+    template: T5_cost_rollup
+    operator: aggregate
+    target: cost.total
+    formula: "sum(cost.construction, cost.other, cost.contingency, cost.demolition)"
+    unit: 万元
+    serves: D8
+
+  - id: R10
+    operator: rate
+    target: cost.unit_price
+    formula: "cost.construction * 10000 / scale.design_total"
+    unit: 元/㎡
+    tolerance: 0.001
+    basis: EV_PRICING
+    serves: D8
+
+  - id: R11
+    template: T7_funding_balance
+    operator: aggregate
+    target: funding.total
+    formula: "sum(funding.gov, funding.self)"
+    unit: 万元
+    hard_constraint: "funding.total == cost.total"
+    serves: D8
+
+  - id: R12
+    template: T8_annual_allocation
+    operator: allocate
+    target: funding.annual
+    serves: D8
+    matrix:
+      rows: [gov, self]
+      cols: ["2027", "2028", "2029"]
+      values:
+        gov:  {"2027": 1500, "2028": 2000, "2029": 500}
+        self: {"2027": 1500, "2028": 2500, "2029": 1910}
+      row_totals: {gov: "funding.gov", self: "funding.self"}
+      col_totals: {"2027": 3000, "2028": 4500, "2029": 2410}
+      grand_total: "funding.total"
+
+  # [故意] 能耗指标节点缺失，展示缺口如何被自动分诊到 D6
+  - id: R13
+    template: T4_load_from_scale
+    operator: index
+    target: load.electricity
+    formula: "scale.design_total * load.electricity.index"
+    unit: kW
+    basis: EV_ENERGY_STD
+    serves: D6
+    on_missing: ask
+
+occurrences:
+  scale.design_total:
+    - {section: CH1, value: 13000}
+    - {section: CH3, value: 13000}
+    - {section: CH10, value: 13000}
+  cost.total:
+    - {section: CH1, value: 9910}
+    - {section: CH7, value: 9910}
+    # [故意] 结论章写错一位，展示 C1 如何抓复述不一致
+    - {section: CH10, value: 9190}
+
+evidence:
+  EV_STAFF_PLAN:
+    provenance: E1_given
+    content: 研究院科研团队规划人数
+    provider: 建设单位科研处
+
+  EV_AREA_INDEX:
+    provenance: E2_normative
+    content: 《普通高等学校建筑面积指标》建标191-2018
+    published_at: 2018-01-01
+    retrieved_at: 2026-07-20
+    fit: {F1_jurisdiction: 2, F2_category: 3, F3_subject: 2, F4_currency: 3, F5_authority: 3, F6_specificity: 3, total: 2.7, bucket: recommended}
+    adopted_by: 建设单位基建处（合成样例）
+    adopted_at: 2026-07-06
+
+  EV_SUPPORT_RATIO:
+    provenance: E1_given
+    content: 公共服务配套用房使用面积系数
+    provider: 设计方
+
+  EV_PRICING:
+    provenance: E2_normative
+    content: 建设工程概预算定额及造价资料
+    published_at: 2025-01-01
+    retrieved_at: 2026-07-20
+    fit: {F1_jurisdiction: 2, F2_category: 2, F3_subject: 1, F4_currency: 3, F5_authority: 2, F6_specificity: 2, total: 2.0, bucket: optional}
+    adopted_by: 造价咨询单位（合成样例）
+    adopted_at: 2026-07-06
+
+  EV_ENERGY_STD:
+    provenance: E2_normative
+    content: 民用建筑能耗标准
+    published_at: 2016-12-01
+    retrieved_at: 2026-07-20
+    fit: {F1_jurisdiction: 3, F2_category: 2, F3_subject: 1, F4_currency: 3, F5_authority: 1, F6_specificity: 2, total: 1.95, bucket: optional}
+    adopted_by: 设计单位（合成样例）
+    adopted_at: 2026-07-06
+
+  # [故意] EV_SITE 没有 adopted_by——它是 agent 检索回来后直接用上的，
+  # 未经客户勾选。C10 会报 error：本 skill 的可信度建立在"依据都由人确认过"之上。
+  EV_SITE:
+    provenance: E3_external
+    content: 项目所在地气象地质水文与抗震设防资料
+    url: https://example.gov.cn/placeholder
+    published_at: 2024-01-01
+    retrieved_at: 2026-07-20
+
+  EV_PLAN_SCHOOL:
+    provenance: E1_given
+    content: 学校事业发展规划与校园总体规划
+    provider: 建设单位
+
+  EV_DISCIPLINE:
+    provenance: E1_given
+    content: 学科建设方案与近三年科研成果统计
+    provider: 建设单位科研处
+
+  EV_APPROVAL:
+    provenance: E6_administrative
+    content: 学校党委常委会关于本项目立项的决议
+    doc_no: 校党字〔2026〕XX号
+    issuer: 建设单位党委
+    approved_at: 2026-03-01
+    valid_until: 2029-12-31
+
+  EV_ANALOG_COST:
+    provenance: E5_analogical
+    content: 同类高校科研楼单方造价
+    comparability: 同地区、同年份、同装配率、同绿建星级，均含实验室专项配置
+
+claims:
+
+  CL_D1:
+    serves: [D1]
+    restated_in: [CH1, CH10]
+    argument:
+      claim: 建设本项目是支撑学科发展、缓解科研空间制约的需要
+      grounds: [EV_DISCIPLINE, EV_PLAN_SCHOOL]
+      # [故意] warrant 缺失，展示"断链论证"如何被抓出来
+      backing: [EV_PLAN_SCHOOL]
+
+  CL_D2:
+    serves: [D2]
+    argument:
+      claim: 项目符合校园总体规划与现行建设法规要求
+      grounds_patterns: [G6_norm_compliance]
+      grounds: [EV_PLAN_SCHOOL, EV_APPROVAL]
+      warrant: 用地属校园总体规划确定的科研教学用地，建设内容属规划允许用途
+      backing: [EV_APPROVAL]
+
+  CL_D3:
+    serves: [D3]
+    argument:
+      claim: 项目选址建设条件具备，要素保障落实
+      grounds: [EV_SITE]
+      warrant: 场地平坦、地质均匀、市政配套齐全，用地已征已供
+      backing: [EV_SITE]
+
+  CL_D4:
+    serves: [D4]
+    restated_in: [CH1, CH10]
+    argument:
+      claim: 本项目建设规模合理
+      grounds: [EV_STAFF_PLAN, EV_AREA_INDEX]
+      warrant: 科研人员用房人均不超过16㎡，研究生及访问学者用房人均不超过8㎡
+      backing: [EV_AREA_INDEX]
+      qualifier: 设计值较需求测算值高约1.25%
+      rebuttal: 超出部分为地下设备用房，不属于面积指标控制范围
+
+  CL_D5:
+    serves: [D5]
+    argument:
+      claim: 建筑、结构、机电及实验室专项方案技术可行
+      grounds: [EV_SITE]
+      warrant: 方案按现行设计规范编制，实验室通风与排污措施满足使用要求
+      backing: [EV_SITE]
+
+  CL_D6:
+    serves: [D6]
+    argument:
+      claim: 项目能耗满足现行节能标准
+      grounds: [EV_ENERGY_STD]
+      warrant: 各项能耗指标不超过标准约束值
+      backing: [EV_ENERGY_STD]
+
+  CL_D7:
+    serves: [D7]
+    argument:
+      claim: 实验室废水废气可控，拆除施工的社会稳定风险等级为低
+      grounds: [EV_SITE]
+      warrant: 废水分类收集预处理后达标排放；拆除范围内无使用人需安置
+      backing: [EV_SITE]
+
+  CL_D8:
+    serves: [D8]
+    restated_in: [CH1, CH10]
+    argument:
+      claim: 项目总投资落实，资金来源有保障
+      grounds: [EV_PRICING, EV_ANALOG_COST]
+      warrant: 国拨资金已列入年度计划，自筹部分由学校统筹安排
+      backing: [EV_PRICING]
+      qualifier: 按2026年价格水平测算
+
+  CL_D9:
+    serves: [D9]
+    argument:
+      claim: 项目建成后将提升学科科研能力，社会效益显著
+      grounds: [EV_DISCIPLINE]
+      warrant: 新增科研工位可支撑规划引进的科研团队
+      backing: [EV_PLAN_SCHOOL]
+
+  CL_D10:
+    serves: [D10]
+    argument:
+      claim: 项目由学校科研管理部门统一运营，安全保障措施完备
+      grounds: [EV_PLAN_SCHOOL]
+      warrant: 沿用学校现有实验室安全管理体系并配置专职管理人员
+      backing: [EV_PLAN_SCHOOL]
+
+not_applicable:
+  D11: 科研用房自用，无经营性收入，不进行盈利能力分析
+
+dimension_status:
+  D1: sound
+  D2: sound
+  D3: sound
+  D4: sound
+  D5: sound
+  D6: sound
+  D7: sound
+  D8: sound
+  D9: sound
+  D10: sound
+
+sections:
+
+  - id: CH1
+    title: 概述
+    serves: [D1, D4, D8]
+    derived_only: true
+    provides: []
+    restates: [CL_D1, CL_D4, CL_D8]
+    covers: [项目概况, 项目单位概况, 编制依据, 主要结论和建议]
+    content_status: sourced
+
+  - id: CH2
+    title: 项目建设背景和必要性
+    serves: [D1, D2]
+    provides: []
+    covers: [项目建设背景, 规划政策符合性, 项目建设必要性]
+    content_status: sourced
+
+  - id: CH3
+    title: 项目需求分析与产出方案
+    serves: [D4]
+    provides: [scale.demand_total, scale.design_total, program.researcher.demand,
+               program.student.demand, program.support.demand]
+    covers: [需求分析, 建设内容和规模, 项目产出方案]
+    content_status: sourced
+
+  - id: CH4
+    title: 项目选址与要素保障
+    serves: [D3, D6]
+    provides: []
+    covers: [项目选址或选线, 项目建设条件, 要素保障分析]
+    content_status: sourced
+
+  - id: CH5
+    title: 项目建设方案
+    serves: [D5]
+    provides: []
+    covers: [技术方案, 设备方案, 工程方案, 用地用海征收补偿(安置)方案,
+             数字化方案, 建设管理方案]
+    content_status: sourced
+
+  - id: CH6
+    title: 项目运营方案
+    serves: [D10]
+    provides: []
+    covers: [运营模式选择, 运营组织方案, 安全保障方案, 绩效管理方案]
+    content_status: sourced
+
+  - id: CH7
+    title: 项目投融资与财务方案
+    serves: [D8]
+    provides: [cost.total, cost.contingency, cost.demolition, funding.total, funding.annual]
+    covers: [投资估算, 融资方案, 财务可持续性分析]
+    content_status: partial
+    gap: 盈利能力分析与债务清偿能力分析已判不适用，须在正文显式声明
+
+  - id: CH8
+    title: 项目影响效果分析
+    serves: [D6, D7, D9]
+    provides: []
+    covers: [经济影响分析, 社会影响分析, 生态环境影响分析,
+             资源和能源利用效果分析, 碳达峰碳中和分析]
+    content_status: sourced
+
+  - id: CH9
+    title: 项目风险管控方案
+    serves: [D7]
+    provides: []
+    covers: [风险识别与评价, 风险管控方案, 风险应急预案]
+    content_status: sourced
+
+  - id: CH10
+    title: 研究结论与建议
+    serves: [D1, D4, D8]
+    derived_only: true
+    provides: []
+    restates: [CL_D1, CL_D4, CL_D8]
+    covers: [主要研究结论, 问题与建议]
+    content_status: sourced
+
+  - id: CH11
+    title: 附表、附图和附件
+    serves: [D2]
+    provides: []
+    covers: [附表, 附图, 附件]
+    content_status: sourced

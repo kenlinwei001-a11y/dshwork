@@ -1,0 +1,4 @@
+{"id": "c-9a8550ff530b", "index": 0, "type": "paragraph", "span": [0, 11], "text": "某公司{{node:N-66f5d928cd21}}年度报告"}
+{"id": "c-2e544bea1bcb", "index": 1, "type": "heading", "span": [13, 43], "text": "第一章 总则\n某公司成立于{{node:N-237178ffb806}}年，注册资本{{node:N-9897ffd76442}}万元。"}
+{"id": "c-fab620edfa9f", "index": 2, "type": "heading", "span": [45, 103], "text": "第二章 财务数据\n{{node:N-4aa5fb0703c3}}年营业收入{{node:N-f82f4f9b7a10}}亿元，同比增长{{node:N-83b20d7253c3}}。\n{{node:N-4aa5fb0703c3}}年营业收入{{node:N-a9d9618f5d91}}亿元。净利润{{node:N-420d8fddaa05}}亿元。"}
+{"id": "c-5ed7a8d1fdc9", "index": 3, "type": "table", "span": [105, 176], "text": "```table\n| 指标 | {{node:N-f1a01e50879f}} |\n|------|------|\n| 营收 | {{node:N-baff8fe41f2f}}亿 |\n| 净利 | {{node:N-3b5c3714c106}}亿 |\n```"}
