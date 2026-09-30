@@ -31,6 +31,11 @@ import {
   TurnIntoToolbarButton,
   toolbarNativeCss,
 } from './toolbar-native.js';
+// v1.7.0：补上官方的 "/" 斜杠菜单（SlashKit）。官方把 AI 放在 "/" 菜单第一组，
+// 这是编辑器表明「我是 AI 编辑器」的地方——此前只搬了 mod+j 那条快捷键，
+// 敲 "/" 只会插入字面斜杠，编辑器看着和 Word 没区别。
+import { SlashInputElement, slashNativeCss } from './slash-native.js';
+import { SlashInputPlugin, SlashPlugin } from '@platejs/slash-command/react';
 
 // v1.3.0：右侧活编辑器 tab 的导航参数（镜像 office 的 workdsh-office-live）。
 declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
@@ -84,6 +89,9 @@ const plugins = [
   BlockSelectionPlugin,
   aiLeafPlugin,
   aiChatPlugin,
+  // 官方的 SlashKit：键盘斜杠输入框 + 触发插件（本地无 codeBlock，故不配 triggerQuery）。
+  SlashPlugin,
+  SlashInputPlugin.withComponent(SlashInputElement as never),
 ];
 
 type SlateContent = { type?: string; text?: string; children: unknown[] }[];
@@ -566,6 +574,7 @@ function injectStyles(): void {
 .plate-content img { max-width: 100%; height: auto; border-radius: 6px; }
 ${aiNativeCss}
 ${toolbarNativeCss}
+${slashNativeCss}
 `;
   document.head.appendChild(style);
 }
