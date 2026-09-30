@@ -35,6 +35,11 @@ import {
 // 这是编辑器表明「我是 AI 编辑器」的地方——此前只搬了 mod+j 那条快捷键，
 // 敲 "/" 只会插入字面斜杠，编辑器看着和 Word 没区别。
 import { SlashInputElement, slashNativeCss } from './slash-native.js';
+import {
+  FloatingToolbar,
+  FloatingToolbarButtons,
+  floatingToolbarNativeCss,
+} from './floating-toolbar-native.js';
 import { SlashInputPlugin, SlashPlugin } from '@platejs/slash-command/react';
 
 // v1.3.0：右侧活编辑器 tab 的导航参数（镜像 office 的 workdsh-office-live）。
@@ -90,7 +95,12 @@ const plugins = [
   aiLeafPlugin,
   aiChatPlugin,
   // 官方的 SlashKit：键盘斜杠输入框 + 触发插件（本地无 codeBlock，故不配 triggerQuery）。
-  SlashPlugin,
+  // 触发口径按用户决策放宽（v1.7.6）：官方默认 triggerPreviousCharPattern=/^\s?$/，
+  // 要求斜杠前一字符是空或空白——中文正文不写空格，等于句子中间永远触发不了。
+  // 改为「前缀为空 / 以空白结尾 / 以中文结尾」，同时不误伤 http:// 与 1/2。
+  SlashPlugin.configure({
+    options: { triggerPreviousCharPattern: /(?:^|[\s一-鿿])$/ },
+  }),
   SlashInputPlugin.withComponent(SlashInputElement as never),
 ];
 
@@ -462,6 +472,11 @@ function PlateDocEditor(props: {
     <div className="plate-doc-editor">
       <Plate editor={editor}>
         <LiveFingerprint editor={editor} syncRef={props.syncRef} />
+        {/* v1.7.6：选中文字弹出的官方浮动工具条。必须在本 <Plate> 子树内——
+            useFloatingToolbar 读的是 Plate store 的选中态。 */}
+        <FloatingToolbar>
+          <FloatingToolbarButtons />
+        </FloatingToolbar>
         <div className="plate-toolbar">
           <PlateToolbarButtons
             onPickImage={() => imageRef.current?.click()}
@@ -622,6 +637,7 @@ function injectStyles(): void {
 ${aiNativeCss}
 ${toolbarNativeCss}
 ${slashNativeCss}
+${floatingToolbarNativeCss}
 `;
   document.head.appendChild(style);
 }
