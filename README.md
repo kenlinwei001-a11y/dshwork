@@ -1,143 +1,91 @@
-<p align="center"><img src="assets/brand/workdsh-logo.svg" width="104" alt="WorkDSH"></p>
+<p align="center"><img src="workdsh-web/assets/brand/workdsh-logo.svg" width="88" alt="WorkDSH logo"></p>
 <h1 align="center">WorkDSH</h1>
-<p align="center"><strong>Give AI a job. Watch it work. Open the result.</strong></p>
-<p align="center">English · <a href="README.zh-CN.md">简体中文</a></p>
+<p align="center"><strong>A WorkBuddy-style workspace where skills, experts, and plugins shape new workflows.</strong></p>
+<p align="center">WorkDSH brings material, experts, skills, and connectors into one workspace, with the SkillHub catalog and installable DSH community plugins.</p>
+<p align="center"><a href="#download-desktop">Download Desktop</a> · <a href="#from-material-to-deliverable">Explore the workflow</a> · <a href="docs/user-guide.en.md">User guide</a> · <a href="README.zh-CN.md">简体中文</a></p>
 
-WorkDSH is an open-source AI workspace built on the official NexusOne. Organize conversations, material and capabilities in projects, reuse your local Library, and review editable deliverables alongside the task.
+[![Desktop release](https://img.shields.io/badge/Desktop-2.0.6--alpha.1-176BFF)](https://github.com/techflag/workdsh/releases/tag/desktop-v2.0.6-alpha.1) [![GitHub stars](https://img.shields.io/github/stars/techflag/workdsh?label=stars)](https://github.com/techflag/workdsh) [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**v0.1.0-alpha.8 · NexusOne 0.1.7-alpha.1 · Alpha preview**
+![WorkDSH projects home with project templates and the complete desktop sidebar](workdsh-web/assets/screenshots/workdsh-projects-alpha8-dark.png)
 
-[Download](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.8) · [Release notes](docs/releases/v0.1.0-alpha.8.md) · [Quick start](#quick-start) · [Website](https://techflag.github.io/workdsh/) · [Gitee mirror](https://gitee.com/techflag/workdsh)
+<sub>Captured from a local WorkDSH session. Project names and account figures are demonstration data, not bundled with the installer.</sub>
 
-![WorkDSH project home — full application in dark mode](docs/assets/screenshots/workdsh-projects-alpha8-dark.png)
+## A WorkBuddy-style experience, an open DSH ecosystem
 
-## What you can do
+WorkDSH draws on WorkBuddy's way of organizing projects, material, experts, skills, and connectors, and implements those pages and management features on NexusOne. DSH is a complete agent application in its own right; it composes models, tools, skill support, and UI through plugins. WorkDSH adds its workspace features through the same mechanism.
 
-| Area | Capabilities |
+| What you need to do | Where WorkDSH helps |
 | --- | --- |
-| Projects | Keep tasks, plans, assets and activity together; select project capabilities from the conversation. |
-| Local Library | Import material, browse folders, search and preview files, and reference selected revisions in tasks. |
-| Skills and experts | Install reusable skills and publish expert configurations with pinned revisions. |
-| Connectors | Configure MCP services and explicitly select the capabilities used by a task. |
-| Office deliverables | Preview and edit supported document, presentation, spreadsheet, HTML and PDF working copies. Format fidelity varies. |
-| Activity | Inspect native task and child-agent activity; an expert-team label alone does not mean multiple agents are executing. |
+| Keep working toward a long-term goal | **Projects** bring instructions, plans, tasks, material, and capability settings together. |
+| Give AI the files you already have | The **library** manages local files, search, and previews; tasks can reference material and its revision. |
+| Reuse a team's working methods | **Experts** save role and capability settings; **skills** carry callable instructions and resources. |
+| Keep the result beyond the chat | The **deliverable workspace** previews or edits supported working copies of documents, spreadsheets, presentations, HTML, and PDF. |
 
-The alpha.8 bundle includes **11 installable modules**, including Projects and Library. It refreshes the project home, navigation, theme-aware menus and conversation capability selection, and adapts expert presets to Harness 0.1.7. Native attachment, input and send behavior remain owned by Harness.
+### From material to deliverable
 
-## Screenshots
+```text
+File in library ──reference──> Project task ──choose──> Expert / Skill / Connector
+                                            │
+                                            └──> Inspect the process and result; keep editing in supported editors
+```
 
-Full application captures from a local workspace; example projects, installed skills and account figures are not bundled sample data.
+This path is WorkDSH's product direction. End-to-end validation of project document references, expert execution, and different Office formats is ongoing during Alpha. Preview, editing, and export fidelity differ by format; the [current capabilities and limits](workdsh-web/README.md) describe them in more detail.
 
 <details>
-<summary>Light theme — project home</summary>
+<summary>See an HTML deliverable from a real local conversation</summary>
 
-![WorkDSH project home — full application in light mode](docs/assets/screenshots/workdsh-projects-alpha8-light.png)
+![WorkDSH conversation, deliverable cards, and right-side HTML preview](workdsh-web/assets/screenshots/workdsh-html-dashboard-preview.png)
+
+<sub>A local task example showing deliverable cards and right-side preview; it does not imply lossless editing for every file.</sub>
 
 </details>
 
-<details>
-<summary>Skills — local installed catalog</summary>
+## Skills and plugins
 
-![WorkDSH skills — full application](docs/assets/screenshots/workdsh-skills-alpha8-dark.png)
+It helps to distinguish **the content people use** from **the software extension that manages it**. A skill usually consists of instructions and resources containing `SKILL.md`; it can be installed directly into the local DSH Skills directory and is not necessarily a plugin. WorkDSH's skill manager is a DSH plugin. An expert configuration is not itself a plugin either; a WorkDSH plugin manages experts. Other DSH plugins can add tools or UI features directly. The plugin system can therefore support skills, experts, and software functions without making every skill or expert a separate plugin.
 
-</details>
+DSH plugins can be individual tools or combine UI, services, and other resources into a larger application scenario. For example, a data-management plugin could add data views and processing tools, then work with skills and experts across a workflow. This illustrates what the plugin model can support; it does not mean this release bundles such a data-management system. Users can discover and install skills through SkillHub and find DSH community plugins through dsh-market. Before installing a plugin, check what it provides and whether it supports the current DSH version.
 
-<details>
-<summary>Office example — conversation and HTML deliverable</summary>
+WorkDSH connects two independently maintained catalogs: [SkillHub](https://skillhub.cn/) for Skills and [dsh-market](https://dshmarket.com/zh/) for DSH plugins. SkillHub entries show their source and version, and open the source page for license information before installation. The DSH catalog is provided by the third-party dsh-market plugin inside the existing plugin page. Catalog entries are **not all preinstalled, reviewed, or endorsed by WorkDSH**; check each item's license, dependencies, and DSH compatibility. [Skill management](workdsh-web/packages/plugins/skills/README.md) · [Plugin development](docs/plugin-development.en.md) · [Ecosystem manifesto](docs/plugin-ecosystem.en.md)
 
-![Conversation with an HTML analysis dashboard](docs/assets/screenshots/workdsh-html-dashboard-preview.png)
+![SkillHub catalog inside WorkDSH, showing skill icons, versions, sources, and install actions](workdsh-web/assets/screenshots/workdsh-skillhub-2026-09.png)
 
-Earlier local preview showing the artifact workflow; it is not an alpha.8 acceptance result for every document format.
+<sub>Live SkillHub results; catalog size and entries change over time. The local session shown is a demonstration environment.</sub>
 
-</details>
+![DSH community plugin catalog opened from WorkDSH's existing plugin page](workdsh-web/assets/screenshots/workdsh-dshmarket-2026-09.png)
 
-## Quick start
+<sub>The third-party dsh-market plugin supplies discovery and installation. The screenshot does not imply that catalog plugins are bundled with WorkDSH.</sub>
 
-Requirements: Node.js `^22.19.0 || >=24.0.0`, Corepack/pnpm and the official `dsh` CLI **0.1.7-alpha.1**.
+## Download Desktop
 
-1. Download all 11 `.tgz` packages, `release-manifest.json`, `SHA256SUMS` and `install-workdsh.mjs` from the [alpha.8 release](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.8) into one directory.
-2. For an upgrade, stop the target Profile and keep a recoverable backup of its configuration and data.
-3. Run from the download directory:
+The planned desktop installer release is **2.0.6-alpha.1**. Its download links will become available after the [GitHub Release](https://github.com/techflag/workdsh/releases/tag/desktop-v2.0.6-alpha.1) is published:
 
-```sh
-node install-workdsh.mjs --profile workdsh --dry-run
-node install-workdsh.mjs --profile workdsh
-```
+| Platform | Download |
+| --- | --- |
+| Windows x64 | [WorkDSH Setup.exe](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-windows-x64--WorkDSH-2.0.6-alpha.1-x64-Setup.exe) |
+| macOS Apple Silicon | [WorkDSH arm64.dmg](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-macos-arm64--WorkDSH-2.0.6-alpha.1-arm64.dmg) |
+| macOS Intel | [WorkDSH x64.dmg](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-macos-x64--WorkDSH-2.0.6-alpha.1-x64.dmg) |
 
-The installer verifies package checksums, pins the tested package manager and transitive Harness versions, and installs the matching official base, Web app and CLI into the Profile. **Start with the Profile-local CLI command printed by the installer.** This avoids mixing a global CLI with a different runtime installation. Use `--dsh /absolute/path/to/dsh` if the matching CLI is not on your PATH.
+Desktop installers include Node.js and Python runtimes by default, so users do not need to install them separately. This is an **Alpha release**: end-to-end project document references, expert execution, and different Office formats are still being validated. The macOS DMGs are unsigned; download updates from [Releases](https://github.com/techflag/workdsh/releases). Start with the [user guide](docs/user-guide.en.md) and [FAQ](docs/faq.en.md).
 
-Modules remain independently versioned and installable through the official `dsh plugin` lifecycle. The release manifest is the authoritative package/version list; GitHub release assets are not an npm publication.
+## Development and documentation
 
-### Upgrading experts
-
-Old directory-style expert presets must be explicitly republished through **Edit authoring files → Publish**, then used in a new task. For a read-only built-in expert, first copy it to your own experts. Historical tasks and project bindings retain their pinned revisions and do not silently switch to the new configuration. Review and update those bindings explicitly where needed.
-
-### Run from source
+Source ownership: [WorkDSH feature packages and Web](workdsh-web/README.md) · [Desktop carrier](dsh-plugin-desktop/README.md) · [Architecture](docs/architecture.en.md) · [All documentation](docs/README.en.md). Running from source requires Node.js 22.19+ or 24+, Corepack, and Yarn 4.18.0:
 
 ```sh
-corepack pnpm install --frozen-lockfile
-corepack pnpm build
-corepack pnpm preview:install
-corepack pnpm preview
+git submodule update --init --recursive
+corepack yarn install --immutable
+corepack yarn dev
 ```
 
-## Architecture and development
+Run checks with `corepack yarn check`. On macOS or Windows, `corepack yarn release:pack` builds the Web Profile and Desktop package from the current commit. Once the Web package is published, use `corepack yarn release:pack:published` for the final installer. Both commands share the same [packaging script](scripts/package-desktop-release.mjs). [Contributing](CONTRIBUTING.en.md)
 
-WorkDSH extends the published Harness packages through plugins, services and UI slots. It does not maintain a modified upstream runtime. Business modules own their data; the bundle composes navigation and presentation.
+## Community and acknowledgements
 
-```sh
-corepack pnpm typecheck
-corepack pnpm test:integration
-corepack pnpm test:projects
-corepack pnpm test:library
-corepack pnpm check:versions
-```
+Thanks to the maintainers and contributors of [NexusOne](https://github.com/deepseek-ai/deepseek-harness), the foundation of our runtime and plugin system; [Tencent SkillHub](https://github.com/Tencent/skillhub), whose public catalog API powers skill discovery; [@cocofhu/skillhub](https://github.com/cocofhu/skillhub), the bundled DSH SkillHub plugin; and [dsh-market](https://github.com/dsh-market/dsh-market) with the [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) catalog, which power community plugin discovery. WorkBuddy inspired the workspace design. The bundled skill-creator adaptation retains its [Apache-2.0 notice](workdsh-web/packages/plugins/skills/resources/skills/workdsh-skill-creator/NOTICE.md). Feedback and contributions: [GitHub Issues](https://github.com/techflag/workdsh/issues) · [Contributing](CONTRIBUTING.en.md)
 
-[Architecture](docs/ARCHITECTURE.md) · [Module versions](docs/MODULE-VERSIONS.md) · [Release history](docs/RELEASES.md) · [Status](docs/STATUS.md) · [Roadmap](docs/ROADMAP.md)
+WorkDSH uses the [MIT License](LICENSE). It is an independent community project and is not affiliated with, partnered with, authorized by, or endorsed by DeepSeek or WorkBuddy. Those names appear only to describe technical origins, compatibility, and design references. Upstream contributors shown on GitHub are inherited from synchronized commit history; this does not imply that they maintain this repository.
 
-This is an alpha preview. Cross-platform installation, long-running real-model teams, arbitrary Office fidelity and multi-user governance are not fully accepted. Harness upgrades require compatibility checks for the native UI adapters. See the release notes for the exact validation scope.
+## Star history
 
-## Open-source components and acknowledgements
-
-Thank you to these projects and their maintainers. This list covers major direct dependencies; package manifests, the lockfile and generated license inventories describe the full dependency set.
-
-| Project | Use in WorkDSH | License |
-| --- | --- | --- |
-| [NexusOne](https://github.com/deepseek-ai/deepseek-harness) / Cordis | Native tasks, model execution, skills, Loader, Profile, services and UI extension APIs | MIT |
-| [React](https://github.com/facebook/react) | Feature pages and editor UI | MIT |
-| [Tiptap](https://github.com/ueberdosis/tiptap) / [ProseMirror](https://github.com/ProseMirror) | Word working-copy editing, tables and images; adapted open-source Tiptap UI components | MIT |
-| [pptx-viewer](https://github.com/ChristopherVR/pptx-viewer) | `pptx-react-viewer` 3.16.5 and `pptx-viewer-core` 3.14.3: the sole current PPT editing, parsing and export implementation | Apache-2.0 |
-| [docx](https://github.com/dolanmiu/docx) | DOCX generation within the supported scope | MIT |
-| [docx-preview](https://github.com/VolodymyrBaydalka/docxjs) | Original-layout DOCX preview | Apache-2.0 |
-| [Univer OSS](https://github.com/dream-num/univer) / [ExcelJS](https://github.com/exceljs/exceljs) | Existing experimental spreadsheet adapters in development builds; full online spreadsheets remain planned | Apache-2.0 / MIT |
-| [PDF.js](https://github.com/mozilla/pdf.js) | Decode and display generated PDF files with a bundled worker | Apache-2.0 |
-| [pdf-lib](https://github.com/Hopding/pdf-lib) / [fontkit](https://github.com/Hopding/fontkit) | Encode PDF working copies and embed Chinese glyphs | MIT |
-| [Noto Sans SC](https://github.com/google/fonts/tree/main/ofl/notosanssc) | Bundled static Chinese font; license and derivation metadata retained | SIL Open Font License 1.1 |
-| [i18next](https://github.com/i18next/i18next) / [react-i18next](https://github.com/i18next/react-i18next) | Chinese localization for the PPT editor | MIT |
-| [Lucide](https://github.com/lucide-icons/lucide) | PPT toolbar icons | ISC |
-| [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) | Separately installed spending plugin in the local preview Profile; not bundled in WorkDSH releases | See the independent project's license |
-
-WorkDSH explicitly takes **WorkBuddy / CodeBuddy** as a product-experience reference: a real task should expose its process and end in an editable artifact. Skill-market organization, grouped toolbars, and PPT design guidance also draw on those experiences. WorkDSH is an independent open-source implementation for NexusOne; it does not reuse WorkBuddy branding or claim an official partnership, endorsement, or Tencent PPT engine integration.
-
-Third-party skills and materials retain their providers' terms. Generated archives retain copyright and license texts for dependencies actually bundled; see [Office third-party notices](packages/plugins/office/THIRD-PARTY-NOTICES.md).
-
-### Additional bundled Office dependencies / Office 其他打包依赖
-
-The current build inventory additionally includes the following package versions. Licenses below are the declarations in the installed package metadata. Existing bundled notices are retained.
-
-当前构建另包含下列依赖版本；许可证栏记录安装包元数据的声明，来源链接指向对应项目。完整199项打包依赖见[Office依赖清单](docs/evidence/office-bundled-dependencies-2026-09-14.md)。
-
-下表 10 项是“已声明许可证、但构建未收集到随包文本”的精确报告。此外，`@univerjs/telemetry@0.25.1` 的安装包元数据没有许可证字段，发布清单单独记录为 `dependenciesWithoutDeclaredLicense`。两类缺项均未伪装为许可证收集完成。
-
-| Dependency / 依赖 | Version / 版本 | Declared license / 声明许可证 |
-| --- | --- | --- |
-| [@ai-sdk/provider-utils](https://github.com/vercel/ai) | 5.0.0 | Apache-2.0 |
-| [@ai-sdk/provider-utils](https://github.com/vercel/ai) | 5.0.28 | Apache-2.0 |
-| [@nodable/entities](https://github.com/nodable/val-parsers) | 3.0.0 | MIT |
-| [@pdf-lib/fontkit](https://github.com/Hopding/fontkit) | 1.1.1 | MIT |
-| [franc-min](https://github.com/wooorm/franc/tree/main/packages/franc-min) | 6.2.0 | MIT |
-| [ot-json1](https://github.com/josephg/json1) | 1.0.2 | ISC |
-| [ot-text-unicode](https://github.com/ottypes/text) | 4.0.0 | ISC |
-| [pptx-viewer-mcp](https://github.com/ChristopherVR/pptx-viewer) | 2.5.1 | Apache-2.0 |
-| [react-remove-scroll-bar](https://github.com/theKashey/react-remove-scroll-bar) | 2.3.8 | MIT |
-| [unicount](https://github.com/josephg/unicount) | 1.1.0 | ISC |
+[![WorkDSH star history](https://api.star-history.com/chart?repos=techflag/workdsh&type=date)](https://www.star-history.com/?repos=techflag%2Fworkdsh&type=date)

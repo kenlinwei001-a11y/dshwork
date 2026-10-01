@@ -1,119 +1,91 @@
-<p align="center"><img src="assets/brand/workdsh-logo.svg" width="104" alt="WorkDSH"></p>
+<p align="center"><img src="workdsh-web/assets/brand/workdsh-logo.svg" width="88" alt="WorkDSH 标志"></p>
 <h1 align="center">WorkDSH</h1>
-<p align="center"><strong>把工作交给 AI，看清过程，拿到成果。</strong></p>
-<p align="center"><a href="README.md">English</a> · 简体中文</p>
+<p align="center"><strong>WorkBuddy 式工作台，让技能、专家与插件组成更多工作场景。</strong></p>
+<p align="center">WorkDSH 将资料、专家、技能和连接器带入同一工作台；接入 SkillHub 技能目录，并支持安装 DSH 社区插件。</p>
+<p align="center"><a href="#下载桌面版">下载桌面版</a> · <a href="#从资料到成果">了解工作流</a> · <a href="docs/user-guide.md">使用指南</a> · <a href="README.md">English</a></p>
 
-WorkDSH 是基于官方 NexusOne 的开源 AI 工作台。把对话、资料与能力组织到项目里，复用本地资料库，在任务旁查看和编辑交付成果。
+[![Desktop release](https://img.shields.io/badge/Desktop-2.0.6--alpha.1-176BFF)](https://github.com/techflag/workdsh/releases/tag/desktop-v2.0.6-alpha.1) [![GitHub stars](https://img.shields.io/github/stars/techflag/workdsh?label=stars)](https://github.com/techflag/workdsh) [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**v0.1.0-alpha.8 · NexusOne 0.1.7-alpha.1 · Alpha 预览版**
+![WorkDSH 项目主页：项目、模板与完整桌面侧栏](workdsh-web/assets/screenshots/workdsh-projects-alpha8-dark.png)
 
-[下载](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.8) · [更新说明](docs/releases/v0.1.0-alpha.8.md) · [快速开始](#快速开始) · [官网](https://techflag.github.io/workdsh/) · [Gitee 镜像](https://gitee.com/techflag/workdsh)
+<sub>WorkDSH 本地运行截图。项目名称和账户数值为演示环境数据，不随安装包提供。</sub>
 
-![WorkDSH 深色项目主页，包含完整侧栏](docs/assets/screenshots/workdsh-projects-alpha8-dark.png)
+## WorkBuddy 式体验，DSH 开放生态
 
-## 可以做什么
+WorkDSH 参考 WorkBuddy 按项目组织资料、专家、技能和连接器的工作方式，并在 NexusOne 上实现这些页面和管理功能。DSH 本身也是完整的 Agent 软件；它通过插件组合模型、工具、技能支持、界面等功能，WorkDSH 则在这套机制上加入自己的工作台功能。
 
-| 功能 | 能力 |
+| 你要完成的事 | WorkDSH 提供的入口 |
 | --- | --- |
-| 项目 | 集中管理任务、计划、资产和活动记录，在对话中选择项目能力。 |
-| 本地资料库 | 导入资料、浏览目录、搜索和预览文件，把选定修订引用到任务中。 |
-| 技能与专家 | 安装可复用技能，发布固定能力修订的专家配置。 |
-| 连接器 | 配置 MCP 服务，明确选择任务使用的能力。 |
-| Office 成果 | 预览和编辑支持范围内的文档、演示文稿、表格、HTML 与 PDF 工作副本；不同格式的保真范围有差异。 |
-| 活动记录 | 查看原生任务与子代理活动；显示专家团名称不代表多个成员已经执行。 |
+| 围绕长期目标持续工作 | **项目**集中管理指令、计划、任务、资料和能力配置。 |
+| 让 AI 用上已有文件 | **资料库**管理本地文件、搜索和预览，任务可引用资料及其修订。 |
+| 复用团队擅长的方法 | **专家**保存角色与能力配置；**技能**承载可调用的说明和资源。 |
+| 把结果带出对话 | **成果工作区**预览或编辑支持的文档、表格、演示文稿、HTML 和 PDF 工作副本。 |
 
-alpha.8 整包包含 **11 个可安装模块**，项目和资料库纳入统一安装。此次优化项目主页、导航、跟随主题的菜单与对话能力选择，并适配 Harness 0.1.7 专家预设。附件、输入和发送继续使用 Harness 原生能力。
+### 从资料到成果
 
-## 页面截图
+```text
+资料库中的文件 ──引用──> 项目任务 ──选择──> 专家 / Skill / 连接器
+                                      │
+                                      └──> 查看过程与成果，在支持的编辑器中继续修改
+```
 
-以下为本地工作区的完整应用截图。项目、已安装技能和账户数值是使用示例，不是安装包自带的数据。
+这条路径是 WorkDSH 的产品方向。项目内资料引用、专家执行与不同 Office 格式的完整端到端体验仍在 Alpha 验收中；各格式的预览、编辑和导出范围不同，[当前能力与限制](workdsh-web/README.zh-CN.md)有更具体的说明。
 
 <details>
-<summary>浅色主题：项目主页</summary>
+<summary>查看实际会话中的 HTML 成果示例</summary>
 
-![WorkDSH 浅色项目主页，包含完整侧栏](docs/assets/screenshots/workdsh-projects-alpha8-light.png)
+![WorkDSH 会话、成果卡片和右侧 HTML 预览](workdsh-web/assets/screenshots/workdsh-html-dashboard-preview.png)
+
+<sub>本地任务示例；展示成果卡片和右侧预览，不代表任意文件都能无损编辑。</sub>
 
 </details>
 
-<details>
-<summary>技能：本地已安装目录</summary>
+## 技能与插件生态
 
-![WorkDSH 技能页面，包含完整侧栏](docs/assets/screenshots/workdsh-skills-alpha8-dark.png)
+这里要区分**用户使用的内容**和**实现它的软件扩展**：一个技能通常是包含 `SKILL.md` 的说明与资源，可以直接安装到本机 DSH 技能目录，它本身不一定是插件；WorkDSH 的技能管理器才是 DSH 插件。专家配置也不等于插件，管理专家的功能由 WorkDSH 插件实现。DSH 插件还可以直接增加工具或界面功能。因而插件体系能承载技能、专家及软件功能，但不能把每一个技能或专家都算成一个插件。
 
-</details>
+DSH 插件可以是单项工具，也可以组合界面、服务与其他资源，形成更完整的应用场景。例如，数据管理插件可以提供数据页面和处理工具，再与技能、专家配合完成一套流程；这是插件体系允许的扩展方向，不表示当前版本已内置这样的数据管理系统。用户可以从 SkillHub 发现和安装技能，也可以通过 dsh-market 寻找 DSH 社区插件。安装前应看插件具体提供什么，以及是否兼容当前 DSH 版本。
 
-<details>
-<summary>Office 示例：对话与 HTML 成果</summary>
+WorkDSH 接入两个独立维护的目录：[SkillHub](https://skillhub.cn/) 提供 Skill，[dsh-market](https://dshmarket.com/zh/) 提供 DSH 插件。SkillHub 条目展示来源和版本，许可证信息可到来源页核对；现有插件页通过第三方 dsh-market 插件打开社区目录。目录中的内容**并非全部预装、经 WorkDSH 审核或获得 WorkDSH 背书**，安装前应查看许可证、依赖和 DSH 版本兼容性。[技能管理](workdsh-web/packages/plugins/skills/README.md) · [插件开发](docs/plugin-development.md) · [生态倡议](docs/plugin-ecosystem.md)
 
-![对话与 HTML 分析看板](docs/assets/screenshots/workdsh-html-dashboard-preview.png)
+![WorkDSH 中的 SkillHub 技能目录：图标、版本、来源与安装入口](workdsh-web/assets/screenshots/workdsh-skillhub-2026-09.png)
 
-此前的本地预览截图，用于展示成果工作流，不代表 alpha.8 所有文档格式均已验收。
+<sub>SkillHub 实时目录，条目和数量会变化；截图所示本地会话为演示环境。</sub>
 
-</details>
+![从 WorkDSH 现有插件页打开的 DSH 社区插件市场](workdsh-web/assets/screenshots/workdsh-dshmarket-2026-09.png)
 
-## 快速开始
+<sub>社区插件的发现和安装由第三方 dsh-market 插件提供；截图不代表目录中的插件已随 WorkDSH 安装包提供。</sub>
 
-环境要求：Node.js `^22.19.0 || >=24.0.0`、Corepack/pnpm，以及官方 **0.1.7-alpha.1** 版本的 `dsh` CLI。
+## 下载桌面版
 
-1. 从 [alpha.8 Release](https://github.com/techflag/workdsh/releases/tag/v0.1.0-alpha.8) 下载全部 11 个 `.tgz`、`release-manifest.json`、`SHA256SUMS` 和 `install-workdsh.mjs`，放入同一目录。
-2. 升级已有 Profile 时，先停止运行，并保留配置和数据的可恢复备份。
-3. 在下载目录执行：
+计划发布的桌面安装包版本为 **2.0.6-alpha.1**。发布 [GitHub Release](https://github.com/techflag/workdsh/releases/tag/desktop-v2.0.6-alpha.1) 后，以下下载链接才会生效：
 
-```sh
-node install-workdsh.mjs --profile workdsh --dry-run
-node install-workdsh.mjs --profile workdsh
-```
+| 平台 | 下载 |
+| --- | --- |
+| Windows x64 | [WorkDSH Setup.exe](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-windows-x64--WorkDSH-2.0.6-alpha.1-x64-Setup.exe) |
+| macOS Apple Silicon | [WorkDSH arm64.dmg](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-macos-arm64--WorkDSH-2.0.6-alpha.1-arm64.dmg) |
+| macOS Intel | [WorkDSH x64.dmg](https://github.com/techflag/workdsh/releases/download/desktop-v2.0.6-alpha.1/dsh-plugin-desktop-macos-x64--WorkDSH-2.0.6-alpha.1-x64.dmg) |
 
-安装器校验包的校验和，锁定已验证的包管理器和 Harness 传递依赖，并在 Profile 内安装匹配的官方 base、Web 应用与 CLI。**启动时使用安装器打印的 Profile 内 CLI 命令**，避免全局 CLI 与 Profile 运行时来自不同安装位置。匹配的 CLI 不在 PATH 中时，可传入 `--dsh /absolute/path/to/dsh`。
+Desktop 安装包默认内置 Node.js 和 Python 运行时，普通用户无需单独安装。当前为 **Alpha 版**：项目资料引用、专家执行及不同 Office 格式的端到端体验仍在验收中。macOS DMG 未签名；更新请从 [Releases](https://github.com/techflag/workdsh/releases) 下载。开始使用前请阅读[用户指南](docs/user-guide.md)和[常见问题](docs/faq.md)。
 
-各模块仍独立版本化，通过官方 `dsh plugin` 生命周期安装。准确的包名和版本以发行清单为准；GitHub Release 附件不代表已发布到 npm。
+## 开发与文档
 
-### 旧专家升级
-
-旧目录式专家预设需要通过 **编辑制作文件 → 发布** 显式重新发布，再创建新任务。只读内置专家应先复制为“我的专家”。历史任务和项目绑定保留原有固定修订，不会自动切换到新配置；需要使用新修订的项目绑定也应明确审阅并更新。
-
-### 从源码运行
+源码分工：[WorkDSH 功能包与 Web](workdsh-web/README.zh-CN.md) · [Desktop 外壳](dsh-plugin-desktop/README.zh.md) · [架构](docs/architecture.md) · [全部文档](docs/README.md)。从源码运行需要 Node.js 22.19+ 或 24+、Corepack 和 Yarn 4.18.0：
 
 ```sh
-corepack pnpm install --frozen-lockfile
-corepack pnpm build
-corepack pnpm preview:install
-corepack pnpm preview
+git submodule update --init --recursive
+corepack yarn install --immutable
+corepack yarn dev
 ```
 
-## 架构与开发
+运行检查：`corepack yarn check`。在 macOS 或 Windows 上，从当前提交一键打包 Web Profile 与 Desktop：`corepack yarn release:pack`；Web 包发布后，正式安装包使用 `corepack yarn release:pack:published`。两条命令使用同一个[打包脚本](scripts/package-desktop-release.mjs)。[参与贡献](CONTRIBUTING.md)
 
-WorkDSH 通过插件、服务和 UI 插槽扩展官方已发布的 Harness 包，不维护修改版上游运行时。业务模块各自拥有领域数据，由整合包组合导航和展示。
+## 社区与致谢
 
-```sh
-corepack pnpm typecheck
-corepack pnpm test:integration
-corepack pnpm test:projects
-corepack pnpm test:library
-corepack pnpm check:versions
-```
+感谢 [NexusOne](https://github.com/deepseek-ai/deepseek-harness) 社区提供运行时与插件底座；[腾讯 SkillHub](https://github.com/Tencent/skillhub) 提供公开的技能目录 API；[@cocofhu/skillhub](https://github.com/cocofhu/skillhub) 提供随桌面版集成的 DSH SkillHub 插件；[dsh-market](https://github.com/dsh-market/dsh-market) 与 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 社区提供插件市场与目录。WorkBuddy 是工作台设计参考。内置 skill-creator 的改编保留了原 [Apache-2.0 来源说明](workdsh-web/packages/plugins/skills/resources/skills/workdsh-skill-creator/NOTICE.md)。反馈与参与：[GitHub Issues](https://github.com/techflag/workdsh/issues) · [参与贡献](CONTRIBUTING.md)
 
-[架构](docs/ARCHITECTURE.md) · [模块版本](docs/MODULE-VERSIONS.md) · [发行记录](docs/RELEASES.md) · [当前状态](docs/STATUS.md) · [路线图](docs/ROADMAP.md)
+WorkDSH 采用 [MIT License](LICENSE)，是独立社区项目，与 DeepSeek 或 WorkBuddy 不存在隶属、合作、授权或背书关系。相关名称仅用于说明技术来源、兼容性与设计参考。GitHub Contributors 中的上游贡献者来自继承和同步的提交历史，不表示其参与本仓库维护。
 
-当前为 Alpha 预览版。跨平台安装、长时间真实模型专家团、任意 Office 文件保真和多人治理尚未完整验收。Harness 升级后需复验原生 UI 适配。具体测试范围以本次更新说明为准。
+## Star 趋势
 
-## 开源组件与致谢
-
-感谢以下项目及其维护者。下表列出主要直接依赖和使用范围；完整依赖以各包清单、锁文件及构建产物中的许可清单为准。
-
-| 项目 | 在 WorkDSH 中的用途 | 许可 |
-| --- | --- | --- |
-| [NexusOne](https://github.com/deepseek-ai/deepseek-harness) / Cordis | 原生任务、模型执行、技能发现、插件加载、Profile、服务与 UI 扩展底座 | MIT |
-| [React](https://github.com/facebook/react) | 功能页面和编辑器 UI | MIT |
-| [Tiptap](https://github.com/ueberdosis/tiptap) / [ProseMirror](https://github.com/ProseMirror) | Word 工作副本文本、表格、图片与编辑交互；适配 Tiptap 开源 UI 组件 | MIT |
-| [pptx-viewer](https://github.com/ChristopherVR/pptx-viewer) | `pptx-react-viewer` 3.16.5 与 `pptx-viewer-core` 3.14.3，当前唯一 PPT 编辑、解析和导出实现 | Apache-2.0 |
-| [docx](https://github.com/dolanmiu/docx) | 支持范围内的 DOCX 文件生成 | MIT |
-| [docx-preview](https://github.com/VolodymyrBaydalka/docxjs) | DOCX 原始版式预览 | Apache-2.0 |
-| [Univer OSS](https://github.com/dream-num/univer) / [ExcelJS](https://github.com/exceljs/exceljs) | 开发版已有的实验性表格文件适配，不代表完整在线表格已交付 | Apache-2.0 / MIT |
-| [i18next](https://github.com/i18next/i18next) / [react-i18next](https://github.com/i18next/react-i18next) | PPT 编辑器中文本地化 | MIT |
-| [Lucide](https://github.com/lucide-icons/lucide) | PPT 工具栏图标 | ISC |
-| [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) | 当前预览 Profile 单独安装的费用统计插件，不内置于 WorkDSH 发布包 | 以其独立项目许可为准 |
-
-WorkDSH 明确以 **WorkBuddy / CodeBuddy** 作为产品体验参考：真实任务应展示工作过程，并以可编辑成果结束；技能市场组织、工具栏分组和 PPT 设计指导也吸收了相关经验。WorkDSH 是面向 NexusOne 的独立开源实现，不复用 WorkBuddy 品牌，也不代表官方合作、背书或集成了腾讯 PPT 引擎。
-
-第三方技能和素材分别遵循其提供方的许可与使用条件。构建产物保留实际打包依赖的版权和许可文本，见 [Office 第三方声明](packages/plugins/office/THIRD-PARTY-NOTICES.md)。
+[![WorkDSH Star 趋势](https://api.star-history.com/chart?repos=techflag/workdsh&type=date)](https://www.star-history.com/?repos=techflag%2Fworkdsh&type=date)
