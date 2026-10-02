@@ -198,7 +198,7 @@ function PlateFilePreview(props: DocumentPreviewProps & { onImported?: (docId: s
   );
 }
 
-// v1.4.0：docx 预览工具条动作——「用 PlateAI 打开」。服务端读文件解析
+// v1.4.0：docx 预览工具条动作——「用 NexusAI 打开」。服务端读文件解析
 // 成 Slate JSON 导入 plate 域，再开右侧活编辑器继续编辑。仅 docx 渲染。
 // v1.7.1：打开失败不再是静默的（见 openPlateLiveTab），错误就地显示在按钮旁。
 function OpenInPlateAction(openLiveEditor: (documentId: string) => string | undefined) {
@@ -230,7 +230,7 @@ function OpenInPlateAction(openLiveEditor: (documentId: string) => string | unde
           disabled={busy}
           onClick={() => void open()}
         >
-          {busy ? '转换中…' : '用 PlateAI 打开'}
+          {busy ? '转换中…' : '用 NexusAI 打开'}
         </Button>
         {error ? <span className="plate-error">{error}</span> : null}
       </>
@@ -499,7 +499,7 @@ function PlateDocEditor(props: {
   );
 }
 
-// v1.3.0：缺省编辑器=PlateAI 时的右侧活编辑器。plate_open 落服务端 pending 队列，
+// v1.3.0：缺省编辑器=NexusAI 时的右侧活编辑器。plate_open 落服务端 pending 队列，
 // 客户端轮询命中后 openTabIn 打开本 tab；params.documentId → doc-open → 复用 PlateDocEditor。
 type PlateLivePageProps = PropsRuntime<'sidebar.right.pane.tab'>;
 
@@ -585,7 +585,7 @@ function PlateLivePage(props: PlateLivePageProps) {
             label="AI 写文档的缺省编辑器"
             options={[
               { value: 'office', label: 'Word' },
-              { value: 'plate', label: 'PlateAI' },
+              { value: 'plate', label: 'NexusAI' },
             ]}
             onChange={(editor) => void changeDefaultEditor(editor)}
           />
@@ -668,7 +668,7 @@ export function apply(ctx: Context): void {
   // 宿主源码实证（dsh-client-ui-sidebar-right service.d.ts 原文）：openTabIn 是
   // Tab 域内部路径，「nothing happens for a session whose store was never adopted
   // or whose adoption was released」——运行期 `actionsFor()` 返回 undefined 就直接
-  // return，**不抛错也不开**。点「用 PlateAI 打开」时转换已经成功（服务端落了文档），
+  // return，**不抛错也不开**。点「用 NexusAI 打开」时转换已经成功（服务端落了文档），
   // 却因为这一层静默 no-op 什么都不上屏，用户看到的还是原来那个 Word 页面。
   //
   // 公开面 openTab() 作用在**当前挂载的座位**上，宿主保证「The column expands in
@@ -719,7 +719,7 @@ export function apply(ctx: Context): void {
     ),
   );
 
-  // v1.4.0：文档预览工具条的「用 PlateAI 打开」动作（框架 list 槽，owner
+  // v1.4.0：文档预览工具条的「用 NexusAI 打开」动作（框架 list 槽，owner
   // 给 absolutePath；docx 之外的扩展名返回 null 即不渲染）。Word 文档点
   // 开预览后可一键转成 Plate 文档并在右侧活编辑器继续编辑。
   ctx.slots.inject('sidebar.right.tab.document.actions', () =>
@@ -728,7 +728,7 @@ export function apply(ctx: Context): void {
         name: 'sidebar.right.tab.document.actions',
         id: 'workdsh-plate-open',
         order: 10,
-        label: '用 PlateAI 打开',
+        label: '用 NexusAI 打开',
       },
       OpenInPlateAction(openLiveEditor),
     ),
@@ -769,7 +769,7 @@ export function apply(ctx: Context): void {
           );
           for (const request of result.requests) {
             if (!seen.has(request.requestId)) {
-              // 与「用 PlateAI 打开」同一条路：agent 的 plate_open 也要真上屏。
+              // 与「用 NexusAI 打开」同一条路：agent 的 plate_open 也要真上屏。
               if (openPlateLiveTab(request.documentId) === undefined) seen.add(request.requestId);
             }
           }

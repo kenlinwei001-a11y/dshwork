@@ -39,11 +39,11 @@ const requestShape = z.discriminatedUnion('endpoint', [
   z.object({ endpoint: z.literal('docx-import'), path: z.string().min(1).max(1024) }).strict(),
 ]);
 
-// 「缺省文档编辑器 = PlateAI」时的 agent 写作指南。作为动态 text provider 注册：
+// 「缺省文档编辑器 = NexusAI」时的 agent 写作指南。作为动态 text provider 注册：
 // 缺省=office 时返回空串，行为与改前逐字节一致；缺省=plate 时注入本段。
 // order 排在 office 指南（TOOL_REPORT）之后，后置+明确禁令覆盖文档类请求；
 // PPT/Excel/PDF/HTML 请求仍走 office（content_* 照常）。
-const plateGuide = `PlateAI live document writing (the default document editor is PlateAI):
+const plateGuide = `NexusAI live document writing (the default document editor is NexusAI):
 When the user asks you to write a document, report, or Word-style document, use the plate_* tools to write in the live Plate editor on the right. Do NOT use content_* tools for this kind of request; content_* remains only for PPT, Excel, PDF and HTML requests.
 First call plate_open with a title and a unique operationId; this immediately opens an empty Plate document on the right. Do this before lengthy planning. Reuse the same operationId on retries. Do not compose the entire report in chat first.
 Then call plate_edit to write the title and first useful paragraph, and continue in small meaningful batches so the user sees progress. plate_edit REPLACES the entire document: every call must submit the complete Slate JSON — all previous content plus this batch — never a fragment. Content is Slate editor JSON: an array of nodes, e.g. [{"type":"p","children":[{"text":"标题"}]}]; paragraphs use type "p", headings type "h1".."h3", lists/blocks optional. Keep a single edit under roughly 1 MiB; embedded images are base64 data URLs inside the JSON and count toward the 6 MB document limit, so prefer small images. After a human edit, call plate_read first and re-read the latest content before the next plate_edit; never guess the existing text. Do not fabricate citations, claims or figures.
@@ -243,7 +243,7 @@ function registerApi(ctx: Context) {
         return Response.json({ ok: true, requests: ctx.workdshPlate.takePending(body.sessionId) });
       }
       if (body.endpoint === 'docx-import') {
-        // 「用 PlateAI 打开」：读 docx 文件 → 解析成 Slate JSON → 导入 plate 域。
+        // 「用 NexusAI 打开」：读 docx 文件 → 解析成 Slate JSON → 导入 plate 域。
         try {
           const { title, content } = await importDocx(body.path);
           const { doc, head } = await ctx.workdshPlate.createDocument(title, content as unknown as z.infer<typeof slateJson>, 'import');

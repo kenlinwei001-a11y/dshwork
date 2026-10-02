@@ -6,7 +6,7 @@
  *   src/components/ui/slash-node.tsx      → SlashInputElement（触发字符 "/"）
  *   src/components/editor/plugins/slash-kit.tsx → SlashPlugin + SlashInputPlugin 接线
  *
- * 为什么需要它：官方 PlateAI 编辑器的「这是 AI 编辑器」的身份标识，主要就靠
+ * 为什么需要它：上游 Plate 官方 AI 编辑器的「这是 AI 编辑器」的身份标识，主要就靠
  * "/" 菜单的第一组 AI（SparklesIcon → aiChat.show()）。此前只搬了 AI 交互层
  * （ai-native.tsx），没装 SlashPlugin，于是敲 "/" 只会插入一个字面斜杠，
  * 编辑器看上去和 Word 没有区别——用户实测反馈的正是这一点。

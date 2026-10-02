@@ -1,4 +1,4 @@
-// v1.4.0：docx → Slate JSON 转换（「用 PlateAI 打开」的服务端半）。
+// v1.4.0：docx → Slate JSON 转换（「用 NexusAI 打开」的服务端半）。
 // 只读 node:fs（experts/library/skills 插件同款先例；office 走 bash 是交付
 // 策略非硬限）。解析对齐 office 编码器 src/live/docx.ts 的输出结构：
 // w:p/w:pStyle HeadingN/w:r/w:t/w:b/w:i/a:blip r:embed→rels→media。
