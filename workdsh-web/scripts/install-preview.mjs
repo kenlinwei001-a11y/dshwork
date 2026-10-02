@@ -18,6 +18,11 @@ const baseSpec = `@deepseek-ai/dsh-base@${baseVersion}`;
 const webAppSpec = `@deepseek-ai/dsh-web-app@${webAppVersion}`;
 const marketVersion = '1.66.1';
 const marketSpec = `dshmarket@${marketVersion}`;
+// The Skills page ships a SkillHub tab whose backend is a third-party plugin.
+// Desktop pins the same package in dsh-plugin-desktop/scripts/prepare-workdsh-runtime.mjs;
+// without it the tab is visible but every request answers 405 with an empty body.
+const skillHubVersion = '0.2.16';
+const skillHubSpec = `@cocofhu/skillhub@${skillHubVersion}`;
 const cliVersion = JSON.parse(await readFile(join(root, 'node_modules/@deepseek-ai/dsh/package.json'), 'utf8')).version;
 if (cliVersion !== baseVersion) throw new Error('Preview CLI and Base must use the same pinned version.');
 const home = resolve(process.env.WORKDSH_PREVIEW_HOME ?? join(root, '.test-runtime/preview'));
@@ -71,9 +76,10 @@ const currentDependencies = JSON.parse(await readFile(previewManifestPath, 'utf8
 const layersMatch = currentDependencies['@deepseek-ai/dsh-base'] === baseVersion
   && currentDependencies['@deepseek-ai/dsh-web-app'] === webAppVersion
   && currentDependencies.dshmarket === marketVersion
+  && currentDependencies['@cocofhu/skillhub'] === skillHubVersion
   && packages.every(({ manifest }, index) => currentDependencies[manifest.name] === `file:${tarballs[index]}`);
 if (!layersMatch) {
-  await run('@deepseek-ai/dsh/lib/bin.js', ['plugin', '--profile', 'preview', 'add', baseSpec, webAppSpec, marketSpec, ...tarballs]);
+  await run('@deepseek-ai/dsh/lib/bin.js', ['plugin', '--profile', 'preview', 'add', baseSpec, webAppSpec, marketSpec, skillHubSpec, ...tarballs]);
 }
 // Boot and ConfigEditor share module-local registration in dsh-app-boot.
 // Keep the official CLI in the Profile dependency graph as well: launching the
@@ -113,6 +119,17 @@ const installedBase = JSON.parse(await readFile(join(home, 'profiles/preview/nod
 if (installedBase.version !== baseVersion) throw new Error(`Installed @deepseek-ai/dsh-base ${installedBase.version} does not match pinned ${baseVersion}.`);
 const installedWebApp = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@deepseek-ai/dsh-web-app/package.json'), 'utf8'));
 if (installedWebApp.version !== webAppVersion) throw new Error(`Installed @deepseek-ai/dsh-web-app ${installedWebApp.version} does not match pinned ${webAppVersion}.`);
+const installedSkillHub = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@cocofhu/skillhub/package.json'), 'utf8'));
+if (installedSkillHub.version !== skillHubVersion) throw new Error(`Installed @cocofhu/skillhub ${installedSkillHub.version} does not match pinned ${skillHubVersion}.`);
+// Desktop adds both third-party plugins to the Profile bundle list explicitly.
+// Do the same here so the Skills page's SkillHub tab has a loaded backend rather
+// than a route that answers without one.
+const bundledManifest = JSON.parse(await readFile(previewManifestPath, 'utf8'));
+const currentBundles = bundledManifest.dsh?.profile?.bundles ?? [];
+if (!currentBundles.includes('@cocofhu/skillhub')) {
+  bundledManifest.dsh.profile.bundles = [...currentBundles, '@cocofhu/skillhub'];
+  await writeFile(previewManifestPath, `${JSON.stringify(bundledManifest, null, 2)}\n`);
+}
 // DSH scopes are module-instance local. Installing only the Web bundle
 // beside a CLI-provided Base bundle can load two physical dsh-scope copies: the
 // Agent consumers must resolve one shared scope module; otherwise new

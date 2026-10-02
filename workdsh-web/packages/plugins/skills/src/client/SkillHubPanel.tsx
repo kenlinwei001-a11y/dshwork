@@ -28,7 +28,19 @@ async function skillHub<T extends { ok: boolean; error?: string }>(method: strin
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ method, ...payload }), signal,
   });
-  const result = await response.json() as T;
+  // Profile 未安装 SkillHub 插件时该路由不存在（实测 405 + 空响应体）。直接
+  // response.json() 会抛 DOMException「Unexpected end of JSON input」，用户只看到
+  // 一句无指向的英文报错。先取文本再解析，把「后端没装」翻成能看懂的一句话。
+  const body = await response.text();
+  let result: T | undefined;
+  if (body) {
+    try { result = JSON.parse(body) as T; } catch { result = undefined; }
+  }
+  if (result === undefined) {
+    throw new Error(response.ok
+      ? 'SkillHub 返回了无法解析的响应'
+      : `SkillHub 服务不可用（HTTP ${response.status}）：当前 Profile 未安装 SkillHub 插件`);
+  }
   if (!response.ok || !result.ok) throw new Error(result.error || `SkillHub 请求失败 (${response.status})`);
   return result;
 }
