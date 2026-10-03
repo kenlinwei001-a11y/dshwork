@@ -25,3 +25,20 @@ packages/plugins/office/src/presentation/native-react/native.css
 # Python 虚拟环境（知识处理专家的 .venv 有 400+MB，绝不入库）
 .venv/
 venv/
+
+# ── 上游（upstream 合并带入）──
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.build/
+
+dsh-plugin-desktop/dist/
+dsh-plugin-desktop/lib/
+dsh-community-market/lib/
+
+.env.yarn
+/dist/
+/.test-harness/
