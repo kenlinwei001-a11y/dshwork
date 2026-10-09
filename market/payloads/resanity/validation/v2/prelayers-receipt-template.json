@@ -1,0 +1,20 @@
+{
+  "schema_version": "resanity.prelayers-receipt.v2",
+  "status": "NOT_RUN",
+  "candidate_skill_sha256": "<frozen canonical SKILL.md sha256>",
+  "candidate_profiles_sha256": {
+    "core": "<core profile sha256>",
+    "investing": "<investing profile sha256>",
+    "anchors": "<anchors profile sha256>",
+    "formal-audit": "<formal-audit profile sha256>"
+  },
+  "layers": {
+    "core_contract": "NOT_RUN",
+    "investing_profile": "NOT_RUN",
+    "open_network": "NOT_RUN",
+    "anchor": "NOT_RUN",
+    "trigger": "NOT_RUN",
+    "install_identity": "NOT_RUN"
+  },
+  "evidence": []
+}

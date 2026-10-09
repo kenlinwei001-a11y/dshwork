@@ -1,0 +1,248 @@
+# =============================================================================
+# 章节检索任务（L0）—— 内容项本身触发的 web 检索
+# -----------------------------------------------------------------------------
+# 之前的 SEARCH 路由是**由缺口触发**的：某个节点空着、某条规范没查证、
+# 某条论据缺 backing，于是去检索。但可研里有一大类内容不产生任何空节点，
+# 照样必须去查：
+#
+#   「项目单位概况」要写单位沿革、业务规模、**科研工作及学术交流**、
+#   既往同类项目经验；「项目建设背景」要写行业发展现状与趋势；
+#   「要素保障分析」要写当地水电气热的供给条件。
+#
+# 这些内容不是数字，不会在图上留下空槽，**缺口分诊看不见它们**。
+# 结果就是这些章节被写成空泛的场面话——而它们恰恰是评审判断
+# 「这份报告是不是认真做的」的第一印象来源。
+#
+# 所以本文件把**内容项 → 检索任务**显式登记下来，
+# 并把分诊变量（建设单位名称、项目所在地、行业类别）作为**检索分面**注入。
+#
+# 与 external-fit.yaml 的分工：
+#   本文件管「该去查什么」；external-fit 管「查回来的能不能用」。
+#   两者串联：本文件产出检索任务 → 执行检索 → external-fit 评适配性并交客户勾选。
+# =============================================================================
+
+meta:
+  id: fsr-section-research
+  version: 0.1.0
+  layer: L0
+
+# =============================================================================
+# 一、检索分面 —— 从分诊变量注入
+# =============================================================================
+# 不带分面的检索会捞回一堆通用行业文章，浪费客户的选择注意力，
+# 也写不出「这一份报告是给这个单位做的」那种质感。
+# =============================================================================
+facets:
+  org:      {from: 建设单位全称, required: true, note: 最关键的一个分面。不带它，查出来的是行业综述不是本单位}
+  location: {from: triage Q8_location, note: 省 + 市}
+  industry: {from: 垂类 / 项目功能类型}
+  scale:    {from: 项目规模量级, note: 用于同类项目对标时圈定可比范围}
+  year:     {from: as_of, note: 优先近三年；再早的要判断是否仍然成立}
+
+  hard_rule: |
+    **凡以 org 为分面检索到的信息，一律须交客户核对后才能写进报告。**
+    三个理由，每一个都出过事：
+      · 同名单位（尤其是"XX研究院""XX中心"这类名字）
+      · 信息过时（网页上的机构设置、人员规模常年不更新）
+      · 宣传口径（单位官网的表述是对外宣传，不是可研能直接引用的事实）
+    写进「项目单位概况」的每一句，都是**以客户的名义在说**。
+    客户没确认过的，不写。
+
+# =============================================================================
+# 二、检索任务目录
+# =============================================================================
+# triggers: 命中这些法定内容项或章节时激活
+# query: 检索式模板，{org} {location} {industry} 由分诊变量填充
+# produces: 查到的东西写进哪里、作为什么用
+# evidence: 入图时标什么证据级别
+# must_confirm: 是否必须交客户核对（涉及客户本身的一律 true）
+# if_not_found: 检不到怎么办 —— 一律不许编，转 ASK 或如实留白
+# =============================================================================
+tasks:
+
+  RS1_org_profile:
+    cn: 建设单位概况与沿革
+    triggers: [项目单位概况, 项目单位情况]
+    query: ["{org} 简介 沿革 机构设置", "{org} 年度报告", "{org} 官网 概况"]
+    produces: CH1.2 项目单位概况的事实性描述
+    evidence: E3_external
+    must_confirm: true
+    trap: 官网表述多为宣传口径，形容词要剥掉只留可核事实（成立年份、隶属关系、规模数字）
+    if_not_found: 转 ASK，请客户提供单位简介材料。不许照行业惯例编一段
+
+  RS2_org_academic:
+    cn: 科研工作与学术交流
+    triggers: [项目单位概况, 科研工作及学术交流, 学科建设, 技术能力]
+    query:
+    - "{org} 科研成果 获奖 近三年"
+    - "{org} 重点实验室 工程中心 科研平台"
+    - "{org} 学术会议 国际合作 交流"
+    - "{org} 承担 国家自然科学基金 重点研发计划"
+    produces: |
+      单位概况中的科研能力段落；同时是 D1 必要性的**软论据**——
+      「本单位已有的科研基础支撑得起这个平台」
+    evidence: E3_external
+    must_confirm: true
+    trap: |
+      **这是本文件最典型的一条，也是最容易写空的一条。**
+      写「该单位科研实力雄厚、学术交流活跃」等于什么都没说。
+      要写的是可核的具体项：几个国家级平台、近三年几项国家级课题、
+      承办过哪几个学术会议、与哪些机构有实质合作。
+      查不到具体项时**宁可少写**，不要用形容词补。
+    if_not_found: 转 ASK，请客户提供科研成果清单与平台名录
+
+  RS3_org_track_record:
+    cn: 单位既往同类项目实施经验
+    triggers: [项目单位概况, 项目建设条件, 实施保障]
+    query: ["{org} {industry} 建设项目 竣工", "{org} 基建 项目 验收"]
+    produces: D7 实施进度与 D10 风险的论据——单位有没有干过同类项目
+    evidence: E3_external
+    must_confirm: true
+    trap: 没查到不等于没有。单位的内部工程多数不公开，须向客户求证
+    if_not_found: 转 ASK
+
+  RS4_org_credit:
+    cn: 单位资信与财务状况
+    triggers: [项目单位概况, 资金筹措, 财务可持续性]
+    query: ["{org} 信用 公示", "{org} 财务 决算 公开"]
+    produces: D9 自筹资金落实能力的旁证
+    evidence: E3_external
+    must_confirm: true
+    applicable_when: "project.funding_regime != 政府投资 or 存在自筹部分"
+    trap: 事业单位的决算公开与企业的信用公示口径完全不同，不要混用
+    if_not_found: 转 ASK，请客户提供近三年财务数据
+
+  RS5_industry_context:
+    cn: 行业/领域发展现状与趋势
+    triggers: [项目建设背景, 需求分析]
+    query: ["{industry} 发展现状 趋势 {year}", "{industry} 十五五 规划"]
+    produces: CH2.1 项目建设背景的宏观铺垫
+    evidence: E3_external
+    must_confirm: false
+    trap: |
+      背景写太长是常见毛病。它的作用是给必要性铺路，不是行业综述——
+      **凡不能连到「所以本项目要建」的段落，都该删。**
+    if_not_found: 如实少写。背景章短一点不是问题，空话多才是
+
+  RS6_regional_context:
+    cn: 区域社会经济与人口背景
+    triggers: [项目建设背景, 项目选址或选线, 经济影响分析]
+    query: ["{location} 国民经济和社会发展统计公报 {year}", "{location} 十五五 规划纲要"]
+    produces: 区域背景、经济影响分析的基准数据
+    evidence: E3_external
+    must_confirm: false
+    trap: 统计公报有年份，引用要写明是哪一年的数，别把三年前的数当现状
+
+  RS7_site_parameters:
+    cn: 场地地域参数
+    triggers: [项目建设条件, 项目选址或选线]
+    query: ["{location} 抗震设防烈度 设计基本地震加速度", "{location} 气象 参数 累年"]
+    produces: 结构与暖通的取值依据（见 discipline-probes 的 P_STRU_SEISMIC）
+    evidence: E2_normative
+    must_confirm: false
+    trap: 烈度按项目所在地查，不是按单位注册地——多校区、多厂区的单位这里最容易错
+
+  RS8_utility_supply:
+    cn: 市政配套供给条件
+    triggers: [要素保障分析, 项目建设条件]
+    query: ["{location} 供水 供电 燃气 供热 专项规划", "{location} 电力 增容 接入"]
+    produces: D3 要素保障的公开侧证据；客户侧的接入意见走 ASK
+    evidence: E3_external
+    must_confirm: false
+    trap: 公开规划说明的是区域能力，不等于本项目的接入条件已落实。两者要分开写
+
+  RS9_benchmark_projects:
+    cn: 同类项目对标
+    triggers: [建设内容和规模, 投资估算, 经济影响分析]
+    query: ["{industry} {scale} 建设项目 可行性研究 批复", "{industry} 单方造价 {year}"]
+    produces: E5 类比证据
+    evidence: E5_analogical
+    must_confirm: true
+    hard_rule: |
+      必须写明可比性条件；且**不得用来填本项目的空槽**（no_fabrication NF1）。
+      它只能佐证合理性，不能充当取值。
+    if_not_found: 不做对标。没有可比案例就直说，不要拿不可比的项目凑
+
+  RS10_policy_basis:
+    cn: 上位政策与规划依据
+    triggers: [规划政策符合性, 项目建设必要性, 编制依据]
+    query: ["{location} {industry} 专项规划", "{industry} 国家 政策 意见"]
+    produces: D1 driver 与 D2 benchmark 的候选
+    evidence: E2_normative
+    must_confirm: true
+    pipeline: 必须过 external-fit.yaml 的适配性评估与排序，交客户勾选后才入图
+
+  RS11_norm_currency:
+    cn: 规范现行状态核验
+    triggers: [编制依据, 技术方案, 节能, 环保]
+    query: ["{norm_code} 现行 有效 替代"]
+    produces: 更新 norms.yaml 的登记状态
+    evidence: E2_normative
+    must_confirm: false
+    cadence: 每次成稿前重新核验一遍（90 天窗口）
+    hard_rule: 查不到就标 in_use_unverified 并写明查过哪些渠道，绝不臆断
+
+  RS12_social_risk_precedent:
+    cn: 同类项目的社会稳定风险先例
+    triggers: [风险管控方案, 社会稳定风险]
+    query: ["{industry} 项目 周边 投诉 舆情", "{location} 类似项目 稳评"]
+    produces: D10 风险清单的候选项
+    evidence: E3_external
+    must_confirm: true
+    trap: 先例只提示风险类型，风险等级判定与应对措施要客户确认，agent 不自行定级
+
+# =============================================================================
+# 三、执行规则
+# =============================================================================
+rules:
+
+  R1_batch_upfront:
+    cn: 批量前置
+    rule: 骨架确认（G1）后立刻把全部激活的检索任务跑掉，不要边写边查
+    why: 检索不占客户时间，早做完早解锁；边写边查会让起草反复中断
+
+  R2_org_facet_required:
+    cn: 涉及本单位的必须带 org 分面
+    rule: RS1–RS4 的检索式必须含建设单位全称；缺 org 时不执行，转 ASK
+    why: 不带单位名查出来的是行业综述，写进「单位概况」就是套话
+
+  R3_confirm_before_write:
+    cn: 涉客户信息先核对后落笔
+    rule: must_confirm 为 true 的任务，其结果先呈客户核对，确认后才写进正文
+    why: 写进单位概况的每一句都是以客户的名义在说。同名、过时、宣传口径三个坑都在这里
+
+  R4_no_padding:
+    cn: 查不到不许用形容词补
+    rule: |
+      检索不到具体事实时，宁可少写。
+      「科研实力雄厚、学术交流活跃」这类句子不含任何信息，
+      评审一眼看出是凑的，而且会连带怀疑其余各章。
+    why: 见 provenance-routing 的 write_boundary —— 这属于 X3/X4 的变体
+
+  R5_link_to_claim:
+    cn: 背景类内容要连回论点
+    rule: 凡不能连到「所以本项目要建」的背景段落，都该删
+    why: 背景章是给必要性铺路的，不是行业综述
+
+# =============================================================================
+# 四、检查
+# =============================================================================
+constraints:
+
+  C17_research_coverage:
+    cn: 章节检索任务覆盖
+    rule: |
+      骨架中每个法定内容项，若命中某条 task 的 triggers，
+      则该 task 必须处于以下状态之一：已完成 / 已转 ASK / 已如实声明未检到。
+      三者都不是即「该查而未查」。
+    severity: warning
+    escalate_to_error_when: 该章的 content_status 已标记为 sourced
+    why: |
+      这类内容不产生空节点，缺口分诊看不见它们。
+      不单立一条检查，它们就会被写成场面话而无人察觉。
+
+  C17b_org_info_confirmed:
+    cn: 涉客户信息须经确认
+    rule: 由 must_confirm 任务产出、写入正文的内容，必须带客户确认记录
+    severity: error
+    why: 同名单位、信息过时、宣传口径——三个坑都会让报告在客户自己那里失分

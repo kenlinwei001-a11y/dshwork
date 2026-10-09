@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- 锚：认知锚 -->
+  <g stroke="#1F3A5F" stroke-width="4" fill="none" stroke-linecap="round">
+    <!-- 顶环 -->
+    <circle cx="32" cy="13" r="9"/>
+    <!-- 杆 -->
+    <line x1="32" y1="22" x2="32" y2="50"/>
+    <!-- 横梁 -->
+    <line x1="21" y1="24" x2="43" y2="24"/>
+    <!-- 底弧 -->
+    <path d="M 17 50 A 15 15 0 0 0 47 50"/>
+    <!-- 锚爪 -->
+    <path d="M 17 50 L 13 56"/>
+    <path d="M 47 50 L 51 56"/>
+  </g>
+  <!-- 对勾：sanity check 通过 -->
+  <path d="M 27 13 L 31 17 L 38 8" stroke="#10B981" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

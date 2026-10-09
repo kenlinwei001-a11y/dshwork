@@ -1,0 +1,56 @@
+# 参与贡献
+
+感谢你愿意参与 WorkDSH。这是一个社区项目，无论你是普通用户、插件作者还是开发者，都有适合你的贡献方式。
+
+## 普通用户：使用、反馈与传播
+
+- 遇到问题或异常，[提 issue](https://github.com/techflag/workdsh/issues)：说明操作系统（macOS / Windows）、应用版本和复现步骤。
+- 有功能想法或改进建议，也欢迎提 issue 讨论。
+- 参与[社区交流](README.zh-CN.md#社区与致谢)（微信群、QQ 群、Discord），帮助其他用户解决问题。
+- 写使用教程、体验文章，或帮助完善和翻译文档。
+- 通过 [issue](https://github.com/techflag/workdsh/issues) 推荐生态项目。
+
+## 插件作者：扩展生态
+
+DSH 的核心是插件。如果你写插件，请先阅读：
+
+- [插件开发](docs/plugin-development.md)：如何编写普通 DSH 插件和 Desktop 插件。
+- [DSH 插件生态倡议书](docs/plugin-ecosystem.md)：开放、可组合、可持续的生态愿景，以及组合优先、声明清晰、兼容优先三条原则。
+
+遵循倡议书的插件更容易与其他插件共存，也会在未来上线时更容易在插件市场中被发现和信任。
+
+## 开发者：贡献代码
+
+### 开发环境
+
+```sh
+corepack yarn install --immutable
+corepack yarn check   # 完整 headless gate：构建、类型检查、测试与冒烟
+corepack yarn dev     # 有图形环境时启动应用
+```
+
+### 仓库边界（开始前务必了解）
+
+- 官方依赖使用 `upstream.json` 锁定的发布版本与校验摘要，构建不克隆或编译官方源码。
+- 桌面代码位于 `apps/desktop/`，WorkDSH 功能包位于 `apps/web/`；前者使用根目录 Yarn 工作区，后者保留独立 pnpm 工作区。
+- 构建、类型检查、单元测试和冒烟检查必须保持 headless-safe。
+
+### 提交与 PR
+
+与桌面版必要功能无关的 PR，以及其他插件收录相关的 PR，我们可能不会接受。
+
+目前我们接受与桌面版必要功能相关的 PR（如问题修复、新功能等），非常欢迎各位开发者提出此类 PR。
+
+- 提交信息使用 conventional commits 风格（例如 `fix(desktop): ...`、`docs: ...`）。
+- 提交前运行 `yarn check` 并保证全绿。
+- 变更打包依赖或 WorkDSH Profile 后，核对安装包内实际版本、许可证文件和 `apps/desktop/THIRD_PARTY_NOTICES.md`；不得沿用旧版本的依赖清单。
+- 文档改动请中英同步，并更新 `README.i18n.yaml` 的双语 hash 记录。
+- PR 描述说明改动内容、动机和验证方式；CI 通过后再合并。
+
+## 加入技术团队
+
+如果你希望参与维护 WorkDSH，请在 [GitHub Issues](https://github.com/techflag/workdsh/issues) 提出建议或说明可参与的方向。
+
+## 行为准则
+
+请保持友善与尊重，就事论事。我们希望这是一个欢迎新人的社区。完整的[参与者公约](CODE_OF_CONDUCT.md)适用于所有项目空间。

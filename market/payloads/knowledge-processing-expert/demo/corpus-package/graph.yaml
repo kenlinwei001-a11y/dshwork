@@ -1,0 +1,230 @@
+{
+  "facts": [
+    {
+      "id": "N-66f5d928cd21",
+      "subject": "c-9a8550ff530b",
+      "predicate": "has_value",
+      "value": "2024",
+      "source": "c-9a8550ff530b"
+    },
+    {
+      "id": "N-237178ffb806",
+      "subject": "c-2e544bea1bcb",
+      "predicate": "has_value",
+      "value": "2010",
+      "source": "c-2e544bea1bcb"
+    },
+    {
+      "id": "N-9897ffd76442",
+      "subject": "c-2e544bea1bcb",
+      "predicate": "has_value",
+      "value": "5000",
+      "source": "c-2e544bea1bcb"
+    },
+    {
+      "id": "N-4aa5fb0703c3",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "2024",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-f82f4f9b7a10",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "100",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-83b20d7253c3",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "20%",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-4aa5fb0703c3",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "2024",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-a9d9618f5d91",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "120",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-420d8fddaa05",
+      "subject": "c-fab620edfa9f",
+      "predicate": "has_value",
+      "value": "12.5",
+      "source": "c-fab620edfa9f"
+    },
+    {
+      "id": "N-f1a01e50879f",
+      "subject": "c-5ed7a8d1fdc9",
+      "predicate": "has_value",
+      "value": "2024",
+      "source": "c-5ed7a8d1fdc9"
+    },
+    {
+      "id": "N-baff8fe41f2f",
+      "subject": "c-5ed7a8d1fdc9",
+      "predicate": "has_value",
+      "value": "100",
+      "source": "c-5ed7a8d1fdc9"
+    },
+    {
+      "id": "N-3b5c3714c106",
+      "subject": "c-5ed7a8d1fdc9",
+      "predicate": "has_value",
+      "value": "12.5",
+      "source": "c-5ed7a8d1fdc9"
+    }
+  ],
+  "nodes": {
+    "N-66f5d928cd21": {
+      "kind": "fact",
+      "id": "N-66f5d928cd21",
+      "value": "2024",
+      "chunk": "c-9a8550ff530b"
+    },
+    "N-237178ffb806": {
+      "kind": "fact",
+      "id": "N-237178ffb806",
+      "value": "2010",
+      "chunk": "c-2e544bea1bcb"
+    },
+    "N-9897ffd76442": {
+      "kind": "fact",
+      "id": "N-9897ffd76442",
+      "value": "5000",
+      "chunk": "c-2e544bea1bcb"
+    },
+    "N-4aa5fb0703c3": {
+      "kind": "fact",
+      "id": "N-4aa5fb0703c3",
+      "value": "2024",
+      "chunk": "c-fab620edfa9f"
+    },
+    "N-f82f4f9b7a10": {
+      "kind": "fact",
+      "id": "N-f82f4f9b7a10",
+      "value": "100",
+      "chunk": "c-fab620edfa9f"
+    },
+    "N-83b20d7253c3": {
+      "kind": "fact",
+      "id": "N-83b20d7253c3",
+      "value": "20%",
+      "chunk": "c-fab620edfa9f"
+    },
+    "N-a9d9618f5d91": {
+      "kind": "fact",
+      "id": "N-a9d9618f5d91",
+      "value": "120",
+      "chunk": "c-fab620edfa9f"
+    },
+    "N-420d8fddaa05": {
+      "kind": "fact",
+      "id": "N-420d8fddaa05",
+      "value": "12.5",
+      "chunk": "c-fab620edfa9f"
+    },
+    "N-f1a01e50879f": {
+      "kind": "fact",
+      "id": "N-f1a01e50879f",
+      "value": "2024",
+      "chunk": "c-5ed7a8d1fdc9"
+    },
+    "N-baff8fe41f2f": {
+      "kind": "fact",
+      "id": "N-baff8fe41f2f",
+      "value": "100",
+      "chunk": "c-5ed7a8d1fdc9"
+    },
+    "N-3b5c3714c106": {
+      "kind": "fact",
+      "id": "N-3b5c3714c106",
+      "value": "12.5",
+      "chunk": "c-5ed7a8d1fdc9"
+    }
+  },
+  "relations": [
+    {
+      "from": "c-9a8550ff530b",
+      "to": "N-66f5d928cd21",
+      "type": "has_value"
+    },
+    {
+      "from": "c-2e544bea1bcb",
+      "to": "N-237178ffb806",
+      "type": "has_value"
+    },
+    {
+      "from": "c-2e544bea1bcb",
+      "to": "N-9897ffd76442",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-4aa5fb0703c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-f82f4f9b7a10",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-83b20d7253c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-4aa5fb0703c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-a9d9618f5d91",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-420d8fddaa05",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-f1a01e50879f",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-baff8fe41f2f",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-3b5c3714c106",
+      "type": "has_value"
+    }
+  ],
+  "relation_types": [
+    "has_value",
+    "has_attribute",
+    "instance_of",
+    "part_of",
+    "causes",
+    "depends_on",
+    "supports",
+    "contradicts",
+    "temporal",
+    "located_in"
+  ]
+}

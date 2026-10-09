@@ -1,0 +1,4 @@
+{"id": "c-9a8550ff530b", "index": 0, "type": "paragraph", "span": [0, 11], "text": "某公司2024年度报告"}
+{"id": "c-2e544bea1bcb", "index": 1, "type": "heading", "span": [13, 43], "text": "第一章 总则\n某公司成立于2010年，注册资本5000万元。"}
+{"id": "c-fab620edfa9f", "index": 2, "type": "heading", "span": [45, 103], "text": "第二章 财务数据\n2024年营业收入100亿元，同比增长20%。\n2024年营业收入120亿元。净利润12.5亿元。"}
+{"id": "c-5ed7a8d1fdc9", "index": 3, "type": "table", "span": [105, 176], "text": "```table\n| 指标 | 2024 |\n|------|------|\n| 营收 | 100亿 |\n| 净利 | 12.5亿 |\n```"}

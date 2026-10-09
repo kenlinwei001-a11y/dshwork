@@ -1,0 +1,117 @@
+{
+  "conflicts": [
+    {
+      "subject": "c-2e544bea1bcb",
+      "expected": "2010",
+      "actual": "5000",
+      "status": "待审"
+    },
+    {
+      "subject": "c-fab620edfa9f",
+      "expected": "2024",
+      "actual": "100",
+      "status": "待审"
+    },
+    {
+      "subject": "c-fab620edfa9f",
+      "expected": "100",
+      "actual": "20%",
+      "status": "待审"
+    },
+    {
+      "subject": "c-fab620edfa9f",
+      "expected": "20%",
+      "actual": "2024",
+      "status": "待审"
+    },
+    {
+      "subject": "c-fab620edfa9f",
+      "expected": "2024",
+      "actual": "120",
+      "status": "待审"
+    },
+    {
+      "subject": "c-fab620edfa9f",
+      "expected": "120",
+      "actual": "12.5",
+      "status": "待审"
+    },
+    {
+      "subject": "c-5ed7a8d1fdc9",
+      "expected": "2024",
+      "actual": "100",
+      "status": "待审"
+    },
+    {
+      "subject": "c-5ed7a8d1fdc9",
+      "expected": "100",
+      "actual": "12.5",
+      "status": "待审"
+    }
+  ],
+  "gaps": [],
+  "dangling_relations": [
+    {
+      "from": "c-9a8550ff530b",
+      "to": "N-66f5d928cd21",
+      "type": "has_value"
+    },
+    {
+      "from": "c-2e544bea1bcb",
+      "to": "N-237178ffb806",
+      "type": "has_value"
+    },
+    {
+      "from": "c-2e544bea1bcb",
+      "to": "N-9897ffd76442",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-4aa5fb0703c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-f82f4f9b7a10",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-83b20d7253c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-4aa5fb0703c3",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-a9d9618f5d91",
+      "type": "has_value"
+    },
+    {
+      "from": "c-fab620edfa9f",
+      "to": "N-420d8fddaa05",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-f1a01e50879f",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-baff8fe41f2f",
+      "type": "has_value"
+    },
+    {
+      "from": "c-5ed7a8d1fdc9",
+      "to": "N-3b5c3714c106",
+      "type": "has_value"
+    }
+  ],
+  "invariant_ok": false,
+  "gate": "REVIEW"
+}

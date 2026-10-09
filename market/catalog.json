@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "kind": "workdsh-skill-catalog",
+  "generatedAt": "2026-09-30T00:00:00+08:00",
+  "categories": [
+    "数学建模",
+    "学术科研",
+    "金融投研",
+    "知识处理"
+  ],
+  "entries": [
+    {
+      "name": "math-modeling",
+      "title": "数学建模竞赛",
+      "description": "面向 CUMCM、MCM/ICM 等建模竞赛的三阶段工作流：建模分析 → Python/MATLAB 代码求解 → DOCX 论文生成。内置优化、预测等算法资源库；可整题通关，也可只执行其中一个阶段。",
+      "categories": [
+        "数学建模"
+      ],
+      "version": "1.3.0",
+      "examples": [
+        "用完整三阶段流程解这道建模题",
+        "只帮我做建模分析，不写代码"
+      ],
+      "payload": "payloads/math-modeling"
+    },
+    {
+      "name": "auto-mcm",
+      "title": "自动数学建模 AutoMCM",
+      "description": "全栈式自动数学建模：AI 担任 Autopilot 完成建模、编程与论文写作，人类在关键节点监督确认。与「数学建模竞赛」风格互补，自动化程度更高（AutoMCM-Pro，MIT）。",
+      "categories": [
+        "数学建模"
+      ],
+      "examples": [
+        "AutoMCM 模式打这场比赛",
+        "先给出建模方案让我确认再动手"
+      ],
+      "payload": "payloads/auto-mcm"
+    },
+    {
+      "name": "nature-academic-search",
+      "title": "学术文献检索核验",
+      "description": "用中文描述研究问题，跨学术数据库检索论文、去重、核对引用，导出文献管理器可用的文件。配合 academic-search MCP 服务可解锁全部核验工具（MIT）。",
+      "categories": [
+        "学术科研"
+      ],
+      "examples": [
+        "检索 Transformer 在医疗影像分割中的近五年综述",
+        "核对这份参考文献列表的真伪"
+      ],
+      "payload": "payloads/nature-academic-search"
+    },
+    {
+      "name": "claude-paper-study",
+      "title": "论文深读",
+      "description": "逐节精读研究论文：概念拆解、方法分析、实验解读与批判性质疑，适合把一篇论文真正吃透（claude-paper，MIT）。",
+      "categories": [
+        "学术科研"
+      ],
+      "examples": [
+        "带我精读这篇论文的方法章节",
+        "这篇论文的实验设计有什么漏洞"
+      ],
+      "payload": "payloads/claude-paper-study"
+    },
+    {
+      "name": "claude-paper-summary",
+      "title": "论文速读摘要",
+      "description": "几分钟提炼论文的核心思想、方法与结论，快速判断值不值得投入深读（claude-paper，MIT）。",
+      "categories": [
+        "学术科研"
+      ],
+      "examples": [
+        "给我这篇论文的三分钟摘要",
+        "这批论文各用一段话概括"
+      ],
+      "payload": "payloads/claude-paper-summary"
+    },
+    {
+      "name": "resanity",
+      "title": "投研认知审计",
+      "description": "投资研究的可能性地图、承重主张审计与证据边界检查：以原子主张卡区分观察、推断边界与决策影响，把研究收敛为可检查的主张（reSanity，MIT）。",
+      "categories": [
+        "金融投研"
+      ],
+      "examples": [
+        "审计这份做多逻辑的承重主张",
+        "给这个行业利润池画可能性地图"
+      ],
+      "payload": "payloads/resanity"
+    },
+    {
+      "name": "stock-data-assistant",
+      "title": "A股数据助手",
+      "description": "A 股行情、财务与智能选股的自然语言查询引导。注意：取数需配合本地 stock_datasource 数据服务（端口 8001/6666），未接入时仅提供方法与流程指导（MIT）。",
+      "categories": [
+        "金融投研"
+      ],
+      "examples": [
+        "查 600519.SH 最近十个交易日收盘价",
+        "按 ROE 和现金流筛一批白马股"
+      ],
+      "payload": "payloads/stock-data-assistant"
+    },
+    {
+      "name": "stock-mcp-query",
+      "title": "行情数据查询",
+      "description": "通过 stock MCP 工具查询 A 股、港股、ETF、指数的历史行情，结果自动截断防止上下文爆炸。依赖 stock_datasource MCP 服务（MIT）。",
+      "categories": [
+        "金融投研"
+      ],
+      "examples": [
+        "用 stock 工具查沪深300 近一年走势",
+        "对比一下两只 ETF 的季度收益"
+      ],
+      "payload": "payloads/stock-mcp-query"
+    },
+    {
+      "name": "claim-evidence-binding-skill",
+      "title": "Claim Evidence Binding Skill",
+      "description": "判断 Evidence 与 Claim 的关系：SUPPORT、PARTIAL_SUPPORT、CONTRADICT、CONTEXT 或 INSUFFICIENT。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/claim-evidence-binding-skill"
+    },
+    {
+      "name": "claim-extraction-skill",
+      "title": "Claim Extraction Skill",
+      "description": "识别判断、结论、风险、预测、因果判断和建议等 Claim，并建立依赖关系。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/claim-extraction-skill"
+    },
+    {
+      "name": "claim-validation-skill",
+      "title": "Claim Validation Skill",
+      "description": "验证 Claim 的证据支持、时间一致性、事实依赖、推理完整性和语义范围。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/claim-validation-skill"
+    },
+    {
+      "name": "conflict-detection-skill",
+      "title": "Conflict Detection Skill",
+      "description": "检测数字、时间、实体、Claim 和版本之间的冲突，并输出待审状态而非自动裁决。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/conflict-detection-skill"
+    },
+    {
+      "name": "document-parsing-skill",
+      "title": "Document Parsing Skill",
+      "description": "将 PDF/DOCX/XLSX/PPTX/扫描件解析为统一 Document IR，并保留页码、段落、表格和原文定位信息。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/document-parsing-skill"
+    },
+    {
+      "name": "entity-extraction-skill",
+      "title": "Entity Extraction Skill",
+      "description": "从文本中抽取企业、基地、车间、产线、客户、材料、供应商等实体及其 mention。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/entity-extraction-skill"
+    },
+    {
+      "name": "entity-resolution-skill",
+      "title": "Entity Resolution Skill",
+      "description": "解决同义词、别名、简称和跨文档实体重复问题，并识别 NOT_SAME 与 AMBIGUOUS。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/entity-resolution-skill"
+    },
+    {
+      "name": "evidence-extraction-skill",
+      "title": "Evidence Extraction Skill",
+      "description": "定位支持 Fact 或 Claim 的原始证据，包括文档、页码、章节、Chunk、Sentence 和文本范围。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/evidence-extraction-skill"
+    },
+    {
+      "name": "extraction-quality-audit-skill",
+      "title": "Extraction Quality Audit Skill",
+      "description": "对抽取结果执行结构完整性、证据覆盖、关系合法性、跨项目污染和孤立节点等质量审计。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/extraction-quality-audit-skill"
+    },
+    {
+      "name": "fact-extraction-skill",
+      "title": "Fact Extraction Skill",
+      "description": "将文本中的可验证信息抽取为 Subject-Predicate-Value-Time-Source 结构化事实。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/fact-extraction-skill"
+    },
+    {
+      "name": "feasibility-report-edu-research",
+      "title": "可行性研究报告本体图谱 · 高校科研用房",
+      "description": "编制、审校、修订【高校科研用房】类项目的可行性研究报告，一律以国家发改委发改投资规〔2023〕304号 《政府投资项目可行性研究报告编写通用大纲》为基准。适用对象：高校研究中心、研究院、重点实验室、 科研实验楼、交叉研究平台、中试基地及其配套用房。**最终交付一份 Word 文档（.docx）**，用本体图谱驱动生成：所有事实只存一份、跨章自动传播、 每条论断绑定证据、法定章节覆盖自动校验、客户改稿可反向回读。 当用户提到\"科研楼可研\"\"实验楼立项\"\"研究中心可行性研究\"\"科研用房建设规模论证\"\"人均科研用房面积指标\" \"建标191-2018\"，或上传一份科研用房类可研要写、要改、要审、要查数字前后矛盾、要按2023新大纲改口径时， 都应使用本 skill——即使用户没说\"本体\"或\"图谱\"。 不适用于：学生宿舍与食堂（用 feasibility-report-edu-student-life）、教学楼图书馆、 产业园区厂房、施工图设计、招标文件编制。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/feasibility-report-edu-research"
+    },
+    {
+      "name": "graph-deductive-writing-skill",
+      "title": "基于图谱的推演写作（Graph Deductive Writing）",
+      "description": "基于语义图谱的推演式分析写作。输入 semantic-graph-compilation-skill 编译产出的语义图谱 JSON（含 entities / relations / facts / reasoning / claims / evidence / conflicts / validations），沿推理链前向推演派生新结论，并把每条论断写成绑定证据与溯源链的 Word 分析报告（.docx）。事实单源存储、跨章节自动传播、冲突以「待审」显式呈现、正文可反向回读为图谱节点。当用户要求「基于图谱的推演写作」「图谱驱动写报告」「把语义图谱写成分析报告」「推演式写作」「graph-based deductive writing」，或提供一份语义图谱 JSON / 本体图谱要求撰写、修改、审校、核查数字前后矛盾或反向回读时，应使用本 skill。上游建图（文档解析、实体/事实/关系抽取、图谱编译）由 document-parsing-skill、fact-extraction-skill、entity-extraction-skill、semantic-graph-compilation-skill 等负责，不在本 skill 范围内；本 skill 是 feasibility-report-edu-research 等特定领域报告的通用引擎。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/graph-deductive-writing-skill"
+    },
+    {
+      "name": "knowledge-generalization-skill",
+      "title": "Knowledge Generalization Skill",
+      "description": "从历史项目中提取可复用 Ontology、Reasoning Pattern、Claim Pattern、分析框架和规则，同时隔离项目专属事实。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/knowledge-generalization-skill"
+    },
+    {
+      "name": "knowledge-processing",
+      "title": "知识处理（Knowledge Processing）",
+      "description": "把文档/语料（docx/pdf/md）经七道工序处理为结构化知识图谱语料包，产出 30 个契约文件（含脱敏骨架 skeletons.jsonl）。当用户要求把稿件处理成语料包、跑「归一化→骨架→切块→本体→回放→质量→脱敏索引」七道工序流水线、产出知识图谱/脱敏骨架、或使用 kp_toolkit / corpus_pipeline / MCP 29 工具时使用。与 knowledge-processing-toolchain 的区别：本 skill 覆盖完整流水线与 30 文件产物契约，toolchain 覆盖工具+LLM 分层方法论。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/knowledge-processing"
+    },
+    {
+      "name": "knowledge-processing-toolchain",
+      "title": "知识处理工具链（Tool + LLM）",
+      "description": "以「工具 + LLM」分层模式做知识处理。确定性步骤（分句、分块、图谱编译、溯源、数字/时间冲突、schema 校验）调用 kp_toolkit 代码执行（零 LLM、可复现）；语义步骤（实体/事实/关系/Claim/证据/推理抽取、证据判断、推演写作）才调用 LLM，且必须按 schema 输出 JSON 并经 validator 校验、失败重试。当用户要求把文档/语料处理为结构化知识图谱、或要求「确定性走工具、语义走 LLM」时使用。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/knowledge-processing-toolchain"
+    },
+    {
+      "name": "ontology-resolution-skill",
+      "title": "Ontology Resolution Skill",
+      "description": "将候选 Entity 映射到项目 Ontology Registry 中的标准类型、属性和约束。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/ontology-resolution-skill"
+    },
+    {
+      "name": "provenance-binding-skill",
+      "title": "Provenance Binding Skill",
+      "description": "建立对象之间的来源链，使 Decision 可以反向追溯到 Claim、Reasoning、Fact、Evidence、Sentence、Chunk 和 Document。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/provenance-binding-skill"
+    },
+    {
+      "name": "reasoning-extraction-skill",
+      "title": "Reasoning Extraction Skill",
+      "description": "识别公式、规则、多步推导和中间结论，形成 Reasoning 节点及输入输出依赖。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/reasoning-extraction-skill"
+    },
+    {
+      "name": "relation-extraction-skill",
+      "title": "Relation Extraction Skill",
+      "description": "抽取实体之间的业务语义关系，并绑定关系证据和来源 Sentence。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/relation-extraction-skill"
+    },
+    {
+      "name": "semantic-chunking-skill",
+      "title": "Semantic Chunking Skill",
+      "description": "按照章节、主题和语义边界将 Document IR 切分为稳定的语义 Chunk，供后续抽取和检索使用。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/semantic-chunking-skill"
+    },
+    {
+      "name": "semantic-graph-compilation-skill",
+      "title": "Semantic Graph Compilation Skill",
+      "description": "将 Entity、Fact、Claim、Evidence、Reasoning、Scenario、Decision 等编译成统一 Semantic Graph。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/semantic-graph-compilation-skill"
+    },
+    {
+      "name": "sentence-segmentation-skill",
+      "title": "Sentence Segmentation Skill",
+      "description": "将 Chunk 切分为 Sentence，并生成稳定的 Sentence ID，支撑 Claim 追踪和 Semantic Diff。",
+      "categories": [
+        "知识处理"
+      ],
+      "version": "1.0.0",
+      "examples": [],
+      "payload": "payloads/sentence-segmentation-skill"
+    }
+  ]
+}

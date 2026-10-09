@@ -1,0 +1,369 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ['desktop-v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DSH_TELEMETRY_DISABLED: '1'
+
+jobs:
+  # Keep required checks conclusive for documentation-only changes. Workflow
+  # path filters can leave required checks pending, so classify inside the run.
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      product: ${{ steps.scope.outputs.product }}
+      desktop: ${{ steps.scope.outputs.desktop }}
+      web: ${{ steps.scope.outputs.web }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Check the actual PR head to validate its locked official releases.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - name: Classify changed paths
+        id: scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF_TYPE: ${{ github.ref_type }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          node --test scripts/bilingual-docs.test.mjs
+          node scripts/verify-bilingual-docs.mjs
+          if [[ "$EVENT_NAME" == "workflow_dispatch" || "$REF_TYPE" == "tag" ]]; then
+            product=true
+            desktop=true
+            web=false
+          elif [[ -z "$BASE_SHA" || "$BASE_SHA" =~ ^0+$ ]]; then
+            product=true
+            desktop=true
+            web=true
+          else
+            git diff --check "$BASE_SHA" "$HEAD_SHA"
+            product="$(git diff --name-only -z "$BASE_SHA" "$HEAD_SHA" | node scripts/classify-ci-changes.mjs)"
+            changed_paths="$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")"
+            if [[ -n "$changed_paths" ]] && grep -Eq '^(apps/web/|packages/|profiles/)' <<< "$changed_paths"; then web=true; else web=false; fi
+            if [[ -n "$changed_paths" ]] && grep -qv '^apps/web/' <<< "$changed_paths"; then desktop=true; else desktop=false; fi
+          fi
+          echo "product=$product" >> "$GITHUB_OUTPUT"
+          echo "desktop=$desktop" >> "$GITHUB_OUTPUT"
+          echo "web=$web" >> "$GITHUB_OUTPUT"
+
+  # Full product gate: build, typecheck, unit tests, and every headless smoke.
+  # A documentation-only change already passed diff validation in `changes`.
+  check:
+    needs: changes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation-only gate
+        if: needs.changes.outputs.product == 'false'
+        run: echo "Documentation-only change; product build and tests are not required."
+      - uses: actions/checkout@v6
+        if: needs.changes.outputs.product == 'true'
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        if: needs.changes.outputs.product == 'true'
+        with:
+          node-version: 22.23.2
+      - if: needs.changes.outputs.product == 'true'
+        run: corepack enable
+      - name: Resolve Yarn cache folder
+        if: needs.changes.outputs.product == 'true'
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v6
+        if: needs.changes.outputs.product == 'true'
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}
+      - if: needs.changes.outputs.product == 'true'
+        run: yarn install --immutable
+      - if: needs.changes.outputs.product == 'true'
+        run: yarn check
+
+  web-source-check:
+    name: Web source checks (no installer)
+    needs: changes
+    if: needs.changes.outputs.web == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Checkout the backend integration contract
+        uses: actions/checkout@v6
+        with:
+          repository: techflag/workdsh-admin
+          ref: 2459c9b8f26cadad3565f0d6d5eadb8a1659b861
+          path: workdsh-admin
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - run: corepack enable
+      - working-directory: apps/web
+        run: pnpm install --frozen-lockfile
+      - name: Build shared and enterprise packages
+        working-directory: apps/web
+        run: |
+          pnpm build
+          pnpm --filter workdsh-provider-identity-enterprise build
+          pnpm --filter workdsh-plugin-enterprise-collaboration build
+      - name: Check shared and enterprise types
+        working-directory: apps/web
+        run: |
+          pnpm typecheck
+          pnpm --filter workdsh-provider-identity-enterprise typecheck
+          pnpm --filter workdsh-plugin-enterprise-collaboration typecheck
+      - working-directory: apps/web
+        run: pnpm check:versions
+      - name: Install browser for Web integration tests
+        working-directory: apps/web
+        run: pnpm exec playwright install --with-deps chromium
+      - working-directory: apps/web
+        run: pnpm test:integration
+      - name: Library import, search and task reference tests
+        working-directory: apps/web
+        run: node --test ../../packages/plugins/library/tests/*.test.mjs
+      - name: Enterprise desktop identity and collaboration tests
+        working-directory: apps/web
+        run: node --test ../../packages/providers/identity-enterprise/tests/*.test.mjs ../../packages/plugins/enterprise-collaboration/tests/*.test.mjs
+
+  # Windows-only logic and unsigned NSIS build on a real Windows runner:
+  # updates, window options, pwsh sandbox, volume diagnostics, and packaging.
+  # The package gate runs once before packaging.
+  desktop-windows:
+    needs: changes
+    if: needs.changes.outputs.desktop == 'true'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - run: corepack enable
+      - name: Resolve Yarn cache folder
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$env:GITHUB_OUTPUT"
+      - uses: actions/cache@v6
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}
+      - name: Package Windows through the single release script
+        timeout-minutes: 60
+        run: node scripts/package-desktop-release.mjs --source=local
+      - name: Report unpacked Windows footprint
+        run: node apps/desktop/scripts/report-package-footprint.mjs apps/desktop/dist/win-unpacked apps/desktop/dist/windows-footprint.json
+      - name: Upload Windows footprint report
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-footprint-windows-x64
+          path: apps/desktop/dist/windows-footprint.json
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsh-plugin-desktop-windows-x64
+          path: |
+            apps/desktop/dist/*.exe
+            apps/desktop/dist/*.blockmap
+          if-no-files-found: error
+          retention-days: 14
+
+  # Per-architecture macOS packaging smoke on a real macOS runner: the signed
+  # release is built manually on a credentialed machine, so an unsigned DMG
+  # here catches Intel and Apple Silicon packaging regressions before a manual
+  # release. No signing secrets ever reach this job.
+  desktop-macos:
+    needs: changes
+    if: needs.changes.outputs.desktop == 'true'
+    runs-on: macos-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x64, arm64]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - run: corepack enable
+      - name: Resolve Yarn cache folder
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v6
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}
+      - name: Package macOS through the single release script
+        timeout-minutes: 55
+        env:
+          WORKDSH_MAC_ARCH: ${{ matrix.arch }}
+        run: node scripts/package-desktop-release.mjs --source=local
+      - name: Upload macOS architecture DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: dsh-plugin-desktop-macos-${{ matrix.arch }}
+          path: |
+            apps/desktop/dist/mac-smoke/${{ matrix.arch }}/*.dmg
+            apps/desktop/dist/mac-smoke/${{ matrix.arch }}/*.dmg.blockmap
+          if-no-files-found: error
+          retention-days: 14
+
+  enterprise-plugin:
+    needs: [changes, check]
+    if: github.ref_type == 'tag' || github.event_name == 'workflow_dispatch' || needs.changes.outputs.web == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - run: corepack enable
+      - working-directory: apps/web
+        run: pnpm install --frozen-lockfile
+      - working-directory: apps/web
+        run: pnpm build
+      - name: Build independent enterprise connection download
+        working-directory: apps/web
+        run: node scripts/pack-enterprise-connection.mjs ../../output/enterprise-plugin
+      - name: Create matching enterprise plugin ZIP
+        run: |
+          python3 - <<'PYZIP'
+          from pathlib import Path
+          import tarfile, zipfile
+          archive, = Path('output/enterprise-plugin').glob('*.tgz')
+          with tarfile.open(archive) as source, zipfile.ZipFile(archive.with_suffix('.zip'), 'w') as target:
+              for member in source.getmembers():
+                  if not member.name.startswith('package/') or '..' in Path(member.name).parts or member.issym() or member.islnk():
+                      raise ValueError('Unsupported archive member: ' + member.name)
+                  if member.isfile():
+                      info = zipfile.ZipInfo(member.name)
+                      info.external_attr = (member.mode | 0o100000) << 16
+                      info.compress_type = zipfile.ZIP_DEFLATED
+                      target.writestr(info, source.extractfile(member).read())
+          with tarfile.open(archive) as source, zipfile.ZipFile(archive.with_suffix('.zip')) as target:
+              assert target.testzip() is None
+              for member in source.getmembers():
+                  if member.isfile():
+                      assert source.extractfile(member).read() == target.read(member.name)
+          PYZIP
+      - uses: actions/upload-artifact@v4
+        with:
+          name: workdsh-enterprise-plugin
+          path: output/enterprise-plugin/*
+          if-no-files-found: error
+
+  publish-desktop-release:
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'desktop-v')
+    needs: [check, desktop-windows, desktop-macos, enterprise-plugin]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.23.2
+      - name: Require release commit on main
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor HEAD origin/main
+      - name: Require one DSH version before publication
+        run: node scripts/verify-desktop-dsh-alignment.mjs
+      - name: Require release tag to match Desktop package version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          node -e "const version = require('./apps/desktop/package.json').version; if (process.env.TAG !== 'desktop-v' + version) { throw new Error('Release tag does not match Desktop package version: ' + process.env.TAG + ' != desktop-v' + version) }"
+      - name: Download desktop packages
+        uses: actions/download-artifact@v5
+        with:
+          pattern: dsh-plugin-desktop-*
+          path: staging
+      - name: Download enterprise plugin
+        uses: actions/download-artifact@v5
+        with:
+          name: workdsh-enterprise-plugin
+          path: enterprise-assets
+      - name: Verify enterprise plugin provenance and download integrity
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';import crypto from 'node:crypto';const m=JSON.parse(fs.readFileSync('enterprise-assets/enterprise-plugin-manifest.json'));const p=JSON.parse(fs.readFileSync('packages/enterprise-connection/package.json'));if(m.sourceCommit!==process.env.EXPECTED_COMMIT||m.name!==p.name||m.version!==p.version||m.dshVersion!==p.peerDependencies['@deepseek-ai/dsh']||m.filename!==p.name+'-'+p.version+'.tgz')throw Error('Enterprise plugin provenance mismatch');const b=fs.readFileSync('enterprise-assets/'+m.filename);if(b.length!==m.bytes||crypto.createHash('sha256').update(b).digest('hex')!==m.sha256)throw Error('Enterprise plugin archive mismatch');"
+      - name: Prepare uniquely named release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir release-assets
+          while IFS= read -r -d '' file; do
+            artifact="$(basename "$(dirname "$file")")"
+            name="$(basename "$file")"
+            cp "$file" "release-assets/${artifact}--${name}"
+          done < <(find staging -type f -print0)
+          cp enterprise-assets/* release-assets/
+          (cd release-assets && sha256sum -- * > SHA256SUMS)
+      - name: Publish GitHub prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          VERSION="${TAG#desktop-v}"
+          cat > release-notes.md <<'EOF'
+          WorkDSH Desktop 将 WorkBuddy 风格的项目、资料、专家、技能和连接器工作台与 DeepSeek Harness 插件能力结合。
+
+          - 本地插件压缩包按内容校验后保存到应用管理目录，安装后移动或删除原始下载文件不再阻挡后续安装。
+          - 新会话创建独立空白会话，不沿用旧草稿的专家、MCP 或资料选择；明确切换专家仍保留当前草稿与引用。
+          - 修复 macOS 召唤或切换专家时的 Dock 闪动，后台浏览器从原生启动阶段保持无 Dock 图标，主窗口正常显示。
+          - 对话框可直接召唤专家并显示当前专家名称；切换专家保留资料库的可点击引用和 MCP 选择。
+          - 资料库支持 CSV/XLSX 导入；专家、资料库和 MCP 的选择浮层保持一致。
+          - 内置 MCP 示例随当前安装包定位运行文件，避免升级后引用旧路径。
+          - 技能页接入 SkillHub 目录，可查看技能图标、来源、版本与安装入口；本地技能仍可单独管理。
+          - 现有插件页可直接发现 DSH 社区插件，并打开第三方 dsh-market 目录进行搜索和安装。
+          - Desktop 使用与源码锁一致的官方 DSH Profile；内置 Node.js 和 Python，不额外打包浏览器。
+          - 企业连接作为独立 tgz 附件下载，在个人空间“插件 → 添加插件”输入下载文件的完整路径安装，再进入“设置 → 企业账号 → 连接企业”；无需第三方市场。基础安装包不预装企业插件。
+          - 提供 Windows x64 安装包，以及 macOS Intel x64、Apple Silicon arm64 未签名 DMG。
+
+          SkillHub 和 dsh-market 是独立第三方来源；目录内容并非全部预装或经 WorkDSH 审核。安装前请检查许可、依赖和版本兼容性。本次为 Alpha 预发布，升级前请备份本地配置和数据。所有文件的 SHA-256 见 `SHA256SUMS`。
+          EOF
+          gh release create "$TAG" release-assets/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "WorkDSH Desktop ${VERSION}" \
+            --notes-file release-notes.md \
+            --latest

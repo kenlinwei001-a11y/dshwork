@@ -1,20 +1,74 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-.venv/
-*.egg-info/
-.pytest_cache/
-
-# 备份（历史版本，不进 git）
-backup/
-
-# 系统文件
+node_modules/
+.pnpm-store/
+.idea/
 .DS_Store
+coverage/
+**/dist/
+**/lib/
+*.tsbuildinfo
+.test-runtime/
+.artifacts/
+tmp/
+.env
+.env.*
+!.env.example
+/docs/
+/.qoder/
+**/__pycache__/
+*.py[cod]
 
-# 运行时状态 / 生成产物
-knowledge-processing-expert/storage/
-knowledge-processing-expert/demo/
+packages/plugins/office/src/presentation/native-react/native.css
 
-# 无关文件
+# Locally generated task deliverables
+/output/
+
+# Python 虚拟环境（知识处理专家的 .venv 有 400+MB，绝不入库）
+.venv/
+venv/
+
+# ── 上游（upstream 合并带入）──
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.build/
+
+apps/desktop/dist/
+apps/desktop/lib/
+dsh-community-market/lib/
+
+.env.yarn
+/dist/
+/.test-harness/
+
+# Verified official binary release cache (generated, never source).
+apps/desktop/build/official-release-cache/
+
+/apps/desktop/lib/
+/apps/desktop/dist/
+/apps/desktop/build/official-release-cache/
+
+/packages/**/dist/
+/packages/**/lib/
+/packages/**/__pycache__/
+/packages/plugins/office/src/presentation/native-react/native.css
+
+# Local caches and development evidence are not release content.
+/.artifacts/
+/.idea/
+/.playwright-mcp/
+/.pnpm-store/
+/.qoder/
+/.test-runtime/
+/scripts/__pycache__/
+**/.playwright-mcp/
+
+# ── 知识处理 + 推演写作子系统（knowledge/ 命名空间，本地交付）──
+.pytest_cache/
+*.egg-info/
+backup/
 *.xlsx
+/knowledge/knowledge-processing-expert/storage/
+/knowledge/knowledge-processing-expert/demo/

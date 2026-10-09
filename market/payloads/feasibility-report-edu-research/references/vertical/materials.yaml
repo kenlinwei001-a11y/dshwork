@@ -1,0 +1,170 @@
+vertical: edu-research
+required_materials:
+  M1_approval:
+    required: true
+    ask: '请提供本项目的立项批复或校党委会/校长办公会决议（含文号与日期）。
+
+      若尚在办理，请说明当前进度与预计取得时间。
+
+      '
+    consequence: D1 必要性缺行政依据；报教育部或发改委时会被直接退回
+  M2_planning_land:
+    required: true
+    ask: '请提供：① 用地红线图或校园总体规划中本地块的图则；
+
+      ② 规划控制指标（容积率、建筑密度、绿地率、限高）；③ 土地权属证明。
+
+      拆除重建的还需提供拟拆除建筑的产权与测绘资料。
+
+      '
+    consequence: D2 规划符合性与 D3 选址用地均无法论证
+  M3_design:
+    required: true
+    ask: '请提供方案设计的**建筑面积分项表**（分地上/地下、分功能分区，
+
+      注明设备层与地下部分是否计入），以及总平面图与各层平面图。
+
+      并请一并说明**实验室专项条件**：通风换气次数与通风柜数量、
+
+      排污预处理要求、设备负荷等级与是否需 UPS、防振要求、
+
+      恒温恒湿区范围、危化品储存与洁净等级。
+
+      '
+    consequence: '无面积分项则造价单方无分母、用水用电与能耗全部悬空；
+
+      无实验室专项条件则 D5 技术方案只能写通用条款，评审必被指出"套模板"
+
+      '
+  M4_cost_finance:
+    required: true
+    ask: '请提供投资估算书，须含：费用构成分项（建安费/工程建设其他费/基本预备费
+
+      /拆除费）、价格年份与所在地、预备费费率及计价依据、明确的不含项清单。
+
+      **并请明确回答：实验室专用仪器设备费是否计入本项目总投资。**
+
+      若估算尚未编制，请提供概算指标表或立项批复中的投资规模，我们标为待细化。
+
+      '
+    consequence: D8 投资估算不成立；仪器设备费口径不明会让总投资整体失真
+  M6_baseline:
+    required: true
+    ask: '请提供：① 该学科/平台**分类**的人员规划数——科研人员、研究生、
+
+      博士生、访问学者须分开给，人均指标不同，只给总数无法测算；
+
+      ② 现有科研用房台账（面积与统计时点）；③ 现状使用情况说明
+
+      （拥挤程度、是否借用外部房源、有无危房）。
+
+      '
+    consequence: 无分类人数则规模测算无法起步；无现状描述则必要性论证的地基是空的
+  M5_construction:
+    required: false
+    required_when: project.nature == 拆除重建
+    ask: '请提供总进度安排（开完工时间、关键节点）。
+
+      **涉及既有建筑拆除的必须一并提供**：拆除范围与面积、拆除手续办理进度、
+
+      原使用单位的腾空与过渡安置安排。
+
+      '
+    consequence: D7 实施进度无依据；拆除类缺腾空安排会在评审被直接追问
+  M7_special_assessment:
+    required: false
+    ask: 请提供已取得的环评、能评、稳评意见与市政接入条件确认；未办理的请说明计划办理时间
+    consequence: 未办不阻塞成稿，但须在 CH9 列为前置条件风险并给办理计划
+vertical_specific:
+- item: 人员规划数的分类口径
+  belongs_to: M6_baseline
+  why: 科研人员与研究生的人均指标不同，合并给出即无法测算
+  ask_precisely: 请按科研人员 / 研究生 / 博士生 / 访问学者分列，并注明是规划数还是现有数
+- item: 访问学者归档
+  belongs_to: M6_baseline
+  why: 常见做法是与研究生并档，但这是编制单位口径，不是规范明文
+  ask_precisely: 访问学者按哪一档指标计？是否与研究生同档？
+- item: 配套用房的使用面积与换算系数
+  belongs_to: M3_design
+  why: 配套清单给的通常是**使用面积**，必须换算后才能与科研用房相加
+  ask_precisely: 配套用房请给使用面积清单，并明确使用面积→建筑面积的换算系数取值
+  caution: 该系数无国标依据，属编制单位口径，必须标 E1_given 并请客户确认
+- item: 实验室专用仪器设备费的计列口径
+  belongs_to: M4_cost_finance
+  why: 各校口径不同，金额巨大，漏问会让投资估算整体失真
+  ask_precisely: 实验室专用仪器设备费是否计入本项目总投资？若计入，请提供设备清单与金额
+- item: 拆除四件事
+  belongs_to: M5_construction
+  applicable_when: project.nature == 拆除重建
+  why: 拆除类项目最容易漏 CH5.4——以为"校内自拆不算征收"
+  ask_precisely: 拆除面积、拆除费、腾空与过渡安置安排、拆除手续办理进度，四项缺一评审都会问
+- item: 投资估算的分项明细
+  belongs_to: M4_cost_finance
+  why: 建安费是分项汇总上来的，只收汇总值这条链就不能重算，改面积也不会自动改造价
+  ask_precisely: 请提供估算表的**分项明细页**：每项的工程量、单位、单位造价、合价
+  caution: 验过的真实报告里，分项之和与合计对不上（室外总体差 6.1%），只有收到分项才查得出
+- item: 人员规划数按研究中心分列
+  belongs_to: M6_baseline
+  why: 验过的真实报告里 315 人是四个研究中心的合计，收总数就丢了这一层
+  ask_precisely: 请按各研究中心/团队分列，每个单元再分科研人员与研究生等类别
+  caution: 少了这一层，「某个中心扩编」这类最常见的变更算不出影响
+- item: 负荷计算的需要系数
+  belongs_to: M3_design
+  why: 电气章常只给指标与结果，中间的需要系数不写，导致无法复算
+  ask_precisely: 请提供负荷计算表明细：分区用电面积、用电指标、需要系数、同时使用系数
+  caution: 真实报告里这个系数在节能章的表里躺着，与电气章的指标口径还不一致
+routing_overrides:
+  index.research.per_capita: SEARCH
+  index.student.per_capita: SEARCH
+  support.area_coefficient: ASK
+  program.researcher.headcount: ASK
+  program.student.headcount: ASK
+  demolition.area: ASK
+  equipment.included: ASK
+ask_fallback_eligible:
+- slot: energy.index
+  cn: 单位面积综合能耗指标
+  query_facets:
+  - 项目所在地气候区
+  - 高等学校科研建筑
+  - 单位面积能耗
+  - 约束值
+  typical_source: 民用建筑能耗标准、地方公共建筑能耗限额
+  provenance_after: E2_normative
+  refine_when: 设计单位出具能耗计算书后
+  caution: 科研建筑的**工艺用能**（实验设备、通风）通常不计入公共建筑能耗指标，口径必须问清
+- slot: water.quota
+  cn: 用水定额
+  query_facets:
+  - 项目所在地
+  - 高等学校
+  - 用水定额
+  typical_source: 建筑给水排水设计标准、地方用水定额
+  provenance_after: E2_normative
+  refine_when: 给排水专业出具计算书后
+- slot: cost.contingency_rate
+  cn: 基本预备费费率
+  typical_source: 计价依据
+  provenance_after: E2_normative
+  refine_when: 造价单位出具估算书后
+- slot: cost.unit_price_reference
+  cn: 单方造价的量级参照
+  provenance_after: E5_analogical
+  hard_rule: '**只能佐证合理性，不能充当 cost.construction 的取值。**
+
+    本项目造价必须来自造价单位；用类比值填进去就是 NF1。
+
+    入图须标 benchmark_only: true。
+
+    '
+ask_fallback_ineligible:
+- slot: program.*.headcount
+  why: 出自客户的事业发展规划，行业平均值不是本单位的规划数
+- slot: '*.existing.*'
+  why: 现有科研用房面积是缺额的减数，用别处的数算出来的缺额是假的
+- slot: support.area_coefficient
+  why: 编制单位口径，各项目不同，检索不到"正确值"
+- slot: demolition.area
+  why: 出自产权与测绘资料，只有客户有
+- slot: 实验室专项条件
+  why: 设计单位成果。可用行业典型值作候选请设计单位确认，确认前不得当设计值用

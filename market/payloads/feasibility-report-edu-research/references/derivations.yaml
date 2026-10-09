@@ -1,0 +1,552 @@
+# =============================================================================
+# 通用派生规则语言 (L0)
+# -----------------------------------------------------------------------------
+# 本文件定义"规则怎么写"，不定义"某个领域有哪些规则"。
+# L1 领域画像通过实例化下方 templates 来绑定本领域的具体规则。
+#
+# 纪律：凡 tier=derived 的槽位，必须且只能由此处的规则产生。
+#      人工录入 derived 槽位 = 制造不一致的源头。
+# =============================================================================
+
+meta:
+  id: fsr-derivations
+  version: 0.2.0
+  layer: L0
+  depends_on: [fsr-core, fsr-argumentation]
+
+# =============================================================================
+# 1. 表达式语言
+# =============================================================================
+expression_language:
+  node_ref: 点分路径，如 program.researcher.demand、cost.total
+  literals: 数字、字符串
+  operators: ["+", "-", "*", "/", "()"]
+  functions:
+    sum:    变参求和
+    round:  round(x, n)
+    ceil:   向上取整
+    floor:  向下取整
+    min:    变参最小
+    max:    变参最大
+    abs:    绝对值
+  forbidden:
+    - 任意 Python 求值（检查器用受限 AST 白名单执行）
+    - 对未在图中声明的节点取值（未声明即报 unresolved，不得静默当 0）
+
+# =============================================================================
+# 2. 通用算子 (6)
+#    每个算子决定了规则触发哪一类约束检查。
+# =============================================================================
+operators:
+
+  index:
+    cn: 指标派生
+    form: target = driver × index_value
+    triggers: C2
+    semantics: 用"规模驱动量 × 单位指标"求需求量。可研中最基础的一步
+    requires_basis: true
+    note: index_value 必须绑定 Norm（E2 证据），否则 C5 报缺 backing
+
+  aggregate:
+    cn: 汇总
+    form: whole = sum(parts...)
+    triggers: C3
+    semantics: 分项加总为总量
+
+  allocate:
+    cn: 分解
+    form: parts[] ← split(whole, dimension)
+    triggers: C3
+    semantics: 总量沿某维度分解
+    invariants:
+      - 分解必须穷尽：sum(parts) == whole
+      - 分解不得重叠：parts 的维度取值互不相同
+      - 二维分解须行列双向校验
+
+  rate:
+    cn: 费率派生
+    form: target = base × rate
+    triggers: C2
+    semantics: 按比率计算，如预备费、各类取费
+
+  lookup:
+    cn: 查表派生
+    form: target = table[key1][key2]
+    triggers: C2
+    semantics: 按受控词表组合查矩阵，如风险等级 = f(likelihood, severity)
+    note: 表本身是 E2 证据，必须可溯源
+
+  identity:
+    cn: 复述
+    form: target ≡ source
+    triggers: C1
+    semantics: 同一事实在他章的再次出现。总论章与结论章几乎全部由此构成
+    note: 不是复制，是引用。渲染时注入，物理上不存在第二份值
+
+  forecast:
+    cn: 需求预测
+    form: target = f(历史序列, 情景参数, 预测年限)
+    triggers: C2, C4f
+    semantics: |
+      由需求预测推导规模。2023 大纲原文「在需求分析基础上」提出规模，
+      使 forecast 成为制度上的强制前置，而非可选路径。
+    requires_basis: true
+    mandatory_outputs:
+      - 预测方法（趋势外推/弹性系数/四阶段法/类比法/回归）
+      - 预测年限（近期/远期，须与工期和运营期对齐）
+      - 情景设定（乐观/基准/悲观）
+      - 置信区间或波动范围
+    note: |
+      与 index 的关键差别：index 的输出是确定值，forecast 的输出**带不确定性**。
+      因此凡 forecast 参与的论证，argument_unit.robustness 强制必填（C4f）。
+      "交通量预测 2039 年达 X pcu/d" 若不给情景与区间，是不可评审的。
+
+# =============================================================================
+# 3. 规则 schema
+# =============================================================================
+rule_schema:
+  fields:
+    id:        {required: true}
+    operator:  {required: true, enum: [index, aggregate, allocate, rate, lookup, identity]}
+    target:    {required: true, note: 被计算的节点，其槽位 tier 必须为 derived}
+    formula:   {required: true, note: 表达式或算子专用结构}
+    unit:      {required: true, note: 派生结果的单位，与 target 声明单位比对}
+    tolerance: {default: 0.005, note: 相对容差。取整类规则应放宽}
+    basis:     {note: 指向 Norm 节点。index/rate/lookup 强制要求}
+    serves:    {note: 本规则的结果服务于哪个可行性维度，用于缺口归因}
+    on_missing:
+      enum: [error, skip, ask]
+      default: ask
+      note: |
+        输入缺失时的行为。ask = 生成客户提问，进入 intake 问卷；
+        这是"人机交互"的自动触发点，不靠人记得去问。
+
+# =============================================================================
+# 4. 可复用规则模板
+#    L1 通过 instantiate 填参数即可，不需要重写逻辑。
+#    模板即"可研报告的通用推理骨架"。
+# =============================================================================
+# =============================================================================
+# 推演逻辑 —— 光有算式不够
+# -----------------------------------------------------------------------------
+# formula 只说明「乘了什么」，说明不了「为什么这么乘」。
+# 而评审追问的恰恰是后者：这个指标凭什么用在本项目、面积口径取的哪一个、
+# 中间那个系数哪来的、换一个口径结果差多少。
+#
+# 一条推演在图上要能自证，光有 formula + basis 不够，还要有：
+#
+#   method       用的什么方法（指标法 / 缺额法 / 类比法 / 规范判定）
+#   warrant      凭什么可以用这个方法（Toulmin 的保证，最容易被省略的一环）
+#   inputs       每个输入的角色与来源，UNKNOWN 也要列出来
+#   steps        分步逻辑。判定类推演尤其需要——它不是一个算式，是一串判断
+#   assumptions  口径与假设，逐条显式，并写明换一个口径影响多大
+#
+# 为什么 assumptions 必须显式：真实报告里最难查的错不是算错，是**口径错**。
+# 「70 W/㎡ × 面积」这个式子本身没问题，但面积取总建筑面积还是地上面积，
+# 结果差 1.7%；用水人数取在校生还是住宿人数，结果差一倍。
+# 算式一样，口径不同，正文读起来完全正常。
+# =============================================================================
+
+derivation_logic:
+
+  required_for: 全部 tier 为 derived 的节点
+  check: C22
+
+  fields:
+    method:
+      required: true
+      enum: [指标法, 缺额法, 类比法, 规范判定, 汇总, 分摊, 复述]
+      note: 方法选错比算错严重——算错能被复算发现，方法错复算也是错的
+
+    warrant:
+      required: true
+      cn: 凭什么可以用这个方法
+      note: |
+        Toulmin 六元素里最常被省略的一环，省了就成了断链论证。
+        「按指标法估算」不是 warrant，「规范允许方案阶段按单位面积指标估算，
+        施工图阶段须按设备清单核算」才是。
+
+    inputs:
+      required: true
+      cn: 每个输入的角色与来源
+      shape: "{节点名: {role: 角色, source: node|norm|material|ask, status: ok|UNKNOWN}}"
+      hard: |
+        **UNKNOWN 的输入也必须列出来。** 省略它，这条推演看起来是闭合的，
+        实际是断的——而断在哪里恰恰是最该让人看见的信息。
+
+    steps:
+      required_when: method 为 规范判定
+      cn: 分步判定逻辑
+      note: |
+        判定类推演不是一个算式，是一串判断：
+        建筑高度 + 使用性质 → 建筑分类 → 耐火等级 → 防火分区上限。
+        只写最后那个结论，中间任何一步判错都查不出来。
+
+    assumptions:
+      required: false
+      cn: 口径与假设
+      shape: "[{id, text, alternatives, impact}]"
+      note: |
+        impact 要写**换一个口径结果差多少**，不是写「可能有影响」。
+        差 1.7% 和差一倍，是两种性质的问题，读的人要能一眼分开。
+
+    chain_status:
+      required: true
+      enum: [closed, closed_with_placeholder, broken]
+      cn: 这条推演链闭合了没有
+      closed: 每个输入都能一路追到 given 或 norm
+      closed_with_placeholder: 有输入是反算值或替代值，已标 is_placeholder
+      broken: 有输入缺失，无法复算。**必须写 broken_reason**
+
+  no_backsolve:
+    cn: 不许反算
+    rule: |
+      结果已知、某个系数未知时，**不许由结果反解那个系数再拿它当依据**。
+      反算值只在两种情况下可登记：① 与规范常用取值吻合，且标 is_placeholder；
+      ② 仅作为核对线索写在 note 里，不进 value。
+    why: |
+      反算出来的系数会让这条链在形式上闭合——复算能对上，检查器也报绿。
+      但它证明的只是「我们用这个系数能倒推回那个结果」，
+      不是「这个结果是对的」。**这是编造穿了推演的外衣，比直接填一个数更难发现。**
+
+templates:
+
+  T1_indexed_demand:
+    cn: 指标法需求测算
+    operator: index
+    pattern: "{unit}.demand = {unit}.driver_metric * {unit}.index_value"
+    params: [unit]
+    basis_required: true
+    serves: D4
+    note: 适用于一切"数量 × 单位指标 = 需求量"的场景，与领域无关
+
+  T2_demand_rollup:
+    cn: 需求汇总
+    operator: aggregate
+    pattern: "scale.demand_total = sum({units}.demand)"
+    params: [units]
+    serves: D4
+
+  T3_design_vs_demand:
+    cn: 设计值与需求值比对
+    operator: rate
+    pattern: "scale.deviation = (scale.design_total - scale.demand_total) / scale.demand_total"
+    params: []
+    serves: D4
+    note: |
+      结果不参与后续计算，只用于生成 argument_unit 的 qualifier。
+      偏差超阈值时强制要求填写 rebuttal——这正是样本缺失的那一环。
+
+  T4_load_from_scale:
+    cn: 规模驱动的资源负荷
+    operator: index
+    pattern: "load.{resource} = {driver_node} * load.{resource}.index"
+    params: [resource, driver_node]
+    basis_required: true
+    serves: D6
+
+  T5_cost_rollup:
+    cn: 造价汇总
+    operator: aggregate
+    pattern: "cost.total = sum({cost_items})"
+    params: [cost_items]
+    serves: D8
+
+  T6_contingency:
+    cn: 预备费
+    operator: rate
+    pattern: "cost.contingency = ({base_items}) * cost.contingency_rate"
+    params: [base_items]
+    basis_required: true
+    serves: D8
+
+  T7_funding_balance:
+    cn: 资金总量平衡
+    operator: aggregate
+    pattern: "funding.total = sum({sources})"
+    params: [sources]
+    serves: D8
+    hard_constraint: "funding.total == cost.total"
+    note: 这不是容差比对，是硬等式。不等即报 error，不接受任何解释
+
+  T8_annual_allocation:
+    cn: 资金年度分解
+    operator: allocate
+    pattern: "funding.annual[y][s] ← split(funding.sources[s], years)"
+    params: [sources, years]
+    serves: D8
+    invariants:
+      - 行合计：每个资金来源的年度和 == 该来源总额
+      - 列合计：每个年度的各来源和 == 该年度合计
+      - 全表合计 == funding.total
+      - 年度范围必须落在 project.duration 内
+    note: 二维分解，行列双向校验。样本此表三个方向全部闭合，是好的范例
+
+  T9_risk_matrix:
+    cn: 风险等级判定
+    operator: lookup
+    pattern: "risk.{id}.level = matrix[risk.{id}.likelihood][risk.{id}.severity]"
+    params: [id]
+    basis_required: true
+    serves: D7
+
+  T11_demand_forecast:
+    cn: 需求预测定规模
+    operator: forecast
+    pattern: "scale.demand_total = forecast({driver_series}, {scenario}, {horizon})"
+    params: [driver_series, scenario, horizon]
+    basis_required: true
+    serves: D4
+    robustness_required: true
+    note: |
+      市政道路：交通量预测 → 通行能力 → 车道数与横断面
+      产业园区：市场需求预测 → 可租售面积 → 建设规模
+      信息化：  业务量与信息量预测 → 并发数/存储容量 → 设备配置
+
+  T16_deficit:
+    cn: 缺额法定规模
+    operator: aggregate
+    pattern: "deficit = demand_required - baseline_existing ；本次新建 ≤ deficit"
+    params: [demand_required, baseline_existing]
+    basis_required: true
+    serves: D4
+    hard_constraint: "scale.design_total <= deficit"
+    note: |
+      指标法的完整形态。T1 只算「应建面积」，但报批实务要的是「缺额」——
+      应建 − 现有 = 缺额，本次新建必须落在缺额范围内，否则构成重复建设。
+      baseline_existing 取自 Context.baseline，这正是 v0.2 把 Site 泛化为 Context 的用处。
+      高校类典型：应建485000 − 现有319837 = 缺额165163 ≥ 本次新建19900 ✓
+
+  T17_mandatory_ancillary:
+    cn: 强制配建
+    operator: rate
+    pattern: "ancillary.{kind} = {base_area} * {rate}"
+    params: [kind, base_area, rate]
+    basis_required: true
+    serves: [D2, D4]
+    note: |
+      地方强制配建要求，如人防、充电桩、垃圾房、海绵设施。
+      basis 必须绑定地方法规（Mandate.mandate_type=regulation, scope=universal），
+      且该 Mandate 同时挂 complies_with 边服务 D2——配建不达标即合规性不成立。
+      例：湖北省人防〔2021〕31号，公共设施用地按地上总建筑面积5%配建民防工程。
+
+  T12_dual_check:
+    cn: 双重校验（需求倒推 + 约束指标）
+    operator: rate
+    pattern: "scale.check_ratio = scale.demand_total / {constraint_index}"
+    params: [constraint_index]
+    basis_required: true
+    serves: D4
+    note: |
+      产业园区典型：需求倒推得建筑面积总量，再用容积率、建筑密度、
+      投资强度、亩均税收等地方约束指标校核用地规模。两条路径都要过。
+      注：这些约束指标属地方园区用地政策，非国家级大纲内容，L1 挂接时须按项目所在地核实。
+
+  T13_financial_indicators:
+    cn: 财务评价指标
+    operator: lookup
+    pattern: "fin.{indicator} = from_statement({statement}, {indicator})"
+    params: [indicator, statement]
+    basis_required: true
+    serves: D11
+    robustness_required: true
+    indicator_set:
+      融资前: [FIRR_pretax, FIRR_aftertax, FNPV, Pt]
+      融资后: [FIRR_equity, ROI, ROE]
+      偿债:   [ICR, DSCR, LOAR]
+      生存:   [cumulative_surplus]
+    hard_constraint: "min(cumulative_surplus) >= 0"
+    note: |
+      依《建设项目经济评价方法与参数》(第三版)。
+      「借款偿还期」不在指标集内——第三版起已降级为估算 ICR/DSCR 的辅助参数，
+      明文规定不应与 ICR/DSCR 并列。
+
+  T14_sensitivity:
+    cn: 敏感性与临界值
+    operator: rate
+    pattern: "sens.{factor}.critical = solve({target_indicator} == {threshold}, {factor})"
+    params: [factor, target_indicator, threshold]
+    serves: [D4, D11]
+    note: |
+      产出直接写入对应 argument_unit.robustness，不得孤立摆在财务章。
+      典型：建安造价上浮多少时 FIRR 跌破基准收益率；
+            交通量低于预测多少时 EIRR 跌破社会折现率。
+
+  T15_compliance_matrix:
+    cn: 政策法规符合性对照
+    operator: identity
+    pattern: "compliance_table ← render(complies_with 边全集)"
+    params: []
+    serves: D2
+    note: |
+      「政策法规符合性对照表」不是手写的表，是图上一类边的渲染结果。
+      新增一条政策只需加一个 Mandate 节点 + 一条 complies_with 边。
+      若该政策同时被用作 D1 的 driver，两处引用同一份节点——
+      这就是把政策法规抽象为统一节点的直接收益。
+
+  # ---------------------------------------------------------------------------
+  # T18–T23 设计参数推导
+  # 可研阶段的机电取值大多是「规范查表 → 算术」两步。把它们做成模板，
+  # 是因为这些量在人工写作里最常见的问题不是算错，是**各章取值不一致**：
+  # 用水量在给排水章一个数、在市政配套章另一个数。图上只存一份就没有这个问题。
+  # ---------------------------------------------------------------------------
+
+  T18_load_from_index:
+    cn: 用电计算负荷
+    operator: index
+    form: "load.calc = index.electricity * scale.design_total * factor.demand"
+    inputs: {index.electricity: 用电指标 W/㎡（按建筑类型查取）,
+             factor.demand: 需要系数（按规范取）}
+    serves: [D5, D6]
+    caution: |
+      指标法只到方案深度。**有大功率工艺设备时（实验室、算力平台、厨房），
+      必须在指标之外单列设备负荷**——否则变压器容量会算小，这是评审必查项。
+
+  T19_transformer_capacity:
+    cn: 变压器容量
+    operator: rate
+    form: "elec.transformer = load.calc / factor.power_factor / factor.load_rate"
+    inputs: {factor.power_factor: 功率因数, factor.load_rate: 变压器负载率}
+    serves: D5
+    caution: 取整到标准容量档位，且要说明取的是哪一档——不是算出多少写多少
+
+  T20_hvac_load:
+    cn: 冷热负荷
+    operator: index
+    form: "hvac.cool_load = index.cool * area.airconditioned"
+    inputs: {index.cool: 冷负荷指标 W/㎡, area.airconditioned: 空调面积}
+    serves: [D5, D6]
+    caution: |
+      **分母是空调面积不是总建筑面积。** 用总建筑面积算会系统性偏大。
+      另注意这里有一处已知回环：冷热负荷 → 机房面积 → 反馈修正总面积。
+      检查器会报 CYCLE，须人工设切断点（通常是先按估算面积算，再校核一次）。
+
+  T21_water_demand:
+    cn: 最高日用水量
+    operator: index
+    form: "water.max_day = quota.water * count.users * factor.daily_variation / 1000"
+    inputs: {quota.water: 用水定额 L/人·d（按建筑类型查取）,
+             count.users: 用水人数, factor.daily_variation: 日变化系数}
+    serves: [D5, D6]
+    caution: |
+      **用水人数的口径要和规模测算一致。** 宿舍按住宿人数、教学楼按在校生、
+      办公按办公人数——用错口径这个数会差一倍，而正文读起来毫无异常。
+
+  T22_fire_water_volume:
+    cn: 消防水池容积
+    operator: aggregate
+    form: "fire.pool = (fire.indoor_flow + fire.outdoor_flow) * fire.duration * 3.6"
+    inputs: {fire.indoor_flow: 室内消防用水量 L/s, fire.outdoor_flow: 室外消防用水量 L/s,
+             fire.duration: 火灾延续时间 h（按建筑类别查规范）}
+    serves: [D5]
+    caution: 市政能保证室外消防用水时可扣除室外部分，但**必须有供水部门的书面意见**
+
+  T23_fire_compartment:
+    cn: 防火分区面积上限
+    operator: lookup
+    form: "fire.compartment_max = lookup(建筑分类, 耐火等级, 是否设自动灭火)"
+    serves: [D2, D5]
+    caution: |
+      这条只定**上限**，不定实际分区划分——后者要看平面布置，属设计单位成果。
+      可研写到「按规范本项目防火分区不大于 X ㎡」即为合格深度。
+
+  T10_restatement:
+    cn: 跨章复述
+    operator: identity
+    pattern: "{target_section}.{key} ≡ {origin_section}.{key}"
+    params: [key, origin_section, target_section]
+    triggers: C1
+    note: |
+      总论章、结论章的全部内容由本模板生成。
+      它们是 derived_only 章节，不允许引入任何新事实。
+
+# =============================================================================
+# 5. 求解策略
+# =============================================================================
+# =============================================================================
+# 选择型推演 —— 设计内容里大部分结论不是算出来的
+# -----------------------------------------------------------------------------
+# 前面的模板全是算式：输入 × 系数 = 输出。但设计方案章里真正的结论
+# 多数不长这样：
+#
+#     「采用框架结构」        —— 不是算出来的，是在几个合规解里选的
+#     「基础采用桩筏」        —— 同上，依据是地质条件与荷载
+#     「建筑分类为 3 类」      —— 不是选的，是按高度与性质判出来的
+#     「设置机械排烟」        —— 判定，依据是房间位置与面积
+#
+# 只建模算式，等于把设计方案章的推演逻辑丢掉了一大半——
+# 而评审在这一章追问的恰恰是「为什么选这个」，不是「算得对不对」。
+#
+# 所以除了 index/aggregate/rate，还需要两种推演：
+#
+#   lookup   判定型。输入 → 查规范 → 结论。**没有选择余地**，判错就是错
+#   select   选择型。输入 → 若干合规候选 → 按维度比选 → 选中一个
+#
+# 两者不能混。把判定当选择，会写成「本项目选择按 7 度设防」——设防烈度
+# 不是选的，是所在地定的。把选择当判定，会写成「按规范采用框架结构」——
+# 规范没说必须用框架，这句话的依据是假的。
+# =============================================================================
+
+
+  T24_norm_judgment:
+    cn: 规范判定
+    operator: lookup
+    form: target = lookup(输入1, 输入2, ...)
+    method: 规范判定
+    inputs_note: 判定输入必须是图上的节点，不能是"根据经验"
+    requires:
+      steps: 分步判定链。只写结论，中间任何一步判错都查不出来
+      basis: 指向具体规范条款，不是规范名称
+    serves: [D5]
+    caution: |
+      **判定没有选择余地。** 写成「本项目选择…」就把强制要求说成了可选项，
+      评审会认为编制人不懂规范。
+    example: |
+      建筑高度 + 使用性质 → 建筑分类 → 耐火等级 → 防火分区面积上限
+      四步，每步都有条款。中间少一步，最后那个面积上限就无从复核。
+
+  T25_alternative_selection:
+    cn: 方案比选
+    operator: select
+    form: target = select(候选集, 比选维度, 权重)
+    method: 比选
+    requires:
+      alternatives: 候选方案清单。**至少两个**，只有一个不叫比选
+      criteria: 比选维度。造价 / 工期 / 运行费 / 适用性 / 当地施工条件
+      matrix: 各候选在各维度上的取值或定性判断
+      selected: 选中项
+      rationale: 为什么是它——要落到具体维度上，不是"综合考虑"
+      decided_by: 谁定的（客户 / 设计单位 / 编制单位建议）
+    serves: [D5, D7]
+    hard: |
+      **agent 不替客户做选择。** 它可以列候选、填比选矩阵、指出各维度的差异，
+      但 selected 与 rationale 必须由客户或设计单位确认。
+      这跟外部证据「不自行采纳」是同一条边界。
+    caution: |
+      比选最常见的两种假：
+        ① **陪跑候选** —— 列三个方案，其中两个明显不可行，比选变成走过场。
+           候选必须都是合规可行的，否则不如直说「只有一个方案」。
+        ② **结论先行** —— 先定了用什么，再回头编比选理由。
+           识别方法：看 rationale 是否落到了 matrix 里的具体差异上。
+           落不到的，多半是补写的。
+    example: |
+      结构形式：框架 / 框架-剪力墙 / 钢结构
+        造价：框架最低
+        工期：钢结构最短
+        适用性：本项目跨度 8.4m、12 层 —— 框架-剪力墙的抗侧刚度更合适
+        当地施工：装配式混凝土配套成熟，钢结构需外调
+      选中：框架-剪力墙　依据：抗侧刚度 + 当地配套　决定人：设计单位
+
+solving:
+  order: 拓扑排序后迭代至不动点，最多 20 轮
+  cycle_policy: |
+    检测到环时不报错而是报 warning 并给出环路径。
+    可研中存在真实回环（如 面积→设备机房→面积），需人工设定切断点与迭代收敛条件。
+  unresolved_policy: |
+    输入缺失时按 rule.on_missing 处理：
+      ask   → 写入 intake 问卷，标注服务维度与缺口类型（E1/E2/E3）
+      error → 直接中断
+      skip  → 跳过并标记该维度证据不全（C5 报 warning）
+  provenance: |
+    每个派生结果记录完整计算轨迹（用了哪些节点、哪条规则、哪条 basis）。
+    轨迹即 E4 证据，是报告可审计性的基础。
