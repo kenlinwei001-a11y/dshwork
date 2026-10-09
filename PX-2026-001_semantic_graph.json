@@ -1,0 +1,122 @@
+{
+  "skill_id": "SK-15",
+  "skill_name": "semantic-graph-compilation-skill",
+  "project_id": "PX-2026-001",
+  "document_id": "DOC-001",
+  "version_id": "V1.0",
+  "meta": {
+    "title": "锂电制造基地扩产与订单交付风险分析报告（模拟源文件）",
+    "data_cutoff": "2026-08-31",
+    "compiled_at": "2026-09-16"
+  },
+  "items": {
+    "entities": [
+      {"id": "PRJ", "name": "PX-2026-001", "type": "Project", "source": "§0"},
+      {"id": "ORG", "name": "华东锂电制造集团", "type": "Organization", "source": "§1"},
+      {"id": "BASE", "name": "武汉基地", "type": "Base", "source": "§1"},
+      {"id": "WS", "name": "A车间", "type": "Workshop", "source": "§2"},
+      {"id": "A01", "name": "A01线", "type": "ProductionLine", "source": "§2"},
+      {"id": "A02", "name": "A02线", "type": "ProductionLine", "source": "§2"},
+      {"id": "C1", "name": "C1", "type": "Customer", "source": "§2"},
+      {"id": "C2", "name": "C2", "type": "Customer", "source": "§2"},
+      {"id": "C3", "name": "C3", "type": "Customer", "source": "§2"},
+      {"id": "M01", "name": "M01正极材料", "type": "Material", "source": "§3"},
+      {"id": "S1", "name": "S1", "type": "Supplier", "source": "§3"},
+      {"id": "CAR", "name": "承运商", "type": "Carrier", "source": "§4"}
+    ],
+    "relations": [
+      {"id": "RL1", "from": "ORG", "to": "BASE", "type": "owns", "source": "§1"},
+      {"id": "RL2", "from": "BASE", "to": "WS", "type": "has", "source": "§2"},
+      {"id": "RL3", "from": "WS", "to": "A01", "type": "contains", "source": "§2"},
+      {"id": "RL4", "from": "WS", "to": "A02", "type": "contains", "source": "§2"},
+      {"id": "RL5", "from": "BASE", "to": "C1", "type": "delivers_to", "source": "§2"},
+      {"id": "RL6", "from": "BASE", "to": "C2", "type": "delivers_to", "source": "§2"},
+      {"id": "RL7", "from": "BASE", "to": "C3", "type": "delivers_to", "source": "§2"},
+      {"id": "RL8", "from": "S1", "to": "M01", "type": "supplies", "source": "§3"},
+      {"id": "RL9", "from": "BASE", "to": "M01", "type": "consumes", "source": "§3"},
+      {"id": "RL10", "from": "CAR", "to": "BASE", "type": "transports_for", "source": "§4"}
+    ],
+    "facts": [
+      {"id": "F01", "subject": "A01线", "predicate": "有效月产能", "value": 20, "unit": "GWh/月", "source": "E1", "section": "§2"},
+      {"id": "F02", "subject": "A02线", "predicate": "有效月产能", "value": 16, "unit": "GWh/月", "source": "E1", "section": "§2"},
+      {"id": "F03", "subject": "武汉基地", "predicate": "合计有效月产能", "value": 36, "unit": "GWh/月", "source": "E1", "section": "§2"},
+      {"id": "F04", "subject": "客户(8月)", "predicate": "确认订单", "value": 33, "unit": "GWh", "source": "E2", "section": "§2"},
+      {"id": "F05", "subject": "C1", "predicate": "8月订单", "value": 18, "unit": "GWh", "source": "E2", "section": "§2"},
+      {"id": "F06", "subject": "C2", "predicate": "8月订单", "value": 9, "unit": "GWh", "source": "E2", "section": "§2"},
+      {"id": "F07", "subject": "C3", "predicate": "8月订单", "value": 6, "unit": "GWh", "source": "E2", "section": "§2"},
+      {"id": "F08", "subject": "客户(9-11月)", "predicate": "月均需求", "value": 39, "unit": "GWh/月", "source": "E3", "section": "§2"},
+      {"id": "F09", "subject": "C1", "predicate": "月均需求", "value": 20, "unit": "GWh/月", "source": "E3", "section": "§2"},
+      {"id": "F10", "subject": "C2", "predicate": "月均需求", "value": 11, "unit": "GWh/月", "source": "E3", "section": "§2"},
+      {"id": "F11", "subject": "C3", "predicate": "月均需求", "value": 8, "unit": "GWh/月", "source": "E3", "section": "§2"},
+      {"id": "F12", "subject": "M01正极材料", "predicate": "库存", "value": 4800, "unit": "吨", "source": "E4", "section": "§3"},
+      {"id": "F13", "subject": "M01正极材料", "predicate": "可支持产出", "value": 34, "unit": "GWh", "source": "E4", "section": "§3"},
+      {"id": "F14", "subject": "S1", "predicate": "口头追加", "value": 1200, "unit": "吨", "source": "E5", "section": "§3"},
+      {"id": "F15", "subject": "A01线", "predicate": "维护计划", "value": "2026-08-18 / 36h", "unit": "", "source": "E6", "section": "§4"},
+      {"id": "F16", "subject": "同类维护", "predicate": "平均生产损失", "value": 1.5, "unit": "天", "source": "E7", "section": "§4"},
+      {"id": "F17", "subject": "C1运输", "predicate": "正常/极端周期", "value": "2 / 4", "unit": "天", "source": "E8", "section": "§4"},
+      {"id": "F18", "subject": "承运商", "predicate": "日均运力", "value": 12, "unit": "车/日", "source": "§4未索引", "section": "§4"}
+    ],
+    "reasoning": [
+      {"id": "R1", "formula": "20 + 16", "result": "36 GWh/月", "desc": "当前有效产能", "inputs": ["F01", "F02"], "output": "F03", "section": "§5"},
+      {"id": "R2", "formula": "20 − 1", "result": "19 GWh/月", "desc": "A01维护后有效月产能", "inputs": ["F01", "F16"], "output": null, "section": "§5"},
+      {"id": "R3", "formula": "19 + 16", "result": "35 GWh/月", "desc": "维护后基地有效月产能", "inputs": ["R2", "F02"], "output": null, "section": "§5"},
+      {"id": "R4", "formula": "35 − 33", "result": "2 GWh", "desc": "8月理论余量", "inputs": ["R3", "F04"], "output": null, "section": "§5"},
+      {"id": "R5", "formula": "39 − 36", "result": "3 GWh/月", "desc": "9-11月理论产能缺口", "inputs": ["F03", "F08"], "output": null, "section": "§5"},
+      {"id": "R6", "formula": "39 − 34", "result": "5 GWh/月 ⚠", "desc": "材料支持缺口（口径存疑）", "inputs": ["F13", "F08"], "output": null, "conflict": "CF1", "section": "§5"}
+    ],
+    "claims": [
+      {"id": "CL1", "text": "维护后基地有效月产能约35 GWh", "type": "结论", "section": "§5", "deps": ["R3"], "evidence": ["E6", "E7"]},
+      {"id": "CL2", "text": "8月理论余量约2 GWh", "type": "结论", "section": "§5", "deps": ["R4"], "evidence": ["E1", "E2"]},
+      {"id": "CL3", "text": "9-11月理论产能缺口约3 GWh/月", "type": "结论", "section": "§5", "deps": ["R5"], "evidence": ["E1", "E3"]},
+      {"id": "CL4", "text": "材料支持缺口约5 GWh/月", "type": "结论", "section": "§5", "deps": ["R6"], "evidence": ["E4", "E3"], "conflict": "CF1"},
+      {"id": "CL5", "text": "S1追加承诺不能视为已确认库存", "type": "判断", "section": "§5", "deps": ["F14"], "evidence": ["E5"]},
+      {"id": "CL6", "text": "情景A：月度理论产能缺口3 GWh", "type": "预测", "section": "§6", "deps": ["R5"], "evidence": ["E1", "E3"]},
+      {"id": "CL7", "text": "情景B：仍存在1 GWh/月理论缺口", "type": "预测", "section": "§6", "deps": ["R5"], "evidence": ["E1", "E3"]},
+      {"id": "CL8", "text": "情景C：生产能力是主要约束", "type": "因果判断", "section": "§6", "deps": ["R5"], "evidence": ["E1", "E3", "E4", "E5"]},
+      {"id": "CL9", "text": "风险：产能缺口", "type": "风险", "section": "§7", "deps": ["CL3"], "evidence": ["E1", "E3"]},
+      {"id": "CL10", "text": "风险：材料库存不足", "type": "风险", "section": "§7", "deps": ["CL4"], "evidence": ["E4", "E3"]},
+      {"id": "CL11", "text": "风险：供应商承诺未转化为入库", "type": "风险", "section": "§7", "deps": ["CL5"], "evidence": ["E5"]},
+      {"id": "CL12", "text": "风险：维护造成短期产能波动", "type": "风险", "section": "§7", "deps": ["CL1"], "evidence": ["E6", "E7"]},
+      {"id": "CL13", "text": "风险：物流周期波动", "type": "风险", "section": "§7", "deps": [], "evidence": ["E8"]},
+      {"id": "CL14", "text": "建议：确认S1实际到货与入库时间", "type": "建议", "section": "§7", "deps": [], "evidence": ["E5"]},
+      {"id": "CL15", "text": "建议：评估约3 GWh/月外协或补充产能", "type": "建议", "section": "§7", "deps": ["CL3"], "evidence": ["E1", "E3"]},
+      {"id": "CL16", "text": "建议：A01维护完成后复核实际有效产能", "type": "建议", "section": "§7", "deps": ["CL1"], "evidence": ["E6", "E7"]},
+      {"id": "CL17", "text": "建议：C1运输设置4天极端周期缓冲", "type": "建议", "section": "§7", "deps": ["CL13"], "evidence": ["E8"]}
+    ],
+    "evidence": [
+      {"id": "E1", "name": "生产运营月报", "date": "2026-08-31", "page": "页3-5", "kind": "一手"},
+      {"id": "E2", "name": "客户订单确认表", "date": "2026-08-28", "page": "页2", "kind": "一手"},
+      {"id": "E3", "name": "客户滚动预测", "date": "2026-08-30", "page": "页4", "kind": "预测"},
+      {"id": "E4", "name": "材料库存日报", "date": "2026-08-31", "page": "页1", "kind": "一手"},
+      {"id": "E5", "name": "供应商S1邮件/会议纪要", "date": "2026-08-29", "page": "页1", "kind": "承诺·未入库"},
+      {"id": "E6", "name": "设备维护计划", "date": "2026-08-10", "page": "页2", "kind": "计划"},
+      {"id": "E7", "name": "历史维护统计", "date": "2026-07-31", "page": "页6", "kind": "历史"},
+      {"id": "E8", "name": "物流服务水平协议", "date": "2026-07-01", "page": "页8", "kind": "协议"}
+    ],
+    "conflicts": [
+      {"id": "CF1", "type": "口径/单位", "severity": "高", "status": "待审", "description": "§5 称『材料支持缺口约5 GWh/月』由 39 GWh/月(流量) − 34 GWh(存量) 得出，混淆月度需求率与一次性总库存；9–11月共3个月总需求117 GWh，34 GWh 库存实际远不足以覆盖。", "involved": ["F13", "F08", "R6", "CL4"]},
+      {"id": "CF2", "type": "数字(轻微)", "severity": "中", "status": "待审", "description": "§6 情景C称S1追加后材料支持『提高至42 GWh』；按4800吨→34 GWh 的吨/GWh比例，1200吨应贡献约8.5 GWh，合计约42.5 GWh，与42存在约0.5 GWh偏差。", "involved": ["F12", "F13", "F14"]},
+      {"id": "CF3", "type": "时间一致性", "severity": "中", "status": "待审", "description": "§4 维护计划于2026-08-18，早于数据截止2026-08-31，事件应已发生；但§5仍以『历史平均1.5天』估算A01维护后产能(19 GWh)，未引用E1(08-31月报)的实际产出。", "involved": ["F15", "F16", "R2", "CL1"]},
+      {"id": "CF4", "type": "覆盖完整性", "severity": "中", "status": "待审", "description": "§5『8月理论余量2 GWh』仅核算产能(35−33)，未纳入物流运力(12车/日)与C1运输周期(2–4天)，物流约束未进入交付能力测算。", "involved": ["R4", "CL2", "F17", "F18"]}
+    ],
+    "validations": [
+      {"claim": "CL1", "status": "SUPPORT", "reason": "由R3(19+16=35)推导，依据E6/E7。"},
+      {"claim": "CL2", "status": "PARTIAL_SUPPORT", "reason": "产能算术成立(35−33=2)，但未计物流约束（见CF4）。"},
+      {"claim": "CL3", "status": "SUPPORT", "reason": "39−36=3，依据E1/E3，算术正确。"},
+      {"claim": "CL4", "status": "CONTRADICT", "reason": "算术39−34=5成立，但口径错误（存量vs流量），结论不可作为月度缺口（见CF1）。"},
+      {"claim": "CL5", "status": "SUPPORT", "reason": "E5明确状态为『承诺，未入库』，判断成立。"},
+      {"claim": "CL6", "status": "SUPPORT", "reason": "与CL3一致。"},
+      {"claim": "CL7", "status": "SUPPORT", "reason": "39−38=1，算术正确。"},
+      {"claim": "CL8", "status": "SUPPORT", "reason": "38<39(产能缺口1)、42>39(材料充足)，故产能为约束。"},
+      {"claim": "CL9", "status": "SUPPORT", "reason": "由CL3支撑。"},
+      {"claim": "CL10", "status": "SUPPORT", "reason": "经CF1口径修正后仍存在材料缺口。"},
+      {"claim": "CL11", "status": "SUPPORT", "reason": "E5状态支撑。"},
+      {"claim": "CL12", "status": "SUPPORT", "reason": "E6/E7支撑短期波动。"},
+      {"claim": "CL13", "status": "SUPPORT", "reason": "E8支撑（2–4天周期）。"},
+      {"claim": "CL14", "status": "CONTEXT", "reason": "建议类，属行动项，无真值判定。"},
+      {"claim": "CL15", "status": "CONTEXT", "reason": "建议类，属行动项。"},
+      {"claim": "CL16", "status": "CONTEXT", "reason": "建议类，属行动项。"},
+      {"claim": "CL17", "status": "CONTEXT", "reason": "建议类，属行动项。"}
+    ]
+  }
+}

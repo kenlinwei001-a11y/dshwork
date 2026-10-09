@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "kp-mcp": {
+      "command": "/Users/apple/Desktop/workdsh/knowledge-processing-expert/.venv/bin/python",
+      "args": ["./mcp/server.py"],
+      "cwd": "/Users/apple/Desktop/workdsh/knowledge-processing-expert",
+      "description": "知识处理工具层（29 工具）：8 处理 + manifest + 10 Agent 访问 + 2 嵌入 + 8 reemit"
+    }
+  },
+  "tools": {
+    "processing": ["corpus_run", "segment_sentences", "segment_chunks", "validate_graph", "detect_numeric_conflicts", "detect_time_conflicts", "build_provenance", "validate_schema"],
+    "contract": ["manifest"],
+    "agent_access": ["corpus_get_chunk", "corpus_get_skeleton", "corpus_where_used", "graph_get_node", "graph_query", "graph_explain", "graph_impact", "graph_why", "gate_check", "evidence_get"],
+    "embedding": ["embed", "embed_chunks"],
+    "library": ["library_list_packages", "library_search", "library_get_asset", "library_find_analog"],
+    "reemit": ["reemit_meta", "reemit_provenance", "reemit_invariants", "reemit_evidence", "reemit_reasoning", "reemit_quality", "reemit_style", "reemit_index"]
+  }
+}

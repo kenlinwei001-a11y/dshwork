@@ -1,0 +1,24 @@
+{
+  "invariants": [
+    {
+      "id": "INV-1",
+      "expr": "同一 (subject, predicate) 的数值必须一致"
+    },
+    {
+      "id": "INV-2",
+      "expr": "relation 的 from/to 必须指向存在节点"
+    },
+    {
+      "id": "INV-3",
+      "expr": "claim 的 evidence 引用必须存在"
+    },
+    {
+      "id": "INV-4",
+      "expr": "数值冲突只呈现「待审」，不自动裁决"
+    },
+    {
+      "id": "INV-5",
+      "expr": "UNDEFINED 节点不得填 0、不得估值"
+    }
+  ]
+}

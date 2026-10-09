@@ -1,0 +1,30 @@
+{
+  "nodes": [
+    {
+      "label": "正常年合格产能",
+      "rule": "R-产能",
+      "status": "computed",
+      "narrative_zh": "经测算，正常年合格产能约为 120 万套/年。"
+    },
+    {
+      "label": "建设投资",
+      "rule": "R-建设投资",
+      "status": "computed",
+      "narrative_zh": "经测算，本项目建设投资合计约 9.27 亿元。"
+    },
+    {
+      "label": "静态资金回收期",
+      "rule": "R-回收期",
+      "status": "computed",
+      "narrative_zh": "经测算，静态资金回收期约为 4.24 年，低于行业基准。"
+    },
+    {
+      "label": "经营付现收支平衡销量",
+      "rule": "R-平衡销量",
+      "status": "computed",
+      "narrative_zh": "经测算，经营付现收支平衡销量约为 52.8 万套/年。"
+    }
+  ],
+  "replayed": 31,
+  "contradictions": []
+}

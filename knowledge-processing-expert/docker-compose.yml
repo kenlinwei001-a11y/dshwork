@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: kp-postgres
+    environment:
+      POSTGRES_DB: knowledge_extraction
+      POSTGRES_USER: kp
+      POSTGRES_PASSWORD: kp
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./storage/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+  neo4j:
+    image: neo4j:5
+    container_name: kp-neo4j
+    environment:
+      NEO4J_AUTH: neo4j/kp-password
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4jdata:/data
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: kp-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrantdata:/qdrant/storage
+
+volumes:
+  pgdata:
+  neo4jdata:
+  qdrantdata:

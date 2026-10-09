@@ -1,0 +1,37 @@
+[
+  {
+    "from": "新增生产线数量",
+    "to": "N-0001",
+    "type": "has_value"
+  },
+  {
+    "from": "建设投资",
+    "to": "N-0018",
+    "type": "has_value"
+  },
+  {
+    "from": "静态资金回收期",
+    "to": "N-0028",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-1",
+    "to": "CL-1",
+    "type": "supports"
+  },
+  {
+    "from": "EV-2",
+    "to": "CL-1",
+    "type": "supports"
+  },
+  {
+    "from": "EV-3",
+    "to": "CL-1",
+    "type": "supports"
+  },
+  {
+    "from": "N-0018",
+    "to": "N-0020",
+    "type": "depends_on"
+  }
+]

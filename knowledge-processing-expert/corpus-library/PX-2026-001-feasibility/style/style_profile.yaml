@@ -1,0 +1,18 @@
+{
+  "number_format": "千分位、两位小数、单位后置、万元优先",
+  "terminology": {
+    "营业收入": "正常年营业收入",
+    "回收期": "静态资金回收期"
+  },
+  "forbidden": [
+    "大约",
+    "左右（除非带明确区间）",
+    "或许"
+  ],
+  "citation_style": "〔节点ID｜规则ID｜证据ID〕",
+  "table_caption": "表N-<标题>",
+  "person": "第三人称",
+  "tone": "formal",
+  "avg_chunk_len": 180,
+  "chunk_count": 6
+}

@@ -1,0 +1,853 @@
+{
+  "domains": [
+    {
+      "id": "ontology",
+      "core_domain": "本体中心",
+      "assembly_input": [
+        "新项目领域",
+        "对象",
+        "属性",
+        "关系",
+        "历史本体版本"
+      ],
+      "assembly_method": "先匹配历史领域本体；对比类、属性、关系、约束的 Schema；复用兼容部分，新增或扩展不兼容部分；建立项目级本体版本",
+      "mismatch_handling": "新增概念则增加类或属性；同名异义则创建不同概念或明确语义映射；类型变化则进行兼容性检查，不直接覆盖旧定义",
+      "assembly_output": [
+        "项目本体 Schema",
+        "变更集",
+        "映射表",
+        "版本记录"
+      ],
+      "reusable_form": {
+        "entity_types": [
+          {
+            "type": "Project",
+            "desc": "项目"
+          },
+          {
+            "type": "Base",
+            "desc": "生产基地"
+          },
+          {
+            "type": "ProductionLine",
+            "desc": "生产线"
+          },
+          {
+            "type": "Equipment",
+            "desc": "设备"
+          },
+          {
+            "type": "CostItem",
+            "desc": "成本/投资项"
+          },
+          {
+            "type": "FundingSource",
+            "desc": "资金来源"
+          },
+          {
+            "type": "Kpi",
+            "desc": "业务指标"
+          }
+        ],
+        "relations": [
+          "has_value",
+          "has_attribute",
+          "instance_of",
+          "part_of",
+          "causes",
+          "depends_on",
+          "supports",
+          "contradicts",
+          "temporal",
+          "located_in"
+        ]
+      }
+    },
+    {
+      "id": "argument_chain",
+      "core_domain": "论证链",
+      "assembly_input": [
+        "报告目标",
+        "论点",
+        "Claim",
+        "前提",
+        "证据",
+        "推理关系"
+      ],
+      "assembly_method": "复用历史论证模式；解析新输入中的 Claim；将 Claim 与前提、证据、推论和结论关系连接；检查每条关键 Claim 的支撑情况",
+      "mismatch_handling": "新增 Claim 时创建 Claim 节点及其关系；若历史模板没有对应关系类型，则扩展关系 Schema；不能把旧项目的论点或结论直接当成新项目结论",
+      "assembly_output": [
+        "项目论证图",
+        "Claim 清单",
+        "缺失证据清单",
+        "推理任务"
+      ],
+      "reusable_form": {
+        "claim_types": [
+          "judgment",
+          "prediction",
+          "causal",
+          "suggestion",
+          "risk"
+        ],
+        "edge_types": [
+          "supports",
+          "contradicts",
+          "depends_on"
+        ]
+      }
+    },
+    {
+      "id": "scenario",
+      "core_domain": "推演场景",
+      "assembly_input": [
+        "项目目标",
+        "场景类型",
+        "初始条件",
+        "边界条件",
+        "扰动因素"
+      ],
+      "assembly_method": "匹配历史场景模板；将新项目变量绑定到场景参数；复制场景结构而非旧模拟结果；生成基准、变化及极端情景",
+      "mismatch_handling": "新增扰动因素则扩展场景参数；若关键参数缺失，标记待补充或采用明确声明的假设；不将旧项目的模拟输出迁移为新结果",
+      "assembly_output": [
+        "项目场景集",
+        "参数绑定表",
+        "场景运行配置"
+      ],
+      "reusable_form": {
+        "scenario_types": [
+          "基准",
+          "变化",
+          "极端"
+        ],
+        "params": [
+          "产能占用率",
+          "销售单价",
+          "回收期"
+        ]
+      }
+    },
+    {
+      "id": "variable",
+      "core_domain": "变量定义",
+      "assembly_input": [
+        "输入字段",
+        "业务指标",
+        "单位",
+        "类型",
+        "公式",
+        "数据来源"
+      ],
+      "assembly_method": "先做字段与变量的语义匹配；复用变量定义、单位和计算公式；建立输入字段到变量的映射；校验单位、取值范围和依赖",
+      "mismatch_handling": "新字段可能是新变量、已有变量的别名或普通元数据；先分类再决定新增、映射或忽略；同名不同单位必须显式转换，不能仅凭名称匹配",
+      "assembly_output": [
+        "项目变量字典",
+        "字段映射",
+        "公式依赖图"
+      ],
+      "reusable_form": {
+        "inputs": [
+          {
+            "label": "新增生产线数量",
+            "unit": "条",
+            "type": "int",
+            "source": "客户提供"
+          },
+          {
+            "label": "每年工作日",
+            "unit": "天",
+            "type": "int"
+          },
+          {
+            "label": "每日班次",
+            "unit": "班",
+            "type": "int"
+          },
+          {
+            "label": "每班时长",
+            "unit": "小时",
+            "type": "number"
+          },
+          {
+            "label": "单线毛产出速率",
+            "unit": "套/小时",
+            "type": "number"
+          },
+          {
+            "label": "有效开动率",
+            "unit": "%",
+            "type": "number"
+          },
+          {
+            "label": "最终合格率",
+            "unit": "%",
+            "type": "number"
+          },
+          {
+            "label": "正常年计划销售量",
+            "unit": "套",
+            "type": "number"
+          },
+          {
+            "label": "不含税销售单价",
+            "unit": "元",
+            "type": "number"
+          },
+          {
+            "label": "建筑与公辅工程合计",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "设备与系统购置费合计",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "工程建设其他费用",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "净营运资金需求",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "股东资金",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "正常年变动成本",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "年度固定付现成本",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "单套变动成本",
+            "unit": "元",
+            "type": "number"
+          }
+        ],
+        "computed": [
+          {
+            "label": "正常年合格产能",
+            "unit": "套",
+            "formula": "floor(新增生产线数量*每年工作日*每日班次*每班时长*单线毛产出速率*有效开动率%*最终合格率%)"
+          },
+          {
+            "label": "计划产能占用率",
+            "unit": "%",
+            "formula": "正常年计划销售量/正常年合格产能*100"
+          },
+          {
+            "label": "安装集成费",
+            "unit": "万元",
+            "formula": "设备与系统购置费合计*6%"
+          },
+          {
+            "label": "基本预备费",
+            "unit": "万元",
+            "formula": "(工程费用+工程建设其他费用)*8%"
+          },
+          {
+            "label": "建设投资",
+            "unit": "万元",
+            "formula": "建筑与公辅工程合计+设备与系统购置费合计+安装集成费+工程建设其他费用+基本预备费"
+          },
+          {
+            "label": "融资前项目资金需求",
+            "unit": "万元",
+            "formula": "建设投资+净营运资金需求"
+          },
+          {
+            "label": "拟需借款",
+            "unit": "万元",
+            "formula": "max(融资前项目资金需求-股东资金, 0)"
+          },
+          {
+            "label": "正常年营业收入",
+            "unit": "万元",
+            "formula": "正常年计划销售量*不含税销售单价/10000"
+          },
+          {
+            "label": "正常年经营现金盈余",
+            "unit": "万元",
+            "formula": "正常年营业收入-正常年变动成本-年度固定付现成本"
+          },
+          {
+            "label": "静态资金回收期",
+            "unit": "年",
+            "formula": "2+(融资前项目资金需求-首年经营现金盈余)/正常年经营现金盈余"
+          },
+          {
+            "label": "经营付现收支平衡销量",
+            "unit": "套",
+            "formula": "ceil(年度固定付现成本*10000/(不含税销售单价-单套变动成本))"
+          }
+        ]
+      }
+    },
+    {
+      "id": "task_dag",
+      "core_domain": "任务图 DAG",
+      "assembly_input": [
+        "项目目标",
+        "任务清单",
+        "资产依赖",
+        "执行条件"
+      ],
+      "assembly_method": "复用历史任务模板；根据当前项目启用或跳过节点；为新增字段、Claim 或规则补充解析、验证、推理节点；重新计算任务依赖和拓扑顺序",
+      "mismatch_handling": "新增 Claim 若需要证据检索和论证校验，应插入相应任务节点并连接上下游；如果新节点形成循环依赖，则停止执行并要求修正",
+      "assembly_output": [
+        "项目任务 DAG",
+        "节点参数",
+        "执行顺序和依赖检查结果"
+      ],
+      "reusable_form": {
+        "stages": [
+          "解析",
+          "抽取",
+          "建图",
+          "回放",
+          "质量",
+          "写作"
+        ],
+        "nodes": {
+          "建图": [
+            "instantiate_project"
+          ],
+          "写作": [
+            "build_work_package",
+            "gate_check_draft"
+          ]
+        }
+      }
+    },
+    {
+      "id": "function",
+      "core_domain": "函数库",
+      "assembly_input": [
+        "函数定义",
+        "输入输出 Schema",
+        "业务参数",
+        "执行环境"
+      ],
+      "assembly_method": "按功能与接口匹配函数；复用经验证的实现；绑定项目变量；执行接口检查与测试；记录函数版本",
+      "mismatch_handling": "新增字段不应自动传入所有函数；只有当函数的输入 Schema 或业务逻辑需要该字段时，才修改接口或增加适配器，并保留兼容版本",
+      "assembly_output": [
+        "函数绑定清单",
+        "输入输出映射",
+        "测试结果"
+      ],
+      "reusable_form": {
+        "functions": [
+          "safe_eval",
+          "compute_label",
+          "instantiate_project",
+          "build_work_package",
+          "gate_check_draft"
+        ]
+      }
+    },
+    {
+      "id": "rule",
+      "core_domain": "规则库",
+      "assembly_input": [
+        "业务规则",
+        "条件",
+        "阈值",
+        "例外",
+        "适用范围"
+      ],
+      "assembly_method": "匹配规则的领域、适用对象和生效版本；复用通用规则；将项目特定阈值作为参数注入；检查规则之间的冲突",
+      "mismatch_handling": "新增 Claim 可能触发「关键 Claim 必须有证据」等规则；先判断是否属于当前报告类型的要求，再将规则绑定到对应任务或校验阶段",
+      "assembly_output": [
+        "项目规则集",
+        "参数配置",
+        "冲突报告"
+      ],
+      "reusable_form": [
+        {
+          "id": "R-产能",
+          "kind": "compute",
+          "label": "正常年合格产能",
+          "expr": "floor({新增生产线数量}*{每年工作日}*{每日班次}*{每班时长}*{单线毛产出速率}*({有效开动率}/100)*({最终合格率}/100))",
+          "deps": [
+            "N-0001",
+            "N-0002",
+            "N-0003",
+            "N-0004",
+            "N-0005",
+            "N-0006",
+            "N-0007"
+          ],
+          "target": "N-0008"
+        },
+        {
+          "id": "R-占用率",
+          "kind": "compute",
+          "label": "计划产能占用率",
+          "expr": "round({正常年计划销售量}/{正常年合格产能}*100, 2)",
+          "deps": [
+            "N-0009",
+            "N-0008"
+          ],
+          "target": "N-0010"
+        },
+        {
+          "id": "R-安装",
+          "kind": "compute",
+          "label": "安装集成费",
+          "expr": "round({设备与系统购置费合计}*0.06, 2)",
+          "deps": [
+            "N-0013"
+          ],
+          "target": "N-0014"
+        },
+        {
+          "id": "R-预备费",
+          "kind": "compute",
+          "label": "基本预备费",
+          "expr": "round(({工程费用}+{工程建设其他费用})*0.08, 2)",
+          "deps": [
+            "N-0016",
+            "N-0015"
+          ],
+          "target": "N-0017"
+        },
+        {
+          "id": "R-建设投资",
+          "kind": "compute",
+          "label": "建设投资",
+          "expr": "round({建筑与公辅工程合计}+{设备与系统购置费合计}+{安装集成费}+{工程建设其他费用}+{基本预备费}, 2)",
+          "deps": [
+            "N-0012",
+            "N-0013",
+            "N-0014",
+            "N-0015",
+            "N-0017"
+          ],
+          "target": "N-0018"
+        },
+        {
+          "id": "R-资金需求",
+          "kind": "compute",
+          "label": "融资前项目资金需求",
+          "expr": "round({建设投资}+{净营运资金需求}, 2)",
+          "deps": [
+            "N-0018",
+            "N-0019"
+          ],
+          "target": "N-0020"
+        },
+        {
+          "id": "R-借款",
+          "kind": "compute",
+          "label": "拟需借款",
+          "expr": "round(max({融资前项目资金需求}-{股东资金}, 0), 2)",
+          "deps": [
+            "N-0020",
+            "N-0021"
+          ],
+          "target": "N-0022"
+        },
+        {
+          "id": "R-营收",
+          "kind": "compute",
+          "label": "正常年营业收入",
+          "expr": "round({正常年计划销售量}*{不含税销售单价}/10000, 2)",
+          "deps": [
+            "N-0009",
+            "N-0011"
+          ],
+          "target": "N-0023"
+        },
+        {
+          "id": "R-现金盈余",
+          "kind": "compute",
+          "label": "正常年经营现金盈余",
+          "expr": "round({正常年营业收入}-{正常年变动成本}-{年度固定付现成本}, 2)",
+          "deps": [
+            "N-0023",
+            "N-0024",
+            "N-0025"
+          ],
+          "target": "N-0027"
+        },
+        {
+          "id": "R-回收期",
+          "kind": "compute",
+          "label": "静态资金回收期",
+          "expr": "round(2+({融资前项目资金需求}-{首年经营现金盈余})/{正常年经营现金盈余}, 2)",
+          "deps": [
+            "N-0020",
+            "N-0026",
+            "N-0027"
+          ],
+          "target": "N-0028"
+        },
+        {
+          "id": "R-平衡销量",
+          "kind": "compute",
+          "label": "经营付现收支平衡销量",
+          "expr": "ceil({年度固定付现成本}*10000/({不含税销售单价}-{单套变动成本}))",
+          "deps": [
+            "N-0025",
+            "N-0011",
+            "N-0029"
+          ],
+          "target": "N-0030"
+        },
+        {
+          "id": "R-可行性",
+          "kind": "select",
+          "label": "结论·项目可行",
+          "expr": "静态资金回收期 ≤ 行业基准 5 年 且 计划产能占用率 ≥ 80%",
+          "deps": [
+            "N-0028",
+            "N-0010"
+          ],
+          "target": "N-0031",
+          "guard": "任一前提不满足 => 待审"
+        }
+      ]
+    },
+    {
+      "id": "invariant",
+      "core_domain": "不变式",
+      "assembly_input": [
+        "必须成立的条件",
+        "约束表达式",
+        "适用范围"
+      ],
+      "assembly_method": "复用领域硬约束；绑定新项目的对象、变量和单位；在执行前验证约束是否可满足",
+      "mismatch_handling": "新增字段只有在改变约束表达式或约束对象时才需扩展不变式；若新输入与硬约束矛盾，不应自动修改约束来迁就输入",
+      "assembly_output": [
+        "项目约束集",
+        "约束绑定",
+        "可满足性检查结果"
+      ],
+      "reusable_form": {
+        "invariants": [
+          {
+            "id": "INV-1",
+            "expr": "同一 (subject, predicate) 的数值必须一致"
+          },
+          {
+            "id": "INV-2",
+            "expr": "relation 的 from/to 必须指向存在节点"
+          },
+          {
+            "id": "INV-3",
+            "expr": "claim 的 evidence 引用必须存在"
+          },
+          {
+            "id": "INV-4",
+            "expr": "数值冲突只呈现「待审」，不自动裁决"
+          },
+          {
+            "id": "INV-5",
+            "expr": "UNDEFINED 节点不得填 0、不得估值"
+          }
+        ]
+      }
+    },
+    {
+      "id": "skill",
+      "core_domain": "Skills／技能库",
+      "assembly_input": [
+        "Skill 定义",
+        "输入输出 Schema",
+        "提示词",
+        "工具依赖",
+        "测试集"
+      ],
+      "assembly_method": "按任务类型检索 Skill；校验版本与输入输出兼容性；注入当前项目上下文；通过 MCP 调用所需资产或工具；执行测试",
+      "mismatch_handling": "若新项目新增 Claim，先检查 Skill 是否已有 Claim 处理能力；若没有，可增加可选字段或升级 Schema，并补充 Claim 抽取、关联和验证逻辑；不得静默丢弃未知字段",
+      "assembly_output": [
+        "项目 Skill 配置",
+        "输入输出契约",
+        "调用计划",
+        "执行记录"
+      ],
+      "reusable_form": {
+        "skills": [
+          "document-parsing-skill",
+          "fact-extraction-skill",
+          "semantic-graph-compilation-skill",
+          "graph-deductive-writing-skill",
+          "knowledge-generalization-skill"
+        ]
+      }
+    },
+    {
+      "id": "report_structure",
+      "core_domain": "报告结构",
+      "assembly_input": [
+        "报告类型",
+        "章节模板",
+        "章节依赖",
+        "内容要求"
+      ],
+      "assembly_method": "匹配报告类型和目标；复用章节结构；根据新项目要求增删章节；将 Claim、证据和推演输出绑定到对应章节",
+      "mismatch_handling": "新增 Claim 不一定要新增章节；先判断它是章节内容、论证单元还是独立交付要求。只有影响报告结构时才创建章节或小节",
+      "assembly_output": [
+        "项目报告大纲",
+        "章节依赖图",
+        "内容填充映射"
+      ],
+      "reusable_form": {
+        "sections": [
+          {
+            "title": "项目背景与必要性",
+            "level": 1,
+            "must_cover": [
+              "建设背景",
+              "必要性"
+            ]
+          },
+          {
+            "title": "建设规模与产品方案",
+            "level": 1,
+            "must_cover": [
+              "正常年合格产能",
+              "计划产能占用率"
+            ]
+          },
+          {
+            "title": "投资估算与资金筹措",
+            "level": 1,
+            "must_cover": [
+              "建设投资",
+              "融资前项目资金需求",
+              "拟需借款"
+            ]
+          },
+          {
+            "title": "财务效益分析",
+            "level": 1,
+            "must_cover": [
+              "正常年营业收入",
+              "静态资金回收期",
+              "经营付现收支平衡销量"
+            ]
+          },
+          {
+            "title": "风险与对策",
+            "level": 1,
+            "must_cover": [
+              "风险清单"
+            ]
+          }
+        ],
+        "missing": []
+      }
+    },
+    {
+      "id": "report_form",
+      "core_domain": "报告表单",
+      "assembly_input": [
+        "用户输入字段",
+        "字段类型",
+        "必填规则",
+        "字段与章节映射"
+      ],
+      "assembly_method": "比对新输入 Schema 与历史表单 Schema；复用兼容字段；对新增字段补充标签、类型、校验规则及下游映射；保留未知字段供人工确认",
+      "mismatch_handling": "新增 Claim 时判断它是单个文本、Claim 数组，还是包含 ID、内容、类型、来源等属性的对象；确定结构后再升级表单 Schema",
+      "assembly_output": [
+        "项目表单 Schema",
+        "字段映射",
+        "校验规则"
+      ],
+      "reusable_form": {
+        "fields": [
+          {
+            "name": "新增生产线数量",
+            "type": "int",
+            "required": true
+          },
+          {
+            "name": "不含税销售单价",
+            "type": "number",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "prompt",
+      "core_domain": "提示词资产",
+      "assembly_input": [
+        "系统提示词",
+        "任务模板",
+        "输入 Schema",
+        "输出 Schema",
+        "项目上下文"
+      ],
+      "assembly_method": "复用稳定的任务模板；从当前项目 Schema 动态生成提示词上下文；为 Claim 定义抽取、分类、证据关联和输出格式；将动态内容与固定规则分离",
+      "mismatch_handling": "新增字段时更新上下文构建器及相关提示词；不建议把字段名简单拼接到提示词中。应明确该字段的语义、处理任务、输出格式及缺失处理规则",
+      "assembly_output": [
+        "版本化提示词",
+        "动态上下文",
+        "结构化输出契约"
+      ],
+      "reusable_form": {
+        "templates": [
+          "extraction_prompt",
+          "writing_discipline"
+        ],
+        "dynamic": [
+          "项目 meta",
+          "变量字典",
+          "术语表"
+        ]
+      }
+    },
+    {
+      "id": "quality_gate",
+      "core_domain": "质量闸门",
+      "assembly_input": [
+        "质量指标",
+        "校验规则",
+        "验收阈值",
+        "历史缺陷"
+      ],
+      "assembly_method": "复用通用校验规则；根据新项目报告类型启用相应规则；对输出执行结构、逻辑、证据、数值和引用检查",
+      "mismatch_handling": "新增 Claim 后，评估是否增加 Claim 覆盖率、证据关联率、冲突检测、未验证声明等校验项；关键 Claim 不满足要求时应阻止其被标记为已验证",
+      "assembly_output": [
+        "项目质量规则",
+        "校验报告",
+        "阻断项与整改项"
+      ],
+      "reusable_form": {
+        "gates": [
+          "字面数值禁用",
+          "undefined 不得当数用",
+          "must_cover 覆盖",
+          "不变式满足",
+          "冲突待审"
+        ]
+      }
+    },
+    {
+      "id": "reuse_strategy",
+      "core_domain": "复用策略",
+      "assembly_input": [
+        "资产类型",
+        "领域",
+        "版本",
+        "适用条件",
+        "授权",
+        "时效和验证记录"
+      ],
+      "assembly_method": "为每个候选资产评估语义匹配、版本兼容、来源可信度、时效性、权限和验证状态；选择直接复用、参数化复用、扩展、重建或拒绝",
+      "mismatch_handling": "新增字段时不应直接判定整个历史模板失效；按字段和依赖粒度评估兼容性，并记录兼容、扩展或拒绝原因",
+      "assembly_output": [
+        "复用决策清单",
+        "资产来源",
+        "兼容性报告"
+      ],
+      "reusable_form": {
+        "strategies": [
+          "直接复用",
+          "参数化复用",
+          "扩展",
+          "重建",
+          "拒绝"
+        ]
+      }
+    },
+    {
+      "id": "entity_relation",
+      "core_domain": "实体与关系模型",
+      "assembly_input": [
+        "新项目实体",
+        "实体类型",
+        "属性",
+        "关系",
+        "来源和标识"
+      ],
+      "assembly_method": "将输入实体与历史本体类型匹配；执行实体解析与消歧；建立项目内实体实例和关系；将关系连接到事实、Claim 和证据",
+      "mismatch_handling": "新增 Claim 通常需要增加 Claim 实体类型或属性，以及 Claim 与证据、来源、论证节点之间的关系；如果历史模型没有对应关系，应先扩展 Schema，再创建实例",
+      "assembly_output": [
+        "项目实体图",
+        "关系实例",
+        "实体映射和消歧记录"
+      ],
+      "reusable_form": [
+        {
+          "from": "新增生产线数量",
+          "to": "N-0001",
+          "type": "has_value"
+        },
+        {
+          "from": "建设投资",
+          "to": "N-0018",
+          "type": "has_value"
+        },
+        {
+          "from": "静态资金回收期",
+          "to": "N-0028",
+          "type": "has_value"
+        },
+        {
+          "from": "EV-1",
+          "to": "CL-1",
+          "type": "supports"
+        },
+        {
+          "from": "EV-2",
+          "to": "CL-1",
+          "type": "supports"
+        },
+        {
+          "from": "EV-3",
+          "to": "CL-1",
+          "type": "supports"
+        },
+        {
+          "from": "N-0018",
+          "to": "N-0020",
+          "type": "depends_on"
+        }
+      ]
+    },
+    {
+      "id": "cost_risk",
+      "core_domain": "成本／风险计算方法",
+      "assembly_input": [
+        "成本项",
+        "风险因子",
+        "公式",
+        "参数",
+        "单位",
+        "阈值和历史方法"
+      ],
+      "assembly_method": "复用计算方法、风险分类和公式；映射当前项目的数据；更新参数、基准和适用范围；用已知样本测试计算结果",
+      "mismatch_handling": "新增 Claim 只有在影响成本、风险输入或判断条件时才改变计算模型；如果 Claim 只是文本论点，则应进入论证与证据流程，不应自动成为数值计算变量",
+      "assembly_output": [
+        "项目成本模型",
+        "风险模型",
+        "参数表",
+        "计算与校验结果"
+      ],
+      "reusable_form": {
+        "cost_methods": [
+          "安装集成费=设备购置费*6%",
+          "基本预备费=(工程费用+其他费用)*8%"
+        ],
+        "risk_factors": [
+          "产能缺口",
+          "资金缺口",
+          "价格波动"
+        ]
+      }
+    }
+  ]
+}

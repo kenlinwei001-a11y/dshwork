@@ -1,0 +1,480 @@
+{
+  "facts": [
+    {
+      "id": "N-0001",
+      "subject": "新增生产线数量",
+      "kind": "quantity",
+      "value": 3,
+      "unit": "条",
+      "caliber": "新增生产线数量·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0002",
+      "subject": "每年工作日",
+      "kind": "quantity",
+      "value": 250,
+      "unit": "天",
+      "caliber": "每年工作日·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0003",
+      "subject": "每日班次",
+      "kind": "quantity",
+      "value": 2,
+      "unit": "班",
+      "caliber": "每日班次·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0004",
+      "subject": "每班时长",
+      "kind": "quantity",
+      "value": 8,
+      "unit": "小时",
+      "caliber": "每班时长·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0005",
+      "subject": "单线毛产出速率",
+      "kind": "quantity",
+      "value": 120,
+      "unit": "套/小时",
+      "caliber": "单线毛产出速率·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0006",
+      "subject": "有效开动率",
+      "kind": "quantity",
+      "value": 85,
+      "unit": "%",
+      "caliber": "有效开动率·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0007",
+      "subject": "最终合格率",
+      "kind": "quantity",
+      "value": 98,
+      "unit": "%",
+      "caliber": "最终合格率·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0008",
+      "subject": "正常年合格产能",
+      "kind": "quantity",
+      "value": 1199520,
+      "unit": "套",
+      "caliber": "floor(3*250*2*8*120*85%*98%)",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0009",
+      "subject": "正常年计划销售量",
+      "kind": "quantity",
+      "value": 1100000,
+      "unit": "套",
+      "caliber": "正常年计划销售量·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0010",
+      "subject": "计划产能占用率",
+      "kind": "quantity",
+      "value": 91.7,
+      "unit": "%",
+      "caliber": "计划产能占用率·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0011",
+      "subject": "不含税销售单价",
+      "kind": "quantity",
+      "value": 8.5,
+      "unit": "元",
+      "caliber": "不含税销售单价·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0012",
+      "subject": "建筑与公辅工程合计",
+      "kind": "quantity",
+      "value": 42000,
+      "unit": "万元",
+      "caliber": "建筑与公辅工程合计·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0013",
+      "subject": "设备与系统购置费合计",
+      "kind": "quantity",
+      "value": 36000,
+      "unit": "万元",
+      "caliber": "设备与系统购置费合计·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0014",
+      "subject": "安装集成费",
+      "kind": "quantity",
+      "value": 2160,
+      "unit": "万元",
+      "caliber": "36000*6%",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0015",
+      "subject": "工程建设其他费用",
+      "kind": "quantity",
+      "value": 5800,
+      "unit": "万元",
+      "caliber": "工程建设其他费用·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0016",
+      "subject": "工程费用",
+      "kind": "quantity",
+      "value": 78000,
+      "unit": "万元",
+      "caliber": "42000+36000",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0017",
+      "subject": "基本预备费",
+      "kind": "quantity",
+      "value": 6704,
+      "unit": "万元",
+      "caliber": "(78000+5800)*8%",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0018",
+      "subject": "建设投资",
+      "kind": "quantity",
+      "value": 92664,
+      "unit": "万元",
+      "caliber": "42000+36000+2160+5800+6704",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0019",
+      "subject": "净营运资金需求",
+      "kind": "quantity",
+      "value": 8000,
+      "unit": "万元",
+      "caliber": "净营运资金需求·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0020",
+      "subject": "融资前项目资金需求",
+      "kind": "quantity",
+      "value": 100664,
+      "unit": "万元",
+      "caliber": "92664+8000",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0021",
+      "subject": "股东资金",
+      "kind": "quantity",
+      "value": 50000,
+      "unit": "万元",
+      "caliber": "股东资金·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0022",
+      "subject": "拟需借款",
+      "kind": "quantity",
+      "value": 50664,
+      "unit": "万元",
+      "caliber": "max(100664-50000,0)",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0023",
+      "subject": "正常年营业收入",
+      "kind": "quantity",
+      "value": 935,
+      "unit": "万元",
+      "caliber": "1100000*8.5/10000",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0024",
+      "subject": "正常年变动成本",
+      "kind": "quantity",
+      "value": 420,
+      "unit": "万元",
+      "caliber": "正常年变动成本·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0025",
+      "subject": "年度固定付现成本",
+      "kind": "quantity",
+      "value": 280,
+      "unit": "万元",
+      "caliber": "年度固定付现成本·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0026",
+      "subject": "首年经营现金盈余",
+      "kind": "quantity",
+      "value": 180,
+      "unit": "万元",
+      "caliber": "首年经营现金盈余·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0027",
+      "subject": "正常年经营现金盈余",
+      "kind": "quantity",
+      "value": 235,
+      "unit": "万元",
+      "caliber": "935-420-280",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0028",
+      "subject": "静态资金回收期",
+      "kind": "quantity",
+      "value": 4.24,
+      "unit": "年",
+      "caliber": "2+(100664-180)/235",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0029",
+      "subject": "单套变动成本",
+      "kind": "quantity",
+      "value": 3.2,
+      "unit": "元",
+      "caliber": "单套变动成本·历史基准",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0030",
+      "subject": "经营付现收支平衡销量",
+      "kind": "quantity",
+      "value": 528302,
+      "unit": "套",
+      "caliber": "ceil(280*10000/(8.5-3.2))",
+      "inheritable": "yes"
+    },
+    {
+      "id": "N-0031",
+      "subject": "结论·项目可行",
+      "kind": "judgment",
+      "value": "基本可行",
+      "unit": "",
+      "caliber": "判定式结论，仅借形式",
+      "inheritable": "never"
+    }
+  ],
+  "rules": [
+    {
+      "id": "R-产能",
+      "kind": "compute",
+      "label": "正常年合格产能",
+      "expr": "floor({新增生产线数量}*{每年工作日}*{每日班次}*{每班时长}*{单线毛产出速率}*({有效开动率}/100)*({最终合格率}/100))",
+      "deps": [
+        "N-0001",
+        "N-0002",
+        "N-0003",
+        "N-0004",
+        "N-0005",
+        "N-0006",
+        "N-0007"
+      ],
+      "target": "N-0008"
+    },
+    {
+      "id": "R-占用率",
+      "kind": "compute",
+      "label": "计划产能占用率",
+      "expr": "round({正常年计划销售量}/{正常年合格产能}*100, 2)",
+      "deps": [
+        "N-0009",
+        "N-0008"
+      ],
+      "target": "N-0010"
+    },
+    {
+      "id": "R-安装",
+      "kind": "compute",
+      "label": "安装集成费",
+      "expr": "round({设备与系统购置费合计}*0.06, 2)",
+      "deps": [
+        "N-0013"
+      ],
+      "target": "N-0014"
+    },
+    {
+      "id": "R-预备费",
+      "kind": "compute",
+      "label": "基本预备费",
+      "expr": "round(({工程费用}+{工程建设其他费用})*0.08, 2)",
+      "deps": [
+        "N-0016",
+        "N-0015"
+      ],
+      "target": "N-0017"
+    },
+    {
+      "id": "R-建设投资",
+      "kind": "compute",
+      "label": "建设投资",
+      "expr": "round({建筑与公辅工程合计}+{设备与系统购置费合计}+{安装集成费}+{工程建设其他费用}+{基本预备费}, 2)",
+      "deps": [
+        "N-0012",
+        "N-0013",
+        "N-0014",
+        "N-0015",
+        "N-0017"
+      ],
+      "target": "N-0018"
+    },
+    {
+      "id": "R-资金需求",
+      "kind": "compute",
+      "label": "融资前项目资金需求",
+      "expr": "round({建设投资}+{净营运资金需求}, 2)",
+      "deps": [
+        "N-0018",
+        "N-0019"
+      ],
+      "target": "N-0020"
+    },
+    {
+      "id": "R-借款",
+      "kind": "compute",
+      "label": "拟需借款",
+      "expr": "round(max({融资前项目资金需求}-{股东资金}, 0), 2)",
+      "deps": [
+        "N-0020",
+        "N-0021"
+      ],
+      "target": "N-0022"
+    },
+    {
+      "id": "R-营收",
+      "kind": "compute",
+      "label": "正常年营业收入",
+      "expr": "round({正常年计划销售量}*{不含税销售单价}/10000, 2)",
+      "deps": [
+        "N-0009",
+        "N-0011"
+      ],
+      "target": "N-0023"
+    },
+    {
+      "id": "R-现金盈余",
+      "kind": "compute",
+      "label": "正常年经营现金盈余",
+      "expr": "round({正常年营业收入}-{正常年变动成本}-{年度固定付现成本}, 2)",
+      "deps": [
+        "N-0023",
+        "N-0024",
+        "N-0025"
+      ],
+      "target": "N-0027"
+    },
+    {
+      "id": "R-回收期",
+      "kind": "compute",
+      "label": "静态资金回收期",
+      "expr": "round(2+({融资前项目资金需求}-{首年经营现金盈余})/{正常年经营现金盈余}, 2)",
+      "deps": [
+        "N-0020",
+        "N-0026",
+        "N-0027"
+      ],
+      "target": "N-0028"
+    },
+    {
+      "id": "R-平衡销量",
+      "kind": "compute",
+      "label": "经营付现收支平衡销量",
+      "expr": "ceil({年度固定付现成本}*10000/({不含税销售单价}-{单套变动成本}))",
+      "deps": [
+        "N-0025",
+        "N-0011",
+        "N-0029"
+      ],
+      "target": "N-0030"
+    },
+    {
+      "id": "R-可行性",
+      "kind": "select",
+      "label": "结论·项目可行",
+      "expr": "静态资金回收期 ≤ 行业基准 5 年 且 计划产能占用率 ≥ 80%",
+      "deps": [
+        "N-0028",
+        "N-0010"
+      ],
+      "target": "N-0031",
+      "guard": "任一前提不满足 => 待审"
+    }
+  ],
+  "claims": [
+    {
+      "id": "CL-1",
+      "text": "项目基本可行",
+      "type": "judgment",
+      "evidence": [
+        "EV-1",
+        "EV-2",
+        "EV-3"
+      ],
+      "deps": [
+        "R-可行性"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "新增生产线数量",
+      "to": "N-0001",
+      "type": "has_value"
+    },
+    {
+      "from": "建设投资",
+      "to": "N-0018",
+      "type": "has_value"
+    },
+    {
+      "from": "静态资金回收期",
+      "to": "N-0028",
+      "type": "has_value"
+    },
+    {
+      "from": "EV-1",
+      "to": "CL-1",
+      "type": "supports"
+    },
+    {
+      "from": "EV-2",
+      "to": "CL-1",
+      "type": "supports"
+    },
+    {
+      "from": "EV-3",
+      "to": "CL-1",
+      "type": "supports"
+    },
+    {
+      "from": "N-0018",
+      "to": "N-0020",
+      "type": "depends_on"
+    }
+  ]
+}

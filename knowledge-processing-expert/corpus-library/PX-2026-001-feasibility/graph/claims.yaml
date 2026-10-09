@@ -1,0 +1,15 @@
+[
+  {
+    "id": "CL-1",
+    "text": "项目基本可行",
+    "type": "judgment",
+    "evidence": [
+      "EV-1",
+      "EV-2",
+      "EV-3"
+    ],
+    "deps": [
+      "R-可行性"
+    ]
+  }
+]

@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>锂电制造基地扩产与订单交付 — 本体图谱与冲突检测</title>
+<style>
+:root{
+  --bg:#f4f6fb; --panel:#ffffff; --text:#172554; --muted:#64748b; --accent:#2563eb;
+  --border:#e2e8f0; --navy:#172554; --ink:#0f172a;
+  --entity:#2563eb; --fact:#64748b; --reasoning:#8b5cf6; --claim:#f59e0b; --evidence:#10b981; --conflict:#ef4444;
+  --radius:12px; --shadow:0 1px 2px rgba(15,23,42,.05),0 4px 16px rgba(15,23,42,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.dash-header{background:linear-gradient(135deg,#172554 0%,#1e3a8a 60%,#2563eb 130%);color:#fff;padding:22px 26px}
+.dash-header h1{margin:0 0 6px;font-size:20px;font-weight:700;letter-spacing:.2px}
+.dash-header .sub{margin:0;font-size:13px;opacity:.85}
+.dash-header .badges{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px 11px;font-size:12px;font-variant-numeric:tabular-nums}
+.wrap{max-width:1240px;margin:0 auto;padding:18px 18px 60px}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.kpi{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k-label{font-size:12px;color:var(--muted)}
+.kpi .k-value{font-size:24px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.kpi.warn .k-value{color:var(--conflict)}
+.tab-nav{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 12px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0}
+.tab-btn{border:1px solid var(--border);background:var(--panel);color:var(--muted);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;transition:.15s}
+.tab-btn:hover{color:var(--navy);border-color:#c7d2fe}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.panel h2{font-size:15px;color:var(--navy);margin:0 0 4px}
+.panel .p-sub{font-size:12px;color:var(--muted);margin:0 0 14px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.graph-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;align-items:start}
+.graph-box{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.graph-box svg{display:block;width:100%;height:auto;cursor:grab}
+.graph-box svg:active{cursor:grabbing}
+.legend{display:flex;flex-wrap:wrap;gap:10px;padding:10px 14px;border-top:1px solid var(--border);background:#fbfcfe}
+.legend .lg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
+.legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.legend input{accent-color:var(--accent)}
+.detail-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;position:sticky;top:70px}
+.detail-card .empty{color:var(--muted);font-size:13px}
+.detail-card h3{font-size:15px;color:var(--navy);margin:0 0 8px;word-break:break-word}
+.detail-card .row{margin:5px 0;font-size:13px}
+.detail-card .row b{color:var(--muted);font-weight:600;margin-right:6px}
+.detail-card .tag{display:inline-block;padding:1px 8px;border-radius:6px;font-size:11px;font-weight:600;color:#fff}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:#f8fafc;color:var(--navy);font-weight:600;white-space:nowrap;position:sticky;top:0}
+td{color:#334155}
+tr:hover td{background:#f8fafc}
+.pill{display:inline-block;padding:1px 8px;border-radius:6px;font-size:11px;font-weight:600;white-space:nowrap}
+.pill.SUPPORT{background:#dcfce7;color:#15803d}
+.pill.PARTIAL_SUPPORT{background:#fef9c3;color:#a16207}
+.pill.CONTRADICT{background:#fee2e2;color:#b91c1c}
+.pill.CONTEXT{background:#e0e7ff;color:#3730a3}
+.pill.待审{background:#fee2e2;color:#b91c1c}
+.pill.高{background:#fee2e2;color:#b91c1c}
+.pill.中{background:#fef9c3;color:#a16207}
+.conflict-card{border:1px solid #fecaca;background:#fef2f2;border-radius:10px;padding:14px;margin-bottom:12px}
+.conflict-card .c-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.conflict-card .c-title{font-weight:700;color:#7f1d1d}
+.conflict-card p{margin:4px 0;font-size:13px;color:#4c1d1d}
+.conflict-card .c-inv{font-size:12px;color:#9f1239}
+.foot{color:var(--muted);font-size:12px;margin-top:18px;line-height:1.7}
+#tooltip{position:absolute;display:none;background:#0f172a;color:#fff;padding:7px 10px;border-radius:8px;font-size:12px;pointer-events:none;max-width:280px;z-index:20;box-shadow:0 8px 20px rgba(0,0,0,.25);line-height:1.45}
+@media(max-width:960px){.graph-layout{grid-template-columns:1fr}.detail-card{position:static}}
+</style>
+</head>
+<body>
+<header class="dash-header">
+  <h1>锂电制造基地扩产与订单交付 · 本体图谱与冲突检测</h1>
+  <p class="sub">风险分析报告（模拟源文件）的语义图谱：实体 / 事实 / 推理 / Claim / 证据 全链路溯源，并标注前后冲突（待审，不裁决）。</p>
+  <div class="badges">
+    <span class="badge">项目 PX-2026-001</span>
+    <span class="badge">文档 DOC-001</span>
+    <span class="badge">版本 V1.0</span>
+    <span class="badge">数据截止 2026-08-31</span>
+  </div>
+</header>
+<div class="wrap">
+  <section class="summary-grid" id="kpis"></section>
+
+  <nav class="tab-nav" id="tabnav">
+    <button class="tab-btn active" data-tab="graph">本体图谱</button>
+    <button class="tab-btn" data-tab="entities">实体</button>
+    <button class="tab-btn" data-tab="facts">事实</button>
+    <button class="tab-btn" data-tab="reasoning">推理</button>
+    <button class="tab-btn" data-tab="claims">Claim</button>
+    <button class="tab-btn" data-tab="evidence">证据</button>
+    <button class="tab-btn" data-tab="conflicts">冲突检测</button>
+    <button class="tab-btn" data-tab="validations">Claim 验证</button>
+  </nav>
+
+  <section class="tab-panel active" id="tab-graph">
+    <div class="graph-layout">
+      <div class="graph-box">
+        <svg id="graph" viewBox="0 0 960 620" role="img" aria-label="本体图谱"></svg>
+        <div id="tooltip"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <aside class="detail-card" id="detail"><div class="empty">点击图谱中的节点查看详情。</div></aside>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="tab-entities"><div class="panel"><h2>实体</h2><p class="p-sub">抽取出的企业 / 基地 / 车间 / 产线 / 客户 / 材料 / 供应商等本体类型。</p><div class="table-wrap"><table id="tbl-entities"></table></div></div></section>
+  <section class="tab-panel" id="tab-facts"><div class="panel"><h2>事实（Subject–Predicate–Value–Time–Source）</h2><p class="p-sub">可验证的结构化事实，逐条绑定证据来源。</p><div class="table-wrap"><table id="tbl-facts"></table></div></div></section>
+  <section class="tab-panel" id="tab-reasoning"><div class="panel"><h2>计算与推理</h2><p class="p-sub">公式 / 多步推导及中间结论。</p><div class="table-wrap"><table id="tbl-reasoning"></table></div></div></section>
+  <section class="tab-panel" id="tab-claims"><div class="panel"><h2>Claim（判断 / 结论 / 风险 / 预测 / 因果 / 建议）</h2><p class="p-sub">识别出的论断及其依赖与证据。</p><div class="table-wrap"><table id="tbl-claims"></table></div></div></section>
+  <section class="tab-panel" id="tab-evidence"><div class="panel"><h2>证据来源索引</h2><p class="p-sub">E1–E8，含日期、页码与证据性质。</p><div class="table-wrap"><table id="tbl-evidence"></table></div></div></section>
+  <section class="tab-panel" id="tab-conflicts"><div class="panel"><h2>冲突检测</h2><p class="p-sub">数字 / 时间 / 口径 / 覆盖完整性冲突，统一标记为「待审」，不做自动裁决。</p><div id="conflicts"></div></div></section>
+  <section class="tab-panel" id="tab-validations"><div class="panel"><h2>Claim 验证</h2><p class="p-sub">证据支持、时间一致性、事实依赖、推理完整性与语义范围核验。</p><div class="table-wrap"><table id="tbl-validations"></table></div></div></section>
+
+  <div class="foot">
+    <b>方法与边界：</b>本图谱由文档《锂电制造基地扩产与订单交付风险分析报告（模拟源文件）》经抽取 → 消歧 → 本体映射 → 编译生成，所有事实/Claim 均保留来源链（Document → Chunk → Sentence → Evidence）。
+    冲突检测仅输出「待审」状态，未对任何冲突做真值裁决。材料缺口口径（CF1）为最显著的分析性错误：34 GWh 为一次性总库存支持，39 GWh/月 为月度需求率，两者不可直接相减得到「5 GWh/月缺口」。
+  </div>
+</div>
+
+<script type="application/json" id="gd">
+{
+  "meta": {"title":"锂电制造基地扩产与订单交付风险分析报告（模拟源文件）","cutoff":"2026-08-31","project_id":"PX-2026-001","document_id":"DOC-001","version_id":"V1.0"},
+  "entities":[
+    {"id":"PRJ","name":"PX-2026-001","type":"Project","source":"§0"},
+    {"id":"ORG","name":"华东锂电制造集团","type":"Organization","source":"§1"},
+    {"id":"BASE","name":"武汉基地","type":"Base","source":"§1"},
+    {"id":"WS","name":"A车间","type":"Workshop","source":"§2"},
+    {"id":"A01","name":"A01线","type":"ProductionLine","source":"§2"},
+    {"id":"A02","name":"A02线","type":"ProductionLine","source":"§2"},
+    {"id":"C1","name":"C1","type":"Customer","source":"§2"},
+    {"id":"C2","name":"C2","type":"Customer","source":"§2"},
+    {"id":"C3","name":"C3","type":"Customer","source":"§2"},
+    {"id":"M01","name":"M01正极材料","type":"Material","source":"§3"},
+    {"id":"S1","name":"S1","type":"Supplier","source":"§3"},
+    {"id":"CAR","name":"承运商","type":"Carrier","source":"§4"}
+  ],
+  "relations":[
+    {"from":"ORG","to":"BASE","type":"owns"},
+    {"from":"BASE","to":"WS","type":"has"},
+    {"from":"WS","to":"A01","type":"contains"},
+    {"from":"WS","to":"A02","type":"contains"},
+    {"from":"BASE","to":"C1","type":"delivers_to"},
+    {"from":"BASE","to":"C2","type":"delivers_to"},
+    {"from":"BASE","to":"C3","type":"delivers_to"},
+    {"from":"S1","to":"M01","type":"supplies"},
+    {"from":"BASE","to":"M01","type":"consumes"},
+    {"from":"CAR","to":"BASE","type":"transports_for"}
+  ],
+  "facts":[
+    {"id":"F01","subject":"A01线","predicate":"有效月产能","value":20,"unit":"GWh/月","source":"E1"},
+    {"id":"F02","subject":"A02线","predicate":"有效月产能","value":16,"unit":"GWh/月","source":"E1"},
+    {"id":"F03","subject":"武汉基地","predicate":"合计有效月产能","value":36,"unit":"GWh/月","source":"E1"},
+    {"id":"F04","subject":"客户(8月)","predicate":"确认订单","value":33,"unit":"GWh","source":"E2"},
+    {"id":"F05","subject":"C1","predicate":"8月订单","value":18,"unit":"GWh","source":"E2"},
+    {"id":"F06","subject":"C2","predicate":"8月订单","value":9,"unit":"GWh","source":"E2"},
+    {"id":"F07","subject":"C3","predicate":"8月订单","value":6,"unit":"GWh","source":"E2"},
+    {"id":"F08","subject":"客户(9-11月)","predicate":"月均需求","value":39,"unit":"GWh/月","source":"E3"},
+    {"id":"F09","subject":"C1","predicate":"月均需求","value":20,"unit":"GWh/月","source":"E3"},
+    {"id":"F10","subject":"C2","predicate":"月均需求","value":11,"unit":"GWh/月","source":"E3"},
+    {"id":"F11","subject":"C3","predicate":"月均需求","value":8,"unit":"GWh/月","source":"E3"},
+    {"id":"F12","subject":"M01正极材料","predicate":"库存","value":4800,"unit":"吨","source":"E4"},
+    {"id":"F13","subject":"M01正极材料","predicate":"可支持产出","value":34,"unit":"GWh","source":"E4"},
+    {"id":"F14","subject":"S1","predicate":"口头追加","value":1200,"unit":"吨","source":"E5"},
+    {"id":"F15","subject":"A01线","predicate":"维护计划","value":"2026-08-18 / 36h","unit":"","source":"E6"},
+    {"id":"F16","subject":"同类维护","predicate":"平均生产损失","value":1.5,"unit":"天","source":"E7"},
+    {"id":"F17","subject":"C1运输","predicate":"正常/极端周期","value":"2 / 4","unit":"天","source":"E8"},
+    {"id":"F18","subject":"承运商","predicate":"日均运力","value":12,"unit":"车/日","source":"§4未索引"}
+  ],
+  "reasoning":[
+    {"id":"R1","formula":"20 + 16","result":"36 GWh/月","desc":"当前有效产能","inputs":["F01","F02"],"output":"F03"},
+    {"id":"R2","formula":"20 − 1","result":"19 GWh/月","desc":"A01维护后有效月产能","inputs":["F01","F16"],"output":null},
+    {"id":"R3","formula":"19 + 16","result":"35 GWh/月","desc":"维护后基地有效月产能","inputs":["R2","F02"],"output":null},
+    {"id":"R4","formula":"35 − 33","result":"2 GWh","desc":"8月理论余量","inputs":["R3","F04"],"output":null},
+    {"id":"R5","formula":"39 − 36","result":"3 GWh/月","desc":"9-11月理论产能缺口","inputs":["F03","F08"],"output":null},
+    {"id":"R6","formula":"39 − 34","result":"5 GWh/月 ⚠","desc":"材料支持缺口（口径存疑）","inputs":["F13","F08"],"output":null,"conflict":"CF1"}
+  ],
+  "claims":[
+    {"id":"CL1","text":"维护后基地有效月产能约35 GWh","type":"结论","deps":["R3"],"evidence":["E6","E7"]},
+    {"id":"CL2","text":"8月理论余量约2 GWh","type":"结论","deps":["R4"],"evidence":["E1","E2"]},
+    {"id":"CL3","text":"9-11月理论产能缺口约3 GWh/月","type":"结论","deps":["R5"],"evidence":["E1","E3"]},
+    {"id":"CL4","text":"材料支持缺口约5 GWh/月","type":"结论","deps":["R6"],"evidence":["E4","E3"],"conflict":"CF1"},
+    {"id":"CL5","text":"S1追加承诺不能视为已确认库存","type":"判断","deps":["F14"],"evidence":["E5"]},
+    {"id":"CL6","text":"情景A：月度理论产能缺口3 GWh","type":"预测","deps":["R5"],"evidence":["E1","E3"]},
+    {"id":"CL7","text":"情景B：仍存在1 GWh/月理论缺口","type":"预测","deps":["R5"],"evidence":["E1","E3"]},
+    {"id":"CL8","text":"情景C：生产能力是主要约束","type":"因果判断","deps":["R5"],"evidence":["E1","E3","E4","E5"]},
+    {"id":"CL9","text":"风险：产能缺口","type":"风险","deps":["CL3"],"evidence":["E1","E3"]},
+    {"id":"CL10","text":"风险：材料库存不足","type":"风险","deps":["CL4"],"evidence":["E4","E3"]},
+    {"id":"CL11","text":"风险：供应商承诺未转化为入库","type":"风险","deps":["CL5"],"evidence":["E5"]},
+    {"id":"CL12","text":"风险：维护造成短期产能波动","type":"风险","deps":["CL1"],"evidence":["E6","E7"]},
+    {"id":"CL13","text":"风险：物流周期波动","type":"风险","deps":[],"evidence":["E8"]},
+    {"id":"CL14","text":"建议：确认S1实际到货与入库时间","type":"建议","deps":[],"evidence":["E5"]},
+    {"id":"CL15","text":"建议：评估约3 GWh/月外协或补充产能","type":"建议","deps":["CL3"],"evidence":["E1","E3"]},
+    {"id":"CL16","text":"建议：A01维护完成后复核实际有效产能","type":"建议","deps":["CL1"],"evidence":["E6","E7"]},
+    {"id":"CL17","text":"建议：C1运输设置4天极端周期缓冲","type":"建议","deps":["CL13"],"evidence":["E8"]}
+  ],
+  "evidence":[
+    {"id":"E1","name":"生产运营月报","date":"2026-08-31","page":"页3-5","kind":"一手"},
+    {"id":"E2","name":"客户订单确认表","date":"2026-08-28","page":"页2","kind":"一手"},
+    {"id":"E3","name":"客户滚动预测","date":"2026-08-30","page":"页4","kind":"预测"},
+    {"id":"E4","name":"材料库存日报","date":"2026-08-31","page":"页1","kind":"一手"},
+    {"id":"E5","name":"供应商S1邮件/会议纪要","date":"2026-08-29","page":"页1","kind":"承诺·未入库"},
+    {"id":"E6","name":"设备维护计划","date":"2026-08-10","page":"页2","kind":"计划"},
+    {"id":"E7","name":"历史维护统计","date":"2026-07-31","page":"页6","kind":"历史"},
+    {"id":"E8","name":"物流服务水平协议","date":"2026-07-01","page":"页8","kind":"协议"}
+  ],
+  "conflicts":[
+    {"id":"CF1","type":"口径/单位","severity":"高","status":"待审","description":"§5 称『材料支持缺口约5 GWh/月』由 39 GWh/月(流量) − 34 GWh(存量) 得出，混淆月度需求率与一次性总库存；9–11月共3个月总需求117 GWh，34 GWh 库存实际远不足以覆盖。","involved":["F13","F08","R6","CL4"]},
+    {"id":"CF2","type":"数字(轻微)","severity":"中","status":"待审","description":"§6 情景C称S1追加后材料支持『提高至42 GWh』；按4800吨→34 GWh 的吨/GWh比例，1200吨应贡献约8.5 GWh，合计约42.5 GWh，与42存在约0.5 GWh偏差。","involved":["F12","F13","F14"]},
+    {"id":"CF3","type":"时间一致性","severity":"中","status":"待审","description":"§4 维护计划于2026-08-18，早于数据截止2026-08-31，事件应已发生；但§5仍以『历史平均1.5天』估算A01维护后产能(19 GWh)，未引用E1(08-31月报)的实际产出。","involved":["F15","F16","R2","CL1"]},
+    {"id":"CF4","type":"覆盖完整性","severity":"中","status":"待审","description":"§5『8月理论余量2 GWh』仅核算产能(35−33)，未纳入物流运力(12车/日)与C1运输周期(2–4天)，物流约束未进入交付能力测算。","involved":["R4","CL2","F17","F18"]}
+  ],
+  "validations":[
+    {"claim":"CL1","status":"SUPPORT","reason":"由R3(19+16=35)推导，依据E6/E7。"},
+    {"claim":"CL2","status":"PARTIAL_SUPPORT","reason":"产能算术成立(35−33=2)，但未计物流约束（见CF4）。"},
+    {"claim":"CL3","status":"SUPPORT","reason":"39−36=3，依据E1/E3，算术正确。"},
+    {"claim":"CL4","status":"CONTRADICT","reason":"算术39−34=5成立，但口径错误（存量vs流量），结论不可作为月度缺口（见CF1）。"},
+    {"claim":"CL5","status":"SUPPORT","reason":"E5明确状态为『承诺，未入库』，判断成立。"},
+    {"claim":"CL6","status":"SUPPORT","reason":"与CL3一致。"},
+    {"claim":"CL7","status":"SUPPORT","reason":"39−38=1，算术正确。"},
+    {"claim":"CL8","status":"SUPPORT","reason":"38<39(产能缺口1)、42>39(材料充足)，故产能为约束。"},
+    {"claim":"CL9","status":"SUPPORT","reason":"由CL3支撑。"},
+    {"claim":"CL10","status":"SUPPORT","reason":"经CF1口径修正后仍存在材料缺口。"},
+    {"claim":"CL11","status":"SUPPORT","reason":"E5状态支撑。"},
+    {"claim":"CL12","status":"SUPPORT","reason":"E6/E7支撑短期波动。"},
+    {"claim":"CL13","status":"SUPPORT","reason":"E8支撑（2–4天周期）。"},
+    {"claim":"CL14","status":"CONTEXT","reason":"建议类，属行动项，无真值判定。"},
+    {"claim":"CL15","status":"CONTEXT","reason":"建议类，属行动项。"},
+    {"claim":"CL16","status":"CONTEXT","reason":"建议类，属行动项。"},
+    {"claim":"CL17","status":"CONTEXT","reason":"建议类，属行动项。"}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var GD = JSON.parse(document.getElementById('gd').textContent);
+  var E = GD.entities, R = GD.relations, F = GD.facts, RS = GD.reasoning, C = GD.claims, EV = GD.evidence, CF = GD.conflicts, V = GD.validations;
+
+  var KIND_COLOR = {entity:'#2563eb', fact:'#64748b', reasoning:'#8b5cf6', claim:'#f59e0b', evidence:'#10b981', conflict:'#ef4444'};
+  var KIND_NAME = {entity:'实体', fact:'事实', reasoning:'推理', claim:'Claim', evidence:'证据', conflict:'冲突'};
+  var GRAPH_CLAIMS = ['CL1','CL2','CL3','CL4','CL5','CL6','CL7','CL8'];
+  var ENT_SHORT = {PRJ:'PX-2026-001', ORG:'华东锂电集团', BASE:'武汉基地', WS:'A车间', A01:'A01线', A02:'A02线', C1:'C1', C2:'C2', C3:'C3', M01:'M01正极材料', S1:'S1', CAR:'承运商'};
+  var CLAIM_SHORT = {CL1:'产能35', CL2:'8月余量2', CL3:'缺口3/月', CL4:'材料缺口5⚠', CL5:'S1未确认', CL6:'情景A:3', CL7:'情景B:1', CL8:'情景C:产能约束'};
+  var CLAIM_SEC = {CL1:'5',CL2:'5',CL3:'5',CL4:'5',CL5:'5',CL6:'6',CL7:'6',CL8:'6'};
+
+  var kpis = [
+    {label:'当前有效月产能', value:'36', unit:'GWh/月', warn:false},
+    {label:'9-11月月均需求', value:'39', unit:'GWh/月', warn:false},
+    {label:'理论产能缺口', value:'3', unit:'GWh/月', warn:true},
+    {label:'M01库存支持', value:'34', unit:'GWh', warn:false},
+    {label:'检测到冲突', value:'4', unit:'项（待审）', warn:true}
+  ];
+  var kpiBox = document.getElementById('kpis');
+  kpis.forEach(function(k){ var d=document.createElement('div'); d.className='kpi'+(k.warn?' warn':''); d.innerHTML='<div class="k-label">'+k.label+'</div><div class="k-value">'+k.value+'<span style="font-size:13px;font-weight:600"> '+k.unit+'</span></div>'; kpiBox.appendChild(d); });
+
+  var tabs = document.querySelectorAll('.tab-btn');
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ tabs.forEach(function(x){x.classList.remove('active')}); b.classList.add('active'); document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active')}); document.getElementById('tab-'+b.dataset.tab).classList.add('active'); if(b.dataset.tab==='graph'){ render(); } }); });
+
+  var nodes = [], map = {};
+  function addNode(n){ nodes.push(n); map[n.id]=n; }
+  E.forEach(function(e){ addNode({id:e.id, kind:'entity', type:e.type, label:ENT_SHORT[e.id]||e.name, title:e.name, sub:e.type, src:e.source}); });
+  F.forEach(function(f){ addNode({id:f.id, kind:'fact', label:(f.value+' '+(f.unit||'')).trim(), title:f.subject+' · '+f.predicate, sub:'= '+f.value+' '+(f.unit||''), src:f.source, subject:f.subject, predicate:f.predicate}); });
+  RS.forEach(function(r){ addNode({id:r.id, kind:'reasoning', label:r.result, title:r.desc, sub:r.formula+' → '+r.result, src:'§5'}); });
+  C.forEach(function(c){ if(GRAPH_CLAIMS.indexOf(c.id)>=0){ addNode({id:c.id, kind:'claim', label:CLAIM_SHORT[c.id]||c.id, title:c.text, sub:c.type, src:'§'+(CLAIM_SEC[c.id]||'5')}); } });
+  EV.forEach(function(e){ addNode({id:e.id, kind:'evidence', label:e.id, title:e.name, sub:e.date+' · '+e.page+' · '+e.kind, src:'§8'}); });
+  CF.forEach(function(c){ addNode({id:c.id, kind:'conflict', label:c.id, title:c.type+'（'+c.severity+'）', sub:c.status, src:'冲突检测', severity:c.severity}); });
+
+  var edges = [];
+  R.forEach(function(r){ edges.push({source:map[r.from], target:map[r.to], type:r.type}); });
+  F.forEach(function(f){ if(map[f.source]) edges.push({source:map[f.id], target:map[f.source], type:'来源'}); });
+  RS.forEach(function(r){ r.inputs.forEach(function(i){ if(map[i]) edges.push({source:map[i], target:map[r.id], type:'输入'}); }); if(r.output && map[r.output]) edges.push({source:map[r.id], target:map[r.output], type:'输出'}); });
+  C.forEach(function(c){ if(!map[c.id]) return; c.evidence.forEach(function(ev){ if(map[ev]) edges.push({source:map[c.id], target:map[ev], type:'依据'}); }); c.deps.forEach(function(d){ if(map[d]) edges.push({source:map[d], target:map[c.id], type:'支撑'}); }); });
+
+  var showKinds = {entity:true, fact:true, reasoning:true, claim:true, evidence:true, conflict:true};
+  var W=960, H=620;
+
+  function layout(ns, es){
+    var typeX = {entity:0.14, fact:0.52, reasoning:0.68, claim:0.82, evidence:0.42, conflict:0.9};
+    ns.forEach(function(n){ var base = typeX[n.kind]||0.5; n.x = W*(0.04 + 0.92*base + (Math.random()-0.5)*0.05); n.y = H*(0.12 + 0.76*Math.random()); });
+    for(var it=0; it<320; it++){
+      for(var i=0;i<ns.length;i++){ for(var j=i+1;j<ns.length;j++){
+        var a=ns[i], b=ns[j]; var dx=a.x-b.x, dy=a.y-b.y; var d2=dx*dx+dy*dy; if(d2<1)d2=1; var d=Math.sqrt(d2);
+        var rep = 1800/d2; var fx=dx/d*rep, fy=dy/d*rep;
+        a.x+=fx; a.y+=fy; b.x-=fx; b.y-=fy;
+      }}
+      es.forEach(function(e){ var a=e.source, b=e.target; var dx=b.x-a.x, dy=b.y-a.y; var d=Math.sqrt(dx*dx+dy*dy)||1; var rest = 95; var f=(d-rest)*0.03; var fx=dx/d*f, fy=dy/d*f; a.x+=fx; a.y+=fy; b.x-=fx; b.y-=fy; });
+      ns.forEach(function(n){ n.x += (W/2-n.x)*0.012; n.y += (H/2-n.y)*0.012; n.x=Math.max(24,Math.min(W-24,n.x)); n.y=Math.max(20,Math.min(H-20,n.y)); });
+    }
+  }
+
+  var svg = document.getElementById('graph'), tip = document.getElementById('tooltip'), detail = document.getElementById('detail');
+  var currentNodes = [], currentEdges = [];
+
+  function radiusOf(n){ return n.kind==='entity'?15:(n.kind==='fact'?8:(n.kind==='evidence'?10:12)); }
+
+  function positionNode(n){
+    n.circle.setAttribute('cx',n.x); n.circle.setAttribute('cy',n.y);
+    n.labelEl.setAttribute('x', n.x + n.radius + 3); n.labelEl.setAttribute('y', n.y + 3);
+  }
+  function updateLine(e){
+    e.line.setAttribute('x1',e.source.x); e.line.setAttribute('y1',e.source.y);
+    e.line.setAttribute('x2',e.target.x); e.line.setAttribute('y2',e.target.y);
+  }
+
+  function draw(ns, es){
+    currentNodes = ns; currentEdges = es;
+    svg.innerHTML='';
+    var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    es.forEach(function(e){
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('stroke','#cbd5e1'); l.setAttribute('stroke-width',1); l.setAttribute('opacity',0.7);
+      e.line = l; g.appendChild(l); updateLine(e);
+    });
+    ns.forEach(function(n){
+      n.radius = radiusOf(n);
+      var c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('r',n.radius); c.setAttribute('fill',KIND_COLOR[n.kind]); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-width',1.5); c.style.cursor='pointer';
+      c.addEventListener('mousemove',function(ev){ showTip(ev,n); });
+      c.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+      c.addEventListener('click',function(ev){ showDetail(n); ev.stopPropagation(); });
+      var t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('font-size', n.kind==='entity'?11:9); t.setAttribute('fill','#334155'); t.setAttribute('font-weight', n.kind==='entity'?600:400); t.textContent=n.label;
+      n.circle=c; n.labelEl=t;
+      positionNode(n);
+      attachDrag(c,n);
+      g.appendChild(c); g.appendChild(t);
+    });
+    svg.appendChild(g);
+  }
+
+  function attachDrag(c,n){
+    var active=false;
+    function pos(ev){ var box=svg.getBoundingClientRect(); var sx=W/box.width, sy=H/box.height; return {x:(ev.clientX-box.left)*sx, y:(ev.clientY-box.top)*sy}; }
+    c.addEventListener('mousedown',function(ev){ active=true; ev.preventDefault(); });
+    window.addEventListener('mousemove',function(ev){
+      if(!active) return;
+      var p=pos(ev);
+      n.x=Math.max(10,Math.min(W-10,p.x)); n.y=Math.max(10,Math.min(H-10,p.y));
+      positionNode(n);
+      currentEdges.forEach(function(e){ if(e.source===n || e.target===n) updateLine(e); });
+    });
+    window.addEventListener('mouseup',function(){ active=false; });
+  }
+
+  function showTip(ev,n){
+    tip.style.display='block';
+    var box = svg.getBoundingClientRect();
+    var px = (ev.clientX-box.left)*(W/box.width), py = (ev.clientY-box.top)*(H/box.height);
+    tip.style.left = (px+14)+'px'; tip.style.top = (py+14)+'px';
+    tip.innerHTML = '<b style="color:'+KIND_COLOR[n.kind]+'">'+KIND_NAME[n.kind]+'</b> · '+(n.title||n.label)+'<br><span style="opacity:.8">'+(n.sub||'')+'</span>';
+  }
+
+  function showDetail(n){
+    var html = '<span class="tag" style="background:'+KIND_COLOR[n.kind]+'">'+KIND_NAME[n.kind]+'</span>';
+    html += '<h3>'+(n.title||n.label)+'</h3>';
+    html += '<div class="row"><b>ID</b>'+n.id+'</div>';
+    if(n.subject) html += '<div class="row"><b>主体</b>'+n.subject+'</div>';
+    if(n.predicate) html += '<div class="row"><b>谓词</b>'+n.predicate+'</div>';
+    if(n.sub) html += '<div class="row"><b>取值/说明</b>'+n.sub+'</div>';
+    if(n.type && n.kind==='entity') html += '<div class="row"><b>类型</b>'+n.type+'</div>';
+    if(n.src) html += '<div class="row"><b>来源</b>'+n.src+'</div>';
+    detail.innerHTML = html;
+  }
+
+  function render(){
+    var ns = nodes.filter(function(n){ return showKinds[n.kind]; });
+    var ids = {}; ns.forEach(function(n){ ids[n.id]=1; });
+    var es = edges.filter(function(e){ return ids[e.source.id] && ids[e.target.id]; });
+    layout(ns, es);
+    draw(ns, es);
+  }
+
+  var legend = document.getElementById('legend');
+  Object.keys(KIND_COLOR).forEach(function(k){ var lab=document.createElement('label'); lab.className='lg'; lab.innerHTML='<input type="checkbox" checked data-k="'+k+'"><span class="dot" style="background:'+KIND_COLOR[k]+'"></span>'+KIND_NAME[k]+' ('+nodes.filter(function(n){return n.kind===k}).length+')'; legend.appendChild(lab); });
+  legend.addEventListener('change',function(e){ if(e.target.dataset.k){ showKinds[e.target.dataset.k]=e.target.checked; render(); } });
+
+  function th(row){ return '<tr>'+row.map(function(h){return '<th>'+h+'</th>'}).join('')+'</tr>'; }
+  function td(row){ return '<tr>'+row.map(function(c){return '<td>'+c+'</td>'}).join('')+'</tr>'; }
+
+  var te = document.getElementById('tbl-entities');
+  te.innerHTML = th(['ID','名称','本体类型','来源']);
+  E.forEach(function(e){ te.innerHTML += td([e.id, e.name, '<span class="pill" style="background:#e0e7ff;color:#3730a3">'+e.type+'</span>', e.source]); });
+
+  var tf = document.getElementById('tbl-facts');
+  tf.innerHTML = th(['ID','主体','谓词','值','单位','来源']);
+  F.forEach(function(f){ tf.innerHTML += td([f.id, f.subject, f.predicate, '<b>'+f.value+'</b>', f.unit||'—', f.source]); });
+
+  var tr = document.getElementById('tbl-reasoning');
+  tr.innerHTML = th(['ID','说明','公式','结果','输入','输出','冲突']);
+  RS.forEach(function(r){ tr.innerHTML += td([r.id, r.desc, '<code>'+r.formula+'</code>', '<b>'+r.result+'</b>', (r.inputs||[]).join(', '), r.output||'—', r.conflict?'<span class="pill 待审">'+r.conflict+'</span>':'—']); });
+
+  var tc = document.getElementById('tbl-claims');
+  tc.innerHTML = th(['ID','Claim 文本','类型','依赖','证据','冲突']);
+  C.forEach(function(c){ tc.innerHTML += td([c.id, c.text, c.type, (c.deps||[]).join(', '), (c.evidence||[]).join(', '), c.conflict?'<span class="pill 待审">'+c.conflict+'</span>':'—']); });
+
+  var tv = document.getElementById('tbl-evidence');
+  tv.innerHTML = th(['ID','名称','日期','页码','性质']);
+  EV.forEach(function(e){ tv.innerHTML += td([e.id, e.name, e.date, e.page, e.kind]); });
+
+  var cfBox = document.getElementById('conflicts');
+  CF.forEach(function(c){ cfBox.innerHTML += '<div class="conflict-card"><div class="c-head"><span class="pill '+c.severity+'">'+c.severity+'</span><span class="c-title">'+c.id+' · '+c.type+'</span><span class="pill 待审">'+c.status+'</span></div><p>'+c.description+'</p><div class="c-inv">涉及对象：'+c.involved.join('、')+'</div></div>'; });
+
+  var tval = document.getElementById('tbl-validations');
+  tval.innerHTML = th(['Claim','状态','核验说明']);
+  V.forEach(function(v){ tval.innerHTML += td([v.claim, '<span class="pill '+v.status+'">'+v.status+'</span>', v.reason]); });
+
+  render();
+})();
+</script>
+</body>
+</html>

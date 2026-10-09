@@ -1,0 +1,15 @@
+# 核心依赖（推演写作 + 历史资产装配引擎）
+# 推演写作专家 + 装配引擎（corpus_pipeline schema_diff/semantic_model/ontology_schema/instantiate/library + kp_toolkit + kp-mcp）
+PyYAML==6.0.3
+
+# ---- 以下为「知识处理七道工序」的可选依赖，按需安装 ----
+# 文档解析（PDF/Word）
+# pymupdf==1.24.10        # import fitz
+# python-docx==1.1.2      # import docx
+# 图数据库 / 向量检索
+# neo4j==5.20.0
+# qdrant-client==1.9.0
+# fastembed==0.3.6
+# 关系数据库
+# psycopg2-binary==2.9.9
+# pyarrow==17.0.0

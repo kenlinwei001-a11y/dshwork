@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+.pytest_cache/
+
+# 备份（历史版本，不进 git）
+backup/
+
+# 系统文件
+.DS_Store
+
+# 运行时状态 / 生成产物
+knowledge-processing-expert/storage/
+knowledge-processing-expert/demo/
+
+# 无关文件
+*.xlsx

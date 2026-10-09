@@ -1,0 +1,13 @@
+{
+  "corpus_id": "PX-2026-001",
+  "version": "V1.0",
+  "source_fingerprint": "demo-feasibility-sha",
+  "title": "某新材料生产基地扩产项目可行性研究报告",
+  "doc_type": "可研报告",
+  "constraints": [
+    "借形不借值：数值/单位/实体名/结论一律不继承，仅继承结构/规则/句式/术语",
+    "缺值守卫：依赖缺失的节点 status=undefined，正文写「待…后测算」并挂 gap",
+    "冲突待审：回放检出的数字不一致一律待审，不自动裁决",
+    "不许反算：不得由结论倒推中间量"
+  ]
+}

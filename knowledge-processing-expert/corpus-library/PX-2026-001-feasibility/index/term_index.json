@@ -1,0 +1,26 @@
+[
+  {
+    "surface": "正常年合格产能",
+    "canonical": "正常年合格产能",
+    "domain": "产能",
+    "freq": 8
+  },
+  {
+    "surface": "建设投资",
+    "canonical": "建设投资",
+    "domain": "投资",
+    "freq": 12
+  },
+  {
+    "surface": "静态资金回收期",
+    "canonical": "静态资金回收期",
+    "domain": "财务",
+    "freq": 9
+  },
+  {
+    "surface": "经营付现收支平衡销量",
+    "canonical": "经营付现收支平衡销量",
+    "domain": "财务",
+    "freq": 5
+  }
+]
