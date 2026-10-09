@@ -33,6 +33,8 @@ from corpus_pipeline import library as corpus_library
 from corpus_pipeline import schema_diff as _schema_diff
 from corpus_pipeline import semantic_model as _semantic_model
 from corpus_pipeline import ontology_schema as _ontology_schema
+from corpus_pipeline import verification as _verification
+from corpus_pipeline import reserved as _reserved
 from corpus_pipeline.spec import MANIFEST, AGENT_TOOLS
 
 SERVER_INFO = {"name": "kp-mcp", "version": "0.1.0"}
@@ -81,6 +83,30 @@ TOOLS = [
      "inputSchema": {"type": "object",
                      "properties": {"old_schema": {"type": "object"}, "new_schema": {"type": "object"}},
                      "required": ["old_schema", "new_schema"]}},
+    {"name": "check_requirements", "description": "需求完备性检查：对比已提供事实与必需变量，输出缺失清单（不编造）",
+     "inputSchema": {"type": "object",
+                     "properties": {"provided_facts": {"type": "array"}, "required_variables": {"type": "array"}, "project_goal": {"type": "string"}},
+                     "required": []}},
+    {"name": "sensitivity_analysis", "description": "敏感性分析：对输入变量做 ±Δ 扰动重算派生值，识别敏感变量（哪些变量变化显著影响结论）",
+     "inputSchema": {"type": "object",
+                     "properties": {"corpus_dir": {"type": "string"}, "provided_facts": {"type": "array"}, "meta": {"type": "object"}, "delta_ratio": {"type": "number"}},
+                     "required": ["corpus_dir", "provided_facts"]}},
+    {"name": "validate_shacl", "description": "SHACL 约束执行：检查节点是否符合本体约束（枚举/必填），输出违规清单",
+     "inputSchema": {"type": "object",
+                     "properties": {"nodes": {"type": "array"}, "shapes": {"type": "array"}},
+                     "required": ["nodes"]}},
+    {"name": "semantic_search", "description": "向量语义检索（预留）：按语义相似度检索资产，需 pgvector/Qdrant；当前 fallback=library_search",
+     "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "limit": {"type": "integer"}, "filters": {"type": "object"}}, "required": ["query"]}},
+    {"name": "asset_rerank", "description": "候选资产重排序（预留）：语义相关性重排，需 sentence-transformers；当前 fallback=library_find_analog",
+     "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "candidates": {"type": "array"}}, "required": ["query", "candidates"]}},
+    {"name": "solve_constraint", "description": "约束求解/优化（预留）：线性规划/排程/分配，需 OR-Tools/Pyomo；当前 fallback=规则重算",
+     "inputSchema": {"type": "object", "properties": {"model": {"type": "object"}}, "required": ["model"]}},
+    {"name": "graph_db_query", "description": "图数据库查询（预留）：Cypher/Gremlin 受限查询，需 Neo4j/AGE；当前 fallback=graph_query(JSON 图)",
+     "inputSchema": {"type": "object", "properties": {"query": {"type": "string"}, "params": {"type": "object"}}, "required": ["query"]}},
+    {"name": "store_object", "description": "对象存储（预留）：归档交付文件/附件，需 MinIO/S3；当前 fallback=本地 project_dir",
+     "inputSchema": {"type": "object", "properties": {"path": {"type": "string"}, "content": {"type": "string"}}, "required": []}},
+    {"name": "llm_invoke", "description": "模型网关（预留）：统一模型路由/重试/统计，需 LiteLLM；当前 fallback=Agent 直接调 LLM",
+     "inputSchema": {"type": "object", "properties": {"prompt": {"type": "string"}, "model": {"type": "string"}, "schema": {"type": "object"}}, "required": ["prompt"]}},
     {"name": "build_provenance", "description": "从节点反向追溯证据，返回溯源链",
      "inputSchema": {"type": "object", "properties": {"node_id": {"type": "string"}, "graph": {"type": "object"}}, "required": ["node_id", "graph"]}},
     {"name": "validate_schema", "description": "校验一类节点的必填字段",
@@ -204,6 +230,16 @@ def _dispatch(name: str, args: dict):
     if name == "bootstrap_ontology":
         diffs = _schema_diff.diff_schemas(args["old_schema"], args["new_schema"])
         return _ontology_schema.assemble_domain_changes(diffs)
+    if name == "check_requirements":
+        return _verification.check_requirements(args.get("provided_facts", []),
+                                                args.get("required_variables"), args.get("project_goal"))
+    if name == "sensitivity_analysis":
+        return _verification.sensitivity_analysis(args["corpus_dir"], args["provided_facts"],
+                                                  args.get("meta"), args.get("delta_ratio", 0.1))
+    if name == "validate_shacl":
+        return _verification.validate_shacl(args.get("nodes", []), args.get("shapes"))
+    if name in _reserved.RESERVED_BACKENDS:
+        return _reserved.reserved_tool(name, args)
     if name == "build_provenance":
         return build_provenance(args["node_id"], args["graph"])
     if name == "validate_schema":
