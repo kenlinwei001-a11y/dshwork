@@ -100,8 +100,8 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 3. `instantiate_project(corpus_dir=best, project_dir, provided_facts, meta)` → 建新项目图库。
 4. 进入推演写作（阶段 0–5）。
 
-这四个 `library_*` 工具由 `kp-mcp` MCP server 提供（知识处理专家的工具层）；前置条件是
-`kp-mcp` 已连接且历史语料资产库已就绪。**借形不借值**：可继承结构与规则，绝不继承数值/单位/
+这四个 `library_*` 工具由 `kp-library` MCP server 提供（知识处理专家的工具层，按域拆分的 5 个 MCP 之一）；前置条件是
+`kp-library` 已连接且历史语料资产库已就绪。**借形不借值**：可继承结构与规则，绝不继承数值/单位/
 实体/结论；新项目事实只来自用户提供的 `provided_facts`。
 
 ## 交互层：右侧表单面板（补录 + 字数）

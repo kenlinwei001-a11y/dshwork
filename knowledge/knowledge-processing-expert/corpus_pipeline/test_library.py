@@ -19,7 +19,7 @@ def build_fixture(root: Path) -> None:
     pkg = root / "pkg-alpha"
     (pkg / "index").mkdir(parents=True)
     (pkg / "style" / "section_templates").mkdir(parents=True)
-    (pkg / "manifest.yaml").write_text("constraints: []\n", encoding="utf-8")
+    (pkg / "manifest.yaml").write_text("constraints: []\nstatus: published\n", encoding="utf-8")
     (pkg / "meta.yaml").write_text(
         "title: 高校科研用房可研报告\ndoc_type: 可研报告\ndata_cutoff: 2025-12-31\nsource_sha: abc\n",
         encoding="utf-8",
@@ -35,7 +35,7 @@ def build_fixture(root: Path) -> None:
 
     pkg2 = root / "pkg-beta"
     (pkg2 / "index").mkdir(parents=True)
-    (pkg2 / "manifest.yaml").write_text("constraints: []\n", encoding="utf-8")
+    (pkg2 / "manifest.yaml").write_text("constraints: []\nstatus: published\n", encoding="utf-8")
     (pkg2 / "meta.yaml").write_text(
         "title: 物流园区厂房可研\ndoc_type: 可研报告\ndata_cutoff: 2026-01-31\nsource_sha: def\n",
         encoding="utf-8",

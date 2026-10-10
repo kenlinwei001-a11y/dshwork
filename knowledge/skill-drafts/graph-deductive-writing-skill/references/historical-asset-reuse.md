@@ -6,7 +6,7 @@
 
 ## 前置条件
 
-- `kp-mcp` MCP server 已连接（知识处理专家的工具层，含 library_* 工具）。
+- `kp-library` MCP server 已连接（知识处理专家的工具层，含 library_* 工具）。
 - 历史语料资产库目录存在（默认 `knowledge-processing-expert/corpus-library`，每个子目录是
   一个完整语料包，至少含 `manifest.yaml` + `meta.yaml`）。
 

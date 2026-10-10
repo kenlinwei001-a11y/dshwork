@@ -64,6 +64,7 @@ def emit_manifest(corpus_dir: str | Path, corpus_id: str = "", version: str = "V
     manifest = {
         "corpus_id": corpus_id,
         "version": version,
+        "status": "draft",   # P0：候选状态机，默认草稿；经 validated 后 publish 才可被装配侧复用
         "source_fingerprint": source_fingerprint,
         "constraints": constraints or [
             "借形不借值：数值/单位/实体名/结论一律不继承，仅继承结构/规则/句式/术语",

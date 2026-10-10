@@ -64,7 +64,7 @@
 ## 6. 数字一致性核对（写作时查数）
 
 每写一节，调用 MCP 工具 `check_number_consistency(draft_md, facts)` 做确定性查数（零 LLM，
-kp-mcp 提供）：
+kp-assembly MCP 提供）：
 
 - **bound / unbound**：正文每个数字与事实源（facts）比对；`unbound` 的数字带上下文，是
   「前后不一致」或笔误的信号，须人工核实。

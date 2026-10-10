@@ -49,6 +49,7 @@ META = {
 MANIFEST = {
     "corpus_id": "PX-2026-001",
     "version": "V1.0",
+    "status": "published",   # 样例历史资产：已发布，装配侧可复用
     "source_fingerprint": "demo-feasibility-sha",
     "title": META["title"],
     "doc_type": META["doc_type"],

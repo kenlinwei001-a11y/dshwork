@@ -7,7 +7,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-DEFAULT_LIBRARY = "/Users/apple/Desktop/workdsh/knowledge-processing-expert/corpus-library"
+DEFAULT_LIBRARY = str(Path(__file__).resolve().parent.parent / "corpus-library")
 
 # 可取的资产类型 → 文件映射
 ASSETS = {
@@ -49,14 +49,22 @@ def _read_text(p: Path) -> str:
     return p.read_text(encoding="utf-8") if p.exists() else ""
 
 
-def list_packages(library_root: str = DEFAULT_LIBRARY) -> list[dict]:
-    """列出语料库中所有语料包（名称/标题/类型/规模）。"""
+def list_packages(library_root: str = DEFAULT_LIBRARY, include_draft: bool = False) -> list[dict]:
+    """列出语料库中所有语料包（名称/标题/类型/规模/状态）。
+
+    P0 状态机：默认只返回 status=published 的已发布语料包（装配侧只能读已发布资产）；
+    include_draft=True 时才含 draft/validated 草稿（供知识处理侧审核用）。
+    """
     root = Path(library_root)
     out = []
     if not root.exists():
         return out
     for d in sorted(root.iterdir()):
         if not d.is_dir() or not (d / "manifest.yaml").exists():
+            continue
+        manifest = _read_data(d / "manifest.yaml") or {}
+        status = manifest.get("status", "draft")
+        if not include_draft and status != "published":
             continue
         meta = _read_data(d / "meta.yaml") or {}
         out.append({
@@ -65,20 +73,24 @@ def list_packages(library_root: str = DEFAULT_LIBRARY) -> list[dict]:
             "doc_type": meta.get("doc_type"),
             "data_cutoff": meta.get("data_cutoff"),
             "source_sha": meta.get("source_sha"),
+            "status": status,
             "files": len(list(d.rglob("*"))),
         })
     return out
 
 
-def search_packages(library_root: str = DEFAULT_LIBRARY, query: str = "") -> list[dict]:
-    """按关键词检索语料包（标题/术语/章节匹配），返回匹配片段。"""
+def search_packages(library_root: str = DEFAULT_LIBRARY, query: str = "", include_draft: bool = False) -> list[dict]:
+    """按关键词检索语料包（标题/术语/章节匹配），返回匹配片段。默认只检索已发布语料包。"""
     root = Path(library_root)
     q = (query or "").strip().lower()
     hits = []
     if not root.exists():
         return hits
     for d in sorted(root.iterdir()):
-        if not d.is_dir():
+        if not d.is_dir() or not (d / "manifest.yaml").exists():
+            continue
+        manifest = _read_data(d / "manifest.yaml") or {}
+        if not include_draft and manifest.get("status", "draft") != "published":
             continue
         meta = _read_data(d / "meta.yaml") or {}
         title = str(meta.get("title", "")).lower()

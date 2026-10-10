@@ -30,15 +30,37 @@ from kp_toolkit import (
 from corpus_pipeline import run_pipeline
 from corpus_pipeline import store as corpus_store
 from corpus_pipeline import library as corpus_library
+from corpus_pipeline import review as corpus_review
+from corpus_pipeline import dependencies as _dependencies
+from corpus_pipeline import quality_gates as _quality_gates
+from corpus_pipeline import capability as _capability
+from corpus_pipeline import entity_registry as _entity_registry
 from corpus_pipeline import schema_diff as _schema_diff
 from corpus_pipeline import semantic_model as _semantic_model
 from corpus_pipeline import ontology_schema as _ontology_schema
 from corpus_pipeline import verification as _verification
 from corpus_pipeline import reserved as _reserved
 from corpus_pipeline.spec import MANIFEST, AGENT_TOOLS
+from corpus_pipeline.groups import TOOL_GROUPS, GROUP_SERVER_NAMES
+import os
 
-SERVER_INFO = {"name": "kp-mcp", "version": "0.1.0"}
+# 按权限域/数据域拆分：KP_MCP_GROUP 环境变量决定本进程暴露哪一组工具。
+# all=全部（兼容旧连接）；processing/assembly/library/semantic/reserved=单一分组。
+GROUP = os.environ.get("KP_MCP_GROUP", "all")
+if GROUP not in TOOL_GROUPS and GROUP != "all":
+    GROUP = "all"
+
+SERVER_NAME = GROUP_SERVER_NAMES.get(GROUP, "kp-mcp")
+SERVER_INFO = {"name": SERVER_NAME, "version": "0.1.0"}
 PROTOCOL_VERSION = "2024-11-05"
+
+
+def _tools_for_group() -> list:
+    """返回当前 GROUP 应暴露的工具列表。"""
+    if GROUP == "all":
+        return TOOLS
+    names = set(TOOL_GROUPS.get(GROUP, []))
+    return [t for t in TOOLS if t["name"] in names]
 
 TOOLS = [
     {"name": "corpus_run", "description": "运行语料包七道工序全链路，返回工序汇总",
@@ -186,6 +208,38 @@ TOOLS = [
      "inputSchema": {"type": "object",
                      "properties": {"library_root": {"type": "string"}, "doc_type": {"type": "string"}, "query": {"type": "string"}},
                      "required": []}},
+    {"name": "library_status", "description": "查询语料包的发布状态（draft/validated/published，P0 状态机）",
+     "inputSchema": {"type": "object",
+                     "properties": {"library_root": {"type": "string"}, "package": {"type": "string"}},
+                     "required": ["package"]}},
+    {"name": "library_promote", "description": "推进语料包状态（draft→validated→published 单向），需先 validated 才能发布",
+     "inputSchema": {"type": "object",
+                     "properties": {"library_root": {"type": "string"}, "package": {"type": "string"}, "target": {"type": "string"}},
+                     "required": ["package", "target"]}},
+    {"name": "library_publish", "description": "发布语料包（validated→published），发布后装配侧 library_* 才可检索/复用",
+     "inputSchema": {"type": "object",
+                     "properties": {"library_root": {"type": "string"}, "package": {"type": "string"}},
+                     "required": ["package"]}},
+    {"name": "impacted_assets", "description": "资产依赖图影响传播：给定变更资产，沿依赖图返回受影响的下游资产（取代按域静态判断）",
+     "inputSchema": {"type": "object",
+                     "properties": {"asset": {"type": "string"}},
+                     "required": ["asset"]}},
+    {"name": "decide_reuse", "description": "复用决策：根据新旧 Schema 差异决定 7 种复用策略之一（直接复用/参数化/向后兼容扩展/依赖联动/分支/重建/拒绝）",
+     "inputSchema": {"type": "object",
+                     "properties": {"old_schema": {"type": "object"}, "new_schema": {"type": "object"}, "forbidden": {"type": "boolean"}},
+                     "required": ["old_schema", "new_schema"]}},
+    {"name": "run_quality_gates", "description": "三质量关口 QG1/QG2/QG3：来源可信度/语义完整性/资产可复用性，返回汇总与失败关口",
+     "inputSchema": {"type": "object",
+                     "properties": {"corpus_dir": {"type": "string"}},
+                     "required": ["corpus_dir"]}},
+    {"name": "assess_capability", "description": "知识≠能力评估：区分「归纳的候选方法」与「登记的真实能力」，含候选缺口时 actionable=False",
+     "inputSchema": {"type": "object",
+                     "properties": {"domains": {"type": "array"}},
+                     "required": ["domains"]}},
+    {"name": "validate_source_anchor", "description": "校验 SourceAnchor 定位完整性（document_id 必填 + table_cell/char 精确定位）",
+     "inputSchema": {"type": "object",
+                     "properties": {"anchor": {"type": "object"}},
+                     "required": ["anchor"]}},
 ]
 
 
@@ -294,6 +348,24 @@ def _dispatch(name: str, args: dict):
         return corpus_library.get_asset(args.get("library_root") or corpus_library.DEFAULT_LIBRARY, args["package"], args["asset"])
     if name == "library_find_analog":
         return corpus_library.find_analog(args.get("library_root") or corpus_library.DEFAULT_LIBRARY, args.get("doc_type", ""), args.get("query", ""))
+    if name == "library_status":
+        return corpus_review.get_package_status(args.get("library_root") or corpus_library.DEFAULT_LIBRARY, args["package"])
+    if name == "library_promote":
+        return corpus_review.promote_package(args.get("library_root") or corpus_library.DEFAULT_LIBRARY, args["package"], args["target"])
+    if name == "library_publish":
+        return corpus_review.publish_package(args.get("library_root") or corpus_library.DEFAULT_LIBRARY, args["package"])
+    if name == "impacted_assets":
+        return {"asset": args["asset"], "impacted": _dependencies.impacted_assets(args["asset"])}
+    if name == "decide_reuse":
+        diffs = _schema_diff.diff_schemas(args["old_schema"], args["new_schema"])
+        return _schema_diff.decide_change_strategy(diffs, forbidden=args.get("forbidden", False))
+    if name == "run_quality_gates":
+        return _quality_gates.run_all_gates(args["corpus_dir"])
+    if name == "assess_capability":
+        assess = _capability.assess_capability(args["domains"])
+        return {**_capability.capability_summary(assess), "domains": assess}
+    if name == "validate_source_anchor":
+        return _entity_registry.validate_source_anchor(args["anchor"])
     if name == "embed":
         from corpus_pipeline.embed import embed_texts, DEFAULT_MODEL
         texts = args.get("texts") or ([args["text"]] if args.get("text") else [])
@@ -350,13 +422,14 @@ def handle(msg):
         # 回显客户端请求的协议版本（MCP 标准行为），避免版本协商失败导致断连
         requested = (msg.get("params") or {}).get("protocolVersion") or PROTOCOL_VERSION
         return _result(req_id, {"protocolVersion": requested,
-                                "capabilities": {"tools": {}}, "serverInfo": SERVER_INFO})
+                                "capabilities": {"tools": {"listChanged": False}},
+                                "serverInfo": SERVER_INFO})
     if method == "notifications/initialized":
         return None
     if method == "ping":
         return _result(req_id, {})
     if method == "tools/list":
-        return _result(req_id, {"tools": TOOLS})
+        return _result(req_id, {"tools": _tools_for_group()})
     if method == "tools/call":
         try:
             name = msg["params"]["name"]

@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 | **确定性代码** | 结构比对、字段校验、DAG 排序、版本比较、事务发布 | Schema Diff、拓扑排序、JSON Schema 校验、内容哈希、乐观锁 | 靠模糊语义自行判断复杂业务含义 | `schema_diff.py`、`contracts.py`、`orchestrator.topological_order` |
 | **Skill** | 有明确输入输出契约的语义任务 | Claim 抽取、语义映射、证据关联、论证构建 | 绕过权限访问数据库、独立决定全局发布 | `claim-extraction-skill` 等 + `runtime.SkillRegistry` |
-| **MCP** | 将授权后的资产/查询/函数/系统操作暴露为标准接口 | 查询资产、读取定义、调用函数、写入图谱 | 负责整个项目的流程规划与全局调度 | `kp-mcp`（48 工具） |
+| **MCP** | 将授权后的资产/查询/函数/系统操作暴露为标准接口 | 查询资产、读取定义、调用函数、写入图谱 | 负责整个项目的流程规划与全局调度 | `kp-*`（5 个 MCP，按权限域拆分，共 65 工具） |
 | **Agent** | 根据项目目标提计划、选路径、处理需推理的决策 | 提出任务计划、选择复用策略、处理语义歧义 | 无约束修改资产、绕过验证与审批 | 推演写作专家（`expert-a0a771c8b0da`） |
 | **Workflow／规则引擎** | 调度、依赖、重试、审批、事务边界、质量闸门 | DAG 执行、依赖管理、审批分流、闸门拦截 | 自由生成无结构约束的执行流程 | `runtime.DAGRuntime` + `orchestrator` |
 
@@ -37,9 +37,9 @@
 ├─ 装配服务层    Schema Diff · Asset Resolver · Asset Assembler · Dependency Analyzer · Validation Engine
 │               → schema_diff.py、library.py、instantiate.py、ontology_schema.py、validate.py
 ├─ 能力执行层    Skills · 函数执行器 · 规则引擎 · LLM Gateway · MCP Client
-│               → runtime.SkillRegistry、domain_rules（规则）、kp-mcp（MCP Client）
+│               → runtime.SkillRegistry、domain_rules（规则）、kp-*（MCP Client）
 ├─ 受控工具接口层  Asset Registry MCP · Historical Knowledge MCP · Ontology Graph MCP · Reasoning Tools MCP · Report Runtime MCP · Governance/Audit MCP
-│               → kp-mcp（合并部署，按权限域/数据域拆分工具组：library / processing / agent_access / reemit / ontology）
+│               → 5 个 MCP 按权限域拆分：kp-processing(30) / kp-assembly(16) / kp-library(7) / kp-semantic(6) / kp-reserved(6)
 └─ 数据存储层    PostgreSQL · 图数据库 · 向量检索 · 对象存储 · Skill Artifact Registry
                 → 当前：文件系统（corpus-library / project 目录），预留 DB/图/向量升级位
 ```
@@ -97,7 +97,56 @@ Schema Diff → Asset Resolver → Reuse Policy → Asset Assembler → Validati
 
 ---
 
-## 五、边界红线（违反即缺陷）
+## 五、知识处理侧：状态机 · 依赖图 · 三关口 · 双路径
+
+知识处理侧（K0–K11）生产「装配侧可消费的**已发布**资产」，四个关键机制：
+
+### 1. 候选→正式状态机（P0）
+
+语料包 `manifest.status` 单向推进：`draft → validated → published`。
+
+- 抽取产物默认 `draft`，装配侧 `library_*` 检索**默认不可见**；
+- 经质量关口 → `validated`；`publish` → `published`，装配侧才可检索/复用；
+- 禁止回退、禁止跳级（`draft` 不能直接 `published`）。
+- 实现：`review.py`（`promote_status` / `promote_package` / `publish_package`）+ `library.py` 过滤（`include_draft`）。
+
+### 2. 资产依赖图（P1）
+
+16 域依赖关系（`dependencies.py`），取代「按域静态拍脑袋」：
+
+- `impacted_assets(asset)`：沿依赖图正向传播，精确返回受影响下游资产——`ontology` 变更 → 全部 16 域；`variable` 变更 → 11 域，不误伤 `report_structure`。
+- `dependency_closure(asset)`：上游依赖传递闭包。
+- `check_cycles()`：检测依赖环。
+
+### 3. 三质量关口（P1）
+
+`quality_gates.py` 显式化三道关：
+
+| 关口 | 阶段 | 检查 | 不通过 |
+|---|---|---|---|
+| QG1 来源可信度 | K1–K3 | 文档版本 / 来源指纹 / 切片锚点 | 回解析或标记来源不完整 |
+| QG2 语义完整性 | K4–K7 | Claim 类型/状态合法、关系 from/to/type、证据有来源 | 修正抽取或人工确认 |
+| QG3 资产可复用性 | K8–K10 | 16 域装配方法+不一致处理齐全、依赖图无环、约束存在 | 保留待审核，不进正式库 |
+
+### 4. 知识 ≠ 能力双路径（P2）
+
+`capability.py` 区分资产来源：
+
+- `registered`：带可执行证据（`formula`/`expr`/`code`/`function`）→ 真实能力，可发布；
+- `induced`：仅描述/模式 → 候选方法，**不能当生产级能力发布**。
+
+**函数库、Skill、DAG 不能从历史报告文本可靠「抽取」**——只有报告就只能归纳候选方法，有代码/配置/执行记录才能登记真实能力。
+
+### 5. SourceAnchor + 跨文档实体注册表（P2）
+
+`entity_registry.py`：
+
+- `validate_source_anchor`：`document_id` 必填 + `table_cell`/char 精确定位（证据级溯源）。
+- `EntityRegistry`：跨文档实体统一（`register`/`resolve`/`add_mention`），同名多实体 → `ambiguous`，不强行映射。
+
+---
+
+## 六、边界红线（违反即缺陷）
 
 1. **不裁决冲突**：冲突一律「待审」，不补数字、不改口径。
 2. **借形不借值**：可继承骨架/推导逻辑/句式，一律不继承历史数值。
@@ -110,9 +159,9 @@ Schema Diff → Asset Resolver → Reuse Policy → Asset Assembler → Validati
 
 ---
 
-## 六、验收标准（回归测试即验收）
+## 七、验收标准（回归测试即验收）
 
-每条验收标准都有对应测试（`corpus_pipeline/test_*.py`，17 个文件全部通过）：
+每条验收标准都有对应测试（`corpus_pipeline/test_*.py`，21 个文件全部通过）：
 
 1. 新增 `claims` → 识别新增字段 + 兼容性分析（`test_impact_analysis` / `test_domain_changes`）
 2. 缺非必填字段 → 允许装配并记录缺失（`test_assembly_artifacts`）
@@ -124,3 +173,8 @@ Schema Diff → Asset Resolver → Reuse Policy → Asset Assembler → Validati
 8. 版本冲突 → `base_version` 过期检测（`test_contracts`）
 9. 无权限 → 拒绝读取/复用（`test_runtime` / `test_contracts`）
 10. 同输入同配置 → 等价结果（`content_hash` 确定性，`test_contracts`）
+11. 草稿不可见 → `list_packages` 默认只 `published`，发布后可见（`test_review`）
+12. 依赖图精确传播 → `ontology` 变更覆盖 16 域、`variable` 不误伤 `report_structure`（`test_p1`）
+13. 三关口拦截 → QG1/QG2/QG3 检查项与失败关口（`test_p1`）
+14. 知识≠能力 → 仅描述判 `induced`（候选），有代码判 `registered`（能力）（`test_knowledge_p2`）
+15. 跨文档实体 → 同名多实体判 `ambiguous`，不强行映射（`test_knowledge_p2`）
