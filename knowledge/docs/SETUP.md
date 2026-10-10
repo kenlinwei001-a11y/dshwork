@@ -9,7 +9,8 @@
 ├── knowledge-processing-expert/   # 工程代码（corpus_pipeline / kp_toolkit / mcp / corpus-library）
 │   ├── corpus_pipeline/           # 七道工序 + 装配引擎（schema_diff / semantic_model / ontology_schema / instantiate / contracts / runtime ...）
 │   ├── kp_toolkit/                # 确定性工具（分句/建图/溯源/冲突/查数）
-│   ├── mcp/server.py              # kp-mcp（48 工具）
+│   ├── mcp/server.py              # MCP 服务（65 工具，按权限域拆 5 组）
+│   ├── mcp/servers/               # 5 组入口：kp_processing/assembly/library/semantic/reserved_server.py
 │   ├── corpus-library/            # 历史语料资产库（PX-2026-001-feasibility 样例）
 │   ├── ARCHITECTURE.md            # 五形态边界 + 分层声明（架构收口）
 │   └── requirements.txt           # 依赖
@@ -35,16 +36,17 @@
 bash setup.sh
 ```
 
-### 第 2 步：注册 kp-mcp（手动，WorkDSH 界面）
+### 第 2 步：注册 5 组 MCP（手动，WorkDSH「MCP 服务管理」）
 
-在 WorkDSH「MCP 连接」里新增一个 **stdio** 连接：
+在 WorkDSH「MCP 服务管理」里用「添加 MCP」新增 **5 个 stdio 连接**（公共字段：command=`<本仓库>/knowledge-processing-expert/.venv/bin/python`）：
 
-| 字段 | 值 |
-|---|---|
-| serverName | `kp-mcp` |
-| command | `<本仓库>/knowledge-processing-expert/.venv/bin/python` |
-| args | `["<本仓库>/knowledge-processing-expert/mcp/server.py"]` |
-| cwd | `<本仓库>/knowledge-processing-expert` |
+| serverName | title | args |
+|---|---|---|
+| `kp-processing` | 知识处理工序 | `["<本仓库>/knowledge-processing-expert/mcp/servers/kp_processing_server.py"]` |
+| `kp-assembly` | 装配验证 | `["<本仓库>/knowledge-processing-expert/mcp/servers/kp_assembly_server.py"]` |
+| `kp-library` | 资产库 | `["<本仓库>/knowledge-processing-expert/mcp/servers/kp_library_server.py"]` |
+| `kp-semantic` | 语义对齐 | `["<本仓库>/knowledge-processing-expert/mcp/servers/kp_semantic_server.py"]` |
+| `kp-reserved` | 预留接口 | `["<本仓库>/knowledge-processing-expert/mcp/servers/kp_reserved_server.py"]` |
 
 ### 第 3 步：导入专家（手动，WorkDSH 界面）
 
@@ -63,10 +65,10 @@ bash setup.sh
 
 ## 能力速览
 
-- **kp-mcp（48 工具）**：七道工序 + `library_*` + `schema_diff` / `resolve_concept` / `ossie_import/export` / `ontology_*` / `check_number_consistency` / `instantiate_project` / `gate_check_draft` 等。
+- **kp-*（5 组 MCP，共 65 工具）**：kp-processing（七道工序 30）/ kp-assembly（装配+验证+查数 16）/ kp-library（资产库+发布 7）/ kp-semantic（语义对齐+本体 6）/ kp-reserved（预留 6）。
 - **确定性主链路**：Schema Diff → Asset Resolver → Reuse Policy → Asset Assembler → Validation → Asset Publisher。
 - **可插拔对接**：Apache Ossie（语义对齐）、Jev（语义分类，预留）、Semantica（本体管理，对齐 OWL/SHACL/SKOS）。
-- **回归测试**：`corpus_pipeline/test_*.py` + `kp_toolkit/test_*.py`（17 个文件，全部通过）。
+- **回归测试**：`corpus_pipeline/test_*.py` + `kp_toolkit/test_*.py`（21 个文件，全部通过）。
 
 ## 版本说明
 

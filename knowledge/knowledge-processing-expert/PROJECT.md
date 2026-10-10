@@ -12,7 +12,7 @@
 | 30 文件契约 | `corpus_pipeline/spec.py` + `full_emit.py` | 30 产物清单 + 全部发射器 + 8 个 reemit |
 | 嵌入层 | `corpus_pipeline/embed.py` | fastembed 向量化，输出 embeddings.parquet |
 | 存储后端 | `corpus_pipeline/backends.py` | PG/Neo4j/Qdrant 适配器 + 文件系统回退 |
-| MCP | `mcp/server.py` + `mcp/mcp-config.json` | stdio MCP 服务（29 工具） |
+| MCP | `mcp/server.py` + `mcp/servers/`（5 入口） | stdio MCP 服务（65 工具，按权限域拆 5 组） |
 | 专家包元数据 | `.workdsh-expert/plugin.json` | 专家身份/展示/技能声明 |
 
 ## 七道工序 → 30 文件
@@ -51,7 +51,9 @@ python3 -m corpus_pipeline.test_llm_extraction
 # 嵌入（embeddings.parquet）
 .venv/bin/python -c "from corpus_pipeline.embed import build_embeddings; ..."
 
-# MCP 服务（29 工具，用 venv python）
+# MCP 服务（65 工具，按权限域拆 5 组，用 venv python）
+# 单一 kp-mcp（全部 65 工具）：.venv/bin/python mcp/server.py
+# 按组拆分（推荐）：.venv/bin/python mcp/servers/kp_processing_server.py   # 30 工具
 .venv/bin/python mcp/server.py
 ```
 
@@ -67,6 +69,7 @@ python3 -m corpus_pipeline.test_llm_extraction
 
 ## 注册说明（DSH Host）
 
-- MCP 工具注册由 `@deepseek-ai/dsh-mcp-client` 负责，配置项在
-  `~/.test-runtime/preview/profiles/preview/cordis.patch.yml` 的 `mcp-kp` 条目。
+- 5 组 MCP 连接定义在 WorkDSH「MCP 服务管理」里注册，存储于
+  `~/.test-runtime/preview/storages/workdsh_connectors/definitions/{kp-processing,kp-assembly,kp-library,kp-semantic,kp-reserved}.json`。
+- 每个连接 `transport=stdio`、`command=.venv/bin/python`、`args=mcp/servers/kp_<组>_server.py`。
 - 修改后需重启 DSH Host 才生效。

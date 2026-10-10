@@ -104,6 +104,16 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 `kp-library` 已连接且历史语料资产库已就绪。**借形不借值**：可继承结构与规则，绝不继承数值/单位/
 实体/结论；新项目事实只来自用户提供的 `provided_facts`。
 
+## MCP 工具分布（5 组，取代旧单一 kp-mcp）
+
+本 skill 用到的 MCP 工具按权限域分布在 5 个 MCP：
+
+- **kp-processing**（写作期取骨架/节点/证据）：graph_get_node / graph_query / graph_explain / graph_why / graph_impact / corpus_search / corpus_get_chunk / corpus_get_skeleton / corpus_where_used / evidence_get
+- **kp-assembly**（建图/组包/闸门/查数/验证）：schema_diff / decide_reuse / instantiate_project / build_work_package / gate_check_draft / check_number_consistency / check_requirements / sensitivity_analysis / validate_shacl / project_where_written / wp_get_facts
+- **kp-library**（历史资产复用）：library_list_packages / library_search / library_find_analog / library_get_asset / library_status / library_promote / library_publish
+- **kp-semantic**（语义对齐，可选）：resolve_concept / ossie_import / ossie_export / semantic_classify / ontology_export / ontology_import
+- **kp-reserved**（预留，一般不调用）：semantic_search / asset_rerank / solve_constraint / graph_db_query / store_object / llm_invoke
+
 ## 交互层：右侧表单面板（补录 + 字数）
 
 写作期需要用户交互的两处，用右侧 `content_open(kind:"spreadsheet")` 打开独立表单面板（Excel 表格），

@@ -32,11 +32,12 @@ cat <<'EOF'
 
 == 完成。还需手动两步（无法脚本化，需在 WorkDSH 界面操作）==
 
-① 注册 kp-mcp（MCP 连接 → 新增 stdio）：
-   serverName: kp-mcp
-   command:    <本目录>/knowledge-processing-expert/.venv/bin/python
-   args:       [<本目录>/knowledge-processing-expert/mcp/server.py]
-   cwd:        <本目录>/knowledge-processing-expert
+① 注册 5 组 MCP（「MCP 服务管理」→ 添加 MCP → stdio，公共 command 为 <本目录>/knowledge-processing-expert/.venv/bin/python）：
+   kp-processing → args [<本目录>/knowledge-processing-expert/mcp/servers/kp_processing_server.py]   (30 工具)
+   kp-assembly   → args [<本目录>/knowledge-processing-expert/mcp/servers/kp_assembly_server.py]     (16 工具)
+   kp-library    → args [<本目录>/knowledge-processing-expert/mcp/servers/kp_library_server.py]      (7 工具)
+   kp-semantic   → args [<本目录>/knowledge-processing-expert/mcp/servers/kp_semantic_server.py]     (6 工具)
+   kp-reserved   → args [<本目录>/knowledge-processing-expert/mcp/servers/kp_reserved_server.py]     (6 工具)
 
 ② 导入专家（专家界面 → 新建，粘贴 experts/*.md 的 frontmatter + 正文，绑定对应 skill）：
    推演写作专家  → experts/deductive-writer-expert.md   （6 个 skill）

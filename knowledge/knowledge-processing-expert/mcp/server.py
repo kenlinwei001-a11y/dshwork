@@ -43,16 +43,21 @@ from corpus_pipeline import reserved as _reserved
 from corpus_pipeline.spec import MANIFEST, AGENT_TOOLS
 from corpus_pipeline.groups import TOOL_GROUPS, GROUP_SERVER_NAMES
 import os
+import sys
 
-# 按权限域/数据域拆分：KP_MCP_GROUP 环境变量决定本进程暴露哪一组工具。
+# 按权限域/数据域拆分：--group 命令行参数（优先）或 KP_MCP_GROUP 环境变量决定本进程暴露哪一组工具。
 # all=全部（兼容旧连接）；processing/assembly/library/semantic/reserved=单一分组。
 GROUP = os.environ.get("KP_MCP_GROUP", "all")
+if "--group" in sys.argv:
+    idx = sys.argv.index("--group")
+    if idx + 1 < len(sys.argv):
+        GROUP = sys.argv[idx + 1]
 if GROUP not in TOOL_GROUPS and GROUP != "all":
     GROUP = "all"
 
 SERVER_NAME = GROUP_SERVER_NAMES.get(GROUP, "kp-mcp")
 SERVER_INFO = {"name": SERVER_NAME, "version": "0.1.0"}
-PROTOCOL_VERSION = "2024-11-05"
+PROTOCOL_VERSION = "2025-06-18"
 
 
 def _tools_for_group() -> list:
@@ -412,17 +417,20 @@ def _error(req_id, code, message):
 
 
 def _text_result(data):
-    return {"content": [{"type": "text", "text": json.dumps(data, ensure_ascii=False)}], "isError": False}
+    # 对齐 workdsh example-server：text 内容 + structuredContent 结构化结果
+    return {"content": [{"type": "text", "text": json.dumps(data, ensure_ascii=False)}],
+            "structuredContent": data, "isError": False}
 
 
 def handle(msg):
     method = msg.get("method")
     req_id = msg.get("id")
     if method == "initialize":
-        # 回显客户端请求的协议版本（MCP 标准行为），避免版本协商失败导致断连
+        # 对齐 workdsh example-server：回显 client 请求的协议版本（默认 2025-06-18），
+        # capabilities 声明 tools + resources。
         requested = (msg.get("params") or {}).get("protocolVersion") or PROTOCOL_VERSION
         return _result(req_id, {"protocolVersion": requested,
-                                "capabilities": {"tools": {"listChanged": False}},
+                                "capabilities": {"tools": {}, "resources": {}},
                                 "serverInfo": SERVER_INFO})
     if method == "notifications/initialized":
         return None
