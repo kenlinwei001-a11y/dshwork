@@ -82,24 +82,37 @@
 
 推理节点构成**有向依赖图**：`inputs → reasoning → output`。推演沿此图正向传播。
 
-### 5. claims — 论断（判断/结论/风险/预测/因果/建议）
+### 5. claims — 论断（独立论证对象，非普通文本字段）
 
 ```json
-{"id": "CL1", "text": "维护后基地有效月产能约35 GWh", "type": "结论",
- "section": "§5", "deps": ["R3"], "evidence": ["E6", "E7"]}
+{"id": "CL1", "text": "维护后基地有效月产能约35 GWh",
+ "claim_type": "conclusion", "type": "结论", "status": "supported",
+ "section": "§5", "deps": ["R3"], "evidence_refs": ["E6", "E7"],
+ "premise_refs": [], "derived_from": [], "confidence": 0.9,
+ "conflict": null, "valid_time": {"start": null, "end": null}}
 ```
 
-| 字段 | 含义 |
-|------|------|
-| `id` | 论断 id（`CL*`） |
-| `text` | 论断原文 |
-| `type` | 论断类型：结论 / 判断 / 风险 / 预测 / 因果判断 / 建议 |
-| `section` | 所属章节 |
-| `deps` | 依赖，**可引用 facts / reasoning / claims**（如 `["F14"]`、`["R3"]`、`["CL3"]`） |
-| `evidence` | 支撑证据 id 列表（`E*`） |
-| `conflict` | 关联冲突 id（可选） |
+字段分三类（严格区分「输入 / 推演 / 治理」，与抽取契约 `ontology.py` 的 `CLAIM_*_FIELDS` 一致）：
 
-`type` 决定写作姿态：`结论`可陈述、`预测/情景`必须标注为情景而非既成事实、`风险`进入风险清单、`建议`进入行动项、`判断`须绑定理由。
+| 类别 | 字段 | 含义 |
+|------|------|------|
+| 输入 | `id` | 论断 id（`CL*`） |
+| 输入 | `text` | 论断原文 |
+| 输入 | `claim_type` | 论证类型：fact / hypothesis / inference / conclusion / recommendation |
+| 输入 | `type` | 论断性质（旧，向后兼容）：结论 / 判断 / 风险 / 预测 / 因果判断 / 建议 |
+| 输入 | `section` | 所属章节 |
+| 输入 | `deps` | 依赖，**可引用 facts / reasoning / claims**（如 `["F14"]`、`["R3"]`、`["CL3"]`） |
+| 推演 | `status` | 验证状态：unverified / supported / contradicted / verified（**缺省 unverified，不得伪装已证**） |
+| 推演 | `evidence_refs` | 证据关联 id 列表（`E*`；旧字段 `evidence` 为其别名） |
+| 推演 | `premise_refs` | 前提 claim id 列表 |
+| 推演 | `derived_from` | 推导来源 claim id 列表 |
+| 推演 | `confidence` | 置信度（number 或 null） |
+| 治理 | `valid_time` | 生效时间范围 `{start, end}`（可 null） |
+| 治理 | `conflict` | 关联冲突 id（可选） |
+
+`claim_type` + `status` 决定写作姿态：`conclusion`+`supported` 可陈述式；`hypothesis`/`unverified`
+须条件式「待验证」；`contradicted` 转冲突待审，不得陈述为事实；`recommendation` 进行动项；
+「风险」性质进风险清单。「推演字段」非原始输入，若缺失须由系统产生并标记 `unverified`，不得由模型推断后伪装成用户提供的事实。
 
 ### 6. evidence — 证据
 
@@ -149,6 +162,6 @@
 
 ## 引用完整性
 
-所有跨节点引用（relations.from/to、reasoning.inputs/output、claims.deps/evidence、
+所有跨节点引用（relations.from/to、reasoning.inputs/output、claims.deps/evidence_refs/premise_refs/derived_from、
 conflicts.involved、validations.claim）都必须指向存在的节点 id。`scripts/validate_graph.py`
 在写作前对此做确定性检查，发现悬空引用或缺失必填字段即报错，应先修复图谱再写作。

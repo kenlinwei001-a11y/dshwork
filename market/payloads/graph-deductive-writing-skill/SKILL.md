@@ -63,20 +63,81 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 
 ### 阶段 4：溯源写作（生成报告）
 
-- 用 `content_open` 打开 Word 实时文档（`source: "new"` + `title`，不设 `kind`），标题取 `meta.title`。
-- 按 `assets/report-outline.md` 骨架逐章写作：执行摘要（结论先行）→ 事实与现状（单源事实表）
-  → 推演过程（推理链）→ 情景分析 → 风险清单 → 建议 → 待审事项 → 证据附录。
+- 用 `plate_open`（title 取 `meta.title`）在右侧 Plate 编辑器打开报告，作为**主编辑面**。
+- 写作前先做两次「右侧表单面板」交互（见下「交互层」）：
+  1. 若 `instantiate` 有 `undefined_notes`，用 `content_open(kind:"spreadsheet")` 打开「遗漏补录表」
+     （缺失字段 × 补充值），用户填后 `content_read` 读回，把补充事实追加进 `provided_facts` 重新装配。
+  2. 用 `content_open(kind:"spreadsheet")` 打开「章节字数表」（章节 × 字数预算），用户一次性填写，
+     读回后把字数注入写作提示词，作为 `plate_edit` 每章篇幅约束。
+- 按 `assets/report-outline.md` 骨架逐章写作，用 `plate_edit` 分小批提交（每次提交完整 Slate JSON：
+  标题 + 第一段 → 各章节，见 `references/provenance-writing.md`）。
 - 遵循 `references/provenance-writing.md`：事实单源、论断级溯源标记（`〔CL3｜R5｜E1,E3〕`）、
   冲突显式「⚠ 待审」框、证据性质分层措辞。
-- 版式与体裁规范遵循 `workdsh-word-design` skill；分小批提交 content_edit，避免一次性倾倒。
-- 完成后 `content_read` 复核，`content_export` 导出真实 DOCX。
+- 每节起草后，调用 MCP 工具 `check_number_consistency(draft_md, facts)` 做数字一致性核对
+  （`unbound` 数字、口径存疑一律「待审」，见 `references/provenance-writing.md` 第 6 节）。
+- 版式与体裁规范遵循 `workdsh-word-design` skill。
+- **定稿后**（用户在 Plate 编辑完成），用 `content_open` 生成 Word 并 `content_export` 导出真实 DOCX
+  —— plate 本身不导出 docx，「docx 交付」走 content_* 这条轨（编辑在 plate、交付在 content）。
 
-### 阶段 5：反向回读与交付
+### 阶段 5：反向回读、二次判断与交付
 
-- 客户改稿后，按 `references/provenance-writing.md` 第 5 节逐句回读：定位溯源标记，
-  判断改动类别（改数字/改结论/增删论述/改建议），回写到对应图谱节点。
-- 回读后重新做前向推演与冲突检查，标注被改动「传染」的下游结论。
+- 用户在 Plate 编辑（删除/增加/前后调整）后，**手动触发**二次判断（用户说「检查一遍 / 核对 / 二次判断」时）：
+  1. `plate_read` 读回最新内容，与上一版 diff，定位改动段落。
+  2. `check_number_consistency(draft_md, facts)` 重新核对数字（改数字是否漂移 / 前后不一致）。
+  3. 按 `references/provenance-writing.md` 第 5 节逐句回读：判断改动类别（改数字/改结论/增删论述/改建议），
+     回写到对应图谱节点。
+  4. 重新做前向推演与冲突检查，标注被改动「传染」的下游结论。
 - 无法定位来源的改动显式标注「未溯源」，不得假装绑定。
+- 定稿后（用户说「导出 / 交付」），用 `content_open` 生成 Word + `content_export` 导出真实 DOCX 交付。
+
+## 写新项目：复用历史项目资产
+
+当任务是**写一个新项目**（而非沿用已编译图谱）时，先借历史资产再建图，然后才进入上面的
+推演写作工作流。完整工具用法与「借形不借值」硬约束见 `references/historical-asset-reuse.md`。要点：
+
+1. `library_find_analog(doc_type, query)` → 找最相似历史语料包。
+2. `library_get_asset(package, asset)` → 借形：outline / templates / style / terms / claims / rules / skeleton。
+3. `instantiate_project(corpus_dir=best, project_dir, provided_facts, meta)` → 建新项目图库。
+4. 进入推演写作（阶段 0–5）。
+
+这四个 `library_*` 工具由 `kp-library` MCP server 提供（知识处理专家的工具层，按域拆分的 5 个 MCP 之一）；前置条件是
+`kp-library` 已连接且历史语料资产库已就绪。**借形不借值**：可继承结构与规则，绝不继承数值/单位/
+实体/结论；新项目事实只来自用户提供的 `provided_facts`。
+
+## MCP 工具分布（5 组，取代旧单一 kp-mcp）
+
+本 skill 用到的 MCP 工具按权限域分布在 5 个 MCP：
+
+- **kp-processing**（写作期取骨架/节点/证据）：graph_get_node / graph_query / graph_explain / graph_why / graph_impact / corpus_search / corpus_get_chunk / corpus_get_skeleton / corpus_where_used / evidence_get
+- **kp-assembly**（建图/组包/闸门/查数/验证）：schema_diff / decide_reuse / instantiate_project / build_work_package / gate_check_draft / check_number_consistency / check_requirements / sensitivity_analysis / validate_shacl / project_where_written / wp_get_facts
+- **kp-library**（历史资产复用）：library_list_packages / library_search / library_find_analog / library_get_asset / library_status / library_promote / library_publish
+- **kp-semantic**（语义对齐，可选）：resolve_concept / ossie_import / ossie_export / semantic_classify / ontology_export / ontology_import
+- **kp-reserved**（预留，一般不调用）：semantic_search / asset_rerank / solve_constraint / graph_db_query / store_object / llm_invoke
+
+## 交互层：右侧表单面板（补录 + 字数）
+
+写作期需要用户交互的两处，用右侧 `content_open(kind:"spreadsheet")` 打开独立表单面板（Excel 表格），
+用户填写后 `content_read` 读回：
+
+**① 遗漏补录表**（`instantiate` 返回 `undefined_notes` 非空时）：
+
+| 缺失字段 | 含义 / instruction | 补充值 | 单位 |
+|---------|-------------------|-------|------|
+| （每个 undefined 节点一行） | 缺值守卫的 instruction | （用户填） | （用户填） |
+
+用户填完补充值后，把「缺失字段 → 补充值」追加进 `provided_facts`，**重新跑 `instantiate_project`**
+（缺值守卫消除，原本 UNDEFINED 的派生节点变为可计算）。
+
+**② 章节字数表**（每次写作前）：
+
+| 章节 | 章节名 | 字数预算 |
+|------|-------|---------|
+| §1 | 执行摘要 | （用户填） |
+| §2 | 事实与现状 | （用户填） |
+| … | … | … |
+
+用户一次性填写后，读回的字数预算注入写作提示词，作为 `plate_edit` 每章篇幅约束。
+字数只是**提示词参数**，不是业务事实，不进入图谱。
 
 ## 与既有 skill 的组合
 
@@ -85,7 +146,7 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
   semantic-graph-compilation-skill。
 - **本 skill 编排**：claim-validation-skill、conflict-detection-skill、claim-evidence-binding-skill、
   provenance-binding-skill 用于推演校验与溯源。
-- **下游**：workdsh-word-design（版式与体裁）、content_*（实时写作与导出 DOCX）。
+- **下游**：workdsh-word-design（版式与体裁）、plate_*（实时编辑）、content_*（DOCX 导出）。
 - **领域引擎**：feasibility-report-edu-research 等特定领域报告是本 skill 的领域化实例；本 skill 是通用引擎。
 
 ## 边界与禁忌
@@ -101,5 +162,6 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 - `references/semantic-graph-schema.md` — 输入图谱完整字段契约。
 - `references/deduction-patterns.md` — 前向推演范式与口径/冲突/情景处理。
 - `references/provenance-writing.md` — 溯源写作与反向回读方法。
+- `references/historical-asset-reuse.md` — 写新项目时复用历史语料资产（library_* MCP 工具 + 借形不借值）。
 - `references/worked-example.md` — PX-2026-001 完整端到端示例。
 - `assets/report-outline.md` — 推演式分析报告骨架模板。

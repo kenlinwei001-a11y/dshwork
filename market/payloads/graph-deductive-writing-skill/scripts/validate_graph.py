@@ -34,7 +34,7 @@ REQUIRED_KEYS = {
     "relations":   ("id", "from", "to", "type", "source"),
     "facts":       ("id", "subject", "predicate", "value", "source"),
     "reasoning":   ("id", "formula", "result", "desc", "inputs", "output", "section"),
-    "claims":      ("id", "text", "type", "deps", "evidence"),
+    "claims":      ("id", "text"),
     "evidence":    ("id", "name", "date", "kind"),
     "conflicts":   ("id", "type", "severity", "status", "description", "involved"),
     "validations": ("claim", "status", "reason"),
@@ -45,7 +45,11 @@ REQUIRED_KEYS = {
 ID_REF_FIELDS = {
     "relations":   (("from", ("entities",)), ("to", ("entities",))),
     "reasoning":   (("inputs", ("facts", "reasoning")), ("output", ("facts",))),
-    "claims":      (("deps", ("facts", "reasoning", "claims")), ("evidence", ("evidence",))),
+    "claims":      (("deps", ("facts", "reasoning", "claims")),
+                    ("evidence_refs", ("evidence",)),
+                    ("evidence", ("evidence",)),      # 旧字段别名，向后兼容
+                    ("premise_refs", ("claims",)),
+                    ("derived_from", ("claims",))),
     "conflicts":   (("involved", ("facts", "reasoning", "claims")),),
     "validations": (("claim", ("claims",)),),
 }
