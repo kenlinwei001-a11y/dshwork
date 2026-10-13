@@ -51,7 +51,19 @@ const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '-
   stdio: 'inherit',
 });
 
-for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => child.kill(signal));
+// 收到终止信号时，必须由本进程负责把子进程杀干净再退，否则会出现孤儿：
+// 原实现只把信号转发给子进程、自身不退，launchd 在宽限期后 SIGKILL 本进程，
+// 子进程（dsh 服务）便带着 profile 留在世上；下一个实例启动时会在 storage
+// 初始化处等这把永不释放的锁——表现为「永远不起监听」。
+const shutdown = (signal) => {
+  try { child.kill(signal); } catch {}
+  const force = setTimeout(() => {
+    try { child.kill('SIGKILL'); } catch {}
+    process.exit(0);
+  }, 8000);
+  force.unref?.();
+};
+for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => shutdown(signal));
 child.on('exit', (code, signal) => {
   if (signal) process.kill(process.pid, signal);
   else process.exitCode = code ?? 1;

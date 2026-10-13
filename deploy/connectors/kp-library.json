@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "kp-library",
+    "title": "资产库",
+    "description": "历史资产库+发布（7 工具）：library 检索/复用/状态机",
+    "serverName": "kp-library",
+    "transport": "stdio",
+    "command": "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python",
+    "args": [
+      "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/mcp/servers/kp_library_server.py"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-10T09:45:26.713053Z",
+    "updatedAt": "2026-10-10T09:45:26.713053Z"
+  }
+}

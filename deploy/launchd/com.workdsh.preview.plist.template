@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.workdsh.preview</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>__WORKDSH_REPO__/apps/web/scripts/start-preview.mjs</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>__WORKDSH_REPO__/apps/web</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>WORKDSH_PREVIEW_HOME</key>
+    <string>__WORKDSH_REPO__/.test-runtime/preview</string>
+    <key>DSH_AGENTS_HOME</key>
+    <string>__DSH_AGENTS_HOME__</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+  <key>StandardOutPath</key>
+  <string>/Users/apple/Library/Logs/com.workdsh.preview.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/apple/Library/Logs/com.workdsh.preview.err</string>
+</dict>
+</plist>

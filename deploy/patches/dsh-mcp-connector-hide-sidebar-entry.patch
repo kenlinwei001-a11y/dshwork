@@ -1,0 +1,20 @@
+--- a/lib/client.js
++++ b/lib/client.js
+@@ -761,7 +761,7 @@
+ 		 * 包名或客户端模块到达顺序让整个 Desktop 进入 Safe Mode。
+ 		 */
+ 		function createMarketViewStore() {
+-			let sidebarVisible = true;
++			let sidebarVisible = false;
+ 			const liveActions = new Set();
+ 			const spec = {
+ 				init: () => ({ open: false, detailOpen: false, sidebarVisible }),
+@@ -811,7 +811,7 @@
+ 		function resolveSidebarVisible(snapshot) {
+ 			return snapshot?.status === "ready"
+ 				? snapshot.value?.[SHOW_SIDEBAR_ENTRY_FIELD] !== false
+-				: true;
++				: false;
+ 		}
+ 
+ 		function connectorSettingsCopy() {

@@ -1,0 +1,87 @@
+--- a/semantica/kg/centrality_calculator.py
++++ b/semantica/kg/centrality_calculator.py
+@@ -694,11 +694,15 @@
+     
+     def _filter_nodes_by_labels(self, graph: Any, node_labels: Optional[List[str]]) -> List[str]:
+         """Filter nodes by specified labels."""
+-        if node_labels is None:
+-            return list(graph.nodes()) if hasattr(graph, 'nodes') else []
+-        
++        # NOTE(patched): graph.nodes 可能是 dict 属性而非方法（如 ContextGraph），
++        # 原写法 graph.nodes() 会抛 'dict' object is not callable。
++        _nodes = getattr(graph, 'nodes', None)
++        _node_ids = list(_nodes() if callable(_nodes) else (_nodes or [])) if _nodes is not None else []
++        if node_labels is None:
++            return _node_ids
++
+         filtered_nodes = []
+-        for node in graph.nodes():
++        for node in _node_ids:
+             if hasattr(graph, 'nodes'):
+                 node_data = graph.nodes[node]
+                 if isinstance(node_data, dict):
+--- a/semantica/kg/community_detector.py
++++ b/semantica/kg/community_detector.py
+@@ -844,11 +844,15 @@
+     
+     def _filter_nodes_by_labels(self, graph: Any, node_labels: Optional[List[str]]) -> List[str]:
+         """Filter nodes by specified labels."""
+-        if node_labels is None:
+-            return list(graph.nodes()) if hasattr(graph, 'nodes') else []
+-        
++        # NOTE(patched): graph.nodes 可能是 dict 属性而非方法（如 ContextGraph），
++        # 原写法 graph.nodes() 会抛 'dict' object is not callable。
++        _nodes = getattr(graph, 'nodes', None)
++        _node_ids = list(_nodes() if callable(_nodes) else (_nodes or [])) if _nodes is not None else []
++        if node_labels is None:
++            return _node_ids
++
+         filtered_nodes = []
+-        for node in graph.nodes():
++        for node in _node_ids:
+             if hasattr(graph, 'nodes'):
+                 node_data = graph.nodes[node]
+                 if isinstance(node_data, dict):
+--- a/semantica/mcp_server/__init__.py
++++ b/semantica/mcp_server/__init__.py
+@@ -393,15 +393,34 @@
+         centrality = CentralityCalculator().calculate_pagerank(graph)
+         communities = CommunityDetector().detect_communities(graph)
+         node_count = len(list(graph.find_nodes()))
+-        edge_count = getattr(graph, "edge_count", lambda: 0)()
++        # NOTE(patched): ContextGraph 没有 edge_count 属性（原写法恒为 0），改用 edges。
++        _edges = getattr(graph, "edges", None)
++        if _edges is None:
++            _edges = getattr(graph, "find_edges", None)
++        try:
++            edge_count = len(_edges() if callable(_edges) else (_edges or []))
++        except Exception:
++            edge_count = 0
+         return {
+             "node_count": node_count,
+             "edge_count": edge_count,
+-            "top_nodes_by_pagerank": sorted(
+-                centrality.items() if hasattr(centrality, "items") else [],
+-                key=lambda x: x[1], reverse=True
+-            )[:10],
+-            "community_count": len(communities) if isinstance(communities, (list, dict)) else 0,
++            # NOTE(patched): calculate_pagerank 返回嵌套结构
++            # {"centrality": {node: score}, "rankings": [(node, score), ...]}
++            # 原写法直接对 items() 排序，会把 dict 和 list 放在一起比较。
++            "top_nodes_by_pagerank": (
++                [list(x) for x in centrality.get("rankings", [])][:10]
++                if isinstance(centrality, dict) and "rankings" in centrality
++                else sorted(
++                    centrality.items() if hasattr(centrality, "items") else [],
++                    key=lambda x: x[1], reverse=True
++                )[:10]
++            ),
++            # NOTE(patched): detect_communities 返回嵌套 dict，直接 len() 数的是键个数。
++            "community_count": (
++                len(communities.get("communities", []))
++                if isinstance(communities, dict) and "communities" in communities
++                else (len(communities) if isinstance(communities, (list, dict)) else 0)
++            ),
+         }
+     except Exception as exc:
+         return {"error": str(exc)}
