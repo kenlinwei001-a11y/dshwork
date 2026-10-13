@@ -72,3 +72,6 @@ backup/
 *.xlsx
 /knowledge/knowledge-processing-expert/storage/
 /knowledge/knowledge-processing-expert/demo/
+
+# deploy 的生成物（由 install-semantica-mcp.sh 按本机路径产出，不入库）
+deploy/connectors/*.generated.json
