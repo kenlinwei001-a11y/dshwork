@@ -1,0 +1,127 @@
+# =============================================================================
+# 垂类元信息 · 高校科研用房
+# -----------------------------------------------------------------------------
+# 本文件是「从 base 生成垂类 skill」的输入。它规定：
+#   ① 生成出来的 skill 叫什么、描述怎么写（决定触发准确性）
+#   ② SKILL.md 的「本垂类」章节写什么
+#   ③ 测试基线是什么（生成品的 run_tests.py 从这里读，代码不用改）
+#
+# 加一个垂类 = 加一个这样的目录，不需要动 base 的任何代码。
+# =============================================================================
+
+vertical:
+  id: edu-research
+  cn: 高校科研用房
+  skill_name: feasibility-report-edu-research
+  version: 0.1.0
+  extends: outline-gov-2023
+  validated: true
+
+  description: >-
+    编制、审校、修订【高校科研用房】类项目的可行性研究报告，一律以国家发改委发改投资规〔2023〕304号
+    《政府投资项目可行性研究报告编写通用大纲》为基准。适用对象：高校研究中心、研究院、重点实验室、
+    科研实验楼、交叉研究平台、中试基地及其配套用房。**最终交付一份 Word 文档（.docx）**，用本体图谱驱动生成：所有事实只存一份、跨章自动传播、
+    每条论断绑定证据、法定章节覆盖自动校验、客户改稿可反向回读。
+    当用户提到"科研楼可研""实验楼立项""研究中心可行性研究""科研用房建设规模论证""人均科研用房面积指标"
+    "建标191-2018"，或上传一份科研用房类可研要写、要改、要审、要查数字前后矛盾、要按2023新大纲改口径时，
+    都应使用本 skill——即使用户没说"本体"或"图谱"。
+    不适用于：学生宿舍与食堂（用 feasibility-report-edu-student-life）、教学楼图书馆、
+    产业园区厂房、施工图设计、招标文件编制。
+
+  skill_section: |
+    | 垂类 | 高校科研用房 |
+    |---|---|
+    | 法定大纲 | `references/outline-gov-2023.yaml`（政府投资通用大纲，强制适用） |
+    | 验证状态 | **规则集已在真实报告上验算闭合**：规模链/造价链/资金链逐条复现，检查器命中的缺陷经人工确认（记录留在 base，不随本包交付） |
+    | 规模论证 | **纯指标法**：分类人数 × 人均建筑面积指标。通常不做缺额法 |
+    | 必要性落点 | 学科发展与科研平台的空间需求，不是"人多了要地方坐" |
+    | 特有关注 | 实验室专项设计、拆除重建的四件事、实验室仪器设备费是否计入 |
+
+    加载 `references/vertical/` 下的 `profile.yaml`（领域槽位与词表）、`outline.yaml`（章节模版）、
+    `rules.yaml`（规则实例，含已验算的数据链）、`knowledge.md`（规范与指标库）。
+
+    **分诊时必问两件事**，它们决定整个测算：
+
+    ① **规划人数必须分类给出**——科研人员与研究生的人均指标不同，只给总数无法测算。
+    ② **实验室仪器设备费是否计入总投资**——各校口径不同，金额巨大，漏问会让投资估算整体失真。
+
+# =============================================================================
+# 测试基线 —— 生成品的 run_tests.py 从这里读，不硬编码
+# 基于 fixture.yaml（合成样例），不含任何真实项目数据
+# =============================================================================
+test_baseline:
+  fixture_cn: 合成样例（高校科研用房）
+  schema_errors: 0
+  min_passed: 17
+  codes:
+    GAP: 1
+    C7: 1
+    C7b: 1
+    C1: 1
+    C4a: 2
+    C5g: 3
+    C8: 1
+    C10: 1
+    C14: 1
+  # 素材摄入基线 —— 缺口要在动笔之前暴露，且缺什么、找谁要、后果都写得出来
+  intake:
+    min_registered_classes: 5
+    blocking_missing: 1        # [故意] M5 施工与实施类未提供，而本项目是拆除重建
+    unsourced: 11              # [故意] 只给一个节点标了 from，其余靠 C8 汇总点名
+  must_trace:
+  - scale.demand_total
+  - cost.total
+  - funding.total
+  numbers:
+  - - program.researcher.demand
+    - 3840
+  - - program.student.demand
+    - 7200
+  - - program.support.demand
+    - 1800
+  - - scale.demand_total
+    - 12840
+  - - scale.design_total
+    - 13000
+  - - cost.contingency
+    - 470
+  - - cost.total
+    - 9910
+  - - funding.total
+    - 9910
+  impact_probe:
+    node: program.researcher.headcount
+    new_value: 300
+    expect_downstream:
+    - program.researcher.demand
+    - scale.demand_total
+    - scale.deviation
+    expect_delta:
+      program.researcher.demand:
+        old: 3840
+        new: 4800
+      scale.demand_total:
+        old: 12840
+        new: 13800
+  reconcile_probe:
+    given: demolition.area
+    given_new: '2000'
+    derived: cost.total
+    derived_section: CH1
+    derived_new: '11000'
+    restated: cost.construction
+    restated_section: CH7
+    restated_new: '9000'
+  audit_probe:
+    sample_node: program.researcher.demand
+    min_derived: 11
+    min_leaf_inputs: 2
+    tamper_token: '3840'
+    log_entry:
+      node: program.researcher.headcount
+      old: 240
+      new: 300
+      reason: 团队扩编
+  render_probe:
+    multi_occurrence_node: cost.total
+    min_occurrences: 2

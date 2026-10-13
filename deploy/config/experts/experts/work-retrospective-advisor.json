@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "id": "work-retrospective-advisor",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "default",
+    "availability": "enabled",
+    "revision": "r-07afe59a-59ac-4b80-9474-a6d4fe7022e1",
+    "draftRevision": "7fba1973c3ce",
+    "publishedRevisionRef": {
+      "expertId": "work-retrospective-advisor",
+      "revisionId": "rev-7433dcf389db"
+    },
+    "createdAt": "2026-09-16T06:37:25.135Z",
+    "updatedAt": "2026-09-16T06:37:25.135Z"
+  }
+}

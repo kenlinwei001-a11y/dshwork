@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "record": {
+    "operationId": "expert-web-publish-mugjco1f-0-wu0qg5ed",
+    "actorRef": "local-user",
+    "action": "experts.publish",
+    "payloadDigest": "b50d158c85ac5f657fdf50f3d383ed28cd76a42af96034f6a9bf6ab141d83c1d",
+    "phase": "committed",
+    "auditDelivery": "delivered",
+    "createdAt": "2026-09-25T05:44:02.765Z",
+    "updatedAt": "2026-09-25T05:44:06.317Z",
+    "resultRef": "rev-9322a459199d",
+    "resultDetail": "{\"expertId\":\"expert-a0a771c8b0da\",\"revision\":{\"expertId\":\"expert-a0a771c8b0da\",\"revisionId\":\"rev-9322a459199d\"},\"presetRevisionRef\":\"wd-exp-expert-a0a771c8b0da-255e3892197a\",\"definitionDigest\":\"cac8a60eafd26058e2e500754db17a92059c299314b45a18e3233137c1aaf168\",\"dependencyLockDigest\":\"806f18a5fa5c6100812f263c2038a5c5d22859af997e3cb6e9019289d04e579e\",\"operationId\":\"expert-web-publish-mugjco1f-0-wu0qg5ed\"}"
+  }
+}

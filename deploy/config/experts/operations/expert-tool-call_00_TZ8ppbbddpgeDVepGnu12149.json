@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "record": {
+    "operationId": "expert-tool-call_00_TZ8ppbbddpgeDVepGnu12149",
+    "actorRef": "local-user",
+    "action": "experts.update-draft",
+    "payloadDigest": "f767c0e89b3adcdcd2530fab828b5ea9529e07e705768199b6482a5d000a7d22",
+    "phase": "committed",
+    "auditDelivery": "delivered",
+    "createdAt": "2026-09-25T05:25:58.012Z",
+    "updatedAt": "2026-09-25T05:26:00.503Z",
+    "resultRef": "expert-a0a771c8b0da",
+    "resultDetail": "432f1d199252"
+  }
+}

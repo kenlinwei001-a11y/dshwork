@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "id": "requirement-analysis-advisor",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "default",
+    "availability": "enabled",
+    "revision": "r-a25f6e1a-a67c-4845-8bbf-8f5c717ce1db",
+    "draftRevision": "43005c7143d8",
+    "publishedRevisionRef": {
+      "expertId": "requirement-analysis-advisor",
+      "revisionId": "rev-6e251194b230"
+    },
+    "createdAt": "2026-09-16T06:37:21.039Z",
+    "updatedAt": "2026-09-16T06:37:21.039Z"
+  }
+}

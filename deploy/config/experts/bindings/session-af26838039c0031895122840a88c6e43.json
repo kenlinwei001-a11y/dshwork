@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "sessionId": "session-af26838039c0031895122840a88c6e43",
+    "expertRevisionRef": {
+      "expertId": "document-review-advisor",
+      "revisionId": "rev-1a2e71fa52e4"
+    },
+    "presetRevisionRef": "wd-exp-document-review-advisor-68ae3a4dba80",
+    "compositionDigest": "5511f097b52754a4f37eb8134fbd6581de2a9e774cded70136e5f2e34f163da8",
+    "skillRevisionRefs": [],
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "workspaceRef": "/Users/apple/Desktop/workdsh",
+    "creationOperationId": "expert-web-create-execution-mu3qlxag-0-4h7y4fld",
+    "createdAt": "2026-09-16T06:46:16.924Z"
+  }
+}

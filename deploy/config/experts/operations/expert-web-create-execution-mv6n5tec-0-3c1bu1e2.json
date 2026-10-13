@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "record": {
+    "operationId": "expert-web-create-execution-mv6n5tec-0-3c1bu1e2",
+    "actorRef": "local-user",
+    "action": "experts.create-execution",
+    "payloadDigest": "61b5d1dfa553f962208a9bb7948582bfd5ccd22d2ddf4447e83bc4a636c28cfd",
+    "phase": "committed",
+    "auditDelivery": "delivered",
+    "createdAt": "2026-10-13T12:12:42.155Z",
+    "updatedAt": "2026-10-13T12:12:49.698Z",
+    "resultRef": "session-9b496023dca67e6b220f7130478cca37",
+    "resultDetail": "{\"sessionId\":\"session-9b496023dca67e6b220f7130478cca37\",\"handoffId\":\"handoff-6db1ad2d-20d9-4b5b-b1de-f3d385c613f2\"}"
+  }
+}

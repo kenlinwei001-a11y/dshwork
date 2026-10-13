@@ -1,0 +1,27 @@
+{
+  "schema_version": "resanity.host-receipt.v1",
+  "host": "<host adapter name>",
+  "provider": "<provider identifier>",
+  "model": "<exact model identifier>",
+  "session_id": "<host session identifier>",
+  "runtime": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "cache_read_tokens": 0,
+    "tokens_total": 0,
+    "tool_calls": 0,
+    "wall_seconds": 0
+  },
+  "budget_usage": {
+    "tokens_total": 0,
+    "tool_calls": 0,
+    "web_search": 0,
+    "wall_seconds": 0
+  },
+  "tool_calls_by_name": {},
+  "raw_session": {
+    "path": "raw-session.jsonl.zstd",
+    "sha256": "<64-hex sha256 of the immutable raw session>"
+  }
+}

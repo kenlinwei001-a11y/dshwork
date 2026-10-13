@@ -1,0 +1,283 @@
+# =============================================================================
+# 法定章节骨架：政府投资项目可行性研究报告编写通用大纲（2023年版）
+# -----------------------------------------------------------------------------
+# 依据：发改投资规〔2023〕304号，2023-05-01 施行，政府投资项目**强制适用**
+#
+# 定位：本文件属 L0 而非 L1。大纲是跨项目类型的，每个 L1 继承它并做特化，
+#       不得重新发明目录。L1 只能：在 required=false 的节点上裁剪、
+#       在叶子节点下新增领域子节，以及绑定本领域的规则与知识。
+#
+# 章节即本体切片：每节声明 serves（服务哪个可行性维度）与 covers（承载哪条法定内容）。
+# =============================================================================
+
+meta:
+  id: outline-gov-2023
+  layer: L0
+  version: 0.1.0
+  authority: 发改投资规〔2023〕304号《政府投资项目可行性研究报告编写通用大纲（2023年版）》
+  force: 强制适用
+  applies_when: "project.funding_regime == 政府投资"
+  url: https://www.gov.cn/zhengce/zhengceku/2023-04/11/5750844/files/5d4ac74386e84ead89684a6508368927.pdf
+
+# =============================================================================
+# 裁剪规则
+# =============================================================================
+tailoring:
+  principle: |
+    大纲是覆盖清单，不是排版模板。允许合并承载、允许调整层级，
+    但**不允许遗漏**——遗漏由 C7 判 error。
+  rules:
+    - required=true 的节点必须有内容承载，且承载内容不得为空壳（C7b）
+    - required=conditional 的节点，条件不成立时必须显式声明不适用及理由
+    - 允许多条 covers 由同一章承载（如"节能"与"碳达峰"合并为一节）
+    - 允许在叶子节点下新增领域子节（L1 的 add_subsection）
+    - 不允许新增与法定内容并列的一级章（旧口径的独立"招投标方案"章即属此类）
+
+# =============================================================================
+# 章节
+# =============================================================================
+sections:
+
+  - id: CH1
+    title: 概述
+    level: 1
+    required: true
+    derived_only: true
+    serves: []
+    note: 纯派生章。全部内容由后续各章复述而来，不得引入新事实
+    children:
+      - {id: CH1.1, title: 项目概况,       covers: [项目概况],       restates_from: [CH3, CH4, CH7]}
+      - {id: CH1.2, title: 项目单位概况,   covers: [项目单位概况],   provides: [subject.profile]}
+      - {id: CH1.3, title: 编制依据,       covers: [编制依据],
+         provides: [mandate.list],
+         note: Mandate 节点的集中登记处。全文引用的政策法规标准批复在此建账，他处只引用不重复}
+      - {id: CH1.4, title: 主要结论和建议, covers: [主要结论和建议], restates_from: [CH10]}
+
+  - id: CH2
+    title: 项目建设背景和必要性
+    level: 1
+    required: true
+    serves: [D1, D2]
+    children:
+      - id: CH2.1
+        title: 项目建设背景
+        covers: [项目建设背景]
+        serves: [D1]
+        provides: [driver.list, context.baseline]
+      - id: CH2.2
+        title: 规划政策符合性
+        covers: [规划政策符合性]
+        serves: [D2]
+        builtin_argument: AU_COMPLIANCE
+        provides: [complies_with 边全集]
+        note: |
+          D2 的法定落点。论据是 Mandate(roles∋benchmark) 集合上的 complies_with 边。
+          产出「政策法规符合性对照表」——由边渲染，非手写。
+      - id: CH2.3
+        title: 项目建设必要性
+        covers: [项目建设必要性]
+        serves: [D1]
+        argues: [必要性论断组]
+        note: 每条必要性须填满 Toulmin 六元组，warrant 缺失即断链论证
+
+  - id: CH3
+    title: 项目需求分析与产出方案
+    level: 1
+    required: true
+    serves: [D4]
+    children:
+      - id: CH3.1
+        title: 需求分析
+        covers: [需求分析]
+        provides: [demand.driver_metric, demand.forecast, context.baseline.existing]
+        note: |
+          法定前置。大纲原文「在需求分析基础上」提出规模，
+          因此本节必须先于 CH3.2 成立，不得倒过来先定规模再补需求。
+      - id: CH3.2
+        title: 建设内容和规模
+        covers: [建设内容和规模]
+        provides: [scale.demand_total, scale.design_total, program.*]
+        rules: [T1_indexed_demand, T11_demand_forecast, T16_deficit, T2_demand_rollup, T3_design_vs_demand]
+      - id: CH3.3
+        title: 项目产出方案
+        covers: [项目产出方案]
+        provides: [output.list]
+        note: 项目建成后交付什么、服务谁、达到什么水平。与 CH6 绩效管理方案勾稽
+
+  - id: CH4
+    title: 项目选址与要素保障
+    level: 1
+    required: true
+    serves: [D3, D6]
+    children:
+      - id: CH4.1
+        title: 项目选址或选线
+        covers: [项目选址或选线]
+        required: conditional
+        condition: "project.physical"
+        na_note: 非实体项目（信息化系统等）不适用，须显式声明
+        provides: [context.siting]
+      - id: CH4.2
+        title: 项目建设条件
+        covers: [项目建设条件]
+        provides: [context.baseline]
+      - id: CH4.3
+        title: 要素保障分析
+        covers: [要素保障分析]
+        serves: [D6]
+        provides: [context.endowment]
+        note: |
+          土地/能源/水/运力/环境容量/数据资源/运行环境/人力。
+          每项须给「需求量 / 可供量 / 保障结论」，与 CH8.4 的资源能源分析互为校验。
+
+  - id: CH5
+    title: 项目建设方案
+    level: 1
+    required: true
+    serves: [D5]
+    children:
+      - {id: CH5.1, title: 技术方案, covers: [技术方案], provides: [tech.*]}
+      - {id: CH5.2, title: 设备方案, covers: [设备方案]}
+      - {id: CH5.3, title: 工程方案, covers: [工程方案]}
+      - id: CH5.4
+        title: 用地用海征收补偿（安置）方案
+        covers: [用地用海征收补偿(安置)方案]
+        required: conditional
+        condition: "context.existing_assets 非空 或 涉及新征地"
+        na_note: 用地已征已供且无拆迁的，须显式声明不适用
+        serves: [D7]
+      - id: CH5.5
+        title: 数字化方案
+        covers: [数字化方案]
+        note: 2023 新增必备项。旧口径报告普遍缺失，是 C7 的高频命中点
+      - id: CH5.6
+        title: 建设管理方案
+        covers: [建设管理方案]
+        note: |
+          招标范围/组织形式/方式归入本节。
+          2023 起已取消独立的「招投标方案」章，不得再单列成一级章。
+
+  - id: CH6
+    title: 项目运营方案
+    level: 1
+    required: true
+    serves: [D10]
+    note: 独立一章。旧口径报告最常整章缺失的部分
+    children:
+      - {id: CH6.1, title: 运营模式选择, covers: [运营模式选择], provides: [operation.model]}
+      - {id: CH6.2, title: 运营组织方案, covers: [运营组织方案], provides: [operation.organization]}
+      - {id: CH6.3, title: 安全保障方案, covers: [安全保障方案], provides: [operation.safety]}
+      - id: CH6.4
+        title: 绩效管理方案
+        covers: [绩效管理方案]
+        provides: [operation.performance]
+        note: |
+          产出指标（数量/质量/时效/成本）+ 效益指标 + 满意度指标，指标须带取值。
+          与 CH3.3 产出方案勾稽：产出方案说交付什么，绩效方案说怎么衡量交付得好不好。
+
+  - id: CH7
+    title: 项目投融资与财务方案
+    level: 1
+    required: true
+    serves: [D8, D11]
+    children:
+      - id: CH7.1
+        title: 投资估算
+        covers: [投资估算]
+        provides: [cost.*]
+        rules: [T5_cost_rollup, T6_contingency]
+      - id: CH7.2
+        title: 盈利能力分析
+        covers: [盈利能力分析]
+        required: conditional
+        condition: "project.commercial"
+        serves: [D11]
+        na_note: 无经营性收入的公益项目须显式声明不适用，不得静默略过
+        rules: [T13_financial_indicators, T14_sensitivity]
+      - id: CH7.3
+        title: 融资方案
+        covers: [融资方案]
+        provides: [funding.*]
+        rules: [T7_funding_balance, T8_annual_allocation]
+      - id: CH7.4
+        title: 债务清偿能力分析
+        covers: [债务清偿能力分析]
+        required: conditional
+        condition: "funding.sources 含债务资金"
+        na_note: 全额财政资金无债务的项目须显式声明不适用
+      - id: CH7.5
+        title: 财务可持续性分析
+        covers: [财务可持续性分析]
+        note: 各年累计盈余资金不得为负。公益项目亦须做，考察运营期收支平衡
+
+  - id: CH8
+    title: 项目影响效果分析
+    level: 1
+    required: true
+    serves: [D6, D7, D9]
+    children:
+      - {id: CH8.1, title: 经济影响分析,           covers: [经济影响分析], serves: [D9],
+         note: 即原「国民经济评价」，第三版起更名为经济费用效益/效果分析}
+      - {id: CH8.2, title: 社会影响分析,           covers: [社会影响分析], serves: [D9, D7]}
+      - {id: CH8.3, title: 生态环境影响分析,       covers: [生态环境影响分析], serves: [D7],
+         note: 2023 起不再单列「环境影响评价」章}
+      - {id: CH8.4, title: 资源和能源利用效果分析, covers: [资源和能源利用效果分析], serves: [D6],
+         note: 2023 起不再单列「节能设计」章}
+      - {id: CH8.5, title: 碳达峰碳中和分析,       covers: [碳达峰碳中和分析], serves: [D7],
+         note: 2023 新增必备项}
+
+  - id: CH9
+    title: 项目风险管控方案
+    level: 1
+    required: true
+    serves: [D7]
+    children:
+      - {id: CH9.1, title: 风险识别与评价, covers: [风险识别与评价], rules: [T9_risk_matrix]}
+      - {id: CH9.2, title: 风险管控方案,   covers: [风险管控方案]}
+      - {id: CH9.3, title: 风险应急预案,   covers: [风险应急预案]}
+    note: 社会稳定风险分析归入本章，2023 起不再单列成一级章
+
+  - id: CH10
+    title: 研究结论及建议
+    level: 1
+    required: true
+    derived_only: true
+    serves: []
+    children:
+      - {id: CH10.1, title: 主要研究结论, covers: [主要研究结论], restates_from: [CH2, CH3, CH4, CH5, CH6, CH7, CH8, CH9]}
+      - {id: CH10.2, title: 问题与建议,   covers: [问题与建议]}
+    note: 纯派生章。每条结论必须可追溯到正文某章，不得引入新论据
+
+  - id: CH11
+    title: 附表、附图和附件
+    level: 1
+    required: true
+    kind: artifact
+    children:
+      - {id: CH11.1, title: 附表, covers: [附表]}
+      - {id: CH11.2, title: 附图, covers: [附图]}
+      - {id: CH11.3, title: 附件, covers: [附件], note: 前置批复原件（E6 证据）在此归档}
+
+# =============================================================================
+# 相对旧口径的变化（迁移用）
+# =============================================================================
+migration_from_legacy:
+  removed_top_level_chapters:
+    - {legacy: 项目招投标方案, now: CH5.6 建设管理方案}
+    - {legacy: 节能设计,       now: CH8.4 资源和能源利用效果分析}
+    - {legacy: 环境影响评价,   now: CH8.3 生态环境影响分析}
+    - {legacy: 社会稳定风险分析, now: CH9 项目风险管控方案}
+    - {legacy: 卫生防疫与劳动安全, now: CH5.6 建设管理方案（施工期）+ CH6.3 安全保障方案（运营期）}
+    - {legacy: 学校简介/企业简介, now: CH1.2 项目单位概况}
+    - {legacy: 社会效益,       now: CH8.2 社会影响分析}
+  newly_required:
+    - {item: 规划政策符合性,   at: CH2.2}
+    - {item: 需求分析,         at: CH3.1, note: 且必须前置于建设规模}
+    - {item: 项目产出方案,     at: CH3.3}
+    - {item: 要素保障分析,     at: CH4.3}
+    - {item: 数字化方案,       at: CH5.5}
+    - {item: 项目运营方案整章, at: CH6}
+    - {item: 财务可持续性分析, at: CH7.5}
+    - {item: 经济影响分析,     at: CH8.1}
+    - {item: 碳达峰碳中和分析, at: CH8.5}
+    - {item: 风险应急预案,     at: CH9.3}

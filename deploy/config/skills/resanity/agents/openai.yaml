@@ -1,0 +1,6 @@
+interface:
+  display_name: "Resanity（散修）"
+  short_description: "面向散户投研的证据搜索、经济暴露链梳理与承重主张审计 Skill"
+  default_prompt: "Use $resanity to audit the evidence boundary, economic exposure, and next verification for this retail investment question."
+policy:
+  allow_implicit_invocation: true

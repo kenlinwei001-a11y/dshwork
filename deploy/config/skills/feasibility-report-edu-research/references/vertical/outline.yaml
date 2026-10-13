@@ -1,0 +1,165 @@
+# =============================================================================
+# 高校科研用房 章节模版（L1）
+# extends: outline-gov-2023（发改投资规〔2023〕304号 政府投资项目通用大纲）
+#
+# 本文件规定「分几章、怎么排、叫什么名」；「必须覆盖什么」由法定大纲规定。
+# 本项目骨架由本模版 + 项目属性生成，经客户确认后冻结。
+# =============================================================================
+
+meta:
+  id: outline-edu-research
+  extends: outline-gov-2023
+  version: 0.1.0
+
+adjustments:
+
+  merges:
+    - sections: [CH8.4, CH8.5]
+      into: 一节「资源能源利用与碳达峰碳中和分析」
+      reason: 科研楼类项目两者篇幅均短且内容耦合，能耗指标直接推导碳排
+
+  adds_subsections:
+    - {under: CH2.3, title: 学科发展与科研平台空间需求, why: 科研用房必要性的核心论据不是人多，是学科发展受空间制约}
+    - {under: CH3.1, title: 科研团队规模与结构预测, why: 分类人数是指标法的驱动量，必须先于规模测算}
+    - {under: CH3.2, title: 各科研机构用房需求测算, why: 逐机构测算再汇总，便于评审逐条核}
+    - {under: CH3.2, title: 公共服务配套用房需求, why: 使用面积→建筑面积换算口径须单独交代}
+    - {under: CH5.1, title: 实验室专项设计, why: 通风、排污、防振、恒温恒湿等科研特有要求}
+    - {under: CH5.1, title: 装配式建筑设计, why: 多地强制装配率要求，影响造价}
+    - {under: CH5.3, title: 消防设计专篇, why: 实验室火灾荷载与常规办公不同，评审必查}
+    - {under: CH6.4, title: 科研平台共享与使用效率指标, why: 科研用房的绩效不是床位数，是使用率与产出}
+
+  conditional_rules:
+    - section: CH5.4
+      title: 用地用海征收补偿（安置）方案
+      off_when: 用地已征已供、无既有建筑拆除、无使用人腾退
+      must_declare: true
+      caution: |
+        **拆除重建类项目不适用此豁免。** 常见误解是"校内自拆不算征收"——
+        但既有建筑的腾空、原使用单位的安置、施工期过渡用房都要在此交代。
+        拆除既有教学楼原址重建是本类项目的典型情形。
+    - section: CH7.2
+      title: 盈利能力分析
+      off_when: "not project.commercial"
+      must_declare: true
+      typical: 科研用房自用，无经营性收入，通常不适用
+      exception: 对外开放收费的检测平台、中试基地可能适用
+    - section: CH7.4
+      title: 债务清偿能力分析
+      off_when: 全额财政资金 + 学校自有资金，无债务融资
+      must_declare: true
+
+# -----------------------------------------------------------------------------
+# 篇幅权重：这一章在全篇里占多重。**不是字数**——
+# 直接给字数会诱发凑字数，凑出来的字是注水（贴台账、抄规范条文）。
+# 实际区间 = 总预算 × 归一权重，规则见 L0 的 outline-shaping.yaml → length_budget。
+# -----------------------------------------------------------------------------
+
+sections:
+
+  - {id: CH1, order: 1, title: 概述, covers_from: CH1, weight: 1.0}  # 概述与结论，报送层级越高越要写透
+
+  - id: CH2
+    order: 2
+    weight: 1.4   # 必要性是本垂类最容易断链的一章，要把现状与缺口写实
+    title: 项目建设背景和必要性
+    covers_from: CH2
+    subsections:
+      - {id: CH2.1, title: 项目建设背景}
+      - {id: CH2.2, title: 规划政策符合性, builtin_argument: AU_COMPLIANCE}
+      - {id: CH2.3, title: 项目建设必要性}
+      - {id: CH2.3.1, title: 学科发展与科研平台空间需求, added_by: L1}
+
+  - id: CH3
+    order: 3
+    weight: 1.8   # **论证落点**：分类人数×指标的测算过程要能被逐条核
+    title: 项目需求分析与产出方案
+    covers_from: CH3
+    subsections:
+      - {id: CH3.1, title: 需求分析}
+      - {id: CH3.1.1, title: 科研团队规模与结构预测, added_by: L1}
+      - {id: CH3.2, title: 建设内容和规模}
+      - {id: CH3.2.1, title: 各科研机构用房需求测算, added_by: L1, rules: [T1, T2]}
+      - {id: CH3.2.2, title: 公共服务配套用房需求, added_by: L1, rules: [T_support]}
+      - {id: CH3.2.3, title: 规模分析小结与设计值比对, added_by: L1, rules: [T3]}
+      - {id: CH3.3, title: 项目产出方案,
+         note: 科研用房项目常缺此节。应写明建成后新增多少科研工位、可容纳多少团队、支撑哪些学科方向}
+
+  - id: CH4
+    order: 4
+    weight: 0.8   # 选址与建设条件，校内项目通常内容有限
+    title: 项目选址与要素保障
+    covers_from: CH4
+    subsections:
+      - {id: CH4.1, title: 项目选址}
+      - {id: CH4.2, title: 项目建设条件}
+      - {id: CH4.3, title: 要素保障分析, note: 土地/能源/水/环境容量。实验室用电与排污是重点}
+
+  - id: CH5
+    order: 5
+    weight: 1.6   # 技术方案含实验室专项，写不实就会被指出套模板
+    title: 项目建设方案
+    covers_from: CH5
+    subsections:
+      - {id: CH5.1, title: 建筑与总平面方案}
+      - {id: CH5.1.1, title: 实验室专项设计, added_by: L1}
+      - {id: CH5.1.2, title: 装配式建筑设计, added_by: L1}
+      - {id: CH5.2, title: 结构与机电方案}
+      - {id: CH5.3, title: 工程方案}
+      - {id: CH5.3.1, title: 消防设计专篇, added_by: L1}
+      - {id: CH5.4, title: 用地用海征收补偿（安置）方案, conditional: true}
+      - {id: CH5.5, title: 数字化方案,
+         note: 常缺此节。应写智慧实验室、科研数据平台对接、智能化系统}
+      - {id: CH5.6, title: 建设管理方案, note: 招标范围与方式归入本节，不单列成章}
+
+  - id: CH6
+    order: 6
+    weight: 1.0   # 运营与绩效，2023 大纲新增，旧口径报告常缺
+    title: 项目运营方案
+    covers_from: CH6
+    subsections:
+      - {id: CH6.1, title: 运营模式选择}
+      - {id: CH6.2, title: 运营组织方案}
+      - {id: CH6.3, title: 安全保障方案, note: 实验室安全（危化品、辐射、生物）是重点，不可写成通用条款}
+      - {id: CH6.4, title: 绩效管理方案}
+      - {id: CH6.4.1, title: 科研平台共享与使用效率指标, added_by: L1}
+
+  - id: CH7
+    order: 7
+    weight: 1.4   # 投资估算与资金筹措，评审必查
+    title: 项目投融资与财务方案
+    covers_from: CH7
+    subsections:
+      - {id: CH7.1, title: 投资估算, rules: [T5, T6, T_demolition]}
+      - {id: CH7.2, title: 盈利能力分析, conditional: true}
+      - {id: CH7.3, title: 资金筹措方案, rules: [T7, T8]}
+      - {id: CH7.4, title: 债务清偿能力分析, conditional: true}
+      - {id: CH7.5, title: 财务可持续性分析, note: 运营期收支平衡，含实验室运维与仪器维保费来源}
+
+  - id: CH8
+    order: 8
+    weight: 0.9   # 节能环保
+    title: 项目影响效果分析
+    covers_from: CH8
+    subsections:
+      - {id: CH8.1, title: 经济影响分析, note: 常缺此节。含政府投资须做经济费用效益/效果分析}
+      - {id: CH8.2, title: 社会影响分析}
+      - {id: CH8.3, title: 生态环境影响分析, note: 实验室废水废气是科研用房区别于普通办公的关键}
+      - {id: CH8.4, title: 资源能源利用与碳达峰碳中和分析, merged_from: [CH8.4, CH8.5]}
+
+  - id: CH9
+    order: 9
+    weight: 0.9   # 风险与应急
+    title: 项目风险管控方案
+    covers_from: CH9
+    subsections:
+      - {id: CH9.1, title: 风险识别与评价, note: 含社会稳定风险。拆除重建涉及师生关切，不可略}
+      - {id: CH9.2, title: 风险管控方案}
+      - {id: CH9.3, title: 风险应急预案, note: 常缺此节}
+
+  - {id: CH10, order: 10, title: 研究结论与建议, covers_from: CH10, weight: 0.7}  # 结论与建议，宜短
+  - {id: CH11, order: 11, title: 附表、附图和附件, covers_from: CH11, weight: 0.5}  # 附件目录
+
+naming:
+  table_numbering: 表{章号}-{序号}
+  figure_numbering: 图{章号}-{序号}
+  note: 章节 id 是全图引用锚点，冻结后不可变；显示标题可随客户习惯调整

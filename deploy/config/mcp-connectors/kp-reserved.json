@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "kp-reserved",
+    "title": "预留接口",
+    "description": "预留接口（6 工具）：semantic_search/solve_constraint 等",
+    "serverName": "kp-reserved",
+    "transport": "stdio",
+    "command": "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python",
+    "args": [
+      "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/mcp/servers/kp_reserved_server.py"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-10T09:45:26.713053Z",
+    "updatedAt": "2026-10-10T09:45:26.713053Z"
+  }
+}

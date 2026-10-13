@@ -1,0 +1,102 @@
+{
+  "schema": "resanity.validation-suite.v2",
+  "method_status": "UNBENCHMARKED_CURRENT",
+  "result_status": "NOT_RUN",
+  "layers": {
+    "core_contract": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "C01-product-claim", "prompt": "prompts/core-product.md", "profile": "core", "mode": "closed"},
+        {"id": "C02-policy-execution", "prompt": "prompts/core-policy.md", "profile": "core", "mode": "closed"},
+        {"id": "C03-technical-debug", "prompt": "prompts/core-debug.md", "profile": "core", "mode": "closed"}
+      ]
+    },
+    "investing_profile": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "I01-company-exposure", "prompt": "prompts/investing-company.md", "profile": "investing", "mode": "closed"},
+        {"id": "I02-profit-pool", "prompt": "prompts/investing-profit-pool.md", "profile": "investing", "mode": "closed"}
+      ]
+    },
+    "open_network": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "O01-product-passkey", "prompt": "prompts/network-product.md", "profile": "core", "mode": "open"},
+        {"id": "O02-policy-outcome", "prompt": "prompts/network-policy.md", "profile": "core", "mode": "open"},
+        {"id": "O03-investing-exposure", "prompt": "prompts/network-investing.md", "profile": "investing", "mode": "open"}
+      ]
+    },
+    "anchor": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "A01-active-refuted", "prompt": "prompts/anchor-active.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A01"},
+        {"id": "A02-refuted", "prompt": "prompts/anchor-refuted.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A01"},
+        {"id": "A03-active-realized", "prompt": "prompts/anchor-active-realized.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A02"},
+        {"id": "A04-realized", "prompt": "prompts/anchor-realized.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A02"},
+        {"id": "A05-active-archived", "prompt": "prompts/anchor-active-archived.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A03"},
+        {"id": "A06-archived", "prompt": "prompts/anchor-archived.md", "profile": "anchors", "mode": "longitudinal", "workspace_group": "A03"}
+      ]
+    },
+    "trigger": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "T01-investing-company", "input": "核验这家上市公司订单是否已经形成收入和现金，并检查市场是否已定价。", "expected_invocation": true, "reason": "investment-auto"},
+        {"id": "T02-investing-theme", "input": "这个行业主题的利润池在哪里，有没有上市公司真实捕获？", "expected_invocation": true, "reason": "investment-auto"},
+        {"id": "T03-explicit-product", "input": "请使用 Resanity 审计这个产品方案的三条承重主张。", "expected_invocation": true, "reason": "explicit-non-investing"},
+        {"id": "T04-explicit-map", "input": "为这个政策执行问题画可能性地图。", "expected_invocation": true, "reason": "explicit-non-investing"},
+        {"id": "T05-explicit-anchor", "input": "更新锚：用最新验收公告检查原命题。", "expected_invocation": true, "reason": "explicit-anchor"},
+        {"id": "T06-summary", "input": "把这份会议记录总结成三点。", "expected_invocation": false, "reason": "ordinary-summary"},
+        {"id": "T07-coding", "input": "修复这个 JavaScript 数组越界错误并运行测试。", "expected_invocation": false, "reason": "ordinary-coding"},
+        {"id": "T08-rewrite", "input": "把这段邮件改得更礼貌。", "expected_invocation": false, "reason": "ordinary-writing"},
+        {"id": "T09-translation", "input": "把这句话翻译成英文。", "expected_invocation": false, "reason": "ordinary-translation"},
+        {"id": "T10-general-qa", "input": "解释一下 TCP 三次握手。", "expected_invocation": false, "reason": "ordinary-qa"},
+        {
+          "id": "T11-natural-investing-delivery",
+          "input": "研究协鑫能科（002015）的‘绿电+算力’布局是否已经成型。我的观点是：协鑫能科拥有能源资产和售电能力，可能通过绿电降低智算中心成本，并进一步形成算力运营、调度优化或 AI 客户服务收入。请把这当作待验证假设，不要预设成立。请重点挖掘：1. 已备案、在建、投运的算力项目及实际主导方；2. 绿电来源究竟是自有电站、市场化交易、绿证还是物理直连；3. 哪些只是规划、框架协议或产业链共现。",
+          "expected_invocation": true,
+          "reason": "investment-auto",
+          "delivery_regression": {
+            "report_required": true,
+            "saved_report_required": false,
+            "root_uses_evidence_language": true,
+            "one_boundary_per_claim": true,
+            "temporal_mode_per_claim": true,
+            "one_next_evidence_object": true,
+            "profile_loaded_before_research": true,
+            "official_index_first_for_ashare": true
+          }
+        }
+      ]
+    },
+    "install_identity": {
+      "result_status": "NOT_RUN",
+      "cases": [
+        {"id": "D01-host-locator-wins", "expected": "host-reported locator overrides candidates"},
+        {"id": "D02-project-shadows-user", "expected": "project copy shadows user and bundled copies"},
+        {"id": "D03-profile-missing-reference", "expected": "profile mismatch fails closed"},
+        {"id": "D04-active-hash-drift", "expected": "active skill mismatch fails closed"}
+      ]
+    },
+    "final_ab": {
+      "result_status": "NOT_RUN",
+      "paired": true,
+      "baseline": "strong-general-research",
+      "baseline_prompt": "prompts/strong-baseline.md",
+      "candidate": "canonical-resanity",
+      "candidate_prompt": "prompts/candidate-instruction.md",
+      "task_prompts_neutral": true,
+      "freeze_required": true,
+      "automatic_retries": 0,
+      "case_ids": [
+        "C01-product-claim",
+        "C02-policy-execution",
+        "C03-technical-debug",
+        "I01-company-exposure",
+        "I02-profit-pool",
+        "O01-product-passkey",
+        "O02-policy-outcome",
+        "O03-investing-exposure"
+      ]
+    }
+  }
+}

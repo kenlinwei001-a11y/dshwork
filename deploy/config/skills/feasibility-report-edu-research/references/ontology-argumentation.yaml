@@ -1,0 +1,553 @@
+# =============================================================================
+# 可行性论证层 (L0 Argumentation Layer)
+# -----------------------------------------------------------------------------
+# core.yaml 回答"何物存在"（实体层）。本文件回答"如何据此断言可行"（论证层）。
+# 本体是支点，论证是杠杆。没有支点，论证只能靠人读；有了支点，论证可被机器检查。
+#
+# 核心命题：
+#   可研报告 = 一个顶层论断的结构化分解 + 每个子论断的证据绑定
+#   章节     = 全局图沿某个可行性维度的投影（本体切片）
+# =============================================================================
+
+meta:
+  id: fsr-argumentation
+  version: 0.2.0
+  layer: L0
+  depends_on: fsr-core
+
+# =============================================================================
+# 0. 为何以本体论为支点 —— 三条工程化理由（写在这里是为了约束后续所有设计）
+# =============================================================================
+rationale:
+  R1_reference_fixing:
+    问题: 论域漂移。同一术语在不同章节指称不同实体集，论据与论点貌合神离
+    解法: 本体固定指称。所有章节共享同一批实体标识，跨章论证才可判定真假
+    检查: C1 恒等约束 + C6 指称一致性
+
+  R2_argument_decidability:
+    问题: 论证的有效性依赖本体承诺。不共享实体的两句话之间不存在支撑关系
+    解法: 把"支撑"显式化为 justifies 边。边的两端必须落在同一本体上
+    检查: C4 论证约束
+
+  R3_gap_computability:
+    问题: 人写报告时，缺证据表现为"文字写满了但没说服力"，不可度量
+    解法: 论点绑定证据槽位。空槽即缺口，且能自动判定缺口应由谁填
+    产出: 空槽 → 客户提问清单 / web 检索任务清单
+    检查: C5 证据充分性
+
+# =============================================================================
+# 1. 论证单元：Toulmin 结构
+#    可研报告的每一条论断都必须能填满这个模板，填不满即为缺陷。
+# =============================================================================
+argument_unit:
+  description: 论证的最小完整单位。与 core.yaml 的 claim 值类型一一对应
+  fields:
+
+    claim:
+      cn: 论点
+      required: true
+      note: 被主张的命题。必须可证伪，不得是"意义重大"这类空断言
+
+    grounds:
+      cn: 论据
+      required: true
+      type: "list[ref → Evidence]"
+      note: 支撑论点的事实。必须是图中已有节点，不得现编
+
+    warrant:
+      cn: 保证
+      required: true
+      note: |
+        从论据到论点的推理许可。可研中通常是一条规范、指标或计算规则。
+        这是最常被省略的一环——写报告的人默认读者知道，于是论证出现断链。
+
+    backing:
+      cn: 支撑
+      required: true
+      type: "list[ref → Evidence]"
+      note: 保证自身的合法性来源。如"该规范现行有效且适用于本类项目"
+      verification: 需 web 核查时效性与适用域
+
+    qualifier:
+      cn: 限定
+      required: false
+      note: 论点成立的强度与边界。如"在40%装配率、绿建二星前提下"
+
+    rebuttal:
+      cn: 反驳与例外
+      required: false
+      note: |
+        论点不成立的情形，及本项目为何不落入该情形。
+        主动写出反驳是高质量可研的标志；回避反驳的报告经不起评审。
+
+    robustness:
+      cn: 稳健性
+      required: conditional
+      required_when: 论点建立在预测值或估算值之上（sizing_method=forecast，或涉及财务指标）
+      type: object
+      fields:
+        sensitive_factors: 敏感因素及其影响方向
+        critical_values:   临界值（该因素变动到多少时论点翻转）
+        breakeven:         盈亏平衡点
+        scenarios:         情景设定（乐观/基准/悲观）
+      note: |
+        这是「不确定性分析」在论证结构中的位置——它是 qualifier 的定量化。
+
+        "本项目财务可行" 的限定不该是一句"在2019年价格水平下"，
+        而应该是"当建安造价上浮 12.3%（临界值）时 FIRR 跌破基准收益率"。
+
+        《方法与参数》(第三版) 的三件套——盈亏平衡分析、敏感性分析、临界值分析——
+        全部落在此字段。孤立地摆在财务章里而不回写论证，等于没做。
+      note_gap: |
+        2023 企业投资参考大纲的说明中未出现「敏感性分析」「盈亏平衡分析」字样，
+        这是相对第三版体系的缺口。L0 通过本字段强制补齐。
+
+  invariants:
+    - grounds 与 backing 必须指向 Evidence 节点，不得是自由文本
+    - warrant 缺失的论证标记为"断链论证"(broken_warrant)
+    - 无 grounds 的论证标记为"裸论断"(bare_claim)，severity=error
+
+  worked_example:
+    dimension: D4_规模合理性
+    claim: 本项目 18319 ㎡ 的建设规模合理
+    grounds:
+      - 科研人员规划 315 人（客户给定）
+      - 研究生/博士生/访问学者规划 1350 人（客户给定）
+      - 公共服务配套用房清单，使用面积 1210 ㎡（客户给定）
+    warrant: 科研用房人均建筑面积 ≤16 ㎡/人，学生及访问学者用房 ≤8 ㎡/人
+    backing:
+      - 《普通高等学校建筑规划面积指标》建标191-2018（需核查：现行有效？适用于专职科研机构？）
+    qualifier: 需求测算值 18040 ㎡，设计值超出 1.55%
+    rebuttal: 超出部分主要为地下设备用房 319 ㎡，不属于指标控制范围
+    note: |
+      样本原文只写到 qualifier 的一半，rebuttal 未显式化。
+      本体化之后，rebuttal 空缺会被自动标记为待补——这就是本方案的直接价值。
+
+# =============================================================================
+# 2. 可行性维度：顶层论断的分解
+#    D1-D11 是 L0 层的通用分解，锚定发改投资规〔2023〕304号，不随项目类型变化。
+#    L1 只决定"每个维度由哪几章承载"，不得增删维度；
+#    维度是条件性的——不适用时须显式声明理由（C4e），不得静默跳过。
+# =============================================================================
+feasibility_frame:
+
+  normative_anchor: 发改投资规〔2023〕304号《投资项目可行性研究报告编写大纲及说明》
+
+  root_claim:
+    id: D0
+    statement: 本项目可行，建议按本报告方案实施
+    decomposition: conjunctive
+    note: 合取分解——任一 applicable 维度不成立则顶层论断不成立。这是可研区别于宣传材料的根本
+
+  applicability:
+    note: |
+      维度是条件性的。v0.1 的 invariant「必须覆盖 D1-D9」对信息化项目会误报——
+      它没有选址；对非收费市政道路也会误报——它不做完整 FIRR。
+      每个维度声明 applicable_when 表达式，对不适用的维度不做覆盖检查，
+      但**必须显式声明不适用及理由**，不得静默跳过。
+    context_vars:
+      project.commercial:   项目是否具有经营性收入
+      project.physical:     项目是否含实体工程建设
+      project.gov_funded:   是否含政府投资或补助
+      project.operated_by:  运营主体是否与建设主体分离
+
+  dimensions:
+
+    D1:
+      cn: 必要性成立
+      question: 为什么要做，为什么现在做
+      outline_anchor: [CH2]
+      applicable_when: always
+      grounds_from: [Driver, Mandate(roles∋driver), Subject.strategic_plans, Context.baseline]
+      evidence_mix: {given: 0.2, external: 0.5, normative: 0.2, administrative: 0.1}
+      web_search_role: 上位政策原文、行业趋势数据、区域发展指标
+      depends_on: []
+
+    D2:
+      cn: 合规性成立
+      question: 允不允许做
+      outline_anchor: [CH2]
+      outline_item: 二(二) 规划政策符合性
+      applicable_when: always
+      grounds_from: [Mandate(roles∋benchmark), complies_with 边全集]
+      evidence_mix: {normative: 0.6, administrative: 0.4}
+      web_search_role: 规范现行版本与时效、上位规划批复、负面清单、产业政策准入
+      depends_on: []
+      builtin_argument: AU_COMPLIANCE
+      note: |
+        D2 是唯一一个 L0 可以直接内置论证模板的维度——
+        因为"符合相关外部政策和法规"这条论断在所有项目类型中完全同构。
+        见下方 builtin_arguments。
+
+    D3:
+      cn: 承载条件具备
+      question: 现状基线清楚吗，要素保障落实吗
+      outline_anchor: [CH4]
+      applicable_when: always
+      degraded_when: "not project.physical"
+      degraded_note: |
+        非实体项目（信息化系统等）无选址，D3 退化为
+        「现状与差距分析 + 运行环境/数据资源保障」，仍必须论证，不得跳过。
+      grounds_from: [Context.baseline, Context.endowment, Context.siting]
+      evidence_mix: {given: 0.4, external: 0.4, administrative: 0.2}
+      web_search_role: 区域气象/地质/水文/地震设防、市政接入能力、用地预审口径
+      depends_on: [D2]
+
+    D4:
+      cn: 规模合理
+      question: 做多大是对的
+      outline_anchor: [CH3]
+      applicable_when: always
+      grounds_from: [ProgramUnit, Mandate(roles∋warrant), 需求预测]
+      evidence_mix: {given: 0.5, normative: 0.4, external: 0.1}
+      web_search_role: 指标标准现行版本与适用范围、区域需求数据
+      depends_on: [D1, D2]
+      note: |
+        2023 大纲原文「在需求分析基础上」提出规模。
+        sizing_method=forecast|dual 时，预测的不确定性必须传导到 robustness。
+
+    D5:
+      cn: 技术方案可行
+      question: 怎么做，做得出来吗
+      outline_anchor: [CH5]
+      applicable_when: always
+      grounds_from: [TechSolution, Mandate(roles∋domain), Context]
+      evidence_mix: {given: 0.4, normative: 0.6}
+      web_search_role: 设计规范现行版本、新技术成熟度
+      depends_on: [D3, D4]
+      required_items: [技术方案, 设备方案, 工程方案, 征收补偿安置方案, 数字化方案, 建设管理方案]
+
+    D6:
+      cn: 资源保障可行
+      question: 要素供得上吗，能效达标吗
+      outline_anchor: [CH4, CH8]
+      outline_item: 四(三) 要素保障分析 / 八(四) 资源和能源利用效果分析
+      applicable_when: always
+      grounds_from: [ResourceLoad, Context.endowment, Mandate(节能标准)]
+      evidence_mix: {derived: 0.5, normative: 0.4, external: 0.1}
+      web_search_role: 能耗限额标准、区域供给能力
+      depends_on: [D4, D5]
+      note: 2023 起「节能」不再单列成章，归入资源和能源利用效果分析
+
+    D7:
+      cn: 影响可接受
+      question: 环境、社会、安全、碳排的代价能否承受，风险可控吗
+      outline_anchor: [CH8, CH9]
+      applicable_when: always
+      grounds_from: [Impact, Risk, Mandate(环保标准)]
+      evidence_mix: {normative: 0.5, given: 0.2, external: 0.2, administrative: 0.1}
+      web_search_role: 环境质量标准现行值、区域环境功能区划、双碳口径、同类稳评先例
+      depends_on: [D3, D5]
+      required_items: [生态环境影响分析, 社会影响分析, 碳达峰碳中和分析, 风险识别与评价, 风险应急预案]
+      note: 2023 起「环评」「社会稳定风险」均不再单列成章，分别归入 CH8、CH9
+
+    D8:
+      cn: 资金可落实
+      question: 钱从哪来，够不够，还得起吗，撑得住吗
+      outline_anchor: [CH7]
+      outline_item: 七(一)投资估算 七(三)融资方案 七(四)债务清偿能力 七(五)财务可持续性
+      applicable_when: always
+      grounds_from: [Cost, Funding, Subject.financial_history, FinancialEvaluation.solvency]
+      evidence_mix: {given: 0.6, derived: 0.4}
+      web_search_role: 造价指数、资本金比例政策、资金渠道政策（不替代造价方数据）
+      depends_on: [D4, D5]
+      note: |
+        v0.1 把 D8 和 D11 压成了一个维度。
+        D8 问的是「钱能不能到位、还得起」，D11 问的是「这笔投资本身赚不赚钱」——
+        对政府投资的公益项目，D8 成立而 D11 不适用；对企业投资项目，两者都要成立。
+
+    D9:
+      cn: 外部效果成立
+      question: 对经济、社会、生态的外部影响是否正向且值得
+      outline_anchor: [CH8]
+      applicable_when: always
+      grounds_from: [Benefit, Driver, ProgramUnit]
+      evidence_mix: {derived: 0.3, external: 0.5, given: 0.2}
+      web_search_role: 同类项目效益实证、区域经济社会指标
+      depends_on: [D1, D4]
+      note: |
+        更名自「效益成立」，以与 D11 严格区分：
+          D9  = 外部性（经济影响/社会影响/生态环境/资源能源/双碳）→ 2023大纲 CH8
+          D11 = 财务回报（FIRR/FNPV/ROI/ROE）                    → 2023大纲 CH7(二)
+        「国民经济评价」术语自第三版起已更名为「经济费用效益/效果分析」，属 D9。
+        触发条件：公共基础设施、明显外部性、含政府补助投资的项目。
+
+    D10:
+      cn: 运营可持续
+      question: 建成之后谁来运营，运营得下去吗
+      outline_anchor: [CH6]
+      applicable_when: always
+      grounds_from: [Operation, Subject, FinancialEvaluation.sustainability]
+      evidence_mix: {given: 0.6, derived: 0.3, normative: 0.1}
+      web_search_role: 运营模式先例、绩效指标设置指引、运维费用基准
+      depends_on: [D5, D8]
+      required_items: [运营模式选择, 运营组织方案, 安全保障方案, 绩效管理方案]
+      note: |
+        v0.1 完全遗漏此维度——样本是高校基建，建成即交付使用，运营薄弱。
+        但 2023 大纲 CH6 是独立一章，且三类压力测试对象都需要它：
+        市政道路要养护，信息化项目运维经费独立估算，产业园区要招商运营。
+
+    D11:
+      cn: 盈利能力成立
+      question: 这笔投资本身赚不赚钱
+      outline_anchor: [CH7]
+      outline_item: 七(二) 盈利能力分析
+      applicable_when: "project.commercial"
+      not_applicable_note: |
+        公益性项目（非收费市政道路、政府办学校医院等）不适用，
+        但必须在报告中显式声明"本项目无经营性收入，不进行盈利能力分析"，
+        不得静默跳过。
+      grounds_from: [FinancialEvaluation.profitability, 市场分析, 收入与成本估算]
+      evidence_mix: {derived: 0.6, given: 0.3, external: 0.1}
+      web_search_role: 行业基准收益率、可比项目价格与去化率、税率政策
+      depends_on: [D4, D8]
+      required_indicators:
+        融资前: [FIRR(所得税前), FIRR(所得税后), FNPV, 投资回收期Pt]
+        融资后: [项目资本金FIRR, 总投资收益率ROI, 资本金净利润率ROE]
+      robustness_required: true
+      note: |
+        「借款偿还期」自第三版起降级为估算 ICR/DSCR 的辅助参数，
+        明文规定不应与 ICR/DSCR 并列，不得写入指标表。
+
+  invariants:
+    - 每个 applicable 维度至少绑定 1 条 argument_unit，且该 unit 的 grounds 非空
+    - 不适用的维度必须显式声明 not_applicable 及理由，不得静默跳过
+    - 维度依赖图必须无环
+    - 上游维度不成立时，下游维度的论证自动标记为 unsound（结论悬空）
+    - D0 的论证只能由各维度的结论复述构成，不得引入新论据
+    - 全部维度的 outline_anchor 并集必须覆盖 regulatory_anchor 的全部章（C7）
+
+
+# =============================================================================
+# 3. 章节 = 本体切片 (Ontology Slice)
+#    重新定义章节：不是文档的段落容器，是全局图的一次投影。
+# =============================================================================
+ontology_slice:
+
+  definition: |
+    slice(S) = ( dimension(S), subgraph(S), argument_units(S), rendering(S) )
+    章节 S 是全局实例图 G 沿维度 dimension(S) 的投影，
+    投影结果 subgraph(S) 即该章的全部可用事实，
+    章节文字是 subgraph 与 argument_units 的自然语言渲染。
+
+  fields:
+    id:            {type: string, required: true}
+    title:         {type: string, required: true}
+    serves:        {type: "list[dimension_id]", required: true,
+                    note: 本章服务于哪些可行性维度。这是章节存在的唯一理由}
+    projection:    {type: query, required: true,
+                    note: 图查询表达式。定义本章能看见图的哪一部分}
+    argues:        {type: "list[argument_unit_id]", required: true}
+    requires:      {type: "list[node_ref]", derived: true, note: 由 projection 求值得到}
+    provides:      {type: "list[node_ref]", required: true}
+    restates:      {type: "list[claim_key]", default: []}
+    derived_only:  {type: boolean, default: false}
+
+  invariants:
+    - serves 为空的章节应被删除——它不为任何可行性维度做贡献
+    - 章节只能看见 projection 圈定的子图。这是防幻觉的结构性保障
+    - derived_only 章节（总论、结论）的 argues 必须全部来自 restates
+    - 全部章节 provides 的并集须覆盖实例图全部节点（无孤儿节点）
+    - 全部章节 serves 的并集须覆盖 D1-D9（无失守维度）
+
+  cross_domain_retrieval:
+    note: |
+      "跨域检索"的工程定义 = 求解 projection 表达式。
+      不是全文向量检索，是图查询。三层分离：
+    layers:
+      structural: {source: 实例图, method: 图查询, authoritative: true}
+      normative:  {source: 规范库, method: 标签检索 + web 时效核查, authoritative: true}
+      corpus:     {source: 同类历史报告, method: 向量检索, authoritative: false,
+                   note: 仅供学习文风与结构，严禁作为事实来源}
+
+  why_chapters_connect: |
+    章节之间存在连接，不是因为叙述顺序，而是因为：
+      (a) 维度依赖   dimension(S1) ∈ depends_on(dimension(S2))
+      (b) 投影重叠   subgraph(S1) ∩ subgraph(S2) ≠ ∅
+      (c) 论断复述   restates(S2) ∋ claim ∈ argues(S1)
+    三类连接分别触发 C4、C1、C1+C4 检查。
+
+# =============================================================================
+# 4. 证据模型
+#    区分证据来源，是因为不同来源的可核查性和失效风险完全不同。
+# =============================================================================
+evidence_model:
+
+  provenance_classes:
+
+    E1_given:
+      cn: 客户给定
+      examples: 规划人数、设计图纸、主体财务数据、造价单价
+      verifiable_by_us: false
+      responsibility: 提供方
+      requirement: 必须记录提供人、提供日期、版本；关键项需签认
+      staleness: 按版本管理，图纸/财务数据换版即全图重算
+
+    E2_normative:
+      cn: 规范条文
+      examples: GB50016、建标191-2018、能耗限额标准
+      verifiable_by_us: true
+      method: web 核查现行版本、废止情况、适用范围
+      requirement: 必须带编号 + 版本 + 适用域标签
+      staleness: 高风险。规范换版是可研被打回的高频原因
+      web_search: 强制。每次成稿前重新核验一遍
+
+    E3_external:
+      cn: 外部公开数据
+      examples: 上位政策原文、区域气象地质、行业基准、统计年鉴
+      verifiable_by_us: true
+      method: web 检索 + 溯源到一次来源
+      requirement: 必须记录 URL、发布机构、发布日期、检索日期
+      staleness: 中。政策有效期、数据年份需显式标注
+
+    E4_derived:
+      cn: 图内派生
+      examples: 面积汇总、造价汇总、负荷计算、年度资金分解
+      verifiable_by_us: true
+      method: 重算比对（C2/C3）
+      requirement: 必须可追溯到 E1/E2/E3 的叶子节点
+      staleness: 无。上游变则自动重算
+
+    E5_analogical:
+      cn: 类比工程
+      examples: 同类项目造价指标、同类项目效益实证
+      verifiable_by_us: partial
+      requirement: 必须说明可比性条件（规模/地域/年份/标准）
+      strength: 最弱。只能作旁证，不得作为唯一 grounds
+      constraint: 任一 argument_unit 的 grounds 不得全部为 E5
+
+    E6_administrative:
+      cn: 行政批复
+      examples: 项目建议书批复、上位规划批复、用地预审与选址意见书、环评批复、稳评批复
+      verifiable_by_us: partial
+      responsibility: 客户提供原件，我方核对文号与有效期
+      requirement: 必须带 文号 + 发文机关 + 批复日期 + 有效期
+      staleness: |
+        高风险且不可 web 检索——批复多不公开。
+        必须由客户确认现行有效，且核对本项目现状与批复内容的偏离。
+      adjustment_tracking: |
+        《政务信息化项目可行性研究报告编制参考提纲》一(七)明确要求
+        「项目建议书及其批复文件、**相对项目建议书批复的调整情况**」。
+        凡建设内容、规模、投资相对批复发生变化，必须逐项列出并说明理由，
+        否则 C5 报 error——这是可研被打回的高频原因。
+      strength: 强。是 D2 合规性最硬的论据，也是 D2 的前置条件
+
+  gap_routing:
+    note: 空槽自动分诊——这是人机交互与机网交互的分工规则
+    rules:
+      - if: 缺 E1
+        then: 生成客户提问（进入 intake 问卷，标注该问题服务于哪个维度）
+      - if: 缺 E2 或 E2 已过期
+        then: 生成 web 检索任务（查现行版本与适用域）
+      - if: 缺 E3
+        then: 生成 web 检索任务（附来源可信度要求：政府/统计口径优先）
+      - if: 缺 E4
+        then: 检查上游 E1-E3 是否齐备，齐备则直接算，不齐备则回溯
+      - if: grounds 全为 E5
+        then: 报 warning，要求补 E1 或 E3
+      - if: 缺 E6 或 E6 与现状偏离未说明
+        then: 生成客户提问（索取批复原件 + 逐项列出相对批复的调整情况）
+
+# =============================================================================
+# 4.5 内置论证模板
+#     L0 只内置在所有项目类型中**完全同构**的论证单元。目前只有一条。
+# =============================================================================
+builtin_arguments:
+
+  AU_COMPLIANCE:
+    serves: [D2]
+    outline_anchor: CH2
+    outline_item: 二(二) 规划政策符合性
+    applicable_when: always
+    description: |
+      "项目符合相关外部政策和法规" —— 这条论断在所有项目类型中结构完全一致，
+      因此 L0 直接内置，L1 一行不用写，只需绑定本领域的 Mandate 清单。
+
+      这正是把政策法规抽象为统一节点的直接收益：
+      论据不是一段话，是 Mandate(roles∋benchmark) 的集合 + 其上的 complies_with 边。
+
+    template:
+      claim: 本项目符合国家和地方相关政策、规划与法规要求
+      grounds:
+        query: "Mandate[roles ∋ benchmark]"
+        note: 图查询结果，不是手写清单。每条须带 complies_with 边及其 conclusion
+      warrant: |
+        逐条对照成立：项目属该政策鼓励/允许类别，不在负面清单内，
+        用途与上位规划一致，且已取得必要的前置行政批复。
+      backing:
+        query: "Evidence[provenance ∈ {E2_normative, E6_administrative}]"
+        verification: E2 须 web 核查现行版本与适用域；E6 须客户确认文号与有效期
+      qualifier:
+        auto: 由 conclusion=需专项说明 的条目自动生成
+      rebuttal:
+        required_when: 存在 conclusion=需专项说明 的条目
+        note: 每一条"需专项说明"都必须有对应的反驳处理，否则 C4 报 error
+
+    rendering:
+      artifact: 政策法规符合性对照表
+      columns: [文件名称, 文号, 发文机关, 类型, 相关条款, 符合性结论, 依据位置, 说明]
+      source: complies_with 边全集
+      note: |
+        这张表不是手写的，是图上一类边的渲染结果。
+        新增一条政策，只需加一个 Mandate 节点和一条 complies_with 边，
+        表自动更新，且该政策若同时被用作 D1 的 driver，两处引用的是同一份节点。
+
+    common_defects:
+      - 只列文件名不给符合性结论——论据摆了但没论证
+      - 政策清单与必要性章的政策清单不一致——同一文件录了两份（C1/C6 可捕获）
+      - 引用已废止或已换版的规范（C5b 可捕获）
+      - 标记为「需专项说明」的条目在后文没有下文（C4 可捕获）
+
+# =============================================================================
+# 5. 论证层新增约束 (C4 扩展 + C5 + C6)
+#    与 core.yaml 的 C1-C3 共同构成完整检查体系。
+# =============================================================================
+constraints:
+
+  C4_argument:
+    name: 论证完备性
+    checks:
+      C4a: 每个 argument_unit 的 claim / grounds / warrant / backing 四项非空
+      C4b: 每个 applicable 维度至少有一个成立的 argument_unit
+      C4c: restates 声明的复述在目标章节确实存在且语义未漂移
+      C4d: D0 的结论可逐条追溯到各维度
+      C4e: 不适用的维度必须显式声明 not_applicable 及理由，不得静默跳过
+      C4f: |
+        robustness 条件必填项不得为空——
+        论点建立在预测值（sizing_method=forecast|dual）或财务指标之上时，
+        必须给出敏感因素与临界值。
+    severity: error
+
+  C5_evidence_sufficiency:
+    name: 证据充分性
+    checks:
+      C5a: grounds 不得全为 E5（类比不能独立支撑）
+      C5b: E2 证据必须现行有效（web 核查，超过 staleness_window 强制重查）
+      C5c: E3 证据必须带 URL + 发布日期 + 检索日期
+      C5d: 每个维度的实际证据构成与 evidence_mix 建议值偏离过大时提示
+      C5e: E6 行政批复必须带 文号 + 发文机关 + 批复日期 + 有效期
+      C5f: |
+        E6 存在时，若建设内容/规模/投资相对批复发生变化，
+        必须在 adjustment 中逐项列出并说明理由。
+    severity: {C5a: error, C5b: error, C5c: error, C5d: info, C5e: error, C5f: error}
+    staleness_window: {E2: 90d, E3: 180d}
+
+  C6_reference_consistency:
+    name: 指称一致性
+    check: |
+      同一术语在不同章节必须指向同一实体集合。
+      检测方式：术语 → 实体绑定表，跨章比对绑定目标。
+    example: 第5章"科研用房"绑定 {A,B,C,D}，第13章绑定 {A,B,C} → 报冲突
+    severity: error
+    note: 这是本体论作为支点的直接兑现——没有本体就无法执行这项检查
+
+  C7_statutory_coverage:
+    name: 法定覆盖
+    check: |
+      L1 的 outline 必须覆盖 core.yaml → regulatory_anchor.mandatory_coverage
+      的全部 items。允许多项合并由一章承载，不允许遗漏。
+    severity: error
+    note: |
+      样本可以是错的，法定大纲不能不覆盖。
+      v0.1 从 2019 年样本逆向，遗漏了整章「项目运营方案」(CH6)，
+      正是因为当时没有这条约束。

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "record": {
+    "operationId": "expert-web-publish-muifnmq9-6-q3m6zjts",
+    "actorRef": "local-user",
+    "action": "experts.publish",
+    "payloadDigest": "b50d158c85ac5f657fdf50f3d383ed28cd76a42af96034f6a9bf6ab141d83c1d",
+    "phase": "failed",
+    "auditDelivery": "delivered",
+    "createdAt": "2026-09-26T13:36:08.165Z",
+    "updatedAt": "2026-09-26T13:36:08.210Z",
+    "error": "experts/internal"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "sessionId": "session-86279e500102b635495ae7e518af9ade",
+    "expertRevisionRef": {
+      "expertId": "work-retrospective-advisor",
+      "revisionId": "rev-7433dcf389db"
+    },
+    "presetRevisionRef": "wd-exp-work-retrospective-advisor-cf9a80bf9d8d",
+    "compositionDigest": "5f05bb9222606ee97855343fb7b09e962b6f52a676dc356ec49b51da1413ac1d",
+    "skillRevisionRefs": [],
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "workspaceRef": "/Users/apple/Desktop/workdsh",
+    "creationOperationId": "expert-web-create-execution-mu99xm9o-0-cjj6xleh",
+    "createdAt": "2026-09-20T03:46:33.433Z"
+  }
+}

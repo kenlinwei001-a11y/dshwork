@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "kp-processing",
+    "title": "知识处理工序",
+    "description": "知识处理七道工序（30 工具）：解析/分句/建图/冲突/溯源/嵌入/reemit 全链路",
+    "serverName": "kp-processing",
+    "transport": "stdio",
+    "command": "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python",
+    "args": [
+      "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/mcp/servers/kp_processing_server.py"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-10T09:45:26.713053Z",
+    "updatedAt": "2026-10-10T09:45:26.713053Z"
+  }
+}

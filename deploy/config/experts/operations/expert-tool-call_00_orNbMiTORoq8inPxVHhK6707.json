@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "record": {
+    "operationId": "expert-tool-call_00_orNbMiTORoq8inPxVHhK6707",
+    "actorRef": "local-user",
+    "action": "experts.update-draft",
+    "payloadDigest": "fe9e4427624c356921a5ea0f27dbd57b433df8d1b6f86fc4991d31904b3388fc",
+    "phase": "failed",
+    "auditDelivery": "delivered",
+    "createdAt": "2026-09-25T05:26:24.046Z",
+    "updatedAt": "2026-09-25T05:26:24.270Z",
+    "error": "experts/invalid-definition"
+  }
+}
