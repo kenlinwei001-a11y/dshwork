@@ -116,3 +116,28 @@ INJECT_SECTIONS = {
     "style":         "style/style_profile.yaml",
     "terms":         "index/term_index.json（术语表段）",
 }
+
+# --- kp-patch: claim-level relation vocabulary ---
+# 论断级关系（7 类）。**关键**：ontology_schema.py 用 `relations or list(TEN_RELATIONS)`
+# 构建 owl:ObjectProperty 列表，而 TEN_RELATIONS 来自本文件——因此把 CLAIM_RELATIONS
+# 并入 TEN_RELATIONS，ontology_schema.py 与 semantica_client.py **都不需改一行**，
+# 7 类关系即自动进入本体 schema 与推送。同时保留独立符号 CLAIM_RELATIONS，
+# 便于将来需要区分「实体关系 / 论断关系」时改用：
+#     relations = list(TEN_RELATIONS) + list(CLAIM_RELATIONS)
+try:
+    from .relations_ext import CLAIM_RELATIONS as _CR
+except Exception:                                        # pragma: no cover
+    _CR = {}
+CLAIM_RELATIONS = dict(_CR)
+if CLAIM_RELATIONS:
+    _base = list(TEN_RELATIONS)
+    for _t in CLAIM_RELATIONS:
+        if _t not in _base:
+            _base.append(_t)
+    TEN_RELATIONS = _base
+
+# --- kp-patch: extended contract files ---
+# 契约扩展（30 → 32）：句子层与源侧索引。
+# sentences.jsonl：Claim 追踪的最小单位；source_ledger.json：闭环校验的源侧索引。
+EXTENDED_CONTRACT_FILES = ["chunks/sentences.jsonl", "source_ledger.json"]
+

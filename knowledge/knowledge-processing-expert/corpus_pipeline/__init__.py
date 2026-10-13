@@ -286,3 +286,29 @@ def run_pipeline(raw_text: str, root: Path, legal_outline: list[str] | None = No
                   source_fingerprint=hashlib.sha1(raw_text.encode("utf-8")).hexdigest()[:16])
 
     return {"outline": outline, "chunks": len(chunks), "facts": len(graph["facts"]), "gate": quality["gate"], "desensitized": desens}
+
+# --- kp-patch: pipeline gates (auto-run) ---
+# `corpus_run` 跑完七道工序后**自动**执行三族门禁，并按状态机约束写 manifest。
+# 原则：判定由门禁做，不由写作/抽取 Agent 自判；有 FAIL 则状态停在 draft，不得进 validated。
+_orig_run_pipeline = run_pipeline
+
+
+def run_pipeline(*args, **kwargs):                 # noqa: F811
+    result = _orig_run_pipeline(*args, **kwargs)
+    try:
+        from .verify_pipeline import apply_manifest_gate, verify_pipeline
+        root = kwargs.get("root") or (args[1] if len(args) > 1 else None)
+        src = kwargs.get("original_path") or (args[4] if len(args) > 4 else None)
+        if root:
+            s = str(src) if src else ""
+            v = verify_pipeline(root,
+                                source_md=s if s.endswith(".md") else None,
+                                source_docx=s if s.endswith(".docx") else None)
+            result["gate"] = apply_manifest_gate(root, v)
+            result["gate"]["detail"] = {k: v.get(k) for k in
+                                        ("verdict", "closure", "stage_gates", "objective",
+                                         "blocking_count", "invalid_count")}
+    except Exception as _e:                         # 门禁异常不得吞掉流水线结果，但要显式记录
+        result["gate"] = {"verdict": "error", "error": str(_e),
+                          "note": "门禁执行异常，**不得视为通过**"}
+    return result

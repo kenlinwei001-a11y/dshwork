@@ -245,6 +245,14 @@ TOOLS = [
      "inputSchema": {"type": "object",
                      "properties": {"anchor": {"type": "object"}},
                      "required": ["anchor"]}},
+    {"name": "build_source_ledger", "description": "生成源侧索引（引用/表/带单位数值/标题/题注/设备参数）。门禁前提。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "source_md": {"type": "string"}, "source_docx": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "verify_closure", "description": "七道闭环校验：源侧索引 − 产物 − 豁免 = ∅。missing 非空即 FAIL。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "draft_path": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "stage_gate", "description": "分步门禁 S0–S11（含探针正样本标定；未标定判 invalid）。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "draft_path": {"type": "string"}, "source_md": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "objective_verify", "description": "12 条客观判据（确定性算法）；无法客观化者标 judgment_required。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "draft_path": {"type": "string"}, "source_md": {"type": "string"}, "source_docx": {"type": "string"}, "declared_sha256": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "apply_claim_relations", "description": "按规则推导应有 claim 关系并合并入图（幂等；dry_run 支持）。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "dry_run": {"type": "boolean"}}, "required": ["corpus_dir"]}},
+    {"name": "verify_all", "description": "一次跑完三族门禁（闭环/分步/客观判据），落盘 quality/*.yaml，并按状态机写 manifest（FAIL 则停在 draft，不自动 publish）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "draft_path": {"type": "string"}, "source_md": {"type": "string"}, "source_docx": {"type": "string"}, "compile_point": {"type": "string"}, "declared_sha256": {"type": "string"}}, "required": ["corpus_dir"]}},
+
+    {"name": "provider_status", "description": "可替换环节（entity/relation/reasoning/graph）的 provider 与能力表；供门禁判断判据可用性（缺能力 ⇒ invalid，不得 pass）。", "inputSchema": {"type": "object", "properties": {}}}
 ]
 
 
@@ -283,12 +291,17 @@ def _dispatch(name: str, args: dict):
         return {"name": args["name"],
                 **_schema_diff.DeterministicClassifier().classify(args["name"], args.get("field_def", {}), concepts)}
     if name == "ontology_export":
-        return _ontology_schema.export_ontology_schema(args.get("concepts"))
+        return _ontology_schema.export_ontology_schema(args.get("concepts"),
+                                                       semantica_source=args.get("source", "local"))
     if name == "ontology_import":
-        return {"concepts": _ontology_schema.import_ontology_schema(args["schema"])}
+        concepts = _ontology_schema.import_ontology_schema(args["schema"])
+        result = {"concepts": concepts}
+        if args.get("push_to_semantica"):
+            result["semantica_push"] = _ontology_schema.push_ontology_to_semantica(args["schema"])
+        return result
     if name == "bootstrap_ontology":
         diffs = _schema_diff.diff_schemas(args["old_schema"], args["new_schema"])
-        return _ontology_schema.assemble_domain_changes(diffs)
+        return _ontology_schema.assemble_domain_changes(diffs, _ontology_schema._auto_semantica_client())
     if name == "check_requirements":
         return _verification.check_requirements(args.get("provided_facts", []),
                                                 args.get("required_variables"), args.get("project_goal"))
@@ -387,6 +400,34 @@ def _dispatch(name: str, args: dict):
         m = importlib.import_module("corpus_pipeline.full_emit")
         fn = getattr(m, name)
         return fn(args["corpus_dir"])
+    # --- kp-patch: verify dispatch ---
+    if name == "build_source_ledger":
+        from corpus_pipeline.source_ledger import save_ledger as _save_ledger
+        led = _build_ledger(md_path=args.get("source_md"), docx_path=args.get("source_docx"))
+        _save_ledger(led, Path(args["corpus_dir"]) / "source_ledger.json")
+        return {k: (len(v) if isinstance(v, list) else v) for k, v in led.items()}
+    if name == "verify_closure":
+        return _closure_verify(args["corpus_dir"], draft_path=args.get("draft_path"))
+    if name == "stage_gate":
+        return _run_stage_gates(args["corpus_dir"], draft_path=args.get("draft_path"),
+                               source_md=args.get("source_md"))
+    if name == "objective_verify":
+        return _run_objective(args["corpus_dir"], draft_path=args.get("draft_path"),
+                              source_md=args.get("source_md"),
+                              source_docx=args.get("source_docx"),
+                              declared_sha256=args.get("declared_sha256"))
+    if name == "apply_claim_relations":
+        return _apply_relations(args["corpus_dir"], dry_run=bool(args.get("dry_run")))
+    if name == "provider_status":
+        return _provider_status()
+    # --- kp-patch: verify_all dispatch ---
+    if name == "verify_all":
+        from corpus_pipeline.verify_pipeline import apply_manifest_gate, verify_pipeline
+        v = verify_pipeline(args["corpus_dir"], draft_path=args.get("draft_path"),
+                            source_md=args.get("source_md"), source_docx=args.get("source_docx"),
+                            compile_point=args.get("compile_point"),
+                            declared_sha256=args.get("declared_sha256"))
+        return {"verify": v, "manifest": apply_manifest_gate(args["corpus_dir"], v)}
     raise ValueError(f"unknown tool {name}")
 
 
@@ -417,7 +458,10 @@ def _error(req_id, code, message):
 
 
 def _text_result(data):
-    # 对齐 workdsh example-server：text 内容 + structuredContent 结构化结果
+    # 对齐 workdsh example-server：text 内容 + structuredContent 结构化结果。
+    # MCP 客户端要求 structuredContent 必须是 object；数组一律包一层 {"items": [...]} 兜底。
+    if not isinstance(data, dict):
+        data = {"items": data}
     return {"content": [{"type": "text", "text": json.dumps(data, ensure_ascii=False)}],
             "structuredContent": data, "isError": False}
 
@@ -460,3 +504,18 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# --- kp-patch: verification tools ---
+# 校验类工具（客观判据；判定不消费 LLM 的意见）
+try:
+    from corpus_pipeline.source_ledger import build_source_ledger as _build_ledger
+    from corpus_pipeline.closure_verify import closure_verify as _closure_verify
+    from corpus_pipeline.stage_gates import run_stage_gates as _run_stage_gates
+    from corpus_pipeline.objective_criteria import run_objective_criteria as _run_objective
+    from corpus_pipeline.relations_ext import apply_expected_relations as _apply_relations
+    from corpus_pipeline.providers import provider_status as _provider_status
+    KP_VERIFY_TOOLS = ["build_source_ledger", "verify_closure", "stage_gate",
+                       "objective_verify", "apply_claim_relations", "provider_status"]
+except Exception:                       # pragma: no cover
+    KP_VERIFY_TOOLS = []
+

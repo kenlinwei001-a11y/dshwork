@@ -57,3 +57,25 @@ GROUP_SERVER_NAMES = {
     "semantic": "kp-semantic",
     "reserved": "kp-reserved",
 }
+
+# --- kp-patch: verify group ---
+TOOL_GROUPS["verify"] = ["build_source_ledger", "verify_closure", "stage_gate", "objective_verify", "apply_claim_relations", "provider_status"]
+
+# --- kp-patch: verify group reachable ---
+# 问题：上述 verify 组没有对应的 GROUP_SERVER_NAMES 条目，且 Host 只注册了
+# kp-processing / kp-assembly / kp-library / kp-semantic / kp-reserved 五个服务器 ——
+# 结果是这 6 个新工具**在 Host 侧不可达**（既无 kp-verify 服务器，也不在已注册组的工具表里）。
+# 修法：① 补上服务器名映射；② **同时把这 6 个工具并入已注册的 processing / assembly 组**，
+# 使它们无需任何 Host 侧改动、重启后即随现有服务器暴露。
+GROUP_SERVER_NAMES["verify"] = "kp-verify"
+
+_VERIFY_TO_PROCESSING = ["build_source_ledger", "verify_closure", "stage_gate", "provider_status"]
+_VERIFY_TO_ASSEMBLY = ["objective_verify", "apply_claim_relations"]
+for _g, _names in (("processing", _VERIFY_TO_PROCESSING), ("assembly", _VERIFY_TO_ASSEMBLY)):
+    for _n in _names:
+        if _n not in TOOL_GROUPS.get(_g, []):
+            TOOL_GROUPS[_g].append(_n)
+# --- kp-patch: verify_all into groups ---
+for _g in ("processing", "assembly", "verify"):
+    if "verify_all" not in TOOL_GROUPS.get(_g, []):
+        TOOL_GROUPS.setdefault(_g, []).append("verify_all")

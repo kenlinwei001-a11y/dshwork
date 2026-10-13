@@ -160,3 +160,14 @@ def replay(graph: dict) -> dict:
                 "involved": [f["id"] for f in fs], "status": "待审",
             })
     return {"replayed": len(graph["facts"]), "contradictions": conflicts}
+
+# --- kp-patch: claim-level relations (append-only) ---
+# 论断级关系词表扩展。上游 TEN_RELATIONS 只覆盖事实/实体关系，
+# 缺 cites/restates/causes/derives 等，导致 premise_refs/derived_from 无从填充。
+try:
+    from .relations_ext import CLAIM_RELATIONS as _CLAIM_RELATIONS
+    RELATION_TYPES = sorted(set(RELATION_TYPES) | set(_CLAIM_RELATIONS)) \
+        if isinstance(globals().get("RELATION_TYPES"), (list, set, tuple)) else _CLAIM_RELATIONS
+except Exception:                       # pragma: no cover
+    _CLAIM_RELATIONS = {}
+

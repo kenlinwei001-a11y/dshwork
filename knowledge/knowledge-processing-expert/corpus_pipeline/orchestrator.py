@@ -263,3 +263,22 @@ def topological_order(tasks: list[dict]) -> dict:
         cycle = [tid for tid in indegree if indegree[tid] > 0]
         return {"ok": False, "cycle": cycle, "order": order, "reason": "存在循环依赖"}
     return {"ok": True, "order": order}
+
+# --- kp-patch: section gate (auto-run) ---
+# 编排器每节验收时自动附带逐节门禁（must_cover / facts 引用率 / 占位符形态）。
+_orig_gate_check_draft = gate_check_draft
+
+
+def gate_check_draft(project_dir, section_id, draft_md):       # noqa: F811
+    base = _orig_gate_check_draft(project_dir, section_id, draft_md)
+    try:
+        from .verify_pipeline import section_gate
+        sg = section_gate(project_dir, section_id, draft_md)
+        base["section_gate"] = sg
+        if sg.get("verdict") == "FAIL":
+            base["notes"] = list(base.get("notes") or []) + ["逐节门禁未通过：" + "；".join(sg.get("blocking", []))]
+            if base.get("verdict") == "pass":
+                base["verdict"] = "review"
+    except Exception as _e:
+        base["section_gate"] = {"verdict": "error", "error": str(_e)}
+    return base
