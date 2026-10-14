@@ -1,0 +1,22 @@
+{
+  "stage": "s5e2",
+  "script": "s32_external_docs_merge.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/documents.yaml",
+    "SHUFE-BDC-2019-001/quality/external_merge_report.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/documents.yaml",
+      "sha256": "6886370bd94184bd4a729e2fda750837",
+      "bytes": 9129
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
+      "sha256": "e97cc0562c171f30554ca662b68841a4",
+      "bytes": 312
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

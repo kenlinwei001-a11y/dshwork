@@ -1,0 +1,16 @@
+{
+  "stage": "s6d",
+  "script": "s9a_screened.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/screened_evidence.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/screened_evidence.yaml",
+      "sha256": "62c8ef81cd412f4e542469eaa7dfdfa6",
+      "bytes": 8413
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

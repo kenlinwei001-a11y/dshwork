@@ -1,0 +1,55 @@
+{
+  "stage": "s7b",
+  "checked_depends_on": [
+    "s7"
+  ],
+  "A_count": 7,
+  "B_count": 1,
+  "SOP_patterns": 1,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/README.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/01-资产域清单.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/02-冲突待审清单.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/03-缺口清单.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/04-质量关口报告.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/05-可复现性与输入完整性说明.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/审计/06-外部依据绑定与合规复核.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "交付物/装配输入包-报告还原.md",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 8,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

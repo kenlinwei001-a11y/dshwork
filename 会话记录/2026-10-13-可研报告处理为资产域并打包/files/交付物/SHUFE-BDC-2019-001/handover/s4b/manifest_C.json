@@ -1,0 +1,19 @@
+{
+  "stage": "s4b",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/graph/graph.yaml": {
+      "count": {
+        "facts": 358,
+        "rules": 35,
+        "claims": 28,
+        "evidence": 127,
+        "relations": 466,
+        "relation_types": 16
+      }
+    },
+    "SHUFE-BDC-2019-001/graph/nodes.yaml": {
+      "count": 358
+    }
+  },
+  "source": "C=产物自述（从内容里读出的元数据，不采信外部声明）"
+}

@@ -1,0 +1,84 @@
+{
+  "section": "环境影响评价",
+  "section_index": 8,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "环境影响评价",
+    "skeleton": "style/section_skeletons/08-环境影响评价.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-ecaf889ab916",
+      "subject": "项目排风口",
+      "predicate": "与环境敏感目标间距",
+      "value": "不小于10.0",
+      "unit": "m",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "never",
+      "instruction": "",
+      "chunk": "c-6dd94ba78b8f"
+    },
+    {
+      "node_id": "N-ac1766bae97a",
+      "subject": "项目排风口",
+      "predicate": "底部离地面高度",
+      "value": "不小于2.5",
+      "unit": "m",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-6dd94ba78b8f"
+    },
+    {
+      "node_id": "EN-0516",
+      "subject": "项目排风口",
+      "predicate": "实体名",
+      "value": "项目排风口",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-6dd94ba78b8f"
+    }
+  ],
+  "facts_total_in_section": 3,
+  "facts_truncated": false,
+  "claims": [
+    {
+      "id": "CL-环评-01",
+      "text": "只要在项目建设过程中，按“三同时”认真落实污染治理措施，对废气、废水、噪声、固体废物等污染因子进行有效控制，做到达标排放，项目施工期和运营期都不会对环境造成大的影响。因此，从环境保护的角度来讲，本项目的建设是可行的。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "从环境保护角度，本项目建设是可行的",
+        "grounds": "施工期与运营期四类污染因子均有对应防治措施；达标排放",
+        "warrant": "落实“三同时”且达标排放 ⇒ 不对环境造成大的影响",
+        "backing": "《建设项目环境保护管理办法》/《中华人民共和国环境保护法》",
+        "qualifier": "不会造成大的影响",
+        "rebuttal": "运营期噪声源为水泵、换排气风机及车辆，未给出厂界噪声预测值"
+      },
+      "evidence_refs": [
+        "EV-规范-环评-01",
+        "EV-规范-环评-02"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

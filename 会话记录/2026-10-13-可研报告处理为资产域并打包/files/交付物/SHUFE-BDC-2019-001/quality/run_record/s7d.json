@@ -1,0 +1,61 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7d",
+  "name": "交接说明",
+  "script": "s16_handover.py",
+  "script_sha256": "7788ffe533aa2c8ac5c9a2192bb74558",
+  "exit_code": 0,
+  "blocking": false,
+  "started_at": "2026-10-14T18:06:05",
+  "finished_at": "2026-10-14T18:06:05",
+  "elapsed_s": 0.12,
+  "declared_outputs": [
+    "交付物/写作输入/交接说明-给推演写作专家.md"
+  ],
+  "outputs": [
+    {
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "pattern": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "bytes": 14591,
+      "sha256": "cd165634fab3368b43f6f43b256daa83",
+      "mtime": 1791972365
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7d/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7d/manifest_A_s7g.json",
+    "SHUFE-BDC-2019-001/handover/s7d/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7d/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7g/README.md",
+    "SHUFE-BDC-2019-001/handover/s7g/manifest_A.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7g.json",
+    "交付物/写作输入/交接说明-给推演写作专家.md"
+  ],
+  "stdout_tail": "{\n  \"file\": \"写作输入/交接说明-给推演写作专家.md\",\n  \"bytes\": 14591,\n  \"lines\": 239,\n  \"workpackages\": 16\n}\n",
+  "stderr_tail": ""
+}

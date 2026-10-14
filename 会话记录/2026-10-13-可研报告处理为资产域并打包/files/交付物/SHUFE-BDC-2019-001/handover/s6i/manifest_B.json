@@ -1,0 +1,24 @@
+{
+  "stage": "s6i",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 7426,
+      "sha256": "21e02f66102a7b348028ac01d0e84bb3",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "waivers"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

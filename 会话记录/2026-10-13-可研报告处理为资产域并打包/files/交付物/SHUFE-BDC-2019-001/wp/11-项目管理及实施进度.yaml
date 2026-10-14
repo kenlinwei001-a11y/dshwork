@@ -1,0 +1,130 @@
+{
+  "section": "项目管理及实施进度",
+  "section_index": 11,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "项目管理及实施进度",
+    "skeleton": "style/section_skeletons/11-项目管理及实施进度.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-21ac2ea6a4ab",
+      "subject": "上海财经大学",
+      "predicate": "项目管理架构",
+      "value": "建设领导小组—基建处—项目管理小组三级管理",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-e81b2fb16995"
+    },
+    {
+      "node_id": "N-1d9bbad66196",
+      "subject": "本项目",
+      "predicate": "方案设计与可研编制",
+      "value": "2019年4月-2019年10月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-c810673e6119",
+      "subject": "本项目",
+      "predicate": "初步设计及概算",
+      "value": "2019年11月-2020年2月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-99e0769bc827",
+      "subject": "本项目",
+      "predicate": "施工图设计",
+      "value": "2020年3月-2020年5月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-303deda576f1",
+      "subject": "本项目",
+      "predicate": "施工招标",
+      "value": "2020年6月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-c3ad80bc3176",
+      "subject": "本项目",
+      "predicate": "开工建设",
+      "value": "2020年7月-2022年5月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-7c90a8639e27",
+      "subject": "本项目",
+      "predicate": "竣工验收",
+      "value": "2022年6月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "node_id": "N-171f869338fe",
+      "subject": "本项目",
+      "predicate": "运行费用列支渠道",
+      "value": "上海财经大学后勤保障经费",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "never",
+      "instruction": "",
+      "chunk": "c-4e577b7d8923"
+    }
+  ],
+  "facts_total_in_section": 8,
+  "facts_truncated": false,
+  "claims": [],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

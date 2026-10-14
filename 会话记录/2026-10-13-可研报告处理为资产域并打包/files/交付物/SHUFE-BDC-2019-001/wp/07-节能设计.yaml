@@ -1,0 +1,564 @@
+{
+  "section": "节能设计",
+  "section_index": 7,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "节能设计",
+    "skeleton": "style/section_skeletons/07-节能设计.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-b1e9a58c3e61",
+      "subject": "本项目",
+      "predicate": "年工作天数",
+      "value": "193",
+      "unit": "d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-d81c8436d3ef",
+      "subject": "本项目",
+      "predicate": "日均工作小时数",
+      "value": "8",
+      "unit": "h",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-fbcb8688c60f",
+      "subject": "本项目",
+      "predicate": "年总耗电量",
+      "value": "72",
+      "unit": "万千瓦时",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-5859db27922c",
+      "subject": "教师用水",
+      "predicate": "用水定额",
+      "value": "35",
+      "unit": "L/人·d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-0175db4c5ff0",
+      "subject": "科研用房",
+      "predicate": "用电面积",
+      "value": "14883",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-c8c5fd1fece2",
+      "subject": "科研用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-d47bd8140fdc",
+      "subject": "科研用房",
+      "predicate": "需要系数",
+      "value": "0.8",
+      "unit": "-",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-6eb51e821197",
+      "subject": "科研用房",
+      "predicate": "同时使用系数",
+      "value": "0.6",
+      "unit": "-",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-934942fb8325",
+      "subject": "公共配套服务用房",
+      "predicate": "用电面积",
+      "value": "2182",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-094c483c1ac2",
+      "subject": "公共配套服务用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-4aaf4c9685bf",
+      "subject": "公共配套服务用房",
+      "predicate": "需要系数",
+      "value": "0.6",
+      "unit": "-",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-f52e2827a0e8",
+      "subject": "公共配套服务用房",
+      "predicate": "同时使用系数",
+      "value": "0.5",
+      "unit": "-",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "N-fec5f42da5fb",
+      "subject": "本项目",
+      "predicate": "单位面积综合能耗（当量值）",
+      "value": "4.91",
+      "unit": "kgce/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "undefined",
+      "inheritable": "yes",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-27ce57f55373",
+      "subject": "本项目",
+      "predicate": "单位建筑面积电耗",
+      "value": "39.30",
+      "unit": "kW·h/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "undefined",
+      "inheritable": "yes",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-a01b53350bb8",
+      "subject": "本项目",
+      "predicate": "年总用水量",
+      "value": "1.74",
+      "unit": "万m³",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-97ae001309cd",
+      "subject": "本项目",
+      "predicate": "综合能耗（当量值）",
+      "value": "90",
+      "unit": "tce",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-bf76480f8b0c",
+      "subject": "教师用水",
+      "predicate": "用水人数",
+      "value": "288",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-1e941f1c85b2",
+      "subject": "教师用水",
+      "predicate": "日用水量",
+      "value": "10.1",
+      "unit": "m³/d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-af196dccd886",
+      "subject": "学生用水",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/人·d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-109f219b5cdc",
+      "subject": "学生用水",
+      "predicate": "用水人数",
+      "value": "1800",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-4a9d5aca884a",
+      "subject": "学生用水",
+      "predicate": "日用水量",
+      "value": "72.0",
+      "unit": "m³/d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-43f27011e247",
+      "subject": "综合能耗·水",
+      "predicate": "折标系数",
+      "value": "0.857",
+      "unit": "tce/万m³",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-e2fb043d4a06",
+      "subject": "综合能耗·电力",
+      "predicate": "折标系数（当量值）",
+      "value": "1.229",
+      "unit": "tce/万kW·h",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-aca1f741b579",
+      "subject": "本项目",
+      "predicate": "综合能耗（等价值）",
+      "value": "218",
+      "unit": "tce",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-b4f6323f3884",
+      "subject": "本项目",
+      "predicate": "单位面积综合能耗（等价值）",
+      "value": "11.87",
+      "unit": "kgce/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "ND-设备-029",
+      "subject": "多联式空调机组，其在名义制冷工况和规定条件下的制",
+      "predicate": "铭牌参数",
+      "value": "IPLV（C）不低于《公共建筑节能设计标准》DGJ08-107-2015表4.5.7的规定。",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-00f6b846109c"
+    },
+    {
+      "node_id": "ND-设备-030",
+      "subject": "新风量的选取满足相关规范的要求。",
+      "predicate": "铭牌参数",
+      "value": "风量的选取满足相关规范的要求。",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-3b9cfd70ee0b"
+    },
+    {
+      "node_id": "ND-设备-031",
+      "subject": "空调通风系统风机的单位风量耗功率Ws符合规范要求",
+      "predicate": "铭牌参数",
+      "value": "风量耗功率Ws符合规范要求。",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-955348d95f55"
+    },
+    {
+      "node_id": "EN-0365",
+      "subject": "公共配套服务用房",
+      "predicate": "实体名",
+      "value": "公共配套服务用房",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-46385d4ae269"
+    },
+    {
+      "node_id": "EN-0417",
+      "subject": "学生用水",
+      "predicate": "实体名",
+      "value": "学生用水",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    }
+  ],
+  "facts_total_in_section": 33,
+  "facts_truncated": true,
+  "claims": [
+    {
+      "id": "CL-节能-01",
+      "text": "规定性指标满足上海市《公共建筑节能设计标准》(DGJ08-107-2012)的要求；与上海市《公共建筑节能设计标准》(DGJ08-107-2012)相比较，该建筑物满足建筑节能综合指标计算的基本要求以及建筑节能设计补充要求，因此该建筑是满足现行节能规范要求的。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "该建筑满足现行节能规范要求",
+        "grounds": "规定性指标满足 DGJ08-107-2012；与 DGJ08-107-2012 比较满足综合指标与补充要求",
+        "warrant": "**（保证不成立）** 同一报告第 6.7 节与第 7.3 节又引用 DGJ08-107-2015，且 7.1 节同时列 GB50189-2005；以 2012 版作为“现行”缺乏依据（待审）",
+        "backing": "DGJ08-107-2012 / DGJ08-107-2015 / GB50189-2005",
+        "qualifier": "满足现行",
+        "rebuttal": "节能标准版本在本报告内不唯一，无法判定何为“现行”"
+      },
+      "evidence_refs": [
+        "EV-规范-节能-02",
+        "EV-规范-暖通-03"
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "type": "numeric",
+      "subject": "办公用水（288 人）",
+      "predicate": "用水定额",
+      "values": [
+        "35",
+        "50"
+      ],
+      "involved": [
+        "N-5859db27922c",
+        "N-f4add4e0e79a"
+      ],
+      "status": "待审",
+      "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
+    },
+    {
+      "type": "derivation",
+      "subject": "年总耗电量",
+      "predicate": "派生值 vs 原文值",
+      "values": [
+        "原文 72.0",
+        "重算 72.2"
+      ],
+      "involved": [
+        "N-0175db4c5ff0",
+        "N-094c483c1ac2",
+        "N-4aaf4c9685bf",
+        "N-6eb51e821197",
+        "N-934942fb8325",
+        "N-b1e9a58c3e61",
+        "N-c8c5fd1fece2",
+        "N-d47bd8140fdc",
+        "N-d81c8436d3ef",
+        "N-f52e2827a0e8",
+        "N-fbcb8688c60f"
+      ],
+      "status": "待审",
+      "note": "按规则 R-年用电量 重算得 72.2，原文写 72.0（差 0.2，0.28%）；按铁律不擅自改数"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G-004",
+      "type": "blocked_by_conflict",
+      "rule": "R-单位面积综合能耗",
+      "label": "单位面积综合能耗（当量值）",
+      "depends_on_conflict": [
+        "本项目建筑面积"
+      ],
+      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
+    },
+    {
+      "id": "G-005",
+      "type": "blocked_by_conflict",
+      "rule": "R-单位建筑面积电耗",
+      "label": "单位建筑面积电耗",
+      "depends_on_conflict": [
+        "本项目建筑面积"
+      ],
+      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
+    }
+  ],
+  "rules_touching_section": [
+    {
+      "id": "R-年用水量",
+      "label": "年总用水量",
+      "expr": "round({教师用水日水量}*{年工作天数}/10000, 2)+round({学生用水日水量}*{年工作天数}/10000, 2)+round(({教师用水日水量}+{学生用水日水量})*{年工作天数}/10000*({未预见系数}/100), 2)",
+      "deps": [
+        "教师用水日水量",
+        "学生用水日水量",
+        "年工作天数",
+        "未预见系数"
+      ],
+      "target": "年总用水量",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-年用电量",
+      "label": "年总耗电量",
+      "expr": "round(({科研用房用电面积}*{科研用房用电指标}*{科研用房需要系数}*{科研用房同时使用系数}+{公共配套服务用房用电面积}*{公共配套服务用房用电指标}*{公共配套服务用房需要系数}*{公共配套服务用房同时使用系数})*{日均工作小时数}*{年工作天数}/10000000, 1)",
+      "deps": [
+        "科研用房用电面积",
+        "科研用房用电指标",
+        "科研用房需要系数",
+        "科研用房同时使用系数",
+        "公共配套服务用房用电面积",
+        "公共配套服务用房用电指标",
+        "公共配套服务用房需要系数",
+        "公共配套服务用房同时使用系数",
+        "日均工作小时数",
+        "年工作天数"
+      ],
+      "target": "年总耗电量",
+      "recheck": "派生差异"
+    },
+    {
+      "id": "R-综合能耗",
+      "label": "综合能耗（当量值）",
+      "expr": "round({年总耗电量}*{电力折标系数当量值}+{年总用水量}*{水折标系数}, 0)",
+      "deps": [
+        "年总耗电量",
+        "电力折标系数当量值",
+        "年总用水量",
+        "水折标系数"
+      ],
+      "target": "综合能耗（当量值）",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-单位面积综合能耗",
+      "label": "单位面积综合能耗（当量值）",
+      "expr": "round({综合能耗（当量值）}*1000/{本项目建筑面积}, 2)",
+      "deps": [
+        "综合能耗（当量值）",
+        "本项目建筑面积"
+      ],
+      "target": "单位面积综合能耗（当量值）",
+      "recheck": "阻塞(冲突未裁决)"
+    },
+    {
+      "id": "R-单位建筑面积电耗",
+      "label": "单位建筑面积电耗",
+      "expr": "round({年总耗电量}*10000/{本项目建筑面积}, 2)",
+      "deps": [
+        "年总耗电量",
+        "本项目建筑面积"
+      ],
+      "target": "单位建筑面积电耗",
+      "recheck": "阻塞(冲突未裁决)"
+    }
+  ],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

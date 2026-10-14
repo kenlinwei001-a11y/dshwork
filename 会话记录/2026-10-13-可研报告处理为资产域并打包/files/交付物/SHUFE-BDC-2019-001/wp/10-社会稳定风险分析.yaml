@@ -1,0 +1,96 @@
+{
+  "section": "社会稳定风险分析",
+  "section_index": 10,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "社会稳定风险分析",
+    "skeleton": "style/section_skeletons/10-社会稳定风险分析.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-f95ce50dc7dd",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "≤70",
+      "unit": "dB(A)",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "node_id": "N-6f8bf452fa72",
+      "subject": "施工场界噪声",
+      "predicate": "夜间限值",
+      "value": "≤55",
+      "unit": "dB(A)",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "node_id": "N-1dff222d7986",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "70",
+      "unit": "dB(A)",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "node_id": "EN-0453",
+      "subject": "施工场界噪声",
+      "predicate": "实体名",
+      "value": "施工场界噪声",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d3f7b33459d8"
+    }
+  ],
+  "facts_total_in_section": 4,
+  "facts_truncated": false,
+  "claims": [
+    {
+      "id": "CL-风险结论-01",
+      "text": "本项目不会引发较大社会稳定风险问题，拟建项目合法、合理、可控、可行，项目风险等级评判为低风险。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "项目合法、合理、可控、可行，风险等级低",
+        "grounds": "风险等级评判结果",
+        "warrant": "风险等级低 ⇒ 项目可行",
+        "backing": "发改投资[2012]2492号",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-规范-稳评-01"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

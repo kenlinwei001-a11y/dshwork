@@ -1,0 +1,594 @@
+{
+  "section": "项目建设内容及规模",
+  "section_index": 5,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "项目建设内容及规模",
+    "skeleton": "style/section_skeletons/05-项目建设内容及规模.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-2820b26c3f35",
+      "subject": "本项目",
+      "predicate": "科研人员用房人均建筑面积指标",
+      "value": "16",
+      "unit": "㎡/人",
+      "kind": "quantity",
+      "caliber": "建筑面积口径",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-79069a20782b"
+    },
+    {
+      "node_id": "N-978a14b5186b",
+      "subject": "本项目",
+      "predicate": "研究生博士生访问学者用房人均建筑面积指标",
+      "value": "8",
+      "unit": "㎡/人",
+      "kind": "quantity",
+      "caliber": "建筑面积口径",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-79069a20782b"
+    },
+    {
+      "node_id": "N-f07ab421166b",
+      "subject": "本项目",
+      "predicate": "科研人员规划人数",
+      "value": "315",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-79069a20782b"
+    },
+    {
+      "node_id": "N-b3c95b844d02",
+      "subject": "本项目",
+      "predicate": "研究生博士生访问学者规划人数",
+      "value": "1350",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-79069a20782b"
+    },
+    {
+      "node_id": "N-7c3d781cf6f1",
+      "subject": "本项目",
+      "predicate": "地上总建筑面积需求",
+      "value": "18040",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-79069a20782b"
+    },
+    {
+      "node_id": "N-c0a7fc8afdaf",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划科研人员",
+      "value": "65",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-223358da3e9d"
+    },
+    {
+      "node_id": "N-687ac5c1dfdf",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "300",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-223358da3e9d"
+    },
+    {
+      "node_id": "N-29c0367999ed",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划人数合计",
+      "value": "365",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-223358da3e9d"
+    },
+    {
+      "node_id": "N-0118435ab5f0",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划科研人员",
+      "value": "60",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-b7027573785d"
+    },
+    {
+      "node_id": "N-1713829984c4",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "300",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-b7027573785d"
+    },
+    {
+      "node_id": "N-be54469ceabb",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划人数合计",
+      "value": "360",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-b7027573785d"
+    },
+    {
+      "node_id": "N-9949f87bf2ae",
+      "subject": "应用统计研究中心",
+      "predicate": "规划科研人员",
+      "value": "120",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9d9be0511932"
+    },
+    {
+      "node_id": "N-f853aaf03baf",
+      "subject": "应用统计研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "400",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9d9be0511932"
+    },
+    {
+      "node_id": "N-28f623934060",
+      "subject": "应用统计研究中心",
+      "predicate": "规划人数合计",
+      "value": "520",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9d9be0511932"
+    },
+    {
+      "node_id": "N-6dcf7ef888b2",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划科研人员",
+      "value": "70",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-f397b7a348a5"
+    },
+    {
+      "node_id": "N-a2aedb523791",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "350",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-f397b7a348a5"
+    },
+    {
+      "node_id": "N-fa5b27eaf63d",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划人数合计",
+      "value": "420",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-f397b7a348a5"
+    },
+    {
+      "node_id": "N-d63d65ebe9a4",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "间数",
+      "value": "5",
+      "unit": "间",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-3e141a1e1100",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "单间用房标准",
+      "value": "80",
+      "unit": "㎡/间",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-ee95096f1d6e",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "面积需求",
+      "value": "400",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-d1cb826c6ec2",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "间数",
+      "value": "1",
+      "unit": "间",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-3007b66b8f03",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "单间用房标准",
+      "value": "60",
+      "unit": "㎡/间",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-fd67f30a272a",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "面积需求",
+      "value": "70",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-ba967b01a1cc",
+      "subject": "公共服务配套用房·报告厅",
+      "predicate": "面积需求",
+      "value": "150",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-c6641b10b1d4",
+      "subject": "公共服务配套用房·活动室",
+      "predicate": "间数",
+      "value": "2",
+      "unit": "间",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-87c9bd959ddb",
+      "subject": "公共服务配套用房·活动室",
+      "predicate": "面积需求",
+      "value": "160",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-7f9fd332041d",
+      "subject": "公共服务配套用房·阅览室",
+      "predicate": "面积需求",
+      "value": "150",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-fc449bc873d7",
+      "subject": "公共服务配套用房·档案室",
+      "predicate": "面积需求",
+      "value": "120",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-116f0e1c3acf",
+      "subject": "公共服务配套用房·复印室",
+      "predicate": "面积需求",
+      "value": "80",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    },
+    {
+      "node_id": "N-a00694625be6",
+      "subject": "公共服务配套用房·贮藏室",
+      "predicate": "面积需求",
+      "value": "80",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-d8ff50ae58f4"
+    }
+  ],
+  "facts_total_in_section": 51,
+  "facts_truncated": true,
+  "claims": [
+    {
+      "id": "CL-规模-01",
+      "text": "本项目地上总建筑面积需求合计为18040平方米，设计总建筑面积18319平方米（地上18000、地下319）。设计规模在各类用房面积需求范围内，规模设置合理，基本能够满足各类用房的实际使用需求。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "设计规模合理，基本能够满足使用需求",
+        "grounds": "人均指标法测算地上总建筑面积需求 18040 ㎡；设计地上建筑面积 18000 ㎡",
+        "warrant": "**（原文表述为“在各类用房面积需求范围内”）** 但 18000 ㎡ < 18040 ㎡，地上实建少于测算需求 40 ㎡，该保证不成立（待审）",
+        "backing": "《普通高等学校建筑面积指标》（建标191-2018）",
+        "qualifier": "基本",
+        "rebuttal": "地上实建 18000 ㎡ 小于需求 18040 ㎡，缺口 40 ㎡"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    },
+    {
+      "id": "CL-规模-02",
+      "text": "本项目科研用房人均建筑面积指标应不超过16㎡/人，研究生、博士生、访问学者用房人均建筑面积指标应不超过8㎡/人。",
+      "claim_type": "fact",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目采用 16 ㎡/人（科研人员）与 8 ㎡/人（研究生等）两档人均建筑面积指标",
+        "grounds": "《普通高等学校建筑面积指标》（建标191-2018）对专职科研机构用房规划建筑面积指标的规定",
+        "warrant": "规范给定的指标上限即为本项目取值依据",
+        "backing": "建标191-2018",
+        "qualifier": "不超过",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-指标-02"
+      ]
+    },
+    {
+      "id": "CL-RS-106-01",
+      "text": "新建总建筑面积18319平方米，其中地上建筑面积18000平方米，地下建筑面积319平方米（设备用房）",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "新建总建筑面积18319平方米，其中地上建筑面积18000平方米，地下建筑面积319平方米（设备用房）",
+        "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    },
+    {
+      "id": "CL-RS-112-01",
+      "text": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+        "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    },
+    {
+      "id": "CL-RS-114-01",
+      "text": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+        "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    },
+    {
+      "id": "CL-RS-125-01",
+      "text": "新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+        "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    },
+    {
+      "id": "CL-RS-209-01",
+      "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+        "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [
+    {
+      "id": "R-应建规模",
+      "label": "地上总建筑面积需求",
+      "expr": "round({科研人员规划人数}*{科研人员用房人均建筑面积指标}+{研究生博士生访问学者规划人数}*{研究生博士生访问学者用房人均建筑面积指标}+{公共服务配套用房建筑面积}, 0)",
+      "deps": [
+        "科研人员规划人数",
+        "科研人员用房人均建筑面积指标",
+        "研究生博士生访问学者规划人数",
+        "研究生博士生访问学者用房人均建筑面积指标",
+        "公共服务配套用房建筑面积"
+      ],
+      "target": "地上总建筑面积需求",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-科研人员规划人数合计",
+      "label": "科研人员规划人数",
+      "expr": "{管理科学与量化信息研究中心·规划科研人员}+{理论计算机研究中心·规划科研人员}+{应用统计研究中心·规划科研人员}+{数据科研与统计研究院·规划科研人员}",
+      "deps": [
+        "管理科学与量化信息研究中心·规划科研人员",
+        "理论计算机研究中心·规划科研人员",
+        "应用统计研究中心·规划科研人员",
+        "数据科研与统计研究院·规划科研人员"
+      ],
+      "target": "科研人员规划人数",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-研究生规划人数合计",
+      "label": "研究生博士生访问学者规划人数",
+      "expr": "{管理科学与量化信息研究中心·规划研究生博士生访问学者}+{理论计算机研究中心·规划研究生博士生访问学者}+{应用统计研究中心·规划研究生博士生访问学者}+{数据科研与统计研究院·规划研究生博士生访问学者}",
+      "deps": [
+        "管理科学与量化信息研究中心·规划研究生博士生访问学者",
+        "理论计算机研究中心·规划研究生博士生访问学者",
+        "应用统计研究中心·规划研究生博士生访问学者",
+        "数据科研与统计研究院·规划研究生博士生访问学者"
+      ],
+      "target": "研究生博士生访问学者规划人数",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-规模符合性",
+      "label": "设计规模合理性判定",
+      "expr": "{地上总建筑面积需求} <= {地上建筑面积} => 规模合理；否则 => 待审",
+      "deps": [
+        "地上总建筑面积需求",
+        "地上建筑面积"
+      ],
+      "target": "设计规模合理性判定",
+      "recheck": "闭合"
+    }
+  ],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

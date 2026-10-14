@@ -1,0 +1,49 @@
+{
+  "section": "总论",
+  "section_index": 1,
+  "level": 1,
+  "source": "由原报告同章确定性抽取（段落顺序 / 表格列结构 / 句式骨架）",
+  "placeholder_form": "{{node:N-xxxxxxxxxxxx}}",
+  "block_sequence": [
+    {
+      "type": "heading",
+      "level": 1,
+      "title": "总论"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "项目概况"
+    },
+    {
+      "type": "paragraph",
+      "n": 6,
+      "skeleton_sample": "项目名称：上海财经大学中山北一路校区大数据研究中心。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "研究内容和编制依据"
+    },
+    {
+      "type": "paragraph",
+      "n": 12,
+      "skeleton_sample": "我司受上海财经大学的委托，对上海财经大学中山北一路校区大数据研究中心项目进行可行性研究报告编制工作，研究内容包括：项目建设背景及必要性分析、项目选址及建设条件、项目建设内容及规模、项目设计方案、节能设计、环境影响评价、卫生防疫与劳动安全、项目管理及实施进度、项目招投标方案、投资估算及资金筹措、社会效益分析等。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "技术经济指标"
+    },
+    {
+      "type": "paragraph",
+      "n": 3,
+      "skeleton_sample": "表⟨数字⟩-⟨数字⟩ 项目主要技术指标表"
+    }
+  ],
+  "tables": [],
+  "argument_sentence_patterns": [],
+  "note": "骨架给「怎么写」：段落功能顺序、表格列结构、论证句式槽位。数值一律写占位符，不写本项目的字面数字。",
+  "template": "## 总论",
+  "skeleton_source": "由原报告同章确定性抽取"
+}

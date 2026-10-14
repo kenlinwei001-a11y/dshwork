@@ -1,0 +1,16 @@
+{
+  "stage": "s7j",
+  "script": "opt28_summary.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "交付物/报告/知识抽取与推演写作环节优化总案.md"
+  ],
+  "produced": [
+    {
+      "path": "交付物/报告/知识抽取与推演写作环节优化总案.md",
+      "sha256": "4a1d3f56d5e495e40f24e4b703094dfe",
+      "bytes": 8366
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

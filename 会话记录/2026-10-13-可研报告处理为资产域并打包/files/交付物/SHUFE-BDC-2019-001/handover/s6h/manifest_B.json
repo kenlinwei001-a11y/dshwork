@@ -1,0 +1,39 @@
+{
+  "stage": "s6h",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 3770,
+      "sha256": "07f84c9220c56dc2aaaf9abfc7c676ec",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "waivers"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "bytes": 66283,
+      "sha256": "67694abec1c5fd46a544d763775ad32c",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "domains",
+          "extension_assets",
+          "function_constants"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

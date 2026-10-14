@@ -1,0 +1,63 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6i",
+  "name": "阻塞处置",
+  "script": "fix34_blockers.py",
+  "script_sha256": "97cea5fe6d35305a33fe52b3c3584f0a",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:02",
+  "finished_at": "2026-10-14T18:06:02",
+  "elapsed_s": 0.18,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 11506,
+      "sha256": "ad97986d166ab2f05b46893353e4aca3",
+      "mtime": 1791972362
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s6h/README.md",
+    "SHUFE-BDC-2019-001/handover/s6h/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6i/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6i/manifest_A_s6h.json",
+    "SHUFE-BDC-2019-001/handover/s6i/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6i/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s6h.json",
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "stdout_tail": "{\n  \"waivers_total\": 40,\n  \"by_criterion\": {\n    \"S11/C5\": 2,\n    \"K4\": 7,\n    \"S11\": 5,\n    \"C5\": 5,\n    \"K10\": 8,\n    \"C2\": 5,\n    \"C6\": 8\n  },\n  \"closure_c6_fixed\": \"already\",\n  \"objective_k10_fixed\": \"already\"\n}\n",
+  "stderr_tail": ""
+}

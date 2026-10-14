@@ -1,0 +1,113 @@
+{
+  "criteria": [
+    {
+      "id": "K1",
+      "kind": "守恒等式",
+      "name": "解析守恒",
+      "algo": "docx 的 <w:tbl> 计数 = md 表块计数；word/media 计数 ≥ md 图注计数",
+      "input": "docx XML / md",
+      "threshold": "差 = 0",
+      "llm_free": true
+    },
+    {
+      "id": "K2",
+      "kind": "守恒等式",
+      "name": "切块守恒",
+      "algo": "Σ chunk 去空白字符 = 原稿去空白字符",
+      "input": "原稿 / chunks",
+      "threshold": "偏差 ≤ 15%（含标题重复与表格标记差异）",
+      "llm_free": true
+    },
+    {
+      "id": "K3",
+      "kind": "集合差",
+      "name": "引用闭环",
+      "algo": "set(原稿《》) − set(evidence.doc) − 豁免清单 = ∅",
+      "input": "原稿 / evidence",
+      "threshold": "缺口 = 0（依据类）",
+      "llm_free": true
+    },
+    {
+      "id": "K4",
+      "kind": "集合差",
+      "name": "数值闭环",
+      "algo": "set(原稿「数字+单位」) − set(节点值) = ∅",
+      "input": "原稿 / nodes",
+      "threshold": "关键单位类缺口 = 0；明细类缺口 ≤ 50%",
+      "llm_free": true
+    },
+    {
+      "id": "K5",
+      "kind": "集合差+计数",
+      "name": "关系闭环",
+      "algo": "应有关系（由 claim 文本规则推导）− 已有边 = ∅",
+      "input": "claims / relations",
+      "threshold": "四类各 100%",
+      "llm_free": true
+    },
+    {
+      "id": "K6",
+      "kind": "正则计数",
+      "name": "占位符合规",
+      "algo": "成稿中手打数字数（剥离 {{node:…}} 后）= 0；占位符形必须匹配 ^\\{\\{node:N-[0-9a-f]{12}\\}\\}$",
+      "input": "成稿",
+      "threshold": "违规 = 0",
+      "llm_free": true
+    },
+    {
+      "id": "K7",
+      "kind": "枚举成员",
+      "name": "值域合法",
+      "algo": "claim_type ∈ 5 值；status ∈ 5 值；relation.type ∈ 词表；kind ∈ {quantity,judgment,text}",
+      "input": "claims / relations / nodes",
+      "threshold": "越界 = 0",
+      "llm_free": true
+    },
+    {
+      "id": "K8",
+      "kind": "图算法",
+      "name": "图完整性",
+      "algo": "每条 relation 的 from/to 均存在；无孤立节点；dependencies 无环；每节点可回溯到 chunk",
+      "input": "graph",
+      "threshold": "违规 = 0",
+      "llm_free": true
+    },
+    {
+      "id": "K9",
+      "kind": "哈希一致",
+      "name": "溯源与可复现",
+      "algo": "source_original_sha256 = 实际文件哈希；两次构建内容哈希一致",
+      "input": "docx / 产物",
+      "threshold": "一致",
+      "llm_free": true
+    },
+    {
+      "id": "K10",
+      "kind": "覆盖率比值",
+      "name": "装配覆盖",
+      "algo": "|defined 且非明细节点 ∩ 成稿引用| / |defined 且非明细节点|",
+      "input": "nodes / 成稿",
+      "threshold": "≥ 95%",
+      "llm_free": true
+    },
+    {
+      "id": "K11",
+      "kind": "数值比较",
+      "name": "派生闭合",
+      "algo": "|规则重算值 − 报告声明值| ≤ 容差（整数万元容差 0；四舍五入类容差 1）",
+      "input": "rules / nodes",
+      "threshold": "超差项必须登记为待审",
+      "llm_free": true
+    },
+    {
+      "id": "K12",
+      "kind": "正则计数",
+      "name": "论证要件实质存在",
+      "algo": "warrant 字段不得为空、不得为占位文本（匹配 未写出|不代拟|待补充|无|—|N/A）",
+      "input": "claims.toulmin",
+      "threshold": "占位率须显式登记，不得计为「通过」",
+      "llm_free": true
+    }
+  ],
+  "principle": "全部判据为确定性算法；无法客观化者记 judgment_required"
+}

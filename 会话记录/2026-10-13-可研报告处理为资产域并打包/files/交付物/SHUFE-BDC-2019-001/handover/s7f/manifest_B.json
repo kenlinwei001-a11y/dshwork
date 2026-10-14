@@ -1,0 +1,21 @@
+{
+  "stage": "s7f",
+  "patterns": [
+    "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md",
+      "pattern": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md",
+      "bytes": 148676,
+      "sha256": "d4d3346a9e6f74421affde0fcc2cacdf",
+      "probe": {
+        "parsable": true,
+        "text_chars": 61549
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

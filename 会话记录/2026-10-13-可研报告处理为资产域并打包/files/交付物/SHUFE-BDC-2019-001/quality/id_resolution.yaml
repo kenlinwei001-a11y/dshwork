@@ -1,0 +1,9 @@
+{
+  "verdict": "pass",
+  "nodes": 959,
+  "gaps": 0,
+  "bad_form": 0,
+  "unresolved": 0,
+  "detail": [],
+  "note": "引用 ID 必须可解析（集合差）；形态非法者几乎必然是替换污染"
+}

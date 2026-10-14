@@ -1,0 +1,12 @@
+{
+  "stage": "s7m",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

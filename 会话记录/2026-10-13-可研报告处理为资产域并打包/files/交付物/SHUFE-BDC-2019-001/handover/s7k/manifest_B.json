@@ -1,0 +1,34 @@
+{
+  "stage": "s7k",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "bytes": 4223,
+      "sha256": "63abb9f4b7825d25706c59c2ca25e759",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "closures",
+          "invalid_probes",
+          "policy"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

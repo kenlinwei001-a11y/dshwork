@@ -1,0 +1,91 @@
+{
+  "stage": "s6e",
+  "script": "s15_writing_contract.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/project/work_packages/*.json"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+      "sha256": "15c36ac164f478194af53e6a523eb7c7",
+      "bytes": 12735
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+      "sha256": "617872eebe6b1fb4df0ec5e7c50dd1f1",
+      "bytes": 11930
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+      "sha256": "19ecfb064f99dda406a344d56ddebf47",
+      "bytes": 15393
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+      "sha256": "b08385754ba301edf5f5b4bf62101752",
+      "bytes": 8974
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+      "sha256": "ce844920ecd970b25a29f1c0c9548a98",
+      "bytes": 21719
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+      "sha256": "10f0c22e692e48018fb550113f04ed2d",
+      "bytes": 20973
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+      "sha256": "6b7c52ec6e7d1cbab9db208aada9aeaa",
+      "bytes": 18807
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+      "sha256": "18f6703b75dbcfac7d9a816c039e8f15",
+      "bytes": 3787
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+      "sha256": "efe523108c181afd14cf2873c4447e06",
+      "bytes": 3734
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+      "sha256": "4e420e67e8255f0aa204b320dd4927fa",
+      "bytes": 3732
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+      "sha256": "f98e6beff57a37d58b9f15f15c7f8954",
+      "bytes": 4574
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+      "sha256": "f18c0b55b971e88de185d320aa8196b5",
+      "bytes": 4853
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+      "sha256": "170a74e56b452e9639f21c6d828a978d",
+      "bytes": 21747
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+      "sha256": "d99449e58a3f5953634f1d75253ba1ed",
+      "bytes": 2574
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+      "sha256": "0e7091341cce41a2a9a31c2e851995db",
+      "bytes": 2278
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/16-附件.json",
+      "sha256": "4f08452dadc63fe98f4876ecae300348",
+      "bytes": 2931
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

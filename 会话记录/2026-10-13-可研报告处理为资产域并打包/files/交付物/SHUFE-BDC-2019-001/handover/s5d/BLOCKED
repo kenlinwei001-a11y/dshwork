@@ -1,0 +1,25 @@
+{
+  "stage": "s5d",
+  "checked_depends_on": [
+    "s5f"
+  ],
+  "A_count": 1,
+  "B_count": 0,
+  "SOP_patterns": 1,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/chunks/sentences.jsonl",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 2,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

@@ -1,0 +1,24 @@
+{
+  "stage": "s5a",
+  "patterns": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "bytes": 1412187,
+      "sha256": "7e68adae183f06686275b3eee302f725",
+      "probe": {
+        "parsable": true,
+        "records": 1178
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

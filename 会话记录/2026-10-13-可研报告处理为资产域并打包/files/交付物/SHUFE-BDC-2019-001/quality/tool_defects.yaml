@@ -1,0 +1,54 @@
+{
+  "note": "知识处理链路中发现的工具层缺陷与绕行记录（均未改动上游工程，仅在本包内确定性绕行并留痕）。",
+  "defects": [
+    {
+      "id": "TD-1",
+      "artifact": "chunks/skeletons.jsonl + index/node_index.json",
+      "location": "corpus_pipeline/__init__.py :: stage_7_desensitize",
+      "severity": "high",
+      "summary": "脱敏替换对已插入的占位符二次替换，产生嵌套错乱骨架，并因 set 迭代顺序受 PYTHONHASHSEED 影响而不确定。",
+      "root_cause": "text.replace 逐个替换 + 占位符（12 位十六进制 NID）本身含数字；等长数字的迭代顺序来自 set。",
+      "effect": "下游 Agent 拿到的脱敏骨架数值槽位错乱；node_index 随之失真；同输入两次运行输出不一致。",
+      "fix": "改为一次性 re.sub 左到右扫描（本脚本），产出文本不再被重新扫描。",
+      "measured": {
+        "chunks": 1178,
+        "numeric_slots": 2192,
+        "nested_placeholders_after_fix": 0,
+        "malformed_placeholders_after_fix": 0
+      },
+      "note": "未改动上游工程代码，仅在本工作区内以确定性脚本重建该产物，并留痕于此。"
+    },
+    {
+      "id": "TD-2",
+      "artifact": "outline.yaml",
+      "location": "corpus_pipeline/__init__.py :: _parse_heading",
+      "severity": "medium",
+      "summary": "把「1.财经特色鲜明，学科优势明显。……」这类**编号列表项**判定为标题，实测多出 20+ 个假章节。",
+      "fix": "章节结构改由 docx w:pStyle 1/2/3 权威给出（build/s0_docx2md.py + s4_pipeline.py）。"
+    },
+    {
+      "id": "TD-3",
+      "artifact": "style/section_templates/*",
+      "location": "corpus_pipeline/full_emit.py :: emit_style",
+      "severity": "medium",
+      "summary": "直接用章节标题作文件名：标题含「/」会断裂路径，过长触发 OSError: File name too long。",
+      "fix": "传入文件名安全标题副本（/ → ／、截断 60 字符），outline.yaml 保留真实标题。"
+    },
+    {
+      "id": "TD-4",
+      "artifact": "quality/gate_report.yaml",
+      "location": "corpus_pipeline/quality_gates.py :: gate_qg1",
+      "severity": "low",
+      "summary": "QG1 要求切片带来源锚点（section/source_anchors/document_id），而 stage_3_chunk 只产出 span。",
+      "fix": "新增 build/s7_anchors.py，按 chunk 顺序遍历标题栈补齐 document_id + section_path + char_span。"
+    },
+    {
+      "id": "TD-5",
+      "artifact": "graph/rules.yaml",
+      "location": "corpus_pipeline/domain_rules.py :: DOMAIN_REGISTRY",
+      "severity": "medium",
+      "summary": "领域规则注册表只注册「产线类可研」计算规格（新增生产线数量/合格产能/单套变动成本…），对高校科研用房项目直接注入构成跨项目污染。",
+      "fix": "建库时显式不传 doc_type；本域规则由语义层从原文抽取（见 build/extractions*/）。"
+    }
+  ]
+}

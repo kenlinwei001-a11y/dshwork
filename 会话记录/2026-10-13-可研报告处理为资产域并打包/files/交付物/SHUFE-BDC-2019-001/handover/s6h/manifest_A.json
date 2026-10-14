@@ -1,0 +1,22 @@
+{
+  "stage": "s6h",
+  "script": "fix33_residual.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "sha256": "21e02f66102a7b348028ac01d0e84bb3",
+      "bytes": 7426
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "sha256": "67694abec1c5fd46a544d763775ad32c",
+      "bytes": 66283
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

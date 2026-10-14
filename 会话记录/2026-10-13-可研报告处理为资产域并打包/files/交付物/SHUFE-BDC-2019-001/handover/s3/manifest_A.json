@@ -1,0 +1,40 @@
+{
+  "stage": "s3",
+  "script": "s4_pipeline.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+    "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+    "SHUFE-BDC-2019-001/source/original.docx"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/manifest.yaml",
+      "sha256": "72aaec2e78b1ab98e529f2a3799f8d81",
+      "bytes": 5351
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "sha256": "da80a2481d1dc7d13260e84b873054b8",
+      "bytes": 97896
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "sha256": "bce38e57bae797cab9989597101990bb",
+      "bytes": 279822
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+      "sha256": "315d0aa67e71e7592c259d6928a82163",
+      "bytes": 450
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/source/original.docx",
+      "sha256": "00d9f1a3645c89b9d66d2df74fb4e70d",
+      "bytes": 1123286
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

@@ -1,0 +1,21 @@
+{
+  "stage": "s7b",
+  "patterns": [
+    "交付物/装配输入包-报告还原.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/装配输入包-报告还原.md",
+      "pattern": "交付物/装配输入包-报告还原.md",
+      "bytes": 277051,
+      "sha256": "148612eca91496fecfa62d6ffe76fdaf",
+      "probe": {
+        "parsable": true,
+        "text_chars": 162472
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

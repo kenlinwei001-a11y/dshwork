@@ -1,0 +1,40 @@
+{
+  "stage": "s7k",
+  "script": "s31_gates_upstream.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "sha256": "1a56ea93ae2e26d4206ffce05237d892",
+      "bytes": 441
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "sha256": "1d99b7af947db8c104e4adc7bfc8942e",
+      "bytes": 19942
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "sha256": "35676a8f95f33636b3dc000b93410fda",
+      "bytes": 10485
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "sha256": "5f4204505b14876cfa392f03b32793c3",
+      "bytes": 19328
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "sha256": "2bfc42b785e7e555fe30554e97acac54",
+      "bytes": 883
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

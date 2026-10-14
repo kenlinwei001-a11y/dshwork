@@ -1,0 +1,104 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7k",
+  "name": "门禁（上游实现·权威）",
+  "script": "s31_gates_upstream.py",
+  "script_sha256": "668a4acf380d8f3daca9c6ca4ada2874",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:05",
+  "finished_at": "2026-10-14T18:06:26",
+  "elapsed_s": 20.43,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "bytes": 441,
+      "sha256": "1a56ea93ae2e26d4206ffce05237d892",
+      "mtime": 1791972386
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "bytes": 19942,
+      "sha256": "1d99b7af947db8c104e4adc7bfc8942e",
+      "mtime": 1791972367
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "bytes": 10485,
+      "sha256": "35676a8f95f33636b3dc000b93410fda",
+      "mtime": 1791972367
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "bytes": 19328,
+      "sha256": "5f4204505b14876cfa392f03b32793c3",
+      "mtime": 1791972367
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "bytes": 883,
+      "sha256": "2bfc42b785e7e555fe30554e97acac54",
+      "mtime": 1791972386
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7d/README.md",
+    "SHUFE-BDC-2019-001/handover/s7d/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7k/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_A_s7g.json",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_C.json",
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s7d.json",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml"
+  ],
+  "stdout_tail": "{\n  \"verdict\": \"passed\",\n  \"blocking\": 0,\n  \"invalid\": 1,\n  \"closure\": {\n    \"pass\": 7,\n    \"FAIL\": 0,\n    \"invalid\": 0,\n    \"total\": 7\n  },\n  \"stage_gates\": {\n    \"pass\": 12,\n    \"FAIL\": 0,\n    \"invalid\": 0,\n    \"total\": 12\n  },\n  \"objective\": {\n    \"pass\": 13,\n    \"FAIL\": 0,\n    \"invalid\": 1,\n    \"total\": 14\n  },\n  \"manifest\": {\n    \"status\": \"validated\",\n    \"verdict\": \"passed\",\n    \"note\": \"门禁全部通过；当前状态保持不变（published 仅由用户确认产生）\"\n  }\n}\n",
+  "stderr_tail": ""
+}

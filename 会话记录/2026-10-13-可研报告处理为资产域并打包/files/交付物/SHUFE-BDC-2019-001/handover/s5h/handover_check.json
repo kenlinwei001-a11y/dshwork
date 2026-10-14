@@ -1,0 +1,445 @@
+{
+  "stage": "s5h",
+  "checked_depends_on": [
+    "s5g"
+  ],
+  "A_count": 43,
+  "B_count": 0,
+  "SOP_patterns": 43,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-00.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-00.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-01.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-01.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-02.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-02.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-03.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-03.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-04.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-04.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-05.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-05.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-06.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-06.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-07.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-07.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-08.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-08.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-09.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-09.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-10.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-10.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-11.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-11.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-12.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-12.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-13.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-13.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-14.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-14.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-15.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-15.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-16.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-16.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-17.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-17.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-18.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-18.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-19.claim_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-19.fact_extraction.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 86,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

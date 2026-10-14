@@ -1,0 +1,22 @@
+{
+  "stage": "s1c",
+  "script": "s3c_extract.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "build/extractions-clean/P6.json",
+    "build/extractions-clean/P7.json"
+  ],
+  "produced": [
+    {
+      "path": "build/extractions-clean/P6.json",
+      "sha256": "865e11dbf234a12a35864a32bc8a9b1e",
+      "bytes": 23398
+    },
+    {
+      "path": "build/extractions-clean/P7.json",
+      "sha256": "fdddf21132f59a8871262ba2534d9d49",
+      "bytes": 46859
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

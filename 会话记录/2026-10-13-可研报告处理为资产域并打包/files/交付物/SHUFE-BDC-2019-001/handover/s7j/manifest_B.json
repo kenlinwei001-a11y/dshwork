@@ -1,0 +1,21 @@
+{
+  "stage": "s7j",
+  "patterns": [
+    "交付物/报告/知识抽取与推演写作环节优化总案.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/报告/知识抽取与推演写作环节优化总案.md",
+      "pattern": "交付物/报告/知识抽取与推演写作环节优化总案.md",
+      "bytes": 8366,
+      "sha256": "4a1d3f56d5e495e40f24e4b703094dfe",
+      "probe": {
+        "parsable": true,
+        "text_chars": 4761
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

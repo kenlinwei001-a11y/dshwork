@@ -1,0 +1,84 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6g",
+  "name": "收尾修复",
+  "script": "fix32_final.py",
+  "script_sha256": "dc4d0f4acc39760848caa9f0f1acb6df",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:00",
+  "finished_at": "2026-10-14T18:06:01",
+  "elapsed_s": 0.32,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/documents.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 3770,
+      "sha256": "07f84c9220c56dc2aaaf9abfc7c676ec",
+      "mtime": 1791972361
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/documents.yaml",
+      "pattern": "SHUFE-BDC-2019-001/documents.yaml",
+      "bytes": 9129,
+      "sha256": "6886370bd94184bd4a729e2fda750837",
+      "mtime": 1791972350
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/evidence/evidence.yaml",
+    "SHUFE-BDC-2019-001/external/effective_dates.yaml",
+    "SHUFE-BDC-2019-001/graph/claims.yaml",
+    "SHUFE-BDC-2019-001/graph/relations.yaml",
+    "SHUFE-BDC-2019-001/handover/s6f/README.md",
+    "SHUFE-BDC-2019-001/handover/s6f/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6g/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6g/manifest_A_s6f.json",
+    "SHUFE-BDC-2019-001/handover/s6g/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6g/manifest_C.json",
+    "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+    "SHUFE-BDC-2019-001/quality/conflicts.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s6f.json",
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml"
+  ],
+  "stdout_tail": "{\n  \"asset_slot\": 6,\n  \"func_restore\": 5,\n  \"ledger_entries\": 4,\n  \"relations_added\": 0,\n  \"registered\": {\n    \"conflicts_added\": 0,\n    \"rules_registered\": 0,\n    \"warrant_filled\": 0\n  },\n  \"waivers\": 14\n}\n{\n  \"evidence_filled\": [\n    \"EV-规范-抗震-沪-02\"\n  ],\n  \"s10_aligned\": \"14-社会效益.json\",\n  \"waivers_total\": 12,\n  \"k10_table_filters\": true\n}\n",
+  "stderr_tail": ""
+}

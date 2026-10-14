@@ -1,0 +1,372 @@
+{
+  "gates": [
+    {
+      "stage": "S0",
+      "gate": "解析闭环",
+      "total": 31,
+      "covered": 31,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "整次解析",
+      "source": "docx XML",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S1",
+      "gate": "切块闭环",
+      "total": 62025,
+      "covered": 61602,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 99.3,
+      "unit": "该文档切块",
+      "source": "原稿",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S2",
+      "gate": "分句闭环",
+      "total": 61602,
+      "covered": 61588,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该 chunk",
+      "source": "chunk",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S3",
+      "gate": "抽取闭环·引用",
+      "total": 121,
+      "covered": 121,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该 partition",
+      "source": "ledger 切片",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S4",
+      "gate": "编译闭环·端点可寻址",
+      "total": 574,
+      "covered": 574,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "编译",
+      "source": "抽取产物+词表",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S5",
+      "gate": "派生闭环",
+      "total": 35,
+      "covered": 35,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该规则",
+      "source": "规则表",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S6",
+      "gate": "冲突/缺口闭环",
+      "total": 9,
+      "covered": 9,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该键",
+      "source": "节点键全集",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S7",
+      "gate": "脱敏闭环",
+      "total": 567,
+      "covered": 567,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该骨架",
+      "source": "nodes",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S8",
+      "gate": "依据闭环",
+      "total": 121,
+      "covered": 121,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该批依据",
+      "source": "ledger.citations",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S9",
+      "gate": "域闭环",
+      "total": 16,
+      "covered": 16,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该域",
+      "source": "DOMAIN_SPECS",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S10",
+      "gate": "装配闭环",
+      "total": 16,
+      "covered": 16,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "unit": "该节",
+      "source": "workpackage+ledger",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0
+    },
+    {
+      "stage": "S11",
+      "gate": "全书闭环·题注",
+      "total": 42,
+      "covered": 25,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 59.5,
+      "unit": "该节",
+      "source": "ledger+graph",
+      "verdict": "pass_with_waivers",
+      "note": "",
+      "waived": [
+        {
+          "item": "图10-1",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图11-1",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图11-2",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图15-1",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图4-1",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图4-2",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-1",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-2",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-3",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-4",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-5",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "图6-6",
+          "reason": "图件（位置图/总平面图/方案图/进度横道图/组织架构图）须由设计单位提供，",
+          "owner": "设计单位",
+          "disposition": "已列入待补充清单，不含在文本装配范围内"
+        },
+        {
+          "item": "表13-2",
+          "reason": "三年明细表原始数据须财务处提供",
+          "owner": "建设单位·财务处",
+          "disposition": "本稿仅保留 2018 年关键行"
+        },
+        {
+          "item": "表13-3",
+          "reason": "2016-2018 年收入明细——须财务处提供",
+          "owner": "建设单位·财务处",
+          "disposition": "本稿未重出，已列入遗漏清单"
+        },
+        {
+          "item": "表13-4",
+          "reason": "2016-2018 年支出明细——须财务处提供",
+          "owner": "建设单位·财务处",
+          "disposition": "本稿未重出，已列入遗漏清单"
+        },
+        {
+          "item": "表3-1",
+          "reason": "2018 年统计与管理学院国家自然科学基金项目列表——属支撑材料",
+          "owner": "建设单位·财务处",
+          "disposition": "本稿未重出，已列入遗漏清单"
+        },
+        {
+          "item": "表6-10",
+          "reason": "防烟分区表——属消防设计深化内容，可研阶段不单独成表",
+          "owner": "设计单位",
+          "disposition": "本稿未重出，已列入遗漏清单"
+        }
+      ],
+      "waived_count": 17
+    }
+  ],
+  "calibration": {
+    "probes": [
+      {
+        "probe": "citations",
+        "anchors": [
+          "普通高等学校建筑规划面积指标",
+          "建筑设计防火规范"
+        ],
+        "hit": [
+          "普通高等学校建筑规划面积指标",
+          "建筑设计防火规范"
+        ],
+        "valid": true,
+        "n_items": 155
+      },
+      {
+        "probe": "headings",
+        "anchors": [
+          "总论",
+          "投资估算及资金筹措"
+        ],
+        "hit": [
+          "总论",
+          "投资估算及资金筹措"
+        ],
+        "valid": true,
+        "n_items": 151
+      },
+      {
+        "probe": "valued_numbers",
+        "anchors": [
+          "18319",
+          "13032"
+        ],
+        "hit": [
+          "18319",
+          "13032"
+        ],
+        "valid": true,
+        "n_items": 143
+      },
+      {
+        "probe": "device_param_lines",
+        "anchors": [
+          "风量",
+          "Q="
+        ],
+        "hit": [
+          "风量",
+          "Q="
+        ],
+        "valid": true,
+        "n_items": 32
+      },
+      {
+        "probe": "captions",
+        "anchors": [
+          "表1-2",
+          "表5-5"
+        ],
+        "hit": [
+          "表1-2",
+          "表5-5"
+        ],
+        "valid": true,
+        "n_items": 42
+      }
+    ],
+    "invalid": []
+  },
+  "by_stage": {
+    "S0": "pass",
+    "S1": "pass",
+    "S2": "pass",
+    "S3": "pass",
+    "S4": "pass",
+    "S5": "pass",
+    "S6": "pass",
+    "S7": "pass",
+    "S8": "pass",
+    "S9": "pass",
+    "S10": "pass",
+    "S11": "pass_with_waivers"
+  },
+  "policy": "每步一道闭环；FAIL 阻塞该单元；invalid 表示探针未标定，不得视为通过"
+}

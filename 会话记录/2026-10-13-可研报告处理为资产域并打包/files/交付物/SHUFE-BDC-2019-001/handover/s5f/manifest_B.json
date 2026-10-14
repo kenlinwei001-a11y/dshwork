@@ -1,0 +1,12 @@
+{
+  "stage": "s5f",
+  "patterns": [
+    "SHUFE-BDC-2019-001/chunks/sentences.jsonl"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/chunks/sentences.jsonl"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

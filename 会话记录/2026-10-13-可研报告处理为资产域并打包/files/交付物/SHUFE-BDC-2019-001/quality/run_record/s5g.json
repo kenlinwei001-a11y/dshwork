@@ -1,0 +1,442 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5g",
+  "name": "提示词编译（动态生成·泛化）",
+  "script": "s7p_prompt_compile.py",
+  "script_sha256": "d101cb4dd5ac09b6b6c9824b062adf5f",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:52",
+  "finished_at": "2026-10-14T18:05:54",
+  "elapsed_s": 2.18,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+    "SHUFE-BDC-2019-001/prompts/*.json"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+      "bytes": 10193,
+      "sha256": "a29624319da733b0289016c2d19a4ad4",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3801,
+      "sha256": "956f793348b1a21550c056ed8e1f7f6d",
+      "mtime": 1791972352
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3717,
+      "sha256": "d2c48e341234efc1f3fccf8a01b7e43f",
+      "mtime": 1791972352
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-00.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3693,
+      "sha256": "7ad11ae513c6cec1b83233cad9e23c98",
+      "mtime": 1791972352
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-00.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3609,
+      "sha256": "27df2ff2e074feaa75f1b616a995b27e",
+      "mtime": 1791972352
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-01.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3821,
+      "sha256": "856eab26bdf9be11690f616556eca3ec",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-01.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3737,
+      "sha256": "e83507bd0eaee6be9f8f4fc5e639d082",
+      "mtime": 1791972352
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-02.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3803,
+      "sha256": "7effdbe084762ecd43fea53040cf39b7",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-02.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3719,
+      "sha256": "90a484b7516e70a3a5eb11543521466a",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-03.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3699,
+      "sha256": "7a31a24fb1ebc7e082b5919437b20c65",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-03.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3615,
+      "sha256": "4c1104ed932e97f64d6d7dc49794aa3a",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-04.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3766,
+      "sha256": "2d7f163d9241fcc923da36bc00b39dcb",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-04.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3682,
+      "sha256": "343947d980d8743b89fb778bf9fe6a90",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-05.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3765,
+      "sha256": "02c9e8c0696491306b1dca4f4e739620",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-05.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3681,
+      "sha256": "397bac3b341ec1f51b1adcd4b6dce245",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-06.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3736,
+      "sha256": "1e58f1336ba73c61dcd854b1107a84f7",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-06.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3652,
+      "sha256": "b8d3a8e318a2f03f52bc1fac1b5978e2",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-07.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3799,
+      "sha256": "0769b42904c83f1691a27c3621c29a5a",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-07.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3715,
+      "sha256": "32bbaf89cc6ce9469240b29fd7b7c155",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-08.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3792,
+      "sha256": "65c63103285169fa21aba55ea56a2c24",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-08.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3708,
+      "sha256": "9cb8bd70937abc4a1b8b3471d199e1d6",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-09.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3784,
+      "sha256": "6fee5079c8148d6a99a605b24b82ab45",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-09.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3700,
+      "sha256": "e5527b44a2c2650fe4535346ab14a5cf",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-10.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3776,
+      "sha256": "9a685c43a3c0b38cfe3a885f90d8f0e4",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-10.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3692,
+      "sha256": "af393326ff88706286fa607e07b0a182",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-11.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3826,
+      "sha256": "871d604659a3829083c1f1d77b5ed1bc",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-11.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3742,
+      "sha256": "f7a04e587ccd66dae01ab94567cafd1b",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-12.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3831,
+      "sha256": "11f7cad09a369c9073662af18eb5c041",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-12.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3747,
+      "sha256": "4b0eda97de600eb12f60fa8739d755ff",
+      "mtime": 1791972353
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-13.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3822,
+      "sha256": "12defd1f3cc96f88a00d5728e5e97ae0",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-13.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3738,
+      "sha256": "5fc9b92de16821563f8718d3d370cecf",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-14.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3718,
+      "sha256": "d809c88926cae02eef76796b7639ad0d",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-14.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3634,
+      "sha256": "616f261e3e3a6d980ad335ca01c2f0be",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-15.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3807,
+      "sha256": "1d048e092b00a6d579b9b7fbf814b7af",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-15.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3723,
+      "sha256": "6f6019975de1e19ae0f628efd0501ef2",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-16.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3818,
+      "sha256": "4dc1da2eef7022133b79c07a61004234",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-16.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3734,
+      "sha256": "8097b271652ddc32bc7f75aa71cf065e",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-17.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3724,
+      "sha256": "56e7f856033d68e098d26ab19db26ac4",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-17.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3640,
+      "sha256": "270728864626a253c171acca99d82036",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-18.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3671,
+      "sha256": "751b9aef39c3c7dacdd8c97653d316bc",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-18.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3587,
+      "sha256": "78e25f40e4d8f9c1e5656b1d8355b72f",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-19.claim_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3756,
+      "sha256": "650780fb7c9ed49e9dcf35a3873c648b",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/prompts/EXT-19.fact_extraction.json",
+      "pattern": "SHUFE-BDC-2019-001/prompts/*.json",
+      "bytes": 3672,
+      "sha256": "07376370e3ba2b6fca06adc6b164e9a9",
+      "mtime": 1791972354
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+    "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-00.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-00.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-01.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-01.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-02.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-02.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-03.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-03.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-04.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-04.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-05.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-05.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-06.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-06.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-07.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-07.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-08.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-08.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-09.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-09.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-10.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-10.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-11.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-11.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-12.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-12.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-13.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-13.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-14.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-14.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-15.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-15.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-16.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-16.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-17.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-17.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-18.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-18.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-19.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-19.fact_extraction.json"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s5d/README.md",
+    "SHUFE-BDC-2019-001/handover/s5d/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s5g/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5g/manifest_A_s5d.json",
+    "SHUFE-BDC-2019-001/handover/s5g/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5g/manifest_C.json",
+    "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/DOC-REPORT-01.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-00.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-00.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-01.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-01.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-02.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-02.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-03.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-03.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-04.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-04.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-05.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-05.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-06.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-06.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-07.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-07.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-08.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-08.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-09.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-09.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-10.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-10.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-11.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-11.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-12.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-12.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-13.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-13.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-14.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-14.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-15.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-15.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-16.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-16.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-17.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-17.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-18.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-18.fact_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-19.claim_extraction.json",
+    "SHUFE-BDC-2019-001/prompts/EXT-19.fact_extraction.json",
+    "SHUFE-BDC-2019-001/quality/prompt_compile_report.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s5d.json"
+  ],
+  "stdout_tail": "{\n  \"documents\": 21,\n  \"pass\": 32,\n  \"FAIL\": 10,\n  \"compiled\": 42,\n  \"by_type\": {\n    \"feasibility-report\": 4,\n    \"generic\": 10,\n    \"policy\": 2,\n    \"national-standard\": 26\n  },\n  \"note\": \"识别不出类型的文档记 invalid 并落 generic —— 不猜；新增类型只需加 doc_types.yaml 条目与模板文件，不改代码\"\n}\n",
+  "stderr_tail": ""
+}

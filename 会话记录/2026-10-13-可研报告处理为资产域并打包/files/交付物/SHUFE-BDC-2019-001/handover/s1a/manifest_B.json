@@ -1,0 +1,43 @@
+{
+  "stage": "s1a",
+  "patterns": [
+    "build/extractions-clean/P1.json",
+    "build/extractions-clean/P2.json",
+    "build/extractions-clean/P3.json"
+  ],
+  "items": [
+    {
+      "path": "build/extractions-clean/P1.json",
+      "pattern": "build/extractions-clean/P1.json",
+      "bytes": 33881,
+      "sha256": "0668f039e40a78006a3cc8ab77062fe2",
+      "probe": {
+        "parsable": true,
+        "keys": "list[17]"
+      }
+    },
+    {
+      "path": "build/extractions-clean/P2.json",
+      "pattern": "build/extractions-clean/P2.json",
+      "bytes": 18497,
+      "sha256": "f4052d87ba4db87dcfb04aa91ab1c641",
+      "probe": {
+        "parsable": true,
+        "keys": "list[8]"
+      }
+    },
+    {
+      "path": "build/extractions-clean/P3.json",
+      "pattern": "build/extractions-clean/P3.json",
+      "bytes": 31360,
+      "sha256": "a68c7215730279a03eeff4711d824f8d",
+      "probe": {
+        "parsable": true,
+        "keys": "list[11]"
+      }
+    }
+  ],
+  "count": 3,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

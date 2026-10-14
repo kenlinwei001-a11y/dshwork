@@ -1,0 +1,47 @@
+{
+  "stage": "s7",
+  "script": "s8_report.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "交付物/README.md",
+    "交付物/审计/*.md"
+  ],
+  "produced": [
+    {
+      "path": "交付物/README.md",
+      "sha256": "86bd22805884af0c0a4db28234990a20",
+      "bytes": 8014
+    },
+    {
+      "path": "交付物/审计/01-资产域清单.md",
+      "sha256": "c32b8ba059dbe25f3f9e9de5cf44c299",
+      "bytes": 6973
+    },
+    {
+      "path": "交付物/审计/02-冲突待审清单.md",
+      "sha256": "b858b63f29247e169a8403e2dddd84a0",
+      "bytes": 9604
+    },
+    {
+      "path": "交付物/审计/03-缺口清单.md",
+      "sha256": "603a3e5ea08c2a77578c452c4c89abfa",
+      "bytes": 2944
+    },
+    {
+      "path": "交付物/审计/04-质量关口报告.md",
+      "sha256": "84c0a59ab916099ab3c58b1c6c7ce212",
+      "bytes": 4737
+    },
+    {
+      "path": "交付物/审计/05-可复现性与输入完整性说明.md",
+      "sha256": "d6702707b901eac934a4353344c12b47",
+      "bytes": 9891
+    },
+    {
+      "path": "交付物/审计/06-外部依据绑定与合规复核.md",
+      "sha256": "09dc2dd8bcb1a27a3659c89a5d5767ab",
+      "bytes": 23147
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

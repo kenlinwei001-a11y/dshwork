@@ -1,0 +1,134 @@
+{
+  "id": "regulatory_dependency",
+  "core_domain": "规范依赖（依据→技术函数的约束与保证）",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本项目 20 份外部检索文件 × 15 条绑定归纳，待审核）",
+  "is_canonical_domain": false,
+  "contract_note": "kp 内置的 16 域契约（corpus_pipeline.full_emit.DOMAIN_SPECS）未包含本资产。本包以独立资产文件 reuse/regulatory_dependency.yaml 承载，并挂到 ontology/rule/invariant/reuse_strategy/quality_gate 五域的 reusable_form 上；若下游要将其升为「第 17 个资产域」，需在 kp 的 ASSET_DEPENDENCIES 中注册：regulatory_dependency: [ontology, rule]（本包不改动上游工程）。",
+  "depends_on": [
+    "ontology",
+    "rule"
+  ],
+  "attached_to_domains": [
+    "ontology",
+    "rule",
+    "invariant",
+    "reuse_strategy",
+    "quality_gate",
+    "prompt"
+  ],
+  "reusable_form": {
+    "note": "「报告技术函数 ← 外部规范/政策」这一层的**可复用模式**。换项目仍然成立，故属资产；本项目具体绑定的 15 条实例属项目层（external/bindings.yaml）。",
+    "why_asset": "这类依赖是**领域知识**而非项目事实：施工≥400万必须招标、一类高层耐火等级不得低于一级、使用面积系数＝使用面积/建筑面积——这些关系在任何同类项目上都成立，且直接决定技术函数的取值范围与真值。不沉淀它，每个新项目都要重新踩一遍「只读报告判不出来」的坑。",
+    "layers": {
+      "pattern_layer": [
+        "四类依据角色：driver 驱动 / benchmark 基准 / warrant 保证 / domain 取值域约束（同一文件多角色不塌缩）",
+        "约束类型：threshold 阈值 / set 集合 / date 日期 / formula 公式 / boolean 布尔",
+        "判定三态 + 一态：合规 / 不合规 / 待审（前提未裁决，给分支）/ 待核查（依据未取到，不下判定）",
+        "软约束替换协议：规范版本、定额、造价指标、统计值属软约束（有保鲜期），被新证据替换**不算冲突**，直接换但须留痕，且替换后必须重跑派生",
+        "硬约束保护：项目事实（面积/人数/投资/地点）的变更来源**不得是检索结果**",
+        "时效核查协议：引用标准须同时记录 名称、编号、施行日、废止日、引用时点；名称与编号不一致（同一编号两个名称）属高发缺陷"
+      ],
+      "instance_layer": [
+        "本项目 20 份检索文件的台账与哈希（external/documents.yaml）",
+        "本项目 15 条绑定与三态判定结论（external/bindings.yaml、external/compliance.yaml）"
+      ]
+    },
+    "reusable_checks": [
+      {
+        "id": "RP-1",
+        "name": "阈值穿越检查",
+        "desc": "当报告存在两个互不一致的量（如声明高度 60m 与按层高推算 49m），而规范阈值（50m）恰落在两者之间时，**该规范判定的结论必须是「待审」并给出分支**，不得按任一取值下结论。",
+        "why": "阈值穿越会让「合规/不合规」的结论完全反转，是最危险的一类静默错误。"
+      },
+      {
+        "id": "RP-2",
+        "name": "强制性条文优先",
+        "desc": "规范条款中标为强制性条文的，其约束在判定表中优先呈现，且单独计数。本项目 17 条约束中 7 条为强制性。",
+        "why": "强制性条文违反是报审退回的硬条件，不能与一般条款混排。"
+      },
+      {
+        "id": "RP-3",
+        "name": "依据可得性分级",
+        "desc": "依据文本分四态记录：原文可取 / 二手转录 / 表格被剥离 / 检索失败。**「表格被剥离」时不得下判定**，只能「待核查」并写明须补取哪张表。",
+        "why": "以沾边内容替代缺失依据，是评审最难发现也最致命的一类问题。"
+      },
+      {
+        "id": "RP-4",
+        "name": "多角色不塌缩",
+        "desc": "同一份文件在不同章节承担不同角色，须分别建边：必要性章是 driver（mandates）、合规性小节是 benchmark（complies_with）、论断下是 warrant（warrants）、技术取值上是 domain（constrains）。",
+        "why": "把 driver 与 benchmark 混为一谈，是可行性报告里极常见的论证含混。"
+      },
+      {
+        "id": "RP-5",
+        "name": "引用写法核对",
+        "desc": "逐条核对规范/政策的 名称、编号、版本号 写法与官方发布口径的一致性；同一编号出现两种名称写法即登记缺陷。",
+        "why": "名称或编号写错会被评审直接指出，且暴露编制质量。"
+      },
+      {
+        "id": "RP-6",
+        "name": "时效三查",
+        "desc": "查三条：①引用时点是否早于施行日；②是否已被替代/废止；③是否存在与编制时点同月的版本切换（此时结论为待审，取决于实际报审时点）。",
+        "why": "报告编制时点与标准切换时点相邻时，单方判定必错。"
+      }
+    ],
+    "roles_vocabulary": [
+      "driver",
+      "benchmark",
+      "warrant",
+      "domain"
+    ],
+    "constraint_kinds": [
+      "threshold",
+      "set",
+      "date",
+      "formula",
+      "boolean"
+    ],
+    "verdicts": [
+      "合规",
+      "不合规",
+      "待审",
+      "待核查"
+    ],
+    "binding_schema": {
+      "id": "绑定ID",
+      "report": "{rule, value} —— 报告侧的技术函数/取值",
+      "basis": "[Mandate 条款ID] —— 依据",
+      "constraints": "[取值域约束ID]",
+      "role": "四类角色之一",
+      "check": "确定性复核入口（代码函数名）",
+      "params": "复核所需参数",
+      "why": "为什么该取值必须依赖该依据（必填，评审会问）"
+    },
+    "where_to_put": {
+      "ontology": "Mandate 节点类型 + 四类角色枚举",
+      "rule": "取值域约束（threshold/set/date/formula）作为规则的一种 kind",
+      "invariant": "硬约束/软约束的替换协议、前提未裁决则阻塞",
+      "reuse_strategy": "软约束保鲜期与替换协议、时效三查",
+      "quality_gate": "强制性条文单列计数、依据可得性分级"
+    },
+    "extension_note": "kp 内置的 16 域契约（corpus_pipeline.full_emit.DOMAIN_SPECS）未包含本资产。本包以独立资产文件 reuse/regulatory_dependency.yaml 承载，并挂到 ontology/rule/invariant/reuse_strategy/quality_gate 五域的 reusable_form 上；若下游要将其升为「第 17 个资产域」，需在 kp 的 ASSET_DEPENDENCIES 中注册：regulatory_dependency: [ontology, rule]（本包不改动上游工程）。"
+  },
+  "project_instance": {
+    "documents": 20,
+    "mandates": 22,
+    "constraints": 17,
+    "mandatory_constraints": 7,
+    "bindings": 15,
+    "verdicts": {
+      "不合规": 3,
+      "合规": 5,
+      "待审": 5,
+      "待核查": 2
+    },
+    "location": "external/（台账 + 条款 + 约束 + 绑定 + 合规复核）"
+  },
+  "quality": {
+    "QG1": true,
+    "QG2": true,
+    "QG3": true
+  }
+}

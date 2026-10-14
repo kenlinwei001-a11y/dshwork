@@ -1,0 +1,21 @@
+{
+  "stage": "s7d",
+  "patterns": [
+    "交付物/写作输入/交接说明-给推演写作专家.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "pattern": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "bytes": 14591,
+      "sha256": "cd165634fab3368b43f6f43b256daa83",
+      "probe": {
+        "parsable": true,
+        "text_chars": 8826
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

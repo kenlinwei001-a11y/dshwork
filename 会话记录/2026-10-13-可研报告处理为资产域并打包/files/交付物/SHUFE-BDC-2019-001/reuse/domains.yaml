@@ -1,0 +1,2063 @@
+{
+  "domains": [
+    {
+      "id": "ontology",
+      "core_domain": "本体中心",
+      "assembly_input": [
+        "新项目领域",
+        "对象",
+        "属性",
+        "关系",
+        "历史本体版本"
+      ],
+      "assembly_method": "先匹配历史领域本体；对比类、属性、关系、约束 Schema；复用兼容部分，新增或扩展不兼容部分；建立项目级本体版本",
+      "mismatch_handling": "新增概念则增加类或属性；同名异义则创建不同概念或明确语义映射；类型变化则兼容性检查，不直接覆盖旧定义",
+      "assembly_output": [
+        "项目本体 Schema",
+        "变更集",
+        "映射表",
+        "版本记录"
+      ],
+      "file": "reuse/domains/01-ontology.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [],
+      "dependents": [
+        "entity_relation",
+        "variable",
+        "rule",
+        "invariant",
+        "argument_chain",
+        "scenario",
+        "skill",
+        "task_dag",
+        "report_structure",
+        "report_form",
+        "quality_gate",
+        "reuse_strategy"
+      ],
+      "impacted_assets": [
+        "argument_chain",
+        "cost_risk",
+        "entity_relation",
+        "function",
+        "invariant",
+        "ontology",
+        "prompt",
+        "quality_gate",
+        "report_form",
+        "report_structure",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ],
+      "reusable_form": {
+        "entity_types": [
+          {
+            "type": "Project",
+            "cn": "建设项目",
+            "desc": "可研的对象，本例为一个拆除重建的科研用房单体"
+          },
+          {
+            "type": "OwnerUnit",
+            "cn": "建设单位",
+            "desc": "高校及其内部管理机构（基建处/审计处/财务处/后勤）"
+          },
+          {
+            "type": "Campus",
+            "cn": "校区",
+            "desc": "多校区高校的一个校区，含四至与功能定位"
+          },
+          {
+            "type": "Building",
+            "cn": "房屋建筑",
+            "desc": "单体建筑，含层数/高度/结构形式/耐火与抗震等级"
+          },
+          {
+            "type": "ExistingBuilding",
+            "cn": "既有建筑",
+            "desc": "拟拆除的原有建筑（建设年代/面积/结构类型/现状缺陷）"
+          },
+          {
+            "type": "ResearchCenter",
+            "cn": "科研机构",
+            "desc": "研究中心/研究院/实验室，规模论证的组织单元"
+          },
+          {
+            "type": "Room",
+            "cn": "用房",
+            "desc": "科研用房与公共服务配套用房（交流讨论/报告厅/阅览/档案…）"
+          },
+          {
+            "type": "PersonCategory",
+            "cn": "人员类别",
+            "desc": "科研人员、研究生/博士生/访问学者——人均指标不同，必须分类"
+          },
+          {
+            "type": "CostItem",
+            "cn": "费用项",
+            "desc": "投资估算的树状费用项（分项→单位工程→专业工程）"
+          },
+          {
+            "type": "FundingSource",
+            "cn": "资金来源",
+            "desc": "国拨资金 / 学校自筹，含年度需求与占比"
+          },
+          {
+            "type": "Kpi",
+            "cn": "技术经济指标",
+            "desc": "面积、造价、能耗、负荷等可复算指标"
+          },
+          {
+            "type": "Mandate",
+            "cn": "政策法规与标准",
+            "desc": "规划纲要、行业规定、国家标准/地方标准/定额、批复文件"
+          },
+          {
+            "type": "Discipline",
+            "cn": "学科",
+            "desc": "支撑必要性论证的学科（本例为统计学与经管学科群）"
+          },
+          {
+            "type": "Equipment",
+            "cn": "设备",
+            "desc": "大型机电设备（多联机/水泵/风机/变压器/电梯），带台数与参数"
+          },
+          {
+            "type": "Schedule",
+            "cn": "进度节点",
+            "desc": "方案设计→初步设计→施工图→招标→施工→竣工验收"
+          },
+          {
+            "type": "Risk",
+            "cn": "风险因素",
+            "desc": "社会稳定风险与工程质量安全风险因子"
+          }
+        ],
+        "relations": [
+          "has_value",
+          "has_attribute",
+          "instance_of",
+          "part_of",
+          "causes",
+          "depends_on",
+          "supports",
+          "contradicts",
+          "temporal",
+          "located_in"
+        ],
+        "notes": [
+          "Mandate 一个节点四种角色：driver(mandates)/benchmark(complies_with)/warrant(warrants)/domain(constrains)，不塌缩",
+          "PersonCategory 必须分类建模：科研人员与研究生的人均建筑面积指标不同，只给总数无法测算",
+          "CostItem 必须建到「能由别的数算出」的那一层，否则汇总值无法重算"
+        ],
+        "mandate_node_types": [
+          "Mandate（政策法规与标准，全图一份）"
+        ],
+        "mandate_roles": [
+          "driver",
+          "benchmark",
+          "warrant",
+          "domain"
+        ],
+        "role_note": "同一份文件四种角色不塌缩：driver(mandates) / benchmark(complies_with) / warrant(warrants) / domain(constrains)",
+        "see_also": "reuse/regulatory_dependency.yaml"
+      },
+      "external_bindings": [],
+      "sources_summary": {
+        "chunks": 5
+      }
+    },
+    {
+      "id": "argument_chain",
+      "core_domain": "论证链",
+      "assembly_input": [
+        "报告目标",
+        "论点",
+        "Claim",
+        "前提",
+        "证据",
+        "推理关系"
+      ],
+      "assembly_method": "复用历史论证模式；解析新输入 Claim；连接前提/证据/推论/结论；检查关键 Claim 支撑",
+      "mismatch_handling": "新增 Claim 建节点及关系；缺关系类型则扩展 Schema；不把旧项目结论当新项目结论",
+      "assembly_output": [
+        "项目论证图",
+        "Claim 清单",
+        "缺失证据清单",
+        "推理任务"
+      ],
+      "file": "reuse/domains/02-argument_chain.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "quality_gate"
+      ],
+      "impacted_assets": [
+        "argument_chain",
+        "quality_gate",
+        "reuse_strategy"
+      ],
+      "reusable_form": {
+        "claim_types": [
+          "fact",
+          "hypothesis",
+          "inference",
+          "conclusion",
+          "recommendation"
+        ],
+        "nature_types": [
+          "judgment",
+          "prediction",
+          "causal",
+          "suggestion",
+          "risk"
+        ],
+        "edge_types": [
+          "supports",
+          "contradicts",
+          "depends_on"
+        ],
+        "toulmin_template": {
+          "claim": "本项目应当立项建设 / 项目可行",
+          "grounds": "分类事实（人数、面积、造价、政策、现状缺陷）",
+          "warrant": "从「国家/上位要求」到「本项目必须建」的推理许可——**最常被省略、也是评审最爱抓的断链点**",
+          "backing": "法规文号 / 规范条款 / 内部规划 / 学校财务数据",
+          "qualifier": "充分 / 基本合理 / 有保障 / 低风险",
+          "rebuttal": "显式写出反证或未闭合项，不隐藏"
+        },
+        "necessity_dimensions": [
+          {
+            "id": "D1",
+            "name": "国家与行业背景（新兴领域科研水平、创新驱动）",
+            "warrant_present": false
+          },
+          {
+            "id": "D2",
+            "name": "区域发展（地方大数据研究机构空缺）",
+            "warrant_present": false
+          },
+          {
+            "id": "D3",
+            "name": "校区设施条件（既有建筑老化、功能不符）",
+            "warrant_present": true
+          },
+          {
+            "id": "D4",
+            "name": "学校战略（双一流、一流学科建设）",
+            "warrant_present": true
+          }
+        ],
+        "broken_links": [
+          {
+            "dimension": "D1",
+            "note": "原文只给「国家有大数据战略/创新驱动」与结论，中间「所以本校要建」的保证未写出"
+          },
+          {
+            "dimension": "D2",
+            "note": "以「同类高校已建、本校缺失」作论据，未展开「缺失 ⇒ 必须自建」的保证（亦未论证共建/共享等替代方案）"
+          }
+        ],
+        "compliance_template": "政策法规符合性对照表不是手写的，是 complies_with 边全集的渲染结果"
+      },
+      "external_bindings": [
+        "B-07",
+        "B-08",
+        "B-09"
+      ],
+      "sources_summary": {
+        "claims": 9
+      }
+    },
+    {
+      "id": "scenario",
+      "core_domain": "推演场景",
+      "assembly_input": [
+        "项目目标",
+        "场景类型",
+        "初始条件",
+        "边界条件",
+        "扰动因素"
+      ],
+      "assembly_method": "匹配历史场景模板；绑定新项目变量；复制结构非旧结果；生成基准/变化/极端情景",
+      "mismatch_handling": "新增扰动因素扩展参数；关键参数缺失标待补充或明示假设；不迁移旧模拟输出",
+      "assembly_output": [
+        "项目场景集",
+        "参数绑定表",
+        "场景运行配置"
+      ],
+      "file": "reuse/domains/03-scenario.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology",
+        "variable",
+        "rule"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "scenario"
+      ],
+      "reusable_form": {
+        "scenario_types": [
+          "基准",
+          "变化",
+          "极端"
+        ],
+        "params": [
+          {
+            "name": "分类人数（科研人员 / 研究生等）",
+            "role": "规模链第一驱动量"
+          },
+          {
+            "name": "人均建筑面积指标（两档）",
+            "role": "受规范上限约束，可调但须说明依据"
+          },
+          {
+            "name": "综合平面利用系数",
+            "role": "使用面积→建筑面积的换算口径"
+          },
+          {
+            "name": "装配率 / 绿色建筑星级",
+            "role": "政策要求变更直接改动增量费用"
+          },
+          {
+            "name": "单方造价与各分项单价",
+            "role": "造价链驱动量，替换后须重跑派生"
+          },
+          {
+            "name": "国拨资金与自筹比例",
+            "role": "资金链驱动量"
+          },
+          {
+            "name": "建设工期",
+            "role": "资金年度需求分布驱动量"
+          }
+        ],
+        "scenario_templates": [
+          {
+            "id": "SC-基准",
+            "desc": "按原文全部取值复算，得到三链闭合与否的基线结论",
+            "status": "已执行"
+          },
+          {
+            "id": "SC-规模上浮",
+            "desc": "分类人数或人均指标上调，观察地上需求是否超过设计面积与容积率约束",
+            "status": "未执行（无客户输入）"
+          },
+          {
+            "id": "SC-标准变更",
+            "desc": "装配率/绿色星级提高，增量费用按政策加计",
+            "status": "未执行（原文已声明未含）"
+          },
+          {
+            "id": "SC-极端",
+            "desc": "国拨资金未获批、全额自筹，检验学校财务承载与工期资金峰值",
+            "status": "未执行（无客户输入）"
+          }
+        ],
+        "notes": [
+          "场景只复制结构，不迁移本项目模拟结果；参数取值一律来自新项目输入"
+        ]
+      },
+      "external_bindings": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06"
+      ],
+      "sources_summary": {
+        "rules": 2
+      }
+    },
+    {
+      "id": "variable",
+      "core_domain": "变量定义",
+      "assembly_input": [
+        "输入字段",
+        "业务指标",
+        "单位",
+        "类型",
+        "公式",
+        "数据来源"
+      ],
+      "assembly_method": "字段与变量语义匹配；复用变量定义/单位/公式；建字段映射；校验单位/范围/依赖",
+      "mismatch_handling": "新字段分类为新变量/别名/元数据后再定增删；同名不同单位显式转换",
+      "assembly_output": [
+        "项目变量字典",
+        "字段映射",
+        "公式依赖图"
+      ],
+      "file": "reuse/domains/04-variable.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "rule",
+        "invariant",
+        "scenario",
+        "function",
+        "cost_risk"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "function",
+        "invariant",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ],
+      "reusable_form": {
+        "inputs": [
+          {
+            "label": "分类人数——科研人员",
+            "unit": "人",
+            "type": "int",
+            "note": "按科研机构逐中心给出后合计"
+          },
+          {
+            "label": "分类人数——研究生/博士生/访问学者",
+            "unit": "人",
+            "type": "int"
+          },
+          {
+            "label": "人均建筑面积指标——科研人员",
+            "unit": "㎡/人",
+            "type": "number",
+            "source": "规范给定上限"
+          },
+          {
+            "label": "人均建筑面积指标——研究生等",
+            "unit": "㎡/人",
+            "type": "number",
+            "source": "规范给定上限"
+          },
+          {
+            "label": "公共服务配套用房使用面积合计",
+            "unit": "㎡",
+            "type": "number"
+          },
+          {
+            "label": "综合平面利用系数",
+            "unit": "-",
+            "type": "number"
+          },
+          {
+            "label": "各费用项金额",
+            "unit": "万元",
+            "type": "number",
+            "note": "逐分项，不由合计反推"
+          },
+          {
+            "label": "各费用项单位造价",
+            "unit": "元/㎡ 或 元/m 或 元/部",
+            "type": "number"
+          },
+          {
+            "label": "国拨资金",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "学校自筹资金",
+            "unit": "万元",
+            "type": "number"
+          },
+          {
+            "label": "基本预备费费率",
+            "unit": "%",
+            "type": "number"
+          },
+          {
+            "label": "装配率",
+            "unit": "%",
+            "type": "number"
+          },
+          {
+            "label": "用水定额",
+            "unit": "L/人·日",
+            "type": "number"
+          },
+          {
+            "label": "未预见系数",
+            "unit": "%",
+            "type": "number"
+          },
+          {
+            "label": "用电指标 / 需要系数 / 同时使用系数",
+            "unit": "W/㎡ / - / -",
+            "type": "number"
+          },
+          {
+            "label": "单位面积冷负荷指标 / 热负荷指标",
+            "unit": "W/㎡",
+            "type": "number"
+          },
+          {
+            "label": "折标系数（电力当量值 / 水）",
+            "unit": "tce/万kW·h、tce/万m³",
+            "type": "number"
+          },
+          {
+            "label": "年工作天数",
+            "unit": "d",
+            "type": "int"
+          }
+        ],
+        "computed": [
+          {
+            "label": "科研人员规划人数",
+            "unit": "人",
+            "formula": "各科研中心科研人员之和"
+          },
+          {
+            "label": "研究生博士生访问学者规划人数",
+            "unit": "人",
+            "formula": "各科研中心研究生之和"
+          },
+          {
+            "label": "公共服务配套用房建筑面积",
+            "unit": "㎡",
+            "formula": "使用面积合计 / 综合平面利用系数"
+          },
+          {
+            "label": "地上总建筑面积需求",
+            "unit": "㎡",
+            "formula": "科研人员数×科研人均指标 + 研究生数×研究生人均指标 + 配套用房建筑面积"
+          },
+          {
+            "label": "总建筑面积",
+            "unit": "㎡",
+            "formula": "地上建筑面积 + 地下建筑面积"
+          },
+          {
+            "label": "基本预备费",
+            "unit": "万元",
+            "formula": "(建筑安装工程费用 + 工程建设其他费) × 费率"
+          },
+          {
+            "label": "建筑安装工程费用",
+            "unit": "万元",
+            "formula": "单体工程 + 室外总体工程 + 抗震支架 + 绿色二星增量费用"
+          },
+          {
+            "label": "总投资",
+            "unit": "万元",
+            "formula": "建安工程费用 + 工程建设其他费用 + 预备费 + 拆除费用"
+          },
+          {
+            "label": "单位造价",
+            "unit": "元/㎡",
+            "formula": "总投资 / 总建筑面积"
+          },
+          {
+            "label": "国拨资金占比",
+            "unit": "%",
+            "formula": "国拨资金 / 总投资"
+          },
+          {
+            "label": "资产负债率",
+            "unit": "%",
+            "formula": "负债总额 / 资产总额"
+          },
+          {
+            "label": "最高日用水量",
+            "unit": "m³/d",
+            "formula": "(分类人数×用水定额)/1000 ×(1+未预见系数)"
+          },
+          {
+            "label": "消防用水量",
+            "unit": "L/s",
+            "formula": "室外消火栓 + 室内消火栓 + 自动喷水"
+          },
+          {
+            "label": "年用电量",
+            "unit": "万kW·h",
+            "formula": "Σ(面积×用电指标×需要系数×同时使用系数)×日工时×年天数"
+          },
+          {
+            "label": "冷负荷 / 热负荷",
+            "unit": "kW",
+            "formula": "建筑面积 × 单位面积(冷|热)负荷指标"
+          },
+          {
+            "label": "综合能耗（当量值/等价值）",
+            "unit": "tce",
+            "formula": "Σ(能耗量 × 折标系数)"
+          },
+          {
+            "label": "单位面积综合能耗 / 单位建筑面积电耗",
+            "unit": "kgce/㎡、kW·h/㎡",
+            "formula": "能耗 / 总建筑面积"
+          }
+        ],
+        "unit_traps": [
+          "未预见系数原文以 % 表达（10），公式中须 /100，否则结果放大 100 倍",
+          "用电量由 W·h 折「万 kW·h」除数为 1e7（不是 1e4），否则结果放大 1000 倍",
+          "「万元」与「元」在单位造价与分项金额之间必须显式换算"
+        ]
+      },
+      "external_bindings": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06"
+      ],
+      "sources_summary": {
+        "chunks": 5,
+        "rules": 4
+      }
+    },
+    {
+      "id": "task_dag",
+      "core_domain": "任务图 DAG",
+      "assembly_input": [
+        "项目目标",
+        "任务清单",
+        "资产依赖",
+        "执行条件"
+      ],
+      "assembly_method": "复用历史任务模板；按项目启用/跳过节点；补解析/验证/推理节点；重算拓扑",
+      "mismatch_handling": "新增 Claim 需证据检索则插节点连上下游；循环依赖停止并要求修正",
+      "assembly_output": [
+        "项目任务 DAG",
+        "节点参数",
+        "执行顺序和依赖检查"
+      ],
+      "file": "reuse/domains/05-task_dag.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "ontology",
+        "rule",
+        "skill",
+        "function"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "task_dag"
+      ],
+      "reusable_form": {
+        "stages": [
+          "归一化",
+          "骨架抽取",
+          "切块",
+          "本体抽取",
+          "推演回放",
+          "质量登记",
+          "脱敏索引",
+          "装配复用",
+          "写作"
+        ],
+        "nodes": {
+          "归一化": [
+            "stage_1_normalize"
+          ],
+          "骨架抽取": [
+            "stage_2_outline",
+            "legal_coverage_check"
+          ],
+          "切块": [
+            "stage_3_chunk"
+          ],
+          "本体抽取": [
+            "validate_extraction",
+            "apply_extraction"
+          ],
+          "推演回放": [
+            "replay_same_key",
+            "replay_derivation",
+            "judge_select_rules"
+          ],
+          "质量登记": [
+            "detect_conflicts",
+            "register_gaps",
+            "run_invariants"
+          ],
+          "脱敏索引": [
+            "desensitize_numerics",
+            "build_node_index",
+            "build_term_index"
+          ],
+          "装配复用": [
+            "schema_diff",
+            "decide_reuse",
+            "instantiate_project",
+            "run_quality_gates"
+          ],
+          "写作": [
+            "build_work_package",
+            "gate_check_draft"
+          ]
+        },
+        "ordering_constraints": [
+          "骨架抽取必须先于一切内容工作（章节 id 是全图引用锚点，冻结后再改等于全图返工）",
+          "推演回放必须先于质量登记的冲突判定",
+          "存在未裁决 error 级冲突时不得进入写作阶段"
+        ]
+      },
+      "external_bindings": [],
+      "sources_summary": {
+        "chunks": 0
+      }
+    },
+    {
+      "id": "function",
+      "core_domain": "函数库",
+      "assembly_input": [
+        "函数定义",
+        "输入输出 Schema",
+        "业务参数",
+        "执行环境"
+      ],
+      "assembly_method": "按功能/接口匹配；复用验证实现；绑定变量；接口检查与测试；记录版本",
+      "mismatch_handling": "新增字段不自动传所有函数；仅接口需要才改接口或加适配器并保留兼容版本",
+      "assembly_output": [
+        "函数绑定清单",
+        "输入输出映射",
+        "测试结果"
+      ],
+      "file": "reuse/domains/06-function.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "variable"
+      ],
+      "dependents": [
+        "skill",
+        "task_dag",
+        "cost_risk"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "function",
+        "prompt",
+        "skill",
+        "task_dag"
+      ],
+      "reusable_form": {
+        "functions": [
+          {
+            "name": "safe_eval",
+            "sig": "(expr, env) -> number",
+            "note": "受控命名空间求值，禁用 builtins"
+          },
+          {
+            "name": "num / canon",
+            "sig": "(value) -> float|str",
+            "note": "限定词归一后的数值比较"
+          },
+          {
+            "name": "resolve_dep",
+            "sig": "(dep) -> (value, nodes, reason)",
+            "note": "依赖名三级匹配 + 别名 + 冲突感知"
+          },
+          {
+            "name": "stage_1_normalize / stage_2_outline / stage_3_chunk",
+            "sig": "(text|md, out) -> artifact"
+          },
+          {
+            "name": "validate_extraction / apply_extraction",
+            "sig": "(unit|chunks, extractions) -> graph"
+          },
+          {
+            "name": "emit_nodes / emit_rules / emit_evidence / emit_reasoning / emit_index / emit_reuse",
+            "sig": "(root, ...) -> artifact"
+          },
+          {
+            "name": "instantiate_project / build_work_package / gate_check_draft",
+            "sig": "(...) -> 装配与写作产物"
+          }
+        ],
+        "measured": [
+          "22 条规则实际完成重算（12 闭合 / 7 差异 / 3 判定）",
+          "1 条规则因缺口径未解析，5 条因未裁决冲突阻塞"
+        ]
+      },
+      "external_bindings": [
+        "B-01",
+        "B-04",
+        "B-07",
+        "B-08",
+        "B-09"
+      ],
+      "sources_summary": {
+        "rules": 3
+      }
+    },
+    {
+      "id": "rule",
+      "core_domain": "规则库",
+      "assembly_input": [
+        "业务规则",
+        "条件",
+        "阈值",
+        "例外",
+        "适用范围"
+      ],
+      "assembly_method": "匹配领域/对象/版本；复用通用规则；项目阈值作参数注入；检查规则冲突",
+      "mismatch_handling": "新增 Claim 触发证据规则时先判是否本报告类型要求再绑定到任务/校验",
+      "assembly_output": [
+        "项目规则集",
+        "参数配置",
+        "冲突报告"
+      ],
+      "file": "reuse/domains/07-rule.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "ontology",
+        "variable"
+      ],
+      "dependents": [
+        "scenario",
+        "skill",
+        "task_dag",
+        "quality_gate",
+        "cost_risk"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag"
+      ],
+      "reusable_form": {
+        "chain_notes": [
+          "规模链：表5-1~5-4 逐中心人数 → 合计 {人数}/{人数} → 人均指标法 → 地上需求 {面积} → 与设计 {面积} 比对",
+          "造价链：逐行单位造价×数量 → 分项 → 单位工程 → 单体/室外 → 建安工程费 → 总投资（分项之和与表列合计存在多处 ±1 与一处 6.12% 差异）",
+          "资金链：总投资 → 国拨+自筹 → 年度需求 → 学校财务能力（资产负债率）",
+          "能耗链：分类人数/面积 → 用水量·用电量 → 折标 → 综合能耗 → 单位面积能耗"
+        ],
+        "verified_closure": [
+          "R-建筑面积构成",
+          "R-土建工程",
+          "R-总投资构成",
+          "R-资金筹措构成",
+          "R-国拨资金占比",
+          "R-资产负债率",
+          "R-最高日用水量",
+          "R-消防用水量合计",
+          "R-冷负荷",
+          "R-热负荷",
+          "R-年用水量",
+          "R-综合能耗"
+        ],
+        "constraint_kinds": [
+          "threshold",
+          "set",
+          "date",
+          "formula",
+          "boolean"
+        ],
+        "note": "取值域约束（阈值/集合/日期/公式/布尔）是规则的一种 kind；报告的技术函数其取值域由外部规范给出，不在报告内部闭合。",
+        "see_also": "reuse/regulatory_dependency.yaml"
+      },
+      "external_bindings": [
+        "B-01",
+        "B-04",
+        "B-07",
+        "B-08",
+        "B-09"
+      ],
+      "sources_summary": {
+        "rules": 5
+      }
+    },
+    {
+      "id": "invariant",
+      "core_domain": "不变式",
+      "assembly_input": [
+        "必须成立条件",
+        "约束表达式",
+        "适用范围"
+      ],
+      "assembly_method": "复用领域硬约束；绑定对象/变量/单位；执行前验可满足性",
+      "mismatch_handling": "仅当新字段改变约束表达式/对象才扩展；不因新输入与硬约束矛盾而改约束迁就",
+      "assembly_output": [
+        "项目约束集",
+        "约束绑定",
+        "可满足性检查结果"
+      ],
+      "file": "reuse/domains/08-invariant.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "ontology",
+        "variable"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "invariant"
+      ],
+      "reusable_form": {
+        "invariants": [
+          {
+            "id": "INV-1",
+            "expr": "同一 (subject, predicate) 的数值必须一致",
+            "scope": "全图",
+            "level": "error"
+          },
+          {
+            "id": "INV-2",
+            "expr": "relation 的 from/to 必须指向存在的节点",
+            "scope": "全图",
+            "level": "error"
+          },
+          {
+            "id": "INV-3",
+            "expr": "claim 的 evidence 引用必须存在",
+            "scope": "claims",
+            "level": "error"
+          },
+          {
+            "id": "INV-4",
+            "expr": "数值冲突只呈现「待审」，不自动裁决",
+            "scope": "conflicts",
+            "level": "hard"
+          },
+          {
+            "id": "INV-5",
+            "expr": "UNDEFINED 节点不得填 0、不得估值",
+            "scope": "nodes",
+            "level": "hard"
+          },
+          {
+            "id": "INV-6",
+            "expr": "派生值不得手填（总投资必须由分项算出）",
+            "scope": "rules",
+            "level": "hard"
+          },
+          {
+            "id": "INV-7",
+            "expr": "依赖存在未裁决冲突时，派生校核必须阻塞而非取一值硬算",
+            "scope": "rules",
+            "level": "hard"
+          },
+          {
+            "id": "INV-8",
+            "expr": "软约束（规范版本/定额/造价指标）被新证据替换要走适配性评估并留痕，不算冲突裁决",
+            "scope": "evidence",
+            "level": "hard"
+          },
+          {
+            "id": "INV-9",
+            "expr": "硬约束的值变更，来源不得是检索结果",
+            "scope": "evidence",
+            "level": "hard"
+          }
+        ],
+        "notes": [
+          "INV-7 在本项目被实测触发：总建筑面积 {面积}/{面积} 冲突未裁决，导致 5 条派生规则阻塞"
+        ],
+        "regulatory_checks": [
+          "RP-1 阈值穿越检查",
+          "RP-2 强制性条文优先",
+          "RP-3 依据可得性分级",
+          "RP-4 多角色不塌缩",
+          "RP-5 引用写法核对",
+          "RP-6 时效三查"
+        ],
+        "see_also": "reuse/regulatory_dependency.yaml"
+      },
+      "external_bindings": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06",
+        "B-10",
+        "B-11",
+        "B-12",
+        "B-13",
+        "B-15"
+      ],
+      "sources_summary": {
+        "conflicts": 0
+      }
+    },
+    {
+      "id": "skill",
+      "core_domain": "Skills／技能库",
+      "assembly_input": [
+        "Skill 定义",
+        "输入输出 Schema",
+        "提示词",
+        "工具依赖",
+        "测试集"
+      ],
+      "assembly_method": "按任务类型检索；校验版本/兼容；注入上下文；经 MCP 调资产；执行测试",
+      "mismatch_handling": "缺 Claim 处理能力则加可选字段/升级 Schema 并补逻辑；不静默丢弃未知字段",
+      "assembly_output": [
+        "项目 Skill 配置",
+        "输入输出契约",
+        "调用计划",
+        "执行记录"
+      ],
+      "file": "reuse/domains/09-skill.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology",
+        "rule",
+        "function"
+      ],
+      "dependents": [
+        "task_dag",
+        "prompt"
+      ],
+      "impacted_assets": [
+        "prompt",
+        "skill",
+        "task_dag"
+      ],
+      "reusable_form": {
+        "skills": [
+          {
+            "name": "document-parsing-skill",
+            "role": "docx/PDF → Document IR，保留页码段落表格"
+          },
+          {
+            "name": "sentence-segmentation-skill",
+            "role": "稳定 Sentence ID"
+          },
+          {
+            "name": "semantic-chunking-skill",
+            "role": "语义边界切块，表格/图注独立成块"
+          },
+          {
+            "name": "entity-extraction-skill / entity-resolution-skill",
+            "role": "实体抽取与消歧"
+          },
+          {
+            "name": "fact-extraction-skill",
+            "role": "SPO 结构化事实"
+          },
+          {
+            "name": "relation-extraction-skill",
+            "role": "十类关系"
+          },
+          {
+            "name": "claim-extraction-skill / claim-evidence-binding-skill / claim-validation-skill",
+            "role": "论断与证据绑定、论断校验"
+          },
+          {
+            "name": "reasoning-extraction-skill",
+            "role": "公式/规则/多步推导"
+          },
+          {
+            "name": "evidence-extraction-skill",
+            "role": "证据分级 E1–E6 与原文定位"
+          },
+          {
+            "name": "provenance-binding-skill",
+            "role": "决策→Claim→Reasoning→Fact→Evidence→Sentence→Chunk→Document 反向溯源"
+          },
+          {
+            "name": "conflict-detection-skill",
+            "role": "数字/时间/实体/Claim/版本冲突，输出待审"
+          },
+          {
+            "name": "extraction-quality-audit-skill",
+            "role": "结构完整性、证据覆盖、关系合法性、跨项目污染、孤立节点"
+          },
+          {
+            "name": "ontology-resolution-skill / semantic-graph-compilation-skill",
+            "role": "本体映射与图谱编译"
+          },
+          {
+            "name": "knowledge-generalization-skill",
+            "role": "本体/推理模式/Claim 模式沉淀，隔离项目专属事实"
+          },
+          {
+            "name": "graph-deductive-writing-skill",
+            "role": "沿推理链推演写作，正文可反向回读"
+          },
+          {
+            "name": "feasibility-report-edu-research",
+            "role": "高校科研用房可研领域本体与法定大纲（304 号文）"
+          }
+        ],
+        "capability_boundary_note": "仅有报告文本 → 只能归纳候选方法（induced）；有代码/配置/执行记录才登记为真实能力（registered）。本包中 rule/function/task_dag 域为 registered（有可执行 Python 与实测结果），其余域为 induced（从报告归纳，待审核）。"
+      },
+      "external_bindings": [],
+      "sources_summary": {
+        "chunks": 0
+      }
+    },
+    {
+      "id": "report_structure",
+      "core_domain": "报告结构",
+      "assembly_input": [
+        "报告类型",
+        "章节模板",
+        "章节依赖",
+        "内容要求"
+      ],
+      "assembly_method": "匹配报告类型/目标；复用章节结构；按需增删章节；绑定 Claim/证据/推演到章节",
+      "mismatch_handling": "新增 Claim 先判是章节内容/论证单元/独立交付，只有影响结构才建章节",
+      "assembly_output": [
+        "项目报告大纲",
+        "章节依赖图",
+        "内容填充映射"
+      ],
+      "file": "reuse/domains/10-report_structure.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "report_form",
+        "prompt"
+      ],
+      "impacted_assets": [
+        "prompt",
+        "report_form",
+        "report_structure"
+      ],
+      "reusable_form": {
+        "actual_outline": [
+          "总论",
+          "学校简介",
+          "项目建设背景及必要性分析",
+          "项目选址及建设条件",
+          "项目建设内容及规模",
+          "项目规划设计方案",
+          "节能设计",
+          "环境影响评价",
+          "卫生防疫与劳动安全",
+          "社会稳定风险分析",
+          "项目管理及实施进度",
+          "项目招投标方案",
+          "投资估算及资金筹措",
+          "社会效益",
+          "结论与建议",
+          "附件"
+        ],
+        "legal_outline_2023": [
+          "概述",
+          "项目建设背景和必要性",
+          "项目需求分析与产出方案",
+          "项目选址与要素保障",
+          "项目建设方案",
+          "项目运营方案",
+          "项目投融资与财务方案",
+          "项目影响效果分析",
+          "项目风险管控方案",
+          "研究结论及建议"
+        ],
+        "version_note": "本报告 2019 年 8 月编制，采用旧版章节体系；304 号文通用大纲 2023 年 5 月 1 日起施行。按现行口径编写时须以 304 号文十章为准，本报告结构仅作「行文之形」参照，不作「结构之准」。",
+        "gap_analysis": [
+          "未单列「项目运营方案」章（运营内容散落在 11.3 节）",
+          "未单列「项目影响效果分析」章（仅 14 章社会效益，无经济影响/资源能源/碳达峰碳中和分析）",
+          "未单列「项目风险管控方案」章（仅社会稳定风险独立成章，工程质量与安全风险散落）",
+          "「项目投融资与财务方案」仅覆盖投资估算与资金筹措，未含财务分析（盈利能力/融资方案比选/债务清偿/财务可持续性）",
+          "未含「要素保障分析」独立小节（水电气热供给条件散落在 4.2.2）"
+        ],
+        "must_cover_discipline": "标题可变，覆盖不可少；变形只搬动内容的容器，不增减内容本身"
+      },
+      "external_bindings": [
+        "B-14"
+      ],
+      "sources_summary": {
+        "chunks": 0,
+        "outline_sections": 151
+      }
+    },
+    {
+      "id": "report_form",
+      "core_domain": "报告表单",
+      "assembly_input": [
+        "用户输入字段",
+        "字段类型",
+        "必填规则",
+        "字段与章节映射"
+      ],
+      "assembly_method": "比对新旧表单 Schema；复用兼容字段；新增字段补标签/类型/校验/下游映射；留未知字段",
+      "mismatch_handling": "新增 Claim 先定结构（文本/数组/对象）再升级表单 Schema",
+      "assembly_output": [
+        "项目表单 Schema",
+        "字段映射",
+        "校验规则"
+      ],
+      "file": "reuse/domains/11-report_form.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology",
+        "report_structure"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "report_form"
+      ],
+      "reusable_form": {
+        "fields": [
+          {
+            "name": "项目名称",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "建设单位",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "建设地点",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "建设性质",
+            "type": "enum(新建|改扩建|拆除重建)",
+            "required": true
+          },
+          {
+            "name": "分类人数（按组织单元×人员类别）",
+            "type": "table",
+            "required": true
+          },
+          {
+            "name": "人均建筑面积指标（两档）",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "公共服务配套用房需求（功能×间数×单间标准）",
+            "type": "table",
+            "required": true
+          },
+          {
+            "name": "综合平面利用系数",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "投资估算明细（分项×数量×单位×单位造价）",
+            "type": "table",
+            "required": true
+          },
+          {
+            "name": "基本预备费费率",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "资金来源与年度需求（国拨/自筹×年度）",
+            "type": "table",
+            "required": true
+          },
+          {
+            "name": "装配率 / 绿色建筑星级",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "建设工期与开竣工时间",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "用水定额 / 用电指标 / 负荷指标",
+            "type": "table",
+            "required": false
+          },
+          {
+            "name": "实验室专项取值（换气次数/通风柜台数/排风量）",
+            "type": "table",
+            "required": true,
+            "note": "高校科研用房必问项；本报告缺失，表单须强制填写"
+          }
+        ],
+        "unknown_handling": "字段缺值一律保持显式未知（TODO/待补充），不填 0、不估值"
+      },
+      "external_bindings": [
+        "B-04",
+        "B-08"
+      ],
+      "sources_summary": {
+        "rules": 1,
+        "gaps": 1
+      }
+    },
+    {
+      "id": "prompt",
+      "core_domain": "提示词资产",
+      "assembly_input": [
+        "系统提示词",
+        "任务模板",
+        "输入 Schema",
+        "输出 Schema",
+        "项目上下文"
+      ],
+      "assembly_method": "复用稳定模板；按 Schema 动态生成上下文；动态内容与固定规则分离",
+      "mismatch_handling": "新增字段更新上下文构建器；不把字段名简单拼接；明确语义/任务/输出/缺失处理",
+      "assembly_output": [
+        "版本化提示词",
+        "动态上下文",
+        "结构化输出契约"
+      ],
+      "file": "reuse/domains/12-prompt.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "skill",
+        "report_structure"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "prompt"
+      ],
+      "reusable_form": {
+        "templates": {
+          "extraction": "按 schema 输出 JSON；数值必须带单位与原文可检索的 verbatim；同一指标跨章 subject/predicate 必须一致；找不到证据的 Claim 也要抽但 evidence_refs 留空；warrant 原文没写就留空，不代拟。",
+          "writing_discipline": "正文只写 {{节点名}} 占位符，不出现手打数字；冲突以「待审」呈现；缺值写「待X确认后生成」而不是占位文字；不引入图上没有的新事实。",
+          "evidence_grading": "E1 单位内部资料 / E2 规范标准定额 / E3 政策法规与上位规划 / E4 公开统计 / E5 第三方委托成果 / E6 专家判断与类推。"
+        },
+        "dynamic_context": [
+          "项目 meta",
+          "变量字典",
+          "术语表",
+          "冲突待审清单",
+          "缺口清单",
+          "规范在册状态"
+        ],
+        "per_section_file": "style/section_prompts.yaml",
+        "per_section_count": 16,
+        "note": "逐章提示词：领域骨架 + 本项目注入（可用节点/冲突/缺口/依据绑定）。每章是不同的活，不共用一套通用提示词。",
+        "see_also": "style/section_prompts.yaml"
+      },
+      "external_bindings": [
+        "B-04"
+      ],
+      "sources_summary": {
+        "chunks": 0
+      }
+    },
+    {
+      "id": "quality_gate",
+      "core_domain": "质量闸门",
+      "assembly_input": [
+        "质量指标",
+        "校验规则",
+        "验收阈值",
+        "历史缺陷"
+      ],
+      "assembly_method": "复用通用校验；按报告类型启用规则；查结构/逻辑/证据/数值/引用",
+      "mismatch_handling": "新增 Claim 评估是否加覆盖率/证据关联/冲突/未验证声明校验；关键 Claim 不达标阻断",
+      "assembly_output": [
+        "项目质量规则",
+        "校验报告",
+        "阻断项与整改项"
+      ],
+      "file": "reuse/domains/13-quality_gate.yaml",
+      "asset_origin": "registered（有可执行代码与实测结果）",
+      "depends_on": [
+        "ontology",
+        "rule",
+        "argument_chain"
+      ],
+      "dependents": [
+        "reuse_strategy"
+      ],
+      "impacted_assets": [
+        "quality_gate",
+        "reuse_strategy"
+      ],
+      "reusable_form": {
+        "gates": [
+          {
+            "id": "QG1",
+            "name": "来源可信度",
+            "rule": "每个可复用资产必须能指回原稿或客户确认的来源；检索结果不得直接入图",
+            "applies_to": "全域"
+          },
+          {
+            "id": "QG2",
+            "name": "语义完整性",
+            "rule": "结构完整性、证据覆盖、关系合法性、无孤立节点、无跨项目污染",
+            "applies_to": "graph/*"
+          },
+          {
+            "id": "QG3",
+            "name": "可复用性",
+            "rule": "借形不借值：reusable_form 中不得含项目专属数值；口径与单位必须显式；能确定性复算",
+            "applies_to": "reuse/*"
+          }
+        ],
+        "blocking_rules": [
+          "存在未裁决 error 级冲突不得进入写作",
+          "关键 Claim 无证据不得标记为已验证",
+          "draft 未过 validated 不得 published"
+        ],
+        "mandatory_counts_separately": true,
+        "basis_availability_grading": [
+          "原文可取",
+          "二手转录",
+          "表格被剥离",
+          "检索失败"
+        ],
+        "see_also": "reuse/regulatory_dependency.yaml"
+      },
+      "external_bindings": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06",
+        "B-07",
+        "B-08",
+        "B-09",
+        "B-10",
+        "B-11",
+        "B-12",
+        "B-13",
+        "B-14",
+        "B-15"
+      ],
+      "sources_summary": {
+        "conflicts": 1
+      }
+    },
+    {
+      "id": "reuse_strategy",
+      "core_domain": "复用策略",
+      "assembly_input": [
+        "资产类型",
+        "领域",
+        "版本",
+        "适用条件",
+        "授权",
+        "时效和验证记录"
+      ],
+      "assembly_method": "评估语义匹配/版本兼容/来源可信/时效/权限/验证状态；选复用/参数化/扩展/重建/拒绝",
+      "mismatch_handling": "不因单字段判定整模板失效；按字段/依赖粒度评估并记录兼容/扩展/拒绝原因",
+      "assembly_output": [
+        "复用决策清单",
+        "资产来源",
+        "兼容性报告"
+      ],
+      "file": "reuse/domains/14-reuse_strategy.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology",
+        "quality_gate"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "reuse_strategy"
+      ],
+      "reusable_form": {
+        "strategies": [
+          "直接复用",
+          "参数化复用",
+          "扩展",
+          "重建",
+          "拒绝"
+        ],
+        "decision_examples": [
+          {
+            "asset": "规模论证链（人均指标法）",
+            "strategy": "参数化复用",
+            "reason": "结构稳定、指标受规范约束，换项目只需换分类人数与指标取值"
+          },
+          {
+            "asset": "造价链（分项→单位工程→单体/室外→建安→总投资）",
+            "strategy": "参数化复用",
+            "reason": "构成口径通用，但单价与费率须按新项目所在地与年份重取"
+          },
+          {
+            "asset": "规范清单",
+            "strategy": "重建",
+            "reason": "软约束，默认已过期；本报告多处版本并存（照明 2004/2013、节能 DGJ08-107 2012/2015 等），须按现行口径重查"
+          },
+          {
+            "asset": "本项目数值（{面积}/{金额}/…）",
+            "strategy": "拒绝",
+            "reason": "项目专属事实，禁止迁移"
+          }
+        ],
+        "granularity_rule": "不因单个字段不兼容就判定整个模板失效；按字段与依赖粒度评估并记录原因",
+        "soft_constraint_protocol": [
+          "软约束替换协议：规范版本、定额、造价指标、统计值属软约束（有保鲜期），被新证据替换**不算冲突**，直接换但须留痕，且替换后必须重跑派生",
+          "硬约束保护：项目事实（面积/人数/投资/地点）的变更来源**不得是检索结果**",
+          "时效核查协议：引用标准须同时记录 名称、编号、施行日、废止日、引用时点；名称与编号不一致（同一编号两个名称）属高发缺陷"
+        ],
+        "see_also": "reuse/regulatory_dependency.yaml"
+      },
+      "external_bindings": [
+        "B-10",
+        "B-11",
+        "B-12",
+        "B-13",
+        "B-15"
+      ],
+      "sources_summary": {
+        "conflicts": 2
+      }
+    },
+    {
+      "id": "entity_relation",
+      "core_domain": "实体与关系模型",
+      "assembly_input": [
+        "新项目实体",
+        "实体类型",
+        "属性",
+        "关系",
+        "来源和标识"
+      ],
+      "assembly_method": "实体匹配历史本体类型；解析消歧；建实例与关系；连事实/Claim/证据",
+      "mismatch_handling": "新增 Claim 需加类型/属性及与证据/来源/论证的关系；先扩 Schema 再建实例",
+      "assembly_output": [
+        "项目实体图",
+        "关系实例",
+        "实体映射和消歧记录"
+      ],
+      "file": "reuse/domains/15-entity_relation.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "entity_relation"
+      ],
+      "reusable_form": {
+        "relation_examples": [
+          {
+            "from": "大数据研究中心",
+            "to": "上海财经大学",
+            "type": "part_of",
+            "note": "机构→单位"
+          },
+          {
+            "from": "大数据研究中心",
+            "to": "中山北一路校区",
+            "type": "located_in",
+            "note": "单体→校区"
+          },
+          {
+            "from": "原第五教学楼",
+            "to": "大数据研究中心",
+            "type": "causes",
+            "note": "拆除重建的因果关系"
+          },
+          {
+            "from": "管理科学与量化信息研究中心",
+            "to": "大数据研究中心",
+            "type": "part_of",
+            "note": "四个科研机构均 part_of"
+          },
+          {
+            "from": "公共服务配套用房·交流讨论室",
+            "to": "公共服务配套用房",
+            "type": "part_of"
+          },
+          {
+            "from": "总投资",
+            "to": "建筑安装工程费用",
+            "type": "depends_on",
+            "note": "费用层级依赖"
+          },
+          {
+            "from": "地上总建筑面积需求",
+            "to": "科研人员规划人数",
+            "type": "depends_on"
+          },
+          {
+            "from": "地上总建筑面积需求",
+            "to": "地上建筑面积",
+            "type": "contradicts",
+            "note": "测算需求大于实建设计，构成必须显式化的矛盾（待审）"
+          },
+          {
+            "from": "EV-必要性-01",
+            "to": "CL-必要性-01",
+            "type": "supports"
+          },
+          {
+            "from": "开工时间",
+            "to": "建设工期",
+            "type": "temporal"
+          }
+        ],
+        "resolution_notes": [
+          "机构名消歧：本报告同时出现「统计与管理学院」「数据科学与统计研究院」「数据科研与统计研究院」——同名异写，须经实体注册表消歧后再建边",
+          "章节标题里的用房与表内的用房须按业务名归一（如「数据/语音通信系统与综合布线系统」是专业系统不是用房）"
+        ]
+      },
+      "external_bindings": [],
+      "sources_summary": {
+        "chunks": 3,
+        "claims": 1
+      }
+    },
+    {
+      "id": "cost_risk",
+      "core_domain": "成本／风险计算方法",
+      "assembly_input": [
+        "成本项",
+        "风险因子",
+        "公式",
+        "参数",
+        "单位",
+        "阈值和历史方法"
+      ],
+      "assembly_method": "复用计算方法/风险分类/公式；映射数据；更新参数/基准/范围；样本测试",
+      "mismatch_handling": "新增 Claim 仅影响成本/风险输入才改模型；纯论点进论证流程不当计算变量",
+      "assembly_output": [
+        "项目成本模型",
+        "风险模型",
+        "参数表",
+        "计算与校验结果"
+      ],
+      "file": "reuse/domains/16-cost_risk.yaml",
+      "asset_origin": "induced（从本报告归纳，待审核）",
+      "depends_on": [
+        "variable",
+        "function",
+        "rule"
+      ],
+      "dependents": [],
+      "impacted_assets": [
+        "cost_risk"
+      ],
+      "reusable_form": {
+        "cost_methods": [
+          {
+            "name": "费用构成归集法",
+            "expr": "总投资 = 建安工程费用 + 工程建设其他费用 + 预备费 + 拆除费用"
+          },
+          {
+            "name": "单位造价法",
+            "expr": "分项金额 = 数量 × 单位造价"
+          },
+          {
+            "name": "费率法",
+            "expr": "基本预备费 = (建安工程费用 + 工程建设其他费用) × 费率"
+          },
+          {
+            "name": "系数法",
+            "expr": "前期费用 = 基数 × 系数（如 勘察费 = 建安费×0.35%、竣工图编制费 = 设计费×8%）"
+          },
+          {
+            "name": "造价指标法",
+            "expr": "参照类似工程造价指标（原文列为估算依据，但未给出指标来源与数值）"
+          }
+        ],
+        "cost_structure": [
+          "建筑安装工程费用 → 单体工程/室外总体工程/抗震支架/绿色二星增量费用",
+          "单体工程 → 土建工程/安装工程",
+          "土建工程 → 桩基/基坑围护/地下结构/地上结构/装配式增加费/室内装饰/外立面及屋面",
+          "安装工程 → 给排水/消防/通风空调/强电/弱电/电梯",
+          "工程建设其他费 → 管理费/咨询费/勘察设计费/招标代理/监理/审图/竣工图/场地准备/市政配套/人防"
+        ],
+        "risk_factors": [
+          {
+            "id": "RK-1",
+            "name": "施工环境污染风险",
+            "phase": "施工期",
+            "level": "较小",
+            "note": "风险随施工结束消失，但装修期噪声对师生教学与周边居民影响可能较大"
+          },
+          {
+            "id": "RK-2",
+            "name": "交通出行及安全风险",
+            "phase": "施工期",
+            "level": "较小",
+            "note": "施工车辆进出与建材占道"
+          },
+          {
+            "id": "RK-3",
+            "name": "工程管理及施工安全风险",
+            "phase": "施工期",
+            "level": "概率小/影响较严重",
+            "note": "欠薪与工伤易引发群体性事件"
+          },
+          {
+            "id": "RK-4",
+            "name": "标准版本失效风险",
+            "phase": "全过程",
+            "level": "中",
+            "note": "本报告实测存在 4 组规范多版本并存与 1 组规范名称不一致，是本类报告被打回的高频原因"
+          },
+          {
+            "id": "RK-5",
+            "name": "派生值与原文脱节风险",
+            "phase": "编制期",
+            "level": "中",
+            "note": "实测投资表 7 处派生差异、规模结论与自身测算不符"
+          },
+          {
+            "id": "RK-6",
+            "name": "手续未闭合风险",
+            "phase": "前期",
+            "level": "中",
+            "note": "拆除手续在办理中、国拨资金无批复文件"
+          },
+          {
+            "id": "RK-7",
+            "name": "实验室专项取值缺失风险",
+            "phase": "设计期",
+            "level": "较高",
+            "note": "通风柜台数/排风量/实验室换气次数未给出，评审必问"
+          }
+        ],
+        "risk_method": "按风险管理四要素（外部环境、内部管理、技术、财务）× 前期/施工/运营 三阶段识别，分合法性/合理性/可行性/可控性四维评估，措施后复评等级"
+      },
+      "external_bindings": [
+        "B-13",
+        "B-15"
+      ],
+      "sources_summary": {
+        "claims": 5,
+        "rules": 2
+      }
+    }
+  ],
+  "extension_assets": [
+    {
+      "id": "regulatory_dependency",
+      "file": "reuse/regulatory_dependency.yaml",
+      "core_domain": "规范依赖（依据→技术函数的约束与保证）",
+      "note": "kp 内置的 16 域契约（corpus_pipeline.full_emit.DOMAIN_SPECS）未包含本资产。本包以独立资产文件 reuse/regulatory_dependency.yaml 承载，并挂到 ontology/rule/invariant/reuse_strategy/quality_gate 五域的 reusable_form 上；若下游要将其升为「第 17 个资产域」，需在 kp 的 ASSET_DEPENDENCIES 中注册：regulatory_dependency: [ontology, rule]（本包不改动上游工程）。"
+    }
+  ],
+  "function_constants": [
+    {
+      "subject": "本项目",
+      "predicate": "预备费",
+      "value": "618",
+      "unit": "万元",
+      "node_id": "N-24d5bb9ca97f"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·教师规模",
+      "value": "950",
+      "unit": "人",
+      "node_id": "N-9bd50795df49"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·一级学科数",
+      "value": "18",
+      "unit": "个",
+      "node_id": "N-53ad5074ad4a"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·国际知名学术领军人才",
+      "value": "30",
+      "unit": "人",
+      "node_id": "N-ee882814713f"
+    },
+    {
+      "subject": "公共服务配套用房",
+      "predicate": "综合平面利用系数",
+      "value": "0.55",
+      "unit": "-",
+      "node_id": "N-4f9c2807a62b"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "科研人员用房人均建筑面积指标",
+      "value": "16",
+      "unit": "㎡/人",
+      "node_id": "N-2820b26c3f35"
+    },
+    {
+      "subject": "大数据研究中心",
+      "predicate": "建筑高度控制",
+      "value": "60",
+      "unit": "m",
+      "node_id": "N-f0fd96a3a38e"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "node_id": "N-b5d8de16a2a7"
+    },
+    {
+      "subject": "实验室",
+      "predicate": "楼面活荷载标准值",
+      "value": "4.0",
+      "unit": "kN/m²",
+      "node_id": "N-d8f1204ef1a9"
+    },
+    {
+      "subject": "办公室阅览室会议室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "node_id": "N-7a09dcc73ee3"
+    },
+    {
+      "subject": "一般资料档案室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "node_id": "N-63b071767842"
+    },
+    {
+      "subject": "走廊门厅楼梯",
+      "predicate": "楼面活荷载标准值",
+      "value": "3.5",
+      "unit": "kN/m²",
+      "node_id": "N-b44117496caa"
+    },
+    {
+      "subject": "计算机机房弱电机房地下设备用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "7.0",
+      "unit": "kN/m²",
+      "node_id": "N-52cbf5f50c8a"
+    },
+    {
+      "subject": "变配电间水泵房",
+      "predicate": "楼面活荷载标准值",
+      "value": "10.0",
+      "unit": "kN/m²",
+      "node_id": "N-3a2fcf27bbe9"
+    },
+    {
+      "subject": "上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "node_id": "N-81d066d6ec28"
+    },
+    {
+      "subject": "不上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "0.5",
+      "unit": "kN/m²",
+      "node_id": "N-4c2e3686b75a"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "风荷载体型系数",
+      "value": "1.3",
+      "unit": "-",
+      "node_id": "N-1b1549fc44f9"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "多遇水平地震影响系数",
+      "value": "0.08",
+      "unit": "-",
+      "node_id": "N-514034bcf07b"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "罕遇水平地震影响系数",
+      "value": "0.5",
+      "unit": "-",
+      "node_id": "N-dbb9f4111022"
+    },
+    {
+      "subject": "科研学生",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/生·日",
+      "node_id": "N-3f1810ee3a33"
+    },
+    {
+      "subject": "办公",
+      "predicate": "用水定额",
+      "value": "50",
+      "unit": "L/人·日",
+      "node_id": "N-f4add4e0e79a"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "未预见系数",
+      "value": "10",
+      "unit": "%",
+      "node_id": "N-0372fd56d2be"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "空调负荷密度指标",
+      "value": "45",
+      "unit": "W/㎡",
+      "node_id": "N-b8e7bf4b7c1d"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "照明及其他负荷密度指标",
+      "value": "25",
+      "unit": "W/㎡",
+      "node_id": "N-944c3d4af11d"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "人均使用面积",
+      "value": "1.5",
+      "unit": "㎡/人",
+      "node_id": "N-7aad9b0320e0"
+    },
+    {
+      "subject": "卫生间",
+      "predicate": "排风换气次数",
+      "value": "10~15",
+      "unit": "h-1",
+      "node_id": "N-8ca9f3898ace"
+    },
+    {
+      "subject": "电梯机房",
+      "predicate": "排风换气次数",
+      "value": "10",
+      "unit": "h-1",
+      "node_id": "N-2025492b72b4"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "单位面积冷负荷指标",
+      "value": "135",
+      "unit": "W/㎡",
+      "node_id": "N-e30b2d47398d"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "单位面积热负荷指标",
+      "value": "80",
+      "unit": "W/㎡",
+      "node_id": "N-6fde114502ac"
+    },
+    {
+      "subject": "教师用水",
+      "predicate": "用水定额",
+      "value": "35",
+      "unit": "L/人·d",
+      "node_id": "N-5859db27922c"
+    },
+    {
+      "subject": "学生用水",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/人·d",
+      "node_id": "N-af196dccd886"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "node_id": "N-c8c5fd1fece2"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "需要系数",
+      "value": "0.8",
+      "unit": "-",
+      "node_id": "N-d47bd8140fdc"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "同时使用系数",
+      "value": "0.6",
+      "unit": "-",
+      "node_id": "N-6eb51e821197"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "node_id": "N-094c483c1ac2"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "需要系数",
+      "value": "0.6",
+      "unit": "-",
+      "node_id": "N-4aaf4c9685bf"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "同时使用系数",
+      "value": "0.5",
+      "unit": "-",
+      "node_id": "N-f52e2827a0e8"
+    },
+    {
+      "subject": "综合能耗·水",
+      "predicate": "折标系数",
+      "value": "0.857",
+      "unit": "tce/万m³",
+      "node_id": "N-43f27011e247"
+    },
+    {
+      "subject": "综合能耗·电力",
+      "predicate": "折标系数（当量值）",
+      "value": "1.229",
+      "unit": "tce/万kW·h",
+      "node_id": "N-e2fb043d4a06"
+    },
+    {
+      "subject": "项目排风口",
+      "predicate": "与环境敏感目标间距",
+      "value": "不小于10.0",
+      "unit": "m",
+      "node_id": "N-ecaf889ab916"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "≤70",
+      "unit": "dB(A)",
+      "node_id": "N-f95ce50dc7dd"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "夜间限值",
+      "value": "≤55",
+      "unit": "dB(A)",
+      "node_id": "N-6f8bf452fa72"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "70",
+      "unit": "dB(A)",
+      "node_id": "N-1dff222d7986"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "装配率",
+      "value": "40",
+      "unit": "%",
+      "node_id": "N-59b9d8f6d1fc"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "人防易地建设费单价",
+      "value": "60",
+      "unit": "元/㎡",
+      "node_id": "N-1b70a153d6ef"
+    },
+    {
+      "subject": "《普通高等学校建筑面积指标》",
+      "predicate": "附录B 研究生校舍建筑面积补助指标",
+      "value": "研究生使用的校舍，在实验研究、图书馆、学生宿舍三项用房上有别于本科生，应在本科生生均建筑面积指标基础上增加补助指标。研究生校舍建筑面积补助指标见附表B。【另一处，第二十五条表16】研究生学生宿舍建筑面积补助指标：硕士生每生5.0m²，博士生每生10.0m²。",
+      "unit": "",
+      "node_id": "NX-条款-004"
+    }
+  ]
+}

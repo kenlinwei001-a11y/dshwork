@@ -1,0 +1,14 @@
+{
+  "stage": "s6c",
+  "patterns": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

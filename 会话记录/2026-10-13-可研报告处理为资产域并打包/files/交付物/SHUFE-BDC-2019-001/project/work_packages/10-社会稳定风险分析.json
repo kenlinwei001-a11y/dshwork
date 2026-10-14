@@ -1,0 +1,129 @@
+{
+  "work_package_id": "WP-10-社会稳定风险分析",
+  "outline": {
+    "section": "10-社会稳定风险分析",
+    "title": "社会稳定风险分析",
+    "must_cover": [
+      "编制依据",
+      "风险调查",
+      "风险识别和估计",
+      "风险防范和化解措施",
+      "项目风险等级评判",
+      "风险分析结论",
+      "编制依据"
+    ],
+    "must_cover_legal": [
+      "实施进度安排",
+      "风险管控方案",
+      "应急预案"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-f95ce50dc7dd",
+      "node_id": "N-f95ce50dc7dd",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "≤70",
+      "unit": "dB(A)",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "id": "N-6f8bf452fa72",
+      "node_id": "N-6f8bf452fa72",
+      "subject": "施工场界噪声",
+      "predicate": "夜间限值",
+      "value": "≤55",
+      "unit": "dB(A)",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "id": "N-1dff222d7986",
+      "node_id": "N-1dff222d7986",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "70",
+      "unit": "dB(A)",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-d3f7b33459d8"
+    },
+    {
+      "id": "EN-0453",
+      "node_id": "EN-0453",
+      "subject": "施工场界噪声",
+      "predicate": "实体名",
+      "value": "施工场界噪声",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-d3f7b33459d8"
+    }
+  ],
+  "facts_paging": {
+    "total": 4,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [
+    {
+      "id": "CL-风险结论-01",
+      "text": "本项目不会引发较大社会稳定风险问题，拟建项目合法、合理、可控、可行，项目风险等级评判为低风险。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "项目合法、合理、可控、可行，风险等级低",
+        "grounds": "风险等级评判结果",
+        "warrant": "风险等级低 ⇒ 项目可行",
+        "backing": "发改投资[2012]2492号",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-规范-稳评-01"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "10-社会稳定风险分析",
+    "file": "style/section_templates/10-社会稳定风险分析.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

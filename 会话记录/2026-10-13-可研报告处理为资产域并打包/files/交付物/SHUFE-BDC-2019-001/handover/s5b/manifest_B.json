@@ -1,0 +1,21 @@
+{
+  "stage": "s5b",
+  "patterns": [
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "bytes": 279822,
+      "sha256": "bce38e57bae797cab9989597101990bb",
+      "probe": {
+        "parsable": true,
+        "records": 1178
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

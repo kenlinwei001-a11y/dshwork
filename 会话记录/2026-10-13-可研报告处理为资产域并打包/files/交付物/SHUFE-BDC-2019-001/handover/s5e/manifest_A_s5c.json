@@ -1,0 +1,34 @@
+{
+  "stage": "s5c",
+  "script": "s10_external.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/external/documents.yaml",
+    "SHUFE-BDC-2019-001/external/chunks.jsonl",
+    "SHUFE-BDC-2019-001/external/mandates.yaml",
+    "SHUFE-BDC-2019-001/external/constraints.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/external/documents.yaml",
+      "sha256": "b43b61d92e0d686b7e3b691587c3417a",
+      "bytes": 13165
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/chunks.jsonl",
+      "sha256": "6aa9252a9568407f1711bb6c94947104",
+      "bytes": 470087
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/mandates.yaml",
+      "sha256": "a62a3cd732662e5999e7e0d07b7063f9",
+      "bytes": 19272
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/constraints.yaml",
+      "sha256": "c49e52f9d88d1d9d5cd4303844da2799",
+      "bytes": 5750
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

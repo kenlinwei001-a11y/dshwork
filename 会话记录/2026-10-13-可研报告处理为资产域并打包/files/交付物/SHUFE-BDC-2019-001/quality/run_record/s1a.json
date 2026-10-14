@@ -1,0 +1,79 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s1a",
+  "name": "语义抽取 P1/P2/P3",
+  "script": "s3a_extract.py",
+  "script_sha256": "3610790952cef3474fa340246f631e56",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:39",
+  "finished_at": "2026-10-14T18:05:39",
+  "elapsed_s": 0.13,
+  "declared_outputs": [
+    "build/extractions-clean/P1.json",
+    "build/extractions-clean/P2.json",
+    "build/extractions-clean/P3.json"
+  ],
+  "outputs": [
+    {
+      "path": "build/extractions-clean/P1.json",
+      "pattern": "build/extractions-clean/P1.json",
+      "bytes": 33881,
+      "sha256": "0668f039e40a78006a3cc8ab77062fe2",
+      "mtime": 1791972229
+    },
+    {
+      "path": "build/extractions-clean/P2.json",
+      "pattern": "build/extractions-clean/P2.json",
+      "bytes": 18497,
+      "sha256": "f4052d87ba4db87dcfb04aa91ab1c641",
+      "mtime": 1791972229
+    },
+    {
+      "path": "build/extractions-clean/P3.json",
+      "pattern": "build/extractions-clean/P3.json",
+      "bytes": 31360,
+      "sha256": "a68c7215730279a03eeff4711d824f8d",
+      "mtime": 1791972229
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s0/README.md",
+    "SHUFE-BDC-2019-001/handover/s0/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s1a/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s1a/manifest_A_s0.json",
+    "SHUFE-BDC-2019-001/handover/s1a/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s1a/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s0.json",
+    "build/extractions/P1.json",
+    "build/extractions/P2.json",
+    "build/extractions/P3.json"
+  ],
+  "stdout_tail": "P1 extracted: facts=52 rules=2 claims=5 evidence=16 relations=20\nP2 extracted: facts=11 rules=0 claims=6 evidence=12 relations=16\nP3 extracted: facts=51 rules=5 claims=2 evidence=11 relations=15\n",
+  "stderr_tail": ""
+}

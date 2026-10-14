@@ -1,0 +1,61 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7f",
+  "name": "报告装配",
+  "script": "r18_report.py",
+  "script_sha256": "2bcae17e0d8e57f1fd495e82cdbc9bc2",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:04",
+  "finished_at": "2026-10-14T18:06:04",
+  "elapsed_s": 0.25,
+  "declared_outputs": [
+    "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md"
+  ],
+  "outputs": [
+    {
+      "path": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md",
+      "pattern": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md",
+      "bytes": 148676,
+      "sha256": "d4d3346a9e6f74421affde0fcc2cacdf",
+      "mtime": 1791972364
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7c/README.md",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7f/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7f/manifest_A_s7c.json",
+    "SHUFE-BDC-2019-001/handover/s7f/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7f/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7c.json",
+    "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md"
+  ],
+  "stdout_tail": "{\n  \"chars_total\": 61549,\n  \"chars_chinese\": 38782,\n  \"tables_defined\": 31,\n  \"placeholders_left\": 0\n}\n",
+  "stderr_tail": ""
+}

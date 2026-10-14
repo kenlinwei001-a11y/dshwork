@@ -1,0 +1,90 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6c",
+  "name": "两类资产扩展",
+  "script": "s13_assets_ext.py",
+  "script_sha256": "5185dccbefaac96987afc5ba7d6d9564",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:58",
+  "finished_at": "2026-10-14T18:05:59",
+  "elapsed_s": 0.37,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "pattern": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "bytes": 57587,
+      "sha256": "c846378756b73f2f58a3de0af14e2ce7",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "bytes": 7182,
+      "sha256": "72bfff2cf23db53378fc22dab6bae045",
+      "mtime": 1791972359
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s6/README.md",
+    "SHUFE-BDC-2019-001/handover/s6/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_A_s6.json",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s6.json",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml"
+  ],
+  "stdout_tail": "\",\n  \"attached_domains\": {\n    \"ontology\": [\n      \"mandate_node_types\",\n      \"mandate_roles\",\n      \"role_note\",\n      \"see_also\"\n    ],\n    \"rule\": [\n      \"constraint_kinds\",\n      \"note\",\n      \"see_also\"\n    ],\n    \"invariant\": [\n      \"regulatory_checks\",\n      \"see_also\"\n    ],\n    \"prompt\": [\n      \"note\",\n      \"per_section_count\",\n      \"per_section_file\",\n      \"see_also\"\n    ],\n    \"quality_gate\": [\n      \"basis_availability_grading\",\n      \"mandatory_counts_separately\",\n      \"see_also\"\n    ],\n    \"reuse_strategy\": [\n      \"see_also\",\n      \"soft_constraint_protocol\"\n    ]\n  }\n}\n",
+  "stderr_tail": ""
+}

@@ -1,0 +1,9 @@
+{
+  "stage": "s5b",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl": {
+      "records": 1178
+    }
+  },
+  "source": "C=产物自述（从内容里读出的元数据，不采信外部声明）"
+}

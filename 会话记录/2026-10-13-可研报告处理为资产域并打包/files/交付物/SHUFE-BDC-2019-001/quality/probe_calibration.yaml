@@ -1,0 +1,70 @@
+{
+  "probes": [
+    {
+      "probe": "citations",
+      "anchors": [
+        "普通高等学校建筑规划面积指标",
+        "建筑设计防火规范"
+      ],
+      "hit": [
+        "普通高等学校建筑规划面积指标",
+        "建筑设计防火规范"
+      ],
+      "valid": true,
+      "n_items": 155
+    },
+    {
+      "probe": "headings",
+      "anchors": [
+        "总论",
+        "投资估算及资金筹措"
+      ],
+      "hit": [
+        "总论",
+        "投资估算及资金筹措"
+      ],
+      "valid": true,
+      "n_items": 151
+    },
+    {
+      "probe": "valued_numbers",
+      "anchors": [
+        "18319",
+        "13032"
+      ],
+      "hit": [
+        "18319",
+        "13032"
+      ],
+      "valid": true,
+      "n_items": 143
+    },
+    {
+      "probe": "device_param_lines",
+      "anchors": [
+        "风量",
+        "Q="
+      ],
+      "hit": [
+        "风量",
+        "Q="
+      ],
+      "valid": true,
+      "n_items": 32
+    },
+    {
+      "probe": "captions",
+      "anchors": [
+        "表1-2",
+        "表5-5"
+      ],
+      "hit": [
+        "表1-2",
+        "表5-5"
+      ],
+      "valid": true,
+      "n_items": 42
+    }
+  ],
+  "invalid": []
+}

@@ -1,0 +1,75 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5a",
+  "name": "脱敏骨架确定性重建",
+  "script": "s7b_desensitize.py",
+  "script_sha256": "da2fa4178875a7e61be336d120ad886d",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:46",
+  "finished_at": "2026-10-14T18:05:47",
+  "elapsed_s": 0.32,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "bytes": 291253,
+      "sha256": "da8f50c03b0c59fe7becdb82e614cc79",
+      "mtime": 1791972347
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "bytes": 259262,
+      "sha256": "b072d4844ea389c284a7ba6029000dfd",
+      "mtime": 1791972347
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/handover/s4b/README.md",
+    "SHUFE-BDC-2019-001/handover/s4b/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s5a/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5a/manifest_A_s4b.json",
+    "SHUFE-BDC-2019-001/handover/s5a/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5a/manifest_C.json",
+    "SHUFE-BDC-2019-001/index/node_index.json",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s4b.json",
+    "SHUFE-BDC-2019-001/quality/tool_defects.yaml"
+  ],
+  "stdout_tail": "{\n  \"chunks\": 1178,\n  \"numeric_slots_replaced\": 2192,\n  \"node_index_entries\": 567,\n  \"nested_after_fix\": 0,\n  \"malformed_after_fix\": 0\n}\n",
+  "stderr_tail": ""
+}

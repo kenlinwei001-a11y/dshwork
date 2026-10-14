@@ -1,0 +1,20 @@
+{
+  "stage": "s3",
+  "patterns": [
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+    "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+    "SHUFE-BDC-2019-001/source/original.docx"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+    "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+    "SHUFE-BDC-2019-001/source/original.docx"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

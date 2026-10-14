@@ -1,0 +1,18 @@
+{
+  "stage": "s0",
+  "checked_depends_on": [],
+  "A_count": 0,
+  "B_count": 1,
+  "SOP_patterns": 1,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "B_not_in_A",
+      "path": "build/doc-clean/大数据研究中心可研.md",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 1,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

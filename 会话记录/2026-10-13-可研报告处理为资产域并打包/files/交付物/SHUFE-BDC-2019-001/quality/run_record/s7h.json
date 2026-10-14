@@ -1,0 +1,64 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7h",
+  "name": "分步门禁（工作区·参考）",
+  "script": "opt26_gates.py",
+  "script_sha256": "fcc544545c58bfbea5952848f6d4b1a3",
+  "exit_code": 0,
+  "blocking": false,
+  "started_at": "2026-10-14T18:06:28",
+  "finished_at": "2026-10-14T18:06:29",
+  "elapsed_s": 0.72,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml",
+      "bytes": 3761,
+      "sha256": "1595b2ff4889cc48ff728fd8fc5164dc",
+      "mtime": 1791972389
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7h/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7h/manifest_A_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7h/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7h/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7m/README.md",
+    "SHUFE-BDC-2019-001/handover/s7m/manifest_A.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7m.json",
+    "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml",
+    "交付物/报告/分步verify设计.md"
+  ],
+  "stdout_tail": "{\n  \"stage_gates\": 12,\n  \"verdicts\": {\n    \"S0 解析\": \"pass\",\n    \"S1 切块\": \"pass\",\n    \"S2 分句\": \"pass\",\n    \"S3 抽取（逐 partition）\": \"pass\",\n    \"S4 图谱编译\": \"pass\",\n    \"S5 推演回放\": \"pass\",\n    \"S6 质量登记\": \"pass\",\n    \"S7 脱敏\": \"pass\",\n    \"S8 依据层\": \"pass\",\n    \"S9 域发射\": \"pass\",\n    \"S10 装配（逐节）\": \"pass\",\n    \"S11 成稿\": \"FAIL\"\n  },\n  \"fails\": [\n    [\n      \"S11 成稿\",\n      17\n    ]\n  ],\n  \"replay\": 8,\n  \"out\": \"交付物/报告/分步verify设计.md\"\n}\n",
+  "stderr_tail": ""
+}

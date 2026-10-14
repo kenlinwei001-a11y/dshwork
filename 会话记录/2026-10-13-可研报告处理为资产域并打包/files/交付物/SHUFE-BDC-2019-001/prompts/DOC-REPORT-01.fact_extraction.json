@@ -1,0 +1,46 @@
+{
+  "doc_id": "DOC-REPORT-01",
+  "task": "fact_extraction",
+  "doc_type_id": "feasibility-report",
+  "identify": {
+    "doc_type_id": "feasibility-report",
+    "source": "rule-fallback",
+    "confidence": 0.9,
+    "evidence": [
+      "规则命中 3 分"
+    ],
+    "verdict": "ok"
+  },
+  "template_chain": [
+    "base",
+    "feasibility-report"
+  ],
+  "template_id": "feasibility-report",
+  "template_sha256": "b4112e5274b6e835c135bd5084982cc1",
+  "slots_filled": [
+    "doc_title",
+    "doc_type_id",
+    "doc_type_name",
+    "figure_count",
+    "forbidden_list",
+    "max_retries",
+    "must_extract_list",
+    "profile",
+    "schema_contract",
+    "section_path_sample",
+    "table_count",
+    "task_desc",
+    "time_reference",
+    "unit_system"
+  ],
+  "slots_unused": [],
+  "slots_residual": [],
+  "prompt": "## role\n你是报告类领域的信息抽取器，只做**结构化抽取**，不做解释、不做推断。\n\n## task\n任务：从给定片段中抽取 可验证的事实三元组（Subject-Predicate-Value-Time-Source）。\n文档类型：可行性研究报告（id=feasibility-report）\n文档标题：可行性研究报告\n\n## scope\n**必须抽取**（缺失即记为缺口，不得留空）：\n    - 总投资\n    - 建设规模\n    - 建设工期\n    - 资金来源\n    - 编制依据\n**禁止**：\n    - 抽取与本项目无关的其他项目数据\n    - 把示例值当作本项目取值\n\n## caliber\n口径要求：\n- 原文口径优先：原文未显式出现单位；不得换算后再抽取，除非原文同时给出\n- 时间口径：原文未显式出现时间；凡依据类文本须给出**生效时间**，无则写 TODO\n- 单源真理：同一事实只输出一次，跨片段重复时保留最早来源\n\n## slots_from_doc\n文档结构事实（确定性提取，供你定位用，**不得当作内容**）：\n- 章节路径示例：总论 > 项目概况 > 研究内容和编制依据\n- 表格数：28；图件数：12\n\n## unknown_policy\n**原文未给出时，一律留空，不得推测、补全或编造。**（这是硬规则，不是偏好）\n- 缺少来源定位 → source_span 填 null\n- 缺少前提/依据 → premise_refs 填 []\n- 无法确定而故意留空的字段 → 记入 unknown 数组\n- ≤ 空白与 null 是你**被允许**的输出**；validator 接受它们，并把缺口记入 gaps，\n  **不计为校验失败**。反过来：若你为了让字段非空而填入推测值，那才是错误。\n\n## output_contract\n只输出 JSON，符合下列 schema；不得输出解释文字或 Markdown 代码块围栏。\n{\n \"type\": \"object\",\n \"required\": [\n  \"facts\"\n ],\n \"properties\": {\n  \"facts\": {\n   \"type\": \"array\",\n   \"items\": {\n    \"type\": \"object\",\n    \"required\": [\n     \"subject\",\n     \"predicate\",\n     \"value\"\n    ],\n    \"properties\": {\n     \"subject\": {\n      \"type\": \"string\"\n     },\n     \"predicate\": {\n      \"type\": \"string\"\n     },\n     \"value\": {\n      \"type\": \"string\"\n     },\n     \"unit\": {\n      \"type\": \"string\"\n     },\n     \"time\": {\n      \"type\": [\n       \"string\",\n       \"null\"\n      ]\n     },\n     \"source_span\": {\n      \"type\": [\n       \"string\",\n       \"null\"\n      ],\n      \"description\": \"原文未给出定位时填 null，**不得编造**\"\n     }\n    }\n   }\n  }\n }\n}\n\n## retry_policy\n若校验失败，你会收到 validator 的具体错误列表；只修正错误字段后重出，最多 2 次。\n",
+  "prompt_sha256": "370f0246e1106f06eec05f41c549a058",
+  "closure": {
+    "residual_slots": [],
+    "unused_slots": [],
+    "controlled_type": true
+  },
+  "verdict": "pass"
+}

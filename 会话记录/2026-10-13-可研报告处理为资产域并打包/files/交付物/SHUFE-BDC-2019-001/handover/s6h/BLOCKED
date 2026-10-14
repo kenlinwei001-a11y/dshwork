@@ -1,0 +1,25 @@
+{
+  "stage": "s6h",
+  "checked_depends_on": [
+    "s6g"
+  ],
+  "A_count": 2,
+  "B_count": 2,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/documents.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 2,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

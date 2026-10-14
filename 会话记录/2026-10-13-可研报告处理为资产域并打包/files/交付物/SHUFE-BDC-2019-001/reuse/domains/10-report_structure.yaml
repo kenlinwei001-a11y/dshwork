@@ -1,0 +1,187 @@
+{
+  "id": "report_structure",
+  "core_domain": "报告结构",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本报告归纳，待审核）",
+  "depends_on": [
+    "ontology"
+  ],
+  "dependents": [
+    "report_form",
+    "prompt"
+  ],
+  "impacted_assets": [
+    "prompt",
+    "report_form",
+    "report_structure"
+  ],
+  "dependency_closure": [
+    "ontology",
+    "report_structure"
+  ],
+  "assembly_input": [
+    "报告类型",
+    "章节模板",
+    "章节依赖",
+    "内容要求"
+  ],
+  "assembly_method": "匹配报告类型/目标；复用章节结构；按需增删章节；绑定 Claim/证据/推演到章节",
+  "mismatch_handling": "新增 Claim 先判是章节内容/论证单元/独立交付，只有影响结构才建章节",
+  "assembly_output": [
+    "项目报告大纲",
+    "章节依赖图",
+    "内容填充映射"
+  ],
+  "reusable_form": {
+    "actual_outline": [
+      "总论",
+      "学校简介",
+      "项目建设背景及必要性分析",
+      "项目选址及建设条件",
+      "项目建设内容及规模",
+      "项目规划设计方案",
+      "节能设计",
+      "环境影响评价",
+      "卫生防疫与劳动安全",
+      "社会稳定风险分析",
+      "项目管理及实施进度",
+      "项目招投标方案",
+      "投资估算及资金筹措",
+      "社会效益",
+      "结论与建议",
+      "附件"
+    ],
+    "legal_outline_2023": [
+      "概述",
+      "项目建设背景和必要性",
+      "项目需求分析与产出方案",
+      "项目选址与要素保障",
+      "项目建设方案",
+      "项目运营方案",
+      "项目投融资与财务方案",
+      "项目影响效果分析",
+      "项目风险管控方案",
+      "研究结论及建议"
+    ],
+    "version_note": "本报告 2019 年 8 月编制，采用旧版章节体系；304 号文通用大纲 2023 年 5 月 1 日起施行。按现行口径编写时须以 304 号文十章为准，本报告结构仅作「行文之形」参照，不作「结构之准」。",
+    "gap_analysis": [
+      "未单列「项目运营方案」章（运营内容散落在 11.3 节）",
+      "未单列「项目影响效果分析」章（仅 14 章社会效益，无经济影响/资源能源/碳达峰碳中和分析）",
+      "未单列「项目风险管控方案」章（仅社会稳定风险独立成章，工程质量与安全风险散落）",
+      "「项目投融资与财务方案」仅覆盖投资估算与资金筹措，未含财务分析（盈利能力/融资方案比选/债务清偿/财务可持续性）",
+      "未含「要素保障分析」独立小节（水电气热供给条件散落在 4.2.2）"
+    ],
+    "must_cover_discipline": "标题可变，覆盖不可少；变形只搬动内容的容器，不增减内容本身"
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-14",
+        "role": "driver",
+        "report": "报告章节体系",
+        "check": "outline_coverage",
+        "verdict": "不合规",
+        "basis": [
+          "发改投资规〔2023〕304号"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-304-CH",
+        "code": "发改投资规〔2023〕304号",
+        "role": "driver",
+        "status": "现行（2023-05-01 起施行）",
+        "url": "https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=20{金额}"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "C-大纲-01",
+        "expr": "政府投资项目可行性研究报告法定十章（通用大纲，2023 版）",
+        "mandatory": false
+      }
+    ]
+  },
+  "sources": {
+    "chunks": [],
+    "outline_sections": 151
+  },
+  "related_issues": [
+    "G-901",
+    "G-902",
+    "G-903",
+    "G-904",
+    "G-905",
+    "G-906",
+    "G-907"
+  ],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": []
+}

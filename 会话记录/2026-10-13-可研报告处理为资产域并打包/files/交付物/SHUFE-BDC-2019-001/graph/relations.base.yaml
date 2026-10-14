@@ -1,0 +1,2327 @@
+[
+  {
+    "from": "本报告",
+    "to": "N-a401574f2a5a",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-924bfe9e84e1",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-61c229a9d6b7",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-043715904e92",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-1349678c3c0f",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-933f9428a895",
+    "type": "has_value"
+  },
+  {
+    "from": "本报告",
+    "to": "N-5a111cfec9f6",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-e76603e442a7",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-47ae73a84dc9",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5a334efaaea3",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "中山北一路校区",
+    "type": "located_in"
+  },
+  {
+    "from": "中山北一路校区",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "原第五教学楼",
+    "to": "N-4299f5d02831",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8f432cf2e264",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8449f71c5773",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8ca43cb64560",
+    "type": "has_value"
+  },
+  {
+    "from": "总建筑面积",
+    "to": "地上建筑面积",
+    "type": "depends_on"
+  },
+  {
+    "from": "总建筑面积",
+    "to": "地下建筑面积",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-51ac31b30619",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-70459ce61f9b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-a831d44a85f1",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-24d5bb9ca97f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c790ee245521",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-2175c0aa83e6",
+    "type": "has_value"
+  },
+  {
+    "from": "总投资",
+    "to": "建安工程费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "工程建设其他费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "预备费",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "原建筑拆除费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7e2dca3b7d0c",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-802eeedef8cb",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f9ce8af03fc0",
+    "type": "has_value"
+  },
+  {
+    "from": "开工时间",
+    "to": "建设工期",
+    "type": "temporal"
+  },
+  {
+    "from": "竣工时间",
+    "to": "建设工期",
+    "type": "temporal"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8f432cf2e264",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8449f71c5773",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8ca43cb64560",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-内部-01",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-结论-01",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-结论-04",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-256337bd52c5",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-ae0e16e8ffda",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-a676855d455f",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-834f7a185cea",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-4bead401268c",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-35745c2c896d",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-7c2ba8a26d0b",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-9fbee31a8232",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-1c60e0220ade",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-6f16d28f00ad",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-f1d5baf0c89b",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-19a3e510b260",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-e20265e53710",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-4e9960d6ccda",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-c394bad87430",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-85a9a5716f1d",
+    "type": "has_value"
+  },
+  {
+    "from": "中山北一路校区",
+    "to": "N-34f59d23f033",
+    "type": "has_value"
+  },
+  {
+    "from": "昆山路校区",
+    "to": "N-e308966174c1",
+    "type": "has_value"
+  },
+  {
+    "from": "中山北一路校区",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "昆山路校区",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "主校区",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-9814e9f0db35",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-8ebe6fdf6b9a",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-84523f29f638",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-d0e09bfa0818",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-6fef5f8bfa13",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-254f45e2d082",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-239f7a20f877",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-57ed2116b6e9",
+    "type": "has_value"
+  },
+  {
+    "from": "统计学",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "管理科学与量化信息研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "本项目",
+    "to": "N-a3f0d71e10e5",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-政策-02",
+    "to": "CL-必要性-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-内部-03",
+    "to": "CL-必要性-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-01",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-政策-03",
+    "to": "CL-必要性-02",
+    "type": "supports"
+  },
+  {
+    "from": "EV-对标-01",
+    "to": "CL-必要性-02",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-现状-01",
+    "to": "CL-必要性-03",
+    "type": "supports"
+  },
+  {
+    "from": "EV-现状-02",
+    "to": "CL-必要性-03",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-政策-06",
+    "to": "CL-必要性-04",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-01",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-fa0dd79ca413",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-37d514c98f96",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-723bfe3fc6d2",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-e5f7701a892f",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-f97cbdbe6afe",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-4ae46c29d85f",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学统计与管理学院",
+    "to": "N-2350885b04e2",
+    "type": "has_value"
+  },
+  {
+    "from": "统计与管理学院",
+    "to": "上海财经大学",
+    "type": "part_of"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-9bd50795df49",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-53ad5074ad4a",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-ee882814713f",
+    "type": "has_value"
+  },
+  {
+    "from": "中山北一路校区",
+    "to": "N-85e27f0ad472",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5780eeb6777a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "中山北一路校区",
+    "type": "located_in"
+  },
+  {
+    "from": "原第五教学楼",
+    "to": "N-9d7e4c2b9b50",
+    "type": "has_value"
+  },
+  {
+    "from": "原第五教学楼",
+    "to": "N-4752fe0c4e17",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f24d0d077f03",
+    "type": "has_value"
+  },
+  {
+    "from": "原第五教学楼",
+    "to": "中山北一路校区",
+    "type": "located_in"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-8a66c92ca8a4",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-c44bd9bd0df3",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-a55e26642db6",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-fcd2cfa44fc4",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-8984af8e2bbf",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7db13fda38e0",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-6cd37976dd8f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-81e15dad5d7e",
+    "type": "has_value"
+  },
+  {
+    "from": "管理科学与量化信息研究中心",
+    "to": "N-c0a7fc8afdaf",
+    "type": "has_value"
+  },
+  {
+    "from": "管理科学与量化信息研究中心",
+    "to": "N-687ac5c1dfdf",
+    "type": "has_value"
+  },
+  {
+    "from": "管理科学与量化信息研究中心",
+    "to": "N-29c0367999ed",
+    "type": "has_value"
+  },
+  {
+    "from": "管理科学与量化信息研究中心",
+    "to": "大数据研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "理论计算机研究中心",
+    "to": "N-0118435ab5f0",
+    "type": "has_value"
+  },
+  {
+    "from": "理论计算机研究中心",
+    "to": "N-1713829984c4",
+    "type": "has_value"
+  },
+  {
+    "from": "理论计算机研究中心",
+    "to": "N-be54469ceabb",
+    "type": "has_value"
+  },
+  {
+    "from": "理论计算机研究中心",
+    "to": "大数据研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "应用统计研究中心",
+    "to": "N-9949f87bf2ae",
+    "type": "has_value"
+  },
+  {
+    "from": "应用统计研究中心",
+    "to": "N-f853aaf03baf",
+    "type": "has_value"
+  },
+  {
+    "from": "应用统计研究中心",
+    "to": "N-28f623934060",
+    "type": "has_value"
+  },
+  {
+    "from": "应用统计研究中心",
+    "to": "大数据研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "数据科研与统计研究院",
+    "to": "N-6dcf7ef888b2",
+    "type": "has_value"
+  },
+  {
+    "from": "数据科研与统计研究院",
+    "to": "N-a2aedb523791",
+    "type": "has_value"
+  },
+  {
+    "from": "数据科研与统计研究院",
+    "to": "N-fa5b27eaf63d",
+    "type": "has_value"
+  },
+  {
+    "from": "数据科研与统计研究院",
+    "to": "大数据研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "公共服务配套用房·交流讨论室",
+    "to": "N-d63d65ebe9a4",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·交流讨论室",
+    "to": "N-3e141a1e1100",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·交流讨论室",
+    "to": "N-ee95096f1d6e",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·接待室",
+    "to": "N-d1cb826c6ec2",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·接待室",
+    "to": "N-3007b66b8f03",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·接待室",
+    "to": "N-fd67f30a272a",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·报告厅",
+    "to": "N-ba967b01a1cc",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·活动室",
+    "to": "N-c6641b10b1d4",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·活动室",
+    "to": "N-87c9bd959ddb",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·阅览室",
+    "to": "N-7f9fd332041d",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·档案室",
+    "to": "N-fc449bc873d7",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·复印室",
+    "to": "N-116f0e1c3acf",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房·贮藏室",
+    "to": "N-a00694625be6",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房",
+    "to": "N-4698f7d0b38e",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房",
+    "to": "N-4f9c2807a62b",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房",
+    "to": "N-cc781dfeeb3b",
+    "type": "has_value"
+  },
+  {
+    "from": "公共服务配套用房",
+    "to": "大数据研究中心",
+    "type": "part_of"
+  },
+  {
+    "from": "本项目",
+    "to": "N-2820b26c3f35",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-978a14b5186b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f07ab421166b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-b3c95b844d02",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-bc07423e28a8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-49949310ec19",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-55c9c86a5a6c",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7c3d781cf6f1",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-指标-02",
+    "to": "CL-规模-02",
+    "type": "supports"
+  },
+  {
+    "from": "EV-需求-02",
+    "to": "CL-规模-01",
+    "type": "supports"
+  },
+  {
+    "from": "公共服务配套用房建筑面积",
+    "to": "地上总建筑面积需求",
+    "type": "depends_on"
+  },
+  {
+    "from": "科研人员规划人数",
+    "to": "地上总建筑面积需求",
+    "type": "depends_on"
+  },
+  {
+    "from": "研究生博士生访问学者规划人数",
+    "to": "地上总建筑面积需求",
+    "type": "depends_on"
+  },
+  {
+    "from": "地上总建筑面积需求",
+    "to": "设计规模合理性判定",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-eb7b8b1d20d8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7384b88f646f",
+    "type": "has_value"
+  },
+  {
+    "from": "地上总建筑面积需求",
+    "to": "地上建筑面积",
+    "type": "contradicts"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-2a335b2708af",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-be7451617729",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8f432cf2e264",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-23414ed53b65",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-443180e0efd7",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-08b323fd83aa",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c1c4a9d66f5b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8f432cf2e264",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8449f71c5773",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8ca43cb64560",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-f0fd96a3a38e",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-4605eb02d134",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-170213817af5",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-e35642a4b42f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-2eb688971791",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-70b8c5416e59",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c1c4a9d66f5b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-e7ebf407a68f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-91624f921ea8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-e0f3cb0c51f5",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-ad4f61baf248",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-3d4cd9a6a1f8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-64e67123ddc0",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-629089fe05c9",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-0a6ab4d9cdf6",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-b5d8de16a2a7",
+    "type": "has_value"
+  },
+  {
+    "from": "实验室",
+    "to": "N-d8f1204ef1a9",
+    "type": "has_value"
+  },
+  {
+    "from": "办公室阅览室会议室",
+    "to": "N-7a09dcc73ee3",
+    "type": "has_value"
+  },
+  {
+    "from": "一般资料档案室",
+    "to": "N-63b071767842",
+    "type": "has_value"
+  },
+  {
+    "from": "走廊门厅楼梯",
+    "to": "N-b44117496caa",
+    "type": "has_value"
+  },
+  {
+    "from": "计算机机房弱电机房地下设备用房",
+    "to": "N-52cbf5f50c8a",
+    "type": "has_value"
+  },
+  {
+    "from": "变配电间水泵房",
+    "to": "N-3a2fcf27bbe9",
+    "type": "has_value"
+  },
+  {
+    "from": "上人屋面",
+    "to": "N-81d066d6ec28",
+    "type": "has_value"
+  },
+  {
+    "from": "不上人屋面",
+    "to": "N-4c2e3686b75a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-1b1549fc44f9",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-25ae699e50ec",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-68d9e0d6fc8f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-b8e4317775b7",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-6f81bff4c721",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-2a951c39f9ae",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-514034bcf07b",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-dbb9f4111022",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f08415dc191a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8122fb4283a7",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c0667d161473",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5e469e239754",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-666b00ce7f1d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-acc0ada964eb",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-40080fc4b013",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-82e94e249e8f",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7e3b1c290e21",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-9a5357236ac0",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5f65bf80349c",
+    "type": "has_value"
+  },
+  {
+    "from": "科研学生",
+    "to": "N-3f1810ee3a33",
+    "type": "has_value"
+  },
+  {
+    "from": "科研学生",
+    "to": "N-d33295e7e784",
+    "type": "has_value"
+  },
+  {
+    "from": "办公",
+    "to": "N-f4add4e0e79a",
+    "type": "has_value"
+  },
+  {
+    "from": "办公",
+    "to": "N-932c3574e3c1",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c67295c8a345",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-30650afc51a8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-0372fd56d2be",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-07c3ab150860",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-60f348145540",
+    "type": "has_value"
+  },
+  {
+    "from": "最高日用水量",
+    "to": "科研学生用水定额",
+    "type": "depends_on"
+  },
+  {
+    "from": "最高日用水量",
+    "to": "办公用水定额",
+    "type": "depends_on"
+  },
+  {
+    "from": "室外消火栓系统",
+    "to": "N-a3177065531f",
+    "type": "has_value"
+  },
+  {
+    "from": "室外消火栓系统",
+    "to": "N-6a9d5e15a008",
+    "type": "has_value"
+  },
+  {
+    "from": "室内消火栓系统",
+    "to": "N-338014cbccdd",
+    "type": "has_value"
+  },
+  {
+    "from": "室内消火栓系统",
+    "to": "N-54705a4f8686",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "N-afd00934e365",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "N-6958c266bea0",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-ae0d5d610d0a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5e1d9ecdd02a",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "N-827b158df74b",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "N-0bc26894f1d0",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "N-d899ed81ebaa",
+    "type": "has_value"
+  },
+  {
+    "from": "室内消火栓系统",
+    "to": "N-338014cbccdd",
+    "type": "has_value"
+  },
+  {
+    "from": "高位消防水箱",
+    "to": "N-4e37bc3a681a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-0207f315dd4c",
+    "type": "has_value"
+  },
+  {
+    "from": "自动喷水灭火系统设计最小用水量",
+    "to": "自动喷水灭火系统用水量",
+    "type": "contradicts"
+  },
+  {
+    "from": "自动喷水灭火系统",
+    "to": "消防用水量总计",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-b8e7bf4b7c1d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-944c3d4af11d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-5cb9dea74a92",
+    "type": "has_value"
+  },
+  {
+    "from": "总计算负荷",
+    "to": "空调负荷密度指标",
+    "type": "depends_on"
+  },
+  {
+    "from": "总计算负荷",
+    "to": "照明及其他负荷密度指标",
+    "type": "depends_on"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-a600fbe49b7b",
+    "type": "has_value"
+  },
+  {
+    "from": "原变电站变压器",
+    "to": "N-de3e1ec1327c",
+    "type": "has_value"
+  },
+  {
+    "from": "原变电站变压器",
+    "to": "N-8107f4c126d2",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-c2f034e89954",
+    "type": "has_value"
+  },
+  {
+    "from": "大数据研究中心",
+    "to": "N-416be9b34d81",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-60d3585c4764",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f7d381a33ae8",
+    "type": "has_value"
+  },
+  {
+    "from": "弱电系统",
+    "to": "N-77ab04f9743c",
+    "type": "has_value"
+  },
+  {
+    "from": "综合布线系统",
+    "to": "N-29a98cc4f5e9",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-ca1e13d551b1",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-eeb81aaca591",
+    "type": "has_value"
+  },
+  {
+    "from": "项目所在地",
+    "to": "N-52b43033149e",
+    "type": "has_value"
+  },
+  {
+    "from": "夏季室外空调计算干球温度",
+    "to": "N-850462868c75",
+    "type": "has_value"
+  },
+  {
+    "from": "夏季室外空调计算湿球温度",
+    "to": "N-90ea6bdf46f6",
+    "type": "has_value"
+  },
+  {
+    "from": "冬季室外空调计算干球温度",
+    "to": "N-2ec348856254",
+    "type": "has_value"
+  },
+  {
+    "from": "冬季室外通风计算干球温度",
+    "to": "N-b73bc0c48cab",
+    "type": "has_value"
+  },
+  {
+    "from": "夏季室外通风计算干球温度",
+    "to": "N-f82a686a24f0",
+    "type": "has_value"
+  },
+  {
+    "from": "夏季室外大气压力",
+    "to": "N-a5b6b65364ac",
+    "type": "has_value"
+  },
+  {
+    "from": "冬季室外大气压力",
+    "to": "N-24bce75cc617",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-5272963728f0",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-254a74541283",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-242644b6a039",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-7aad9b0320e0",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-94a1eb16a470",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-acb430bb35b0",
+    "type": "has_value"
+  },
+  {
+    "from": "交流讨论用房",
+    "to": "N-66860a375157",
+    "type": "has_value"
+  },
+  {
+    "from": "交流讨论大厅",
+    "to": "N-0a3e9c9acc83",
+    "type": "has_value"
+  },
+  {
+    "from": "卫生间",
+    "to": "N-8ca9f3898ace",
+    "type": "has_value"
+  },
+  {
+    "from": "电梯机房",
+    "to": "N-2025492b72b4",
+    "type": "has_value"
+  },
+  {
+    "from": "水泵房",
+    "to": "N-3ed027e88c59",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-e30b2d47398d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-a7f866d690be",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-6fde114502ac",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-564866270310",
+    "type": "has_value"
+  },
+  {
+    "from": "空调系统",
+    "to": "N-239c8f582585",
+    "type": "has_value"
+  },
+  {
+    "from": "冷负荷",
+    "to": "单位面积冷负荷指标",
+    "type": "depends_on"
+  },
+  {
+    "from": "热负荷",
+    "to": "单位面积热负荷指标",
+    "type": "depends_on"
+  },
+  {
+    "from": "多联机室外机组30HP",
+    "to": "N-9d235ea5246a",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室外机组30HP",
+    "to": "N-95757b570de9",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室外机组16HP",
+    "to": "N-6040256abb83",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室外机组16HP",
+    "to": "N-039cd700bce6",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室外机组10HP",
+    "to": "N-5a6c23c28a1a",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室外机组10HP",
+    "to": "N-4132dcebb00b",
+    "type": "has_value"
+  },
+  {
+    "from": "多联机室内机组",
+    "to": "N-a7a7a7fe459d",
+    "type": "has_value"
+  },
+  {
+    "from": "加压送风机",
+    "to": "N-edc8d5efd615",
+    "type": "has_value"
+  },
+  {
+    "from": "排烟机组",
+    "to": "N-5f171d536786",
+    "type": "has_value"
+  },
+  {
+    "from": "教师用水",
+    "to": "N-5859db27922c",
+    "type": "has_value"
+  },
+  {
+    "from": "教师用水",
+    "to": "N-bf76480f8b0c",
+    "type": "has_value"
+  },
+  {
+    "from": "教师用水",
+    "to": "N-1e941f1c85b2",
+    "type": "has_value"
+  },
+  {
+    "from": "学生用水",
+    "to": "N-af196dccd886",
+    "type": "has_value"
+  },
+  {
+    "from": "学生用水",
+    "to": "N-109f219b5cdc",
+    "type": "has_value"
+  },
+  {
+    "from": "学生用水",
+    "to": "N-4a9d5aca884a",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-b1e9a58c3e61",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-a01b53350bb8",
+    "type": "has_value"
+  },
+  {
+    "from": "教师用水用水定额",
+    "to": "办公用水定额",
+    "type": "contradicts"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-0175db4c5ff0",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-c8c5fd1fece2",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-d47bd8140fdc",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房",
+    "to": "N-6eb51e821197",
+    "type": "has_value"
+  },
+  {
+    "from": "公共配套服务用房",
+    "to": "N-934942fb8325",
+    "type": "has_value"
+  },
+  {
+    "from": "公共配套服务用房",
+    "to": "N-094c483c1ac2",
+    "type": "has_value"
+  },
+  {
+    "from": "公共配套服务用房",
+    "to": "N-4aaf4c9685bf",
+    "type": "has_value"
+  },
+  {
+    "from": "公共配套服务用房",
+    "to": "N-f52e2827a0e8",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-d81c8436d3ef",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-fbcb8688c60f",
+    "type": "has_value"
+  },
+  {
+    "from": "科研用房用电面积",
+    "to": "公共配套服务用房用电面积",
+    "type": "depends_on"
+  },
+  {
+    "from": "综合能耗·水",
+    "to": "N-43f27011e247",
+    "type": "has_value"
+  },
+  {
+    "from": "综合能耗·电力",
+    "to": "N-e2fb043d4a06",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-97ae001309cd",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-aca1f741b579",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-fec5f42da5fb",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-b4f6323f3884",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-27ce57f55373",
+    "type": "has_value"
+  },
+  {
+    "from": "单位面积综合能耗（当量值）",
+    "to": "综合能耗（当量值）",
+    "type": "depends_on"
+  },
+  {
+    "from": "单位建筑面积电耗",
+    "to": "年总耗电量",
+    "type": "depends_on"
+  },
+  {
+    "from": "EV-规范-节能-02",
+    "to": "CL-节能-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-规范-节能-02",
+    "to": "EV-规范-暖通-03",
+    "type": "contradicts"
+  },
+  {
+    "from": "EV-规范-环评-01",
+    "to": "CL-环评-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-规范-环评-03",
+    "to": "EV-规范-环评-01",
+    "type": "contradicts"
+  },
+  {
+    "from": "项目排风口",
+    "to": "N-ecaf889ab916",
+    "type": "has_value"
+  },
+  {
+    "from": "项目排风口",
+    "to": "N-ac1766bae97a",
+    "type": "has_value"
+  },
+  {
+    "from": "施工场界噪声",
+    "to": "N-f95ce50dc7dd",
+    "type": "has_value"
+  },
+  {
+    "from": "施工场界噪声",
+    "to": "N-6f8bf452fa72",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f06e00a5f844",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7e339ea5a706",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-规范-抗震-沪-01",
+    "to": "EV-规范-抗震-沪-02",
+    "type": "contradicts"
+  },
+  {
+    "from": "CL-风险-01",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-风险-02",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "EV-稳评-结论-01",
+    "to": "CL-风险等级-01",
+    "type": "supports"
+  },
+  {
+    "from": "施工场界噪声",
+    "to": "N-1dff222d7986",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-21ac2ea6a4ab",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-1d9bbad66196",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c810673e6119",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-99e0769bc827",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-303deda576f1",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c3ad80bc3176",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7c90a8639e27",
+    "type": "has_value"
+  },
+  {
+    "from": "开工时间",
+    "to": "竣工验收",
+    "type": "temporal"
+  },
+  {
+    "from": "建设工期",
+    "to": "开工建设",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f9ce8af03fc0",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7e2dca3b7d0c",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-802eeedef8cb",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-171f869338fe",
+    "type": "has_value"
+  },
+  {
+    "from": "勘察",
+    "to": "N-1581360ae141",
+    "type": "has_value"
+  },
+  {
+    "from": "设计",
+    "to": "N-8824177763f5",
+    "type": "has_value"
+  },
+  {
+    "from": "建安工程",
+    "to": "N-e60dafe57ee8",
+    "type": "has_value"
+  },
+  {
+    "from": "监理",
+    "to": "N-c1fd26fa6765",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-7983ecf69539",
+    "type": "has_value"
+  },
+  {
+    "from": "建安工程招标估算金额",
+    "to": "建安工程费用",
+    "type": "contradicts"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c51de871596c",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-59b9d8f6d1fc",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f470a0725f92",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-dc49a463c8e3",
+    "type": "has_value"
+  },
+  {
+    "from": "基本预备费",
+    "to": "建筑安装工程费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "基本预备费",
+    "to": "工程建设其他费",
+    "type": "depends_on"
+  },
+  {
+    "from": "桩基工程",
+    "to": "N-8c646e42426a",
+    "type": "has_value"
+  },
+  {
+    "from": "基坑围护工程",
+    "to": "N-4002faaed7b8",
+    "type": "has_value"
+  },
+  {
+    "from": "地下建筑结构工程",
+    "to": "N-17cad48fed94",
+    "type": "has_value"
+  },
+  {
+    "from": "地上建筑结构工程",
+    "to": "N-84cd9cdd7e0d",
+    "type": "has_value"
+  },
+  {
+    "from": "装配式结构增加费",
+    "to": "N-2e9eaad1259f",
+    "type": "has_value"
+  },
+  {
+    "from": "室内装饰工程",
+    "to": "N-ad6fd08cb831",
+    "type": "has_value"
+  },
+  {
+    "from": "外立面及屋面装饰工程",
+    "to": "N-767846c72651",
+    "type": "has_value"
+  },
+  {
+    "from": "立面门窗、玻璃幕墙",
+    "to": "N-0ea3008f61f9",
+    "type": "has_value"
+  },
+  {
+    "from": "立面装饰幕墙",
+    "to": "N-7930ab172a2a",
+    "type": "has_value"
+  },
+  {
+    "from": "上人屋面",
+    "to": "N-6ed5795596e9",
+    "type": "has_value"
+  },
+  {
+    "from": "设备屋面（涂料）",
+    "to": "N-be59b87fb79c",
+    "type": "has_value"
+  },
+  {
+    "from": "架空板底",
+    "to": "N-c48958c97484",
+    "type": "has_value"
+  },
+  {
+    "from": "新老建筑立面接口处理费",
+    "to": "N-7905c339c5bf",
+    "type": "has_value"
+  },
+  {
+    "from": "给排水工程",
+    "to": "N-eabadd267940",
+    "type": "has_value"
+  },
+  {
+    "from": "消防工程",
+    "to": "N-c5de22ac0e51",
+    "type": "has_value"
+  },
+  {
+    "from": "通风、空调工程",
+    "to": "N-c46ae5293e41",
+    "type": "has_value"
+  },
+  {
+    "from": "强电工程",
+    "to": "N-72507f498f8c",
+    "type": "has_value"
+  },
+  {
+    "from": "弱电工程",
+    "to": "N-809d541088ab",
+    "type": "has_value"
+  },
+  {
+    "from": "电梯工程",
+    "to": "N-d11b8963a5c2",
+    "type": "has_value"
+  },
+  {
+    "from": "道路、广场、硬地、铺装",
+    "to": "N-94e433692986",
+    "type": "has_value"
+  },
+  {
+    "from": "绿化、景观",
+    "to": "N-565398c4826c",
+    "type": "has_value"
+  },
+  {
+    "from": "室外安装工程",
+    "to": "N-eaf61c336ddf",
+    "type": "has_value"
+  },
+  {
+    "from": "标识工程",
+    "to": "N-d79f49630ce5",
+    "type": "has_value"
+  },
+  {
+    "from": "抗震支架",
+    "to": "N-2ccc0c5d1207",
+    "type": "has_value"
+  },
+  {
+    "from": "绿色二星增量费用",
+    "to": "N-4b40f9539e03",
+    "type": "has_value"
+  },
+  {
+    "from": "土建工程",
+    "to": "N-63082fae08d5",
+    "type": "has_value"
+  },
+  {
+    "from": "安装工程",
+    "to": "N-f4b6e8cc3b5f",
+    "type": "has_value"
+  },
+  {
+    "from": "单体工程",
+    "to": "N-78644662331e",
+    "type": "has_value"
+  },
+  {
+    "from": "室外总体工程",
+    "to": "N-a59ed4c3313a",
+    "type": "has_value"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "N-a564cd720a96",
+    "type": "has_value"
+  },
+  {
+    "from": "工程建设其他费",
+    "to": "N-635ce37a69fc",
+    "type": "has_value"
+  },
+  {
+    "from": "基本预备费",
+    "to": "N-d27e283b73c6",
+    "type": "has_value"
+  },
+  {
+    "from": "拆除费",
+    "to": "N-a4041fa32fd3",
+    "type": "has_value"
+  },
+  {
+    "from": "总计",
+    "to": "N-bc5af78a6b82",
+    "type": "has_value"
+  },
+  {
+    "from": "建设单位管理费",
+    "to": "N-8dad7d339b06",
+    "type": "has_value"
+  },
+  {
+    "from": "前期工程咨询费",
+    "to": "N-52349af2e44f",
+    "type": "has_value"
+  },
+  {
+    "from": "勘察费",
+    "to": "N-349ad4d2a9d0",
+    "type": "has_value"
+  },
+  {
+    "from": "设计费",
+    "to": "N-0d30a6b44768",
+    "type": "has_value"
+  },
+  {
+    "from": "招标代理费",
+    "to": "N-236dbdb1fea6",
+    "type": "has_value"
+  },
+  {
+    "from": "清单及标底编制费",
+    "to": "N-903b0ac65f67",
+    "type": "has_value"
+  },
+  {
+    "from": "施工监理费（含财务监理费）",
+    "to": "N-58f2a08d9047",
+    "type": "has_value"
+  },
+  {
+    "from": "施工图审图费",
+    "to": "N-9e5bfac670e5",
+    "type": "has_value"
+  },
+  {
+    "from": "竣工图编制费",
+    "to": "N-979e5a5ddbc9",
+    "type": "has_value"
+  },
+  {
+    "from": "场地准备及临时设施费",
+    "to": "N-d3fb4fe652f7",
+    "type": "has_value"
+  },
+  {
+    "from": "低压电缆",
+    "to": "N-31dacc87adf4",
+    "type": "has_value"
+  },
+  {
+    "from": "人防易地建设费",
+    "to": "N-a161b289c97d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-f833fd93de5e",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-257716ea5dae",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-45a10b66cf96",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-1b70a153d6ef",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-ab884f42d239",
+    "type": "has_value"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "单体工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "室外总体工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "抗震支架",
+    "type": "depends_on"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "绿色二星增量费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "单体工程",
+    "to": "土建工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "单体工程",
+    "to": "安装工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "土建工程",
+    "to": "桩基工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "土建工程",
+    "to": "地上建筑结构工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "安装工程",
+    "to": "给排水工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "安装工程",
+    "to": "通风空调工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "安装工程",
+    "to": "强电工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "安装工程",
+    "to": "弱电工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "工程建设其他费",
+    "to": "设计费",
+    "type": "depends_on"
+  },
+  {
+    "from": "工程建设其他费",
+    "to": "施工监理费",
+    "type": "depends_on"
+  },
+  {
+    "from": "工程建设其他费",
+    "to": "勘察费",
+    "type": "depends_on"
+  },
+  {
+    "from": "室外总体工程",
+    "to": "道路广场硬地铺装",
+    "type": "depends_on"
+  },
+  {
+    "from": "室外总体工程",
+    "to": "绿化景观",
+    "type": "depends_on"
+  },
+  {
+    "from": "室外总体工程",
+    "to": "室外安装工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "室外总体工程",
+    "to": "标识工程",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "建筑安装工程费用",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "工程建设其他费",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "基本预备费",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "拆除费",
+    "type": "depends_on"
+  },
+  {
+    "from": "单体工程",
+    "to": "室外总体工程",
+    "type": "contradicts"
+  },
+  {
+    "from": "建筑安装工程费用",
+    "to": "建安工程招标估算金额",
+    "type": "contradicts"
+  },
+  {
+    "from": "总投资",
+    "to": "单位造价（总投资口径）",
+    "type": "depends_on"
+  },
+  {
+    "from": "本项目",
+    "to": "N-0d4cc2051dfe",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8449f71c5773",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-8ca43cb64560",
+    "type": "has_value"
+  },
+  {
+    "from": "总建筑面积",
+    "to": "地上建筑面积",
+    "type": "contradicts"
+  },
+  {
+    "from": "本项目",
+    "to": "N-51ac31b30619",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-38de69880db3",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-3150f017809d",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-6001107c1482",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-c57d08f481b6",
+    "type": "has_value"
+  },
+  {
+    "from": "本项目",
+    "to": "N-00c4257df194",
+    "type": "has_value"
+  },
+  {
+    "from": "总投资",
+    "to": "国拨资金",
+    "type": "depends_on"
+  },
+  {
+    "from": "总投资",
+    "to": "学校自筹资金",
+    "type": "depends_on"
+  },
+  {
+    "from": "国拨资金占比",
+    "to": "国拨资金",
+    "type": "depends_on"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-c80f305bd555",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-3014e5738712",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-87567273f44b",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-db325aa01a7a",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-34ee25446ee0",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-98278b3a0e8f",
+    "type": "has_value"
+  },
+  {
+    "from": "上海财经大学",
+    "to": "N-1a424c742c02",
+    "type": "has_value"
+  },
+  {
+    "from": "CL-效益-01",
+    "to": "CL-结论-05",
+    "type": "supports"
+  },
+  {
+    "from": "附件",
+    "to": "N-b506ba5e6eaa",
+    "type": "has_value"
+  },
+  {
+    "from": "原有第五教学楼",
+    "to": "N-c679c4e79bc2",
+    "type": "has_value"
+  }
+]

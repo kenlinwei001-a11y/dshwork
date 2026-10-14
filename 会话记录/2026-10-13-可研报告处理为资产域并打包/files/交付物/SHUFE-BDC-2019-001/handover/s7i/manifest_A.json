@@ -1,0 +1,22 @@
+{
+  "stage": "s7i",
+  "script": "opt27_objective.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+      "sha256": "07c37f7202c3fea835ce9f7936c4130e",
+      "bytes": 6086
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+      "sha256": "83de829dc044314217ec5290866b1350",
+      "bytes": 3661
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

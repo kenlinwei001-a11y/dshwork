@@ -1,0 +1,30 @@
+{
+  "stage": "s2",
+  "patterns": [
+    "build/remap_report.json"
+  ],
+  "items": [
+    {
+      "path": "build/remap_report.json",
+      "pattern": "build/remap_report.json",
+      "bytes": 1195,
+      "sha256": "0fbd16b369598d50652f96a0e2159083",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "old_chunks",
+          "new_chunks",
+          "mapped",
+          "unmatched",
+          "levels",
+          "cited_ids",
+          "cited_mapped",
+          "cited_dangling"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

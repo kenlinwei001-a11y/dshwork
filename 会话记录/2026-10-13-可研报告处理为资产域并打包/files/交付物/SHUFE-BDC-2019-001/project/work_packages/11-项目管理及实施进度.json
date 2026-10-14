@@ -1,0 +1,164 @@
+{
+  "work_package_id": "WP-11-项目管理及实施进度",
+  "outline": {
+    "section": "11-项目管理及实施进度",
+    "title": "项目管理及实施进度",
+    "must_cover": [
+      "项目组织管理框架",
+      "项目实施过程管理",
+      "项目运营期管理",
+      "实施进度"
+    ],
+    "must_cover_legal": [
+      "实施进度安排",
+      "风险管控方案",
+      "应急预案"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-21ac2ea6a4ab",
+      "node_id": "N-21ac2ea6a4ab",
+      "subject": "上海财经大学",
+      "predicate": "项目管理架构",
+      "value": "建设领导小组—基建处—项目管理小组三级管理",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-e81b2fb16995"
+    },
+    {
+      "id": "N-1d9bbad66196",
+      "node_id": "N-1d9bbad66196",
+      "subject": "本项目",
+      "predicate": "方案设计与可研编制",
+      "value": "2019年4月-2019年10月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-c810673e6119",
+      "node_id": "N-c810673e6119",
+      "subject": "本项目",
+      "predicate": "初步设计及概算",
+      "value": "2019年11月-2020年2月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-99e0769bc827",
+      "node_id": "N-99e0769bc827",
+      "subject": "本项目",
+      "predicate": "施工图设计",
+      "value": "2020年3月-2020年5月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-303deda576f1",
+      "node_id": "N-303deda576f1",
+      "subject": "本项目",
+      "predicate": "施工招标",
+      "value": "2020年6月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-c3ad80bc3176",
+      "node_id": "N-c3ad80bc3176",
+      "subject": "本项目",
+      "predicate": "开工建设",
+      "value": "2020年7月-2022年5月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-7c90a8639e27",
+      "node_id": "N-7c90a8639e27",
+      "subject": "本项目",
+      "predicate": "竣工验收",
+      "value": "2022年6月",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-171f869338fe",
+      "node_id": "N-171f869338fe",
+      "subject": "本项目",
+      "predicate": "运行费用列支渠道",
+      "value": "上海财经大学后勤保障经费",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-4e577b7d8923"
+    }
+  ],
+  "facts_paging": {
+    "total": 8,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "11-项目管理及实施进度",
+    "file": "style/section_templates/11-项目管理及实施进度.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

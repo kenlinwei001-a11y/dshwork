@@ -1,0 +1,250 @@
+{
+  "id": "argument_chain",
+  "core_domain": "论证链",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本报告归纳，待审核）",
+  "depends_on": [
+    "ontology"
+  ],
+  "dependents": [
+    "quality_gate"
+  ],
+  "impacted_assets": [
+    "argument_chain",
+    "quality_gate",
+    "reuse_strategy"
+  ],
+  "dependency_closure": [
+    "argument_chain",
+    "ontology"
+  ],
+  "assembly_input": [
+    "报告目标",
+    "论点",
+    "Claim",
+    "前提",
+    "证据",
+    "推理关系"
+  ],
+  "assembly_method": "复用历史论证模式；解析新输入 Claim；连接前提/证据/推论/结论；检查关键 Claim 支撑",
+  "mismatch_handling": "新增 Claim 建节点及关系；缺关系类型则扩展 Schema；不把旧项目结论当新项目结论",
+  "assembly_output": [
+    "项目论证图",
+    "Claim 清单",
+    "缺失证据清单",
+    "推理任务"
+  ],
+  "reusable_form": {
+    "claim_types": [
+      "fact",
+      "hypothesis",
+      "inference",
+      "conclusion",
+      "recommendation"
+    ],
+    "nature_types": [
+      "judgment",
+      "prediction",
+      "causal",
+      "suggestion",
+      "risk"
+    ],
+    "edge_types": [
+      "supports",
+      "contradicts",
+      "depends_on"
+    ],
+    "toulmin_template": {
+      "claim": "本项目应当立项建设 / 项目可行",
+      "grounds": "分类事实（人数、面积、造价、政策、现状缺陷）",
+      "warrant": "从「国家/上位要求」到「本项目必须建」的推理许可——**最常被省略、也是评审最爱抓的断链点**",
+      "backing": "法规文号 / 规范条款 / 内部规划 / 学校财务数据",
+      "qualifier": "充分 / 基本合理 / 有保障 / 低风险",
+      "rebuttal": "显式写出反证或未闭合项，不隐藏"
+    },
+    "necessity_dimensions": [
+      {
+        "id": "D1",
+        "name": "国家与行业背景（新兴领域科研水平、创新驱动）",
+        "warrant_present": false
+      },
+      {
+        "id": "D2",
+        "name": "区域发展（地方大数据研究机构空缺）",
+        "warrant_present": false
+      },
+      {
+        "id": "D3",
+        "name": "校区设施条件（既有建筑老化、功能不符）",
+        "warrant_present": true
+      },
+      {
+        "id": "D4",
+        "name": "学校战略（双一流、一流学科建设）",
+        "warrant_present": true
+      }
+    ],
+    "broken_links": [
+      {
+        "dimension": "D1",
+        "note": "原文只给「国家有大数据战略/创新驱动」与结论，中间「所以本校要建」的保证未写出"
+      },
+      {
+        "dimension": "D2",
+        "note": "以「同类高校已建、本校缺失」作论据，未展开「缺失 ⇒ 必须自建」的保证（亦未论证共建/共享等替代方案）"
+      }
+    ],
+    "compliance_template": "政策法规符合性对照表不是手写的，是 complies_with 边全集的渲染结果"
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-07",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_16",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录D"
+        ]
+      },
+      {
+        "id": "B-08",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_8",
+        "verdict": "待核查",
+        "basis": [
+          "建标191-2018 附录B"
+        ]
+      },
+      {
+        "id": "B-09",
+        "role": "warrants",
+        "report": "R-配套用房建筑面积",
+        "check": "utilization_factor",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录E"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-191-B",
+        "code": "建标191-2018 附录B",
+        "role": "domain",
+        "status": "现行；附表B 数值未取到（仅表16 宿舍补助已取到）",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-D1",
+        "code": "建标191-2018 附录D",
+        "role": "domain",
+        "status": "现行；附表D-1 原表未取到，指标值来自标准内计算实例",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-K",
+        "code": "建标191-2018 附录E",
+        "role": "domain",
+        "status": "现行",
+        "url": "（随 EXT-02 同一标准）"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "C-指标-01",
+        "expr": "文法类科研人员 ≤ 16㎡/人（附表D-1，计算实例值）；理工类 30㎡/人；设计人员 15㎡/人",
+        "mandatory": false
+      },
+      {
+        "id": "C-指标-02",
+        "expr": "使用面积系数 K = 使用面积 / 建筑面积 ⇒ 建筑面积 = 使用面积 / K",
+        "mandatory": false
+      }
+    ]
+  },
+  "sources": {
+    "claims": [
+      "CL-必要性-01",
+      "CL-必要性-02",
+      "CL-必要性-03",
+      "CL-必要性-04",
+      "CL-结论-02",
+      "CL-建议-01",
+      "CL-规模-01",
+      "CL-资金-01",
+      "CL-风险等级-01"
+    ]
+  },
+  "related_issues": [],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": []
+}

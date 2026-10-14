@@ -1,0 +1,28 @@
+{
+  "stage": "s1b",
+  "script": "s3b_extract.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "build/extractions-clean/P4a.json",
+    "build/extractions-clean/P4b.json",
+    "build/extractions-clean/P5.json"
+  ],
+  "produced": [
+    {
+      "path": "build/extractions-clean/P4a.json",
+      "sha256": "7d7d4a079ab7c1d4a0564d591f4300bd",
+      "bytes": 28213
+    },
+    {
+      "path": "build/extractions-clean/P4b.json",
+      "sha256": "f630946ea92d5e87c337404cfc9af5d4",
+      "bytes": 40570
+    },
+    {
+      "path": "build/extractions-clean/P5.json",
+      "sha256": "224d3def04f689c664b588485cbcf5d1",
+      "bytes": 22984
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

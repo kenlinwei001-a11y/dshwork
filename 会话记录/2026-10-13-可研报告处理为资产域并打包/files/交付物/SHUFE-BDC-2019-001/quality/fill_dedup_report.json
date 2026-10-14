@@ -1,0 +1,246 @@
+{
+  "dedup": {
+    "before": 358,
+    "after": 343,
+    "merged_groups": 9,
+    "merged_facts": 15,
+    "merged_detail": [
+      {
+        "fact": [
+          "本项目",
+          "总建筑面积",
+          "18319",
+          "㎡"
+        ],
+        "merged": 4,
+        "sources": [
+          "c-3f5a2f4d0ca7",
+          "c-52db29d351e4",
+          "c-a4535feae2f8"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "地上建筑面积",
+          "18000",
+          "㎡"
+        ],
+        "merged": 4,
+        "sources": [
+          "c-3f5a2f4d0ca7",
+          "c-52db29d351e4",
+          "c-57676fd556d8"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "地下建筑面积",
+          "319",
+          "㎡"
+        ],
+        "merged": 4,
+        "sources": [
+          "c-3f5a2f4d0ca7",
+          "c-52db29d351e4",
+          "c-57676fd556d8"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "总投资",
+          "13032",
+          "万元"
+        ],
+        "merged": 2,
+        "sources": [
+          "c-439358c3c12f",
+          "c-9420f385e8f5"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "开工时间",
+          "2020年7月初",
+          ""
+        ],
+        "merged": 2,
+        "sources": [
+          "c-749cc0303bb6",
+          "c-ea950cb1598c"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "竣工时间",
+          "2022年06月底",
+          ""
+        ],
+        "merged": 2,
+        "sources": [
+          "c-749cc0303bb6",
+          "c-ea950cb1598c"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "建设工期",
+          "24",
+          "月"
+        ],
+        "merged": 2,
+        "sources": [
+          "c-749cc0303bb6",
+          "c-ea950cb1598c"
+        ]
+      },
+      {
+        "fact": [
+          "本项目",
+          "抗震设防烈度",
+          "7",
+          "度"
+        ],
+        "merged": 2,
+        "sources": [
+          "c-1bbf63d02596",
+          "c-6177b56d2c09"
+        ]
+      },
+      {
+        "fact": [
+          "室内消火栓系统",
+          "用水量",
+          "20",
+          "L/s"
+        ],
+        "merged": 2,
+        "sources": [
+          "c-66a5ad1c99c5",
+          "c-8aa08d82d0f2"
+        ]
+      }
+    ]
+  },
+  "node_dedup": {
+    "before": 358,
+    "after": 343,
+    "removed": 15
+  },
+  "fill": {
+    "added": 27,
+    "sample": [
+      {
+        "id": "N-30719228907b",
+        "subject": "区域潜水位一般理深",
+        "predicate": "取值区间",
+        "value": "0.5~1.5",
+        "unit": "米",
+        "time": "",
+        "source": "c-7509f0d21229",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:区间取值（补全，带来源 chunk）"
+      },
+      {
+        "id": "N-55aa3e05c5ed",
+        "subject": "渗透系数",
+        "predicate": "取值区间",
+        "value": "0.06~0.08",
+        "unit": "米/昼夜",
+        "time": "",
+        "source": "c-7509f0d21229",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:区间取值（补全，带来源 chunk）"
+      },
+      {
+        "id": "N-82fdaa0455c3",
+        "subject": "河口滨海冲积平原区为",
+        "predicate": "取值区间",
+        "value": "0.04~0.11",
+        "unit": "米/昼夜",
+        "time": "",
+        "source": "c-7509f0d21229",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:区间取值（补全，带来源 chunk）"
+      },
+      {
+        "id": "N-8d02f9ae8a4d",
+        "subject": "变制冷剂流量多联室外机组（30HP）",
+        "predicate": "制冷量",
+        "value": "90",
+        "unit": "kW",
+        "time": "",
+        "source": "c-387f65b6c162",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      },
+      {
+        "id": "N-1d9587397bcb",
+        "subject": "变制冷剂流量多联室外机组（30HP）",
+        "predicate": "制热量",
+        "value": "100",
+        "unit": "kW",
+        "time": "",
+        "source": "c-387f65b6c162",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      },
+      {
+        "id": "N-4374076ddf34",
+        "subject": "变制冷剂流量多联室外机组（30HP）",
+        "predicate": "功率",
+        "value": "28.4",
+        "unit": "kW",
+        "time": "",
+        "source": "c-387f65b6c162",
+        "kind": "quantity",
+        "status": "defined",
+        "section": "",
+        "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      }
+    ],
+    "formula_terms_registered": 1,
+    "formula_sample": [
+      {
+        "chunk": "c-79069a20782b",
+        "term": "315人×16㎡/人+1350人×8㎡/人+2200㎡",
+        "reason": "推导式中的项，非独立事实（由 rules/reasoning 层承载）"
+      }
+    ],
+    "formula_values_excluded": [
+      "315人×16㎡/人+1350人×8㎡/人+2200㎡"
+    ],
+    "note": "登记为公式项 ⇒ 是推导式的操作数，**不再计入未建模缺口**"
+  },
+  "nonstandalone": {
+    "count": 11,
+    "values": {
+      "315": "推导式操作数（公式的一部分，非独立事实）",
+      "16": "推导式操作数（公式的一部分，非独立事实）",
+      "1350": "推导式操作数（公式的一部分，非独立事实）",
+      "8": "推导式操作数（公式的一部分，非独立事实）",
+      "2200": "推导式操作数（公式的一部分，非独立事实）",
+      "0.5": "区间端点（该区间已建模为一条区间事实 0.5~1.5 米）",
+      "1.5": "区间端点（该区间已建模为一条区间事实 0.5~1.5 米）",
+      "0.06": "区间端点（该区间已建模为一条区间事实 0.06~0.08 米/昼夜）",
+      "0.08": "区间端点（该区间已建模为一条区间事实 0.06~0.08 米/昼夜）",
+      "0.04": "区间端点（该区间已建模为一条区间事实 0.04~0.11 米/昼夜）",
+      "0.11": "区间端点（该区间已建模为一条区间事实 0.04~0.11 米/昼夜）"
+    }
+  }
+}

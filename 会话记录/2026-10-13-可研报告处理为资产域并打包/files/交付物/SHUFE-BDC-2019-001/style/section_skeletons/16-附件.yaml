@@ -1,0 +1,22 @@
+{
+  "section": "附件",
+  "section_index": 16,
+  "level": 1,
+  "source": "由原报告同章确定性抽取（段落顺序 / 表格列结构 / 句式骨架）",
+  "placeholder_form": "{{node:N-xxxxxxxxxxxx}}",
+  "block_sequence": [
+    {
+      "type": "heading",
+      "level": 1,
+      "title": "附件"
+    },
+    {
+      "type": "paragraph",
+      "n": 9,
+      "skeleton_sample": "中共上海财经大学党委常委会议纪要（上财委会〔⟨数字⟩〕⟨数字⟩号）"
+    }
+  ],
+  "tables": [],
+  "argument_sentence_patterns": [],
+  "note": "骨架给「怎么写」：段落功能顺序、表格列结构、论证句式槽位。数值一律写占位符，不写本项目的字面数字。"
+}

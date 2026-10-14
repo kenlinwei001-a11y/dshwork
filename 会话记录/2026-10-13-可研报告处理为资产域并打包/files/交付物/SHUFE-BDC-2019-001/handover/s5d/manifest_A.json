@@ -1,0 +1,16 @@
+{
+  "stage": "s5d",
+  "script": "s11_compliance.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/external/compliance.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "sha256": "12cc69d13f9c4267fddcc2d7b021d3c6",
+      "bytes": 27064
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

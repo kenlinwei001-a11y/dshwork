@@ -1,0 +1,30 @@
+{
+  "stage": "s5b",
+  "checked_depends_on": [
+    "s5a"
+  ],
+  "A_count": 2,
+  "B_count": 1,
+  "SOP_patterns": 1,
+  "C_entries": 1,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 3,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

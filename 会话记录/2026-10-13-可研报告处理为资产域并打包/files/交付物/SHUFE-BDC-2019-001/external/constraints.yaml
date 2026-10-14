@@ -1,0 +1,157 @@
+{
+  "note": "取值域约束：可由代码判定的阈值 / 集合 / 日期约束。mandatory=true 表示规范中标注为强制性条文。",
+  "constraints": [
+    {
+      "id": "C-耐火-01",
+      "mandate": "M-GB50016-T511",
+      "kind": "rule",
+      "applies_to": "建筑高度 → 高层类别",
+      "expr": "建筑高度 > 50m 且 为公共建筑  =>  一类高层公共建筑；否则为二类高层公共建筑（高层）",
+      "effect": "分类"
+    },
+    {
+      "id": "C-耐火-02",
+      "mandate": "M-GB50016-513",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "耐火等级",
+      "expr": "一类高层建筑 => 耐火等级 ≥ 一级",
+      "effect": "强制性条文 5.1.3 第1款",
+      "operator": "gte",
+      "target": "一级"
+    },
+    {
+      "id": "C-耐火-03",
+      "mandate": "M-GB50016-513",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "耐火等级",
+      "expr": "二类高层建筑 => 耐火等级 ≥ 二级",
+      "effect": "强制性条文 5.1.3 第2款",
+      "operator": "gte",
+      "target": "二级"
+    },
+    {
+      "id": "C-耐火-04",
+      "mandate": "M-GB50016-513",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "地下/半地下建筑（室）耐火等级",
+      "expr": "存在地下或半地下建筑（室） => 耐火等级 ≥ 一级",
+      "effect": "强制性条文 5.1.3 第1款前段",
+      "operator": "gte",
+      "target": "一级"
+    },
+    {
+      "id": "C-水箱-01",
+      "mandate": "M-GB50974-521",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "高位消防水箱有效容积",
+      "expr": "一类高层公共建筑 => 有效容积 ≥ 36m³；二类高层公共建筑/多层公共建筑 => 有效容积 ≥ 18m³",
+      "effect": "5.2.1 第1、2款",
+      "operator": "gte",
+      "target": "36 或 18"
+    },
+    {
+      "id": "C-抗震-01",
+      "mandate": "M-GB50223-609",
+      "kind": "set",
+      "applies_to": "抗震设防类别",
+      "expr": "（研究/中试/存放高放射性或剧毒生物化学制品的科学实验建筑）=> 特殊设防类",
+      "effect": "6.0.9；不含此类功能则不触发"
+    },
+    {
+      "id": "C-抗震-02",
+      "mandate": "M-GB50223-611",
+      "kind": "threshold",
+      "applies_to": "抗震设防类别",
+      "expr": "高层建筑 且 结构单元内经常使用人数 > 8000 人 => 宜划为重点设防类",
+      "effect": "6.0.11；宜（非强制）",
+      "operator": "gt",
+      "target": "8000 人"
+    },
+    {
+      "id": "C-抗震-03",
+      "mandate": "M-GB50011-A-SH",
+      "kind": "set",
+      "mandatory": true,
+      "applies_to": "抗震设防烈度 / 设计基本地震加速度 / 设计地震分组",
+      "expr": "上海市虹口区 => 抗震设防烈度 7 度；设计基本地震加速度 0.10g；设计地震分组 第一组",
+      "effect": "GB50011-2010 附录A"
+    },
+    {
+      "id": "C-指标-01",
+      "mandate": "M-191-D1",
+      "kind": "threshold",
+      "applies_to": "专职科研机构用房人均建筑面积指标",
+      "expr": "文法类科研人员 ≤ 16㎡/人（附表D-1，计算实例值）；理工类 30㎡/人；设计人员 15㎡/人",
+      "effect": "建标191-2018 附录D 一 / 附表D-1",
+      "operator": "lte",
+      "target": "16 ㎡/人"
+    },
+    {
+      "id": "C-指标-02",
+      "mandate": "M-191-K",
+      "kind": "formula",
+      "applies_to": "使用面积 → 建筑面积换算",
+      "expr": "使用面积系数 K = 使用面积 / 建筑面积 ⇒ 建筑面积 = 使用面积 / K",
+      "effect": "建标191-2018 附录E 术语三"
+    },
+    {
+      "id": "C-招标-01",
+      "mandate": "M-16LING-5",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "招标范围",
+      "expr": "施工 ≥400 万元 必须招标；重要设备材料 ≥200 万元 必须招标；勘察/设计/监理服务 ≥100 万元 必须招标",
+      "effect": "第16号令 第五条"
+    },
+    {
+      "id": "C-招标-02",
+      "mandate": "M-16LING-2",
+      "kind": "threshold",
+      "mandatory": true,
+      "applies_to": "适用对象",
+      "expr": "使用预算资金 ≥200 万元 且 占投资额 ≥10% ⇒ 属必须招标范围",
+      "effect": "第16号令 第二条"
+    },
+    {
+      "id": "C-时效-01",
+      "mandate": "M-GBT50378-2019",
+      "kind": "date",
+      "applies_to": "引用标准版本",
+      "expr": "2019-08-01 起 GB/T50378-2019 实施，GB/T50378-2014 同时废止；报告编制时点 2019-08 ⇒ 版本切换临界"
+    },
+    {
+      "id": "C-时效-02",
+      "mandate": "M-GB50045-95",
+      "kind": "date",
+      "applies_to": "引用标准版本",
+      "expr": "2015-05-01 起《高层民用建筑设计防火规范》GB50045-95 废止；报告 6.1 节于 2019 年仍引用 ⇒ 引用已废止规范"
+    },
+    {
+      "id": "C-时效-03",
+      "mandate": "M-191-NAME",
+      "kind": "date",
+      "applies_to": "引用标准名称",
+      "expr": "2018-09-01 起正式名称为《普通高等学校建筑面积指标》；《普通高等学校建筑规划面积指标》同时废止 ⇒ 报告 1.2 节沿用旧名称"
+    },
+    {
+      "id": "C-时效-04",
+      "mandate": "M-GB50015-2019",
+      "kind": "date",
+      "applies_to": "引用标准版本",
+      "expr": "2020-03-01 起 GB50015-2019 实施；报告编制时点 2019-08 ⇒ GB50015-2003（2009年版）当时有效"
+    },
+    {
+      "id": "C-大纲-01",
+      "mandate": "M-304-CH",
+      "kind": "set",
+      "applies_to": "报告章节体系",
+      "expr": "政府投资项目可行性研究报告法定十章（通用大纲，2023 版）"
+    }
+  ],
+  "count": 17,
+  "mandatory": 7
+}

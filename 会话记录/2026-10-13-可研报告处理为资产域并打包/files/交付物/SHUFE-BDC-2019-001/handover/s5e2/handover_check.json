@@ -1,0 +1,35 @@
+{
+  "stage": "s5e2",
+  "checked_depends_on": [
+    "s5e"
+  ],
+  "A_count": 2,
+  "B_count": 0,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/source_ledger.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/documents.yaml",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 4,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

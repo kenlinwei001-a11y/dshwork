@@ -1,0 +1,28 @@
+{
+  "stage": "s9",
+  "script": "s_sop_selfaudit.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+      "sha256": "200aabc1e3ec2d235db9f4a03da269cf",
+      "bytes": 313
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+      "sha256": "12bd9ed5037b134e538dc1c227d603d1",
+      "bytes": 221
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
+      "sha256": "e9ca0a71f2707b1fde6cf85cdd72809a",
+      "bytes": 446
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

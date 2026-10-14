@@ -1,0 +1,240 @@
+{
+  "count": 21,
+  "layers": {
+    "report": 1,
+    "external": 20
+  },
+  "note": "外部检索文档与报告**同为抽取目标**；其条款与约束已合并进主图谱",
+  "documents": [
+    {
+      "doc_id": "DOC-REPORT-01",
+      "title": "可行性研究报告",
+      "layer": "report",
+      "doc_type": "可行性研究报告",
+      "sha256": "",
+      "source": "source/original.docx",
+      "status": "ok",
+      "extraction_role": "抽取目标（主文档）"
+    },
+    {
+      "doc_id": "EXT-00",
+      "title": "外部核查原始摘录索引（含各来源 URL）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "",
+      "source": "references/依据来源README.md",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-01",
+      "title": "《政府投资项目可行性研究报告编写通用大纲（2023年版）》及印发通知",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=20220",
+      "source": "references/raw/304号大纲-通用大纲.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-02",
+      "title": "《普通高等学校建筑面积指标》批准发布通知（建标﹝2018﹞32号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://www.gov.cn/zhengce/zhengceku/2018-12/31/content_5433277.htm",
+      "source": "references/raw/建标191-2018-通知.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-03",
+      "title": "《普通高等学校建筑面积指标》条文与附录摘录（附录B/D/E 等）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "（随 EXT-02 同一标准）",
+      "source": "references/raw/tmp-seismic.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-04",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节 建筑分类和耐火等级",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "source": "references/raw/gb50016-5.1-建筑分类和耐火等级.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-05",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节（另一来源同条文）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "source": "references/raw/gb50016-5.1-桌面版.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-06",
+      "title": "2018 消防建筑防火篇：建筑分类与耐火等级（表5.1.1 民用建筑分类转录）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "http://www.fireresearch.cn/2018消防建筑防火篇：建筑分类与耐火等级.html",
+      "source": "references/raw/建筑分类与耐火等级.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-07",
+      "title": "关于施行新版《建筑设计防火规范》的通知（南建〔2015〕70号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://www.nanchong.gov.cn/zjj/xwdt/tzgg/201503/t20150324_1289568.html",
+      "source": "references/raw/新版建筑设计防火规范-通知.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-08",
+      "title": "《消防给水及消火栓系统技术规范》GB50974-2014 第5.2节 高位消防水箱",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "references/raw 摘录页",
+      "source": "references/raw/gb50974-5.2-高位消防水箱.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-09",
+      "title": "《自动喷水灭火系统设计规范》GB50084-2017 第5章 设计基本参数",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "references/raw 摘录页",
+      "source": "references/raw/自喷-5-设计基本参数.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-10",
+      "title": "《建筑工程抗震设防分类标准》GB50223-2008 第6章 公共建筑和居住建筑",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "references/raw 摘录页",
+      "source": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-11",
+      "title": "《建筑抗震设计规范》GB50011-2010 附录A 我国主要城镇抗震设防烈度（转录）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "references/raw 摘录页",
+      "source": "references/raw/抗震设防烈度各地规定.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-12",
+      "title": "《民用建筑设计通则》GB50352-2005 第3.2节 设计使用年限（页面标注「已作废」）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://gf.cabr-fire.com/m/article-5902.htm",
+      "source": "references/raw/gb50352-3.2-设计使用年限.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-13",
+      "title": "《消防技术标准规范速查手册》1.3 使用年限分类（转述 GB50352-2005 3.2.1）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "references/raw 摘录页",
+      "source": "references/raw/设计使用年限分类.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-14",
+      "title": "《必须招标的工程项目规定》（国家发展改革委令第16号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm",
+      "source": "references/raw/必须招标的工程项目规定-16号令.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-15",
+      "title": "住建部关于发布国家标准《绿色建筑评价标准》的公告（2019年第61号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240717.html",
+      "source": "references/raw/绿色建筑评价标准-公告.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-16",
+      "title": "住建部关于发布国家标准《建筑给水排水设计标准》的公告（2019年第171号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://ebook.chinabuilding.com.cn/c/2019-12-11/81369.shtml",
+      "source": "references/raw/建筑给水排水设计标准-公告.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-17",
+      "title": "国家发展改革委印发《固定资产投资项目节能审查办法》（发改委令第44号）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://www.ndrc.gov.cn/fggz/hjyzy/jnhnx/201612/t20161205_1134123_ext.html",
+      "source": "references/raw/固定资产投资项目节能审查办法-新闻.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-18",
+      "title": "民用建筑分类（考点）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "（原链接）",
+      "source": "references/raw/民用建筑分类-考点.txt",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    },
+    {
+      "doc_id": "EXT-19",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节（HTML 原始页）",
+      "layer": "external",
+      "doc_type": "标准/政策",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "source": "references/raw/gb50016-5.1-原文.html",
+      "status": "ok",
+      "chunks": 0,
+      "extraction_role": "抽取目标（依据文档）"
+    }
+  ]
+}

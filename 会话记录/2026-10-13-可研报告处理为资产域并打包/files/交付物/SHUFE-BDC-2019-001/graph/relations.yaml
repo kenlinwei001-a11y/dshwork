@@ -1,0 +1,3061 @@
+[
+  {
+    "from": "EN-0458",
+    "to": "EN-0226",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0199",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0128",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0007",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0019",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0201",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0458",
+    "to": "EN-0116",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0310",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0089",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0117",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0349",
+    "type": "located_in"
+  },
+  {
+    "from": "EN-0349",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0389",
+    "to": "EN-0082",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0195",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0179",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0191",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0440",
+    "to": "EN-0399",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0440",
+    "to": "EN-0402",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0101",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0149",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0236",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0043",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0280",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0034",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0431",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0426",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0517",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0387",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0166",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0170",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0336",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0436",
+    "to": "EN-0434",
+    "type": "temporal"
+  },
+  {
+    "from": "EN-0487",
+    "to": "EN-0434",
+    "type": "temporal"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0195",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0179",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0191",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-内部-01",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-结论-01",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-结论-04",
+    "to": "CL-建议-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0046",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0245",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0233",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0178",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0095",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0070",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0162",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0219",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0029",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0144",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0324",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0025",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0303",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0098",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0269",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0183",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0349",
+    "to": "EN-0069",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0456",
+    "to": "EN-0305",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0349",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0456",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0350",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0210",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0194",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0180",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0286",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0148",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0045",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0040",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0112",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0492",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0489",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0225",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-政策-02",
+    "to": "CL-必要性-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-内部-03",
+    "to": "CL-必要性-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-01",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-政策-03",
+    "to": "CL-必要性-02",
+    "type": "supports"
+  },
+  {
+    "from": "EV-对标-01",
+    "to": "CL-必要性-02",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-现状-01",
+    "to": "CL-必要性-03",
+    "type": "supports"
+  },
+  {
+    "from": "EV-现状-02",
+    "to": "CL-必要性-03",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-政策-06",
+    "to": "CL-必要性-04",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "CL-结论-01",
+    "type": "supports"
+  },
+  {
+    "from": "CL-必要性-01",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "CL-结论-02",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0337",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0071",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0151",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0308",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0335",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0093",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0347",
+    "to": "EN-0037",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0491",
+    "to": "EN-0346",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0215",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0106",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0317",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0349",
+    "to": "EN-0184",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0111",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0349",
+    "type": "located_in"
+  },
+  {
+    "from": "EN-0389",
+    "to": "EN-0217",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0389",
+    "to": "EN-0088",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0325",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0389",
+    "to": "EN-0349",
+    "type": "located_in"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0189",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0271",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0228",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0341",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0188",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0165",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0140",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0175",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0489",
+    "to": "EN-0265",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0489",
+    "to": "EN-0136",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0489",
+    "to": "EN-0053",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0489",
+    "to": "EN-0415",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0471",
+    "to": "EN-0002",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0471",
+    "to": "EN-0022",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0471",
+    "to": "EN-0260",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0471",
+    "to": "EN-0415",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0428",
+    "to": "EN-0212",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0428",
+    "to": "EN-0333",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0428",
+    "to": "EN-0051",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0428",
+    "to": "EN-0415",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0450",
+    "to": "EN-0141",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0450",
+    "to": "EN-0223",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0450",
+    "to": "EN-0338",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0450",
+    "to": "EN-0415",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0356",
+    "to": "EN-0293",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0356",
+    "to": "EN-0075",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0356",
+    "to": "EN-0318",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0359",
+    "to": "EN-0288",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0359",
+    "to": "EN-0060",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0359",
+    "to": "EN-0342",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0358",
+    "to": "EN-0257",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0361",
+    "to": "EN-0277",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0361",
+    "to": "EN-0186",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0363",
+    "to": "EN-0169",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0360",
+    "to": "EN-0340",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0357",
+    "to": "EN-0018",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0362",
+    "to": "EN-0220",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0355",
+    "to": "EN-0087",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0355",
+    "to": "EN-0099",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0355",
+    "to": "EN-0285",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0355",
+    "to": "EN-0415",
+    "type": "part_of"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0050",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0207",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0321",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0249",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0258",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0090",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0108",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0163",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-指标-02",
+    "to": "CL-规模-02",
+    "type": "supports"
+  },
+  {
+    "from": "EV-需求-02",
+    "to": "CL-规模-01",
+    "type": "supports"
+  },
+  {
+    "from": "EN-0364",
+    "to": "EN-0400",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0477",
+    "to": "EN-0400",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0476",
+    "to": "EN-0400",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0400",
+    "to": "EN-0507",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0314",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0153",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0400",
+    "to": "EN-0399",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0054",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0262",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0195",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0036",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0084",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0009",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0266",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0195",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0179",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0191",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0323",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0086",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0021",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0307",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0058",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0150",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0266",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0311",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0198",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0302",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0242",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0074",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0133",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0129",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0012",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0253",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0419",
+    "to": "EN-0297",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0373",
+    "to": "EN-0160",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0344",
+    "to": "EN-0132",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0509",
+    "to": "EN-0250",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0504",
+    "to": "EN-0105",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0394",
+    "to": "EN-0073",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0345",
+    "to": "EN-0174",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0348",
+    "to": "EN-0096",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0027",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0048",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0137",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0255",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0145",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0055",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0100",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0299",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0322",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0173",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0264",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0121",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0134",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0241",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0079",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0177",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0168",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0214",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0123",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0478",
+    "to": "EN-0077",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0478",
+    "to": "EN-0290",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0372",
+    "to": "EN-0327",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0372",
+    "to": "EN-0200",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0278",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0063",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0005",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0008",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0127",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0457",
+    "to": "EN-0479",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0457",
+    "to": "EN-0374",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0424",
+    "to": "EN-0224",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0424",
+    "to": "EN-0139",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0420",
+    "to": "EN-0066",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0420",
+    "to": "EN-0107",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0247",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0138",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0244",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0120",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0176",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0013",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0296",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0420",
+    "to": "EN-0066",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0518",
+    "to": "EN-0097",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0004",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0502",
+    "to": "EN-0501",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0500",
+    "to": "EN-0466",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0256",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0203",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0119",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0443",
+    "to": "EN-0483",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0443",
+    "to": "EN-0470",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0232",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0386",
+    "to": "EN-0301",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0386",
+    "to": "EN-0172",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0268",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0415",
+    "to": "EN-0081",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0126",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0330",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0438",
+    "to": "EN-0155",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0493",
+    "to": "EN-0052",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0284",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0319",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0515",
+    "to": "EN-0104",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0407",
+    "to": "EN-0182",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0408",
+    "to": "EN-0197",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0368",
+    "to": "EN-0059",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0369",
+    "to": "EN-0254",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0409",
+    "to": "EN-0331",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0406",
+    "to": "EN-0231",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0367",
+    "to": "EN-0042",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0103",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0044",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0041",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0161",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0204",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0240",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0352",
+    "to": "EN-0135",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0351",
+    "to": "EN-0011",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0385",
+    "to": "EN-0192",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0473",
+    "to": "EN-0033",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0463",
+    "to": "EN-0076",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0306",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0235",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0147",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0109",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0482",
+    "to": "EN-0039",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0370",
+    "to": "EN-0381",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0469",
+    "to": "EN-0382",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0414",
+    "to": "EN-0216",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0414",
+    "to": "EN-0206",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0413",
+    "to": "EN-0125",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0413",
+    "to": "EN-0006",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0412",
+    "to": "EN-0118",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0412",
+    "to": "EN-0080",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0411",
+    "to": "EN-0234",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0375",
+    "to": "EN-0316",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0447",
+    "to": "EN-0122",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0448",
+    "to": "EN-0113",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0448",
+    "to": "EN-0263",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0448",
+    "to": "EN-0032",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0417",
+    "to": "EN-0246",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0417",
+    "to": "EN-0017",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0417",
+    "to": "EN-0091",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0248",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0221",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0449",
+    "to": "EN-0374",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0003",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0283",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0292",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0480",
+    "to": "EN-0142",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0365",
+    "to": "EN-0202",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0365",
+    "to": "EN-0010",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0365",
+    "to": "EN-0092",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0365",
+    "to": "EN-0329",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0295",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0339",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0481",
+    "to": "EN-0366",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0494",
+    "to": "EN-0083",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0495",
+    "to": "EN-0304",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0209",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0239",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0343",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0251",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0049",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0383",
+    "to": "EN-0496",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0379",
+    "to": "EN-0427",
+    "type": "depends_on"
+  },
+  {
+    "from": "EV-规范-节能-02",
+    "to": "CL-节能-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-规范-节能-02",
+    "to": "EV-规范-暖通-03",
+    "type": "contradicts"
+  },
+  {
+    "from": "EV-规范-环评-01",
+    "to": "CL-环评-01",
+    "type": "supports"
+  },
+  {
+    "from": "EV-规范-环评-03",
+    "to": "EV-规范-环评-01",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0516",
+    "to": "EN-0315",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0516",
+    "to": "EN-0238",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0453",
+    "to": "EN-0334",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0453",
+    "to": "EN-0146",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0320",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0167",
+    "type": "has_value"
+  },
+  {
+    "from": "EV-规范-抗震-沪-01",
+    "to": "EV-规范-抗震-沪-02",
+    "type": "contradicts"
+  },
+  {
+    "from": "CL-风险-01",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-风险-02",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "CL-风险等级-01",
+    "type": "depends_on"
+  },
+  {
+    "from": "EV-稳评-结论-01",
+    "to": "CL-风险等级-01",
+    "type": "supports"
+  },
+  {
+    "from": "EN-0453",
+    "to": "EN-0031",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0035",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0030",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0282",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0213",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0062",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0270",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0164",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0436",
+    "to": "EN-0488",
+    "type": "temporal"
+  },
+  {
+    "from": "EN-0434",
+    "to": "EN-0435",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0336",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0166",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0170",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0023",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0376",
+    "to": "EN-0020",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0506",
+    "to": "EN-0187",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0429",
+    "to": "EN-0309",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0474",
+    "to": "EN-0267",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0159",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0430",
+    "to": "EN-0431",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0274",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0115",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0326",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0300",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0405",
+    "to": "EN-0432",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0405",
+    "to": "EN-0425",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0462",
+    "to": "EN-0190",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0404",
+    "to": "EN-0078",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0401",
+    "to": "EN-0024",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0398",
+    "to": "EN-0181",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0503",
+    "to": "EN-0057",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0421",
+    "to": "EN-0243",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0410",
+    "to": "EN-0154",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0485",
+    "to": "EN-0016",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0484",
+    "to": "EN-0158",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0345",
+    "to": "EN-0143",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0505",
+    "to": "EN-0261",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0460",
+    "to": "EN-0273",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0451",
+    "to": "EN-0157",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0490",
+    "to": "EN-0312",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0465",
+    "to": "EN-0276",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0510",
+    "to": "EN-0272",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0439",
+    "to": "EN-0152",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0437",
+    "to": "EN-0171",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0472",
+    "to": "EN-0287",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0512",
+    "to": "EN-0205",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0497",
+    "to": "EN-0110",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0422",
+    "to": "EN-0313",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0461",
+    "to": "EN-0294",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0444",
+    "to": "EN-0056",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0499",
+    "to": "EN-0094",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0397",
+    "to": "EN-0130",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0418",
+    "to": "EN-0328",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0384",
+    "to": "EN-0156",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0423",
+    "to": "EN-0230",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0229",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0425",
+    "to": "EN-0131",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0405",
+    "to": "EN-0289",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0445",
+    "to": "EN-0227",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0442",
+    "to": "EN-0259",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0433",
+    "to": "EN-0193",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0371",
+    "to": "EN-0102",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0377",
+    "to": "EN-0067",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0508",
+    "to": "EN-0014",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0446",
+    "to": "EN-0038",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0467",
+    "to": "EN-0196",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0455",
+    "to": "EN-0114",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0452",
+    "to": "EN-0218",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0486",
+    "to": "EN-0208",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0403",
+    "to": "EN-0291",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0354",
+    "to": "EN-0065",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0353",
+    "to": "EN-0222",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0332",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0047",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0085",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0028",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0237",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0384",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0423",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0444",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0499",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0384",
+    "to": "EN-0397",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0384",
+    "to": "EN-0418",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0397",
+    "to": "EN-0462",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0397",
+    "to": "EN-0398",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0418",
+    "to": "EN-0490",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0418",
+    "to": "EN-0511",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0418",
+    "to": "EN-0439",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0418",
+    "to": "EN-0437",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0425",
+    "to": "EN-0508",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0425",
+    "to": "EN-0454",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0425",
+    "to": "EN-0377",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0423",
+    "to": "EN-0513",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0423",
+    "to": "EN-0498",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0423",
+    "to": "EN-0422",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0423",
+    "to": "EN-0461",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0432",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0425",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0405",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0445",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0384",
+    "to": "EN-0423",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0432",
+    "to": "EN-0430",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0380",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0015",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0179",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0191",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0440",
+    "to": "EN-0399",
+    "type": "contradicts"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0101",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0072",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0064",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0124",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0275",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0459",
+    "to": "EN-0001",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0395",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0441",
+    "to": "EN-0416",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0396",
+    "to": "EN-0395",
+    "type": "depends_on"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0281",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0061",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0185",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0298",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0068",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0211",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0346",
+    "to": "EN-0026",
+    "type": "has_value"
+  },
+  {
+    "from": "CL-效益-01",
+    "to": "CL-结论-05",
+    "type": "supports"
+  },
+  {
+    "from": "EN-0514",
+    "to": "EN-0252",
+    "type": "has_value"
+  },
+  {
+    "from": "EN-0388",
+    "to": "EN-0279",
+    "type": "has_value"
+  },
+  {
+    "from": "CL-结论-01",
+    "to": "REF:《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "type": "cites",
+    "basis": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "REF:《普通高等学校建筑面积指标》",
+    "type": "cites",
+    "basis": "《普通高等学校建筑面积指标》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "REF:建标",
+    "type": "cites",
+    "basis": "建标",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-建议-01",
+    "to": "REF:《政府投资项目可行性研究报告编写通用大纲》",
+    "type": "cites",
+    "basis": "《政府投资项目可行性研究报告编写通用大纲》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-建议-01",
+    "to": "REF:〔2023〕",
+    "type": "cites",
+    "basis": "〔2023〕",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-建议-01",
+    "to": "REF:发改",
+    "type": "cites",
+    "basis": "发改",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-00",
+    "to": "REF:《上海财经大学推进世界一流大学和一流学科建设方案》",
+    "type": "cites",
+    "basis": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-01",
+    "to": "REF:《中共中央关于制定国民经济和社会发展第十三个五年规划》",
+    "type": "cites",
+    "basis": "《中共中央关于制定国民经济和社会发展第十三个五年规划》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "REF:《国务院关于印发促进大数据发展行动纲要的通知》",
+    "type": "cites",
+    "basis": "《国务院关于印发促进大数据发展行动纲要的通知》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "REF:〔2015〕",
+    "type": "cites",
+    "basis": "〔2015〕",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "REF:国发",
+    "type": "cites",
+    "basis": "国发",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "REF:《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》",
+    "type": "cites",
+    "basis": "《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "REF:〔2017〕",
+    "type": "cites",
+    "basis": "〔2017〕",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "REF:发改",
+    "type": "cites",
+    "basis": "发改",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-规模-01",
+    "to": "REF:《普通高等学校建筑面积指标》",
+    "type": "cites",
+    "basis": "《普通高等学校建筑面积指标》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-规模-01",
+    "to": "REF:建标",
+    "type": "cites",
+    "basis": "建标",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "REF:《普通高等学校建筑面积指标》",
+    "type": "cites",
+    "basis": "《普通高等学校建筑面积指标》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "REF:建标",
+    "type": "cites",
+    "basis": "建标",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-技术-01",
+    "to": "REF:GB5",
+    "type": "cites",
+    "basis": "GB5",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-技术-01",
+    "to": "REF:《建筑设计防火规范》",
+    "type": "cites",
+    "basis": "《建筑设计防火规范》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-技术-01",
+    "to": "REF:《民用建筑设计通则》",
+    "type": "cites",
+    "basis": "《民用建筑设计通则》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-技术-02",
+    "to": "REF:GB5",
+    "type": "cites",
+    "basis": "GB5",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-技术-03",
+    "to": "REF:DGJ0",
+    "type": "cites",
+    "basis": "DGJ0",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险-01",
+    "to": "REF:GB5",
+    "type": "cites",
+    "basis": "GB5",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "REF:DGJ0",
+    "type": "cites",
+    "basis": "DGJ0",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "REF:GB5",
+    "type": "cites",
+    "basis": "GB5",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "REF:《公共建筑节能设计标准》",
+    "type": "cites",
+    "basis": "《公共建筑节能设计标准》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-环评-01",
+    "to": "REF:《中华人民共和国环境保护法》",
+    "type": "cites",
+    "basis": "《中华人民共和国环境保护法》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-环评-01",
+    "to": "REF:《建设项目环境保护管理办法》",
+    "type": "cites",
+    "basis": "《建设项目环境保护管理办法》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-安全-01",
+    "to": "REF:GB5",
+    "type": "cites",
+    "basis": "GB5",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-安全-01",
+    "to": "REF:《中华人民共和国安全生产法》",
+    "type": "cites",
+    "basis": "《中华人民共和国安全生产法》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险-01",
+    "to": "REF:GB1",
+    "type": "cites",
+    "basis": "GB1",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "REF:[2012]",
+    "type": "cites",
+    "basis": "[2012]",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "REF:发改",
+    "type": "cites",
+    "basis": "发改",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险等级-01",
+    "to": "REF:[2012]",
+    "type": "cites",
+    "basis": "[2012]",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险等级-01",
+    "to": "REF:发改",
+    "type": "cites",
+    "basis": "发改",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险结论-01",
+    "to": "REF:[2012]",
+    "type": "cites",
+    "basis": "[2012]",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-风险结论-01",
+    "to": "REF:发改",
+    "type": "cites",
+    "basis": "发改",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "REF:〔2019〕",
+    "type": "cites",
+    "basis": "〔2019〕",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-结论-01",
+    "to": "REF:《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "type": "cites",
+    "basis": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "resolved": false,
+    "note": "claim → 规范条款/政策文件"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-必要性-03",
+    "type": "derives",
+    "why": "共享数值 ['2758']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-规模-01",
+    "type": "derives",
+    "why": "共享数值 ['18000', '18040', '18319', '191', '2018', '319']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-规模-02",
+    "type": "derives",
+    "why": "共享数值 ['191', '2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-资金-01",
+    "type": "derives",
+    "why": "共享数值 ['2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-结论-04",
+    "to": "CL-资金-01",
+    "type": "derives",
+    "why": "共享数值 ['2.53']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-必要性-00",
+    "to": "CL-结论-02",
+    "type": "derives",
+    "why": "共享数值 ['3.2']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-技术-03",
+    "type": "derives",
+    "why": "共享数值 ['2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-必要性-02",
+    "to": "CL-节能-01",
+    "type": "derives",
+    "why": "共享数值 ['2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-结论-03",
+    "type": "derives",
+    "why": "共享数值 ['2758']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-必要性-04",
+    "to": "CL-风险-01",
+    "type": "derives",
+    "why": "共享数值 ['2017']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-结论-02",
+    "to": "CL-必要性-00",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['3.2']"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "CL-结论-03",
+    "type": "derives",
+    "why": "共享数值 ['191', '2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "CL-规模-01",
+    "type": "derives",
+    "why": "共享数值 ['191', '2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "CL-资金-01",
+    "type": "derives",
+    "why": "共享数值 ['2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-技术-01",
+    "to": "CL-节能-01",
+    "type": "derives",
+    "why": "共享数值 ['2005']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-技术-02",
+    "to": "CL-技术-03",
+    "type": "derives",
+    "why": "共享数值 ['2010']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-技术-03",
+    "to": "CL-必要性-02",
+    "type": "derives",
+    "why": "共享数值 ['2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-技术-03",
+    "to": "CL-技术-02",
+    "type": "derives",
+    "why": "共享数值 ['2010']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-技术-03",
+    "to": "CL-节能-01",
+    "type": "derives",
+    "why": "共享数值 ['107', '2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-风险-01",
+    "to": "CL-必要性-04",
+    "type": "derives",
+    "why": "共享数值 ['2017']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-必要性-02",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['2015']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-必要性-02",
+    "type": "derives",
+    "why": "共享数值 ['2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-技术-01",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['2005']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-技术-01",
+    "type": "derives",
+    "why": "共享数值 ['2005']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-技术-03",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['107', '2015']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-技术-03",
+    "type": "derives",
+    "why": "共享数值 ['107', '2015']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险-03",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['2012']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险-03",
+    "type": "derives",
+    "why": "共享数值 ['2012']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险等级-01",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['2012']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险等级-01",
+    "type": "derives",
+    "why": "共享数值 ['2012']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险结论-01",
+    "type": "causes",
+    "why": "因果词 + 共享数值 ['2012']"
+  },
+  {
+    "from": "CL-节能-01",
+    "to": "CL-风险结论-01",
+    "type": "derives",
+    "why": "共享数值 ['2012']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "CL-节能-01",
+    "type": "derives",
+    "why": "共享数值 ['2012']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "CL-风险等级-01",
+    "type": "derives",
+    "why": "共享数值 ['2012', '2492']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-风险-03",
+    "to": "CL-风险结论-01",
+    "type": "derives",
+    "why": "共享数值 ['2012', '2492']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-结论-03",
+    "type": "derives",
+    "why": "共享数值 ['2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-结论-04",
+    "type": "derives",
+    "why": "共享数值 ['2.53']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-规模-01",
+    "type": "derives",
+    "why": "共享数值 ['2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-规模-02",
+    "type": "derives",
+    "why": "共享数值 ['2018']（补 premise/derived 缺失）"
+  },
+  {
+    "from": "CL-RS-104-03",
+    "to": "CL-必要性-03",
+    "type": "restates",
+    "why": "共享数值 ['2758']"
+  },
+  {
+    "from": "CL-RS-106-01",
+    "to": "CL-规模-01",
+    "type": "restates",
+    "why": "共享数值 ['18000', '18319', '319']"
+  },
+  {
+    "from": "CL-RS-112-01",
+    "to": "CL-规模-01",
+    "type": "restates",
+    "why": "共享数值 ['2018']"
+  },
+  {
+    "from": "CL-RS-113-01",
+    "to": "CL-资金-01",
+    "type": "restates",
+    "why": "共享数值 ['2019']"
+  },
+  {
+    "from": "CL-RS-114-01",
+    "to": "CL-规模-01",
+    "type": "restates",
+    "why": "共享数值 ['191', '2018']"
+  },
+  {
+    "from": "CL-RS-124-03",
+    "to": "CL-必要性-03",
+    "type": "restates",
+    "why": "共享数值 ['2758']"
+  },
+  {
+    "from": "CL-RS-125-01",
+    "to": "CL-规模-01",
+    "type": "restates",
+    "why": "共享数值 ['18000', '18319', '319']"
+  },
+  {
+    "from": "CL-RS-209-03",
+    "to": "CL-必要性-03",
+    "type": "restates",
+    "why": "共享数值 ['2758']"
+  },
+  {
+    "from": "CL-RS-209-01",
+    "to": "CL-规模-01",
+    "type": "restates",
+    "why": "共享数值 ['18000', '18319', '319']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-104-03",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-106-01",
+    "type": "derives",
+    "why": "共享 ['18000', '18319', '319']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-112-01",
+    "type": "derives",
+    "why": "共享 ['2018']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-114-01",
+    "type": "derives",
+    "why": "共享 ['191', '2018']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-124-03",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-125-01",
+    "type": "derives",
+    "why": "共享 ['18000', '18319', '319']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-209-03",
+    "type": "derives",
+    "why": "共享 ['18000', '18319', '2758', '319']"
+  },
+  {
+    "from": "CL-结论-03",
+    "to": "CL-RS-209-01",
+    "type": "derives",
+    "why": "共享 ['18000', '18319', '2758', '319']"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-RS-104-03",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-RS-124-03",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-RS-209-03",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-必要性-03",
+    "to": "CL-RS-209-01",
+    "type": "derives",
+    "why": "共享 ['2758']"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "CL-RS-112-01",
+    "type": "derives",
+    "why": "共享 ['2018']"
+  },
+  {
+    "from": "CL-规模-02",
+    "to": "CL-RS-114-01",
+    "type": "derives",
+    "why": "共享 ['191', '2018']"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-RS-112-01",
+    "type": "derives",
+    "why": "共享 ['2018']"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-RS-113-01",
+    "type": "derives",
+    "why": "共享 ['2019']"
+  },
+  {
+    "from": "CL-资金-01",
+    "to": "CL-RS-114-01",
+    "type": "derives",
+    "why": "共享 ['2018']"
+  },
+  {
+    "from": "CL-RS-112-01",
+    "to": "REF:《上海财经大学学科建设规划》",
+    "type": "cites",
+    "basis": "《上海财经大学学科建设规划》"
+  },
+  {
+    "from": "CL-RS-113-01",
+    "to": "REF:〔2019〕",
+    "type": "cites",
+    "basis": "〔2019〕"
+  },
+  {
+    "from": "CL-RS-114-01",
+    "to": "REF:《普通高等学校建筑规划面积指标》",
+    "type": "cites",
+    "basis": "《普通高等学校建筑规划面积指标》"
+  },
+  {
+    "from": "CL-RS-114-01",
+    "to": "REF:建标",
+    "type": "cites",
+    "basis": "建标"
+  }
+]

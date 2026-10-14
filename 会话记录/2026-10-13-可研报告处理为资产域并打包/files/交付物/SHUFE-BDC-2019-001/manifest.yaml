@@ -1,0 +1,309 @@
+{
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "source_fingerprint": "b066a10ceff227e8",
+  "constraints": [
+    "借形不借值：数值/单位/实体名/结论一律不继承，仅继承结构/规则/句式/术语",
+    "缺值守卫：依赖缺失节点 status=undefined，正文写「待…后测算」并挂 gap",
+    "冲突待审：回放检出数字不一致一律待审，不自动裁决",
+    "不许反算：不得由结论倒推中间量"
+  ],
+  "files": [
+    {
+      "name": "manifest.yaml",
+      "stage": "7",
+      "format": "YAML",
+      "primary": "对象存储",
+      "agent": "① 注入(constraints 段)"
+    },
+    {
+      "name": "meta.yaml",
+      "stage": "2",
+      "format": "YAML",
+      "primary": "PG corpus_meta",
+      "agent": "① 注入"
+    },
+    {
+      "name": "provenance.yaml",
+      "stage": "全程",
+      "format": "YAML",
+      "primary": "PG corpus_provenance",
+      "agent": "✕"
+    },
+    {
+      "name": "outline.yaml",
+      "stage": "2",
+      "format": "YAML",
+      "primary": "图库 :Section",
+      "agent": "① 注入"
+    },
+    {
+      "name": "source/original.docx",
+      "stage": "0",
+      "format": "二进制",
+      "primary": "对象存储",
+      "agent": "✕"
+    },
+    {
+      "name": "source/normalized.md",
+      "stage": "1",
+      "format": "Markdown",
+      "primary": "对象存储",
+      "agent": "✕"
+    },
+    {
+      "name": "source/offset_map.json",
+      "stage": "1",
+      "format": "JSON",
+      "primary": "对象存储",
+      "agent": "✕"
+    },
+    {
+      "name": "source/assets/*",
+      "stage": "1",
+      "format": "png/csv",
+      "primary": "对象存储",
+      "agent": "✕"
+    },
+    {
+      "name": "chunks/chunks.jsonl",
+      "stage": "3",
+      "format": "JSONL",
+      "primary": "对象存储",
+      "agent": "✕(含原值)"
+    },
+    {
+      "name": "chunks/skeletons.jsonl",
+      "stage": "7",
+      "format": "JSONL",
+      "primary": "对象存储",
+      "agent": "② corpus_get_chunk"
+    },
+    {
+      "name": "chunks/embeddings.parquet",
+      "stage": "3",
+      "format": "Parquet",
+      "primary": "向量库",
+      "agent": "✕"
+    },
+    {
+      "name": "graph/nodes.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "图库 :Node",
+      "agent": "② graph_get_node/graph_query"
+    },
+    {
+      "name": "graph/rules.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "图库 :Rule",
+      "agent": "② graph_explain"
+    },
+    {
+      "name": "graph/relations.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "图库 边",
+      "agent": "② graph_impact"
+    },
+    {
+      "name": "graph/claims.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "图库 :Claim",
+      "agent": "②+③"
+    },
+    {
+      "name": "graph/invariants.yaml",
+      "stage": "6",
+      "format": "YAML",
+      "primary": "图库 :Invariant",
+      "agent": "② gate_check"
+    },
+    {
+      "name": "graph/graph.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "对象存储",
+      "agent": "✕(整包不给)"
+    },
+    {
+      "name": "evidence/evidence.yaml",
+      "stage": "4",
+      "format": "YAML",
+      "primary": "PG evidence",
+      "agent": "② evidence_get"
+    },
+    {
+      "name": "evidence/excerpts/*.md",
+      "stage": "4",
+      "format": "Markdown",
+      "primary": "对象存储",
+      "agent": "② evidence_get(with_excerpt)"
+    },
+    {
+      "name": "reasoning/derivation.yaml",
+      "stage": "5",
+      "format": "YAML",
+      "primary": "图库(链可由边重建)+对象存储",
+      "agent": "② graph_explain"
+    },
+    {
+      "name": "reasoning/decisions.yaml",
+      "stage": "5",
+      "format": "YAML",
+      "primary": "PG decisions",
+      "agent": "② graph_why"
+    },
+    {
+      "name": "reasoning/trace.jsonl",
+      "stage": "5",
+      "format": "JSONL",
+      "primary": "事件流",
+      "agent": "✕"
+    },
+    {
+      "name": "quality/conflicts.yaml",
+      "stage": "6",
+      "format": "YAML",
+      "primary": "图库 :Conflict",
+      "agent": "③ 内嵌"
+    },
+    {
+      "name": "quality/gaps.yaml",
+      "stage": "6",
+      "format": "YAML",
+      "primary": "图库 :Gap",
+      "agent": "③ 内嵌"
+    },
+    {
+      "name": "quality/gate_report.yaml",
+      "stage": "6",
+      "format": "YAML",
+      "primary": "PG gate_report",
+      "agent": "①(仅结论行)"
+    },
+    {
+      "name": "style/style_profile.yaml",
+      "stage": "7",
+      "format": "YAML",
+      "primary": "PG style_profile",
+      "agent": "① 注入"
+    },
+    {
+      "name": "style/section_templates/*.yaml",
+      "stage": "7",
+      "format": "YAML",
+      "primary": "对象存储",
+      "agent": "② corpus_get_skeleton"
+    },
+    {
+      "name": "index/node_index.json",
+      "stage": "7",
+      "format": "JSON",
+      "primary": "PG node_mention 表",
+      "agent": "② corpus_where_used"
+    },
+    {
+      "name": "index/term_index.json",
+      "stage": "7",
+      "format": "JSON",
+      "primary": "PG term 表",
+      "agent": "①(术语表段)"
+    },
+    {
+      "name": "index/signature.yaml",
+      "stage": "7",
+      "format": "YAML",
+      "primary": "向量库 + PG",
+      "agent": "—"
+    }
+  ],
+  "doc_type": "高校科研用房可行性研究报告",
+  "title": "上海财经大学中山北一路校区大数据研究中心 可行性研究报告（修订版）",
+  "source_original_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+  "asset_domains": 16,
+  "asset_domain_index": "reuse/domains.yaml",
+  "asset_domain_dir": "reuse/domains/",
+  "status_note": "门禁全部通过；当前状态保持不变（published 仅由用户确认产生）",
+  "writing_contract": {
+    "consumer": "推演写作专家（推演式报告写作 / corpus-deductive-writer）",
+    "entry": "manifest.yaml",
+    "channels": {
+      "inject": [
+        "manifest.constraints",
+        "meta.yaml",
+        "outline.yaml（本节）",
+        "style/style_profile.yaml",
+        "index/term_index.json",
+        "quality/gate_report.yaml（结论行）"
+      ],
+      "tool": [
+        "corpus_get_skeleton",
+        "corpus_get_chunk",
+        "graph_query",
+        "graph_explain",
+        "graph_why",
+        "evidence_get",
+        "corpus_where_used",
+        "graph_impact"
+      ],
+      "inline_workpackage": "wp/<NN>-<节>.yaml"
+    },
+    "placeholder_form": "{{node:N-xxxxxxxxxxxx}}",
+    "node_contract": {
+      "kinds": [
+        "quantity",
+        "judgment",
+        "text"
+      ],
+      "status_values": [
+        "defined",
+        "undefined",
+        "pending_review"
+      ],
+      "fields": [
+        "id",
+        "subject",
+        "predicate",
+        "value",
+        "unit",
+        "kind",
+        "caliber",
+        "status",
+        "instruction",
+        "inheritable",
+        "source"
+      ]
+    },
+    "skeleton_dir": "style/section_skeletons/",
+    "workpackage_dir": "wp/",
+    "gate": "gate_check_draft 由编排器调用，不由写作 Agent 自判"
+  },
+  "gate_summary": {
+    "verdict": "passed",
+    "closure": {
+      "pass": 7,
+      "FAIL": 0,
+      "invalid": 0,
+      "total": 7
+    },
+    "stage_gates": {
+      "pass": 12,
+      "FAIL": 0,
+      "invalid": 0,
+      "total": 12
+    },
+    "objective": {
+      "pass": 13,
+      "FAIL": 0,
+      "invalid": 1,
+      "total": 14
+    },
+    "blocking_count": 0,
+    "invalid_count": 1,
+    "checked_at_source": "quality/verify_pipeline.yaml"
+  }
+}

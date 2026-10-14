@@ -1,0 +1,154 @@
+{
+  "id": "prompt",
+  "core_domain": "提示词资产",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本报告归纳，待审核）",
+  "depends_on": [
+    "skill",
+    "report_structure"
+  ],
+  "dependents": [],
+  "impacted_assets": [
+    "prompt"
+  ],
+  "dependency_closure": [
+    "function",
+    "ontology",
+    "prompt",
+    "report_structure",
+    "rule",
+    "skill",
+    "variable"
+  ],
+  "assembly_input": [
+    "系统提示词",
+    "任务模板",
+    "输入 Schema",
+    "输出 Schema",
+    "项目上下文"
+  ],
+  "assembly_method": "复用稳定模板；按 Schema 动态生成上下文；动态内容与固定规则分离",
+  "mismatch_handling": "新增字段更新上下文构建器；不把字段名简单拼接；明确语义/任务/输出/缺失处理",
+  "assembly_output": [
+    "版本化提示词",
+    "动态上下文",
+    "结构化输出契约"
+  ],
+  "reusable_form": {
+    "templates": {
+      "extraction": "按 schema 输出 JSON；数值必须带单位与原文可检索的 verbatim；同一指标跨章 subject/predicate 必须一致；找不到证据的 Claim 也要抽但 evidence_refs 留空；warrant 原文没写就留空，不代拟。",
+      "writing_discipline": "正文只写 {{节点名}} 占位符，不出现手打数字；冲突以「待审」呈现；缺值写「待X确认后生成」而不是占位文字；不引入图上没有的新事实。",
+      "evidence_grading": "E1 单位内部资料 / E2 规范标准定额 / E3 政策法规与上位规划 / E4 公开统计 / E5 第三方委托成果 / E6 专家判断与类推。"
+    },
+    "dynamic_context": [
+      "项目 meta",
+      "变量字典",
+      "术语表",
+      "冲突待审清单",
+      "缺口清单",
+      "规范在册状态"
+    ],
+    "per_section_file": "style/section_prompts.yaml",
+    "per_section_count": 16,
+    "note": "逐章提示词：领域骨架 + 本项目注入（可用节点/冲突/缺口/依据绑定）。每章是不同的活，不共用一套通用提示词。",
+    "see_also": "style/section_prompts.yaml"
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-04",
+        "role": "constrains",
+        "report": "R-消防用水量合计",
+        "check": "sprinkler",
+        "verdict": "待核查",
+        "basis": [
+          "GB50084-2017 第5.0.1条"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-GB50084-501",
+        "code": "GB50084-2017 第5.0.1条",
+        "role": "domain",
+        "status": "现行；表格数值未取到",
+        "url": "references/raw 摘录页"
+      }
+    ],
+    "constraints": []
+  },
+  "sources": {
+    "chunks": []
+  },
+  "related_issues": [],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": [
+    "reuse/regulatory_dependency.yaml"
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "id": "entity_relation",
+  "core_domain": "实体与关系模型",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本报告归纳，待审核）",
+  "depends_on": [
+    "ontology"
+  ],
+  "dependents": [],
+  "impacted_assets": [
+    "entity_relation"
+  ],
+  "dependency_closure": [
+    "entity_relation",
+    "ontology"
+  ],
+  "assembly_input": [
+    "新项目实体",
+    "实体类型",
+    "属性",
+    "关系",
+    "来源和标识"
+  ],
+  "assembly_method": "实体匹配历史本体类型；解析消歧；建实例与关系；连事实/Claim/证据",
+  "mismatch_handling": "新增 Claim 需加类型/属性及与证据/来源/论证的关系；先扩 Schema 再建实例",
+  "assembly_output": [
+    "项目实体图",
+    "关系实例",
+    "实体映射和消歧记录"
+  ],
+  "reusable_form": {
+    "relation_examples": [
+      {
+        "from": "大数据研究中心",
+        "to": "上海财经大学",
+        "type": "part_of",
+        "note": "机构→单位"
+      },
+      {
+        "from": "大数据研究中心",
+        "to": "中山北一路校区",
+        "type": "located_in",
+        "note": "单体→校区"
+      },
+      {
+        "from": "原第五教学楼",
+        "to": "大数据研究中心",
+        "type": "causes",
+        "note": "拆除重建的因果关系"
+      },
+      {
+        "from": "管理科学与量化信息研究中心",
+        "to": "大数据研究中心",
+        "type": "part_of",
+        "note": "四个科研机构均 part_of"
+      },
+      {
+        "from": "公共服务配套用房·交流讨论室",
+        "to": "公共服务配套用房",
+        "type": "part_of"
+      },
+      {
+        "from": "总投资",
+        "to": "建筑安装工程费用",
+        "type": "depends_on",
+        "note": "费用层级依赖"
+      },
+      {
+        "from": "地上总建筑面积需求",
+        "to": "科研人员规划人数",
+        "type": "depends_on"
+      },
+      {
+        "from": "地上总建筑面积需求",
+        "to": "地上建筑面积",
+        "type": "contradicts",
+        "note": "测算需求大于实建设计，构成必须显式化的矛盾（待审）"
+      },
+      {
+        "from": "EV-必要性-01",
+        "to": "CL-必要性-01",
+        "type": "supports"
+      },
+      {
+        "from": "开工时间",
+        "to": "建设工期",
+        "type": "temporal"
+      }
+    ],
+    "resolution_notes": [
+      "机构名消歧：本报告同时出现「统计与管理学院」「数据科学与统计研究院」「数据科研与统计研究院」——同名异写，须经实体注册表消歧后再建边",
+      "章节标题里的用房与表内的用房须按业务名归一（如「数据/语音通信系统与综合布线系统」是专业系统不是用房）"
+    ]
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [],
+    "mandates": [],
+    "constraints": []
+  },
+  "sources": {
+    "chunks": [
+      "c-223358da3e9d",
+      "c-d8ff50ae58f4",
+      "c-b506cede9b46"
+    ],
+    "claims": [
+      "CL-规模-01"
+    ]
+  },
+  "related_issues": [],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": []
+}

@@ -1,0 +1,7 @@
+{"stage": "1", "event": "normalize", "detail": "ok"}
+{"stage": "2", "event": "outline", "detail": "151 sections"}
+{"stage": "3", "event": "chunk", "detail": "1178 chunks（stage_3_chunk 同步改写 graph）"}
+{"stage": "4", "event": "ontology", "detail": "358 facts"}
+{"stage": "5", "event": "replay", "detail": "2 conflicts"}
+{"stage": "6", "event": "quality", "detail": "REVIEW"}
+{"stage": "7", "event": "desensitize", "detail": "1178 skeletons"}

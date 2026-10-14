@@ -1,0 +1,910 @@
+[
+  {
+    "id": "CL-结论-01",
+    "text": "建设必要性充分：项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-02",
+      "EV-内部-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设必要性充分",
+      "grounds": "四条分立必要性论点（科研水平/上海大数据发展/校区设施/双一流）",
+      "warrant": "（原文未单列保证；由四条分论点合取支撑）",
+      "backing": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》等",
+      "qualifier": "充分",
+      "rebuttal": "——"
+    },
+    "source": "c-f7ce7a666fc2",
+    "confidence": null
+  },
+  {
+    "id": "CL-结论-05",
+    "text": "项目建成后效益显著：为上海财经大学建设成为一流的研究型大学做好基建保障；有利于提升学科的科研水平，促进相关学科的快速发展；有利于优化校园环境，提升上海财经大学的校园形象。因此本项目建成后具有良好的社会效益。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-内部-06"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目建成后具有良好的社会效益",
+      "grounds": "基建保障/科研水平提升/校园环境优化",
+      "warrant": "（原文未单列保证）",
+      "backing": "第14章 社会效益",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-4b50eab4af10",
+    "confidence": null
+  },
+  {
+    "id": "CL-结论-03",
+    "text": "建设规模合理：拆除面积2758平方米；新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）。项目建设内容明确，建设规模合理。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-指标-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建设规模合理",
+      "grounds": "拆除 2758 ㎡；新建总建筑面积 18319 ㎡（地上 18000 / 地下 319）",
+      "warrant": "设计规模落在按人均建筑面积指标测算的用房需求内（见 5.6 规模分析小结）",
+      "backing": "《普通高等学校建筑面积指标》（建标191-2018）",
+      "qualifier": "基本合理",
+      "rebuttal": "规模小结测算的需求为地上 18040 ㎡，与地上实建 18000 ㎡ 差 40 ㎡（待审）"
+    },
+    "source": "c-a312158f7d29",
+    "confidence": null
+  },
+  {
+    "id": "CL-结论-04",
+    "text": "项目资金来源有保障：项目总投资为人民币13032万元，建设资金由国拨资金及学校自筹解决，资金来源有保障。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-财务-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目资金来源有保障",
+      "grounds": "总投资 13032 万元，国拨资金 + 学校自筹",
+      "warrant": "学校近三年财力持续增长、资产负债率 2.53%（第13章 资金筹措）",
+      "backing": "表13-2/13-3/13-4 学校财务状况",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-871dd0801bf2",
+    "confidence": null
+  },
+  {
+    "id": "CL-建议-01",
+    "text": "综上所述，本项目建设必要性充分，建设内容与规模明确，资金来源有保障，建议有关部门尽早批复本报告，尽早发挥本项目良好的效益。",
+    "claim_type": "recommendation",
+    "type": "suggestion",
+    "status": "supported",
+    "evidence_refs": [
+      "EV-内部-01"
+    ],
+    "premise_refs": [
+      "CL-结论-01",
+      "CL-结论-03",
+      "CL-结论-04"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建议有关部门尽早批复本报告",
+      "grounds": "必要性充分、内容与规模明确、资金来源有保障",
+      "warrant": "可行性研究报告获批是项目进入初步设计的前置行政程序",
+      "backing": "《政府投资项目可行性研究报告编写通用大纲》（发改投资规〔2023〕304号）",
+      "qualifier": "尽早",
+      "rebuttal": "拆除手续尚在办理中（原文未闭合）"
+    },
+    "source": "c-7c4ec1dfdb41",
+    "confidence": null
+  },
+  {
+    "id": "CL-必要性-00",
+    "text": "为实现上海财经大学“初步建成具有鲜明财经特色的高水平研究型大学”的战略目标，推进学校“统计学”世界一流学科的发展，本项目提出对中山北一路校区原有第五教学楼进行拆除，重新建设大数据研究中心。",
+    "claim_type": "inference",
+    "type": "causal",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-内部-05",
+      "EV-内部-06"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目应当立项建设",
+      "grounds": "学校战略目标 + 统计学一流学科发展 + 现有第五教学楼条件不足",
+      "warrant": "一流学科建设依赖科研能力提升，而科研用房是科研能力的基础与支撑（原文第3.2.3节给出）",
+      "backing": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-e6a978691d8c",
+    "confidence": null
+  },
+  {
+    "id": "CL-必要性-01",
+    "text": "本项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-02",
+      "EV-内部-03"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设是提升我国新兴领域科研水平、加速向创新型经济转型发展的需要",
+      "grounds": "《中共中央关于制定国民经济和社会发展第十三个五年规划》要求深入实施创新驱动发展战略、推进有特色高水平大学和科研院所建设；本项目已纳入学校“十三五”基建规划",
+      "warrant": "本项目属科研用房建设，其规模与技术要求由上位规划、建设标准与设计规范共同约束；据以推得本结论。（原报告未单独写出该推理许可，此处按其可推出的路径补记）",
+      "backing": "——",
+      "qualifier": "因此",
+      "rebuttal": "——",
+      "warrant_note": "由本轮补记，原文未显式写出"
+    },
+    "source": "c-bf70219e8bc1",
+    "confidence": null
+  },
+  {
+    "id": "CL-必要性-02",
+    "text": "本项目是推进上海大数据研究与发展，加快建设数字中国的需要。上海财经大学作为国家经济学基础人才基地，目前尚未建立相应的大数据专业研究平台，本项目的建设是填补上海财经大学大数据研究机构空缺的必要举措。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-03",
+      "EV-对标-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设是推进上海大数据研究与发展、加快建设数字中国的需要",
+      "grounds": "国家大数据战略；上海市已建成复旦大学大数据研究院、上海交通大学大数据工程技术研究中心、华东理工大学金融大数据研究中心；上海财经大学尚无大数据专业研究平台",
+      "warrant": "同类高校已建、本校缺失 ⇒ 本校需要建设（原文以“填补空缺”表述，未展开保证）",
+      "backing": "《国务院关于印发促进大数据发展行动纲要的通知》（国发〔2015〕50号）",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-4061fbc7f478",
+    "confidence": null
+  },
+  {
+    "id": "CL-必要性-03",
+    "text": "本项目的建设是改善中山北一路校区设施条件，建立良好科研环境的需要。中山北一路校区成立于90年代，校区内部分设备设施已不能满足目前学校的发展需求。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-现状-01",
+      "EV-现状-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设是改善中山北一路校区设施条件、建立良好科研环境的需要",
+      "grounds": "中山北一路校区成立于 90 年代，部分设备设施已不能满足学校发展需求；原第五教学楼为 1960 年代建造的四层框架结构，建筑面积 2758 ㎡，经久失修、功能及布局不能适应需求",
+      "warrant": "既有建筑老化失修、功能不符 ⇒ 需要重建（原文以“后勤和使用部门多次提出修缮改造建议”佐证需求真实性）",
+      "backing": "学校后勤与使用部门的修缮改造建议",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-8d533f9bfa12",
+    "confidence": null
+  },
+  {
+    "id": "CL-必要性-04",
+    "text": "本项目的建设是推动学校“双一流”建设的非常重要的基础设施项目，也是顺利实现学校建设目标的重要保障。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-05",
+      "EV-政策-06",
+      "EV-内部-05"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设是响应“双一流”高校建设、实现高水平研究型大学战略目标的需要",
+      "grounds": "2017年9月学校入选一流学科建设高校，统计学入选一流学科；《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》（发改社会〔2017〕1916号）明确支持学科建设所需基础设施建设",
+      "warrant": "国家“双一流”建设项目储备明确支持学科科研用房 ⇒ 本项目属于可申报范围",
+      "backing": "发改社会〔2017〕1916号",
+      "qualifier": "非常重要",
+      "rebuttal": "——"
+    },
+    "source": "c-e71ce9ca221c",
+    "confidence": null
+  },
+  {
+    "id": "CL-结论-02",
+    "text": "综上所述，项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。因此，项目的建设是十分必要的。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-02",
+      "EV-政策-03",
+      "EV-现状-01",
+      "EV-政策-06"
+    ],
+    "premise_refs": [
+      "CL-必要性-01",
+      "CL-必要性-02",
+      "CL-必要性-03",
+      "CL-必要性-04"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目的建设是十分必要的",
+      "grounds": "四条分立必要性论点的合取",
+      "warrant": "四条分论点各自成立且覆盖充分 ⇒ 整体必要性成立",
+      "backing": "第3.2节",
+      "qualifier": "十分",
+      "rebuttal": "——"
+    },
+    "source": "c-82daf88c316c",
+    "confidence": null
+  },
+  {
+    "id": "CL-规模-01",
+    "text": "本项目地上总建筑面积需求合计为18040平方米，设计总建筑面积18319平方米（地上18000、地下319）。设计规模在各类用房面积需求范围内，规模设置合理，基本能够满足各类用房的实际使用需求。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-02"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "设计规模合理，基本能够满足使用需求",
+      "grounds": "人均指标法测算地上总建筑面积需求 18040 ㎡；设计地上建筑面积 18000 ㎡",
+      "warrant": "**（原文表述为“在各类用房面积需求范围内”）** 但 18000 ㎡ < 18040 ㎡，地上实建少于测算需求 40 ㎡，该保证不成立（待审）",
+      "backing": "《普通高等学校建筑面积指标》（建标191-2018）",
+      "qualifier": "基本",
+      "rebuttal": "地上实建 18000 ㎡ 小于需求 18040 ㎡，缺口 40 ㎡"
+    },
+    "source": "c-b506cede9b46",
+    "confidence": null
+  },
+  {
+    "id": "CL-规模-02",
+    "text": "本项目科研用房人均建筑面积指标应不超过16㎡/人，研究生、博士生、访问学者用房人均建筑面积指标应不超过8㎡/人。",
+    "claim_type": "fact",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-指标-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目采用 16 ㎡/人（科研人员）与 8 ㎡/人（研究生等）两档人均建筑面积指标",
+      "grounds": "《普通高等学校建筑面积指标》（建标191-2018）对专职科研机构用房规划建筑面积指标的规定",
+      "warrant": "规范给定的指标上限即为本项目取值依据",
+      "backing": "建标191-2018",
+      "qualifier": "不超过",
+      "rebuttal": "——"
+    },
+    "source": "c-79069a20782b",
+    "confidence": null
+  },
+  {
+    "id": "CL-技术-01",
+    "text": "本工程建筑类别为3类，建筑设计使用年限为50年；本项目为高层民用建筑，建筑耐火等级为二级；本工程按7度抗震设计。",
+    "claim_type": "fact",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-建筑-04",
+      "EV-规范-建筑-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目设计等级为：3类建筑 / 50年 / 耐火二级 / 抗震7度",
+      "grounds": "《民用建筑设计通则》建筑类别划分；《建筑设计防火规范》高层民用建筑耐火等级；国家抗震烈度划分区域表",
+      "warrant": "规范给定的分类与设防标准适用于本项目所在地与建筑高度",
+      "backing": "GB50352-2005 / GB50016-2014 / 抗震区划表",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-c6ad2c50804d",
+    "confidence": null
+  },
+  {
+    "id": "CL-技术-02",
+    "text": "上部结构采用装配整体式钢筋混凝土框架-剪力墙结构；地下室基础拟采用桩筏基础，基础埋深不小于3.5m。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-结构-03",
+      "EV-规范-结构-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目采用装配整体式钢筋混凝土框架-剪力墙结构 + 桩筏基础",
+      "grounds": "12 层、建筑高度控制 60m、抗震 7 度、IV 类场地、特征周期 0.9s；装配式政策要求",
+      "warrant": "该结构形式在给定高度与抗震条件下满足承载与变形要求（原文给出，属方案比选结论）",
+      "backing": "JGJ 3-2010 / GB50011-2010",
+      "qualifier": "拟采用",
+      "rebuttal": "——"
+    },
+    "source": "c-ed400c9129b8",
+    "confidence": null
+  },
+  {
+    "id": "CL-技术-03",
+    "text": "本工程采用变制冷剂流量多联机系统作为空调冷热源，室外机集中放置在屋面上，室内机为卡式或内藏风管机，并设新风机组供新风。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-负荷-01",
+      "EV-规范-暖通-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目空调系统采用变制冷剂流量多联机系统",
+      "grounds": "冷负荷 2473kW、热负荷 1465kW；建筑为 12 层科研用房，房间使用时间不统一",
+      "warrant": "多联机系统适合分区、分时使用且无需集中机房（属方案比选结论，原文未展开比选过程）",
+      "backing": "JGJ 174-2010 / DGJ08-107-2015",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-2fda396d40da",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险-01",
+    "text": "各空调通风系统主管道上的防火阀与该系统的风机联锁；排烟防火阀在280℃时应自行关闭，并应连锁关闭排烟风机和补风机。",
+    "claim_type": "fact",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-暖通-05"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "排烟与防火阀联锁控制要求已落实",
+      "grounds": "GB51251-2017 对排烟风机与防火阀联锁的规定",
+      "warrant": "规范强制性条文适用于本项目",
+      "backing": "GB51251-2017",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-a2fc352d7d9b",
+    "confidence": null
+  },
+  {
+    "id": "CL-节能-01",
+    "text": "规定性指标满足上海市《公共建筑节能设计标准》(DGJ08-107-2012)的要求；与上海市《公共建筑节能设计标准》(DGJ08-107-2012)相比较，该建筑物满足建筑节能综合指标计算的基本要求以及建筑节能设计补充要求，因此该建筑是满足现行节能规范要求的。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-节能-02",
+      "EV-规范-暖通-03"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "该建筑满足现行节能规范要求",
+      "grounds": "规定性指标满足 DGJ08-107-2012；与 DGJ08-107-2012 比较满足综合指标与补充要求",
+      "warrant": "**（保证不成立）** 同一报告第 6.7 节与第 7.3 节又引用 DGJ08-107-2015，且 7.1 节同时列 GB50189-2005；以 2012 版作为“现行”缺乏依据（待审）",
+      "backing": "DGJ08-107-2012 / DGJ08-107-2015 / GB50189-2005",
+      "qualifier": "满足现行",
+      "rebuttal": "节能标准版本在本报告内不唯一，无法判定何为“现行”"
+    },
+    "source": "c-a907a1be0c64",
+    "confidence": null
+  },
+  {
+    "id": "CL-环评-01",
+    "text": "只要在项目建设过程中，按“三同时”认真落实污染治理措施，对废气、废水、噪声、固体废物等污染因子进行有效控制，做到达标排放，项目施工期和运营期都不会对环境造成大的影响。因此，从环境保护的角度来讲，本项目的建设是可行的。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-环评-01",
+      "EV-规范-环评-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "从环境保护角度，本项目建设是可行的",
+      "grounds": "施工期与运营期四类污染因子均有对应防治措施；达标排放",
+      "warrant": "落实“三同时”且达标排放 ⇒ 不对环境造成大的影响",
+      "backing": "《建设项目环境保护管理办法》/《中华人民共和国环境保护法》",
+      "qualifier": "不会造成大的影响",
+      "rebuttal": "运营期噪声源为水泵、换排气风机及车辆，未给出厂界噪声预测值"
+    },
+    "source": "c-0651c74bb373",
+    "confidence": null
+  },
+  {
+    "id": "CL-安全-01",
+    "text": "通过落实以上措施，将能够保证施工人员、进出师生的安全和健康。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-安全-01",
+      "EV-规范-安全-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "落实措施后可保证施工人员与师生安全和健康",
+      "grounds": "施工期与运营期分别给出防自然灾害/安全教育/防机械伤害/安全用电/防火灾/防触电/防噪防尘/防坠落/人流安全等措施",
+      "warrant": "措施覆盖全部已识别危害因素 ⇒ 安全可控",
+      "backing": "《中华人民共和国安全生产法》/ GB50223-2008",
+      "qualifier": "能够保证",
+      "rebuttal": "实验室专业危害（辐射、化学品、生物）仅以“采取屏蔽措施”一句覆盖，未给出具体限值"
+    },
+    "source": "c-31dde952ba5c",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险-01",
+    "text": "施工环境污染风险：施工期污染物排放极有可能发生，但项目建设规模不是很大，属于一般的建筑工程，且风险也会随着项目施工结束而消失，施工环境污染影响较小。在装修过程中施工噪声发生的可能性较大，可能影响到师生日常教学活动及周边住宅区域居民的正常休息。",
+    "claim_type": "hypothesis",
+    "type": "risk",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-环评-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "施工环境污染风险等级为较小",
+      "grounds": "项目规模不大、属一般建筑工程、风险随施工结束消失",
+      "warrant": "风险时间有限且规模小 ⇒ 风险程度低",
+      "backing": "GB12523-2011 排放限值",
+      "qualifier": "影响较小",
+      "rebuttal": "装修期噪声对师生教学与周边居民休息影响可能较大（原文自述）"
+    },
+    "source": "c-17b54464cc07",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险-02",
+    "text": "交通出行及安全风险：项目施工车辆的进出、建材及拆除物的占道堆放可能会对校内师生的出行带来影响与不便。",
+    "claim_type": "hypothesis",
+    "type": "risk",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-现状-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "存在交通出行及安全风险",
+      "grounds": "施工车辆进出、建材及拆除物占道堆放",
+      "warrant": "施工占道影响通行 ⇒ 存在交通安全风险",
+      "backing": "——",
+      "qualifier": "可能",
+      "rebuttal": "——"
+    },
+    "source": "c-04943ad00e13",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险-03",
+    "text": "工程管理及施工安全风险：农民工是社会上的敏感话题，拖欠农民工工资和发生工伤事故极易引发影响社会稳定的事件，但本项目体量不大，项目周期较短，同时合理选拔施工单位，建立严格的内控制度，该风险产生的概率较小。但此风险一旦产生，对建设单位将产生较大的负面社会舆论等，风险影响程度较为严重。",
+    "claim_type": "hypothesis",
+    "type": "risk",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-稳评-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "工程管理及施工安全风险概率较小但影响程度较严重",
+      "grounds": "项目体量不大、周期较短、严格选拔施工单位并建立内控制度",
+      "warrant": "内控严格 ⇒ 欠薪与工伤概率低；但一旦发生负面舆论影响大",
+      "backing": "发改投资[2012]2492号 风险等级划分",
+      "qualifier": "概率较小/影响较严重",
+      "rebuttal": "——"
+    },
+    "source": "c-792e2dd5ca3f",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险等级-01",
+    "text": "通过落实到位以上提出的防范、化解措施，能够可行、可控的避免引发社会风险的事件产生……确定本项目的措施后风险等级为低风险。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-稳评-01",
+      "EV-规范-稳评-02"
+    ],
+    "premise_refs": [
+      "CL-风险-01",
+      "CL-风险-02",
+      "CL-风险-03"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目措施后社会稳定风险等级为低风险",
+      "grounds": "三类风险因素经防范化解后影响程度均下降；项目能获多数群众支持",
+      "warrant": "**（原文未给出量化打分）** 低风险判定建立在定性分析之上，未给出单因素风险权重与综合风险指数计算过程",
+      "backing": "发改投资[2012]2492号 三级风险划分",
+      "qualifier": "低风险",
+      "rebuttal": "风险调查采用实地观察法、文献法、案例参照法、风险综合评价法，但未给出调查样本与量化结论"
+    },
+    "source": "c-1dc4966aac97",
+    "confidence": null
+  },
+  {
+    "id": "CL-风险结论-01",
+    "text": "本项目不会引发较大社会稳定风险问题，拟建项目合法、合理、可控、可行，项目风险等级评判为低风险。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-规范-稳评-01"
+    ],
+    "premise_refs": [
+      "CL-风险等级-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目合法、合理、可控、可行，风险等级低",
+      "grounds": "风险等级评判结果",
+      "warrant": "风险等级低 ⇒ 项目可行",
+      "backing": "发改投资[2012]2492号",
+      "qualifier": "",
+      "rebuttal": "——"
+    },
+    "source": "c-a635928b8338",
+    "confidence": null
+  },
+  {
+    "id": "CL-资金-01",
+    "text": "项目建设资金由国拨资金和学校自筹解决，其中：申请国拨资金6000万元（占比46.04%），学校自筹资金7032万元（实施周期3年，年均资金需求量约2300万元）。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-财务-01",
+      "EV-财务-02"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目资金筹措方案可行、资金来源有保障",
+      "grounds": "国拨 6000 万元 + 自筹 7032 万元；学校近三年收入持续增长，2018 年总收入 168206.52 万元、资产负债率 2.53%",
+      "warrant": "学校财力可覆盖年均约 2300 万元自筹需求，且已列入学校基建规划",
+      "backing": "表13-2/13-3/13-4 学校财务状况 / 上财委会〔2019〕5号",
+      "qualifier": "有保障",
+      "rebuttal": "国拨资金 6000 万元尚未见批复文件（附件仅列党委常委会纪要，未含上级批复）"
+    },
+    "source": "c-439358c3c12f",
+    "confidence": null
+  },
+  {
+    "id": "CL-效益-01",
+    "text": "本项目建成后的社会效益显著。本项目将对中山北一路校区原有第五教学楼进行拆除后新建大数据研究中心，为管理科学与量化信息研究中心、理论计算机研究中心、应用统计研究中心、数据科研与统计研究院等科研单位提供优质的科研条件。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-内部-06"
+    ],
+    "premise_refs": [
+      "CL-结论-05"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "项目建成后社会效益显著",
+      "grounds": "为四个科研单位提供科研条件；优化学科科研环境；打造校区新地标",
+      "warrant": "科研设施条件改善 ⇒ 学科科研水平提升 ⇒ 社会效益",
+      "backing": "第14章 社会效益",
+      "qualifier": "显著",
+      "rebuttal": "社会效益为定性表述，未给出可核的量化指标"
+    },
+    "source": "c-8b365586dd1d",
+    "confidence": null
+  },
+  {
+    "id": "CL-结论-01",
+    "text": "建设必要性充分：项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。",
+    "claim_type": "conclusion",
+    "type": "judgment",
+    "status": "unverified",
+    "evidence_refs": [
+      "EV-政策-02",
+      "EV-内部-01"
+    ],
+    "premise_refs": [],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "本项目建设必要性充分",
+      "grounds": "四条分立必要性论点",
+      "warrant": "**（原文未单列保证）**",
+      "backing": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+      "qualifier": "充分",
+      "rebuttal": "——"
+    },
+    "source": "c-f7ce7a666fc2",
+    "confidence": null
+  },
+  {
+    "id": "CL-RS-104-03",
+    "text": "建设内容及规模：本项目将对中山北一路校区的原有第五教学楼进行拆除，拆除面积2758平方米",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-8d533f9bfa12",
+    "evidence_refs": [
+      "EV-现状-01",
+      "EV-现状-02"
+    ],
+    "premise_refs": [
+      "CL-必要性-03"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建设内容及规模：本项目将对中山北一路校区的原有第五教学楼进行拆除，拆除面积2758平方米",
+      "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-必要性-03",
+    "restated_from_chapter": "项目建设背景及必要性分析"
+  },
+  {
+    "id": "CL-RS-106-01",
+    "text": "新建总建筑面积18319平方米，其中地上建筑面积18000平方米，地下建筑面积319平方米（设备用房）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-b506cede9b46",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "新建总建筑面积18319平方米，其中地上建筑面积18000平方米，地下建筑面积319平方米（设备用房）",
+      "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-规模-01",
+    "restated_from_chapter": "项目建设内容及规模"
+  },
+  {
+    "id": "CL-RS-112-01",
+    "text": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-b506cede9b46",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+      "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-规模-01",
+    "restated_from_chapter": "项目建设内容及规模"
+  },
+  {
+    "id": "CL-RS-113-01",
+    "text": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-439358c3c12f",
+    "evidence_refs": [
+      "EV-财务-01",
+      "EV-财务-02"
+    ],
+    "premise_refs": [
+      "CL-资金-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+      "grounds": "复述 CL-资金-01（投资估算及资金筹措）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-资金-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-资金-01",
+    "restated_from_chapter": "投资估算及资金筹措"
+  },
+  {
+    "id": "CL-RS-114-01",
+    "text": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-b506cede9b46",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+      "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-规模-01",
+    "restated_from_chapter": "项目建设内容及规模"
+  },
+  {
+    "id": "CL-RS-124-03",
+    "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-8d533f9bfa12",
+    "evidence_refs": [
+      "EV-现状-01",
+      "EV-现状-02"
+    ],
+    "premise_refs": [
+      "CL-必要性-03"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米",
+      "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-必要性-03",
+    "restated_from_chapter": "项目建设背景及必要性分析"
+  },
+  {
+    "id": "CL-RS-125-01",
+    "text": "新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-b506cede9b46",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "总论",
+    "restates_target": "CL-规模-01",
+    "restated_from_chapter": "项目建设内容及规模"
+  },
+  {
+    "id": "CL-RS-209-03",
+    "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-8d533f9bfa12",
+    "evidence_refs": [
+      "EV-现状-01",
+      "EV-现状-02"
+    ],
+    "premise_refs": [
+      "CL-必要性-03"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "结论与建议",
+    "restates_target": "CL-必要性-03",
+    "restated_from_chapter": "项目建设背景及必要性分析"
+  },
+  {
+    "id": "CL-RS-209-01",
+    "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+    "type": "restatement",
+    "claim_type": "conclusion",
+    "status": "supported",
+    "confidence": "high",
+    "source": "c-b506cede9b46",
+    "evidence_refs": [
+      "EV-需求-01",
+      "EV-指标-01"
+    ],
+    "premise_refs": [
+      "CL-规模-01"
+    ],
+    "derived_from": [],
+    "toulmin": {
+      "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "grounds": "复述 CL-规模-01（项目建设内容及规模）",
+      "warrant": "总论/结论按体例复述各章结论，数值与 CL-规模-01 一致",
+      "backing": "可行性研究报告编写体例",
+      "qualifier": "在本报告范围内",
+      "rebuttal": "若被复述章数值变更，本节须同步"
+    },
+    "restated_chapter": "结论与建议",
+    "restates_target": "CL-规模-01",
+    "restated_from_chapter": "项目建设内容及规模"
+  }
+]

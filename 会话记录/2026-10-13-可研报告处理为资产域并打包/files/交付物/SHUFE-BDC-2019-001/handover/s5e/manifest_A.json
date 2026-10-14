@@ -1,0 +1,22 @@
+{
+  "stage": "s5e",
+  "script": "opt25.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/source_ledger.json",
+    "SHUFE-BDC-2019-001/graph/relations.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/source_ledger.json",
+      "sha256": "b09982601670de47102dac87b7709855",
+      "bytes": 18292
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "sha256": "a057612ab004193d5d0fa95bc3886d65",
+      "bytes": 52262
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

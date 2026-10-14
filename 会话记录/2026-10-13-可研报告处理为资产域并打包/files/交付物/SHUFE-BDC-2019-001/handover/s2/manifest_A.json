@@ -1,0 +1,16 @@
+{
+  "stage": "s2",
+  "script": "s0b_remap.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "build/remap_report.json"
+  ],
+  "produced": [
+    {
+      "path": "build/remap_report.json",
+      "sha256": "0fbd16b369598d50652f96a0e2159083",
+      "bytes": 1195
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

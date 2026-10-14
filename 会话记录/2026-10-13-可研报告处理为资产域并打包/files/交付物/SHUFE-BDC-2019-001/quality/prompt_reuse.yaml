@@ -1,0 +1,313 @@
+{
+  "verdict": "invalid",
+  "runs": 42,
+  "total_chunk_records": 4258,
+  "gaps": 0,
+  "failures": [],
+  "invalid_count": 40,
+  "invalid": [
+    "DOC-REPORT-01.claim_extraction: 1178/1178 片未调用（无 provider）",
+    "DOC-REPORT-01.fact_extraction: 1178/1178 片未调用（无 provider）",
+    "EXT-00.claim_extraction: 14/14 片未调用（无 provider）",
+    "EXT-00.fact_extraction: 14/14 片未调用（无 provider）",
+    "EXT-01.claim_extraction: 144/144 片未调用（无 provider）"
+  ],
+  "reuse_ok": true,
+  "stats": [
+    {
+      "run": "DOC-REPORT-01.claim_extraction",
+      "records": 1178,
+      "chunks": 1178,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 1178
+    },
+    {
+      "run": "DOC-REPORT-01.fact_extraction",
+      "records": 1178,
+      "chunks": 1178,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 1178
+    },
+    {
+      "run": "EXT-00.claim_extraction",
+      "records": 14,
+      "chunks": 14,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 14
+    },
+    {
+      "run": "EXT-00.fact_extraction",
+      "records": 14,
+      "chunks": 14,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 14
+    },
+    {
+      "run": "EXT-01.claim_extraction",
+      "records": 144,
+      "chunks": 144,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 144
+    },
+    {
+      "run": "EXT-01.fact_extraction",
+      "records": 144,
+      "chunks": 144,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 144
+    },
+    {
+      "run": "EXT-02.claim_extraction",
+      "records": 15,
+      "chunks": 15,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 15
+    },
+    {
+      "run": "EXT-02.fact_extraction",
+      "records": 15,
+      "chunks": 15,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 15
+    },
+    {
+      "run": "EXT-03.claim_extraction",
+      "records": 200,
+      "chunks": 200,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 200
+    },
+    {
+      "run": "EXT-03.fact_extraction",
+      "records": 200,
+      "chunks": 200,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 200
+    },
+    {
+      "run": "EXT-04.claim_extraction",
+      "records": 56,
+      "chunks": 56,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 56
+    },
+    {
+      "run": "EXT-04.fact_extraction",
+      "records": 56,
+      "chunks": 56,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 56
+    },
+    {
+      "run": "EXT-05.claim_extraction",
+      "records": 63,
+      "chunks": 63,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 63
+    },
+    {
+      "run": "EXT-05.fact_extraction",
+      "records": 63,
+      "chunks": 63,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 63
+    },
+    {
+      "run": "EXT-06.claim_extraction",
+      "records": 39,
+      "chunks": 39,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 39
+    },
+    {
+      "run": "EXT-06.fact_extraction",
+      "records": 39,
+      "chunks": 39,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 39
+    },
+    {
+      "run": "EXT-07.claim_extraction",
+      "records": 5,
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 5
+    },
+    {
+      "run": "EXT-07.fact_extraction",
+      "records": 5,
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 5
+    },
+    {
+      "run": "EXT-08.claim_extraction",
+      "records": 38,
+      "chunks": 38,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 38
+    },
+    {
+      "run": "EXT-08.fact_extraction",
+      "records": 38,
+      "chunks": 38,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 38
+    },
+    {
+      "run": "EXT-09.claim_extraction",
+      "records": 91,
+      "chunks": 91,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 91
+    },
+    {
+      "run": "EXT-09.fact_extraction",
+      "records": 91,
+      "chunks": 91,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 91
+    },
+    {
+      "run": "EXT-10.claim_extraction",
+      "records": 30,
+      "chunks": 30,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 30
+    },
+    {
+      "run": "EXT-10.fact_extraction",
+      "records": 30,
+      "chunks": 30,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 30
+    },
+    {
+      "run": "EXT-11.claim_extraction",
+      "records": 156,
+      "chunks": 156,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 156
+    },
+    {
+      "run": "EXT-11.fact_extraction",
+      "records": 156,
+      "chunks": 156,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 156
+    },
+    {
+      "run": "EXT-12.claim_extraction",
+      "records": 5,
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 5
+    },
+    {
+      "run": "EXT-12.fact_extraction",
+      "records": 5,
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 5
+    },
+    {
+      "run": "EXT-13.claim_extraction",
+      "records": 4,
+      "chunks": 4,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 4
+    },
+    {
+      "run": "EXT-13.fact_extraction",
+      "records": 4,
+      "chunks": 4,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 4
+    },
+    {
+      "run": "EXT-14.claim_extraction",
+      "records": 12,
+      "chunks": 12,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 12
+    },
+    {
+      "run": "EXT-14.fact_extraction",
+      "records": 12,
+      "chunks": 12,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 12
+    },
+    {
+      "run": "EXT-15.claim_extraction",
+      "records": 3,
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 3
+    },
+    {
+      "run": "EXT-15.fact_extraction",
+      "records": 3,
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 3
+    },
+    {
+      "run": "EXT-16.claim_extraction",
+      "records": 7,
+      "chunks": 7,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 7
+    },
+    {
+      "run": "EXT-16.fact_extraction",
+      "records": 7,
+      "chunks": 7,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 7
+    },
+    {
+      "run": "EXT-17.claim_extraction",
+      "records": 3,
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 3
+    },
+    {
+      "run": "EXT-17.fact_extraction",
+      "records": 3,
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 3
+    },
+    {
+      "run": "EXT-18.claim_extraction",
+      "records": 1,
+      "chunks": 0,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 0
+    },
+    {
+      "run": "EXT-18.fact_extraction",
+      "records": 1,
+      "chunks": 0,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 0
+    },
+    {
+      "run": "EXT-19.claim_extraction",
+      "records": 65,
+      "chunks": 65,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 65
+    },
+    {
+      "run": "EXT-19.fact_extraction",
+      "records": 65,
+      "chunks": 65,
+      "distinct_prompt_sha256": 1,
+      "not_invoked": 65
+    }
+  ],
+  "note": "提示词复用与逐片记录；not_invoked ⇒ invalid（不得视为通过）"
+}

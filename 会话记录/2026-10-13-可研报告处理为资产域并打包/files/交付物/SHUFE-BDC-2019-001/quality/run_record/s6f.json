@@ -1,0 +1,83 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6f",
+  "name": "数据补救",
+  "script": "fix30_remediate.py",
+  "script_sha256": "5b0363359dd52e5f62eb4b156afbcd0c",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:00",
+  "finished_at": "2026-10-14T18:06:00",
+  "elapsed_s": 0.32,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 1321,
+      "sha256": "353261ec26d47a994ddfd3571c9a13f0",
+      "mtime": 1791972360
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/external/effective_dates.yaml",
+    "SHUFE-BDC-2019-001/graph/claims.yaml",
+    "SHUFE-BDC-2019-001/graph/relations.yaml",
+    "SHUFE-BDC-2019-001/handover/s6e/README.md",
+    "SHUFE-BDC-2019-001/handover/s6e/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6f/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6f/manifest_A_s6e.json",
+    "SHUFE-BDC-2019-001/handover/s6f/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6f/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/conflicts.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s6e.json",
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/02-学校简介.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/05-项目建设内容及规模.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/06-项目规划设计方案.yaml"
+  ],
+  "stdout_tail": "{\n  \"asset_slot\": 12,\n  \"func_restore\": 5,\n  \"ledger_entries\": 4,\n  \"relations_added\": 21,\n  \"registered\": {\n    \"conflicts_added\": 10,\n    \"rules_registered\": 9,\n    \"warrant_filled\": 1\n  },\n  \"waivers\": 14\n}\n",
+  "stderr_tail": ""
+}

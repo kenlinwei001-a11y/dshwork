@@ -1,0 +1,75 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5e2",
+  "name": "外部检索文档纳入抽取目标",
+  "script": "s32_external_docs_merge.py",
+  "script_sha256": "78804e6f199ff7f2777c8d6bfe7310bb",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:50",
+  "finished_at": "2026-10-14T18:05:50",
+  "elapsed_s": 0.33,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/documents.yaml",
+    "SHUFE-BDC-2019-001/quality/external_merge_report.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/documents.yaml",
+      "pattern": "SHUFE-BDC-2019-001/documents.yaml",
+      "bytes": 9129,
+      "sha256": "6886370bd94184bd4a729e2fda750837",
+      "mtime": 1791972350
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
+      "bytes": 312,
+      "sha256": "e97cc0562c171f30554ca662b68841a4",
+      "mtime": 1791972350
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/documents.yaml",
+    "SHUFE-BDC-2019-001/quality/external_merge_report.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/documents.yaml",
+    "SHUFE-BDC-2019-001/evidence/evidence.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/handover/s5e/README.md",
+    "SHUFE-BDC-2019-001/handover/s5e/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/manifest_A_s5e.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s5e.json"
+  ],
+  "stdout_tail": "{\n  \"documents\": 21,\n  \"clause_nodes\": 22,\n  \"constraint_nodes\": 17,\n  \"evidence\": 39,\n  \"nodes_total\": 959\n}\n",
+  "stderr_tail": ""
+}

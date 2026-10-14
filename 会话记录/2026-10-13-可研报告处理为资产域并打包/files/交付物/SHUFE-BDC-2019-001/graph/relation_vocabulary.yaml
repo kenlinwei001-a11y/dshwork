@@ -1,0 +1,24 @@
+{
+  "base_relations": [
+    "has_value",
+    "has_attribute",
+    "instance_of",
+    "part_of",
+    "causes",
+    "depends_on",
+    "supports",
+    "contradicts",
+    "temporal",
+    "located_in"
+  ],
+  "claim_relations": {
+    "cites": "claim → mandate/standard：这条结论依据哪条规范",
+    "restates": "claim → claim：总论/结论复述各章结论",
+    "causes": "claim → claim：因果链条",
+    "derives": "claim → claim：显式推演派生",
+    "precedes": "claim → claim：论证顺序/前置条件",
+    "quantifies": "claim → node：结论与其数值绑定",
+    "specializes": "claim → mandate：通则落到本项目"
+  },
+  "note": "7 类 claim 级关系为本次扩展；上游 TEN_RELATIONS 缺这些类型，导致 derived_from 等字段无从填充。"
+}

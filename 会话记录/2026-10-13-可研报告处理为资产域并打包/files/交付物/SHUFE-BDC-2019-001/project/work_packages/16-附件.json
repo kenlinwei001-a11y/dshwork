@@ -1,0 +1,105 @@
+{
+  "work_package_id": "WP-16-附件",
+  "outline": {
+    "section": "16-附件",
+    "title": "附件",
+    "must_cover": [
+      "附件"
+    ],
+    "must_cover_legal": [
+      "附表",
+      "附图",
+      "批复与会议纪要"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-b506ba5e6eaa",
+      "node_id": "N-b506ba5e6eaa",
+      "subject": "附件",
+      "predicate": "清单",
+      "value": "党委常委会会议纪要；项目资金筹措方案说明；虹口校区规划总平面图；项目设计方案图纸；原有第五教学楼拆除手续（待补充）",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-f508d7cfad78"
+    },
+    {
+      "id": "N-c679c4e79bc2",
+      "node_id": "N-c679c4e79bc2",
+      "subject": "原有第五教学楼",
+      "predicate": "拆除手续状态",
+      "value": "待补充",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-5e339feba7c8"
+    },
+    {
+      "id": "EN-0388",
+      "node_id": "EN-0388",
+      "subject": "原有第五教学楼",
+      "predicate": "实体名",
+      "value": "原有第五教学楼",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-5e339feba7c8"
+    },
+    {
+      "id": "EN-0514",
+      "node_id": "EN-0514",
+      "subject": "附件",
+      "predicate": "实体名",
+      "value": "附件",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-f508d7cfad78"
+    }
+  ],
+  "facts_paging": {
+    "total": 4,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "16-附件",
+    "file": "style/section_templates/16-附件.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

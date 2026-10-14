@@ -1,0 +1,34 @@
+{
+  "compile_point": "2019-08",
+  "policy": "标准/规范/政策有时间效应，须标生效时间",
+  "entries": [
+    {
+      "standard": "普通高等学校建筑面积指标》已经有关部门会审，现批准发布，自2018年9月1日起施行",
+      "effective_date": "2018-09-01",
+      "effective_clause": "《普通高等学校建筑面积指标》已经有关部门会审，现批准发布，自2018年9月1日起施行",
+      "supersedes": "普通高等学校建筑规划面积指标",
+      "source": "references/raw"
+    },
+    {
+      "standard": "必须招标的工程项目规定》已经国务院批准，现予公布，自2018年6月1日起施行",
+      "effective_date": "2018-06-01",
+      "effective_clause": "《必须招标的工程项目规定》已经国务院批准，现予公布，自2018年6月1日起施行",
+      "supersedes": "",
+      "source": "references/raw"
+    },
+    {
+      "standard": "绿色建筑评价标准》为国家标准，编号为GB/T50378-2019，自2019年8月1日起实施",
+      "effective_date": "2019-08-01",
+      "effective_clause": "《绿色建筑评价标准》为国家标准，编号为GB/T50378-2019，自2019年8月1日起实施",
+      "supersedes": "",
+      "source": "references/raw"
+    },
+    {
+      "standard": "建筑给水排水设计标准》的公告 \n 　\n \n 现批准《建筑给水排水设计标准》为国家标准，编号为GB50015-2019，自2020年3月1日起实施",
+      "effective_date": "2020-03-01",
+      "effective_clause": "《建筑给水排水设计标准》的公告 \n 　\n \n 现批准《建筑给水排水设计标准》为国家标准，编号为GB50015-2019，自2020年3月1日起实施",
+      "supersedes": "",
+      "source": "references/raw"
+    }
+  ]
+}

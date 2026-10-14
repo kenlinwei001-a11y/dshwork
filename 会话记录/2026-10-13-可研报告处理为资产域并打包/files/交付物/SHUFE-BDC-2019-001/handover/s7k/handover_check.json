@@ -1,0 +1,45 @@
+{
+  "stage": "s7k",
+  "checked_depends_on": [
+    "s7g"
+  ],
+  "A_count": 1,
+  "B_count": 1,
+  "SOP_patterns": 5,
+  "C_entries": 1,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 6,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

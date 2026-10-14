@@ -1,0 +1,87 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7c",
+  "name": "写作投递件",
+  "script": "s14_writing_input.py",
+  "script_sha256": "e5a0c1b514f3aa370f273ea73a2c1719",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:03",
+  "finished_at": "2026-10-14T18:06:04",
+  "elapsed_s": 0.79,
+  "declared_outputs": [
+    "交付物/写作输入/交接说明-给推演写作专家.md",
+    "交付物/写作输入/投递清单.md"
+  ],
+  "outputs": [
+    {
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "pattern": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "bytes": 14591,
+      "sha256": "cd165634fab3368b43f6f43b256daa83",
+      "mtime": 1791972277
+    },
+    {
+      "path": "交付物/写作输入/投递清单.md",
+      "pattern": "交付物/写作输入/投递清单.md",
+      "bytes": 15901,
+      "sha256": "a911216fa598b758d14b973d04e1614c",
+      "mtime": 1791972299
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7b/README.md",
+    "SHUFE-BDC-2019-001/handover/s7b/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_A_s7b.json",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7b.json",
+    "交付物/写作输入/chapters/01-总论.md",
+    "交付物/写作输入/chapters/02-学校简介.md",
+    "交付物/写作输入/chapters/03-项目建设背景及必要性分析.md",
+    "交付物/写作输入/chapters/04-项目选址及建设条件.md",
+    "交付物/写作输入/chapters/05-项目建设内容及规模.md",
+    "交付物/写作输入/chapters/06-项目规划设计方案.md",
+    "交付物/写作输入/chapters/07-节能设计.md",
+    "交付物/写作输入/chapters/08-环境影响评价.md",
+    "交付物/写作输入/chapters/09-卫生防疫与劳动安全.md",
+    "交付物/写作输入/chapters/10-社会稳定风险分析.md",
+    "交付物/写作输入/chapters/11-项目管理及实施进度.md",
+    "交付物/写作输入/chapters/12-项目招投标方案.md",
+    "交付物/写作输入/chapters/13-投资估算及资金筹措.md",
+    "交付物/写作输入/chapters/14-社会效益.md",
+    "交付物/写作输入/chapters/15-结论与建议.md",
+    "交付物/写作输入/chapters/16-附件.md",
+    "交付物/写作输入/推演写作输入包.md",
+    "交付物/写作输入/知识资产索引.md",
+    "交付物/写作输入/章节提示词索引.md"
+  ],
+  "stdout_tail": "{\"inject_file\": \"写作输入/推演写作输入包.md\", \"bytes\": 24106, \"kb\": 23.5}\n{\n  \"files\": {\n    \"写作输入/推演写作输入包.md\": 24106,\n    \"写作输入/章节提示词索引.md\": 24102,\n    \"写作输入/知识资产索引.md\": 6088\n  },\n  \"chapter_slices\": 16,\n  \"chapter_slice_bytes_total\": 122901,\n  \"largest\": [\n    [\n      \"06-项目规划设计方案\",\n      36330\n    ],\n    [\n      \"05-项目建设内容及规模\",\n      16706\n    ],\n    [\n      \"13-投资估算及资金筹措\",\n      15791\n    ]\n  ],\n  \"smallest\": [\n    [\n      \"16-附件\",\n      1422\n    ],\n    [\n      \"15-结论与建议\",\n      1907\n    ],\n    [\n      \"14-社会效益\",\n      1964\n    ]\n  ]\n}\n",
+  "stderr_tail": ""
+}

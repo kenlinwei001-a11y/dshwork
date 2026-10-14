@@ -1,0 +1,133 @@
+{
+  "sections": [
+    {
+      "index": 1,
+      "section": "总论",
+      "blocks": 7,
+      "tables": 0,
+      "patterns": 0,
+      "file": "style/section_skeletons/01-总论.yaml"
+    },
+    {
+      "index": 2,
+      "section": "学校简介",
+      "blocks": 17,
+      "tables": 1,
+      "patterns": 0,
+      "file": "style/section_skeletons/02-学校简介.yaml"
+    },
+    {
+      "index": 3,
+      "section": "项目建设背景及必要性分析",
+      "blocks": 39,
+      "tables": 1,
+      "patterns": 26,
+      "file": "style/section_skeletons/03-项目建设背景及必要性分析.yaml"
+    },
+    {
+      "index": 4,
+      "section": "项目选址及建设条件",
+      "blocks": 8,
+      "tables": 0,
+      "patterns": 0,
+      "file": "style/section_skeletons/04-项目选址及建设条件.yaml"
+    },
+    {
+      "index": 5,
+      "section": "项目建设内容及规模",
+      "blocks": 22,
+      "tables": 6,
+      "patterns": 20,
+      "file": "style/section_skeletons/05-项目建设内容及规模.yaml"
+    },
+    {
+      "index": 6,
+      "section": "项目规划设计方案",
+      "blocks": 195,
+      "tables": 12,
+      "patterns": 9,
+      "file": "style/section_skeletons/06-项目规划设计方案.yaml"
+    },
+    {
+      "index": 7,
+      "section": "节能设计",
+      "blocks": 37,
+      "tables": 3,
+      "patterns": 2,
+      "file": "style/section_skeletons/07-节能设计.yaml"
+    },
+    {
+      "index": 8,
+      "section": "环境影响评价",
+      "blocks": 43,
+      "tables": 0,
+      "patterns": 3,
+      "file": "style/section_skeletons/08-环境影响评价.yaml"
+    },
+    {
+      "index": 9,
+      "section": "卫生防疫与劳动安全",
+      "blocks": 22,
+      "tables": 0,
+      "patterns": 3,
+      "file": "style/section_skeletons/09-卫生防疫与劳动安全.yaml"
+    },
+    {
+      "index": 10,
+      "section": "社会稳定风险分析",
+      "blocks": 15,
+      "tables": 0,
+      "patterns": 3,
+      "file": "style/section_skeletons/10-社会稳定风险分析.yaml"
+    },
+    {
+      "index": 11,
+      "section": "项目管理及实施进度",
+      "blocks": 18,
+      "tables": 1,
+      "patterns": 0,
+      "file": "style/section_skeletons/11-项目管理及实施进度.yaml"
+    },
+    {
+      "index": 12,
+      "section": "项目招投标方案",
+      "blocks": 11,
+      "tables": 1,
+      "patterns": 0,
+      "file": "style/section_skeletons/12-项目招投标方案.yaml"
+    },
+    {
+      "index": 13,
+      "section": "投资估算及资金筹措",
+      "blocks": 33,
+      "tables": 5,
+      "patterns": 6,
+      "file": "style/section_skeletons/13-投资估算及资金筹措.yaml"
+    },
+    {
+      "index": 14,
+      "section": "社会效益",
+      "blocks": 7,
+      "tables": 0,
+      "patterns": 3,
+      "file": "style/section_skeletons/14-社会效益.yaml"
+    },
+    {
+      "index": 15,
+      "section": "结论与建议",
+      "blocks": 3,
+      "tables": 0,
+      "patterns": 3,
+      "file": "style/section_skeletons/15-结论与建议.yaml"
+    },
+    {
+      "index": 16,
+      "section": "附件",
+      "blocks": 2,
+      "tables": 0,
+      "patterns": 0,
+      "file": "style/section_skeletons/16-附件.yaml"
+    }
+  ],
+  "count": 16
+}

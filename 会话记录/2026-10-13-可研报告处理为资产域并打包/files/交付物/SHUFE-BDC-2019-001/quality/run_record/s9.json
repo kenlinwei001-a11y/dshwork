@@ -1,0 +1,84 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s9",
+  "name": "SOP 自审 + 不一致触发（卡片）",
+  "script": "s_sop_selfaudit.py",
+  "script_sha256": "f3d06c41467d280cc0996fa5e9f06d2b",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:31",
+  "finished_at": "2026-10-14T18:06:32",
+  "elapsed_s": 1.15,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+      "pattern": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+      "bytes": 313,
+      "sha256": "200aabc1e3ec2d235db9f4a03da269cf",
+      "mtime": 1791972392
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+      "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+      "bytes": 221,
+      "sha256": "12bd9ed5037b134e538dc1c227d603d1",
+      "mtime": 1791972392
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
+      "bytes": 446,
+      "sha256": "e9ca0a71f2707b1fde6cf85cdd72809a",
+      "mtime": 1791972392
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7j/README.md",
+    "SHUFE-BDC-2019-001/handover/s7j/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s9/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s9/manifest_A_s7j.json",
+    "SHUFE-BDC-2019-001/handover/s9/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s9/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/decision_tickets.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s7j.json",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "stdout_tail": "{\n  \"tickets\": 0,\n  \"L1\": 0,\n  \"L2\": 0\n}\n{\"in_chain\": true, \"note\": \"链内仅导出卡片；权威 L0 判定在链尾执行\"}\n",
+  "stderr_tail": ""
+}

@@ -1,0 +1,15 @@
+{
+  "cards": [],
+  "summary": {
+    "L0": 0,
+    "L1": 0,
+    "L2": 0
+  },
+  "blocking_count": 0,
+  "decision_required_count": 0,
+  "advisory_count": 0,
+  "scanner_calibrated": true,
+  "rule": "L0 阻塞收尾 / L1 需决策不阻塞 / L2 仅提示（未标定来源）",
+  "escalation": "仅 L1→L0：同一缺口经 ≥3 个人工复核轮次仍未决策；L2（未标定）永不升级；已决策未应用仅升到 L1",
+  "review_round": 0
+}

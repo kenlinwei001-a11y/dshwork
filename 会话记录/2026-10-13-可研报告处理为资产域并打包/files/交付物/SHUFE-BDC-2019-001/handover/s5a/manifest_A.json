@@ -1,0 +1,22 @@
+{
+  "stage": "s5a",
+  "script": "s7b_desensitize.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "sha256": "da8f50c03b0c59fe7becdb82e614cc79",
+      "bytes": 291253
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "sha256": "b072d4844ea389c284a7ba6029000dfd",
+      "bytes": 259262
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

@@ -1,0 +1,66 @@
+{
+  "work_package_id": "WP-14-社会效益",
+  "outline": {
+    "section": "14-社会效益",
+    "title": "社会效益",
+    "must_cover": [
+      "为学校建设成具有鲜明财经特色的高水平研究型大学做好基建保障",
+      "有利于提升学科科研水平，促进相关学科的快速发展",
+      "有利于优化校园环境，提升学校形象"
+    ],
+    "must_cover_legal": [
+      "主要结论和建议"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [],
+  "facts_paging": {
+    "total": 0,
+    "page_size": 30,
+    "pages": 0,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [
+    {
+      "id": "CL-效益-01",
+      "text": "本项目建成后的社会效益显著。本项目将对中山北一路校区原有第五教学楼进行拆除后新建大数据研究中心，为管理科学与量化信息研究中心、理论计算机研究中心、应用统计研究中心、数据科研与统计研究院等科研单位提供优质的科研条件。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "项目建成后社会效益显著",
+        "grounds": "为四个科研单位提供科研条件；优化学科科研环境；打造校区新地标",
+        "warrant": "科研设施条件改善 ⇒ 学科科研水平提升 ⇒ 社会效益",
+        "backing": "第14章 社会效益",
+        "qualifier": "显著",
+        "rebuttal": "社会效益为定性表述，未给出可核的量化指标"
+      },
+      "evidence_refs": [
+        "EV-内部-06"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "14-社会效益",
+    "file": "style/section_templates/14-社会效益.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "stage": "s6f",
+  "script": "fix30_remediate.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "sha256": "353261ec26d47a994ddfd3571c9a13f0",
+      "bytes": 1321
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

@@ -1,0 +1,54 @@
+{
+  "section": "项目选址及建设条件",
+  "section_index": 4,
+  "level": 1,
+  "source": "由原报告同章确定性抽取（段落顺序 / 表格列结构 / 句式骨架）",
+  "placeholder_form": "{{node:N-xxxxxxxxxxxx}}",
+  "block_sequence": [
+    {
+      "type": "heading",
+      "level": 1,
+      "title": "项目选址及建设条件"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "项目选址"
+    },
+    {
+      "type": "paragraph",
+      "n": 5,
+      "skeleton_sample": "上海财经大学中山北一路校区位于中山北一路⟨数字⟩号。本项目位于上海财经大学中山北一路校区内，校区东面毗邻赤峰路、南近广秀路、西近广灵一路、北至广灵二路。项目地块位于校区东部，西侧为校园绿地，东侧临近现有建筑教育中心，北侧靠近校内便利店，南侧为学校下沉式广场及图书馆。"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "建设条件分析"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "自然条件"
+    },
+    {
+      "type": "paragraph",
+      "n": 8,
+      "skeleton_sample": "气候条件"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "外部配套条件"
+    },
+    {
+      "type": "paragraph",
+      "n": 6,
+      "skeleton_sample": "项目位于上海财经大学中山北一路校区内，项目所在地的供水、排水、供电、交通条件齐备，有利于项目的建设。其中："
+    }
+  ],
+  "tables": [],
+  "argument_sentence_patterns": [],
+  "note": "骨架给「怎么写」：段落功能顺序、表格列结构、论证句式槽位。数值一律写占位符，不写本项目的字面数字。",
+  "template": "## 项目选址及建设条件",
+  "skeleton_source": "由原报告同章确定性抽取"
+}

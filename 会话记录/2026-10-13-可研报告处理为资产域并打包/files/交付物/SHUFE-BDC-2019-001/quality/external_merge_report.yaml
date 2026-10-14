@@ -1,0 +1,9 @@
+{
+  "documents_registered": 21,
+  "external_docs": 20,
+  "external_chunks": 950,
+  "clause_nodes_added": 22,
+  "constraint_nodes_added": 17,
+  "evidence_added": 39,
+  "note": "外部检索文档已作为一等文档与抽取目标纳入；其条款/约束进入主图谱，闭环与依据判据会一并核对"
+}

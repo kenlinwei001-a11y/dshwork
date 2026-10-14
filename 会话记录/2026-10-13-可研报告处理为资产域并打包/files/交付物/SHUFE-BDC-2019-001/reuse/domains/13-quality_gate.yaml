@@ -1,0 +1,579 @@
+{
+  "id": "quality_gate",
+  "core_domain": "质量闸门",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "registered（有可执行代码与实测结果）",
+  "depends_on": [
+    "ontology",
+    "rule",
+    "argument_chain"
+  ],
+  "dependents": [
+    "reuse_strategy"
+  ],
+  "impacted_assets": [
+    "quality_gate",
+    "reuse_strategy"
+  ],
+  "dependency_closure": [
+    "argument_chain",
+    "ontology",
+    "quality_gate",
+    "rule",
+    "variable"
+  ],
+  "assembly_input": [
+    "质量指标",
+    "校验规则",
+    "验收阈值",
+    "历史缺陷"
+  ],
+  "assembly_method": "复用通用校验；按报告类型启用规则；查结构/逻辑/证据/数值/引用",
+  "mismatch_handling": "新增 Claim 评估是否加覆盖率/证据关联/冲突/未验证声明校验；关键 Claim 不达标阻断",
+  "assembly_output": [
+    "项目质量规则",
+    "校验报告",
+    "阻断项与整改项"
+  ],
+  "reusable_form": {
+    "gates": [
+      {
+        "id": "QG1",
+        "name": "来源可信度",
+        "rule": "每个可复用资产必须能指回原稿或客户确认的来源；检索结果不得直接入图",
+        "applies_to": "全域"
+      },
+      {
+        "id": "QG2",
+        "name": "语义完整性",
+        "rule": "结构完整性、证据覆盖、关系合法性、无孤立节点、无跨项目污染",
+        "applies_to": "graph/*"
+      },
+      {
+        "id": "QG3",
+        "name": "可复用性",
+        "rule": "借形不借值：reusable_form 中不得含项目专属数值；口径与单位必须显式；能确定性复算",
+        "applies_to": "reuse/*"
+      }
+    ],
+    "blocking_rules": [
+      "存在未裁决 error 级冲突不得进入写作",
+      "关键 Claim 无证据不得标记为已验证",
+      "draft 未过 validated 不得 published"
+    ],
+    "mandatory_counts_separately": true,
+    "basis_availability_grading": [
+      "原文可取",
+      "二手转录",
+      "表格被剥离",
+      "检索失败"
+    ],
+    "see_also": "reuse/regulatory_dependency.yaml"
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-01",
+        "role": "constrains",
+        "report": "R-建筑高度校核",
+        "check": "height_class",
+        "verdict": "待审",
+        "basis": [
+          "GB50016-2014 第5.1.1条",
+          "GB50016-2014 表5.1.1"
+        ]
+      },
+      {
+        "id": "B-02",
+        "role": "constrains",
+        "report": "耐火等级取值",
+        "check": "fire_rating",
+        "verdict": "待审",
+        "basis": [
+          "GB50016-2014 第5.1.3条"
+        ]
+      },
+      {
+        "id": "B-03",
+        "role": "constrains",
+        "report": "高位消防水箱有效容积",
+        "check": "water_tank",
+        "verdict": "待审",
+        "basis": [
+          "GB50974-2014 第5.2.1条"
+        ]
+      },
+      {
+        "id": "B-04",
+        "role": "constrains",
+        "report": "R-消防用水量合计",
+        "check": "sprinkler",
+        "verdict": "待核查",
+        "basis": [
+          "GB50084-2017 第5.0.1条"
+        ]
+      },
+      {
+        "id": "B-05",
+        "role": "constrains",
+        "report": "抗震设防类别取值",
+        "check": "seismic_category",
+        "verdict": "合规",
+        "basis": [
+          "GB50223-2008 第6.0.9条",
+          "GB50223-2008 第6.0.8条",
+          "GB50223-2008 第6.0.11条",
+          "GB50223-2008 第6.0.12条"
+        ]
+      },
+      {
+        "id": "B-06",
+        "role": "constrains",
+        "report": "R-抗震分组校核",
+        "check": "seismic_group",
+        "verdict": "待审",
+        "basis": [
+          "GB50011-2010 附录A（上海市）"
+        ]
+      },
+      {
+        "id": "B-07",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_16",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录D"
+        ]
+      },
+      {
+        "id": "B-08",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_8",
+        "verdict": "待核查",
+        "basis": [
+          "建标191-2018 附录B"
+        ]
+      },
+      {
+        "id": "B-09",
+        "role": "warrants",
+        "report": "R-配套用房建筑面积",
+        "check": "utilization_factor",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录E"
+        ]
+      },
+      {
+        "id": "B-10",
+        "role": "benchmark",
+        "report": "引用标准版本",
+        "check": "timeliness_gbt50378",
+        "verdict": "待审",
+        "basis": [
+          "住建部公告2019年第61号"
+        ]
+      },
+      {
+        "id": "B-11",
+        "role": "benchmark",
+        "report": "引用标准版本",
+        "check": "timeliness_gb50045",
+        "verdict": "不合规",
+        "basis": [
+          "南建〔2015〕70号"
+        ]
+      },
+      {
+        "id": "B-12",
+        "role": "benchmark",
+        "report": "引用标准名称",
+        "check": "naming_191",
+        "verdict": "不合规",
+        "basis": [
+          "建标﹝2018﹞32号"
+        ]
+      },
+      {
+        "id": "B-13",
+        "role": "benchmark",
+        "report": "招标范围判定（表12-1）",
+        "check": "tender_thresholds",
+        "verdict": "合规",
+        "basis": [
+          "国家发展改革委令第16号 第五条",
+          "国家发展改革委令第16号 第二条"
+        ]
+      },
+      {
+        "id": "B-14",
+        "role": "driver",
+        "report": "报告章节体系",
+        "check": "outline_coverage",
+        "verdict": "不合规",
+        "basis": [
+          "发改投资规〔2023〕304号"
+        ]
+      },
+      {
+        "id": "B-15",
+        "role": "benchmark",
+        "report": "引用标准时效",
+        "check": "timeliness_misc",
+        "verdict": "合规",
+        "basis": [
+          "住建部公告2019年第171号",
+          "国家发展改革委令第44号"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-16LING-2",
+        "code": "国家发展改革委令第16号 第二条",
+        "role": "benchmark",
+        "status": "现行",
+        "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm"
+      },
+      {
+        "id": "M-16LING-5",
+        "code": "国家发展改革委令第16号 第五条",
+        "role": "benchmark",
+        "status": "现行（2018-06-01 起施行）",
+        "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm"
+      },
+      {
+        "id": "M-191-B",
+        "code": "建标191-2018 附录B",
+        "role": "domain",
+        "status": "现行；附表B 数值未取到（仅表16 宿舍补助已取到）",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-D1",
+        "code": "建标191-2018 附录D",
+        "role": "domain",
+        "status": "现行；附表D-1 原表未取到，指标值来自标准内计算实例",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-K",
+        "code": "建标191-2018 附录E",
+        "role": "domain",
+        "status": "现行",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-NAME",
+        "code": "建标﹝2018﹞32号",
+        "role": "benchmark",
+        "status": "现行（2018-09-01 起施行）",
+        "url": "https://www.gov.cn/zhengce/zhengceku/2018-12/31/content_5433277.htm"
+      },
+      {
+        "id": "M-304-CH",
+        "code": "发改投资规〔2023〕304号",
+        "role": "driver",
+        "status": "现行（2023-05-01 起施行）",
+        "url": "https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=20{金额}"
+      },
+      {
+        "id": "M-44HAO",
+        "code": "国家发展改革委令第44号",
+        "role": "benchmark",
+        "status": "现行",
+        "url": "https://www.ndrc.gov.cn/fggz/hjyzy/jnhnx/201612/t20161205_1134123_ext.html"
+      },
+      {
+        "id": "M-GB50011-A-SH",
+        "code": "GB50011-2010 附录A（上海市）",
+        "role": "domain",
+        "status": "现行；转录来源为行业网站，已标注为二手",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50015-2019",
+        "code": "住建部公告2019年第171号",
+        "role": "benchmark",
+        "status": "现行（2020-03-01 起实施，晚于报告编制时点）",
+        "url": "https://ebook.chinabuilding.com.cn/c/2019-12-11/81369.shtml"
+      },
+      {
+        "id": "M-GB50016-511",
+        "code": "GB50016-2014 第5.1.1条",
+        "role": "domain",
+        "status": "现行（2018年版）",
+        "url": "https://gf.cabr-fire.com/m/article-27247.htm"
+      },
+      {
+        "id": "M-GB50016-513",
+        "code": "GB50016-2014 第5.1.3条",
+        "role": "domain",
+        "status": "现行（2018年版）",
+        "url": "https://gf.cabr-fire.com/m/article-27247.htm"
+      },
+      {
+        "id": "M-GB50016-T511",
+        "code": "GB50016-2014 表5.1.1",
+        "role": "domain",
+        "status": "现行（2018年版）",
+        "url": "http://www.fireresearch.cn/2018消防建筑防火篇：建筑分类与耐火等级.html"
+      },
+      {
+        "id": "M-GB50045-95",
+        "code": "南建〔2015〕70号",
+        "role": "benchmark",
+        "status": "现行",
+        "url": "https://www.nanchong.gov.cn/zjj/xwdt/tzgg/201503/t20150324_1289568.html"
+      },
+      {
+        "id": "M-GB50084-501",
+        "code": "GB50084-2017 第5.0.1条",
+        "role": "domain",
+        "status": "现行；表格数值未取到",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50223-608",
+        "code": "GB50223-2008 第6.0.8条",
+        "role": "domain",
+        "status": "现行",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50223-609",
+        "code": "GB50223-2008 第6.0.9条",
+        "role": "domain",
+        "status": "现行（2008 年版）",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50223-611",
+        "code": "GB50223-2008 第6.0.11条",
+        "role": "domain",
+        "status": "现行",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50223-612",
+        "code": "GB50223-2008 第6.0.12条",
+        "role": "domain",
+        "status": "现行",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GB50974-521",
+        "code": "GB50974-2014 第5.2.1条",
+        "role": "domain",
+        "status": "现行",
+        "url": "references/raw 摘录页"
+      },
+      {
+        "id": "M-GBT50378-2019",
+        "code": "住建部公告2019年第61号",
+        "role": "benchmark",
+        "status": "现行（2019-08-01 起实施）",
+        "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240717.html"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "C-大纲-01",
+        "expr": "政府投资项目可行性研究报告法定十章（通用大纲，2023 版）",
+        "mandatory": false
+      },
+      {
+        "id": "C-抗震-01",
+        "expr": "（研究/中试/存放高放射性或剧毒生物化学制品的科学实验建筑）=> 特殊设防类",
+        "mandatory": false
+      },
+      {
+        "id": "C-抗震-02",
+        "expr": "高层建筑 且 结构单元内经常使用人数 > 8000 人 => 宜划为重点设防类",
+        "mandatory": false
+      },
+      {
+        "id": "C-抗震-03",
+        "expr": "上海市虹口区 => 抗震设防烈度 7 度；设计基本地震加速度 0.10g；设计地震分组 第一组",
+        "mandatory": true
+      },
+      {
+        "id": "C-招标-01",
+        "expr": "施工 ≥{人数} 万元 必须招标；重要设备材料 ≥200 万元 必须招标；勘察/设计/监理服务 ≥100 万元 必须招标",
+        "mandatory": true
+      },
+      {
+        "id": "C-招标-02",
+        "expr": "使用预算资金 ≥200 万元 且 占投资额 ≥10% ⇒ 属必须招标范围",
+        "mandatory": true
+      },
+      {
+        "id": "C-指标-01",
+        "expr": "文法类科研人员 ≤ 16㎡/人（附表D-1，计算实例值）；理工类 30㎡/人；设计人员 15㎡/人",
+        "mandatory": false
+      },
+      {
+        "id": "C-指标-02",
+        "expr": "使用面积系数 K = 使用面积 / 建筑面积 ⇒ 建筑面积 = 使用面积 / K",
+        "mandatory": false
+      },
+      {
+        "id": "C-时效-01",
+        "expr": "2019-08-01 起 GB/T50378-2019 实施，GB/T50378-2014 同时废止；报告编制时点 2019-08 ⇒ 版本切换临界",
+        "mandatory": false
+      },
+      {
+        "id": "C-时效-02",
+        "expr": "2015-05-01 起《高层民用建筑设计防火规范》GB50045-95 废止；报告 6.1 节于 2019 年仍引用 ⇒ 引用已废止规范",
+        "mandatory": false
+      },
+      {
+        "id": "C-时效-03",
+        "expr": "2018-09-01 起正式名称为《普通高等学校建筑面积指标》；《普通高等学校建筑规划面积指标》同时废止 ⇒ 报告 1.2 节沿用旧名称",
+        "mandatory": false
+      },
+      {
+        "id": "C-时效-04",
+        "expr": "2020-03-01 起 GB50015-2019 实施；报告编制时点 2019-08 ⇒ GB50015-2003（2009年版）当时有效",
+        "mandatory": false
+      },
+      {
+        "id": "C-水箱-01",
+        "expr": "一类高层公共建筑 => 有效容积 ≥ 36m³；二类高层公共建筑/多层公共建筑 => 有效容积 ≥ 18m³",
+        "mandatory": true
+      },
+      {
+        "id": "C-耐火-01",
+        "expr": "建筑高度 > 50m 且 为公共建筑  =>  一类高层公共建筑；否则为二类高层公共建筑（高层）",
+        "mandatory": false
+      },
+      {
+        "id": "C-耐火-02",
+        "expr": "一类高层建筑 => 耐火等级 ≥ 一级",
+        "mandatory": true
+      },
+      {
+        "id": "C-耐火-03",
+        "expr": "二类高层建筑 => 耐火等级 ≥ 二级",
+        "mandatory": true
+      },
+      {
+        "id": "C-耐火-04",
+        "expr": "存在地下或半地下建筑（室） => 耐火等级 ≥ 一级",
+        "mandatory": true
+      }
+    ],
+    "compliance_summary": {
+      "不合规": 3,
+      "合规": 5,
+      "待审": 5,
+      "待核查": 2
+    },
+    "mandatory_checks": [
+      "C-耐火-02",
+      "C-耐火-03",
+      "C-耐火-04",
+      "C-水箱-01",
+      "C-抗震-03",
+      "C-招标-01",
+      "C-招标-02"
+    ]
+  },
+  "sources": {
+    "conflicts": [
+      "室外总体工程"
+    ],
+    "unresolved_pointers": [
+      "本项目·总建筑面积"
+    ]
+  },
+  "related_issues": [
+    "本项目",
+    "办公用水（{人数}）",
+    "建筑高度控制",
+    "年总耗电量",
+    "基本预备费",
+    "建筑安装工程费用",
+    "单体工程",
+    "安装工程",
+    "室外总体工程",
+    "工程建设其他费",
+    "无障碍设计规范",
+    "公共建筑节能设计标准",
+    "建筑照明设计标准",
+    "采暖通风与空气调节设计规范",
+    "建标191-2018"
+  ],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": [
+    "reuse/regulatory_dependency.yaml"
+  ]
+}

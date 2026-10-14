@@ -1,0 +1,16 @@
+{
+  "stage": "s9",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

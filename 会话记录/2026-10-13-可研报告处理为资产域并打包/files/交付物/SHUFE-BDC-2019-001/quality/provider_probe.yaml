@@ -1,0 +1,34 @@
+{
+  "policy": "能力须实测；未获证据的能力不声明",
+  "probe": {
+    "available": true,
+    "live": true,
+    "live_evidence": "{\"node_count\": 15, \"decision_count\": 13, \"graph_ready\": true}",
+    "declared_tools": [
+      "add_entity",
+      "add_relationship",
+      "delete_node",
+      "export_graph",
+      "extract_entities",
+      "extract_relations",
+      "find_precedents",
+      "get_causal_chain",
+      "get_graph_analytics",
+      "get_graph_summary",
+      "query_decisions",
+      "query_graph",
+      "record_decision",
+      "run_reasoning",
+      "update_node"
+    ],
+    "capabilities": {
+      "extract": "semantica",
+      "disambiguate": "semantica",
+      "reasoning": "semantica",
+      "graph_write": "semantica",
+      "analytics": "semantica",
+      "export": "semantica"
+    },
+    "kg_path": "/Users/apple/.semantica/graph.json"
+  }
+}

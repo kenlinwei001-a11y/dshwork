@@ -1,0 +1,110 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7",
+  "name": "审计报告生成",
+  "script": "s8_report.py",
+  "script_sha256": "4513d028dc3ec3169a28dea68685e672",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:02",
+  "finished_at": "2026-10-14T18:06:03",
+  "elapsed_s": 0.14,
+  "declared_outputs": [
+    "交付物/README.md",
+    "交付物/审计/*.md"
+  ],
+  "outputs": [
+    {
+      "path": "交付物/README.md",
+      "pattern": "交付物/README.md",
+      "bytes": 8014,
+      "sha256": "86bd22805884af0c0a4db28234990a20",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/01-资产域清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 6973,
+      "sha256": "c32b8ba059dbe25f3f9e9de5cf44c299",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/02-冲突待审清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 9604,
+      "sha256": "b858b63f29247e169a8403e2dddd84a0",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/03-缺口清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 2944,
+      "sha256": "603a3e5ea08c2a77578c452c4c89abfa",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/04-质量关口报告.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 4737,
+      "sha256": "84c0a59ab916099ab3c58b1c6c7ce212",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/05-可复现性与输入完整性说明.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 9891,
+      "sha256": "d6702707b901eac934a4353344c12b47",
+      "mtime": 1791972363
+    },
+    {
+      "path": "交付物/审计/06-外部依据绑定与合规复核.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 23147,
+      "sha256": "09dc2dd8bcb1a27a3659c89a5d5767ab",
+      "mtime": 1791972363
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s6d/README.md",
+    "SHUFE-BDC-2019-001/handover/s6d/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7/manifest_A_s6d.json",
+    "SHUFE-BDC-2019-001/handover/s7/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s6d.json",
+    "交付物/README.md",
+    "交付物/审计/01-资产域清单.md",
+    "交付物/审计/02-冲突待审清单.md",
+    "交付物/审计/03-缺口清单.md",
+    "交付物/审计/04-质量关口报告.md",
+    "交付物/审计/05-可复现性与输入完整性说明.md",
+    "交付物/审计/06-外部依据绑定与合规复核.md"
+  ],
+  "stdout_tail": "{\n  \"audit_files\": [\n    \"01-资产域清单.md\",\n    \"02-冲突待审清单.md\",\n    \"03-缺口清单.md\",\n    \"04-质量关口报告.md\",\n    \"05-可复现性与输入完整性说明.md\",\n    \"06-外部依据绑定与合规复核.md\"\n  ],\n  \"readme\": \"交付物/README.md\",\n  \"conflicts\": 25,\n  \"gaps\": 15,\n  \"domains\": 16\n}\n",
+  "stderr_tail": ""
+}

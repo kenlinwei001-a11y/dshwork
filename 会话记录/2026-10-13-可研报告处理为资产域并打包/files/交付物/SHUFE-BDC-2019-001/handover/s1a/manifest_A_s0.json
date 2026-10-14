@@ -1,0 +1,16 @@
+{
+  "stage": "s0",
+  "script": "s0_docx2md.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "build/doc-clean/*.md"
+  ],
+  "produced": [
+    {
+      "path": "build/doc-clean/大数据研究中心可研.md",
+      "sha256": "e906e68b385d4de7a652babedc6ab9a8",
+      "bytes": 170597
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

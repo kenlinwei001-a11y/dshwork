@@ -1,0 +1,30 @@
+{
+  "stage": "s6",
+  "checked_depends_on": [
+    "s5i"
+  ],
+  "A_count": 1,
+  "B_count": 1,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/quality/prompt_reuse.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 3,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

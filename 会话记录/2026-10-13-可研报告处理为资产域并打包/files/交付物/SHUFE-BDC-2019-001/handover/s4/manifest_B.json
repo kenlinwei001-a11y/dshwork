@@ -1,0 +1,38 @@
+{
+  "stage": "s4",
+  "patterns": [
+    "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "bytes": 341,
+      "sha256": "5c2fc3e3924de9aa924ff32cdb651d5b",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "decisions"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "bytes": 16935,
+      "sha256": "780d95669a85ad1ecea27b1ce6cbca38",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "nodes",
+          "replayed",
+          "contradictions"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

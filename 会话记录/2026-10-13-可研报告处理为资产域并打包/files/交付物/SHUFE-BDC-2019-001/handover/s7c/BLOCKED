@@ -1,0 +1,30 @@
+{
+  "stage": "s7c",
+  "checked_depends_on": [
+    "s7b"
+  ],
+  "A_count": 1,
+  "B_count": 2,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "交付物/装配输入包-报告还原.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "交付物/写作输入/投递清单.md",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 3,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

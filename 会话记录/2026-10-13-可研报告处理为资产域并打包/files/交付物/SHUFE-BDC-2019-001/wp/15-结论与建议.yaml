@@ -1,0 +1,43 @@
+{
+  "section": "结论与建议",
+  "section_index": 15,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "结论与建议",
+    "skeleton": "style/section_skeletons/15-结论与建议.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [],
+  "facts_total_in_section": 0,
+  "facts_truncated": false,
+  "claims": [
+    {
+      "id": "CL-建议-01",
+      "text": "综上所述，本项目建设必要性充分，建设内容与规模明确，资金来源有保障，建议有关部门尽早批复本报告，尽早发挥本项目良好的效益。",
+      "claim_type": "recommendation",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建议有关部门尽早批复本报告",
+        "grounds": "必要性充分、内容与规模明确、资金来源有保障",
+        "warrant": "可行性研究报告获批是项目进入初步设计的前置行政程序",
+        "backing": "《政府投资项目可行性研究报告编写通用大纲》（发改投资规〔2023〕304号）",
+        "qualifier": "尽早",
+        "rebuttal": "拆除手续尚在办理中（原文未闭合）"
+      },
+      "evidence_refs": [
+        "EV-内部-01"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

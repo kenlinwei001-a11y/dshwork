@@ -1,0 +1,329 @@
+{
+  "note": "绑定：报告的技术函数/取值 → 外部依据（Mandate/Constraint）。这是「报告技术函数依赖关系基于外部检索文件」的机读落地：每条绑定写明 why（为什么该取值必须依赖该依据）与 check（确定性复核入口）。方向：外部依据 --constrains--> 报告取值；外部依据 --warrants--> 报告论证；外部依据 --benchmark--> 报告引用；外部依据 --driver--> 报告结构。",
+  "bindings": [
+    {
+      "id": "B-01",
+      "report": {
+        "rule": "R-建筑高度校核",
+        "value": "建筑高度控制 60m（6.2.2）vs 层高推算 49m（6.2.4）"
+      },
+      "basis": [
+        "M-GB50016-511",
+        "M-GB50016-T511"
+      ],
+      "constraints": [
+        "C-耐火-01"
+      ],
+      "role": "constrains",
+      "check": "height_class",
+      "params": {
+        "h_declared": 60,
+        "h_derived": 49,
+        "threshold": 50
+      },
+      "why": "建筑高度决定本项目是「一类」还是「二类」高层公共建筑，进而决定耐火等级下限——该判定无法只由报告文本得出，必须依赖 GB50016 表5.1.1。"
+    },
+    {
+      "id": "B-02",
+      "report": {
+        "rule": "耐火等级取值",
+        "value": "建筑耐火等级 二级（6.1、6.3.2）"
+      },
+      "basis": [
+        "M-GB50016-513"
+      ],
+      "constraints": [
+        "C-耐火-02",
+        "C-耐火-03",
+        "C-耐火-04"
+      ],
+      "role": "constrains",
+      "check": "fire_rating",
+      "params": {
+        "declared_rating": "二级"
+      },
+      "why": "5.1.3 为强制性条文：一类高层与地下/半地下建筑（室）均要求不低于一级。"
+    },
+    {
+      "id": "B-03",
+      "report": {
+        "rule": "高位消防水箱有效容积",
+        "value": "不小于 18m³（6.4.4）"
+      },
+      "basis": [
+        "M-GB50974-521"
+      ],
+      "constraints": [
+        "C-水箱-01"
+      ],
+      "role": "constrains",
+      "check": "water_tank",
+      "params": {
+        "declared_volume": 18,
+        "one_class_min": 36,
+        "two_class_min": 18
+      },
+      "why": "水箱容积下限按高层类别分为 36m³（一类）与 18m³（二类），与 B-01 共用同一前提。"
+    },
+    {
+      "id": "B-04",
+      "report": {
+        "rule": "R-消防用水量合计",
+        "value": "自动喷水灭火系统 表6-3 取 25 L/s；正文 6.4.4 写设计最小 21 L/s"
+      },
+      "basis": [
+        "M-GB50084-501"
+      ],
+      "constraints": [],
+      "role": "constrains",
+      "check": "sprinkler",
+      "params": {},
+      "why": "需以 GB50084-2017 表5.0.1 中危Ⅰ级的喷水强度与作用面积复核；本次检索摘录未取到该表数值，故只能登记为待核查，不下判定。"
+    },
+    {
+      "id": "B-05",
+      "report": {
+        "rule": "抗震设防类别取值",
+        "value": "标准设防类（丙类）（6.3.2、9.2）"
+      },
+      "basis": [
+        "M-GB50223-609",
+        "M-GB50223-608",
+        "M-GB50223-611",
+        "M-GB50223-612"
+      ],
+      "constraints": [
+        "C-抗震-01",
+        "C-抗震-02"
+      ],
+      "role": "constrains",
+      "check": "seismic_category",
+      "params": {
+        "declared": "标准设防类（丙类）",
+        "persons": 1665,
+        "limit": 8000
+      },
+      "why": "6.0.9 特殊设防类仅针对存放高放射性/剧毒生物化学制品的科学实验建筑；6.0.11 以「经常使用人数 > 8000 人」为界。本项目规划人数可复算，故该判定可闭环。"
+    },
+    {
+      "id": "B-06",
+      "report": {
+        "rule": "R-抗震分组校核",
+        "value": "抗震设防烈度 7 度、设计基本地震加速度 0.1g、设计分组第二组、特征周期 0.9s（6.3）"
+      },
+      "basis": [
+        "M-GB50011-A-SH"
+      ],
+      "constraints": [
+        "C-抗震-03"
+      ],
+      "role": "constrains",
+      "check": "seismic_group",
+      "params": {
+        "declared_group": "第二组",
+        "declared_tg": 0.9,
+        "external_intensity": 7,
+        "external_accel": "0.10g",
+        "external_group": "第一组"
+      },
+      "why": "附录A 直接给出上海市虹口区的烈度、加速度与设计地震分组，可与报告取值逐项比对。"
+    },
+    {
+      "id": "B-07",
+      "report": {
+        "rule": "R-应建规模",
+        "value": "科研人员 315 人 × 16㎡/人（5.6）"
+      },
+      "basis": [
+        "M-191-D1"
+      ],
+      "constraints": [
+        "C-指标-01"
+      ],
+      "role": "warrants",
+      "check": "index_16",
+      "params": {
+        "declared": 16,
+        "wenfa": 16,
+        "ligong": 30,
+        "sheji": 15
+      },
+      "why": "16㎡/人 与附表D-1 文法类科研人员指标一致，规模链的**推理保证**由此成立（需确认学校类别归入文法类）。"
+    },
+    {
+      "id": "B-08",
+      "report": {
+        "rule": "R-应建规模",
+        "value": "研究生/博士生/访问学者 1350 人 × 8㎡/人（5.6）"
+      },
+      "basis": [
+        "M-191-B"
+      ],
+      "constraints": [],
+      "role": "warrants",
+      "check": "index_8",
+      "params": {
+        "declared": 8,
+        "appendixB_table_missing": true
+      },
+      "why": "报告把该指标与专职科研机构用房指标并列写在「参考附录D」之下，而研究生用房指标应出自附录B；且附表B 数值未取到，无法核对 8㎡/人。"
+    },
+    {
+      "id": "B-09",
+      "report": {
+        "rule": "R-配套用房建筑面积",
+        "value": "使用面积 1210㎡ ÷ 综合平面利用系数 0.55 = 2200㎡（5.5）"
+      },
+      "basis": [
+        "M-191-K"
+      ],
+      "constraints": [
+        "C-指标-02"
+      ],
+      "role": "warrants",
+      "check": "utilization_factor",
+      "params": {
+        "k": 0.55,
+        "usage": 1210,
+        "building": 2200
+      },
+      "why": "报告的换算口径与建标191 附录E「使用面积系数 K＝使用面积/建筑面积」一致，口径可核。"
+    },
+    {
+      "id": "B-10",
+      "report": {
+        "rule": "引用标准版本",
+        "value": "6.5 强电设计依据引用《绿色建筑评价标准》GB-T50378-2014"
+      },
+      "basis": [
+        "M-GBT50378-2019"
+      ],
+      "constraints": [
+        "C-时效-01"
+      ],
+      "role": "benchmark",
+      "check": "timeliness_gbt50378",
+      "params": {
+        "cited": "GB/T50378-2014",
+        "effective_from": "2019-08-01",
+        "report_date": "2019-08"
+      },
+      "why": "报告编制时点与标准切换时点同为 2019 年 8 月，是否适用取决于实际报审时间。"
+    },
+    {
+      "id": "B-11",
+      "report": {
+        "rule": "引用标准版本",
+        "value": "6.1 设计依据引用《高层民用建筑设计防火规范》"
+      },
+      "basis": [
+        "M-GB50045-95"
+      ],
+      "constraints": [
+        "C-时效-02"
+      ],
+      "role": "benchmark",
+      "check": "timeliness_gb50045",
+      "params": {
+        "cited": "GB50045-95（未注版本号）",
+        "abolished_from": "2015-05-01",
+        "report_date": "2019-08"
+      },
+      "why": "该规范自 2015-05-01 废止，报告 2019 年编制仍列为依据，属引用已废止规范。"
+    },
+    {
+      "id": "B-12",
+      "report": {
+        "rule": "引用标准名称",
+        "value": "1.2 编制依据写作《普通高等学校建筑规划面积指标》（建标191-2018）"
+      },
+      "basis": [
+        "M-191-NAME"
+      ],
+      "constraints": [
+        "C-时效-03"
+      ],
+      "role": "benchmark",
+      "check": "naming_191",
+      "params": {
+        "cited": "《普通高等学校建筑规划面积指标》",
+        "official": "《普通高等学校建筑面积指标》",
+        "abolished_from": "2018-09-01",
+        "report_date": "2019-08"
+      },
+      "why": "同一报告 5.6 节又写作《普通高等学校建筑面积指标》，两个名称中一个是已废止的旧名称。"
+    },
+    {
+      "id": "B-13",
+      "report": {
+        "rule": "招标范围判定（表12-1）",
+        "value": "勘察 39 万元不招标；设计 336 万元、建安工程 10135 万元、监理 239 万元 全部招标"
+      },
+      "basis": [
+        "M-16LING-5",
+        "M-16LING-2"
+      ],
+      "constraints": [
+        "C-招标-01",
+        "C-招标-02"
+      ],
+      "role": "benchmark",
+      "check": "tender_thresholds",
+      "params": {
+        "kimcha": 39,
+        "sheji": 336,
+        "jianan": 10135,
+        "jianli": 239,
+        "service_threshold": 100,
+        "construction_threshold": 400
+      },
+      "why": "五条门槛值可直接与表12-1 的估算金额逐项比对，判定招标范围是否成立。"
+    },
+    {
+      "id": "B-14",
+      "report": {
+        "rule": "报告章节体系",
+        "value": "16 章（总论…结论与建议、附件）"
+      },
+      "basis": [
+        "M-304-CH"
+      ],
+      "constraints": [
+        "C-大纲-01"
+      ],
+      "role": "driver",
+      "check": "outline_coverage",
+      "params": {},
+      "why": "报告编制于 2019 年，早于 2023 版通用大纲；按现行口径编写时须以法定十章为准。"
+    },
+    {
+      "id": "B-15",
+      "report": {
+        "rule": "引用标准时效",
+        "value": "6.4 引用《建筑给水排水设计规范》GB50015-2003（2009年版）；7.1 引用《固定资产投资项目节能审查办法》（2016年第44号令）"
+      },
+      "basis": [
+        "M-GB50015-2019",
+        "M-44HAO"
+      ],
+      "constraints": [
+        "C-时效-04"
+      ],
+      "role": "benchmark",
+      "check": "timeliness_misc",
+      "params": {
+        "gb50015_cited": "GB50015-2003（2009年版）",
+        "gb50015_new_from": "2020-03-01",
+        "report_date": "2019-08"
+      },
+      "why": "两处引用在报告编制时点均为现行有效，属**合规**；新版实施晚于编制时点。"
+    }
+  ],
+  "count": 15,
+  "by_role": {
+    "benchmark": 5,
+    "constrains": 6,
+    "driver": 1,
+    "warrants": 3
+  }
+}

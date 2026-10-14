@@ -1,0 +1,173 @@
+{
+  "id": "task_dag",
+  "core_domain": "任务图 DAG",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "registered（有可执行代码与实测结果）",
+  "depends_on": [
+    "ontology",
+    "rule",
+    "skill",
+    "function"
+  ],
+  "dependents": [],
+  "impacted_assets": [
+    "task_dag"
+  ],
+  "dependency_closure": [
+    "function",
+    "ontology",
+    "rule",
+    "skill",
+    "task_dag",
+    "variable"
+  ],
+  "assembly_input": [
+    "项目目标",
+    "任务清单",
+    "资产依赖",
+    "执行条件"
+  ],
+  "assembly_method": "复用历史任务模板；按项目启用/跳过节点；补解析/验证/推理节点；重算拓扑",
+  "mismatch_handling": "新增 Claim 需证据检索则插节点连上下游；循环依赖停止并要求修正",
+  "assembly_output": [
+    "项目任务 DAG",
+    "节点参数",
+    "执行顺序和依赖检查"
+  ],
+  "reusable_form": {
+    "stages": [
+      "归一化",
+      "骨架抽取",
+      "切块",
+      "本体抽取",
+      "推演回放",
+      "质量登记",
+      "脱敏索引",
+      "装配复用",
+      "写作"
+    ],
+    "nodes": {
+      "归一化": [
+        "stage_1_normalize"
+      ],
+      "骨架抽取": [
+        "stage_2_outline",
+        "legal_coverage_check"
+      ],
+      "切块": [
+        "stage_3_chunk"
+      ],
+      "本体抽取": [
+        "validate_extraction",
+        "apply_extraction"
+      ],
+      "推演回放": [
+        "replay_same_key",
+        "replay_derivation",
+        "judge_select_rules"
+      ],
+      "质量登记": [
+        "detect_conflicts",
+        "register_gaps",
+        "run_invariants"
+      ],
+      "脱敏索引": [
+        "desensitize_numerics",
+        "build_node_index",
+        "build_term_index"
+      ],
+      "装配复用": [
+        "schema_diff",
+        "decide_reuse",
+        "instantiate_project",
+        "run_quality_gates"
+      ],
+      "写作": [
+        "build_work_package",
+        "gate_check_draft"
+      ]
+    },
+    "ordering_constraints": [
+      "骨架抽取必须先于一切内容工作（章节 id 是全图引用锚点，冻结后再改等于全图返工）",
+      "推演回放必须先于质量登记的冲突判定",
+      "存在未裁决 error 级冲突时不得进入写作阶段"
+    ]
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [],
+    "mandates": [],
+    "constraints": []
+  },
+  "sources": {
+    "chunks": []
+  },
+  "related_issues": [],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": []
+}

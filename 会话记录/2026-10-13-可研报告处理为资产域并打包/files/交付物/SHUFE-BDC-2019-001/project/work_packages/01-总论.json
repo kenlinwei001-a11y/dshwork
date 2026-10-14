@@ -1,0 +1,456 @@
+{
+  "work_package_id": "WP-01-总论",
+  "outline": {
+    "section": "01-总论",
+    "title": "总论",
+    "must_cover": [
+      "项目概况",
+      "研究内容和编制依据",
+      "技术经济指标",
+      "结论及建议",
+      "结论及建议"
+    ],
+    "must_cover_legal": [
+      "项目概况",
+      "项目单位概况",
+      "编制依据",
+      "主要结论和建议"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-8f432cf2e264",
+      "node_id": "N-8f432cf2e264",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "value": "18319",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "pending_review",
+      "instruction": "该 (主题, 属性) 存在未裁决数值冲突，正文并列呈现并标「⚠ 待审」，不得取其一。",
+      "inheritable": "yes",
+      "chunk": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "N-a831d44a85f1",
+      "node_id": "N-a831d44a85f1",
+      "subject": "本项目",
+      "predicate": "工程建设其他费用",
+      "value": "1171",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-8449f71c5773",
+      "node_id": "N-8449f71c5773",
+      "subject": "本项目",
+      "predicate": "地上建筑面积",
+      "value": "18000",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "N-8ca43cb64560",
+      "node_id": "N-8ca43cb64560",
+      "subject": "本项目",
+      "predicate": "地下建筑面积",
+      "value": "319",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "N-51ac31b30619",
+      "node_id": "N-51ac31b30619",
+      "subject": "本项目",
+      "predicate": "总投资",
+      "value": "13032",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-70459ce61f9b",
+      "node_id": "N-70459ce61f9b",
+      "subject": "本项目",
+      "predicate": "建安工程费用",
+      "value": "11188",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-24d5bb9ca97f",
+      "node_id": "N-24d5bb9ca97f",
+      "subject": "本项目",
+      "predicate": "预备费",
+      "value": "618",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-c790ee245521",
+      "node_id": "N-c790ee245521",
+      "subject": "本项目",
+      "predicate": "原建筑拆除费用",
+      "value": "55",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-e76603e442a7",
+      "node_id": "N-e76603e442a7",
+      "subject": "本项目",
+      "predicate": "项目名称",
+      "value": "上海财经大学中山北一路校区大数据研究中心",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-3f9e4a26e26d"
+    },
+    {
+      "id": "N-47ae73a84dc9",
+      "node_id": "N-47ae73a84dc9",
+      "subject": "本项目",
+      "predicate": "建设单位",
+      "value": "上海财经大学",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f9e4a26e26d"
+    },
+    {
+      "id": "N-5a334efaaea3",
+      "node_id": "N-5a334efaaea3",
+      "subject": "本项目",
+      "predicate": "建设地点",
+      "value": "上海财经大学中山北一路校区东部",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-129c2dbdd766"
+    },
+    {
+      "id": "N-4299f5d02831",
+      "node_id": "N-4299f5d02831",
+      "subject": "原第五教学楼",
+      "predicate": "拆除面积",
+      "value": "2758",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "N-2175c0aa83e6",
+      "node_id": "N-2175c0aa83e6",
+      "subject": "本项目",
+      "predicate": "资金来源",
+      "value": "国拨资金及学校自筹",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-7e2dca3b7d0c",
+      "node_id": "N-7e2dca3b7d0c",
+      "subject": "本项目",
+      "predicate": "开工时间",
+      "value": "2020年7月初",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-ea950cb1598c"
+    },
+    {
+      "id": "N-802eeedef8cb",
+      "node_id": "N-802eeedef8cb",
+      "subject": "本项目",
+      "predicate": "竣工时间",
+      "value": "2022年06月底",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-ea950cb1598c"
+    },
+    {
+      "id": "N-f9ce8af03fc0",
+      "node_id": "N-f9ce8af03fc0",
+      "subject": "本项目",
+      "predicate": "建设工期",
+      "value": "24",
+      "unit": "月",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-ea950cb1598c"
+    },
+    {
+      "id": "EN-0389",
+      "node_id": "EN-0389",
+      "subject": "原第五教学楼",
+      "predicate": "实体名",
+      "value": "原第五教学楼",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "EN-0459",
+      "node_id": "EN-0459",
+      "subject": "本项目",
+      "predicate": "实体名",
+      "value": "本项目",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-3f9e4a26e26d"
+    }
+  ],
+  "facts_paging": {
+    "total": 18,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [],
+  "conflicts": [
+    {
+      "type": "numeric",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "values": [
+        "18219",
+        "18319"
+      ],
+      "involved": [
+        "N-0d4cc2051dfe",
+        "N-8f432cf2e264"
+      ],
+      "status": "待审",
+      "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
+    },
+    {
+      "type": "derivation",
+      "subject": "基本预备费",
+      "predicate": "派生值 vs 原文值",
+      "values": [
+        "原文 618.0",
+        "重算 617.95"
+      ],
+      "involved": [
+        "N-a564cd720a96",
+        "N-a831d44a85f1",
+        "N-c51de871596c",
+        "N-d27e283b73c6"
+      ],
+      "status": "待审",
+      "note": "按规则 R-基本预备费 重算得 617.95，原文写 618.0（差 0.05，0.01%）；按铁律不擅自改数"
+    },
+    {
+      "type": "derivation",
+      "subject": "工程建设其他费",
+      "predicate": "派生值 vs 原文值",
+      "values": [
+        "原文 1171.0",
+        "重算 1170.0"
+      ],
+      "involved": [
+        "N-0d30a6b44768",
+        "N-236dbdb1fea6",
+        "N-31dacc87adf4",
+        "N-349ad4d2a9d0",
+        "N-52349af2e44f",
+        "N-58f2a08d9047",
+        "N-8dad7d339b06",
+        "N-903b0ac65f67",
+        "N-979e5a5ddbc9",
+        "N-9e5bfac670e5",
+        "N-a161b289c97d",
+        "N-a831d44a85f1",
+        "N-d3fb4fe652f7"
+      ],
+      "status": "待审",
+      "note": "按规则 R-工程建设其他费 重算得 1170.0，原文写 1171.0（差 1.0，0.09%）；按铁律不擅自改数"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G-006",
+      "type": "blocked_by_conflict",
+      "rule": "R-单位造价",
+      "label": "单位造价（总投资口径）",
+      "depends_on_conflict": [
+        "本项目建筑面积"
+      ],
+      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
+    }
+  ],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "01-总论",
+    "file": "style/section_templates/01-总论.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [
+    {
+      "id": "R-总投资构成",
+      "label": "总投资",
+      "expr": "round({建安工程费用}+{工程建设其他费用}+{预备费}+{原建筑拆除费用}, 2)",
+      "deps": [
+        "建安工程费用",
+        "工程建设其他费用",
+        "预备费",
+        "原建筑拆除费用"
+      ],
+      "target": "总投资",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-建筑面积构成",
+      "label": "总建筑面积",
+      "expr": "round({地上建筑面积}+{地下建筑面积}, 0)",
+      "deps": [
+        "地上建筑面积",
+        "地下建筑面积"
+      ],
+      "target": "总建筑面积",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-规模符合性",
+      "label": "设计规模合理性判定",
+      "expr": "{地上总建筑面积需求} <= {地上建筑面积} => 规模合理；否则 => 待审",
+      "deps": [
+        "地上总建筑面积需求",
+        "地上建筑面积"
+      ],
+      "target": "设计规模合理性判定",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-建安工程费口径核对",
+      "label": "建安工程招标估算金额一致性",
+      "expr": "{建安工程费用} == {建安工程招标估算金额} => 一致；否则 => 待审",
+      "deps": [
+        "建安工程费用",
+        "建安工程招标估算金额"
+      ],
+      "target": "建安工程招标估算金额一致性",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-单位造价",
+      "label": "单位造价（总投资口径）",
+      "expr": "round({总投资}*10000/{本项目建筑面积}, 0)",
+      "deps": [
+        "总投资",
+        "本项目建筑面积"
+      ],
+      "target": "单位造价（总投资口径）",
+      "recheck": "阻塞(冲突未裁决)"
+    },
+    {
+      "id": "R-资金筹措构成",
+      "label": "总投资（筹措口径）",
+      "expr": "round({国拨资金}+{学校自筹资金}, 2)",
+      "deps": [
+        "国拨资金",
+        "学校自筹资金"
+      ],
+      "target": "总投资",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-国拨资金占比",
+      "label": "国拨资金占比",
+      "expr": "round({国拨资金}/{总投资}*100, 2)",
+      "deps": [
+        "国拨资金",
+        "总投资"
+      ],
+      "target": "国拨资金占比",
+      "recheck": "闭合"
+    }
+  ],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

@@ -1,0 +1,252 @@
+[
+  {
+    "surface": "kW",
+    "canonical": "kw",
+    "freq": 37
+  },
+  {
+    "surface": "table",
+    "canonical": "table",
+    "freq": 31
+  },
+  {
+    "surface": "m2",
+    "canonical": "m2",
+    "freq": 28
+  },
+  {
+    "surface": "平方米",
+    "canonical": "平方米",
+    "freq": 27
+  },
+  {
+    "surface": "万元",
+    "canonical": "万元",
+    "freq": 25
+  },
+  {
+    "surface": "m3",
+    "canonical": "m3",
+    "freq": 23
+  },
+  {
+    "surface": "KN",
+    "canonical": "kn",
+    "freq": 18
+  },
+  {
+    "surface": "双一流",
+    "canonical": "双一流",
+    "freq": 14
+  },
+  {
+    "surface": "功率",
+    "canonical": "功率",
+    "freq": 14
+  },
+  {
+    "surface": "理论计算机研究中心",
+    "canonical": "理论计算机研究中心",
+    "freq": 12
+  },
+  {
+    "surface": "应用统计研究中心",
+    "canonical": "应用统计研究中心",
+    "freq": 12
+  },
+  {
+    "surface": "合计",
+    "canonical": "合计",
+    "freq": 11
+  },
+  {
+    "surface": "mm",
+    "canonical": "mm",
+    "freq": 11
+  },
+  {
+    "surface": "风量",
+    "canonical": "风量",
+    "freq": 11
+  },
+  {
+    "surface": "其中",
+    "canonical": "其中",
+    "freq": 10
+  },
+  {
+    "surface": "根据",
+    "canonical": "根据",
+    "freq": 10
+  },
+  {
+    "surface": "序号",
+    "canonical": "序号",
+    "freq": 10
+  },
+  {
+    "surface": "因此",
+    "canonical": "因此",
+    "freq": 10
+  },
+  {
+    "surface": "公共建筑节能设计标准",
+    "canonical": "公共建筑节能设计标准",
+    "freq": 10
+  },
+  {
+    "surface": "Pa",
+    "canonical": "pa",
+    "freq": 10
+  },
+  {
+    "surface": "一用一备",
+    "canonical": "一用一备",
+    "freq": 9
+  },
+  {
+    "surface": "十三五",
+    "canonical": "十三五",
+    "freq": 8
+  },
+  {
+    "surface": "MPa",
+    "canonical": "mpa",
+    "freq": 8
+  },
+  {
+    "surface": "制冷量",
+    "canonical": "制冷量",
+    "freq": 8
+  },
+  {
+    "surface": "制热量",
+    "canonical": "制热量",
+    "freq": 8
+  },
+  {
+    "surface": "数量",
+    "canonical": "数量",
+    "freq": 7
+  },
+  {
+    "surface": "单位",
+    "canonical": "单位",
+    "freq": 7
+  },
+  {
+    "surface": "统计学",
+    "canonical": "统计学",
+    "freq": 7
+  },
+  {
+    "surface": "博士生",
+    "canonical": "博士生",
+    "freq": 7
+  },
+  {
+    "surface": "年版",
+    "canonical": "年版",
+    "freq": 7
+  },
+  {
+    "surface": "地下建筑面积",
+    "canonical": "地下建筑面积",
+    "freq": 6
+  },
+  {
+    "surface": "理论经济学",
+    "canonical": "理论经济学",
+    "freq": 6
+  },
+  {
+    "surface": "研究生",
+    "canonical": "研究生",
+    "freq": 6
+  },
+  {
+    "surface": "GB",
+    "canonical": "gb",
+    "freq": 6
+  },
+  {
+    "surface": "Kw",
+    "canonical": "kw",
+    "freq": 6
+  },
+  {
+    "surface": "DN",
+    "canonical": "dn",
+    "freq": 6
+  },
+  {
+    "surface": "全压",
+    "canonical": "全压",
+    "freq": 6
+  },
+  {
+    "surface": "附件",
+    "canonical": "附件",
+    "freq": 5
+  },
+  {
+    "surface": "上海财经大学",
+    "canonical": "上海财经大学",
+    "freq": 5
+  },
+  {
+    "surface": "西侧为校园绿地",
+    "canonical": "西侧为校园绿地",
+    "freq": 5
+  },
+  {
+    "surface": "东侧临近现有建筑教育中心",
+    "canonical": "东侧临近现有建筑教育中心",
+    "freq": 5
+  },
+  {
+    "surface": "北侧靠近校内便利店",
+    "canonical": "北侧靠近校内便利店",
+    "freq": 5
+  },
+  {
+    "surface": "南侧为学校下沉式广场及图书馆",
+    "canonical": "南侧为学校下沉式广场及图书馆",
+    "freq": 5
+  },
+  {
+    "surface": "项目总投资为人民币",
+    "canonical": "项目总投资为人民币",
+    "freq": 5
+  },
+  {
+    "surface": "加速向创新型经济转型发展的需要",
+    "canonical": "加速向创新型经济转型发展的需要",
+    "freq": 5
+  },
+  {
+    "surface": "加快建设数字中国的需要",
+    "canonical": "加快建设数字中国的需要",
+    "freq": 5
+  },
+  {
+    "surface": "建立良好科研环境的需要",
+    "canonical": "建立良好科研环境的需要",
+    "freq": 5
+  },
+  {
+    "surface": "综上所述",
+    "canonical": "综上所述",
+    "freq": 5
+  },
+  {
+    "surface": "目前",
+    "canonical": "目前",
+    "freq": 5
+  },
+  {
+    "surface": "应用经济学",
+    "canonical": "应用经济学",
+    "freq": 5
+  }
+]

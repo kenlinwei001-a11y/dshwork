@@ -1,0 +1,25 @@
+{
+  "verdict": "passed",
+  "closure": {
+    "pass": 7,
+    "FAIL": 0,
+    "invalid": 0,
+    "total": 7
+  },
+  "stage_gates": {
+    "pass": 12,
+    "FAIL": 0,
+    "invalid": 0,
+    "total": 12
+  },
+  "objective": {
+    "pass": 13,
+    "FAIL": 0,
+    "invalid": 1,
+    "total": 14
+  },
+  "blocking_count": 0,
+  "blocking": [],
+  "invalid_count": 1,
+  "note": "invalid 表示判据对象缺失或探针未标定 —— **不得视为通过**"
+}

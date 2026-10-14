@@ -1,0 +1,270 @@
+{
+  "id": "function",
+  "core_domain": "函数库",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "registered（有可执行代码与实测结果）",
+  "depends_on": [
+    "variable"
+  ],
+  "dependents": [
+    "skill",
+    "task_dag",
+    "cost_risk"
+  ],
+  "impacted_assets": [
+    "cost_risk",
+    "function",
+    "prompt",
+    "skill",
+    "task_dag"
+  ],
+  "dependency_closure": [
+    "function",
+    "ontology",
+    "variable"
+  ],
+  "assembly_input": [
+    "函数定义",
+    "输入输出 Schema",
+    "业务参数",
+    "执行环境"
+  ],
+  "assembly_method": "按功能/接口匹配；复用验证实现；绑定变量；接口检查与测试；记录版本",
+  "mismatch_handling": "新增字段不自动传所有函数；仅接口需要才改接口或加适配器并保留兼容版本",
+  "assembly_output": [
+    "函数绑定清单",
+    "输入输出映射",
+    "测试结果"
+  ],
+  "reusable_form": {
+    "functions": [
+      {
+        "name": "safe_eval",
+        "sig": "(expr, env) -> number",
+        "note": "受控命名空间求值，禁用 builtins"
+      },
+      {
+        "name": "num / canon",
+        "sig": "(value) -> float|str",
+        "note": "限定词归一后的数值比较"
+      },
+      {
+        "name": "resolve_dep",
+        "sig": "(dep) -> (value, nodes, reason)",
+        "note": "依赖名三级匹配 + 别名 + 冲突感知"
+      },
+      {
+        "name": "stage_1_normalize / stage_2_outline / stage_3_chunk",
+        "sig": "(text|md, out) -> artifact"
+      },
+      {
+        "name": "validate_extraction / apply_extraction",
+        "sig": "(unit|chunks, extractions) -> graph"
+      },
+      {
+        "name": "emit_nodes / emit_rules / emit_evidence / emit_reasoning / emit_index / emit_reuse",
+        "sig": "(root, ...) -> artifact"
+      },
+      {
+        "name": "instantiate_project / build_work_package / gate_check_draft",
+        "sig": "(...) -> 装配与写作产物"
+      }
+    ],
+    "measured": [
+      "22 条规则实际完成重算（12 闭合 / 7 差异 / 3 判定）",
+      "1 条规则因缺口径未解析，5 条因未裁决冲突阻塞"
+    ]
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-01",
+        "role": "constrains",
+        "report": "R-建筑高度校核",
+        "check": "height_class",
+        "verdict": "待审",
+        "basis": [
+          "GB50016-2014 第5.1.1条",
+          "GB50016-2014 表5.1.1"
+        ]
+      },
+      {
+        "id": "B-04",
+        "role": "constrains",
+        "report": "R-消防用水量合计",
+        "check": "sprinkler",
+        "verdict": "待核查",
+        "basis": [
+          "GB50084-2017 第5.0.1条"
+        ]
+      },
+      {
+        "id": "B-07",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_16",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录D"
+        ]
+      },
+      {
+        "id": "B-08",
+        "role": "warrants",
+        "report": "R-应建规模",
+        "check": "index_8",
+        "verdict": "待核查",
+        "basis": [
+          "建标191-2018 附录B"
+        ]
+      },
+      {
+        "id": "B-09",
+        "role": "warrants",
+        "report": "R-配套用房建筑面积",
+        "check": "utilization_factor",
+        "verdict": "合规",
+        "basis": [
+          "建标191-2018 附录E"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-191-B",
+        "code": "建标191-2018 附录B",
+        "role": "domain",
+        "status": "现行；附表B 数值未取到（仅表16 宿舍补助已取到）",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-D1",
+        "code": "建标191-2018 附录D",
+        "role": "domain",
+        "status": "现行；附表D-1 原表未取到，指标值来自标准内计算实例",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-191-K",
+        "code": "建标191-2018 附录E",
+        "role": "domain",
+        "status": "现行",
+        "url": "（随 EXT-02 同一标准）"
+      },
+      {
+        "id": "M-GB50016-511",
+        "code": "GB50016-2014 第5.1.1条",
+        "role": "domain",
+        "status": "现行（2018年版）",
+        "url": "https://gf.cabr-fire.com/m/article-27247.htm"
+      },
+      {
+        "id": "M-GB50016-T511",
+        "code": "GB50016-2014 表5.1.1",
+        "role": "domain",
+        "status": "现行（2018年版）",
+        "url": "http://www.fireresearch.cn/2018消防建筑防火篇：建筑分类与耐火等级.html"
+      },
+      {
+        "id": "M-GB50084-501",
+        "code": "GB50084-2017 第5.0.1条",
+        "role": "domain",
+        "status": "现行；表格数值未取到",
+        "url": "references/raw 摘录页"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "C-指标-01",
+        "expr": "文法类科研人员 ≤ 16㎡/人（附表D-1，计算实例值）；理工类 30㎡/人；设计人员 15㎡/人",
+        "mandatory": false
+      },
+      {
+        "id": "C-指标-02",
+        "expr": "使用面积系数 K = 使用面积 / 建筑面积 ⇒ 建筑面积 = 使用面积 / K",
+        "mandatory": false
+      },
+      {
+        "id": "C-耐火-01",
+        "expr": "建筑高度 > 50m 且 为公共建筑  =>  一类高层公共建筑；否则为二类高层公共建筑（高层）",
+        "mandatory": false
+      }
+    ]
+  },
+  "sources": {
+    "rules": [
+      "R-应建规模",
+      "R-土建工程",
+      "R-投资闭合校核"
+    ]
+  },
+  "related_issues": [],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": []
+}

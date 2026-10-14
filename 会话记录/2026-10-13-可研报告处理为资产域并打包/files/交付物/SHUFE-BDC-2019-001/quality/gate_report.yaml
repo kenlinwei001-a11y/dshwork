@@ -1,0 +1,37 @@
+{
+  "gate": "REVIEW",
+  "blockers": [
+    {
+      "type": "numeric",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "values": [
+        "18219 ㎡",
+        "18319 ㎡"
+      ],
+      "involved": [
+        "N-8f432cf2e264",
+        "N-8f432cf2e264",
+        "N-8f432cf2e264",
+        "N-8f432cf2e264",
+        "N-0d4cc2051dfe"
+      ],
+      "status": "待审"
+    },
+    {
+      "type": "numeric",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "values": [
+        "70 dB(A)",
+        "≤70 dB(A)"
+      ],
+      "involved": [
+        "N-f95ce50dc7dd",
+        "N-1dff222d7986"
+      ],
+      "status": "待审"
+    }
+  ],
+  "invariant_ok": true
+}

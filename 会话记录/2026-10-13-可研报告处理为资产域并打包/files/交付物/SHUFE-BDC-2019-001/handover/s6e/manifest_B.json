@@ -1,0 +1,12 @@
+{
+  "stage": "s6e",
+  "patterns": [
+    "SHUFE-BDC-2019-001/project/work_packages/*.json"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/project/work_packages/*.json"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

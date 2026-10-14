@@ -1,0 +1,483 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5h",
+  "name": "抽取驱动（compiled_prompt × chunk，逐片记录）",
+  "script": "s1d_extract_driven.py",
+  "script_sha256": "5c25b331a4a522b63998d25a12f5864e",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:54",
+  "finished_at": "2026-10-14T18:05:55",
+  "elapsed_s": 0.82,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+      "bytes": 10028,
+      "sha256": "f1024ab3d50776d8319f1d6c0da6abe9",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+      "bytes": 426426,
+      "sha256": "73e28e952272dc1c9b7ce46a596a1adc",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+      "bytes": 425248,
+      "sha256": "30edb7fb371881ae3f93431283761812",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+      "bytes": 4830,
+      "sha256": "a70c44b8470f0b2392cdcb4587407090",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+      "bytes": 4816,
+      "sha256": "1cf53fbf173f3bbce1f6295897cbd9b6",
+      "mtime": 1791972354
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+      "bytes": 51347,
+      "sha256": "564da1e9050a58e80c58e5c7f8904ff1",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+      "bytes": 51203,
+      "sha256": "8da5a47801d68f30efd9e607df337746",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+      "bytes": 5329,
+      "sha256": "15fdbdd297f7552a5af52150f1d35795",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+      "bytes": 5314,
+      "sha256": "d53f10e6c786aadcd3d13682838517f3",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+      "bytes": 69041,
+      "sha256": "6b855e907e589d5bd00689916115f29f",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+      "bytes": 68841,
+      "sha256": "5f964145026698d98ac1f029c9c3b1bb",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+      "bytes": 19899,
+      "sha256": "21a595b737574435fc7a16ccb40b4b38",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+      "bytes": 19843,
+      "sha256": "e7f0cce4ea0d09c5cceabf4677974a41",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+      "bytes": 22385,
+      "sha256": "6909cab75642f880c42ec6bede698097",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+      "bytes": 22322,
+      "sha256": "ae21f4fda672a62145ff0f944637108f",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+      "bytes": 13459,
+      "sha256": "2de5fdd1486631a310280a7e9e6fcc87",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+      "bytes": 13420,
+      "sha256": "79640cc7eb4e5222aa298d50c1a32c1e",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+      "bytes": 1776,
+      "sha256": "8eaf2e6fb6fb65801166c304b7e2d325",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+      "bytes": 1771,
+      "sha256": "0c125cd8583a889af898b7d51f3b4a91",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+      "bytes": 13496,
+      "sha256": "9f19eeceb62a1dad174fef636162067d",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+      "bytes": 13458,
+      "sha256": "bff507b07db2e412e70ace6e3e83208e",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+      "bytes": 32333,
+      "sha256": "09bab134e85be052920c790b66b8dfc7",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+      "bytes": 32242,
+      "sha256": "60d39b887cc04d12b9df2a8a1e1dc4c1",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+      "bytes": 10657,
+      "sha256": "75d61facb73c4a0207231cb1a6f025d6",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+      "bytes": 10627,
+      "sha256": "67c08c3e02ad7b47a45036b1f501bde6",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+      "bytes": 55427,
+      "sha256": "92ad6ba611d9eff8ec3466fc07c5906b",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+      "bytes": 55271,
+      "sha256": "99170d0cc25b505c511b3f2daa21f6b0",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+      "bytes": 1775,
+      "sha256": "3a646d40dc6f36e9eff47329dea8825a",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+      "bytes": 1770,
+      "sha256": "f8230a9e02c805421764c4b34944d137",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+      "bytes": 1420,
+      "sha256": "26dc71b0c7c3bd8d1e4459fa84c596cb",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+      "bytes": 1416,
+      "sha256": "d0b747e1a5d61d5eec6644b682beac17",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+      "bytes": 4142,
+      "sha256": "78d2cb03255eaca923a2be69c5b78e9c",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+      "bytes": 4130,
+      "sha256": "6352448e7a0209ef40d67bddb2dd9d86",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+      "bytes": 1065,
+      "sha256": "151f45ddf0bf31b98cd8db25871c25f3",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+      "bytes": 1062,
+      "sha256": "143668dcfcc268f006b59c2ada3b3618",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+      "bytes": 2488,
+      "sha256": "85b234e252426818385d80ee8fd6dfa1",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+      "bytes": 2481,
+      "sha256": "9916f351d55fb61615f16ab145c4eda3",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+      "bytes": 1033,
+      "sha256": "fc73ee28d4e851a07b62cdabfb5ae058",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+      "bytes": 1030,
+      "sha256": "f64197be337a398c7e3490d24c1ca975",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+      "bytes": 420,
+      "sha256": "31a1b75945f3bbb17845847b9cb1be87",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+      "bytes": 419,
+      "sha256": "722cb1a0ac1d3c70d8db38920824951d",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+      "bytes": 23094,
+      "sha256": "df5ba166d87efcc372f12eb1b432d99d",
+      "mtime": 1791972355
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl",
+      "bytes": 23029,
+      "sha256": "09cd5791acd2cdb30f0d53398bb292b3",
+      "mtime": 1791972355
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s5g/README.md",
+    "SHUFE-BDC-2019-001/handover/s5g/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s5h/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5h/manifest_A_s5g.json",
+    "SHUFE-BDC-2019-001/handover/s5h/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5h/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl",
+    "SHUFE-BDC-2019-001/quality/extraction_runs/_summary.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s5g.json"
+  ],
+  "stdout_tail": " \"distinct_prompt_sha256\": 1,\n      \"invoked\": 0,\n      \"not_invoked\": 14,\n      \"prompt_sha256\": \"88d670d6382c1d76af9a4fb0056b8f15\"\n    },\n    {\n      \"doc_id\": \"EXT-00\",\n      \"task\": \"claim_extraction\",\n      \"chunks\": 14,\n      \"distinct_prompt_sha256\": 1,\n      \"invoked\": 0,\n      \"not_invoked\": 14,\n      \"prompt_sha256\": \"ff34b6a8438428d9b41b55ad3299b3ab\"\n    },\n    {\n      \"doc_id\": \"EXT-01\",\n      \"task\": \"fact_extraction\",\n      \"chunks\": 144,\n      \"distinct_prompt_sha256\": 1,\n      \"invoked\": 0,\n      \"not_invoked\": 144,\n      \"prompt_sha256\": \"c134312909496a3dd9eb9f83f9bf2d7e\"\n   \n",
+  "stderr_tail": ""
+}

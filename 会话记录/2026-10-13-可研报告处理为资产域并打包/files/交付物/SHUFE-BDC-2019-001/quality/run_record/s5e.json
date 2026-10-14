@@ -1,0 +1,84 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5e",
+  "name": "源侧索引/闭环/补救/关系扩展",
+  "script": "opt25.py",
+  "script_sha256": "ad7b7a264479737f6f97213048d53edc",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:49",
+  "finished_at": "2026-10-14T18:05:50",
+  "elapsed_s": 0.82,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/source_ledger.json",
+    "SHUFE-BDC-2019-001/graph/relations.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/source_ledger.json",
+      "pattern": "SHUFE-BDC-2019-001/source_ledger.json",
+      "bytes": 18292,
+      "sha256": "b09982601670de47102dac87b7709855",
+      "mtime": 1791972349
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "bytes": 52262,
+      "sha256": "a057612ab004193d5d0fa95bc3886d65",
+      "mtime": 1791972350
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/source_ledger.json",
+    "SHUFE-BDC-2019-001/graph/relations.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/evidence/evidence.base.yaml",
+    "SHUFE-BDC-2019-001/evidence/evidence.yaml",
+    "SHUFE-BDC-2019-001/graph/claims.base.yaml",
+    "SHUFE-BDC-2019-001/graph/claims.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.base.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/graph/relation_vocabulary.yaml",
+    "SHUFE-BDC-2019-001/graph/relations.base.yaml",
+    "SHUFE-BDC-2019-001/graph/relations.yaml",
+    "SHUFE-BDC-2019-001/handover/s5c/README.md",
+    "SHUFE-BDC-2019-001/handover/s5c/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s5e/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5e/manifest_A_s5c.json",
+    "SHUFE-BDC-2019-001/handover/s5e/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5e/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/probe_calibration.yaml",
+    "SHUFE-BDC-2019-001/quality/remediation_log.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s5c.json",
+    "SHUFE-BDC-2019-001/source_ledger.json"
+  ],
+  "stdout_tail": "    },\n    {\n      \"id\": \"C2b\",\n      \"verdict\": \"pass\",\n      \"recall\": 71.6,\n      \"missing\": 31\n    },\n    {\n      \"id\": \"C3\",\n      \"verdict\": \"pass\",\n      \"recall\": 100.0,\n      \"missing\": 0\n    },\n    {\n      \"id\": \"C4\",\n      \"verdict\": \"pass\",\n      \"recall\": 100.0,\n      \"missing\": 0\n    },\n    {\n      \"id\": \"C5\",\n      \"verdict\": \"FAIL\",\n      \"recall\": 59.5,\n      \"missing\": 17\n    },\n    {\n      \"id\": \"C6\",\n      \"verdict\": \"pass\",\n      \"recall\": 96.7,\n      \"missing\": 7\n    },\n    {\n      \"id\": \"C7\",\n      \"verdict\": \"pass\",\n      \"recall\": 100.0,\n      \"missing\": 0\n    }\n  ]\n}\n",
+  "stderr_tail": ""
+}

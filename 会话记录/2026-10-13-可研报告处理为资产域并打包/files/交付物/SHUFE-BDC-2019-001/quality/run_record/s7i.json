@@ -1,0 +1,76 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7i",
+  "name": "客观判据（工作区·参考）",
+  "script": "opt27_objective.py",
+  "script_sha256": "efb58f676cd67ed35f08871f4bad3879",
+  "exit_code": 0,
+  "blocking": false,
+  "started_at": "2026-10-14T18:06:29",
+  "finished_at": "2026-10-14T18:06:30",
+  "elapsed_s": 1.08,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+      "bytes": 6086,
+      "sha256": "07c37f7202c3fea835ce9f7936c4130e",
+      "mtime": 1791972390
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+      "bytes": 3661,
+      "sha256": "83de829dc044314217ec5290866b1350",
+      "mtime": 1791972390
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/chunks/sentences.jsonl",
+    "SHUFE-BDC-2019-001/handover/s7h/README.md",
+    "SHUFE-BDC-2019-001/handover/s7h/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7i/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7i/manifest_A_s7h.json",
+    "SHUFE-BDC-2019-001/handover/s7i/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7i/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s7h.json",
+    "交付物/报告/客观verify标准.md",
+    "交付物/报告/质量门控工具需求.md"
+  ],
+  "stdout_tail": "2\": [\n      \"pass\",\n      0\n    ],\n    \"K3\": [\n      \"pass\",\n      0\n    ],\n    \"K4\": [\n      \"FAIL\",\n      10\n    ],\n    \"K5\": [\n      \"pass\",\n      0\n    ],\n    \"K6\": [\n      \"FAIL\",\n      1\n    ],\n    \"K7\": [\n      \"pass\",\n      0\n    ],\n    \"K8\": [\n      \"pass\",\n      0\n    ],\n    \"K9\": [\n      \"pass\",\n      0\n    ],\n    \"K10\": [\n      \"FAIL\",\n      29\n    ],\n    \"K11\": [\n      \"FAIL\",\n      2\n    ],\n    \"K12\": [\n      \"pass\",\n      0\n    ]\n  },\n  \"pass\": 8,\n  \"judgment_required\": [\n    \"还原稿「论证质量优于原稿」\",\n    \"评估报告中的「影响度 高/中/低」\",\n    \"「压缩过程性记述是可接受的取舍」\"\n  ],\n  \"out\": \"交付物/报告/客观verify标准.md\"\n}\n",
+  "stderr_tail": ""
+}

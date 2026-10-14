@@ -1,0 +1,16 @@
+{
+  "stage": "s5i",
+  "script": "s34_prompt_reuse.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/prompt_reuse.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/prompt_reuse.yaml",
+      "sha256": "b9067c187ed5888b661b438c21ced748",
+      "bytes": 7049
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

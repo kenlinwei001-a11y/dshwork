@@ -1,0 +1,28 @@
+{
+  "stage": "s4b",
+  "script": "s4b_fill_dedup.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+      "sha256": "89c2ef8f8e53630d0c157f05b52ac5ff",
+      "bytes": 6439
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "sha256": "edd8795d30b1a1dbc7027d21c8e7eb0c",
+      "bytes": 233810
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "sha256": "8752620c1ee9456105f9d5429ce3a3a4",
+      "bytes": 103522
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

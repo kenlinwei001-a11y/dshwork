@@ -1,0 +1,1 @@
+{"doc_id": "EXT-18", "task": "fact_extraction", "chunk_id": null, "prompt_sha256": "f0deae5c9e3517e05a5948d59662be63", "template_id": "generic", "template_sha256": "4bca8acfd921e80b341297147e7ab28a", "chunk_sha256": null, "chunk_chars": 0, "status": "no_chunks", "output_ref": null, "attempts": 0, "note": "该文档在 external/chunks.jsonl 中无切片（检索未产出正文），属数据缺口，非抽取失败"}

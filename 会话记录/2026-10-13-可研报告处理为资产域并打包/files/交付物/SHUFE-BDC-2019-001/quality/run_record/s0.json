@@ -1,0 +1,56 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s0",
+  "name": "从原稿重推文档文本",
+  "script": "s0_docx2md.py",
+  "script_sha256": "fc4694ecf6a3db10d6c7c9215495fea9",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:38",
+  "finished_at": "2026-10-14T18:05:39",
+  "elapsed_s": 0.67,
+  "declared_outputs": [
+    "build/doc-clean/*.md"
+  ],
+  "outputs": [
+    {
+      "path": "build/doc-clean/大数据研究中心可研.md",
+      "pattern": "build/doc-clean/*.md",
+      "bytes": 170597,
+      "sha256": "e906e68b385d4de7a652babedc6ab9a8",
+      "mtime": 1791972339
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "build/doc-clean/derivation.json",
+    "build/doc-clean/headings.json",
+    "build/doc-clean/大数据研究中心可研.md"
+  ],
+  "stdout_tail": "{\n  \"source_docx\": \"source-original.docx\",\n  \"source_docx_sha256\": \"00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe\",\n  \"derived_md\": \"build/doc-clean/大数据研究中心可研.md\",\n  \"derived_md_sha256\": \"e906e68b385d4de7a652babedc6ab9a810dded3ca1c57b7df7e6d8db8e13cb3d\",\n  \"chars\": 68518,\n  \"blocks\": 1187,\n  \"headings\": 151,\n  \"h1\": 16,\n  \"h2\": 60,\n  \"h3\": 75,\n  \"tables\": 31\n}\n",
+  "stderr_tail": ""
+}

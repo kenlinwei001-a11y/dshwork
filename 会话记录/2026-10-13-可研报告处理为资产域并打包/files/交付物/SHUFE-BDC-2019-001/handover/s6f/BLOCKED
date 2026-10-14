@@ -1,0 +1,100 @@
+{
+  "stage": "s6f",
+  "checked_depends_on": [
+    "s6e"
+  ],
+  "A_count": 16,
+  "B_count": 0,
+  "SOP_patterns": 1,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/16-附件.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 17,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

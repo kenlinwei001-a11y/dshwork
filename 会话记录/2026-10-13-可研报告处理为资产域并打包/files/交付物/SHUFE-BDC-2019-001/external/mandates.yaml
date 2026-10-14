@@ -1,0 +1,377 @@
+{
+  "note": "Mandate 节点（条款级）。role 表示该依据在报告论证中承担的角色：driver 强制驱动 / benchmark 合规基准 / warrant 推理保证 / domain 取值域约束——同一份文件在不同章节可承担不同角色，不塌缩。",
+  "mandates": [
+    {
+      "id": "M-304-CH",
+      "doc": "EXT-01",
+      "standard": "《政府投资项目可行性研究报告编写通用大纲（2023年版）》",
+      "code": "发改投资规〔2023〕304号",
+      "clause": "通用大纲目录",
+      "text": "通用大纲法定十章：概述；项目建设背景和必要性；项目需求分析与产出方案；项目选址与要素保障；项目建设方案；项目运营方案；项目投融资与财务方案；项目影响效果分析；项目风险管控方案；研究结论及建议。",
+      "effect_level": "部门规范性文件",
+      "status": "现行（2023-05-01 起施行）",
+      "role": "driver",
+      "chunks": [],
+      "source_doc": "references/raw/304号大纲-通用大纲.txt",
+      "source_url": "https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=20220",
+      "trace_status": "not_located"
+    },
+    {
+      "id": "M-191-NAME",
+      "doc": "EXT-02",
+      "standard": "《普通高等学校建筑面积指标》",
+      "code": "建标﹝2018﹞32号",
+      "clause": "批准发布通知正文",
+      "text": "现批准发布《普通高等学校建筑面积指标》，自2018年9月1日起施行。原《普通高等学校建筑规划面积指标》同时废止。",
+      "effect_level": "建设标准（部门联合批准）",
+      "status": "现行（2018-09-01 起施行）",
+      "role": "benchmark",
+      "chunks": [],
+      "source_doc": "references/raw/建标191-2018-通知.txt",
+      "source_url": "https://www.gov.cn/zhengce/zhengceku/2018-12/31/content_5433277.htm",
+      "trace_status": "not_located"
+    },
+    {
+      "id": "M-191-D1",
+      "doc": "EXT-03",
+      "standard": "《普通高等学校建筑面积指标》",
+      "code": "建标191-2018 附录D",
+      "clause": "附录D 一 及 附表D-1（计算实例引用值）",
+      "text": "专职科研机构用房：经主管部门批准设立的专职科研机构所需的实验室、研究室、资料室、咨询室等专业用房及少量配套的办公室、会议室、值班室等。建筑面积指标宜符合附表D-1的规定。【计算实例】按附录D（附表D-1）查得理工类科研人员人均面积指标是30.0m²，文法类科研人员人均面积平均指标16m²，设计人员人均面积指标是15m²。",
+      "effect_level": "建设标准",
+      "status": "现行；附表D-1 原表未取到，指标值来自标准内计算实例",
+      "role": "domain",
+      "chunks": [
+        "xc-1c18445c1849"
+      ],
+      "source_doc": "references/raw/tmp-seismic.txt",
+      "source_url": "（随 EXT-02 同一标准）",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-191-B",
+      "doc": "EXT-03",
+      "standard": "《普通高等学校建筑面积指标》",
+      "code": "建标191-2018 附录B",
+      "clause": "附录B 研究生校舍建筑面积补助指标",
+      "text": "研究生使用的校舍，在实验研究、图书馆、学生宿舍三项用房上有别于本科生，应在本科生生均建筑面积指标基础上增加补助指标。研究生校舍建筑面积补助指标见附表B。【另一处，第二十五条表16】研究生学生宿舍建筑面积补助指标：硕士生每生5.0m²，博士生每生10.0m²。",
+      "effect_level": "建设标准",
+      "status": "现行；附表B 数值未取到（仅表16 宿舍补助已取到）",
+      "role": "domain",
+      "chunks": [
+        "xc-6002eb41aeab"
+      ],
+      "source_doc": "references/raw/tmp-seismic.txt",
+      "source_url": "（随 EXT-02 同一标准）",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-191-K",
+      "doc": "EXT-03",
+      "standard": "《普通高等学校建筑面积指标》",
+      "code": "建标191-2018 附录E",
+      "clause": "附录E 术语 三 使用面积系数",
+      "text": "使用面积系数(K)：建筑物中使用面积与建筑面积之比，即使用面积／建筑面积(％)。",
+      "effect_level": "建设标准",
+      "status": "现行",
+      "role": "domain",
+      "chunks": [
+        "xc-a2c2aabf45a9"
+      ],
+      "source_doc": "references/raw/tmp-seismic.txt",
+      "source_url": "（随 EXT-02 同一标准）",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50016-511",
+      "doc": "EXT-04",
+      "standard": "《建筑设计防火规范》",
+      "code": "GB50016-2014 第5.1.1条",
+      "clause": "5.1.1",
+      "text": "民用建筑根据其建筑高度和层数可分为单、多层民用建筑和高层民用建筑。高层民用建筑根据其建筑高度、使用功能和楼层的建筑面积可分为一类和二类。民用建筑的分类应符合表5.1.1的规定。",
+      "effect_level": "国家标准（条文说明：对于公共建筑以24m作为区分多层和高层公共建筑的标准）",
+      "status": "现行（2018年版）",
+      "role": "domain",
+      "chunks": [
+        "xc-129bfa6b7b2d"
+      ],
+      "source_doc": "references/raw/gb50016-5.1-建筑分类和耐火等级.txt",
+      "source_url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50016-T511",
+      "doc": "EXT-06",
+      "standard": "《建筑设计防火规范》",
+      "code": "GB50016-2014 表5.1.1",
+      "clause": "表5.1.1 民用建筑分类（一类高层公共建筑）",
+      "text": "一类高层公共建筑包括：1.建筑高度大于50m的公共建筑；2.任一楼层建筑面积大于1000㎡的商店、展览、电信、邮政、财贸金融建筑和其他多种功能组合的建筑；3.医疗建筑、重要公共建筑；4.省级及以上的广播电视和防灾指挥调度建筑、网局级和省级电力调度；5.藏书超过100万册的图书馆、书库。二类高层公共建筑：除住宅建筑和一类高层公共建筑外的其他高层民用建筑。",
+      "effect_level": "国家标准（表格转录，原表在 EXT-04 页被剥离）",
+      "status": "现行（2018年版）",
+      "role": "domain",
+      "chunks": [],
+      "source_doc": "references/raw/建筑分类与耐火等级.txt",
+      "source_url": "http://www.fireresearch.cn/2018消防建筑防火篇：建筑分类与耐火等级.html",
+      "trace_status": "not_located"
+    },
+    {
+      "id": "M-GB50016-513",
+      "doc": "EXT-04",
+      "standard": "《建筑设计防火规范》",
+      "code": "GB50016-2014 第5.1.3条",
+      "clause": "5.1.3（条文说明标注为强制性条文）",
+      "text": "民用建筑的耐火等级应根据其建筑高度、使用功能、重要性和火灾扑救难度等确定，并应符合下列规定：1 地下或半地下建筑（室）和一类高层建筑的耐火等级不应低于一级；2 单、多层重要公共建筑和二类高层建筑的耐火等级不应低于二级。",
+      "effect_level": "国家标准（强制性条文）",
+      "status": "现行（2018年版）",
+      "role": "domain",
+      "chunks": [
+        "xc-f5b44ca94b44"
+      ],
+      "source_doc": "references/raw/gb50016-5.1-建筑分类和耐火等级.txt",
+      "source_url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50045-95",
+      "doc": "EXT-07",
+      "standard": "《建筑设计防火规范》/《高层民用建筑设计防火规范》",
+      "code": "南建〔2015〕70号",
+      "clause": "通知正文",
+      "text": "住房和城乡建设部、国家质量监督检验检疫总局于2014年8月27日联合发布了《建筑设计防火规范》（GB50016—2014），施行日期为2015年5月1日。原《建筑设计防火规范》（GB50016—2006）和《高层民用建筑设计防火规范》（GB50045—95）同时废止。",
+      "effect_level": "行政通知（废止事实）",
+      "status": "现行",
+      "role": "benchmark",
+      "chunks": [
+        "xc-eff169f59027"
+      ],
+      "source_doc": "references/raw/新版建筑设计防火规范-通知.txt",
+      "source_url": "https://www.nanchong.gov.cn/zjj/xwdt/tzgg/201503/t20150324_1289568.html",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50974-521",
+      "doc": "EXT-08",
+      "standard": "《消防给水及消火栓系统技术规范》",
+      "code": "GB50974-2014 第5.2.1条",
+      "clause": "5.2.1 第1、2款",
+      "text": "临时高压消防给水系统的高位消防水箱的有效容积应满足初期火灾消防用水量的要求，并应符合下列规定：1 一类高层公共建筑，不应小于36m³，但当建筑高度大于100m时，不应小于50m³，当建筑高度大于150m时，不应小于100m³；2 多层公共建筑、二类高层公共建筑和一类高层住宅，不应小于18m³，当一类高层住宅建筑高度超过100m时，不应小于36m³。",
+      "effect_level": "国家标准",
+      "status": "现行",
+      "role": "domain",
+      "chunks": [
+        "xc-e404e761b81d"
+      ],
+      "source_doc": "references/raw/gb50974-5.2-高位消防水箱.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50084-501",
+      "doc": "EXT-09",
+      "standard": "《自动喷水灭火系统设计规范》",
+      "code": "GB50084-2017 第5.0.1条",
+      "clause": "5.0.1",
+      "text": "民用建筑和厂房采用湿式系统时的设计基本参数不应低于表5.0.1的规定。（注：系统最不利点处洒水喷头的工作压力不应低于0.05MPa。）【摘录限制】表5.0.1 的表格数值在被检索页面中被剥离，未能取到危级对应的喷水强度与作用面积数值。",
+      "effect_level": "国家标准",
+      "status": "现行；表格数值未取到",
+      "role": "domain",
+      "chunks": [
+        "xc-6085fa2a108c"
+      ],
+      "source_doc": "references/raw/自喷-5-设计基本参数.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50223-609",
+      "doc": "EXT-10",
+      "standard": "《建筑工程抗震设防分类标准》",
+      "code": "GB50223-2008 第6.0.9条",
+      "clause": "6.0.9",
+      "text": "科学实验建筑中，研究、中试生产和存放具有高放射性物品以及剧毒的生物制品、化学制品、天然和人工细菌、病毒（如鼠疫、霍乱、伤寒和新发高危险传染病等）的建筑，抗震设防类别应划为特殊设防类。",
+      "effect_level": "国家标准",
+      "status": "现行（2008 年版）",
+      "role": "domain",
+      "chunks": [
+        "xc-43ea19be6ef3"
+      ],
+      "source_doc": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50223-608",
+      "doc": "EXT-10",
+      "standard": "《建筑工程抗震设防分类标准》",
+      "code": "GB50223-2008 第6.0.8条",
+      "clause": "6.0.8",
+      "text": "教育建筑中，幼儿园、小学、中学的教学用房以及学生宿舍和食堂，抗震设防类别应不低于重点设防类。",
+      "effect_level": "国家标准",
+      "status": "现行",
+      "role": "domain",
+      "chunks": [
+        "xc-ddc3719db26e"
+      ],
+      "source_doc": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50223-611",
+      "doc": "EXT-10",
+      "standard": "《建筑工程抗震设防分类标准》",
+      "code": "GB50223-2008 第6.0.11条",
+      "clause": "6.0.11",
+      "text": "高层建筑中，当结构单元内经常使用人数超过8000人时，抗震设防类别宜划为重点设防类。",
+      "effect_level": "国家标准",
+      "status": "现行",
+      "role": "domain",
+      "chunks": [
+        "xc-7fa258194423"
+      ],
+      "source_doc": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50223-612",
+      "doc": "EXT-10",
+      "standard": "《建筑工程抗震设防分类标准》",
+      "code": "GB50223-2008 第6.0.12条",
+      "clause": "6.0.12",
+      "text": "居住建筑的抗震设防类别不应低于标准设防类。",
+      "effect_level": "国家标准",
+      "status": "现行",
+      "role": "domain",
+      "chunks": [
+        "xc-f829f4682eb4"
+      ],
+      "source_doc": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50011-A-SH",
+      "doc": "EXT-11",
+      "standard": "《建筑抗震设计规范》",
+      "code": "GB50011-2010 附录A（上海市）",
+      "clause": "附录A 我国主要城镇抗震设防烈度、设计基本地震加速度和设计地震分组",
+      "text": "抗震设防烈度为7度，设计基本地震加速度值为0.10g：第一组：上海（黄浦区、卢湾区、徐汇、长宁、静安区、普陀区、闸北区、虹口、杨浦、闵行区、宝山、嘉定区、浦东、松江、青浦、南汇、奉贤）。抗震设防烈度为6度，设计基本地震加速度值为0.05g：第一组：上海（金山），崇明区。",
+      "effect_level": "国家标准附录（二手转录）",
+      "status": "现行；转录来源为行业网站，已标注为二手",
+      "role": "domain",
+      "chunks": [
+        "xc-51b33ffa0b11",
+        "xc-27a8eee3a7ff",
+        "xc-16770dbd3ca1"
+      ],
+      "source_doc": "references/raw/抗震设防烈度各地规定.txt",
+      "source_url": "references/raw 摘录页",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50352-321",
+      "doc": "EXT-12",
+      "standard": "《民用建筑设计通则》",
+      "code": "GB50352-2005 第3.2.1条",
+      "clause": "3.2.1 及条文说明",
+      "text": "民用建筑的设计使用年限应符合表3.2.1的规定。（条文说明）民用建筑合理使用年限主要指建筑主体结构设计使用年限，根据《建筑结构可靠度设计统一标准》将设计使用年限分为四类，具体的应根据工程项目的建筑等级、重要性来确定。",
+      "effect_level": "国家标准（检索页标注「已作废」）",
+      "status": "报告编制时点（2019-08）该通则尚未失效",
+      "role": "benchmark",
+      "chunks": [
+        "xc-090f6e3e34f4"
+      ],
+      "source_doc": "references/raw/gb50352-3.2-设计使用年限.txt",
+      "source_url": "https://gf.cabr-fire.com/m/article-5902.htm",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-16LING-5",
+      "doc": "EXT-14",
+      "standard": "《必须招标的工程项目规定》",
+      "code": "国家发展改革委令第16号 第五条",
+      "clause": "第五条",
+      "text": "本规定第二条至第四条规定范围内的项目，其勘察、设计、施工、监理以及与工程建设有关的重要设备、材料等的采购，达到下列标准之一的，必须招标：（一）施工单项合同估算价在400万元人民币以上；（二）重要设备、材料等货物的采购，单项合同估算价在200万元人民币以上；（三）勘察、设计、监理等服务的采购，单项合同估算价在100万元人民币以上。",
+      "effect_level": "部门规章",
+      "status": "现行（2018-06-01 起施行）",
+      "role": "benchmark",
+      "chunks": [
+        "xc-87cad6c9e161"
+      ],
+      "source_doc": "references/raw/必须招标的工程项目规定-16号令.txt",
+      "source_url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-16LING-2",
+      "doc": "EXT-14",
+      "standard": "《必须招标的工程项目规定》",
+      "code": "国家发展改革委令第16号 第二条",
+      "clause": "第二条",
+      "text": "全部或者部分使用国有资金投资或者国家融资的项目包括：（一）使用预算资金200万元人民币以上，并且该资金占投资额10%以上的项目；（二）使用国有企业事业单位资金，并且该资金占控股或者主导地位的项目。",
+      "effect_level": "部门规章",
+      "status": "现行",
+      "role": "benchmark",
+      "chunks": [
+        "xc-16da7da0239a"
+      ],
+      "source_doc": "references/raw/必须招标的工程项目规定-16号令.txt",
+      "source_url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GBT50378-2019",
+      "doc": "EXT-15",
+      "standard": "《绿色建筑评价标准》",
+      "code": "住建部公告2019年第61号",
+      "clause": "公告正文",
+      "text": "现批准《绿色建筑评价标准》为国家标准，编号为GB/T50378-2019，自2019年8月1日起实施。原《绿色建筑评价标准》（GB/T50378-2014）同时废止。",
+      "effect_level": "国家标准（发布公告）",
+      "status": "现行（2019-08-01 起实施）",
+      "role": "benchmark",
+      "chunks": [
+        "xc-35094dc62496"
+      ],
+      "source_doc": "references/raw/绿色建筑评价标准-公告.txt",
+      "source_url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240717.html",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-GB50015-2019",
+      "doc": "EXT-16",
+      "standard": "《建筑给水排水设计标准》",
+      "code": "住建部公告2019年第171号",
+      "clause": "公告正文",
+      "text": "现批准《建筑给水排水设计标准》为国家标准，编号为GB50015-2019，自2020年3月1日起实施……原《建筑给水排水设计规范》（GB50015-2003）同时废止。",
+      "effect_level": "国家标准（发布公告）",
+      "status": "现行（2020-03-01 起实施，晚于报告编制时点）",
+      "role": "benchmark",
+      "chunks": [
+        "xc-8a08817a4f48"
+      ],
+      "source_doc": "references/raw/建筑给水排水设计标准-公告.txt",
+      "source_url": "https://ebook.chinabuilding.com.cn/c/2019-12-11/81369.shtml",
+      "trace_status": "located"
+    },
+    {
+      "id": "M-44HAO",
+      "doc": "EXT-17",
+      "standard": "《固定资产投资项目节能审查办法》",
+      "code": "国家发展改革委令第44号",
+      "clause": "发布消息正文",
+      "text": "《办法》自2017年1月1日起施行，《固定资产投资项目节能评估和审查暂行办法》（国家发展改革委令第6号）同时废止。",
+      "effect_level": "部门规章",
+      "status": "现行",
+      "role": "benchmark",
+      "chunks": [
+        "xc-dd1fd3adcb05"
+      ],
+      "source_doc": "references/raw/固定资产投资项目节能审查办法-新闻.txt",
+      "source_url": "https://www.ndrc.gov.cn/fggz/hjyzy/jnhnx/201612/t20161205_1134123_ext.html",
+      "trace_status": "located"
+    }
+  ],
+  "count": 22,
+  "located": 19
+}

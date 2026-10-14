@@ -1,0 +1,12 @@
+原稿文件: 上海财经大学中山北一路校区大数据研究中心 可行性研究报告（修订版）.docx
+原稿 sha256: 00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe
+重推文档文本 sha256: e906e68b385d4de7a652babedc6ab9a810dded3ca1c57b7df7e6d8db8e13cb3d
+
+重建命令:
+  /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python build/run_all.py --fresh
+  /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python build/s9_screened_bundle.py
+
+说明:
+  - 语料包内已含原稿二进制：SHUFE-BDC-2019-001/source/original.docx
+    （sha256 须等于上述值；任何与该散列不符的中间产物均不得作为权威输入）。
+  - 阶段顺序与确定性边界见 审计/05-可复现性与输入完整性说明.md。

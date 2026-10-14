@@ -1,0 +1,64 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s5d",
+  "name": "跨文档合规复核",
+  "script": "s11_compliance.py",
+  "script_sha256": "201359e4af9d7c574d05c9c08a377abd",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:51",
+  "finished_at": "2026-10-14T18:05:52",
+  "elapsed_s": 0.43,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/external/compliance.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "pattern": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "bytes": 27064,
+      "sha256": "12cc69d13f9c4267fddcc2d7b021d3c6",
+      "mtime": 1791972352
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/external/compliance.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/external/compliance.yaml",
+    "SHUFE-BDC-2019-001/handover/s5d/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5d/manifest_A_s5f.json",
+    "SHUFE-BDC-2019-001/handover/s5d/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s5d/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5f/README.md",
+    "SHUFE-BDC-2019-001/handover/s5f/manifest_A.json",
+    "SHUFE-BDC-2019-001/quality/gaps.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s5f.json"
+  ],
+  "stdout_tail": ": \"B-09\",\n      \"verdict\": \"合规\",\n      \"report\": \"R-配套用房建筑面积\"\n    },\n    {\n      \"binding\": \"B-10\",\n      \"verdict\": \"待审\",\n      \"report\": \"引用标准版本\"\n    },\n    {\n      \"binding\": \"B-11\",\n      \"verdict\": \"不合规\",\n      \"report\": \"引用标准版本\"\n    },\n    {\n      \"binding\": \"B-12\",\n      \"verdict\": \"不合规\",\n      \"report\": \"引用标准名称\"\n    },\n    {\n      \"binding\": \"B-13\",\n      \"verdict\": \"合规\",\n      \"report\": \"招标范围判定（表12-1）\"\n    },\n    {\n      \"binding\": \"B-14\",\n      \"verdict\": \"不合规\",\n      \"report\": \"报告章节体系\"\n    },\n    {\n      \"binding\": \"B-15\",\n      \"verdict\": \"合规\",\n      \"report\": \"引用标准时效\"\n    }\n  ]\n}\n",
+  "stderr_tail": ""
+}

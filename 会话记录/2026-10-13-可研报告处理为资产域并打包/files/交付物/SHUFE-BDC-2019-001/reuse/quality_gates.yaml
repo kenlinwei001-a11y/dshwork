@@ -1,0 +1,210 @@
+{
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "gates": {
+    "QG1": {
+      "gate": "QG1",
+      "name": "来源可信度",
+      "passed": true,
+      "checks": [
+        {
+          "check": "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+          "passed": true,
+          "detail": "证据 563 条，均带 chunk 定位；外部核查未采纳入图"
+        },
+        {
+          "check": "证据分级已登记（E1–E6）",
+          "passed": true,
+          "detail": "563 条证据全部带 kind"
+        },
+        {
+          "check": "规范现行状态未臆断（不把「业内都在用」当已查证）",
+          "passed": true,
+          "detail": "软约束统一标 in_use_unverified / superseded_unverified / invalid_number_unverified"
+        },
+        {
+          "check": "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+          "passed": true,
+          "detail": "20 份外部文件；1 份检索失败已登记"
+        },
+        {
+          "check": "依据未取到时不作判定（不以沾边文件顶上）",
+          "passed": true,
+          "detail": "2 条结论为「待核查」，因规范表格数值未取到"
+        }
+      ]
+    },
+    "QG2": {
+      "gate": "QG2",
+      "name": "语义完整性",
+      "passed": false,
+      "checks": [
+        {
+          "check": "结构完整性：16 个资产域齐备",
+          "passed": true,
+          "detail": "16 域"
+        },
+        {
+          "check": "证据覆盖：Claim 绑定证据比例",
+          "passed": true,
+          "detail": "37/37 = 100%；无证据的 Claim 已登记为缺口，不硬撑结论"
+        },
+        {
+          "check": "证据引用无悬空",
+          "passed": true,
+          "detail": "悬空 0 条"
+        },
+        {
+          "check": "关系合法（只用十类关系）",
+          "passed": false,
+          "detail": "非法 81 条 / 共 553 条"
+        },
+        {
+          "check": "孤立节点",
+          "passed": false,
+          "detail": "449/959 个节点未出现在任何关系中（多为源数据类气象/水文参数）"
+        },
+        {
+          "check": "跨项目污染：未注入产线类领域规则",
+          "passed": true,
+          "detail": "建库时显式不传 doc_type，避免 kp 内置「新增生产线数量/合格产能」规格注入本域"
+        },
+        {
+          "check": "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）",
+          "passed": true,
+          "detail": "15 条绑定；角色分布 {\"benchmark\": 5, \"constrains\": 6, \"driver\": 1, \"warrants\": 3}"
+        }
+      ]
+    },
+    "QG3": {
+      "gate": "QG3",
+      "name": "资产可复用性",
+      "passed": true,
+      "checks": [
+        {
+          "check": "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+          "passed": true,
+          "detail": "项目专属数值只以口径说明与溯源指针形式出现"
+        },
+        {
+          "check": "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+          "passed": true,
+          "detail": "未预见系数 %/100、用电量 1e7 折算已写入 variable.unit_traps"
+        },
+        {
+          "check": "能确定性复算",
+          "passed": true,
+          "detail": "22 条规则重算，12 条闭合"
+        },
+        {
+          "check": "冲突未裁决不阻塞交付但阻塞写作",
+          "passed": true,
+          "detail": "待审 15 条；因未裁决冲突阻塞的派生规则 5 条"
+        }
+      ]
+    },
+    "all_passed": false
+  },
+  "kp_internal_gates": {
+    "gates": [
+      {
+        "gate": "QG1",
+        "name": "来源可信度",
+        "passed": true,
+        "checks": [
+          {
+            "check": "文档版本明确",
+            "passed": true,
+            "detail": "V1.0"
+          },
+          {
+            "check": "来源指纹",
+            "passed": true,
+            "detail": "b066a10ceff227e8"
+          },
+          {
+            "check": "切片来源锚点",
+            "passed": true,
+            "detail": "1178/1178"
+          }
+        ]
+      },
+      {
+        "gate": "QG2",
+        "name": "语义完整性",
+        "passed": true,
+        "checks": [
+          {
+            "check": "Claim 结构合法",
+            "passed": true,
+            "detail": "全部合法"
+          },
+          {
+            "check": "关系 from/to/type 完整",
+            "passed": true,
+            "detail": "全部完整"
+          },
+          {
+            "check": "证据有来源",
+            "passed": true,
+            "detail": "全部有来源"
+          }
+        ]
+      },
+      {
+        "gate": "QG3",
+        "name": "资产可复用性",
+        "passed": true,
+        "checks": [
+          {
+            "check": "16 域装配方法+不一致处理齐全",
+            "passed": true,
+            "detail": "16 域，缺 0 处"
+          },
+          {
+            "check": "资产依赖图无环",
+            "passed": true,
+            "detail": "无环"
+          },
+          {
+            "check": "复用边界（constraints）",
+            "passed": true,
+            "detail": "4 条约束"
+          }
+        ]
+      }
+    ],
+    "all_passed": true,
+    "failed": []
+  },
+  "measured": {
+    "rules_replayed": 23,
+    "rules_closure_ok": 12,
+    "derivation_diff": 8,
+    "rules_blocked_by_conflict": [
+      "R-冷负荷",
+      "R-热负荷",
+      "R-单位面积综合能耗",
+      "R-单位建筑面积电耗",
+      "R-单位造价"
+    ],
+    "rules_missing_fact": [
+      "R-总计算负荷"
+    ],
+    "judgements": [
+      {
+        "id": "J-规模符合性",
+        "verdict": "不满足"
+      },
+      {
+        "id": "J-建安费口径",
+        "verdict": "不一致"
+      },
+      {
+        "id": "J-投资构成闭合",
+        "verdict": "不闭合"
+      }
+    ],
+    "conflicts_pending_review": 15,
+    "gaps_registered": 15
+  }
+}

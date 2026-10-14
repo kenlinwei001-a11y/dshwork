@@ -1,0 +1,64 @@
+{
+  "work_package_id": "WP-15-结论与建议",
+  "outline": {
+    "section": "15-结论与建议",
+    "title": "结论与建议",
+    "must_cover": [
+      "结论与建议"
+    ],
+    "must_cover_legal": [
+      "主要结论和建议"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [],
+  "facts_paging": {
+    "total": 0,
+    "page_size": 30,
+    "pages": 0,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [
+    {
+      "id": "CL-建议-01",
+      "text": "综上所述，本项目建设必要性充分，建设内容与规模明确，资金来源有保障，建议有关部门尽早批复本报告，尽早发挥本项目良好的效益。",
+      "claim_type": "recommendation",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建议有关部门尽早批复本报告",
+        "grounds": "必要性充分、内容与规模明确、资金来源有保障",
+        "warrant": "可行性研究报告获批是项目进入初步设计的前置行政程序",
+        "backing": "《政府投资项目可行性研究报告编写通用大纲》（发改投资规〔2023〕304号）",
+        "qualifier": "尽早",
+        "rebuttal": "拆除手续尚在办理中（原文未闭合）"
+      },
+      "evidence_refs": [
+        "EV-内部-01"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "15-结论与建议",
+    "file": "style/section_templates/15-结论与建议.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

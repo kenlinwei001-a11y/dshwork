@@ -1,0 +1,126 @@
+{
+  "section": "卫生防疫与劳动安全",
+  "section_index": 9,
+  "level": 1,
+  "source": "由原报告同章确定性抽取（段落顺序 / 表格列结构 / 句式骨架）",
+  "placeholder_form": "{{node:N-xxxxxxxxxxxx}}",
+  "block_sequence": [
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "结论及建议"
+    },
+    {
+      "type": "heading",
+      "level": 1,
+      "title": "卫生防疫与劳动安全"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "设计依据"
+    },
+    {
+      "type": "paragraph",
+      "n": 4,
+      "skeleton_sample": "《中华人民共和国安全生产法》"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "劳动安全"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "施工期危害因素分析及防范措施"
+    },
+    {
+      "type": "heading",
+      "level": 0,
+      "title": "1.\t施工期危害因素"
+    },
+    {
+      "type": "paragraph",
+      "n": 1,
+      "skeleton_sample": "本项目施工期间由于安全措施不当或麻痹大意或其它因素容易产生各种安全事故，如：高空作业易引起坠楼等危害施工人员及周边人群生命安全；操作大型机械设备或其他用电设备，均存在机械事故和漏电的危险；高噪声施工机械或多粉尘施工环境会对施工人员造成身体伤害，罹患职业病；原材料堆放场所，施工者或其他人员如有抽烟等燃火活动，可能造成失火。"
+    },
+    {
+      "type": "heading",
+      "level": 0,
+      "title": "2.\t防范措施"
+    },
+    {
+      "type": "paragraph",
+      "n": 12,
+      "skeleton_sample": "针对可能产生的不安全危害因素，必须采取积极的防范措施，把危害减少到最低限度，以保障人员的生命安全和健康。"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "运营期危害因素分析及防范措施"
+    },
+    {
+      "type": "heading",
+      "level": 0,
+      "title": "1.\t施工期危害因素"
+    },
+    {
+      "type": "paragraph",
+      "n": 1,
+      "skeleton_sample": "本项目运作使用过程中安全防范工作应该做好做细。可能引起危害的隐患主要有：人流集中带来的卫生问题、电气设备引起的电气火灾及人为因素造成的火灾事故等；使用电器设备的工作人员在操作过程中可能受到漏电伤害；栏杆高度、强度不够可能会发生高空坠落事故等。"
+    },
+    {
+      "type": "heading",
+      "level": 0,
+      "title": "2.\t防范措施"
+    },
+    {
+      "type": "paragraph",
+      "n": 20,
+      "skeleton_sample": "防火灾"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "卫生防疫"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "施工期卫生防疫"
+    },
+    {
+      "type": "paragraph",
+      "n": 2,
+      "skeleton_sample": "对施工人员发放口罩等防护器具；开挖的土方及建筑垃圾及时进行利用；对建筑垃圾等堆放场地定期洒水，使其保持一定的湿度，以减少扬尘量。"
+    },
+    {
+      "type": "heading",
+      "level": 3,
+      "title": "运营期卫生防疫"
+    },
+    {
+      "type": "paragraph",
+      "n": 20,
+      "skeleton_sample": "建筑卫生防疫措施"
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "title": "结论及建议"
+    },
+    {
+      "type": "paragraph",
+      "n": 1,
+      "skeleton_sample": "通过落实以上措施，将能够保证施工人员、进出师生的安全和健康。同时，建议建设单位指定分管领导，以加强劳动安全与卫生工作。"
+    }
+  ],
+  "tables": [],
+  "argument_sentence_patterns": [
+    "落实措施后可保证施工人员与师生安全和健康",
+    "施工期与运营期分别给出防自然灾害/安全教育/防机械伤害/安全用电/防火灾/防触电/防噪防尘/防坠落/人流安全等措施",
+    "措施覆盖全部已识别危害因素 ⇒ 安全可控"
+  ],
+  "note": "骨架给「怎么写」：段落功能顺序、表格列结构、论证句式槽位。数值一律写占位符，不写本项目的字面数字。"
+}

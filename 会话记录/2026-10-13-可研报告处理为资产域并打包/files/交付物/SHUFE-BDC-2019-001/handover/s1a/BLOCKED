@@ -1,0 +1,35 @@
+{
+  "stage": "s1a",
+  "checked_depends_on": [
+    "s0"
+  ],
+  "A_count": 1,
+  "B_count": 3,
+  "SOP_patterns": 3,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "build/doc-clean/大数据研究中心可研.md",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "build/extractions-clean/P1.json",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "build/extractions-clean/P2.json",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "build/extractions-clean/P3.json",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 4,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

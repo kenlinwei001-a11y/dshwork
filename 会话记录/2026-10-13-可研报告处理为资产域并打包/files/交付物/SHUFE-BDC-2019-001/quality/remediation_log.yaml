@@ -1,0 +1,37 @@
+{
+  "evidence_added": [
+    "EVX-依据-009",
+    "EVX-依据-010",
+    "EVX-依据-017",
+    "EVX-依据-031",
+    "EVX-依据-032",
+    "EVX-依据-034",
+    "EVX-依据-035",
+    "EVX-依据-036",
+    "EVX-依据-039",
+    "EVX-依据-043"
+  ],
+  "evidence_added_count": 54,
+  "evidence_exempt_count": 25,
+  "device_nodes": 32,
+  "restate_claims": [
+    "CL-RS-104-03",
+    "CL-RS-106-01",
+    "CL-RS-112-01",
+    "CL-RS-113-01",
+    "CL-RS-114-01",
+    "CL-RS-124-03",
+    "CL-RS-125-01",
+    "CL-RS-209-03",
+    "CL-RS-209-01"
+  ],
+  "restate_count": 9,
+  "relation_edges_added": 88,
+  "entity_nodes_added": 518,
+  "relation_endpoints_rewritten": 868,
+  "nodes_base": 370,
+  "nodes_total": 920,
+  "claims_base": 28,
+  "claims_total": 37,
+  "relations_total": 553
+}

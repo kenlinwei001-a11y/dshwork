@@ -1,0 +1,609 @@
+{
+  "id": "cost_risk",
+  "core_domain": "成本／风险计算方法",
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "status": "validated",
+  "asset_origin": "induced（从本报告归纳，待审核）",
+  "depends_on": [
+    "variable",
+    "function",
+    "rule"
+  ],
+  "dependents": [],
+  "impacted_assets": [
+    "cost_risk"
+  ],
+  "dependency_closure": [
+    "cost_risk",
+    "function",
+    "ontology",
+    "rule",
+    "variable"
+  ],
+  "assembly_input": [
+    "成本项",
+    "风险因子",
+    "公式",
+    "参数",
+    "单位",
+    "阈值和历史方法"
+  ],
+  "assembly_method": "复用计算方法/风险分类/公式；映射数据；更新参数/基准/范围；样本测试",
+  "mismatch_handling": "新增 Claim 仅影响成本/风险输入才改模型；纯论点进论证流程不当计算变量",
+  "assembly_output": [
+    "项目成本模型",
+    "风险模型",
+    "参数表",
+    "计算与校验结果"
+  ],
+  "reusable_form": {
+    "cost_methods": [
+      {
+        "name": "费用构成归集法",
+        "expr": "总投资 = 建安工程费用 + 工程建设其他费用 + 预备费 + 拆除费用"
+      },
+      {
+        "name": "单位造价法",
+        "expr": "分项金额 = 数量 × 单位造价"
+      },
+      {
+        "name": "费率法",
+        "expr": "基本预备费 = (建安工程费用 + 工程建设其他费用) × 费率"
+      },
+      {
+        "name": "系数法",
+        "expr": "前期费用 = 基数 × 系数（如 勘察费 = 建安费×0.35%、竣工图编制费 = 设计费×8%）"
+      },
+      {
+        "name": "造价指标法",
+        "expr": "参照类似工程造价指标（原文列为估算依据，但未给出指标来源与数值）"
+      }
+    ],
+    "cost_structure": [
+      "建筑安装工程费用 → 单体工程/室外总体工程/抗震支架/绿色二星增量费用",
+      "单体工程 → 土建工程/安装工程",
+      "土建工程 → 桩基/基坑围护/地下结构/地上结构/装配式增加费/室内装饰/外立面及屋面",
+      "安装工程 → 给排水/消防/通风空调/强电/弱电/电梯",
+      "工程建设其他费 → 管理费/咨询费/勘察设计费/招标代理/监理/审图/竣工图/场地准备/市政配套/人防"
+    ],
+    "risk_factors": [
+      {
+        "id": "RK-1",
+        "name": "施工环境污染风险",
+        "phase": "施工期",
+        "level": "较小",
+        "note": "风险随施工结束消失，但装修期噪声对师生教学与周边居民影响可能较大"
+      },
+      {
+        "id": "RK-2",
+        "name": "交通出行及安全风险",
+        "phase": "施工期",
+        "level": "较小",
+        "note": "施工车辆进出与建材占道"
+      },
+      {
+        "id": "RK-3",
+        "name": "工程管理及施工安全风险",
+        "phase": "施工期",
+        "level": "概率小/影响较严重",
+        "note": "欠薪与工伤易引发群体性事件"
+      },
+      {
+        "id": "RK-4",
+        "name": "标准版本失效风险",
+        "phase": "全过程",
+        "level": "中",
+        "note": "本报告实测存在 4 组规范多版本并存与 1 组规范名称不一致，是本类报告被打回的高频原因"
+      },
+      {
+        "id": "RK-5",
+        "name": "派生值与原文脱节风险",
+        "phase": "编制期",
+        "level": "中",
+        "note": "实测投资表 7 处派生差异、规模结论与自身测算不符"
+      },
+      {
+        "id": "RK-6",
+        "name": "手续未闭合风险",
+        "phase": "前期",
+        "level": "中",
+        "note": "拆除手续在办理中、国拨资金无批复文件"
+      },
+      {
+        "id": "RK-7",
+        "name": "实验室专项取值缺失风险",
+        "phase": "设计期",
+        "level": "较高",
+        "note": "通风柜台数/排风量/实验室换气次数未给出，评审必问"
+      }
+    ],
+    "risk_method": "按风险管理四要素（外部环境、内部管理、技术、财务）× 前期/施工/运营 三阶段识别，分合法性/合理性/可行性/可控性四维评估，措施后复评等级"
+  },
+  "external_basis": {
+    "note": "报告的技术函数/取值，其取值域约束与推理保证来自外部检索文件（与报告联合处理）。本域只列与本域相关的外部依据切片；完整依据层见 external/。",
+    "evidence_layer": {
+      "documents": "external/documents.yaml",
+      "mandates": "external/mandates.yaml",
+      "constraints": "external/constraints.yaml",
+      "bindings": "external/bindings.yaml",
+      "compliance": "external/compliance.yaml"
+    },
+    "bindings": [
+      {
+        "id": "B-13",
+        "role": "benchmark",
+        "report": "招标范围判定（表12-1）",
+        "check": "tender_thresholds",
+        "verdict": "合规",
+        "basis": [
+          "国家发展改革委令第16号 第五条",
+          "国家发展改革委令第16号 第二条"
+        ]
+      },
+      {
+        "id": "B-15",
+        "role": "benchmark",
+        "report": "引用标准时效",
+        "check": "timeliness_misc",
+        "verdict": "合规",
+        "basis": [
+          "住建部公告2019年第171号",
+          "国家发展改革委令第44号"
+        ]
+      }
+    ],
+    "mandates": [
+      {
+        "id": "M-16LING-2",
+        "code": "国家发展改革委令第16号 第二条",
+        "role": "benchmark",
+        "status": "现行",
+        "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm"
+      },
+      {
+        "id": "M-16LING-5",
+        "code": "国家发展改革委令第16号 第五条",
+        "role": "benchmark",
+        "status": "现行（2018-06-01 起施行）",
+        "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm"
+      },
+      {
+        "id": "M-44HAO",
+        "code": "国家发展改革委令第44号",
+        "role": "benchmark",
+        "status": "现行",
+        "url": "https://www.ndrc.gov.cn/fggz/hjyzy/jnhnx/201612/t20161205_1134123_ext.html"
+      },
+      {
+        "id": "M-GB50015-2019",
+        "code": "住建部公告2019年第171号",
+        "role": "benchmark",
+        "status": "现行（2020-03-01 起实施，晚于报告编制时点）",
+        "url": "https://ebook.chinabuilding.com.cn/c/2019-12-11/81369.shtml"
+      }
+    ],
+    "constraints": [
+      {
+        "id": "C-招标-01",
+        "expr": "施工 ≥{人数} 万元 必须招标；重要设备材料 ≥200 万元 必须招标；勘察/设计/监理服务 ≥100 万元 必须招标",
+        "mandatory": true
+      },
+      {
+        "id": "C-招标-02",
+        "expr": "使用预算资金 ≥200 万元 且 占投资额 ≥10% ⇒ 属必须招标范围",
+        "mandatory": true
+      },
+      {
+        "id": "C-时效-04",
+        "expr": "2020-03-01 起 GB50015-2019 实施；报告编制时点 2019-08 ⇒ GB50015-2003（2009年版）当时有效",
+        "mandatory": false
+      }
+    ]
+  },
+  "sources": {
+    "claims": [
+      "CL-风险-01",
+      "CL-风险-02",
+      "CL-风险-03",
+      "CL-风险等级-01",
+      "CL-风险结论-01"
+    ],
+    "rules": [
+      "R-基本预备费",
+      "R-总投资构成"
+    ]
+  },
+  "related_issues": [
+    "建筑高度控制",
+    "年总耗电量",
+    "基本预备费",
+    "建筑安装工程费用",
+    "单体工程",
+    "安装工程",
+    "室外总体工程",
+    "工程建设其他费"
+  ],
+  "reuse_boundary": {
+    "inherit": [
+      "结构",
+      "规则",
+      "口径",
+      "术语",
+      "句式",
+      "关系类型"
+    ],
+    "must_not_inherit": [
+      "数值",
+      "单位取值",
+      "实体名",
+      "政策文号",
+      "规范版本",
+      "结论"
+    ],
+    "note": "借形不借值；本文件不含可直接写进新报告的项目专属数值"
+  },
+  "quality": {
+    "QG1": {
+      "passed": true,
+      "checks": [
+        "资产来源可指回原稿（本包全部资产源自 source/original.docx，无检索结果直接入图）",
+        "证据分级已登记（E1–E6）",
+        "规范现行状态未臆断（不把「业内都在用」当已查证）",
+        "外部依据层的来源可追溯（台账含 URL、哈希与检索状态）",
+        "依据未取到时不作判定（不以沾边文件顶上）"
+      ]
+    },
+    "QG2": {
+      "passed": false,
+      "checks": [
+        "结构完整性：16 个资产域齐备",
+        "证据覆盖：Claim 绑定证据比例",
+        "证据引用无悬空",
+        "关系合法（只用十类关系）",
+        "孤立节点",
+        "跨项目污染：未注入产线类领域规则",
+        "报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why）"
+      ]
+    },
+    "QG3": {
+      "passed": true,
+      "checks": [
+        "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
+        "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",
+        "能确定性复算",
+        "冲突未裁决不阻塞交付但阻塞写作"
+      ]
+    }
+  },
+  "provenance": {
+    "source_document_sha256": "00d9f1a3645c89b9d66d2df74fb4e70def331eec88e7eda36885790c3fef30fe",
+    "corpus_id": "SHUFE-BDC-2019-001",
+    "generated_by": "build/s6_domains.py（确定性发射）"
+  },
+  "extension_assets": [],
+  "function_constants": [
+    {
+      "subject": "本项目",
+      "predicate": "预备费",
+      "value": "618",
+      "unit": "万元",
+      "node_id": "N-24d5bb9ca97f"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·教师规模",
+      "value": "950",
+      "unit": "人",
+      "node_id": "N-9bd50795df49"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·一级学科数",
+      "value": "18",
+      "unit": "个",
+      "node_id": "N-53ad5074ad4a"
+    },
+    {
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·国际知名学术领军人才",
+      "value": "30",
+      "unit": "人",
+      "node_id": "N-ee882814713f"
+    },
+    {
+      "subject": "公共服务配套用房",
+      "predicate": "综合平面利用系数",
+      "value": "0.55",
+      "unit": "-",
+      "node_id": "N-4f9c2807a62b"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "科研人员用房人均建筑面积指标",
+      "value": "16",
+      "unit": "㎡/人",
+      "node_id": "N-2820b26c3f35"
+    },
+    {
+      "subject": "大数据研究中心",
+      "predicate": "建筑高度控制",
+      "value": "60",
+      "unit": "m",
+      "node_id": "N-f0fd96a3a38e"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "node_id": "N-b5d8de16a2a7"
+    },
+    {
+      "subject": "实验室",
+      "predicate": "楼面活荷载标准值",
+      "value": "4.0",
+      "unit": "kN/m²",
+      "node_id": "N-d8f1204ef1a9"
+    },
+    {
+      "subject": "办公室阅览室会议室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "node_id": "N-7a09dcc73ee3"
+    },
+    {
+      "subject": "一般资料档案室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "node_id": "N-63b071767842"
+    },
+    {
+      "subject": "走廊门厅楼梯",
+      "predicate": "楼面活荷载标准值",
+      "value": "3.5",
+      "unit": "kN/m²",
+      "node_id": "N-b44117496caa"
+    },
+    {
+      "subject": "计算机机房弱电机房地下设备用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "7.0",
+      "unit": "kN/m²",
+      "node_id": "N-52cbf5f50c8a"
+    },
+    {
+      "subject": "变配电间水泵房",
+      "predicate": "楼面活荷载标准值",
+      "value": "10.0",
+      "unit": "kN/m²",
+      "node_id": "N-3a2fcf27bbe9"
+    },
+    {
+      "subject": "上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "node_id": "N-81d066d6ec28"
+    },
+    {
+      "subject": "不上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "0.5",
+      "unit": "kN/m²",
+      "node_id": "N-4c2e3686b75a"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "风荷载体型系数",
+      "value": "1.3",
+      "unit": "-",
+      "node_id": "N-1b1549fc44f9"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "多遇水平地震影响系数",
+      "value": "0.08",
+      "unit": "-",
+      "node_id": "N-514034bcf07b"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "罕遇水平地震影响系数",
+      "value": "0.5",
+      "unit": "-",
+      "node_id": "N-dbb9f4111022"
+    },
+    {
+      "subject": "科研学生",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/生·日",
+      "node_id": "N-3f1810ee3a33"
+    },
+    {
+      "subject": "办公",
+      "predicate": "用水定额",
+      "value": "50",
+      "unit": "L/人·日",
+      "node_id": "N-f4add4e0e79a"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "未预见系数",
+      "value": "10",
+      "unit": "%",
+      "node_id": "N-0372fd56d2be"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "空调负荷密度指标",
+      "value": "45",
+      "unit": "W/㎡",
+      "node_id": "N-b8e7bf4b7c1d"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "照明及其他负荷密度指标",
+      "value": "25",
+      "unit": "W/㎡",
+      "node_id": "N-944c3d4af11d"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "人均使用面积",
+      "value": "1.5",
+      "unit": "㎡/人",
+      "node_id": "N-7aad9b0320e0"
+    },
+    {
+      "subject": "卫生间",
+      "predicate": "排风换气次数",
+      "value": "10~15",
+      "unit": "h-1",
+      "node_id": "N-8ca9f3898ace"
+    },
+    {
+      "subject": "电梯机房",
+      "predicate": "排风换气次数",
+      "value": "10",
+      "unit": "h-1",
+      "node_id": "N-2025492b72b4"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "单位面积冷负荷指标",
+      "value": "135",
+      "unit": "W/㎡",
+      "node_id": "N-e30b2d47398d"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "单位面积热负荷指标",
+      "value": "80",
+      "unit": "W/㎡",
+      "node_id": "N-6fde114502ac"
+    },
+    {
+      "subject": "教师用水",
+      "predicate": "用水定额",
+      "value": "35",
+      "unit": "L/人·d",
+      "node_id": "N-5859db27922c"
+    },
+    {
+      "subject": "学生用水",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/人·d",
+      "node_id": "N-af196dccd886"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "node_id": "N-c8c5fd1fece2"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "需要系数",
+      "value": "0.8",
+      "unit": "-",
+      "node_id": "N-d47bd8140fdc"
+    },
+    {
+      "subject": "科研用房",
+      "predicate": "同时使用系数",
+      "value": "0.6",
+      "unit": "-",
+      "node_id": "N-6eb51e821197"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "node_id": "N-094c483c1ac2"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "需要系数",
+      "value": "0.6",
+      "unit": "-",
+      "node_id": "N-4aaf4c9685bf"
+    },
+    {
+      "subject": "公共配套服务用房",
+      "predicate": "同时使用系数",
+      "value": "0.5",
+      "unit": "-",
+      "node_id": "N-f52e2827a0e8"
+    },
+    {
+      "subject": "综合能耗·水",
+      "predicate": "折标系数",
+      "value": "0.857",
+      "unit": "tce/万m³",
+      "node_id": "N-43f27011e247"
+    },
+    {
+      "subject": "综合能耗·电力",
+      "predicate": "折标系数（当量值）",
+      "value": "1.229",
+      "unit": "tce/万kW·h",
+      "node_id": "N-e2fb043d4a06"
+    },
+    {
+      "subject": "项目排风口",
+      "predicate": "与环境敏感目标间距",
+      "value": "不小于10.0",
+      "unit": "m",
+      "node_id": "N-ecaf889ab916"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "≤70",
+      "unit": "dB(A)",
+      "node_id": "N-f95ce50dc7dd"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "夜间限值",
+      "value": "≤55",
+      "unit": "dB(A)",
+      "node_id": "N-6f8bf452fa72"
+    },
+    {
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "70",
+      "unit": "dB(A)",
+      "node_id": "N-1dff222d7986"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "装配率",
+      "value": "40",
+      "unit": "%",
+      "node_id": "N-59b9d8f6d1fc"
+    },
+    {
+      "subject": "本项目",
+      "predicate": "人防易地建设费单价",
+      "value": "60",
+      "unit": "元/㎡",
+      "node_id": "N-1b70a153d6ef"
+    },
+    {
+      "subject": "《普通高等学校建筑面积指标》",
+      "predicate": "附录B 研究生校舍建筑面积补助指标",
+      "value": "研究生使用的校舍，在实验研究、图书馆、学生宿舍三项用房上有别于本科生，应在本科生生均建筑面积指标基础上增加补助指标。研究生校舍建筑面积补助指标见附表B。【另一处，第二十五条表16】研究生学生宿舍建筑面积补助指标：硕士生每生5.0m²，博士生每生10.0m²。",
+      "unit": "",
+      "node_id": "NX-条款-004"
+    }
+  ]
+}

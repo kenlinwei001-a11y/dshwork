@@ -1,0 +1,202 @@
+{
+  "stage": "s8",
+  "self_declared": {
+    "交付物/SHUFE-BDC-2019-001/chunks/chunks.jsonl": {
+      "records": 1178
+    },
+    "交付物/SHUFE-BDC-2019-001/chunks/sentences.jsonl": {
+      "records": 1923
+    },
+    "交付物/SHUFE-BDC-2019-001/chunks/skeletons.jsonl": {
+      "records": 1178
+    },
+    "交付物/SHUFE-BDC-2019-001/evidence/evidence.yaml": {
+      "count": 564
+    },
+    "交付物/SHUFE-BDC-2019-001/external/chunks.jsonl": {
+      "records": 950
+    },
+    "交付物/SHUFE-BDC-2019-001/graph/graph.yaml": {
+      "count": {
+        "facts": 370,
+        "rules": 35,
+        "claims": 28,
+        "evidence": 127,
+        "relations": 466,
+        "relation_types": 16
+      }
+    },
+    "交付物/SHUFE-BDC-2019-001/graph/nodes.yaml": {
+      "count": 959
+    },
+    "交付物/SHUFE-BDC-2019-001/graph/relations.yaml": {
+      "count": 574
+    },
+    "交付物/SHUFE-BDC-2019-001/manifest.yaml": {
+      "status": "validated",
+      "gate_summary": "passed"
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/closure_report.yaml": {
+      "verdict": null,
+      "summary": {}
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl": {
+      "records": 1178
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl": {
+      "records": 1178
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl": {
+      "records": 14
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl": {
+      "records": 14
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl": {
+      "records": 144
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl": {
+      "records": 144
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl": {
+      "records": 15
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl": {
+      "records": 15
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl": {
+      "records": 200
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl": {
+      "records": 200
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl": {
+      "records": 56
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl": {
+      "records": 56
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl": {
+      "records": 63
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl": {
+      "records": 63
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl": {
+      "records": 39
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl": {
+      "records": 39
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl": {
+      "records": 5
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl": {
+      "records": 5
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl": {
+      "records": 38
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl": {
+      "records": 38
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl": {
+      "records": 91
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl": {
+      "records": 91
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl": {
+      "records": 30
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl": {
+      "records": 30
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl": {
+      "records": 156
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl": {
+      "records": 156
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl": {
+      "records": 5
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl": {
+      "records": 5
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl": {
+      "records": 4
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl": {
+      "records": 4
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl": {
+      "records": 12
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl": {
+      "records": 12
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl": {
+      "records": 3
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl": {
+      "records": 3
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl": {
+      "records": 7
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl": {
+      "records": 7
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl": {
+      "records": 3
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl": {
+      "records": 3
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl": {
+      "records": 1
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl": {
+      "records": 1
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl": {
+      "records": 65
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl": {
+      "records": 65
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/id_resolution.yaml": {
+      "verdict": "pass",
+      "summary": {}
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/objective_verify.yaml": {
+      "verdict": null,
+      "summary": {}
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/prompt_reuse.yaml": {
+      "verdict": "invalid",
+      "summary": {
+        "invalid": [
+          "DOC-REPORT-01.claim_extraction: 1178/1178 片未调用（无 provider）",
+          "DOC-REPORT-01.fact_extraction: 1178/1178 片未调用（无 provider）",
+          "EXT-00.claim_extraction: 14/14 片未调用（无 provider）",
+          "EXT-00.fact_extraction: 14/14 片未调用（无 provider）",
+          "EXT-01.claim_extraction: 144/144 片未调用（无 provider）"
+        ]
+      }
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/stage_gates.yaml": {
+      "verdict": null,
+      "summary": {}
+    },
+    "交付物/SHUFE-BDC-2019-001/quality/verify_pipeline.yaml": {
+      "verdict": "passed",
+      "summary": {}
+    },
+    "交付物/SHUFE-BDC-2019-001/reasoning/trace.jsonl": {
+      "records": 7
+    }
+  },
+  "source": "C=产物自述（从内容里读出的元数据，不采信外部声明）"
+}

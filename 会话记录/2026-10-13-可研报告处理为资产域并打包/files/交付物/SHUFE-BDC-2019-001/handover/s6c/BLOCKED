@@ -1,0 +1,110 @@
+{
+  "stage": "s6c",
+  "checked_depends_on": [
+    "s6"
+  ],
+  "A_count": 17,
+  "B_count": 0,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "meaning": "契约声明未兑现"
+    },
+    {
+      "kind": "SOP_not_delivered",
+      "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "meaning": "契约声明未兑现"
+    }
+  ],
+  "diff_count": 19,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

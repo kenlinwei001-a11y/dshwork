@@ -1,0 +1,8389 @@
+{
+  "facts": [
+    {
+      "id": "N-a401574f2a5a",
+      "subject": "本报告",
+      "predicate": "报告编号",
+      "value": "2019ZX054",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-924bfe9e84e1",
+      "subject": "本报告",
+      "predicate": "文件全称",
+      "value": "上海财经大学中山北一路校区大数据研究中心可行性研究报告（修订版）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-61c229a9d6b7",
+      "subject": "本报告",
+      "predicate": "编制单位",
+      "value": "上海同济工程咨询有限公司",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-043715904e92",
+      "subject": "本报告",
+      "predicate": "项目负责人",
+      "value": "王玉萍（高级工程师、注册造价工程师、注册咨询工程师）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-1349678c3c0f",
+      "subject": "本报告",
+      "predicate": "项目审核人",
+      "value": "程愚（高级工程师）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-933f9428a895",
+      "subject": "本报告",
+      "predicate": "主要编制人",
+      "value": "谭念莹、李燕、陈超、周致芬、王飞、郭咏婷",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-5a111cfec9f6",
+      "subject": "本报告",
+      "predicate": "编制日期",
+      "value": "二〇一九年八月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-de837f636aa0"
+    },
+    {
+      "id": "N-e76603e442a7",
+      "subject": "本项目",
+      "predicate": "项目名称",
+      "value": "上海财经大学中山北一路校区大数据研究中心",
+      "unit": "",
+      "time": "2019",
+      "source": "c-3f9e4a26e26d"
+    },
+    {
+      "id": "N-47ae73a84dc9",
+      "subject": "本项目",
+      "predicate": "建设单位",
+      "value": "上海财经大学",
+      "unit": "",
+      "time": "2019",
+      "source": "c-3f9e4a26e26d"
+    },
+    {
+      "id": "N-5a334efaaea3",
+      "subject": "本项目",
+      "predicate": "建设地点",
+      "value": "上海财经大学中山北一路校区东部",
+      "unit": "",
+      "time": "2019",
+      "source": "c-129c2dbdd766"
+    },
+    {
+      "id": "N-4299f5d02831",
+      "subject": "原第五教学楼",
+      "predicate": "拆除面积",
+      "value": "2758",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-3f5a2f4d0ca7"
+    },
+    {
+      "id": "N-8f432cf2e264",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "value": "18319",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-3f5a2f4d0ca7",
+      "sources": [
+        "c-3f5a2f4d0ca7",
+        "c-52db29d351e4",
+        "c-a4535feae2f8"
+      ],
+      "merged_count": 4
+    },
+    {
+      "id": "N-8449f71c5773",
+      "subject": "本项目",
+      "predicate": "地上建筑面积",
+      "value": "18000",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-3f5a2f4d0ca7",
+      "sources": [
+        "c-3f5a2f4d0ca7",
+        "c-52db29d351e4",
+        "c-57676fd556d8"
+      ],
+      "merged_count": 4
+    },
+    {
+      "id": "N-8ca43cb64560",
+      "subject": "本项目",
+      "predicate": "地下建筑面积",
+      "value": "319",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-3f5a2f4d0ca7",
+      "sources": [
+        "c-3f5a2f4d0ca7",
+        "c-52db29d351e4",
+        "c-57676fd556d8"
+      ],
+      "merged_count": 4
+    },
+    {
+      "id": "N-51ac31b30619",
+      "subject": "本项目",
+      "predicate": "总投资",
+      "value": "13032",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-9420f385e8f5",
+      "sources": [
+        "c-439358c3c12f",
+        "c-9420f385e8f5"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-70459ce61f9b",
+      "subject": "本项目",
+      "predicate": "建安工程费用",
+      "value": "11188",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-a831d44a85f1",
+      "subject": "本项目",
+      "predicate": "工程建设其他费用",
+      "value": "1171",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-24d5bb9ca97f",
+      "subject": "本项目",
+      "predicate": "预备费",
+      "value": "618",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-c790ee245521",
+      "subject": "本项目",
+      "predicate": "原建筑拆除费用",
+      "value": "55",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-2175c0aa83e6",
+      "subject": "本项目",
+      "predicate": "资金来源",
+      "value": "国拨资金及学校自筹",
+      "unit": "",
+      "time": "2019",
+      "source": "c-9420f385e8f5"
+    },
+    {
+      "id": "N-7e2dca3b7d0c",
+      "subject": "本项目",
+      "predicate": "开工时间",
+      "value": "2020年7月初",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ea950cb1598c",
+      "sources": [
+        "c-749cc0303bb6",
+        "c-ea950cb1598c"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-802eeedef8cb",
+      "subject": "本项目",
+      "predicate": "竣工时间",
+      "value": "2022年06月底",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ea950cb1598c",
+      "sources": [
+        "c-749cc0303bb6",
+        "c-ea950cb1598c"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-f9ce8af03fc0",
+      "subject": "本项目",
+      "predicate": "建设工期",
+      "value": "24",
+      "unit": "月",
+      "time": "2019",
+      "source": "c-ea950cb1598c",
+      "sources": [
+        "c-749cc0303bb6",
+        "c-ea950cb1598c"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-256337bd52c5",
+      "subject": "上海财经大学",
+      "predicate": "各类在校生",
+      "value": "20576",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-ae0e16e8ffda",
+      "subject": "上海财经大学",
+      "predicate": "全日制在校生",
+      "value": "15643",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-a676855d455f",
+      "subject": "上海财经大学",
+      "predicate": "本科生",
+      "value": "8006",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-834f7a185cea",
+      "subject": "上海财经大学",
+      "predicate": "预科生",
+      "value": "30",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-4bead401268c",
+      "subject": "上海财经大学",
+      "predicate": "研究生在校生",
+      "value": "8127",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-35745c2c896d",
+      "subject": "上海财经大学",
+      "predicate": "硕士生",
+      "value": "6151",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-7c2ba8a26d0b",
+      "subject": "上海财经大学",
+      "predicate": "双证硕士",
+      "value": "5631",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-9fbee31a8232",
+      "subject": "上海财经大学",
+      "predicate": "单证硕士",
+      "value": "520",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-1c60e0220ade",
+      "subject": "上海财经大学",
+      "predicate": "博士生",
+      "value": "1219",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-6f16d28f00ad",
+      "subject": "上海财经大学",
+      "predicate": "在校留学生",
+      "value": "757",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-e6649218e0c0"
+    },
+    {
+      "id": "N-f1d5baf0c89b",
+      "subject": "上海财经大学",
+      "predicate": "专职教师",
+      "value": "1044",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-f35eec1d877c"
+    },
+    {
+      "id": "N-19a3e510b260",
+      "subject": "上海财经大学",
+      "predicate": "新增硕士生导师",
+      "value": "127",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-f35eec1d877c"
+    },
+    {
+      "id": "N-e20265e53710",
+      "subject": "上海财经大学",
+      "predicate": "专职硕导",
+      "value": "55",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-f35eec1d877c"
+    },
+    {
+      "id": "N-4e9960d6ccda",
+      "subject": "上海财经大学",
+      "predicate": "兼职硕导",
+      "value": "72",
+      "unit": "人",
+      "time": "2018",
+      "source": "c-f35eec1d877c"
+    },
+    {
+      "id": "N-c394bad87430",
+      "subject": "上海财经大学",
+      "predicate": "校园占地",
+      "value": "826",
+      "unit": "亩",
+      "time": "2019",
+      "source": "c-067b6352bde6"
+    },
+    {
+      "id": "N-85a9a5716f1d",
+      "subject": "上海财经大学",
+      "predicate": "校区数量",
+      "value": "3",
+      "unit": "个",
+      "time": "2019",
+      "source": "c-067b6352bde6"
+    },
+    {
+      "id": "N-34f59d23f033",
+      "subject": "中山北一路校区",
+      "predicate": "地址",
+      "value": "中山北一路369号",
+      "unit": "",
+      "time": "2019",
+      "source": "c-067b6352bde6"
+    },
+    {
+      "id": "N-e308966174c1",
+      "subject": "昆山路校区",
+      "predicate": "地址",
+      "value": "昆山路146号",
+      "unit": "",
+      "time": "2019",
+      "source": "c-067b6352bde6"
+    },
+    {
+      "id": "N-9814e9f0db35",
+      "subject": "上海财经大学",
+      "predicate": "一级学科",
+      "value": "17",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-8ebe6fdf6b9a",
+      "subject": "上海财经大学",
+      "predicate": "学科门类",
+      "value": "8",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-84523f29f638",
+      "subject": "上海财经大学",
+      "predicate": "一级学科博士学位授权点",
+      "value": "9",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-d0e09bfa0818",
+      "subject": "上海财经大学",
+      "predicate": "一级学科硕士学位授权点",
+      "value": "15",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-6fef5f8bfa13",
+      "subject": "上海财经大学",
+      "predicate": "硕士专业学位授权点",
+      "value": "13",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-254f45e2d082",
+      "subject": "上海财经大学",
+      "predicate": "博士后科研流动站",
+      "value": "7",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-239f7a20f877",
+      "subject": "上海财经大学",
+      "predicate": "国家“双一流”建设学科",
+      "value": "1",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-57ed2116b6e9",
+      "subject": "上海财经大学",
+      "predicate": "国家重点学科",
+      "value": "4",
+      "unit": "个",
+      "time": "2018",
+      "source": "c-6006b1889f95"
+    },
+    {
+      "id": "N-a3f0d71e10e5",
+      "subject": "本项目",
+      "predicate": "建设性质",
+      "value": "拆除重建",
+      "unit": "",
+      "time": "2019",
+      "source": "c-e6a978691d8c"
+    },
+    {
+      "id": "N-fa0dd79ca413",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "本科专业（数据科学与大数据技术）获批年份",
+      "value": "2018",
+      "unit": "年",
+      "time": "2018",
+      "source": "c-fc1be7087c63"
+    },
+    {
+      "id": "N-37d514c98f96",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年发表论文数",
+      "value": "87",
+      "unit": "篇",
+      "time": "2018",
+      "source": "c-129739dbd201"
+    },
+    {
+      "id": "N-723bfe3fc6d2",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年A级期刊论文",
+      "value": "39",
+      "unit": "篇",
+      "time": "2018",
+      "source": "c-129739dbd201"
+    },
+    {
+      "id": "N-e5f7701a892f",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年国家自然科学基金项目",
+      "value": "6",
+      "unit": "项",
+      "time": "2018",
+      "source": "c-19ef774b3e1c"
+    },
+    {
+      "id": "N-f97cbdbe6afe",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年省部级课题",
+      "value": "8",
+      "unit": "项",
+      "time": "2018",
+      "source": "c-19ef774b3e1c"
+    },
+    {
+      "id": "N-4ae46c29d85f",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年横向课题",
+      "value": "11",
+      "unit": "项",
+      "time": "2018",
+      "source": "c-19ef774b3e1c"
+    },
+    {
+      "id": "N-2350885b04e2",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年合同经费",
+      "value": "428",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-19ef774b3e1c"
+    },
+    {
+      "id": "N-9bd50795df49",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·教师规模",
+      "value": "950",
+      "unit": "人",
+      "time": "2020",
+      "source": "c-2ac8aaa4a9e1"
+    },
+    {
+      "id": "N-53ad5074ad4a",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·一级学科数",
+      "value": "18",
+      "unit": "个",
+      "time": "2020",
+      "source": "c-b5613f87479d"
+    },
+    {
+      "id": "N-ee882814713f",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·国际知名学术领军人才",
+      "value": "30",
+      "unit": "人",
+      "time": "2020",
+      "source": "c-2ac8aaa4a9e1"
+    },
+    {
+      "id": "N-85e27f0ad472",
+      "subject": "中山北一路校区",
+      "predicate": "四至",
+      "value": "东面毗邻赤峰路、南近广秀路、西近广灵一路、北至广灵二路",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ceac393c790a"
+    },
+    {
+      "id": "N-5780eeb6777a",
+      "subject": "本项目",
+      "predicate": "地质条件",
+      "value": "地面以下0.5m~1m处为耕土层，1m~5m处为粘土或亚粘土层，5m或更深为亚粘土夹砂或细砂层",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ec5e925841ef"
+    },
+    {
+      "id": "N-9d7e4c2b9b50",
+      "subject": "原第五教学楼",
+      "predicate": "建筑面积",
+      "value": "2758",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-4d8b131dacf8"
+    },
+    {
+      "id": "N-4752fe0c4e17",
+      "subject": "原第五教学楼",
+      "predicate": "建造年代",
+      "value": "上世纪六十年代",
+      "unit": "",
+      "time": "2019",
+      "source": "c-4d8b131dacf8"
+    },
+    {
+      "id": "N-f24d0d077f03",
+      "subject": "本项目",
+      "predicate": "拆除手续状态",
+      "value": "拆除手续正同步进行办理中",
+      "unit": "",
+      "time": "2019",
+      "source": "c-4d8b131dacf8"
+    },
+    {
+      "id": "N-8a66c92ca8a4",
+      "subject": "项目所在地",
+      "predicate": "年总辐射量",
+      "value": "114~118",
+      "unit": "千卡/平方厘米·年",
+      "time": "2019",
+      "source": "c-3a040d14af4d"
+    },
+    {
+      "id": "N-c44bd9bd0df3",
+      "subject": "项目所在地",
+      "predicate": "年降雨量",
+      "value": "1040~1060",
+      "unit": "毫米",
+      "time": "2019",
+      "source": "c-3a040d14af4d"
+    },
+    {
+      "id": "N-a55e26642db6",
+      "subject": "项目所在地",
+      "predicate": "汛期雨量",
+      "value": "600~640",
+      "unit": "毫米",
+      "time": "2019",
+      "source": "c-3a040d14af4d"
+    },
+    {
+      "id": "N-fcd2cfa44fc4",
+      "subject": "项目所在地",
+      "predicate": "区域潜水位",
+      "value": "0.5~1.5",
+      "unit": "米",
+      "time": "2019",
+      "source": "c-7509f0d21229"
+    },
+    {
+      "id": "N-8984af8e2bbf",
+      "subject": "项目所在地",
+      "predicate": "单井出水量",
+      "value": "3000~5000",
+      "unit": "吨/日",
+      "time": "2019",
+      "source": "c-7509f0d21229"
+    },
+    {
+      "id": "N-7db13fda38e0",
+      "subject": "本项目",
+      "predicate": "供电电源",
+      "value": "从学校原变电站引来5回路380V电源",
+      "unit": "",
+      "time": "2019",
+      "source": "c-0b1e344882c9"
+    },
+    {
+      "id": "N-6cd37976dd8f",
+      "subject": "本项目",
+      "predicate": "供水水源",
+      "value": "市政供水管网",
+      "unit": "",
+      "time": "2019",
+      "source": "c-50352f4b9d99"
+    },
+    {
+      "id": "N-81e15dad5d7e",
+      "subject": "本项目",
+      "predicate": "排水体制",
+      "value": "室内污废合流；室外污废合流、雨污分流",
+      "unit": "",
+      "time": "2019",
+      "source": "c-54b04a30becc"
+    },
+    {
+      "id": "N-c0a7fc8afdaf",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划科研人员",
+      "value": "65",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-223358da3e9d"
+    },
+    {
+      "id": "N-687ac5c1dfdf",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "300",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-223358da3e9d"
+    },
+    {
+      "id": "N-29c0367999ed",
+      "subject": "管理科学与量化信息研究中心",
+      "predicate": "规划人数合计",
+      "value": "365",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-223358da3e9d"
+    },
+    {
+      "id": "N-0118435ab5f0",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划科研人员",
+      "value": "60",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-b7027573785d"
+    },
+    {
+      "id": "N-1713829984c4",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "300",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-b7027573785d"
+    },
+    {
+      "id": "N-be54469ceabb",
+      "subject": "理论计算机研究中心",
+      "predicate": "规划人数合计",
+      "value": "360",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-b7027573785d"
+    },
+    {
+      "id": "N-9949f87bf2ae",
+      "subject": "应用统计研究中心",
+      "predicate": "规划科研人员",
+      "value": "120",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-9d9be0511932"
+    },
+    {
+      "id": "N-f853aaf03baf",
+      "subject": "应用统计研究中心",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "400",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-9d9be0511932"
+    },
+    {
+      "id": "N-28f623934060",
+      "subject": "应用统计研究中心",
+      "predicate": "规划人数合计",
+      "value": "520",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-9d9be0511932"
+    },
+    {
+      "id": "N-6dcf7ef888b2",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划科研人员",
+      "value": "70",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-f397b7a348a5"
+    },
+    {
+      "id": "N-a2aedb523791",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划研究生博士生访问学者",
+      "value": "350",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-f397b7a348a5"
+    },
+    {
+      "id": "N-fa5b27eaf63d",
+      "subject": "数据科研与统计研究院",
+      "predicate": "规划人数合计",
+      "value": "420",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-f397b7a348a5"
+    },
+    {
+      "id": "N-d63d65ebe9a4",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "间数",
+      "value": "5",
+      "unit": "间",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-3e141a1e1100",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "单间用房标准",
+      "value": "80",
+      "unit": "㎡/间",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-ee95096f1d6e",
+      "subject": "公共服务配套用房·交流讨论室",
+      "predicate": "面积需求",
+      "value": "400",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-d1cb826c6ec2",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "间数",
+      "value": "1",
+      "unit": "间",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-3007b66b8f03",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "单间用房标准",
+      "value": "60",
+      "unit": "㎡/间",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-fd67f30a272a",
+      "subject": "公共服务配套用房·接待室",
+      "predicate": "面积需求",
+      "value": "70",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-ba967b01a1cc",
+      "subject": "公共服务配套用房·报告厅",
+      "predicate": "面积需求",
+      "value": "150",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-c6641b10b1d4",
+      "subject": "公共服务配套用房·活动室",
+      "predicate": "间数",
+      "value": "2",
+      "unit": "间",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-87c9bd959ddb",
+      "subject": "公共服务配套用房·活动室",
+      "predicate": "面积需求",
+      "value": "160",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-7f9fd332041d",
+      "subject": "公共服务配套用房·阅览室",
+      "predicate": "面积需求",
+      "value": "150",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-fc449bc873d7",
+      "subject": "公共服务配套用房·档案室",
+      "predicate": "面积需求",
+      "value": "120",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-116f0e1c3acf",
+      "subject": "公共服务配套用房·复印室",
+      "predicate": "面积需求",
+      "value": "80",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-a00694625be6",
+      "subject": "公共服务配套用房·贮藏室",
+      "predicate": "面积需求",
+      "value": "80",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-4698f7d0b38e",
+      "subject": "公共服务配套用房",
+      "predicate": "使用面积需求合计",
+      "value": "1210",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "N-4f9c2807a62b",
+      "subject": "公共服务配套用房",
+      "predicate": "综合平面利用系数",
+      "value": "0.55",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-e0e66b6fd870"
+    },
+    {
+      "id": "N-cc781dfeeb3b",
+      "subject": "公共服务配套用房",
+      "predicate": "建筑面积需求",
+      "value": "2200",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-e0e66b6fd870"
+    },
+    {
+      "id": "N-2820b26c3f35",
+      "subject": "本项目",
+      "predicate": "科研人员用房人均建筑面积指标",
+      "value": "16",
+      "unit": "㎡/人",
+      "time": "2019",
+      "source": "c-79069a20782b"
+    },
+    {
+      "id": "N-978a14b5186b",
+      "subject": "本项目",
+      "predicate": "研究生博士生访问学者用房人均建筑面积指标",
+      "value": "8",
+      "unit": "㎡/人",
+      "time": "2019",
+      "source": "c-79069a20782b"
+    },
+    {
+      "id": "N-f07ab421166b",
+      "subject": "本项目",
+      "predicate": "科研人员规划人数",
+      "value": "315",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-79069a20782b"
+    },
+    {
+      "id": "N-b3c95b844d02",
+      "subject": "本项目",
+      "predicate": "研究生博士生访问学者规划人数",
+      "value": "1350",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-79069a20782b"
+    },
+    {
+      "id": "N-bc07423e28a8",
+      "subject": "本项目",
+      "predicate": "总规划人数",
+      "value": "1665",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-c011c764a24d"
+    },
+    {
+      "id": "N-49949310ec19",
+      "subject": "本项目",
+      "predicate": "科研人员用房需求建筑面积",
+      "value": "5040",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-c011c764a24d"
+    },
+    {
+      "id": "N-55c9c86a5a6c",
+      "subject": "本项目",
+      "predicate": "研究生用房需求建筑面积",
+      "value": "10800",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-c011c764a24d"
+    },
+    {
+      "id": "N-7c3d781cf6f1",
+      "subject": "本项目",
+      "predicate": "地上总建筑面积需求",
+      "value": "18040",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-79069a20782b"
+    },
+    {
+      "id": "N-eb7b8b1d20d8",
+      "subject": "本项目",
+      "predicate": "设计地上建筑面积",
+      "value": "18000",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-b506cede9b46"
+    },
+    {
+      "id": "N-7384b88f646f",
+      "subject": "本项目",
+      "predicate": "地上建筑面积缺口",
+      "value": "40",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-b506cede9b46"
+    },
+    {
+      "id": "N-2a335b2708af",
+      "subject": "大数据研究中心",
+      "predicate": "层数",
+      "value": "12",
+      "unit": "层",
+      "time": "2019",
+      "source": "c-a4535feae2f8"
+    },
+    {
+      "id": "N-be7451617729",
+      "subject": "大数据研究中心",
+      "predicate": "地下层数",
+      "value": "1",
+      "unit": "层",
+      "time": "2019",
+      "source": "c-a4535feae2f8"
+    },
+    {
+      "id": "N-23414ed53b65",
+      "subject": "本项目",
+      "predicate": "建筑类别",
+      "value": "3类",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c6ad2c50804d"
+    },
+    {
+      "id": "N-443180e0efd7",
+      "subject": "本项目",
+      "predicate": "设计使用年限",
+      "value": "50",
+      "unit": "年",
+      "time": "2019",
+      "source": "c-c6ad2c50804d"
+    },
+    {
+      "id": "N-08b323fd83aa",
+      "subject": "本项目",
+      "predicate": "耐火等级",
+      "value": "二级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-df1ebc3f5d4e"
+    },
+    {
+      "id": "N-c1c4a9d66f5b",
+      "subject": "本项目",
+      "predicate": "抗震设防烈度",
+      "value": "7",
+      "unit": "度",
+      "time": "2019",
+      "source": "c-1bbf63d02596",
+      "sources": [
+        "c-1bbf63d02596",
+        "c-6177b56d2c09"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-f0fd96a3a38e",
+      "subject": "大数据研究中心",
+      "predicate": "建筑高度控制",
+      "value": "60",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-352c7af31132"
+    },
+    {
+      "id": "N-4605eb02d134",
+      "subject": "大数据研究中心",
+      "predicate": "一层层高",
+      "value": "5",
+      "unit": "米",
+      "time": "2019",
+      "source": "c-0369985c4547"
+    },
+    {
+      "id": "N-170213817af5",
+      "subject": "大数据研究中心",
+      "predicate": "标准层层高",
+      "value": "4",
+      "unit": "米",
+      "time": "2019",
+      "source": "c-0369985c4547"
+    },
+    {
+      "id": "N-e35642a4b42f",
+      "subject": "本项目",
+      "predicate": "结构设计使用年限",
+      "value": "50",
+      "unit": "年",
+      "time": "2019",
+      "source": "c-20bd988bc554"
+    },
+    {
+      "id": "N-2eb688971791",
+      "subject": "本项目",
+      "predicate": "基本风压",
+      "value": "0.55",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-036930256da3"
+    },
+    {
+      "id": "N-70b8c5416e59",
+      "subject": "本项目",
+      "predicate": "基本雪压",
+      "value": "0.20",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-b712a72da18c"
+    },
+    {
+      "id": "N-e7ebf407a68f",
+      "subject": "本项目",
+      "predicate": "地面粗糙度",
+      "value": "B类",
+      "unit": "",
+      "time": "2019",
+      "source": "c-6c7ca103aee7"
+    },
+    {
+      "id": "N-91624f921ea8",
+      "subject": "本项目",
+      "predicate": "建筑结构安全等级",
+      "value": "二级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-9a6bda6672cf"
+    },
+    {
+      "id": "N-e0f3cb0c51f5",
+      "subject": "本项目",
+      "predicate": "地基基础安全等级",
+      "value": "二级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-6e1672d1f000"
+    },
+    {
+      "id": "N-ad4f61baf248",
+      "subject": "本项目",
+      "predicate": "地基基础设计等级",
+      "value": "乙级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-6e1672d1f000"
+    },
+    {
+      "id": "N-3d4cd9a6a1f8",
+      "subject": "本项目",
+      "predicate": "抗震设防类别",
+      "value": "标准设防类（丙类）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-9d7589c4c652"
+    },
+    {
+      "id": "N-64e67123ddc0",
+      "subject": "本项目",
+      "predicate": "框架抗震等级",
+      "value": "三级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-806484d7984a"
+    },
+    {
+      "id": "N-629089fe05c9",
+      "subject": "本项目",
+      "predicate": "剪力墙抗震等级",
+      "value": "二级",
+      "unit": "",
+      "time": "2019",
+      "source": "c-806484d7984a"
+    },
+    {
+      "id": "N-0a6ab4d9cdf6",
+      "subject": "本项目",
+      "predicate": "绿色建筑设计标准",
+      "value": "绿色建筑二星",
+      "unit": "",
+      "time": "2019",
+      "source": "c-2f0db31254e6"
+    },
+    {
+      "id": "N-b5d8de16a2a7",
+      "subject": "科研用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-149d6d9336e4"
+    },
+    {
+      "id": "N-d8f1204ef1a9",
+      "subject": "实验室",
+      "predicate": "楼面活荷载标准值",
+      "value": "4.0",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-54ff18ab0ff4"
+    },
+    {
+      "id": "N-7a09dcc73ee3",
+      "subject": "办公室阅览室会议室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-fad036131263"
+    },
+    {
+      "id": "N-63b071767842",
+      "subject": "一般资料档案室",
+      "predicate": "楼面活荷载标准值",
+      "value": "2.5",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-e7960e774867"
+    },
+    {
+      "id": "N-b44117496caa",
+      "subject": "走廊门厅楼梯",
+      "predicate": "楼面活荷载标准值",
+      "value": "3.5",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-8a61534c364e"
+    },
+    {
+      "id": "N-52cbf5f50c8a",
+      "subject": "计算机机房弱电机房地下设备用房",
+      "predicate": "楼面活荷载标准值",
+      "value": "7.0",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-3ea4fcf65543"
+    },
+    {
+      "id": "N-3a2fcf27bbe9",
+      "subject": "变配电间水泵房",
+      "predicate": "楼面活荷载标准值",
+      "value": "10.0",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-49f2eeaf2bb6"
+    },
+    {
+      "id": "N-81d066d6ec28",
+      "subject": "上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "2.0",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-9dfd85b71455"
+    },
+    {
+      "id": "N-4c2e3686b75a",
+      "subject": "不上人屋面",
+      "predicate": "屋面活荷载标准值",
+      "value": "0.5",
+      "unit": "kN/m²",
+      "time": "2019",
+      "source": "c-47bb9a10d950"
+    },
+    {
+      "id": "N-1b1549fc44f9",
+      "subject": "本项目",
+      "predicate": "风荷载体型系数",
+      "value": "1.3",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-f747dba1bb40"
+    },
+    {
+      "id": "N-25ae699e50ec",
+      "subject": "本项目",
+      "predicate": "设计基本地震加速度",
+      "value": "0.1",
+      "unit": "g",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-68d9e0d6fc8f",
+      "subject": "本项目",
+      "predicate": "设计地震分组",
+      "value": "第二组",
+      "unit": "",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-b8e4317775b7",
+      "subject": "本项目",
+      "predicate": "建筑场地类别",
+      "value": "IV类",
+      "unit": "",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-6f81bff4c721",
+      "subject": "本项目",
+      "predicate": "特征周期",
+      "value": "0.9",
+      "unit": "秒",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-2a951c39f9ae",
+      "subject": "本项目",
+      "predicate": "结构阻尼比",
+      "value": "5",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-514034bcf07b",
+      "subject": "本项目",
+      "predicate": "多遇水平地震影响系数",
+      "value": "0.08",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-dbb9f4111022",
+      "subject": "本项目",
+      "predicate": "罕遇水平地震影响系数",
+      "value": "0.5",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-8f2dacb35c87"
+    },
+    {
+      "id": "N-f08415dc191a",
+      "subject": "本项目",
+      "predicate": "上部结构形式",
+      "value": "装配整体式钢筋混凝土框架-剪力墙结构",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ed400c9129b8"
+    },
+    {
+      "id": "N-8122fb4283a7",
+      "subject": "本项目",
+      "predicate": "基础形式",
+      "value": "桩筏基础",
+      "unit": "",
+      "time": "2019",
+      "source": "c-3d4daa4153d3"
+    },
+    {
+      "id": "N-c0667d161473",
+      "subject": "本项目",
+      "predicate": "基础埋深",
+      "value": "不小于3.5",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-3d4daa4153d3"
+    },
+    {
+      "id": "N-5e469e239754",
+      "subject": "本项目",
+      "predicate": "地下室顶板厚度",
+      "value": "不小于180",
+      "unit": "mm",
+      "time": "2019",
+      "source": "c-81593ee480dc"
+    },
+    {
+      "id": "N-666b00ce7f1d",
+      "subject": "本项目",
+      "predicate": "结构计算软件",
+      "value": "SATWE（2010版V4.3）/JCCAD",
+      "unit": "",
+      "time": "2019",
+      "source": "c-8090a3ade098"
+    },
+    {
+      "id": "N-acc0ada964eb",
+      "subject": "本项目",
+      "predicate": "基础垫层混凝土强度等级",
+      "value": "C20",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c01c12731457"
+    },
+    {
+      "id": "N-40080fc4b013",
+      "subject": "本项目",
+      "predicate": "框架柱剪力墙混凝土强度等级",
+      "value": "C30~C50",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c01c12731457"
+    },
+    {
+      "id": "N-82e94e249e8f",
+      "subject": "本项目",
+      "predicate": "梁板混凝土强度等级",
+      "value": "C30~C35",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c01c12731457"
+    },
+    {
+      "id": "N-7e3b1c290e21",
+      "subject": "本项目",
+      "predicate": "钢筋牌号",
+      "value": "HPB300、HRB400",
+      "unit": "",
+      "time": "2019",
+      "source": "c-3f1ae8fee030"
+    },
+    {
+      "id": "N-9a5357236ac0",
+      "subject": "本项目",
+      "predicate": "钢材牌号",
+      "value": "Q235B、Q345B",
+      "unit": "",
+      "time": "2019",
+      "source": "c-db5ccbce7148"
+    },
+    {
+      "id": "N-5f65bf80349c",
+      "subject": "本项目",
+      "predicate": "预制率",
+      "value": "不小于40",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-eb6f21596ea3"
+    },
+    {
+      "id": "N-3f1810ee3a33",
+      "subject": "科研学生",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/生·日",
+      "time": "2019",
+      "source": "c-354e031a9916"
+    },
+    {
+      "id": "N-d33295e7e784",
+      "subject": "科研学生",
+      "predicate": "用水人数",
+      "value": "1800",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-354e031a9916"
+    },
+    {
+      "id": "N-f4add4e0e79a",
+      "subject": "办公",
+      "predicate": "用水定额",
+      "value": "50",
+      "unit": "L/人·日",
+      "time": "2019",
+      "source": "c-354e031a9916"
+    },
+    {
+      "id": "N-932c3574e3c1",
+      "subject": "办公",
+      "predicate": "用水人数",
+      "value": "288",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-354e031a9916"
+    },
+    {
+      "id": "N-c67295c8a345",
+      "subject": "本项目",
+      "predicate": "最高日用水量",
+      "value": "95.04",
+      "unit": "m³/d",
+      "time": "2019",
+      "source": "c-2667fcd945cf"
+    },
+    {
+      "id": "N-30650afc51a8",
+      "subject": "本项目",
+      "predicate": "最大小时用水量",
+      "value": "17.23",
+      "unit": "m³/h",
+      "time": "2019",
+      "source": "c-2667fcd945cf"
+    },
+    {
+      "id": "N-0372fd56d2be",
+      "subject": "本项目",
+      "predicate": "未预见系数",
+      "value": "10",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-354e031a9916"
+    },
+    {
+      "id": "N-07c3ab150860",
+      "subject": "本项目",
+      "predicate": "最高日排水量",
+      "value": "85.54",
+      "unit": "m³/d",
+      "time": "2019",
+      "source": "c-406b862890ab"
+    },
+    {
+      "id": "N-60f348145540",
+      "subject": "本项目",
+      "predicate": "最大时排水量",
+      "value": "15.51",
+      "unit": "m³/h",
+      "time": "2019",
+      "source": "c-406b862890ab"
+    },
+    {
+      "id": "N-a3177065531f",
+      "subject": "室外消火栓系统",
+      "predicate": "用水量",
+      "value": "40",
+      "unit": "L/s",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-6a9d5e15a008",
+      "subject": "室外消火栓系统",
+      "predicate": "一次灭火用水量",
+      "value": "288",
+      "unit": "m³",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-338014cbccdd",
+      "subject": "室内消火栓系统",
+      "predicate": "用水量",
+      "value": "20",
+      "unit": "L/s",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2",
+      "sources": [
+        "c-66a5ad1c99c5",
+        "c-8aa08d82d0f2"
+      ],
+      "merged_count": 2
+    },
+    {
+      "id": "N-54705a4f8686",
+      "subject": "室内消火栓系统",
+      "predicate": "一次灭火用水量",
+      "value": "144",
+      "unit": "m³",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-afd00934e365",
+      "subject": "自动喷水灭火系统",
+      "predicate": "用水量",
+      "value": "25",
+      "unit": "L/s",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-6958c266bea0",
+      "subject": "自动喷水灭火系统",
+      "predicate": "一次灭火用水量",
+      "value": "90",
+      "unit": "m³",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-ae0d5d610d0a",
+      "subject": "本项目",
+      "predicate": "消防用水量总计",
+      "value": "85",
+      "unit": "L/s",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-5e1d9ecdd02a",
+      "subject": "本项目",
+      "predicate": "消防一次灭火用水量总计",
+      "value": "522",
+      "unit": "m³",
+      "time": "2019",
+      "source": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-827b158df74b",
+      "subject": "自动喷水灭火系统",
+      "predicate": "喷水强度",
+      "value": "6",
+      "unit": "L/min·㎡",
+      "time": "2019",
+      "source": "c-cf1076e64a43"
+    },
+    {
+      "id": "N-0bc26894f1d0",
+      "subject": "自动喷水灭火系统",
+      "predicate": "作用面积",
+      "value": "160",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-cf1076e64a43"
+    },
+    {
+      "id": "N-d899ed81ebaa",
+      "subject": "自动喷水灭火系统",
+      "predicate": "设计最小用水量",
+      "value": "21",
+      "unit": "L/s",
+      "time": "2019",
+      "source": "c-cf1076e64a43"
+    },
+    {
+      "id": "N-4e37bc3a681a",
+      "subject": "高位消防水箱",
+      "predicate": "有效容积",
+      "value": "不小于18",
+      "unit": "m³",
+      "time": "2019",
+      "source": "c-a6e7789cf2d5"
+    },
+    {
+      "id": "N-0207f315dd4c",
+      "subject": "本项目",
+      "predicate": "消防水泵接合器",
+      "value": "DN150地上式2套（消火栓）/2套（喷淋）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-ab02f790a154"
+    },
+    {
+      "id": "N-b8e7bf4b7c1d",
+      "subject": "本项目",
+      "predicate": "空调负荷密度指标",
+      "value": "45",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-944c3d4af11d",
+      "subject": "本项目",
+      "predicate": "照明及其他负荷密度指标",
+      "value": "25",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-5cb9dea74a92",
+      "subject": "本项目",
+      "predicate": "总计算负荷",
+      "value": "952",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-a600fbe49b7b",
+      "subject": "大数据研究中心",
+      "predicate": "供电电源回路",
+      "value": "5回路380V",
+      "unit": "",
+      "time": "2019",
+      "source": "c-209ab8347d7c"
+    },
+    {
+      "id": "N-de3e1ec1327c",
+      "subject": "原变电站变压器",
+      "predicate": "原配置",
+      "value": "2台1000kVA",
+      "unit": "",
+      "time": "2019",
+      "source": "c-d8a3ec8e85ee"
+    },
+    {
+      "id": "N-8107f4c126d2",
+      "subject": "原变电站变压器",
+      "predicate": "增容后配置",
+      "value": "2台2000kVA",
+      "unit": "",
+      "time": "2019",
+      "source": "c-d8a3ec8e85ee"
+    },
+    {
+      "id": "N-c2f034e89954",
+      "subject": "大数据研究中心",
+      "predicate": "供电电源距离",
+      "value": "100",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-209ab8347d7c"
+    },
+    {
+      "id": "N-416be9b34d81",
+      "subject": "大数据研究中心",
+      "predicate": "防雷类别",
+      "value": "二类防雷建筑",
+      "unit": "",
+      "time": "2019",
+      "source": "c-5f5a36ab7c15"
+    },
+    {
+      "id": "N-60d3585c4764",
+      "subject": "本项目",
+      "predicate": "联合接地电阻",
+      "value": "小于1",
+      "unit": "Ω",
+      "time": "2019",
+      "source": "c-fe40d179350d"
+    },
+    {
+      "id": "N-f7d381a33ae8",
+      "subject": "本项目",
+      "predicate": "接地形式",
+      "value": "TN-S系统",
+      "unit": "",
+      "time": "2019",
+      "source": "c-7dba4c5af644"
+    },
+    {
+      "id": "N-77ab04f9743c",
+      "subject": "弱电系统",
+      "predicate": "子系统数量",
+      "value": "7",
+      "unit": "个",
+      "time": "2019",
+      "source": "c-c6ae052959b1"
+    },
+    {
+      "id": "N-29a98cc4f5e9",
+      "subject": "综合布线系统",
+      "predicate": "水平线缆类别",
+      "value": "六类屏蔽线缆（STP）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-5692fc2bd855"
+    },
+    {
+      "id": "N-ca1e13d551b1",
+      "subject": "项目所在地",
+      "predicate": "纬度",
+      "value": "31.13",
+      "unit": "°",
+      "time": "2019",
+      "source": "c-8dbe43e4c726"
+    },
+    {
+      "id": "N-eeb81aaca591",
+      "subject": "项目所在地",
+      "predicate": "经度",
+      "value": "121.2",
+      "unit": "°",
+      "time": "2019",
+      "source": "c-8dbe43e4c726"
+    },
+    {
+      "id": "N-52b43033149e",
+      "subject": "项目所在地",
+      "predicate": "海拔高度",
+      "value": "2.6",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-8dbe43e4c726"
+    },
+    {
+      "id": "N-850462868c75",
+      "subject": "夏季室外空调计算干球温度",
+      "predicate": "取值",
+      "value": "34.4",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-90ea6bdf46f6",
+      "subject": "夏季室外空调计算湿球温度",
+      "predicate": "取值",
+      "value": "27.9",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-2ec348856254",
+      "subject": "冬季室外空调计算干球温度",
+      "predicate": "取值",
+      "value": "-2.2",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-b73bc0c48cab",
+      "subject": "冬季室外通风计算干球温度",
+      "predicate": "取值",
+      "value": "4.2",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-f82a686a24f0",
+      "subject": "夏季室外通风计算干球温度",
+      "predicate": "取值",
+      "value": "31.2",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-a5b6b65364ac",
+      "subject": "夏季室外大气压力",
+      "predicate": "取值",
+      "value": "100540",
+      "unit": "Pa",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-24bce75cc617",
+      "subject": "冬季室外大气压力",
+      "predicate": "取值",
+      "value": "102540",
+      "unit": "Pa",
+      "time": "2019",
+      "source": "c-4b8bc5c96c14"
+    },
+    {
+      "id": "N-5272963728f0",
+      "subject": "科研用房",
+      "predicate": "夏季室内温度",
+      "value": "26",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-254a74541283",
+      "subject": "科研用房",
+      "predicate": "夏季相对湿度上限",
+      "value": "60",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-242644b6a039",
+      "subject": "科研用房",
+      "predicate": "冬季室内温度",
+      "value": "18",
+      "unit": "℃",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-7aad9b0320e0",
+      "subject": "科研用房",
+      "predicate": "人均使用面积",
+      "value": "1.5",
+      "unit": "㎡/人",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-94a1eb16a470",
+      "subject": "科研用房",
+      "predicate": "新风量",
+      "value": "30",
+      "unit": "m³/h·P",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-acb430bb35b0",
+      "subject": "科研用房",
+      "predicate": "噪声标准",
+      "value": "≤50",
+      "unit": "dB(A)",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-66860a375157",
+      "subject": "交流讨论用房",
+      "predicate": "人均使用面积",
+      "value": "2",
+      "unit": "㎡/人",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-0a3e9c9acc83",
+      "subject": "交流讨论大厅",
+      "predicate": "人均使用面积",
+      "value": "8",
+      "unit": "㎡/人",
+      "time": "2019",
+      "source": "c-a43d02463116"
+    },
+    {
+      "id": "N-8ca9f3898ace",
+      "subject": "卫生间",
+      "predicate": "排风换气次数",
+      "value": "10~15",
+      "unit": "h-1",
+      "time": "2019",
+      "source": "c-6a36b8de406d"
+    },
+    {
+      "id": "N-2025492b72b4",
+      "subject": "电梯机房",
+      "predicate": "排风换气次数",
+      "value": "10",
+      "unit": "h-1",
+      "time": "2019",
+      "source": "c-6a36b8de406d"
+    },
+    {
+      "id": "N-3ed027e88c59",
+      "subject": "水泵房",
+      "predicate": "排风换气次数",
+      "value": "6",
+      "unit": "h-1",
+      "time": "2019",
+      "source": "c-6a36b8de406d"
+    },
+    {
+      "id": "N-e30b2d47398d",
+      "subject": "本项目",
+      "predicate": "单位面积冷负荷指标",
+      "value": "135",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-a7f866d690be",
+      "subject": "本项目",
+      "predicate": "冷负荷",
+      "value": "2473",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-6fde114502ac",
+      "subject": "本项目",
+      "predicate": "单位面积热负荷指标",
+      "value": "80",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-564866270310",
+      "subject": "本项目",
+      "predicate": "热负荷",
+      "value": "1465",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-239c8f582585",
+      "subject": "空调系统",
+      "predicate": "冷热源形式",
+      "value": "变制冷剂流量多联机系统",
+      "unit": "",
+      "time": "2019",
+      "source": "c-2fda396d40da"
+    },
+    {
+      "id": "N-9d235ea5246a",
+      "subject": "多联机室外机组30HP",
+      "predicate": "台数",
+      "value": "22",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-95757b570de9",
+      "subject": "多联机室外机组30HP",
+      "predicate": "单台制冷量",
+      "value": "90",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-6040256abb83",
+      "subject": "多联机室外机组16HP",
+      "predicate": "台数",
+      "value": "10",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-039cd700bce6",
+      "subject": "多联机室外机组16HP",
+      "predicate": "单台制冷量",
+      "value": "45",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-5a6c23c28a1a",
+      "subject": "多联机室外机组10HP",
+      "predicate": "台数",
+      "value": "2",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-4132dcebb00b",
+      "subject": "多联机室外机组10HP",
+      "predicate": "单台制冷量",
+      "value": "28",
+      "unit": "kW",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-a7a7a7fe459d",
+      "subject": "多联机室内机组",
+      "predicate": "台数",
+      "value": "166",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-edc8d5efd615",
+      "subject": "加压送风机",
+      "predicate": "台数",
+      "value": "6",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-5f171d536786",
+      "subject": "排烟机组",
+      "predicate": "台数",
+      "value": "2",
+      "unit": "台",
+      "time": "2019",
+      "source": "c-387f65b6c162"
+    },
+    {
+      "id": "N-5859db27922c",
+      "subject": "教师用水",
+      "predicate": "用水定额",
+      "value": "35",
+      "unit": "L/人·d",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-bf76480f8b0c",
+      "subject": "教师用水",
+      "predicate": "用水人数",
+      "value": "288",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-1e941f1c85b2",
+      "subject": "教师用水",
+      "predicate": "日用水量",
+      "value": "10.1",
+      "unit": "m³/d",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-af196dccd886",
+      "subject": "学生用水",
+      "predicate": "用水定额",
+      "value": "40",
+      "unit": "L/人·d",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-109f219b5cdc",
+      "subject": "学生用水",
+      "predicate": "用水人数",
+      "value": "1800",
+      "unit": "人",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-4a9d5aca884a",
+      "subject": "学生用水",
+      "predicate": "日用水量",
+      "value": "72.0",
+      "unit": "m³/d",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-b1e9a58c3e61",
+      "subject": "本项目",
+      "predicate": "年工作天数",
+      "value": "193",
+      "unit": "d",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-a01b53350bb8",
+      "subject": "本项目",
+      "predicate": "年总用水量",
+      "value": "1.74",
+      "unit": "万m³",
+      "time": "2019",
+      "source": "c-303a6a09db8e"
+    },
+    {
+      "id": "N-0175db4c5ff0",
+      "subject": "科研用房",
+      "predicate": "用电面积",
+      "value": "14883",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-c8c5fd1fece2",
+      "subject": "科研用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-d47bd8140fdc",
+      "subject": "科研用房",
+      "predicate": "需要系数",
+      "value": "0.8",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-6eb51e821197",
+      "subject": "科研用房",
+      "predicate": "同时使用系数",
+      "value": "0.6",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-934942fb8325",
+      "subject": "公共配套服务用房",
+      "predicate": "用电面积",
+      "value": "2182",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-094c483c1ac2",
+      "subject": "公共配套服务用房",
+      "predicate": "用电指标",
+      "value": "60",
+      "unit": "W/㎡",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-4aaf4c9685bf",
+      "subject": "公共配套服务用房",
+      "predicate": "需要系数",
+      "value": "0.6",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-f52e2827a0e8",
+      "subject": "公共配套服务用房",
+      "predicate": "同时使用系数",
+      "value": "0.5",
+      "unit": "-",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-d81c8436d3ef",
+      "subject": "本项目",
+      "predicate": "日均工作小时数",
+      "value": "8",
+      "unit": "h",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-fbcb8688c60f",
+      "subject": "本项目",
+      "predicate": "年总耗电量",
+      "value": "72",
+      "unit": "万千瓦时",
+      "time": "2019",
+      "source": "c-46385d4ae269"
+    },
+    {
+      "id": "N-43f27011e247",
+      "subject": "综合能耗·水",
+      "predicate": "折标系数",
+      "value": "0.857",
+      "unit": "tce/万m³",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-e2fb043d4a06",
+      "subject": "综合能耗·电力",
+      "predicate": "折标系数（当量值）",
+      "value": "1.229",
+      "unit": "tce/万kW·h",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-97ae001309cd",
+      "subject": "本项目",
+      "predicate": "综合能耗（当量值）",
+      "value": "90",
+      "unit": "tce",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-aca1f741b579",
+      "subject": "本项目",
+      "predicate": "综合能耗（等价值）",
+      "value": "218",
+      "unit": "tce",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-fec5f42da5fb",
+      "subject": "本项目",
+      "predicate": "单位面积综合能耗（当量值）",
+      "value": "4.91",
+      "unit": "kgce/㎡",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-b4f6323f3884",
+      "subject": "本项目",
+      "predicate": "单位面积综合能耗（等价值）",
+      "value": "11.87",
+      "unit": "kgce/㎡",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-27ce57f55373",
+      "subject": "本项目",
+      "predicate": "单位建筑面积电耗",
+      "value": "39.30",
+      "unit": "kW·h/㎡",
+      "time": "2019",
+      "source": "c-9b17de8351af"
+    },
+    {
+      "id": "N-ecaf889ab916",
+      "subject": "项目排风口",
+      "predicate": "与环境敏感目标间距",
+      "value": "不小于10.0",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-6dd94ba78b8f"
+    },
+    {
+      "id": "N-ac1766bae97a",
+      "subject": "项目排风口",
+      "predicate": "底部离地面高度",
+      "value": "不小于2.5",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-6dd94ba78b8f"
+    },
+    {
+      "id": "N-f95ce50dc7dd",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "≤70",
+      "unit": "dB(A)",
+      "time": "2019",
+      "source": "c-d3f7b33459d8"
+    },
+    {
+      "id": "N-6f8bf452fa72",
+      "subject": "施工场界噪声",
+      "predicate": "夜间限值",
+      "value": "≤55",
+      "unit": "dB(A)",
+      "time": "2019",
+      "source": "c-d3f7b33459d8"
+    },
+    {
+      "id": "N-f06e00a5f844",
+      "subject": "本项目",
+      "predicate": "抗震设防类别（安全章口径）",
+      "value": "丙级（一般设防）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-82d60e95db12"
+    },
+    {
+      "id": "N-7e339ea5a706",
+      "subject": "本项目",
+      "predicate": "抗震设防烈度（安全章口径）",
+      "value": "7",
+      "unit": "度",
+      "time": "2019",
+      "source": "c-82d60e95db12"
+    },
+    {
+      "id": "N-1dff222d7986",
+      "subject": "施工场界噪声",
+      "predicate": "昼间限值",
+      "value": "70",
+      "unit": "dB(A)",
+      "time": "2019",
+      "source": "c-d3f7b33459d8"
+    },
+    {
+      "id": "N-21ac2ea6a4ab",
+      "subject": "上海财经大学",
+      "predicate": "项目管理架构",
+      "value": "建设领导小组—基建处—项目管理小组三级管理",
+      "unit": "",
+      "time": "2019",
+      "source": "c-e81b2fb16995"
+    },
+    {
+      "id": "N-1d9bbad66196",
+      "subject": "本项目",
+      "predicate": "方案设计与可研编制",
+      "value": "2019年4月-2019年10月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-c810673e6119",
+      "subject": "本项目",
+      "predicate": "初步设计及概算",
+      "value": "2019年11月-2020年2月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-99e0769bc827",
+      "subject": "本项目",
+      "predicate": "施工图设计",
+      "value": "2020年3月-2020年5月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-303deda576f1",
+      "subject": "本项目",
+      "predicate": "施工招标",
+      "value": "2020年6月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-c3ad80bc3176",
+      "subject": "本项目",
+      "predicate": "开工建设",
+      "value": "2020年7月-2022年5月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-7c90a8639e27",
+      "subject": "本项目",
+      "predicate": "竣工验收",
+      "value": "2022年6月",
+      "unit": "",
+      "time": "2019",
+      "source": "c-c809a9cf067b"
+    },
+    {
+      "id": "N-171f869338fe",
+      "subject": "本项目",
+      "predicate": "运行费用列支渠道",
+      "value": "上海财经大学后勤保障经费",
+      "unit": "",
+      "time": "2019",
+      "source": "c-4e577b7d8923"
+    },
+    {
+      "id": "N-1581360ae141",
+      "subject": "勘察",
+      "predicate": "招标估算金额",
+      "value": "39",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-c790d7886310"
+    },
+    {
+      "id": "N-8824177763f5",
+      "subject": "设计",
+      "predicate": "招标估算金额",
+      "value": "336",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-c790d7886310"
+    },
+    {
+      "id": "N-e60dafe57ee8",
+      "subject": "建安工程",
+      "predicate": "招标估算金额",
+      "value": "10135",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-c790d7886310"
+    },
+    {
+      "id": "N-c1fd26fa6765",
+      "subject": "监理",
+      "predicate": "招标估算金额",
+      "value": "239",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-c790d7886310"
+    },
+    {
+      "id": "N-7983ecf69539",
+      "subject": "本项目",
+      "predicate": "招标方式",
+      "value": "公开招标、委托招标",
+      "unit": "",
+      "time": "2019",
+      "source": "c-4701cb3feb02"
+    },
+    {
+      "id": "N-c51de871596c",
+      "subject": "本项目",
+      "predicate": "基本预备费费率",
+      "value": "5",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-cf8f0b4e2668"
+    },
+    {
+      "id": "N-59b9d8f6d1fc",
+      "subject": "本项目",
+      "predicate": "装配率",
+      "value": "40",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-df2093af0240"
+    },
+    {
+      "id": "N-f470a0725f92",
+      "subject": "本项目",
+      "predicate": "绿色建筑目标",
+      "value": "绿色建筑二星",
+      "unit": "",
+      "time": "2019",
+      "source": "c-df2093af0240"
+    },
+    {
+      "id": "N-dc49a463c8e3",
+      "subject": "本项目",
+      "predicate": "估算范围排除项",
+      "value": "办公家具、电器；用水用电增容等大市政配套费；地下障碍物清除费",
+      "unit": "",
+      "time": "2019",
+      "source": "c-402ccafc1d64"
+    },
+    {
+      "id": "N-8c646e42426a",
+      "subject": "桩基工程",
+      "predicate": "估算金额",
+      "value": "458",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-4002faaed7b8",
+      "subject": "基坑围护工程",
+      "predicate": "估算金额",
+      "value": "250",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-17cad48fed94",
+      "subject": "地下建筑结构工程",
+      "predicate": "估算金额",
+      "value": "175",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-84cd9cdd7e0d",
+      "subject": "地上建筑结构工程",
+      "predicate": "估算金额",
+      "value": "3240",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-2e9eaad1259f",
+      "subject": "装配式结构增加费",
+      "predicate": "估算金额",
+      "value": "810",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-ad6fd08cb831",
+      "subject": "室内装饰工程",
+      "predicate": "估算金额",
+      "value": "1832",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-767846c72651",
+      "subject": "外立面及屋面装饰工程",
+      "predicate": "估算金额",
+      "value": "1028",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-0ea3008f61f9",
+      "subject": "立面门窗、玻璃幕墙",
+      "predicate": "估算金额",
+      "value": "463",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-7930ab172a2a",
+      "subject": "立面装饰幕墙",
+      "predicate": "估算金额",
+      "value": "475",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-6ed5795596e9",
+      "subject": "上人屋面",
+      "predicate": "估算金额",
+      "value": "42",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-be59b87fb79c",
+      "subject": "设备屋面（涂料）",
+      "predicate": "估算金额",
+      "value": "6",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-c48958c97484",
+      "subject": "架空板底",
+      "predicate": "估算金额",
+      "value": "33",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-7905c339c5bf",
+      "subject": "新老建筑立面接口处理费",
+      "predicate": "估算金额",
+      "value": "10",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-eabadd267940",
+      "subject": "给排水工程",
+      "predicate": "估算金额",
+      "value": "220",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-c5de22ac0e51",
+      "subject": "消防工程",
+      "predicate": "估算金额",
+      "value": "293",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-c46ae5293e41",
+      "subject": "通风、空调工程",
+      "predicate": "估算金额",
+      "value": "1008",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-72507f498f8c",
+      "subject": "强电工程",
+      "predicate": "估算金额",
+      "value": "733",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-809d541088ab",
+      "subject": "弱电工程",
+      "predicate": "估算金额",
+      "value": "641",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-d11b8963a5c2",
+      "subject": "电梯工程",
+      "predicate": "估算金额",
+      "value": "140",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-94e433692986",
+      "subject": "道路、广场、硬地、铺装",
+      "predicate": "估算金额",
+      "value": "19",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-565398c4826c",
+      "subject": "绿化、景观",
+      "predicate": "估算金额",
+      "value": "3",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-eaf61c336ddf",
+      "subject": "室外安装工程",
+      "predicate": "估算金额",
+      "value": "12",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-d79f49630ce5",
+      "subject": "标识工程",
+      "predicate": "估算金额",
+      "value": "18",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-2ccc0c5d1207",
+      "subject": "抗震支架",
+      "predicate": "估算金额",
+      "value": "92",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-4b40f9539e03",
+      "subject": "绿色二星增量费用",
+      "predicate": "估算金额",
+      "value": "220",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-63082fae08d5",
+      "subject": "土建工程",
+      "predicate": "估算金额",
+      "value": "7793",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-f4b6e8cc3b5f",
+      "subject": "安装工程",
+      "predicate": "估算金额",
+      "value": "3034",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-78644662331e",
+      "subject": "单体工程",
+      "predicate": "估算金额",
+      "value": "10828",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-a59ed4c3313a",
+      "subject": "室外总体工程",
+      "predicate": "估算金额",
+      "value": "49",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-a564cd720a96",
+      "subject": "建筑安装工程费用",
+      "predicate": "估算金额",
+      "value": "11188",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-635ce37a69fc",
+      "subject": "工程建设其他费",
+      "predicate": "估算金额",
+      "value": "1171",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-d27e283b73c6",
+      "subject": "基本预备费",
+      "predicate": "估算金额",
+      "value": "618",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-a4041fa32fd3",
+      "subject": "拆除费",
+      "predicate": "估算金额",
+      "value": "55",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-bc5af78a6b82",
+      "subject": "总计",
+      "predicate": "估算金额",
+      "value": "13032",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-8dad7d339b06",
+      "subject": "建设单位管理费",
+      "predicate": "估算金额",
+      "value": "170",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-52349af2e44f",
+      "subject": "前期工程咨询费",
+      "predicate": "估算金额",
+      "value": "38",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-349ad4d2a9d0",
+      "subject": "勘察费",
+      "predicate": "估算金额",
+      "value": "39",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-0d30a6b44768",
+      "subject": "设计费",
+      "predicate": "估算金额",
+      "value": "336",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-236dbdb1fea6",
+      "subject": "招标代理费",
+      "predicate": "估算金额",
+      "value": "49",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-903b0ac65f67",
+      "subject": "清单及标底编制费",
+      "predicate": "估算金额",
+      "value": "36",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-58f2a08d9047",
+      "subject": "施工监理费（含财务监理费）",
+      "predicate": "估算金额",
+      "value": "239",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-9e5bfac670e5",
+      "subject": "施工图审图费",
+      "predicate": "估算金额",
+      "value": "22",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-979e5a5ddbc9",
+      "subject": "竣工图编制费",
+      "predicate": "估算金额",
+      "value": "27",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-d3fb4fe652f7",
+      "subject": "场地准备及临时设施费",
+      "predicate": "估算金额",
+      "value": "56",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-31dacc87adf4",
+      "subject": "低压电缆",
+      "predicate": "估算金额",
+      "value": "50",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-a161b289c97d",
+      "subject": "人防易地建设费",
+      "predicate": "估算金额",
+      "value": "108",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-f833fd93de5e",
+      "subject": "本项目",
+      "predicate": "单位造价（总投资口径）",
+      "value": "7114",
+      "unit": "元/㎡",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-257716ea5dae",
+      "subject": "本项目",
+      "predicate": "单位造价（建安口径）",
+      "value": "6107",
+      "unit": "元/㎡",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-45a10b66cf96",
+      "subject": "本项目",
+      "predicate": "电梯数量",
+      "value": "4",
+      "unit": "部",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-1b70a153d6ef",
+      "subject": "本项目",
+      "predicate": "人防易地建设费单价",
+      "value": "60",
+      "unit": "元/㎡",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-ab884f42d239",
+      "subject": "本项目",
+      "predicate": "低压电缆长度",
+      "value": "500",
+      "unit": "m",
+      "time": "2019",
+      "source": "c-7226f71c0917"
+    },
+    {
+      "id": "N-0d4cc2051dfe",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "value": "18219",
+      "unit": "㎡",
+      "time": "2019",
+      "source": "c-57676fd556d8"
+    },
+    {
+      "id": "N-38de69880db3",
+      "subject": "本项目",
+      "predicate": "国拨资金",
+      "value": "6000",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-439358c3c12f"
+    },
+    {
+      "id": "N-3150f017809d",
+      "subject": "本项目",
+      "predicate": "国拨资金占比",
+      "value": "46.04",
+      "unit": "%",
+      "time": "2019",
+      "source": "c-439358c3c12f"
+    },
+    {
+      "id": "N-6001107c1482",
+      "subject": "本项目",
+      "predicate": "学校自筹资金",
+      "value": "7032",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-439358c3c12f"
+    },
+    {
+      "id": "N-c57d08f481b6",
+      "subject": "本项目",
+      "predicate": "自筹资金实施周期",
+      "value": "3",
+      "unit": "年",
+      "time": "2019",
+      "source": "c-439358c3c12f"
+    },
+    {
+      "id": "N-00c4257df194",
+      "subject": "本项目",
+      "predicate": "年均资金需求量",
+      "value": "约2300",
+      "unit": "万元",
+      "time": "2019",
+      "source": "c-439358c3c12f"
+    },
+    {
+      "id": "N-c80f305bd555",
+      "subject": "上海财经大学",
+      "predicate": "资产总额",
+      "value": "373711.34",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "N-3014e5738712",
+      "subject": "上海财经大学",
+      "predicate": "负债总额",
+      "value": "9452.14",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "N-87567273f44b",
+      "subject": "上海财经大学",
+      "predicate": "净资产总额",
+      "value": "364259.20",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "N-db325aa01a7a",
+      "subject": "上海财经大学",
+      "predicate": "资产负债率",
+      "value": "2.53",
+      "unit": "%",
+      "time": "2018",
+      "source": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "N-34ee25446ee0",
+      "subject": "上海财经大学",
+      "predicate": "总收入",
+      "value": "168206.52",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-20fec0ad5a29"
+    },
+    {
+      "id": "N-98278b3a0e8f",
+      "subject": "上海财经大学",
+      "predicate": "总支出",
+      "value": "156278.08",
+      "unit": "万元",
+      "time": "2018",
+      "source": "c-197848094e1c"
+    },
+    {
+      "id": "N-1a424c742c02",
+      "subject": "上海财经大学",
+      "predicate": "总收入增幅（较十二五末）",
+      "value": "17.25",
+      "unit": "%",
+      "time": "2018",
+      "source": "c-8f999fea1ec3"
+    },
+    {
+      "id": "N-b506ba5e6eaa",
+      "subject": "附件",
+      "predicate": "清单",
+      "value": "党委常委会会议纪要；项目资金筹措方案说明；虹口校区规划总平面图；项目设计方案图纸；原有第五教学楼拆除手续（待补充）",
+      "unit": "",
+      "time": "2019",
+      "source": "c-f508d7cfad78"
+    },
+    {
+      "id": "N-c679c4e79bc2",
+      "subject": "原有第五教学楼",
+      "predicate": "拆除手续状态",
+      "value": "待补充",
+      "unit": "",
+      "time": "2019",
+      "source": "c-5e339feba7c8"
+    },
+    {
+      "id": "N-30719228907b",
+      "subject": "区域潜水位一般理深",
+      "predicate": "取值区间",
+      "value": "0.5~1.5",
+      "unit": "米",
+      "time": "",
+      "source": "c-7509f0d21229",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:区间取值（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-55aa3e05c5ed",
+      "subject": "渗透系数",
+      "predicate": "取值区间",
+      "value": "0.06~0.08",
+      "unit": "米/昼夜",
+      "time": "",
+      "source": "c-7509f0d21229",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:区间取值（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-82fdaa0455c3",
+      "subject": "河口滨海冲积平原区为",
+      "predicate": "取值区间",
+      "value": "0.04~0.11",
+      "unit": "米/昼夜",
+      "time": "",
+      "source": "c-7509f0d21229",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:区间取值（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-8d02f9ae8a4d",
+      "subject": "变制冷剂流量多联室外机组（30HP）",
+      "predicate": "制冷量",
+      "value": "90",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-1d9587397bcb",
+      "subject": "变制冷剂流量多联室外机组（30HP）",
+      "predicate": "制热量",
+      "value": "100",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-4374076ddf34",
+      "subject": "变制冷剂流量多联室外机组（30HP）",
+      "predicate": "功率",
+      "value": "28.4",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-df515d81e9cb",
+      "subject": "变制冷剂流量多联室外机组（16HP）",
+      "predicate": "制冷量",
+      "value": "45",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-af9375768f2e",
+      "subject": "变制冷剂流量多联室外机组（16HP）",
+      "predicate": "制热量",
+      "value": "50",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-dd3083092803",
+      "subject": "变制冷剂流量多联室外机组（16HP）",
+      "predicate": "功率",
+      "value": "14.2",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-b481651bf919",
+      "subject": "变制冷剂流量多联室外机组（10HP）",
+      "predicate": "制冷量",
+      "value": "28",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-463141dcbf28",
+      "subject": "变制冷剂流量多联室外机组（10HP）",
+      "predicate": "制热量",
+      "value": "31.5",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-244feb71213d",
+      "subject": "变制冷剂流量多联室外机组（10HP）",
+      "predicate": "功率",
+      "value": "7.5",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-a0ace6243ce5",
+      "subject": "直膨式新风机组",
+      "predicate": "制冷量",
+      "value": "45",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-055c7d09d904",
+      "subject": "直膨式新风机组",
+      "predicate": "制热量",
+      "value": "29.5",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-eeff8343fa13",
+      "subject": "直膨式新风机组",
+      "predicate": "功率",
+      "value": "0.774",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-7faa8e256de2",
+      "subject": "直膨式新风机组",
+      "predicate": "制冷量",
+      "value": "28",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-35eaad289352",
+      "subject": "直膨式新风机组",
+      "predicate": "制热量",
+      "value": "17.4",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-0b63011a5c65",
+      "subject": "直膨式新风机组",
+      "predicate": "功率",
+      "value": "0.52",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-4047ca6fa11f",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制冷量",
+      "value": "8.0",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-8f2e80943355",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制热量",
+      "value": "9.0",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-f444e6da208c",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "功率",
+      "value": "255",
+      "unit": "W",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-bfc75e3ac877",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制冷量",
+      "value": "11.2",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-2e0dbce3a431",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制热量",
+      "value": "12.5",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-263034bea88d",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "功率",
+      "value": "410",
+      "unit": "W",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-f7e60701f297",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制冷量",
+      "value": "14",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-498dd3aba97e",
+      "subject": "变制冷剂流量多联室内机组",
+      "predicate": "制热量",
+      "value": "16",
+      "unit": "kW",
+      "time": "",
+      "source": "c-387f65b6c162",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    },
+    {
+      "id": "N-f9be7868ad60",
+      "subject": "本项目",
+      "predicate": "年均资金需求量",
+      "value": "2300",
+      "unit": "万元",
+      "time": "",
+      "source": "c-439358c3c12f",
+      "kind": "quantity",
+      "status": "defined",
+      "section": "",
+      "output_source": "extract:原文明写（补全，带来源 chunk）"
+    }
+  ],
+  "rules": [
+    {
+      "id": "R-总投资构成",
+      "kind": "compute",
+      "label": "总投资",
+      "expr": "round({建安工程费用}+{工程建设其他费用}+{预备费}+{原建筑拆除费用}, 2)",
+      "deps": [
+        "建安工程费用",
+        "工程建设其他费用",
+        "预备费",
+        "原建筑拆除费用"
+      ],
+      "target": "总投资",
+      "basis": "表13-1（一+二+三+四）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-建筑面积构成",
+      "kind": "compute",
+      "label": "总建筑面积",
+      "expr": "round({地上建筑面积}+{地下建筑面积}, 0)",
+      "deps": [
+        "地上建筑面积",
+        "地下建筑面积"
+      ],
+      "target": "总建筑面积",
+      "basis": "表1-2 面积构成",
+      "serves": [
+        "D3 建设规模与方案"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-配套用房建筑面积",
+      "kind": "compute",
+      "label": "公共服务配套用房建筑面积",
+      "expr": "round({公共服务配套用房使用面积合计}/{公共服务配套用房综合平面利用系数}, 0)",
+      "deps": [
+        "公共服务配套用房使用面积合计",
+        "公共服务配套用房综合平面利用系数"
+      ],
+      "target": "公共服务配套用房建筑面积",
+      "basis": "5.5 公共服务配套用房（1210/0.55=2200）",
+      "serves": [
+        "D3 建设规模"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-应建规模",
+      "kind": "compute",
+      "label": "地上总建筑面积需求",
+      "expr": "round({科研人员规划人数}*{科研人员用房人均建筑面积指标}+{研究生博士生访问学者规划人数}*{研究生博士生访问学者用房人均建筑面积指标}+{公共服务配套用房建筑面积}, 0)",
+      "deps": [
+        "科研人员规划人数",
+        "科研人员用房人均建筑面积指标",
+        "研究生博士生访问学者规划人数",
+        "研究生博士生访问学者用房人均建筑面积指标",
+        "公共服务配套用房建筑面积"
+      ],
+      "target": "地上总建筑面积需求",
+      "basis": "《普通高等学校建筑面积指标》（建标191-2018）专职科研机构用房规划建筑面积指标",
+      "serves": [
+        "D3 建设规模"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-科研人员规划人数合计",
+      "kind": "compute",
+      "label": "科研人员规划人数",
+      "expr": "{管理科学与量化信息研究中心·规划科研人员}+{理论计算机研究中心·规划科研人员}+{应用统计研究中心·规划科研人员}+{数据科研与统计研究院·规划科研人员}",
+      "deps": [
+        "管理科学与量化信息研究中心·规划科研人员",
+        "理论计算机研究中心·规划科研人员",
+        "应用统计研究中心·规划科研人员",
+        "数据科研与统计研究院·规划科研人员"
+      ],
+      "target": "科研人员规划人数",
+      "basis": "表5-1~5-4 逐中心合计（65+60+120+70=315）",
+      "serves": [
+        "D3 建设规模"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-研究生规划人数合计",
+      "kind": "compute",
+      "label": "研究生博士生访问学者规划人数",
+      "expr": "{管理科学与量化信息研究中心·规划研究生博士生访问学者}+{理论计算机研究中心·规划研究生博士生访问学者}+{应用统计研究中心·规划研究生博士生访问学者}+{数据科研与统计研究院·规划研究生博士生访问学者}",
+      "deps": [
+        "管理科学与量化信息研究中心·规划研究生博士生访问学者",
+        "理论计算机研究中心·规划研究生博士生访问学者",
+        "应用统计研究中心·规划研究生博士生访问学者",
+        "数据科研与统计研究院·规划研究生博士生访问学者"
+      ],
+      "target": "研究生博士生访问学者规划人数",
+      "basis": "表5-1~5-4 逐中心合计（300+300+400+350=1350）",
+      "serves": [
+        "D3 建设规模"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-规模符合性",
+      "kind": "select",
+      "label": "设计规模合理性判定",
+      "expr": "{地上总建筑面积需求} <= {地上建筑面积} => 规模合理；否则 => 待审",
+      "deps": [
+        "地上总建筑面积需求",
+        "地上建筑面积"
+      ],
+      "target": "设计规模合理性判定",
+      "basis": "5.6 规模分析小结",
+      "serves": [
+        "D3 建设规模"
+      ],
+      "guard": "前提不满足 => 待审"
+    },
+    {
+      "id": "R-建筑高度校核",
+      "kind": "compute",
+      "label": "建筑高度控制",
+      "expr": "round({一层层高}+({层数}-1)*{标准层层高}, 1)",
+      "deps": [
+        "一层层高",
+        "层数",
+        "标准层层高"
+      ],
+      "target": "建筑高度控制",
+      "basis": "6.2.4 平面布局（5 + 11×4 = 49m）与 6.2.2 总体设计「建筑高度控制在60m」比对",
+      "serves": [
+        "D6 建筑方案"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-最高日用水量",
+      "kind": "compute",
+      "label": "最高日用水量",
+      "expr": "round(({科研学生用水人数}*{科研学生用水定额}+{办公用水人数}*{办公用水定额})/1000*(1+{未预见系数}/100), 2)",
+      "deps": [
+        "科研学生用水人数",
+        "科研学生用水定额",
+        "办公用水人数",
+        "办公用水定额",
+        "未预见系数"
+      ],
+      "target": "最高日用水量",
+      "basis": "表6-2（(1800×40+288×50)/1000×1.1=95.04 m³/d）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-消防用水量合计",
+      "kind": "compute",
+      "label": "消防用水量总计",
+      "expr": "{室外消火栓系统用水量}+{室内消火栓系统用水量}+{自动喷水灭火系统用水量}",
+      "deps": [
+        "室外消火栓系统用水量",
+        "室内消火栓系统用水量",
+        "自动喷水灭火系统用水量"
+      ],
+      "target": "消防用水量总计",
+      "basis": "表6-3（40+20+25=85 L/s）",
+      "serves": [
+        "D6 消防与安全"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-总计算负荷",
+      "kind": "compute",
+      "label": "总计算负荷",
+      "expr": "round({本项目面积口径}*({空调负荷密度指标}+{照明及其他负荷密度指标})/1000, 0)",
+      "deps": [
+        "负荷估算面积口径",
+        "空调负荷密度指标",
+        "照明及其他负荷密度指标"
+      ],
+      "target": "总计算负荷",
+      "basis": "6.5.1 负荷估算（原文口径不完整：未给出面积取值与需要系数）",
+      "serves": [
+        "D6 电气方案"
+      ],
+      "guard": "口径缺失 => undefined"
+    },
+    {
+      "id": "R-供电容量匹配",
+      "kind": "select",
+      "label": "变压器容量匹配校核",
+      "expr": "{原变电站变压器容量} -> {增容后变压器容量} >= {总计算负荷}/{功率因数} => 通过；口径不全 => 待审",
+      "deps": [
+        "原变电站变压器容量",
+        "增容后变压器容量",
+        "总计算负荷"
+      ],
+      "target": "供电容量匹配校核",
+      "basis": "6.5.2 供电电源（原文未给出功率因数与需要系数，无法复算）",
+      "serves": [
+        "D6 电气方案"
+      ],
+      "guard": "口径不全 => 待审"
+    },
+    {
+      "id": "R-冷负荷",
+      "kind": "compute",
+      "label": "冷负荷",
+      "expr": "round({本项目建筑面积}*{单位面积冷负荷指标}/1000, 0)",
+      "deps": [
+        "本项目建筑面积",
+        "单位面积冷负荷指标"
+      ],
+      "target": "冷负荷",
+      "basis": "表6-9（18319×135=2473kW）",
+      "serves": [
+        "D6 暖通方案"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-热负荷",
+      "kind": "compute",
+      "label": "热负荷",
+      "expr": "round({本项目建筑面积}*{单位面积热负荷指标}/1000, 0)",
+      "deps": [
+        "本项目建筑面积",
+        "单位面积热负荷指标"
+      ],
+      "target": "热负荷",
+      "basis": "表6-9（18319×80=1465kW）",
+      "serves": [
+        "D6 暖通方案"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-多联机冷量校核",
+      "kind": "compute",
+      "label": "多联机装机冷量",
+      "expr": "{30HP机组单台制冷量}*{30HP机组台数}+{16HP机组单台制冷量}*{16HP机组台数}+{10HP机组单台制冷量}*{10HP机组台数}",
+      "deps": [
+        "30HP机组单台制冷量",
+        "30HP机组台数",
+        "16HP机组单台制冷量",
+        "16HP机组台数",
+        "10HP机组单台制冷量",
+        "10HP机组台数"
+      ],
+      "target": "多联机装机冷量",
+      "basis": "表6-11 主要设备表（90×22+45×10+28×2=2486kW）",
+      "serves": [
+        "D6 暖通方案"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-年用水量",
+      "kind": "compute",
+      "label": "年总用水量",
+      "expr": "round({教师用水日水量}*{年工作天数}/10000, 2)+round({学生用水日水量}*{年工作天数}/10000, 2)+round(({教师用水日水量}+{学生用水日水量})*{年工作天数}/10000*({未预见系数}/100), 2)",
+      "deps": [
+        "教师用水日水量",
+        "学生用水日水量",
+        "年工作天数",
+        "未预见系数"
+      ],
+      "target": "年总用水量",
+      "basis": "表7-1（0.19+1.39+0.16=1.74万m³）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-年用电量",
+      "kind": "compute",
+      "label": "年总耗电量",
+      "expr": "round(({科研用房用电面积}*{科研用房用电指标}*{科研用房需要系数}*{科研用房同时使用系数}+{公共配套服务用房用电面积}*{公共配套服务用房用电指标}*{公共配套服务用房需要系数}*{公共配套服务用房同时使用系数})*{日均工作小时数}*{年工作天数}/10000000, 1)",
+      "deps": [
+        "科研用房用电面积",
+        "科研用房用电指标",
+        "科研用房需要系数",
+        "科研用房同时使用系数",
+        "公共配套服务用房用电面积",
+        "公共配套服务用房用电指标",
+        "公共配套服务用房需要系数",
+        "公共配套服务用房同时使用系数",
+        "日均工作小时数",
+        "年工作天数"
+      ],
+      "target": "年总耗电量",
+      "basis": "表7-2（66+6=72万kWh）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-综合能耗",
+      "kind": "compute",
+      "label": "综合能耗（当量值）",
+      "expr": "round({年总耗电量}*{电力折标系数当量值}+{年总用水量}*{水折标系数}, 0)",
+      "deps": [
+        "年总耗电量",
+        "电力折标系数当量值",
+        "年总用水量",
+        "水折标系数"
+      ],
+      "target": "综合能耗（当量值）",
+      "basis": "表7-3（72×1.229+1.74×0.857≈90 tce）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-单位面积综合能耗",
+      "kind": "compute",
+      "label": "单位面积综合能耗（当量值）",
+      "expr": "round({综合能耗（当量值）}*1000/{本项目建筑面积}, 2)",
+      "deps": [
+        "综合能耗（当量值）",
+        "本项目建筑面积"
+      ],
+      "target": "单位面积综合能耗（当量值）",
+      "basis": "表7-3（90000/18319=4.91）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-单位建筑面积电耗",
+      "kind": "compute",
+      "label": "单位建筑面积电耗",
+      "expr": "round({年总耗电量}*10000/{本项目建筑面积}, 2)",
+      "deps": [
+        "年总耗电量",
+        "本项目建筑面积"
+      ],
+      "target": "单位建筑面积电耗",
+      "basis": "表7-3（720000/18319=39.30）",
+      "serves": [
+        "D5 资源与能耗"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-节能合规判定",
+      "kind": "select",
+      "label": "建筑节能合规判定",
+      "expr": "{建筑节能设计标准版本} == 现行版本 且 {规定性指标} 满足 => 合规；版本不一致 => 待审",
+      "deps": [
+        "建筑节能设计标准版本",
+        "规定性指标"
+      ],
+      "target": "建筑节能合规判定",
+      "basis": "7.3 节能措施（原文在同一章内引用 DGJ08-107-2012 与 DGJ08-107-2015 两个版本）",
+      "serves": [
+        "D2 合规性"
+      ],
+      "guard": "版本不一致 => 待审"
+    },
+    {
+      "id": "R-稳评等级判定",
+      "kind": "select",
+      "label": "项目社会稳定风险等级判定",
+      "expr": "{措施后单因素风险是否均可控} => 低风险；存在不可控因素 => 中/高风险",
+      "deps": [
+        "措施后单因素风险是否均可控"
+      ],
+      "target": "项目社会稳定风险等级判定",
+      "basis": "10.5 项目风险等级评判（发改投资[2012]2492号 三级划分）",
+      "serves": [
+        "D10 社会稳定风险"
+      ],
+      "guard": "单因素风险未全部给出量化估计 => 待审"
+    },
+    {
+      "id": "R-建安工程费口径核对",
+      "kind": "select",
+      "label": "建安工程招标估算金额一致性",
+      "expr": "{建安工程费用} == {建安工程招标估算金额} => 一致；否则 => 待审",
+      "deps": [
+        "建安工程费用",
+        "建安工程招标估算金额"
+      ],
+      "target": "建安工程招标估算金额一致性",
+      "basis": "表12-1 与 表13-1 比对（10135 vs 11188，差 1053 万元）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "不一致 => 待审"
+    },
+    {
+      "id": "R-基本预备费",
+      "kind": "compute",
+      "label": "基本预备费",
+      "expr": "round(({建筑安装工程费用}+{工程建设其他费})*{基本预备费费率}/100, 2)",
+      "deps": [
+        "建筑安装工程费用",
+        "工程建设其他费",
+        "基本预备费费率"
+      ],
+      "target": "基本预备费",
+      "basis": "13.2 估算说明 / 表13-1（(11188+1171)*5%=617.95→618）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-建安工程费用",
+      "kind": "compute",
+      "label": "建筑安装工程费用",
+      "expr": "round({单体工程}+{室外总体工程}+{抗震支架}+{绿色二星增量费用}, 2)",
+      "deps": [
+        "单体工程",
+        "室外总体工程",
+        "抗震支架",
+        "绿色二星增量费用"
+      ],
+      "target": "建筑安装工程费用",
+      "basis": "表13-1 一=（一）+（二）+（三）+（四）（分项之和为 11189，表列 11188，差 1 万元）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-单体工程",
+      "kind": "compute",
+      "label": "单体工程",
+      "expr": "round({土建工程}+{安装工程}, 2)",
+      "deps": [
+        "土建工程",
+        "安装工程"
+      ],
+      "target": "单体工程",
+      "basis": "表13-1（一）=1+2（分项之和为 10827，表列 10828，差 1 万元）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-土建工程",
+      "kind": "compute",
+      "label": "土建工程",
+      "expr": "round({桩基工程}+{基坑围护工程}+{地下建筑结构工程}+{地上建筑结构工程}+{装配式结构增加费}+{室内装饰工程}+{外立面及屋面装饰工程}, 2)",
+      "deps": [
+        "桩基工程",
+        "基坑围护工程",
+        "地下建筑结构工程",
+        "地上建筑结构工程",
+        "装配式结构增加费",
+        "室内装饰工程",
+        "外立面及屋面装饰工程"
+      ],
+      "target": "土建工程",
+      "basis": "表13-1 1=1.1~1.7（458+250+175+3240+810+1832+1028=7793，闭合）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-安装工程",
+      "kind": "compute",
+      "label": "安装工程",
+      "expr": "round({给排水工程}+{消防工程}+{通风空调工程}+{强电工程}+{弱电工程}+{电梯工程}, 2)",
+      "deps": [
+        "给排水工程",
+        "消防工程",
+        "通风空调工程",
+        "强电工程",
+        "弱电工程",
+        "电梯工程"
+      ],
+      "target": "安装工程",
+      "basis": "表13-1 2=2.1~2.6（分项之和为 3035，表列 3034，差 1 万元）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-室外总体工程",
+      "kind": "compute",
+      "label": "室外总体工程",
+      "expr": "round({道路广场硬地铺装}+{绿化景观}+{室外安装工程}+{标识工程}, 2)",
+      "deps": [
+        "道路广场硬地铺装",
+        "绿化景观",
+        "室外安装工程",
+        "标识工程"
+      ],
+      "target": "室外总体工程",
+      "basis": "表13-1（二）=1+2+3+4（分项之和为 52，表列 49，差 3 万元／6.1%）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-工程建设其他费",
+      "kind": "compute",
+      "label": "工程建设其他费",
+      "expr": "round({建设单位管理费}+{前期工程咨询费}+{勘察费}+{设计费}+{招标代理费}+{清单及标底编制费}+{施工监理费}+{施工图审图费}+{竣工图编制费}+{场地准备及临时设施费}+{低压电缆}+{人防易地建设费}, 2)",
+      "deps": [
+        "建设单位管理费",
+        "前期工程咨询费",
+        "勘察费",
+        "设计费",
+        "招标代理费",
+        "清单及标底编制费",
+        "施工监理费",
+        "施工图审图费",
+        "竣工图编制费",
+        "场地准备及临时设施费",
+        "低压电缆",
+        "人防易地建设费"
+      ],
+      "target": "工程建设其他费",
+      "basis": "表13-1 二=1~12（分项之和为 1170，表列 1171，差 1 万元）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-单位造价",
+      "kind": "compute",
+      "label": "单位造价（总投资口径）",
+      "expr": "round({总投资}*10000/{本项目建筑面积}, 0)",
+      "deps": [
+        "总投资",
+        "本项目建筑面积"
+      ],
+      "target": "单位造价（总投资口径）",
+      "basis": "表13-1 五（13032×10000/18319=7114）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-投资闭合校核",
+      "kind": "select",
+      "label": "投资构成闭合校核",
+      "expr": "abs({建筑安装工程费用}-({单体工程}+{室外总体工程}+{抗震支架}+{绿色二星增量费用})) > 0 => 待审",
+      "deps": [
+        "建筑安装工程费用",
+        "单体工程",
+        "室外总体工程",
+        "抗震支架",
+        "绿色二星增量费用"
+      ],
+      "target": "投资构成闭合校核",
+      "basis": "表13-1 分项与合计逐层比对（多处 ±1 万元舍入差、室外总体工程差 6.1%）",
+      "serves": [
+        "D7 投资估算"
+      ],
+      "guard": "存在差额 => 待审"
+    },
+    {
+      "id": "R-资金筹措构成",
+      "kind": "compute",
+      "label": "总投资（筹措口径）",
+      "expr": "round({国拨资金}+{学校自筹资金}, 2)",
+      "deps": [
+        "国拨资金",
+        "学校自筹资金"
+      ],
+      "target": "总投资",
+      "basis": "13.4（6000+7032=13032）",
+      "serves": [
+        "D8 资金筹措"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-国拨资金占比",
+      "kind": "compute",
+      "label": "国拨资金占比",
+      "expr": "round({国拨资金}/{总投资}*100, 2)",
+      "deps": [
+        "国拨资金",
+        "总投资"
+      ],
+      "target": "国拨资金占比",
+      "basis": "13.4（6000/13032=46.04%）",
+      "serves": [
+        "D8 资金筹措"
+      ],
+      "guard": "missing_any_dep => undefined"
+    },
+    {
+      "id": "R-资产负债率",
+      "kind": "compute",
+      "label": "资产负债率",
+      "expr": "round({负债总额}/{资产总额}*100, 2)",
+      "deps": [
+        "负债总额",
+        "资产总额"
+      ],
+      "target": "资产负债率",
+      "basis": "13.4（9452.14/373711.34=2.53%）",
+      "serves": [
+        "D8 资金筹措"
+      ],
+      "guard": "missing_any_dep => undefined"
+    }
+  ],
+  "claims": [
+    {
+      "id": "CL-结论-01",
+      "text": "建设必要性充分：项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-内部-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设必要性充分",
+        "grounds": "四条分立必要性论点（科研水平/上海大数据发展/校区设施/双一流）",
+        "warrant": "（原文未单列保证；由四条分论点合取支撑）",
+        "backing": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》等",
+        "qualifier": "充分",
+        "rebuttal": "——"
+      },
+      "source": "c-f7ce7a666fc2",
+      "confidence": null
+    },
+    {
+      "id": "CL-结论-05",
+      "text": "项目建成后效益显著：为上海财经大学建设成为一流的研究型大学做好基建保障；有利于提升学科的科研水平，促进相关学科的快速发展；有利于优化校园环境，提升上海财经大学的校园形象。因此本项目建成后具有良好的社会效益。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-内部-06"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目建成后具有良好的社会效益",
+        "grounds": "基建保障/科研水平提升/校园环境优化",
+        "warrant": "（原文未单列保证）",
+        "backing": "第14章 社会效益",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-4b50eab4af10",
+      "confidence": null
+    },
+    {
+      "id": "CL-结论-03",
+      "text": "建设规模合理：拆除面积2758平方米；新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）。项目建设内容明确，建设规模合理。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-指标-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "建设规模合理",
+        "grounds": "拆除 2758 ㎡；新建总建筑面积 18319 ㎡（地上 18000 / 地下 319）",
+        "warrant": "设计规模落在按人均建筑面积指标测算的用房需求内（见 5.6 规模分析小结）",
+        "backing": "《普通高等学校建筑面积指标》（建标191-2018）",
+        "qualifier": "基本合理",
+        "rebuttal": "规模小结测算的需求为地上 18040 ㎡，与地上实建 18000 ㎡ 差 40 ㎡（待审）"
+      },
+      "source": "c-a312158f7d29",
+      "confidence": null
+    },
+    {
+      "id": "CL-结论-04",
+      "text": "项目资金来源有保障：项目总投资为人民币13032万元，建设资金由国拨资金及学校自筹解决，资金来源有保障。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-财务-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目资金来源有保障",
+        "grounds": "总投资 13032 万元，国拨资金 + 学校自筹",
+        "warrant": "学校近三年财力持续增长、资产负债率 2.53%（第13章 资金筹措）",
+        "backing": "表13-2/13-3/13-4 学校财务状况",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-871dd0801bf2",
+      "confidence": null
+    },
+    {
+      "id": "CL-建议-01",
+      "text": "综上所述，本项目建设必要性充分，建设内容与规模明确，资金来源有保障，建议有关部门尽早批复本报告，尽早发挥本项目良好的效益。",
+      "claim_type": "recommendation",
+      "type": "suggestion",
+      "status": "supported",
+      "evidence_refs": [
+        "EV-内部-01"
+      ],
+      "premise_refs": [
+        "CL-结论-01",
+        "CL-结论-03",
+        "CL-结论-04"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "建议有关部门尽早批复本报告",
+        "grounds": "必要性充分、内容与规模明确、资金来源有保障",
+        "warrant": "可行性研究报告获批是项目进入初步设计的前置行政程序",
+        "backing": "《政府投资项目可行性研究报告编写通用大纲》（发改投资规〔2023〕304号）",
+        "qualifier": "尽早",
+        "rebuttal": "拆除手续尚在办理中（原文未闭合）"
+      },
+      "source": "c-7c4ec1dfdb41",
+      "confidence": null
+    },
+    {
+      "id": "CL-必要性-00",
+      "text": "为实现上海财经大学“初步建成具有鲜明财经特色的高水平研究型大学”的战略目标，推进学校“统计学”世界一流学科的发展，本项目提出对中山北一路校区原有第五教学楼进行拆除，重新建设大数据研究中心。",
+      "claim_type": "inference",
+      "type": "causal",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-内部-05",
+        "EV-内部-06"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目应当立项建设",
+        "grounds": "学校战略目标 + 统计学一流学科发展 + 现有第五教学楼条件不足",
+        "warrant": "一流学科建设依赖科研能力提升，而科研用房是科研能力的基础与支撑（原文第3.2.3节给出）",
+        "backing": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-e6a978691d8c",
+      "confidence": null
+    },
+    {
+      "id": "CL-必要性-01",
+      "text": "本项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-内部-03"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设是提升我国新兴领域科研水平、加速向创新型经济转型发展的需要",
+        "grounds": "《中共中央关于制定国民经济和社会发展第十三个五年规划》要求深入实施创新驱动发展战略、推进有特色高水平大学和科研院所建设；本项目已纳入学校“十三五”基建规划",
+        "warrant": "**（原文未写出保证）** 从“国家层面要求创新驱动”到“因此本校必须建设这栋楼”之间的推理许可未给出",
+        "backing": "——",
+        "qualifier": "因此",
+        "rebuttal": "——"
+      },
+      "source": "c-bf70219e8bc1",
+      "confidence": null
+    },
+    {
+      "id": "CL-必要性-02",
+      "text": "本项目是推进上海大数据研究与发展，加快建设数字中国的需要。上海财经大学作为国家经济学基础人才基地，目前尚未建立相应的大数据专业研究平台，本项目的建设是填补上海财经大学大数据研究机构空缺的必要举措。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-03",
+        "EV-对标-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设是推进上海大数据研究与发展、加快建设数字中国的需要",
+        "grounds": "国家大数据战略；上海市已建成复旦大学大数据研究院、上海交通大学大数据工程技术研究中心、华东理工大学金融大数据研究中心；上海财经大学尚无大数据专业研究平台",
+        "warrant": "同类高校已建、本校缺失 ⇒ 本校需要建设（原文以“填补空缺”表述，未展开保证）",
+        "backing": "《国务院关于印发促进大数据发展行动纲要的通知》（国发〔2015〕50号）",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-4061fbc7f478",
+      "confidence": null
+    },
+    {
+      "id": "CL-必要性-03",
+      "text": "本项目的建设是改善中山北一路校区设施条件，建立良好科研环境的需要。中山北一路校区成立于90年代，校区内部分设备设施已不能满足目前学校的发展需求。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-现状-01",
+        "EV-现状-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设是改善中山北一路校区设施条件、建立良好科研环境的需要",
+        "grounds": "中山北一路校区成立于 90 年代，部分设备设施已不能满足学校发展需求；原第五教学楼为 1960 年代建造的四层框架结构，建筑面积 2758 ㎡，经久失修、功能及布局不能适应需求",
+        "warrant": "既有建筑老化失修、功能不符 ⇒ 需要重建（原文以“后勤和使用部门多次提出修缮改造建议”佐证需求真实性）",
+        "backing": "学校后勤与使用部门的修缮改造建议",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-8d533f9bfa12",
+      "confidence": null
+    },
+    {
+      "id": "CL-必要性-04",
+      "text": "本项目的建设是推动学校“双一流”建设的非常重要的基础设施项目，也是顺利实现学校建设目标的重要保障。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-05",
+        "EV-政策-06",
+        "EV-内部-05"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设是响应“双一流”高校建设、实现高水平研究型大学战略目标的需要",
+        "grounds": "2017年9月学校入选一流学科建设高校，统计学入选一流学科；《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》（发改社会〔2017〕1916号）明确支持学科建设所需基础设施建设",
+        "warrant": "国家“双一流”建设项目储备明确支持学科科研用房 ⇒ 本项目属于可申报范围",
+        "backing": "发改社会〔2017〕1916号",
+        "qualifier": "非常重要",
+        "rebuttal": "——"
+      },
+      "source": "c-e71ce9ca221c",
+      "confidence": null
+    },
+    {
+      "id": "CL-结论-02",
+      "text": "综上所述，项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。因此，项目的建设是十分必要的。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-政策-03",
+        "EV-现状-01",
+        "EV-政策-06"
+      ],
+      "premise_refs": [
+        "CL-必要性-01",
+        "CL-必要性-02",
+        "CL-必要性-03",
+        "CL-必要性-04"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目的建设是十分必要的",
+        "grounds": "四条分立必要性论点的合取",
+        "warrant": "四条分论点各自成立且覆盖充分 ⇒ 整体必要性成立",
+        "backing": "第3.2节",
+        "qualifier": "十分",
+        "rebuttal": "——"
+      },
+      "source": "c-82daf88c316c",
+      "confidence": null
+    },
+    {
+      "id": "CL-规模-01",
+      "text": "本项目地上总建筑面积需求合计为18040平方米，设计总建筑面积18319平方米（地上18000、地下319）。设计规模在各类用房面积需求范围内，规模设置合理，基本能够满足各类用房的实际使用需求。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-需求-01",
+        "EV-指标-01"
+      ],
+      "premise_refs": [
+        "CL-规模-02"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "设计规模合理，基本能够满足使用需求",
+        "grounds": "人均指标法测算地上总建筑面积需求 18040 ㎡；设计地上建筑面积 18000 ㎡",
+        "warrant": "**（原文表述为“在各类用房面积需求范围内”）** 但 18000 ㎡ < 18040 ㎡，地上实建少于测算需求 40 ㎡，该保证不成立（待审）",
+        "backing": "《普通高等学校建筑面积指标》（建标191-2018）",
+        "qualifier": "基本",
+        "rebuttal": "地上实建 18000 ㎡ 小于需求 18040 ㎡，缺口 40 ㎡"
+      },
+      "source": "c-b506cede9b46",
+      "confidence": null
+    },
+    {
+      "id": "CL-规模-02",
+      "text": "本项目科研用房人均建筑面积指标应不超过16㎡/人，研究生、博士生、访问学者用房人均建筑面积指标应不超过8㎡/人。",
+      "claim_type": "fact",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-指标-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目采用 16 ㎡/人（科研人员）与 8 ㎡/人（研究生等）两档人均建筑面积指标",
+        "grounds": "《普通高等学校建筑面积指标》（建标191-2018）对专职科研机构用房规划建筑面积指标的规定",
+        "warrant": "规范给定的指标上限即为本项目取值依据",
+        "backing": "建标191-2018",
+        "qualifier": "不超过",
+        "rebuttal": "——"
+      },
+      "source": "c-79069a20782b",
+      "confidence": null
+    },
+    {
+      "id": "CL-技术-01",
+      "text": "本工程建筑类别为3类，建筑设计使用年限为50年；本项目为高层民用建筑，建筑耐火等级为二级；本工程按7度抗震设计。",
+      "claim_type": "fact",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-建筑-04",
+        "EV-规范-建筑-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目设计等级为：3类建筑 / 50年 / 耐火二级 / 抗震7度",
+        "grounds": "《民用建筑设计通则》建筑类别划分；《建筑设计防火规范》高层民用建筑耐火等级；国家抗震烈度划分区域表",
+        "warrant": "规范给定的分类与设防标准适用于本项目所在地与建筑高度",
+        "backing": "GB50352-2005 / GB50016-2014 / 抗震区划表",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-c6ad2c50804d",
+      "confidence": null
+    },
+    {
+      "id": "CL-技术-02",
+      "text": "上部结构采用装配整体式钢筋混凝土框架-剪力墙结构；地下室基础拟采用桩筏基础，基础埋深不小于3.5m。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-结构-03",
+        "EV-规范-结构-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目采用装配整体式钢筋混凝土框架-剪力墙结构 + 桩筏基础",
+        "grounds": "12 层、建筑高度控制 60m、抗震 7 度、IV 类场地、特征周期 0.9s；装配式政策要求",
+        "warrant": "该结构形式在给定高度与抗震条件下满足承载与变形要求（原文给出，属方案比选结论）",
+        "backing": "JGJ 3-2010 / GB50011-2010",
+        "qualifier": "拟采用",
+        "rebuttal": "——"
+      },
+      "source": "c-ed400c9129b8",
+      "confidence": null
+    },
+    {
+      "id": "CL-技术-03",
+      "text": "本工程采用变制冷剂流量多联机系统作为空调冷热源，室外机集中放置在屋面上，室内机为卡式或内藏风管机，并设新风机组供新风。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-负荷-01",
+        "EV-规范-暖通-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目空调系统采用变制冷剂流量多联机系统",
+        "grounds": "冷负荷 2473kW、热负荷 1465kW；建筑为 12 层科研用房，房间使用时间不统一",
+        "warrant": "多联机系统适合分区、分时使用且无需集中机房（属方案比选结论，原文未展开比选过程）",
+        "backing": "JGJ 174-2010 / DGJ08-107-2015",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-2fda396d40da",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险-01",
+      "text": "各空调通风系统主管道上的防火阀与该系统的风机联锁；排烟防火阀在280℃时应自行关闭，并应连锁关闭排烟风机和补风机。",
+      "claim_type": "fact",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-暖通-05"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "排烟与防火阀联锁控制要求已落实",
+        "grounds": "GB51251-2017 对排烟风机与防火阀联锁的规定",
+        "warrant": "规范强制性条文适用于本项目",
+        "backing": "GB51251-2017",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-a2fc352d7d9b",
+      "confidence": null
+    },
+    {
+      "id": "CL-节能-01",
+      "text": "规定性指标满足上海市《公共建筑节能设计标准》(DGJ08-107-2012)的要求；与上海市《公共建筑节能设计标准》(DGJ08-107-2012)相比较，该建筑物满足建筑节能综合指标计算的基本要求以及建筑节能设计补充要求，因此该建筑是满足现行节能规范要求的。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-节能-02",
+        "EV-规范-暖通-03"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "该建筑满足现行节能规范要求",
+        "grounds": "规定性指标满足 DGJ08-107-2012；与 DGJ08-107-2012 比较满足综合指标与补充要求",
+        "warrant": "**（保证不成立）** 同一报告第 6.7 节与第 7.3 节又引用 DGJ08-107-2015，且 7.1 节同时列 GB50189-2005；以 2012 版作为“现行”缺乏依据（待审）",
+        "backing": "DGJ08-107-2012 / DGJ08-107-2015 / GB50189-2005",
+        "qualifier": "满足现行",
+        "rebuttal": "节能标准版本在本报告内不唯一，无法判定何为“现行”"
+      },
+      "source": "c-a907a1be0c64",
+      "confidence": null
+    },
+    {
+      "id": "CL-环评-01",
+      "text": "只要在项目建设过程中，按“三同时”认真落实污染治理措施，对废气、废水、噪声、固体废物等污染因子进行有效控制，做到达标排放，项目施工期和运营期都不会对环境造成大的影响。因此，从环境保护的角度来讲，本项目的建设是可行的。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-环评-01",
+        "EV-规范-环评-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "从环境保护角度，本项目建设是可行的",
+        "grounds": "施工期与运营期四类污染因子均有对应防治措施；达标排放",
+        "warrant": "落实“三同时”且达标排放 ⇒ 不对环境造成大的影响",
+        "backing": "《建设项目环境保护管理办法》/《中华人民共和国环境保护法》",
+        "qualifier": "不会造成大的影响",
+        "rebuttal": "运营期噪声源为水泵、换排气风机及车辆，未给出厂界噪声预测值"
+      },
+      "source": "c-0651c74bb373",
+      "confidence": null
+    },
+    {
+      "id": "CL-安全-01",
+      "text": "通过落实以上措施，将能够保证施工人员、进出师生的安全和健康。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-安全-01",
+        "EV-规范-安全-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "落实措施后可保证施工人员与师生安全和健康",
+        "grounds": "施工期与运营期分别给出防自然灾害/安全教育/防机械伤害/安全用电/防火灾/防触电/防噪防尘/防坠落/人流安全等措施",
+        "warrant": "措施覆盖全部已识别危害因素 ⇒ 安全可控",
+        "backing": "《中华人民共和国安全生产法》/ GB50223-2008",
+        "qualifier": "能够保证",
+        "rebuttal": "实验室专业危害（辐射、化学品、生物）仅以“采取屏蔽措施”一句覆盖，未给出具体限值"
+      },
+      "source": "c-31dde952ba5c",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险-01",
+      "text": "施工环境污染风险：施工期污染物排放极有可能发生，但项目建设规模不是很大，属于一般的建筑工程，且风险也会随着项目施工结束而消失，施工环境污染影响较小。在装修过程中施工噪声发生的可能性较大，可能影响到师生日常教学活动及周边住宅区域居民的正常休息。",
+      "claim_type": "hypothesis",
+      "type": "risk",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-环评-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "施工环境污染风险等级为较小",
+        "grounds": "项目规模不大、属一般建筑工程、风险随施工结束消失",
+        "warrant": "风险时间有限且规模小 ⇒ 风险程度低",
+        "backing": "GB12523-2011 排放限值",
+        "qualifier": "影响较小",
+        "rebuttal": "装修期噪声对师生教学与周边居民休息影响可能较大（原文自述）"
+      },
+      "source": "c-17b54464cc07",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险-02",
+      "text": "交通出行及安全风险：项目施工车辆的进出、建材及拆除物的占道堆放可能会对校内师生的出行带来影响与不便。",
+      "claim_type": "hypothesis",
+      "type": "risk",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-现状-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "存在交通出行及安全风险",
+        "grounds": "施工车辆进出、建材及拆除物占道堆放",
+        "warrant": "施工占道影响通行 ⇒ 存在交通安全风险",
+        "backing": "——",
+        "qualifier": "可能",
+        "rebuttal": "——"
+      },
+      "source": "c-04943ad00e13",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险-03",
+      "text": "工程管理及施工安全风险：农民工是社会上的敏感话题，拖欠农民工工资和发生工伤事故极易引发影响社会稳定的事件，但本项目体量不大，项目周期较短，同时合理选拔施工单位，建立严格的内控制度，该风险产生的概率较小。但此风险一旦产生，对建设单位将产生较大的负面社会舆论等，风险影响程度较为严重。",
+      "claim_type": "hypothesis",
+      "type": "risk",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-稳评-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "工程管理及施工安全风险概率较小但影响程度较严重",
+        "grounds": "项目体量不大、周期较短、严格选拔施工单位并建立内控制度",
+        "warrant": "内控严格 ⇒ 欠薪与工伤概率低；但一旦发生负面舆论影响大",
+        "backing": "发改投资[2012]2492号 风险等级划分",
+        "qualifier": "概率较小/影响较严重",
+        "rebuttal": "——"
+      },
+      "source": "c-792e2dd5ca3f",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险等级-01",
+      "text": "通过落实到位以上提出的防范、化解措施，能够可行、可控的避免引发社会风险的事件产生……确定本项目的措施后风险等级为低风险。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-稳评-01",
+        "EV-规范-稳评-02"
+      ],
+      "premise_refs": [
+        "CL-风险-01",
+        "CL-风险-02",
+        "CL-风险-03"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目措施后社会稳定风险等级为低风险",
+        "grounds": "三类风险因素经防范化解后影响程度均下降；项目能获多数群众支持",
+        "warrant": "**（原文未给出量化打分）** 低风险判定建立在定性分析之上，未给出单因素风险权重与综合风险指数计算过程",
+        "backing": "发改投资[2012]2492号 三级风险划分",
+        "qualifier": "低风险",
+        "rebuttal": "风险调查采用实地观察法、文献法、案例参照法、风险综合评价法，但未给出调查样本与量化结论"
+      },
+      "source": "c-1dc4966aac97",
+      "confidence": null
+    },
+    {
+      "id": "CL-风险结论-01",
+      "text": "本项目不会引发较大社会稳定风险问题，拟建项目合法、合理、可控、可行，项目风险等级评判为低风险。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-规范-稳评-01"
+      ],
+      "premise_refs": [
+        "CL-风险等级-01"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目合法、合理、可控、可行，风险等级低",
+        "grounds": "风险等级评判结果",
+        "warrant": "风险等级低 ⇒ 项目可行",
+        "backing": "发改投资[2012]2492号",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "source": "c-a635928b8338",
+      "confidence": null
+    },
+    {
+      "id": "CL-资金-01",
+      "text": "项目建设资金由国拨资金和学校自筹解决，其中：申请国拨资金6000万元（占比46.04%），学校自筹资金7032万元（实施周期3年，年均资金需求量约2300万元）。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-财务-01",
+        "EV-财务-02"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目资金筹措方案可行、资金来源有保障",
+        "grounds": "国拨 6000 万元 + 自筹 7032 万元；学校近三年收入持续增长，2018 年总收入 168206.52 万元、资产负债率 2.53%",
+        "warrant": "学校财力可覆盖年均约 2300 万元自筹需求，且已列入学校基建规划",
+        "backing": "表13-2/13-3/13-4 学校财务状况 / 上财委会〔2019〕5号",
+        "qualifier": "有保障",
+        "rebuttal": "国拨资金 6000 万元尚未见批复文件（附件仅列党委常委会纪要，未含上级批复）"
+      },
+      "source": "c-439358c3c12f",
+      "confidence": null
+    },
+    {
+      "id": "CL-效益-01",
+      "text": "本项目建成后的社会效益显著。本项目将对中山北一路校区原有第五教学楼进行拆除后新建大数据研究中心，为管理科学与量化信息研究中心、理论计算机研究中心、应用统计研究中心、数据科研与统计研究院等科研单位提供优质的科研条件。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-内部-06"
+      ],
+      "premise_refs": [
+        "CL-结论-05"
+      ],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "项目建成后社会效益显著",
+        "grounds": "为四个科研单位提供科研条件；优化学科科研环境；打造校区新地标",
+        "warrant": "科研设施条件改善 ⇒ 学科科研水平提升 ⇒ 社会效益",
+        "backing": "第14章 社会效益",
+        "qualifier": "显著",
+        "rebuttal": "社会效益为定性表述，未给出可核的量化指标"
+      },
+      "source": "c-8b365586dd1d",
+      "confidence": null
+    },
+    {
+      "id": "CL-结论-01",
+      "text": "建设必要性充分：项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。",
+      "claim_type": "conclusion",
+      "type": "judgment",
+      "status": "unverified",
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-内部-01"
+      ],
+      "premise_refs": [],
+      "derived_from": [],
+      "toulmin": {
+        "claim": "本项目建设必要性充分",
+        "grounds": "四条分立必要性论点",
+        "warrant": "**（原文未单列保证）**",
+        "backing": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+        "qualifier": "充分",
+        "rebuttal": "——"
+      },
+      "source": "c-f7ce7a666fc2",
+      "confidence": null
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-选址-01",
+      "kind": "E1",
+      "doc": "项目概况",
+      "chunk": "c-129c2dbdd766",
+      "quote": "西侧为校园绿地，东侧临近现有建筑教育中心，北侧靠近校内便利店，南侧为学校下沉式广场及图书馆",
+      "status": "verified",
+      "locator": "1.1",
+      "chunk_original": "c-c81b4c075659"
+    },
+    {
+      "id": "EV-指标-01",
+      "kind": "E2",
+      "doc": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+      "chunk": "c-58c19badde7f",
+      "quote": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+      "status": "in_use_unverified",
+      "locator": "1.2 编制依据",
+      "chunk_original": "c-8dfde7c45562"
+    },
+    {
+      "id": "EV-法规-01",
+      "kind": "E3",
+      "doc": "国家及上海市颁布的有关政策、法规、定额、税费等文件",
+      "chunk": "c-1b181a91ebe0",
+      "quote": "国家及上海市颁布的有关政策、法规、定额、税费等文件",
+      "status": "unverified",
+      "locator": "1.2",
+      "chunk_original": "c-c872dfb8d098"
+    },
+    {
+      "id": "EV-内部-01",
+      "kind": "E1",
+      "doc": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+      "chunk": "c-c51311b1b9ab",
+      "quote": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+      "status": "verified",
+      "locator": "1.2 编制依据",
+      "chunk_original": "c-dd40e39ed14b"
+    },
+    {
+      "id": "EV-内部-02",
+      "kind": "E1",
+      "doc": "《上海财经大学“十三五”发展规划纲要》",
+      "chunk": "c-42ac8cba7290",
+      "quote": "《上海财经大学“十三五”发展规划纲要》",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-6edc390fed52"
+    },
+    {
+      "id": "EV-内部-03",
+      "kind": "E1",
+      "doc": "《上海财经大学“十三五”基本建设规划》",
+      "chunk": "c-c8d99f4d114f",
+      "quote": "《上海财经大学“十三五”基本建设规划》",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-937ba677471d"
+    },
+    {
+      "id": "EV-内部-04",
+      "kind": "E1",
+      "doc": "《上海财经大学“十三五”校园总体规划》（2016.11）",
+      "chunk": "c-7477027ce534",
+      "quote": "《上海财经大学“十三五”校园总体规划》（2016.11）",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-4a982265f5b9"
+    },
+    {
+      "id": "EV-内部-05",
+      "kind": "E1",
+      "doc": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+      "chunk": "c-f9291d86ccc5",
+      "quote": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-e1a154af796f"
+    },
+    {
+      "id": "EV-内部-06",
+      "kind": "E1",
+      "doc": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+      "chunk": "c-5b988dee5ee8",
+      "quote": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-0d57702aa2b8"
+    },
+    {
+      "id": "EV-委托-01",
+      "kind": "E5",
+      "doc": "项目规划设计方案（2019年4月）",
+      "chunk": "c-54b1d05dda2a",
+      "quote": "项目规划设计方案（2019年4月）",
+      "status": "verified",
+      "locator": "1.2",
+      "chunk_original": "c-a3ba0a5fccc5"
+    },
+    {
+      "id": "EV-委托-02",
+      "kind": "E6",
+      "doc": "业主提供的其他资料",
+      "chunk": "c-39e7e79951ac",
+      "quote": "业主提供的其他资料",
+      "status": "unverified",
+      "locator": "1.2",
+      "chunk_original": "c-d07cf8109ea4"
+    },
+    {
+      "id": "EV-财务-01",
+      "kind": "E1",
+      "doc": "学校财务决算数据（2016-2018）",
+      "chunk": "c-198ee2fbd3f6",
+      "quote": "截至2018年未，学校资产总额为373711.34万元，负债总额为9452.14万元，净资产总额为364259.20万元。资产负债率为2.53%",
+      "status": "verified",
+      "locator": "13.4",
+      "chunk_original": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "EV-统计-01",
+      "kind": "E4",
+      "doc": "上海财经大学高等教育基层统计报表（2018/2019学年初）",
+      "chunk": "c-e6649218e0c0",
+      "quote": "截至2018年12月，学校有各类在校生20576人，其中全日制15643人",
+      "status": "verified",
+      "locator": "2.4 办学规模",
+      "chunk_original": "c-e6649218e0c0"
+    },
+    {
+      "id": "EV-统计-01",
+      "kind": "E4",
+      "doc": "高等教育基层统计报表",
+      "chunk": "c-f35eec1d877c",
+      "quote": "专职教师1044人",
+      "status": "verified",
+      "locator": "2.5",
+      "chunk_original": "c-f35eec1d877c"
+    },
+    {
+      "id": "EV-统计-01",
+      "kind": "E4",
+      "doc": "校区分划",
+      "chunk": "c-067b6352bde6",
+      "quote": "校园占地826亩，分设三个校区",
+      "status": "verified",
+      "locator": "2.6",
+      "chunk_original": "c-067b6352bde6"
+    },
+    {
+      "id": "EV-内部-05",
+      "kind": "E1",
+      "doc": "《上海财经大学学科建设规划（2018-2025）》",
+      "chunk": "c-27fb26d91615",
+      "quote": "到2025年，“经济学与商学”力争整体进入世界一流学科前列，力争进入ESI全球前1%",
+      "status": "verified",
+      "locator": "2.2",
+      "chunk_original": "c-27fb26d91615"
+    },
+    {
+      "id": "EV-政策-02",
+      "kind": "E3",
+      "doc": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+      "chunk": "c-7943443eae1d",
+      "quote": "要深入实施创新驱动发展战略……推进有特色高水平大学和科研院所建设",
+      "status": "verified",
+      "locator": "3.2.1",
+      "chunk_original": "c-7943443eae1d"
+    },
+    {
+      "id": "EV-内部-03",
+      "kind": "E1",
+      "doc": "《上海财经大学“十三五”基本建设规划》",
+      "chunk": "c-bf70219e8bc1",
+      "quote": "本项目作为上海财经大学大数据研究领域的重要建设项目，已纳入学校“十三五”基建规划中",
+      "status": "verified",
+      "locator": "3.2.1",
+      "chunk_original": "c-bf70219e8bc1"
+    },
+    {
+      "id": "EV-政策-03",
+      "kind": "E3",
+      "doc": "《国务院关于印发促进大数据发展行动纲要的通知》（国发〔2015〕50号）",
+      "chunk": "c-9890238fab90",
+      "quote": "行动纲要提出，要推动产业创新发展，培育新兴业态，助力经济转型",
+      "status": "verified",
+      "locator": "3.1.1",
+      "chunk_original": "c-9890238fab90"
+    },
+    {
+      "id": "EV-政策-04",
+      "kind": "E3",
+      "doc": "《工业和信息化部关于印发大数据产业发展规划（2016-2020年）的通知》",
+      "chunk": "c-41ef1ee98576",
+      "quote": "推动大数据应用，加快传统产业数字化、智能化，做大做强数字经济",
+      "status": "verified",
+      "locator": "3.2.2",
+      "chunk_original": "c-41ef1ee98576"
+    },
+    {
+      "id": "EV-对标-01",
+      "kind": "E4",
+      "doc": "上海高校既有大数据研究机构（公开信息）",
+      "chunk": "c-81b4c35d5eef",
+      "quote": "上海高校的大数据研究机构有复旦大学大数据研究院、上海交通大学大数据工程技术研究中心、华东理工大学金融大数据研究中心等",
+      "status": "verified",
+      "locator": "3.2.2",
+      "chunk_original": "c-81b4c35d5eef"
+    },
+    {
+      "id": "EV-战略-01",
+      "kind": "E3",
+      "doc": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+      "chunk": "c-41ef1ee98576",
+      "quote": "我国将大数据上升至国家战略",
+      "status": "verified",
+      "locator": "3.2.2",
+      "chunk_original": "c-41ef1ee98576"
+    },
+    {
+      "id": "EV-现状-01",
+      "kind": "E1",
+      "doc": "校区现状调查",
+      "chunk": "c-8d533f9bfa12",
+      "quote": "上海财经大学中山北一路校区成立于90年代，距今年份久远，校区内部分设备设施已不能满足目前学校的发展需求",
+      "status": "verified",
+      "locator": "3.2.3",
+      "chunk_original": "c-8d533f9bfa12"
+    },
+    {
+      "id": "EV-现状-02",
+      "kind": "E1",
+      "doc": "原第五教学楼现状",
+      "chunk": "c-c1117e5ea37e",
+      "quote": "中山北一路校区原第五教学楼建设年代较久，为四层框架结构，建筑面积2758平方米，1960年代建造。目前因经久失修，原教学楼内部设施较为陈旧，功能及布局不能适应教学需求",
+      "status": "verified",
+      "locator": "3.2.3",
+      "chunk_original": "c-c1117e5ea37e"
+    },
+    {
+      "id": "EV-政策-05",
+      "kind": "E3",
+      "doc": "《统筹推进世界一流大学和一流学科建设总体方案》",
+      "chunk": "c-7712b28d1eac",
+      "quote": "2015年10月24日，国务院印发《统筹推进世界一流大学和一流学科建设总体方案》",
+      "status": "verified",
+      "locator": "3.1.4",
+      "chunk_original": "c-7712b28d1eac"
+    },
+    {
+      "id": "EV-政策-06",
+      "kind": "E3",
+      "doc": "《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》（发改社会【2017】1916号）",
+      "chunk": "c-6e2f045ef188",
+      "quote": "要支持与经济社会重点领域产业发展高度关联、紧密契合的学科建设所需的基础设施和大型仪器装置装备建设",
+      "status": "verified",
+      "locator": "3.2.4",
+      "chunk_original": "c-6e2f045ef188"
+    },
+    {
+      "id": "EV-科研-01",
+      "kind": "E1",
+      "doc": "统计与管理学院科研工作统计（2018）",
+      "chunk": "c-129739dbd201",
+      "quote": "2018年学院师生发表各类论文87篇",
+      "status": "verified",
+      "locator": "3.1.5",
+      "chunk_original": "c-129739dbd201"
+    },
+    {
+      "id": "EV-内部-02",
+      "kind": "E1",
+      "doc": "《上海财经大学“十三五”发展规划纲要》",
+      "chunk": "c-eb1f797961d9",
+      "quote": "到2020年，学校要坚实完成“三步走”战略的第二步",
+      "status": "verified",
+      "locator": "3.1.2",
+      "chunk_original": "c-eb1f797961d9"
+    },
+    {
+      "id": "EV-地勘-01",
+      "kind": "E5",
+      "doc": "项目所在区域地质资料",
+      "chunk": "c-ec5e925841ef",
+      "quote": "虹口区为坦荡低平的平原，平均海拔高度为4米左右",
+      "status": "verified",
+      "locator": "4.2.1",
+      "chunk_original": "c-ec5e925841ef"
+    },
+    {
+      "id": "EV-现状-02",
+      "kind": "E1",
+      "doc": "原建筑现状",
+      "chunk": "c-4d8b131dacf8",
+      "quote": "建筑结构老化、功能布局不合理等情况难以改善",
+      "status": "verified",
+      "locator": "4.1",
+      "chunk_original": "c-4d8b131dacf8"
+    },
+    {
+      "id": "EV-气象-01",
+      "kind": "E4",
+      "doc": "上海市气象与水文资料",
+      "chunk": "c-3a040d14af4d",
+      "quote": "上海市位于北亚热带南缘，属亚热带季风气候",
+      "status": "verified",
+      "locator": "4.2.1",
+      "chunk_original": "c-3a040d14af4d"
+    },
+    {
+      "id": "EV-市政-01",
+      "kind": "E5",
+      "doc": "校区市政配套条件",
+      "chunk": "c-ddad520b4a13",
+      "quote": "项目所在地的供水、排水、供电、交通条件齐备",
+      "status": "verified",
+      "locator": "4.2.2",
+      "chunk_original": "c-ddad520b4a13"
+    },
+    {
+      "id": "EV-规划-01",
+      "kind": "E1",
+      "doc": "各研究中心规划人数表（表5-1~5-4）",
+      "chunk": "c-223358da3e9d",
+      "quote": "根据现有科研团队及未来发展需求，拟再引进（增加）部分人员",
+      "status": "verified",
+      "locator": "5.1",
+      "chunk_original": "c-223358da3e9d"
+    },
+    {
+      "id": "EV-规划-01",
+      "kind": "E1",
+      "doc": "表5-2 理论计算机研究中心规划人数",
+      "chunk": "c-b7027573785d",
+      "quote": "规划人数具体如下表所示",
+      "status": "verified",
+      "locator": "5.2",
+      "chunk_original": "c-b7027573785d"
+    },
+    {
+      "id": "EV-规划-01",
+      "kind": "E1",
+      "doc": "表5-3 应用统计研究中心规划人数",
+      "chunk": "c-9d9be0511932",
+      "quote": "未来将申请国家级研究基地",
+      "status": "verified",
+      "locator": "5.3",
+      "chunk_original": "c-9d9be0511932"
+    },
+    {
+      "id": "EV-规划-01",
+      "kind": "E1",
+      "doc": "表5-4 数据科研与统计研究院规划人数",
+      "chunk": "c-f397b7a348a5",
+      "quote": "规划人数具体如下表所示",
+      "status": "verified",
+      "locator": "5.4",
+      "chunk_original": "c-f397b7a348a5"
+    },
+    {
+      "id": "EV-需求-01",
+      "kind": "E1",
+      "doc": "表5-5 公共服务配套用房规模需求",
+      "chunk": "c-d8ff50ae58f4",
+      "quote": "使用面积需求合计约1210平方米，按照0.55的综合平面利用系数换算为建筑面积需求为2200平方米",
+      "status": "verified",
+      "locator": "5.5",
+      "chunk_original": "c-d8ff50ae58f4"
+    },
+    {
+      "id": "EV-指标-02",
+      "kind": "E2",
+      "doc": "《普通高等学校建筑面积指标》（建标191-2018）",
+      "chunk": "c-79069a20782b",
+      "quote": "参考《普通高等学校建筑面积指标》（建标191-2018）对专职科研机构用房的规划建筑面积指标的规定",
+      "status": "in_use_unverified",
+      "locator": "5.6",
+      "chunk_original": "c-79069a20782b"
+    },
+    {
+      "id": "EV-需求-02",
+      "kind": "E1",
+      "doc": "表5-6 项目规模需求汇总表",
+      "chunk": "c-c011c764a24d",
+      "quote": "科研人员用房 315 16 5040；研究生、博士生、访问学者用房 1350 8 10800；公共服务配套用房 2200；合计 1665（人数）18040（面积）",
+      "status": "verified",
+      "locator": "5.6",
+      "chunk_original": "c-c011c764a24d"
+    },
+    {
+      "id": "EV-规范-建筑-01",
+      "kind": "E2",
+      "doc": "《建筑设计防火规范》GB50016-2014（2018年版）",
+      "chunk": "c-d541985db789",
+      "quote": "GB50016-2014（2018年版）",
+      "status": "in_use_unverified",
+      "locator": "6.1 设计依据",
+      "chunk_original": "c-957f1189f675"
+    },
+    {
+      "id": "EV-规范-建筑-02",
+      "kind": "E2",
+      "doc": "《汽车库、修车库、停车场设计防火规范》GB50067-2014",
+      "chunk": "c-e2a123393159",
+      "quote": "GB50067-2014",
+      "status": "in_use_unverified",
+      "locator": "6.1",
+      "chunk_original": "c-fa32d3aed451"
+    },
+    {
+      "id": "EV-规范-建筑-03",
+      "kind": "E2",
+      "doc": "《建筑防烟排烟系统技术标准》GB51251-2017",
+      "chunk": "c-5072cbfd7edf",
+      "quote": "GB51251-2017",
+      "status": "in_use_unverified",
+      "locator": "6.1",
+      "chunk_original": "c-80b174a4bdd0"
+    },
+    {
+      "id": "EV-规范-建筑-04",
+      "kind": "E2",
+      "doc": "《民用建筑设计通则》GB50352-2005",
+      "chunk": "c-c57ac7f400eb",
+      "quote": "GB50352-2005",
+      "status": "in_use_unverified",
+      "locator": "6.1",
+      "chunk_original": "c-f7dbd37e339e"
+    },
+    {
+      "id": "EV-规范-建筑-05",
+      "kind": "E2",
+      "doc": "《汽车库建筑设计规范》JGJ100-1998",
+      "chunk": "c-f5976bd25f6c",
+      "quote": "JGJI00-1998（原文写作 JGJI00-1998）",
+      "status": "unverified",
+      "locator": "6.1",
+      "chunk_original": "c-a2c282406cbf"
+    },
+    {
+      "id": "EV-规范-建筑-06",
+      "kind": "E2",
+      "doc": "《地下工程防水技术规范》GB50108-2008",
+      "chunk": "c-fd35c1e54d7b",
+      "quote": "GB50108-2008",
+      "status": "in_use_unverified",
+      "locator": "6.1",
+      "chunk_original": "c-d1d881cf28ba"
+    },
+    {
+      "id": "EV-规范-建筑-07",
+      "kind": "E2",
+      "doc": "《无障碍设计规范》GB50763-2012",
+      "chunk": "c-d2fb62082841",
+      "quote": "《无障碍设计规范》GB50763-2012",
+      "status": "in_use_unverified",
+      "locator": "6.1 设计依据",
+      "chunk_original": "c-45fb4189ba95"
+    },
+    {
+      "id": "EV-规范-建筑-08",
+      "kind": "E2",
+      "doc": "《建筑工程建筑面积计算规范》GB/T50353-2013",
+      "chunk": "c-2107c9cb9389",
+      "quote": "GB/T50353-2013",
+      "status": "in_use_unverified",
+      "locator": "6.1",
+      "chunk_original": "c-46de14e1450e"
+    },
+    {
+      "id": "EV-规范-建筑-09",
+      "kind": "E2",
+      "doc": "《高层民用建筑设计防火规范》",
+      "chunk": "c-df1ebc3f5d4e",
+      "quote": "防火等级：根据《高层民用建筑设计防火规范》和《建筑设计防火规范》规定。本项目为高层民用建筑，建筑耐火等级为二级。",
+      "status": "superseded_unverified",
+      "locator": "6.1 设计总说明",
+      "chunk_original": "c-df1ebc3f5d4e"
+    },
+    {
+      "id": "EV-规范-无障碍-01",
+      "kind": "E2",
+      "doc": "《城市道路和建筑物无障碍设计规范》（JGJ50-2001）",
+      "chunk": "c-325a2d4e4d8d",
+      "quote": "《城市道路和建筑物无障碍设计规范》（JGJ50-2001）",
+      "status": "superseded_unverified",
+      "locator": "6.2.7 无障碍设计",
+      "chunk_original": "c-325a2d4e4d8d"
+    },
+    {
+      "id": "EV-规范-无障碍-02",
+      "kind": "E2",
+      "doc": "《无障碍设计规范》（GB50673-2002）",
+      "chunk": "c-325a2d4e4d8d",
+      "quote": "《无障碍设计规范》（GB50673-2002）",
+      "status": "invalid_number_unverified",
+      "locator": "6.2.7",
+      "chunk_original": "c-325a2d4e4d8d"
+    },
+    {
+      "id": "EV-规范-结构-01",
+      "kind": "E2",
+      "doc": "《建筑结构荷载规范》GB50009-2012",
+      "chunk": "c-742a38ec8440",
+      "quote": "GB50009-2012",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-b1c7aee18c6e"
+    },
+    {
+      "id": "EV-规范-结构-02",
+      "kind": "E2",
+      "doc": "《建筑抗震设计规范》GB50011-2010（2016年版）",
+      "chunk": "c-124163776e04",
+      "quote": "GB50011-2010）2016年版",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-8af0d9b7d69e"
+    },
+    {
+      "id": "EV-规范-结构-03",
+      "kind": "E2",
+      "doc": "《高层建筑混凝土结构技术规程》JGJ 3-2010",
+      "chunk": "c-5e8d24ca33e2",
+      "quote": "JGJ 3-2010",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-f7f9f19e6769"
+    },
+    {
+      "id": "EV-规范-结构-04",
+      "kind": "E2",
+      "doc": "《建筑桩基设计规范》（JGJ94-2008）",
+      "chunk": "c-e7a578389576",
+      "quote": "《建筑桩基设计规范》（JGJ94-2008）",
+      "status": "unverified",
+      "locator": "6.3",
+      "chunk_original": "c-a901f2199e55"
+    },
+    {
+      "id": "EV-规范-结构-05",
+      "kind": "E2",
+      "doc": "《建筑工程抗震设防分类标准》（GB50223-2008）",
+      "chunk": "c-851102b884c8",
+      "quote": "GB50223-2008",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-54799ea75230"
+    },
+    {
+      "id": "EV-规范-装配-01",
+      "kind": "E2",
+      "doc": "《装配式混凝土结构技术规程》（JGJ1-2014）",
+      "chunk": "c-d30cbaaef1c5",
+      "quote": "JGJ1-2014",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-fa4be6dbecef"
+    },
+    {
+      "id": "EV-规范-装配-02",
+      "kind": "E2",
+      "doc": "《装配整体式混凝土公共建筑设计规程》（DG/TJ08-2154-2014）",
+      "chunk": "c-9c1fe29427f3",
+      "quote": "DG/TJ08-2154-2014",
+      "status": "in_use_unverified",
+      "locator": "6.3",
+      "chunk_original": "c-518e6d306230"
+    },
+    {
+      "id": "EV-规范-给排水-01",
+      "kind": "E2",
+      "doc": "《建筑给水排水设计规范》GB50015-2003（2009年版）",
+      "chunk": "c-93dc67a87175",
+      "quote": "GB50015-2003（2009年版）",
+      "status": "in_use_unverified",
+      "locator": "6.4 设计依据",
+      "chunk_original": "c-a2f42b8e6e53"
+    },
+    {
+      "id": "EV-规范-给排水-02",
+      "kind": "E2",
+      "doc": "《消防给水及消火栓系统技术规范》GB50974-2014",
+      "chunk": "c-15e3c7d9a76d",
+      "quote": "GB50974-2014",
+      "status": "in_use_unverified",
+      "locator": "6.4",
+      "chunk_original": "c-742af79237af"
+    },
+    {
+      "id": "EV-规范-给排水-03",
+      "kind": "E2",
+      "doc": "《自动喷水灭火系统设计规范》GBJ50084-2017",
+      "chunk": "c-9a5b4b820bc6",
+      "quote": "GBJ50084-2017（原文写作 GBJ50084-2017）",
+      "status": "unverified",
+      "locator": "6.4",
+      "chunk_original": "c-118cb1e20a07"
+    },
+    {
+      "id": "EV-规范-给排水-04",
+      "kind": "E2",
+      "doc": "上海市《公共建筑节能设计标准》DGJ08-107-2015",
+      "chunk": "c-ed36e407b977",
+      "quote": "DGJ08-107-2015",
+      "status": "in_use_unverified",
+      "locator": "6.4",
+      "chunk_original": "c-44e64a889cd3"
+    },
+    {
+      "id": "EV-定额-01",
+      "kind": "E5",
+      "doc": "表6-2 主要用水项目及其用水指标表",
+      "chunk": "c-354e031a9916",
+      "quote": "科研学生 1800人(暂定) 40L/生、日；办公 288人(暂定) 50L/人、日；总计 95.04 m³/d",
+      "status": "verified",
+      "locator": "6.4.2",
+      "chunk_original": "c-951d51ce96e3"
+    },
+    {
+      "id": "EV-规范-给排水-03",
+      "kind": "E2",
+      "doc": "《自动喷水灭火系统设计规范》GBJ50084-2017",
+      "chunk": "c-8aa08d82d0f2",
+      "quote": "自动喷水灭火系统 25 L/s",
+      "status": "unverified",
+      "locator": "表6-3",
+      "chunk_original": "c-04e6d161a590"
+    },
+    {
+      "id": "EV-规范-电气-01",
+      "kind": "E2",
+      "doc": "《民用建筑电气设计规范》JGJ16-2008",
+      "chunk": "c-45e93a934425",
+      "quote": "JGJ16-2008",
+      "status": "in_use_unverified",
+      "locator": "6.5 强电设计依据",
+      "chunk_original": "c-454986ab78c1"
+    },
+    {
+      "id": "EV-规范-电气-02",
+      "kind": "E2",
+      "doc": "《供配电系统设计规范》GB50052-2009",
+      "chunk": "c-be46dcd3e8b3",
+      "quote": "GB50052-2009",
+      "status": "in_use_unverified",
+      "locator": "6.5",
+      "chunk_original": "c-69ffb9969a05"
+    },
+    {
+      "id": "EV-规范-电气-03",
+      "kind": "E2",
+      "doc": "《建筑照明设计标准》GB50034-2013",
+      "chunk": "c-4a380fc0196a",
+      "quote": "GB50034-2013",
+      "status": "in_use_unverified",
+      "locator": "6.5 强电设计依据",
+      "chunk_original": "c-38ad12573516"
+    },
+    {
+      "id": "EV-规范-电气-04",
+      "kind": "E2",
+      "doc": "《教育建筑电气设计规范》JGJ310-2013",
+      "chunk": "c-316cd218588b",
+      "quote": "JGJ310-2013",
+      "status": "in_use_unverified",
+      "locator": "6.5",
+      "chunk_original": "c-23b0231f6610"
+    },
+    {
+      "id": "EV-规范-电气-05",
+      "kind": "E2",
+      "doc": "《绿色建筑评价标准》GB-T50378-2014",
+      "chunk": "c-f2ebb3c4addb",
+      "quote": "GB-T50378-2014",
+      "status": "in_use_unverified",
+      "locator": "6.5",
+      "chunk_original": "c-b5ab3d3aed46"
+    },
+    {
+      "id": "EV-负荷估算-01",
+      "kind": "E5",
+      "doc": "6.5.1 负荷估算",
+      "chunk": "c-100dadfa18ab",
+      "quote": "空调用电按45W/平方米估算，照明及其他负荷按25W/平方米估算。总计算负荷为952KW。",
+      "status": "verified",
+      "locator": "6.5.1",
+      "chunk_original": "c-100dadfa18ab"
+    },
+    {
+      "id": "EV-规范-电气-06",
+      "kind": "E2",
+      "doc": "《建筑物防雷设计规范》GB50057-2010",
+      "chunk": "c-d4f4e98c4a21",
+      "quote": "GB50057-2010",
+      "status": "in_use_unverified",
+      "locator": "6.5",
+      "chunk_original": "c-fb974afde598"
+    },
+    {
+      "id": "EV-规范-暖通-01",
+      "kind": "E2",
+      "doc": "《民用建筑供暖通风与空气调节设计规范》GB50736-2012",
+      "chunk": "c-05bfe579e2ed",
+      "quote": "GB50736-2012",
+      "status": "in_use_unverified",
+      "locator": "6.7 暖通设计依据",
+      "chunk_original": "c-ef9d7dc6b8b3"
+    },
+    {
+      "id": "EV-规范-暖通-02",
+      "kind": "E2",
+      "doc": "《多联机空调系统工程技术规程》JGJ 174-2010",
+      "chunk": "c-702d7a2de862",
+      "quote": "JGJ 174-2010",
+      "status": "in_use_unverified",
+      "locator": "6.7",
+      "chunk_original": "c-c22ef2d8037f"
+    },
+    {
+      "id": "EV-规范-暖通-03",
+      "kind": "E2",
+      "doc": "上海市《公共建筑节能设计标准》DGJ 08-107-2015",
+      "chunk": "c-5e8426866f38",
+      "quote": "DGJ 08-107-2015",
+      "status": "in_use_unverified",
+      "locator": "6.7 暖通设计依据",
+      "chunk_original": "c-61264b8dd65f"
+    },
+    {
+      "id": "EV-规范-暖通-04",
+      "kind": "E2",
+      "doc": "沪建交〔2012〕1273号文",
+      "chunk": "c-c26c8cad803e",
+      "quote": "沪建交〔2012〕1273号文",
+      "status": "in_use_unverified",
+      "locator": "6.7",
+      "chunk_original": "c-591b0c4e92de"
+    },
+    {
+      "id": "EV-参数-01",
+      "kind": "E2",
+      "doc": "室外空气计算参数（表6-6）",
+      "chunk": "c-4b8bc5c96c14",
+      "quote": "夏季 34.4/27.9℃；冬季 -2.2℃",
+      "status": "in_use_unverified",
+      "locator": "6.7.1",
+      "chunk_original": "c-5960047e007e"
+    },
+    {
+      "id": "EV-参数-02",
+      "kind": "E5",
+      "doc": "室内空气计算参数（表6-7）",
+      "chunk": "c-a43d02463116",
+      "quote": "科研用房 26/18℃ 新风30m³/h·P 噪声≤50dB(A)",
+      "status": "verified",
+      "locator": "6.7.1",
+      "chunk_original": "c-b354006b940e"
+    },
+    {
+      "id": "EV-负荷-01",
+      "kind": "E5",
+      "doc": "表6-9 空调系统负荷指标",
+      "chunk": "c-27c9dd83b0ec",
+      "quote": "18319㎡ 单位面积冷负荷135W/㎡ 冷负荷2473kW；热负荷指标80W/㎡ 热负荷1465kW",
+      "status": "verified",
+      "locator": "6.7.2",
+      "chunk_original": "c-30cb2169734b"
+    },
+    {
+      "id": "EV-缺口-01",
+      "kind": "E6",
+      "doc": "实验室通风专项取值（通风柜台数/排风量/实验室换气次数）",
+      "chunk": "c-6a36b8de406d",
+      "quote": "表6-8 通风换气次数仅列 卫生间/电梯机房/水泵房，未给出实验室与科研用房的换气次数、通风柜台数与排风量",
+      "status": "insufficient",
+      "locator": "6.7.4 通风系统",
+      "chunk_original": "c-6a36b8de406d"
+    },
+    {
+      "id": "EV-规范-暖通-05",
+      "kind": "E2",
+      "doc": "《建筑防烟排烟系统技术标准》GB51251-2017",
+      "chunk": "c-a55664bd812e",
+      "quote": "排烟防火阀在280℃时应自行关闭，并应连锁关闭排烟风机和补风机",
+      "status": "in_use_unverified",
+      "locator": "6.7.5 消防系统",
+      "chunk_original": "c-a2fc352d7d9b"
+    },
+    {
+      "id": "EV-设备-01",
+      "kind": "E5",
+      "doc": "表6-11 主要设备表",
+      "chunk": "c-387f65b6c162",
+      "quote": "30HP×22、16HP×10、10HP×2；室内机 50+40+76 台",
+      "status": "verified",
+      "locator": "6.7.8",
+      "chunk_original": "c-a439e050bbfe"
+    },
+    {
+      "id": "EV-规范-节能-01",
+      "kind": "E2",
+      "doc": "《公共建筑节能设计标准》（GB50189-2005）",
+      "chunk": "c-16dcab65f155",
+      "quote": "《公共建筑节能设计标准》（GB50189-2005）",
+      "status": "superseded_unverified",
+      "locator": "7.1 用能标准和节能规范",
+      "chunk_original": "c-c5d5f9bf5b14"
+    },
+    {
+      "id": "EV-规范-节能-02",
+      "kind": "E2",
+      "doc": "上海市《公共建筑节能设计标准》（DGJ08-107-2012）",
+      "chunk": "c-e94e90f7f5e2",
+      "quote": "《公共建筑节能设计标准》（DGJ08-107-2012）",
+      "status": "superseded_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-aa0f3ef156aa"
+    },
+    {
+      "id": "EV-规范-节能-03",
+      "kind": "E2",
+      "doc": "《建筑照明设计标准》（GB50034-2004）",
+      "chunk": "c-056cfe16201a",
+      "quote": "《建筑照明设计标准》（GB50034-2004）",
+      "status": "superseded_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-b3ade66af700"
+    },
+    {
+      "id": "EV-规范-节能-04",
+      "kind": "E2",
+      "doc": "《采暖通风与空气调节设计规范》（GB50019-2003）",
+      "chunk": "c-3e9523a63070",
+      "quote": "《采暖通风与空气调节设计规范》（GB50019-2003）",
+      "status": "superseded_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-448916ce6db5"
+    },
+    {
+      "id": "EV-规范-节能-05",
+      "kind": "E2",
+      "doc": "《建筑采光设计标准》（GB50033-2001）",
+      "chunk": "c-22cd13a19965",
+      "quote": "《建筑采光设计标准》（GB50033-2001）",
+      "status": "superseded_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-6cd0d8a57e1e"
+    },
+    {
+      "id": "EV-规范-节能-06",
+      "kind": "E2",
+      "doc": "《固定资产投资项目节能审查办法》（2016年第44号令）",
+      "chunk": "c-c01da439044f",
+      "quote": "2016年第44号令",
+      "status": "in_use_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-73bcc1957263"
+    },
+    {
+      "id": "EV-规范-节能-07",
+      "kind": "E2",
+      "doc": "《综合能耗计算通则》（GB/T2589-2008）",
+      "chunk": "c-e21781743238",
+      "quote": "GB/T2589-2008",
+      "status": "in_use_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-67a99aa8c86d"
+    },
+    {
+      "id": "EV-规范-节能-08",
+      "kind": "E2",
+      "doc": "《用能单位能源计量器具配备和管理导则》（GB17167-2006）",
+      "chunk": "c-49b25a675e8a",
+      "quote": "GB17167-2006",
+      "status": "in_use_unverified",
+      "locator": "7.1",
+      "chunk_original": "c-1e5cb8074e9b"
+    },
+    {
+      "id": "EV-定额-02",
+      "kind": "E5",
+      "doc": "表7-1 年用水量汇总表",
+      "chunk": "c-303a6a09db8e",
+      "quote": "教师用水35L/人·d×288人=10.1m³/d；学生用水40L/人·d×1800人=72.0m³/d；合计1.74万m³",
+      "status": "verified",
+      "locator": "7.2",
+      "chunk_original": "c-303a6a09db8e"
+    },
+    {
+      "id": "EV-定额-03",
+      "kind": "E5",
+      "doc": "表7-2 年用电量汇总表",
+      "chunk": "c-46385d4ae269",
+      "quote": "科研用房14883㎡×60W/㎡×0.8×0.6×8h×193d=66万kWh；公共配套2182㎡×60×0.6×0.5×8×193=6万kWh",
+      "status": "verified",
+      "locator": "7.2",
+      "chunk_original": "c-46385d4ae269"
+    },
+    {
+      "id": "EV-定额-03",
+      "kind": "E5",
+      "doc": "表7-3 项目综合能耗及能耗分析表",
+      "chunk": "c-9b17de8351af",
+      "quote": "当量值 90 tce / 4.91 kgce·㎡⁻¹；等价值 218 tce / 11.87 kgce·㎡⁻¹；单位建筑面积电耗 39.30 kW·h/㎡",
+      "status": "verified",
+      "locator": "7.2",
+      "chunk_original": "c-9b17de8351af"
+    },
+    {
+      "id": "EV-规范-环评-01",
+      "kind": "E2",
+      "doc": "《社会生活环境噪声排放标准》（GB22337-2008）",
+      "chunk": "c-0118a84ca461",
+      "quote": "GB22337-2008",
+      "status": "in_use_unverified",
+      "locator": "8.1",
+      "chunk_original": "c-317ae37d512b"
+    },
+    {
+      "id": "EV-规范-环评-02",
+      "kind": "E2",
+      "doc": "《建筑施工场界环境噪声排放标准》（GB12523-2011）",
+      "chunk": "c-c5bf0bfe7a4c",
+      "quote": "建筑施工场界噪声应达到《建筑施工场界噪声标准》（GB12523-2011）",
+      "status": "in_use_unverified",
+      "locator": "8.3",
+      "chunk_original": "c-c5bf0bfe7a4c"
+    },
+    {
+      "id": "EV-规范-环评-03",
+      "kind": "E2",
+      "doc": "《水污染物排放标准》（DB44/26-2001，广东省地方标准）",
+      "chunk": "c-fa15b444428b",
+      "quote": "《水污染物排放标准》（DB44/26-2001）",
+      "status": "geographic_mismatch",
+      "locator": "8.1 环境影响评价标准",
+      "chunk_original": "c-2b9bb305d2da"
+    },
+    {
+      "id": "EV-规范-环评-02",
+      "kind": "E2",
+      "doc": "《建筑施工场界环境噪声排放标准》（GB12523-2011）",
+      "chunk": "c-d3f7b33459d8",
+      "quote": "昼间应≤70 dB(A)、夜间≤55 dB(A)",
+      "status": "in_use_unverified",
+      "locator": "10.4",
+      "chunk_original": "c-d3f7b33459d8"
+    },
+    {
+      "id": "EV-规范-安全-01",
+      "kind": "E2",
+      "doc": "《中华人民共和国安全生产法》",
+      "chunk": "c-2c41f9c0e1d8",
+      "quote": "《中华人民共和国安全生产法》",
+      "status": "in_use_unverified",
+      "locator": "9.1 设计依据",
+      "chunk_original": "c-1e94ff2a3108"
+    },
+    {
+      "id": "EV-规范-安全-02",
+      "kind": "E2",
+      "doc": "《采暖通风与空气调节设计规范》（GB 50019-2003）",
+      "chunk": "c-06242bf1a432",
+      "quote": "《采暖通风与空气调节设计规范》（GB 50019-2003）",
+      "status": "superseded_unverified",
+      "locator": "9.1",
+      "chunk_original": "c-067b4654884c"
+    },
+    {
+      "id": "EV-规范-安全-03",
+      "kind": "E2",
+      "doc": "《社会生活环境噪声排放标准》（GB 22337-2008）",
+      "chunk": "c-dbe9a28d351e",
+      "quote": "GB 22337-2008",
+      "status": "in_use_unverified",
+      "locator": "9.1",
+      "chunk_original": "c-b5ebd165ec87"
+    },
+    {
+      "id": "EV-规范-结构-05",
+      "kind": "E2",
+      "doc": "《建筑工程抗震设防分类标准》(GB50223-2008)",
+      "chunk": "c-82d60e95db12",
+      "quote": "关于科学实验建筑的规定，确定本工程抗震设防类别为丙级",
+      "status": "in_use_unverified",
+      "locator": "9.2",
+      "chunk_original": "c-82d60e95db12"
+    },
+    {
+      "id": "EV-规范-抗震-沪-01",
+      "kind": "E2",
+      "doc": "《上海市建筑抗震设计规程》(DGJ08-9-2003)",
+      "chunk": "c-82d60e95db12",
+      "quote": "《上海市建筑抗震设计规程》(DGJ08-9-2003)",
+      "status": "superseded_unverified",
+      "locator": "9.2",
+      "chunk_original": "c-82d60e95db12"
+    },
+    {
+      "id": "EV-措施-安全-01",
+      "kind": "E1",
+      "doc": "9.2~9.3 劳动安全与卫生防疫措施",
+      "chunk": "c-cd63bc00a31f",
+      "quote": "采取屏蔽措施，将专业实验设备可能的对外界放射或辐射强度限制在许可范围内",
+      "status": "insufficient",
+      "locator": "9.3",
+      "chunk_original": "c-2e5c570f4cc4"
+    },
+    {
+      "id": "EV-规范-稳评-01",
+      "kind": "E3",
+      "doc": "《国家发展改革委重大固定资产投资项目社会稳定风险评估暂行办法》（发改投资[2012]2492号）",
+      "chunk": "c-5514e623fa27",
+      "quote": "发改投资[2012]2492号",
+      "status": "in_use_unverified",
+      "locator": "10.1 编制依据",
+      "chunk_original": "c-5536934c8ca9"
+    },
+    {
+      "id": "EV-规范-稳评-02",
+      "kind": "E3",
+      "doc": "《重大固定资产投资项目社会稳定风险分析篇章编制大纲及说明（试行）》（发改办投资[2013]428号）",
+      "chunk": "c-2e30f1a453f5",
+      "quote": "发改办投资[2013]428号",
+      "status": "in_use_unverified",
+      "locator": "10.1",
+      "chunk_original": "c-b56821708fbb"
+    },
+    {
+      "id": "EV-规范-稳评-03",
+      "kind": "E3",
+      "doc": "上海市《关于建立重大事项社会稳定风险分析和评估机制的意见（试行）》",
+      "chunk": "c-764b35de37ea",
+      "quote": "上海市《关于建立重大事项社会稳定风险分析和评估机制的意见（试行）》",
+      "status": "in_use_unverified",
+      "locator": "10.1",
+      "chunk_original": "c-fcb1db9ae08b"
+    },
+    {
+      "id": "EV-规范-稳评-04",
+      "kind": "E3",
+      "doc": "沪委办发[2011]32号《关于深入推行重大事项社会稳定风险评估机制的通知》",
+      "chunk": "c-16d4df4b4eae",
+      "quote": "沪委办发[2011]32号",
+      "status": "in_use_unverified",
+      "locator": "10.1",
+      "chunk_original": "c-96fa1cf736ef"
+    },
+    {
+      "id": "EV-稳评-结论-01",
+      "kind": "E5",
+      "doc": "10.5~10.6 风险等级评判与结论",
+      "chunk": "c-5c447607c3cd",
+      "quote": "确定本项目的措施后风险等级为低风险",
+      "status": "verified",
+      "locator": "10.5",
+      "chunk_original": "c-1dc4966aac97"
+    },
+    {
+      "id": "EV-措施-交通-01",
+      "kind": "E1",
+      "doc": "10.4 风险防范和化解措施",
+      "chunk": "c-036c6049b45b",
+      "quote": "施工阶段安排专人负责管理施工车辆进出，尽可能避免在道路易拥堵的高峰时段安排施工车辆进出场地",
+      "status": "verified",
+      "locator": "10.4",
+      "chunk_original": "c-036c6049b45b"
+    },
+    {
+      "id": "EV-组织-01",
+      "kind": "E1",
+      "doc": "11.1 项目组织管理框架",
+      "chunk": "c-e81b2fb16995",
+      "quote": "上海财经大学成立了建设领导小组，建立起三级管理方式",
+      "status": "verified",
+      "locator": "11.1",
+      "chunk_original": "c-e81b2fb16995"
+    },
+    {
+      "id": "EV-工期-01",
+      "kind": "E2",
+      "doc": "《上海市建设工程施工工期定额（建筑、市政和轨道交通工程）》",
+      "chunk": "c-749cc0303bb6",
+      "quote": "根据《上海市建设工程施工工期定额（建筑、市政和轨道交通工程）》，本项目建设工期约为24个月",
+      "status": "in_use_unverified",
+      "locator": "11.4",
+      "chunk_original": "c-749cc0303bb6"
+    },
+    {
+      "id": "EV-运营-01",
+      "kind": "E1",
+      "doc": "11.3 项目运营期管理",
+      "chunk": "c-815d12a2f622",
+      "quote": "由学校后勤部门实施物业管理、绿化保洁、电气、给排水等系统的运行等后勤保障服务",
+      "status": "verified",
+      "locator": "11.3",
+      "chunk_original": "c-815d12a2f622"
+    },
+    {
+      "id": "EV-规范-招标-01",
+      "kind": "E3",
+      "doc": "《中华人民共和国招标投标法》",
+      "chunk": "c-f2f29db0c4ec",
+      "quote": "《中华人民共和国招标投标法》",
+      "status": "in_use_unverified",
+      "locator": "12.1 编制依据",
+      "chunk_original": "c-6eb7d65def7f"
+    },
+    {
+      "id": "EV-规范-招标-02",
+      "kind": "E3",
+      "doc": "《必须招标的工程项目规定》（国家发展和改革委员会令第16号）",
+      "chunk": "c-7d427b1bb5f1",
+      "quote": "国家发展和改革委员会令第16号",
+      "status": "in_use_unverified",
+      "locator": "12.1",
+      "chunk_original": "c-eaf95f2b8ede"
+    },
+    {
+      "id": "EV-规范-招标-03",
+      "kind": "E3",
+      "doc": "《工程项目招标范围和规模标准规定》（国家发展计划委员会令第3号）",
+      "chunk": "c-649018d9612c",
+      "quote": "国家发展计划委员会令第3号",
+      "status": "in_use_unverified",
+      "locator": "12.1",
+      "chunk_original": "c-2d130027cf74"
+    },
+    {
+      "id": "EV-招标-01",
+      "kind": "E1",
+      "doc": "表12-1 项目招标基本情况",
+      "chunk": "c-c790d7886310",
+      "quote": "勘察 39（不招标）、设计 336、建安工程 10135、监理 239",
+      "status": "verified",
+      "locator": "12.4",
+      "chunk_original": "c-da7266de963d"
+    },
+    {
+      "id": "EV-估算依据-01",
+      "kind": "E5",
+      "doc": "13.1 估算依据",
+      "chunk": "c-279ba9a10632",
+      "quote": "建设工程概预算定额及造价资料；类似工程造价指标；提供的设计指标和工程概况",
+      "status": "verified",
+      "locator": "13.1",
+      "chunk_original": "c-933f41d1afd8"
+    },
+    {
+      "id": "EV-估算说明-01",
+      "kind": "E5",
+      "doc": "13.2 估算说明",
+      "chunk": "c-cf8f0b4e2668",
+      "quote": "本项目基本预备费按前两项之和的5%计算，未设置建设期涨价预备费",
+      "status": "verified",
+      "locator": "13.2",
+      "chunk_original": "c-cf8f0b4e2668"
+    },
+    {
+      "id": "EV-投资表-01",
+      "kind": "E5",
+      "doc": "表13-1 项目投资估算表",
+      "chunk": "c-7226f71c0917",
+      "quote": "总投资13032万元：建安工程费用11188、工程建设其他费用1171、基本预备费618、拆除费55",
+      "status": "verified",
+      "locator": "13.3 投资估算",
+      "chunk_original": "c-d8eaa250581d"
+    },
+    {
+      "id": "EV-造价依据-01",
+      "kind": "E2",
+      "doc": "财建〔2016〕504号（建设单位管理费）",
+      "chunk": "c-7226f71c0917",
+      "quote": "建设单位管理费 170 财建〔2016〕504号",
+      "status": "in_use_unverified",
+      "locator": "表13-1 二.1",
+      "chunk_original": "c-d8eaa250581d"
+    },
+    {
+      "id": "EV-造价依据-02",
+      "kind": "E2",
+      "doc": "计价格(2002)10号（设计费）",
+      "chunk": "c-7226f71c0917",
+      "quote": "设计费 336 参考计价格(2002)10号",
+      "status": "in_use_unverified",
+      "locator": "表13-1 二.4",
+      "chunk_original": "c-d8eaa250581d"
+    },
+    {
+      "id": "EV-造价依据-03",
+      "kind": "E2",
+      "doc": "发改价格(2007)670号（施工监理费）",
+      "chunk": "c-7226f71c0917",
+      "quote": "施工监理费 239 参考发改价格(2007)670号",
+      "status": "in_use_unverified",
+      "locator": "表13-1 二.7",
+      "chunk_original": "c-d8eaa250581d"
+    },
+    {
+      "id": "EV-造价依据-04",
+      "kind": "E2",
+      "doc": "类似工程造价指标",
+      "chunk": "c-8c97c05a28d4",
+      "quote": "类似工程造价指标",
+      "status": "insufficient",
+      "locator": "13.1",
+      "chunk_original": "c-0d003faf7d2f"
+    },
+    {
+      "id": "EV-财务-02",
+      "kind": "E1",
+      "doc": "表13-5 项目建设资金年度需求表",
+      "chunk": "c-193aad847a10",
+      "quote": "合计 4000+6500+2532=13032；其中拟申请国拨资金 1500+4000+500=6000；拟学校自筹资金 2500+2500+2032=7032",
+      "status": "verified",
+      "locator": "13.4",
+      "chunk_original": "c-193aad847a10"
+    },
+    {
+      "id": "EV-财务-01",
+      "kind": "E1",
+      "doc": "表13-2/13-3/13-4 学校2016-2018年财务状况",
+      "chunk": "c-198ee2fbd3f6",
+      "quote": "2018年资产总额373711.34万元，负债9452.14万元，净资产364259.20万元，资产负债率2.53%",
+      "status": "verified",
+      "locator": "13.4",
+      "chunk_original": "c-198ee2fbd3f6"
+    },
+    {
+      "id": "EV-附件-01",
+      "kind": "E1",
+      "doc": "附件1 中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+      "chunk": "c-f508d7cfad78",
+      "quote": "附件1.中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+      "status": "verified",
+      "locator": "附件",
+      "chunk_original": "c-2ef86d73a905"
+    },
+    {
+      "id": "EV-附件-02",
+      "kind": "E1",
+      "doc": "附件2 项目资金筹措方案说明",
+      "chunk": "c-2d6d11f26a8f",
+      "quote": "附件2：项目资金筹措方案说明",
+      "status": "verified",
+      "locator": "附件",
+      "chunk_original": "c-2d6d11f26a8f"
+    },
+    {
+      "id": "EV-附件-03",
+      "kind": "E5",
+      "doc": "附件3 上海财经大学虹口校区规划总平面图",
+      "chunk": "c-c4ef114e6fb9",
+      "quote": "附件3：上海财经大学虹口校区规划总平面图",
+      "status": "verified",
+      "locator": "附件",
+      "chunk_original": "c-c4ef114e6fb9"
+    },
+    {
+      "id": "EV-缺口-02",
+      "kind": "E1",
+      "doc": "原有第五教学楼拆除手续",
+      "chunk": "c-5e339feba7c8",
+      "quote": "上海财经大学中山北一路校区原有第五教学楼拆除手续（待补充）",
+      "status": "insufficient",
+      "locator": "附件",
+      "chunk_original": "c-0013ced7e298"
+    }
+  ],
+  "relations": [
+    {
+      "from": "本报告",
+      "to": "N-a401574f2a5a",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-924bfe9e84e1",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-61c229a9d6b7",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-043715904e92",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-1349678c3c0f",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-933f9428a895",
+      "type": "has_value"
+    },
+    {
+      "from": "本报告",
+      "to": "N-5a111cfec9f6",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-e76603e442a7",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-47ae73a84dc9",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5a334efaaea3",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "中山北一路校区",
+      "type": "located_in"
+    },
+    {
+      "from": "中山北一路校区",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "原第五教学楼",
+      "to": "N-4299f5d02831",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8f432cf2e264",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8449f71c5773",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8ca43cb64560",
+      "type": "has_value"
+    },
+    {
+      "from": "总建筑面积",
+      "to": "地上建筑面积",
+      "type": "depends_on"
+    },
+    {
+      "from": "总建筑面积",
+      "to": "地下建筑面积",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-51ac31b30619",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-70459ce61f9b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-a831d44a85f1",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-24d5bb9ca97f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c790ee245521",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-2175c0aa83e6",
+      "type": "has_value"
+    },
+    {
+      "from": "总投资",
+      "to": "建安工程费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "工程建设其他费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "预备费",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "原建筑拆除费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7e2dca3b7d0c",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-802eeedef8cb",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f9ce8af03fc0",
+      "type": "has_value"
+    },
+    {
+      "from": "开工时间",
+      "to": "建设工期",
+      "type": "temporal"
+    },
+    {
+      "from": "竣工时间",
+      "to": "建设工期",
+      "type": "temporal"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8f432cf2e264",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8449f71c5773",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8ca43cb64560",
+      "type": "has_value"
+    },
+    {
+      "from": "EV-内部-01",
+      "to": "CL-结论-01",
+      "type": "supports"
+    },
+    {
+      "from": "CL-结论-01",
+      "to": "CL-建议-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-结论-03",
+      "to": "CL-建议-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-结论-04",
+      "to": "CL-建议-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-256337bd52c5",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-ae0e16e8ffda",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-a676855d455f",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-834f7a185cea",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-4bead401268c",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-35745c2c896d",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-7c2ba8a26d0b",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-9fbee31a8232",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-1c60e0220ade",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-6f16d28f00ad",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-f1d5baf0c89b",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-19a3e510b260",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-e20265e53710",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-4e9960d6ccda",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-c394bad87430",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-85a9a5716f1d",
+      "type": "has_value"
+    },
+    {
+      "from": "中山北一路校区",
+      "to": "N-34f59d23f033",
+      "type": "has_value"
+    },
+    {
+      "from": "昆山路校区",
+      "to": "N-e308966174c1",
+      "type": "has_value"
+    },
+    {
+      "from": "中山北一路校区",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "昆山路校区",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "主校区",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-9814e9f0db35",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-8ebe6fdf6b9a",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-84523f29f638",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-d0e09bfa0818",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-6fef5f8bfa13",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-254f45e2d082",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-239f7a20f877",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-57ed2116b6e9",
+      "type": "has_value"
+    },
+    {
+      "from": "统计学",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "管理科学与量化信息研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "本项目",
+      "to": "N-a3f0d71e10e5",
+      "type": "has_value"
+    },
+    {
+      "from": "EV-政策-02",
+      "to": "CL-必要性-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-内部-03",
+      "to": "CL-必要性-01",
+      "type": "supports"
+    },
+    {
+      "from": "CL-必要性-01",
+      "to": "CL-结论-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-政策-03",
+      "to": "CL-必要性-02",
+      "type": "supports"
+    },
+    {
+      "from": "EV-对标-01",
+      "to": "CL-必要性-02",
+      "type": "supports"
+    },
+    {
+      "from": "CL-必要性-02",
+      "to": "CL-结论-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-现状-01",
+      "to": "CL-必要性-03",
+      "type": "supports"
+    },
+    {
+      "from": "EV-现状-02",
+      "to": "CL-必要性-03",
+      "type": "supports"
+    },
+    {
+      "from": "CL-必要性-03",
+      "to": "CL-结论-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-政策-06",
+      "to": "CL-必要性-04",
+      "type": "supports"
+    },
+    {
+      "from": "CL-必要性-04",
+      "to": "CL-结论-01",
+      "type": "supports"
+    },
+    {
+      "from": "CL-必要性-01",
+      "to": "CL-结论-02",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-必要性-02",
+      "to": "CL-结论-02",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-必要性-03",
+      "to": "CL-结论-02",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-必要性-04",
+      "to": "CL-结论-02",
+      "type": "depends_on"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-fa0dd79ca413",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-37d514c98f96",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-723bfe3fc6d2",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-e5f7701a892f",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-f97cbdbe6afe",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-4ae46c29d85f",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学统计与管理学院",
+      "to": "N-2350885b04e2",
+      "type": "has_value"
+    },
+    {
+      "from": "统计与管理学院",
+      "to": "上海财经大学",
+      "type": "part_of"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-9bd50795df49",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-53ad5074ad4a",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-ee882814713f",
+      "type": "has_value"
+    },
+    {
+      "from": "中山北一路校区",
+      "to": "N-85e27f0ad472",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5780eeb6777a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "中山北一路校区",
+      "type": "located_in"
+    },
+    {
+      "from": "原第五教学楼",
+      "to": "N-9d7e4c2b9b50",
+      "type": "has_value"
+    },
+    {
+      "from": "原第五教学楼",
+      "to": "N-4752fe0c4e17",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f24d0d077f03",
+      "type": "has_value"
+    },
+    {
+      "from": "原第五教学楼",
+      "to": "中山北一路校区",
+      "type": "located_in"
+    },
+    {
+      "from": "原第五教学楼",
+      "to": "大数据研究中心",
+      "type": "causes"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-8a66c92ca8a4",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-c44bd9bd0df3",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-a55e26642db6",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-fcd2cfa44fc4",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-8984af8e2bbf",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7db13fda38e0",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-6cd37976dd8f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-81e15dad5d7e",
+      "type": "has_value"
+    },
+    {
+      "from": "管理科学与量化信息研究中心",
+      "to": "N-c0a7fc8afdaf",
+      "type": "has_value"
+    },
+    {
+      "from": "管理科学与量化信息研究中心",
+      "to": "N-687ac5c1dfdf",
+      "type": "has_value"
+    },
+    {
+      "from": "管理科学与量化信息研究中心",
+      "to": "N-29c0367999ed",
+      "type": "has_value"
+    },
+    {
+      "from": "管理科学与量化信息研究中心",
+      "to": "大数据研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "理论计算机研究中心",
+      "to": "N-0118435ab5f0",
+      "type": "has_value"
+    },
+    {
+      "from": "理论计算机研究中心",
+      "to": "N-1713829984c4",
+      "type": "has_value"
+    },
+    {
+      "from": "理论计算机研究中心",
+      "to": "N-be54469ceabb",
+      "type": "has_value"
+    },
+    {
+      "from": "理论计算机研究中心",
+      "to": "大数据研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "应用统计研究中心",
+      "to": "N-9949f87bf2ae",
+      "type": "has_value"
+    },
+    {
+      "from": "应用统计研究中心",
+      "to": "N-f853aaf03baf",
+      "type": "has_value"
+    },
+    {
+      "from": "应用统计研究中心",
+      "to": "N-28f623934060",
+      "type": "has_value"
+    },
+    {
+      "from": "应用统计研究中心",
+      "to": "大数据研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "数据科研与统计研究院",
+      "to": "N-6dcf7ef888b2",
+      "type": "has_value"
+    },
+    {
+      "from": "数据科研与统计研究院",
+      "to": "N-a2aedb523791",
+      "type": "has_value"
+    },
+    {
+      "from": "数据科研与统计研究院",
+      "to": "N-fa5b27eaf63d",
+      "type": "has_value"
+    },
+    {
+      "from": "数据科研与统计研究院",
+      "to": "大数据研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "公共服务配套用房·交流讨论室",
+      "to": "N-d63d65ebe9a4",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·交流讨论室",
+      "to": "N-3e141a1e1100",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·交流讨论室",
+      "to": "N-ee95096f1d6e",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·接待室",
+      "to": "N-d1cb826c6ec2",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·接待室",
+      "to": "N-3007b66b8f03",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·接待室",
+      "to": "N-fd67f30a272a",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·报告厅",
+      "to": "N-ba967b01a1cc",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·活动室",
+      "to": "N-c6641b10b1d4",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·活动室",
+      "to": "N-87c9bd959ddb",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·阅览室",
+      "to": "N-7f9fd332041d",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·档案室",
+      "to": "N-fc449bc873d7",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·复印室",
+      "to": "N-116f0e1c3acf",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房·贮藏室",
+      "to": "N-a00694625be6",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房",
+      "to": "N-4698f7d0b38e",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房",
+      "to": "N-4f9c2807a62b",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房",
+      "to": "N-cc781dfeeb3b",
+      "type": "has_value"
+    },
+    {
+      "from": "公共服务配套用房",
+      "to": "大数据研究中心",
+      "type": "part_of"
+    },
+    {
+      "from": "本项目",
+      "to": "N-2820b26c3f35",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-978a14b5186b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f07ab421166b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-b3c95b844d02",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-bc07423e28a8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-49949310ec19",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-55c9c86a5a6c",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7c3d781cf6f1",
+      "type": "has_value"
+    },
+    {
+      "from": "EV-指标-02",
+      "to": "CL-规模-02",
+      "type": "supports"
+    },
+    {
+      "from": "EV-需求-02",
+      "to": "CL-规模-01",
+      "type": "supports"
+    },
+    {
+      "from": "公共服务配套用房建筑面积",
+      "to": "地上总建筑面积需求",
+      "type": "depends_on"
+    },
+    {
+      "from": "科研人员规划人数",
+      "to": "地上总建筑面积需求",
+      "type": "depends_on"
+    },
+    {
+      "from": "研究生博士生访问学者规划人数",
+      "to": "地上总建筑面积需求",
+      "type": "depends_on"
+    },
+    {
+      "from": "地上总建筑面积需求",
+      "to": "设计规模合理性判定",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-eb7b8b1d20d8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7384b88f646f",
+      "type": "has_value"
+    },
+    {
+      "from": "地上总建筑面积需求",
+      "to": "地上建筑面积",
+      "type": "contradicts"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-2a335b2708af",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-be7451617729",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8f432cf2e264",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-23414ed53b65",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-443180e0efd7",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-08b323fd83aa",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c1c4a9d66f5b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8f432cf2e264",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8449f71c5773",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8ca43cb64560",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-f0fd96a3a38e",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-4605eb02d134",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-170213817af5",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-e35642a4b42f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-2eb688971791",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-70b8c5416e59",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c1c4a9d66f5b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-e7ebf407a68f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-91624f921ea8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-e0f3cb0c51f5",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-ad4f61baf248",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-3d4cd9a6a1f8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-64e67123ddc0",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-629089fe05c9",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-0a6ab4d9cdf6",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-b5d8de16a2a7",
+      "type": "has_value"
+    },
+    {
+      "from": "实验室",
+      "to": "N-d8f1204ef1a9",
+      "type": "has_value"
+    },
+    {
+      "from": "办公室阅览室会议室",
+      "to": "N-7a09dcc73ee3",
+      "type": "has_value"
+    },
+    {
+      "from": "一般资料档案室",
+      "to": "N-63b071767842",
+      "type": "has_value"
+    },
+    {
+      "from": "走廊门厅楼梯",
+      "to": "N-b44117496caa",
+      "type": "has_value"
+    },
+    {
+      "from": "计算机机房弱电机房地下设备用房",
+      "to": "N-52cbf5f50c8a",
+      "type": "has_value"
+    },
+    {
+      "from": "变配电间水泵房",
+      "to": "N-3a2fcf27bbe9",
+      "type": "has_value"
+    },
+    {
+      "from": "上人屋面",
+      "to": "N-81d066d6ec28",
+      "type": "has_value"
+    },
+    {
+      "from": "不上人屋面",
+      "to": "N-4c2e3686b75a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-1b1549fc44f9",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-25ae699e50ec",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-68d9e0d6fc8f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-b8e4317775b7",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-6f81bff4c721",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-2a951c39f9ae",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-514034bcf07b",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-dbb9f4111022",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f08415dc191a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8122fb4283a7",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c0667d161473",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5e469e239754",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-666b00ce7f1d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-acc0ada964eb",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-40080fc4b013",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-82e94e249e8f",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7e3b1c290e21",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-9a5357236ac0",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5f65bf80349c",
+      "type": "has_value"
+    },
+    {
+      "from": "科研学生",
+      "to": "N-3f1810ee3a33",
+      "type": "has_value"
+    },
+    {
+      "from": "科研学生",
+      "to": "N-d33295e7e784",
+      "type": "has_value"
+    },
+    {
+      "from": "办公",
+      "to": "N-f4add4e0e79a",
+      "type": "has_value"
+    },
+    {
+      "from": "办公",
+      "to": "N-932c3574e3c1",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c67295c8a345",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-30650afc51a8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-0372fd56d2be",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-07c3ab150860",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-60f348145540",
+      "type": "has_value"
+    },
+    {
+      "from": "最高日用水量",
+      "to": "科研学生用水定额",
+      "type": "depends_on"
+    },
+    {
+      "from": "最高日用水量",
+      "to": "办公用水定额",
+      "type": "depends_on"
+    },
+    {
+      "from": "室外消火栓系统",
+      "to": "N-a3177065531f",
+      "type": "has_value"
+    },
+    {
+      "from": "室外消火栓系统",
+      "to": "N-6a9d5e15a008",
+      "type": "has_value"
+    },
+    {
+      "from": "室内消火栓系统",
+      "to": "N-338014cbccdd",
+      "type": "has_value"
+    },
+    {
+      "from": "室内消火栓系统",
+      "to": "N-54705a4f8686",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "N-afd00934e365",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "N-6958c266bea0",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-ae0d5d610d0a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5e1d9ecdd02a",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "N-827b158df74b",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "N-0bc26894f1d0",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "N-d899ed81ebaa",
+      "type": "has_value"
+    },
+    {
+      "from": "室内消火栓系统",
+      "to": "N-338014cbccdd",
+      "type": "has_value"
+    },
+    {
+      "from": "高位消防水箱",
+      "to": "N-4e37bc3a681a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-0207f315dd4c",
+      "type": "has_value"
+    },
+    {
+      "from": "自动喷水灭火系统设计最小用水量",
+      "to": "自动喷水灭火系统用水量",
+      "type": "contradicts"
+    },
+    {
+      "from": "自动喷水灭火系统",
+      "to": "消防用水量总计",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-b8e7bf4b7c1d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-944c3d4af11d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-5cb9dea74a92",
+      "type": "has_value"
+    },
+    {
+      "from": "总计算负荷",
+      "to": "空调负荷密度指标",
+      "type": "depends_on"
+    },
+    {
+      "from": "总计算负荷",
+      "to": "照明及其他负荷密度指标",
+      "type": "depends_on"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-a600fbe49b7b",
+      "type": "has_value"
+    },
+    {
+      "from": "原变电站变压器",
+      "to": "N-de3e1ec1327c",
+      "type": "has_value"
+    },
+    {
+      "from": "原变电站变压器",
+      "to": "N-8107f4c126d2",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-c2f034e89954",
+      "type": "has_value"
+    },
+    {
+      "from": "大数据研究中心",
+      "to": "N-416be9b34d81",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-60d3585c4764",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f7d381a33ae8",
+      "type": "has_value"
+    },
+    {
+      "from": "弱电系统",
+      "to": "N-77ab04f9743c",
+      "type": "has_value"
+    },
+    {
+      "from": "综合布线系统",
+      "to": "N-29a98cc4f5e9",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-ca1e13d551b1",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-eeb81aaca591",
+      "type": "has_value"
+    },
+    {
+      "from": "项目所在地",
+      "to": "N-52b43033149e",
+      "type": "has_value"
+    },
+    {
+      "from": "夏季室外空调计算干球温度",
+      "to": "N-850462868c75",
+      "type": "has_value"
+    },
+    {
+      "from": "夏季室外空调计算湿球温度",
+      "to": "N-90ea6bdf46f6",
+      "type": "has_value"
+    },
+    {
+      "from": "冬季室外空调计算干球温度",
+      "to": "N-2ec348856254",
+      "type": "has_value"
+    },
+    {
+      "from": "冬季室外通风计算干球温度",
+      "to": "N-b73bc0c48cab",
+      "type": "has_value"
+    },
+    {
+      "from": "夏季室外通风计算干球温度",
+      "to": "N-f82a686a24f0",
+      "type": "has_value"
+    },
+    {
+      "from": "夏季室外大气压力",
+      "to": "N-a5b6b65364ac",
+      "type": "has_value"
+    },
+    {
+      "from": "冬季室外大气压力",
+      "to": "N-24bce75cc617",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-5272963728f0",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-254a74541283",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-242644b6a039",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-7aad9b0320e0",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-94a1eb16a470",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-acb430bb35b0",
+      "type": "has_value"
+    },
+    {
+      "from": "交流讨论用房",
+      "to": "N-66860a375157",
+      "type": "has_value"
+    },
+    {
+      "from": "交流讨论大厅",
+      "to": "N-0a3e9c9acc83",
+      "type": "has_value"
+    },
+    {
+      "from": "卫生间",
+      "to": "N-8ca9f3898ace",
+      "type": "has_value"
+    },
+    {
+      "from": "电梯机房",
+      "to": "N-2025492b72b4",
+      "type": "has_value"
+    },
+    {
+      "from": "水泵房",
+      "to": "N-3ed027e88c59",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-e30b2d47398d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-a7f866d690be",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-6fde114502ac",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-564866270310",
+      "type": "has_value"
+    },
+    {
+      "from": "空调系统",
+      "to": "N-239c8f582585",
+      "type": "has_value"
+    },
+    {
+      "from": "冷负荷",
+      "to": "单位面积冷负荷指标",
+      "type": "depends_on"
+    },
+    {
+      "from": "热负荷",
+      "to": "单位面积热负荷指标",
+      "type": "depends_on"
+    },
+    {
+      "from": "多联机室外机组30HP",
+      "to": "N-9d235ea5246a",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室外机组30HP",
+      "to": "N-95757b570de9",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室外机组16HP",
+      "to": "N-6040256abb83",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室外机组16HP",
+      "to": "N-039cd700bce6",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室外机组10HP",
+      "to": "N-5a6c23c28a1a",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室外机组10HP",
+      "to": "N-4132dcebb00b",
+      "type": "has_value"
+    },
+    {
+      "from": "多联机室内机组",
+      "to": "N-a7a7a7fe459d",
+      "type": "has_value"
+    },
+    {
+      "from": "加压送风机",
+      "to": "N-edc8d5efd615",
+      "type": "has_value"
+    },
+    {
+      "from": "排烟机组",
+      "to": "N-5f171d536786",
+      "type": "has_value"
+    },
+    {
+      "from": "教师用水",
+      "to": "N-5859db27922c",
+      "type": "has_value"
+    },
+    {
+      "from": "教师用水",
+      "to": "N-bf76480f8b0c",
+      "type": "has_value"
+    },
+    {
+      "from": "教师用水",
+      "to": "N-1e941f1c85b2",
+      "type": "has_value"
+    },
+    {
+      "from": "学生用水",
+      "to": "N-af196dccd886",
+      "type": "has_value"
+    },
+    {
+      "from": "学生用水",
+      "to": "N-109f219b5cdc",
+      "type": "has_value"
+    },
+    {
+      "from": "学生用水",
+      "to": "N-4a9d5aca884a",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-b1e9a58c3e61",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-a01b53350bb8",
+      "type": "has_value"
+    },
+    {
+      "from": "教师用水用水定额",
+      "to": "办公用水定额",
+      "type": "contradicts"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-0175db4c5ff0",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-c8c5fd1fece2",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-d47bd8140fdc",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房",
+      "to": "N-6eb51e821197",
+      "type": "has_value"
+    },
+    {
+      "from": "公共配套服务用房",
+      "to": "N-934942fb8325",
+      "type": "has_value"
+    },
+    {
+      "from": "公共配套服务用房",
+      "to": "N-094c483c1ac2",
+      "type": "has_value"
+    },
+    {
+      "from": "公共配套服务用房",
+      "to": "N-4aaf4c9685bf",
+      "type": "has_value"
+    },
+    {
+      "from": "公共配套服务用房",
+      "to": "N-f52e2827a0e8",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-d81c8436d3ef",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-fbcb8688c60f",
+      "type": "has_value"
+    },
+    {
+      "from": "科研用房用电面积",
+      "to": "公共配套服务用房用电面积",
+      "type": "depends_on"
+    },
+    {
+      "from": "综合能耗·水",
+      "to": "N-43f27011e247",
+      "type": "has_value"
+    },
+    {
+      "from": "综合能耗·电力",
+      "to": "N-e2fb043d4a06",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-97ae001309cd",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-aca1f741b579",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-fec5f42da5fb",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-b4f6323f3884",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-27ce57f55373",
+      "type": "has_value"
+    },
+    {
+      "from": "单位面积综合能耗（当量值）",
+      "to": "综合能耗（当量值）",
+      "type": "depends_on"
+    },
+    {
+      "from": "单位建筑面积电耗",
+      "to": "年总耗电量",
+      "type": "depends_on"
+    },
+    {
+      "from": "EV-规范-节能-02",
+      "to": "CL-节能-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-规范-节能-02",
+      "to": "EV-规范-暖通-03",
+      "type": "contradicts"
+    },
+    {
+      "from": "EV-规范-环评-01",
+      "to": "CL-环评-01",
+      "type": "supports"
+    },
+    {
+      "from": "EV-规范-环评-03",
+      "to": "EV-规范-环评-01",
+      "type": "contradicts"
+    },
+    {
+      "from": "项目排风口",
+      "to": "N-ecaf889ab916",
+      "type": "has_value"
+    },
+    {
+      "from": "项目排风口",
+      "to": "N-ac1766bae97a",
+      "type": "has_value"
+    },
+    {
+      "from": "施工场界噪声",
+      "to": "N-f95ce50dc7dd",
+      "type": "has_value"
+    },
+    {
+      "from": "施工场界噪声",
+      "to": "N-6f8bf452fa72",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f06e00a5f844",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7e339ea5a706",
+      "type": "has_value"
+    },
+    {
+      "from": "EV-规范-抗震-沪-01",
+      "to": "EV-规范-抗震-沪-02",
+      "type": "contradicts"
+    },
+    {
+      "from": "CL-风险-01",
+      "to": "CL-风险等级-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-风险-02",
+      "to": "CL-风险等级-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "CL-风险-03",
+      "to": "CL-风险等级-01",
+      "type": "depends_on"
+    },
+    {
+      "from": "EV-稳评-结论-01",
+      "to": "CL-风险等级-01",
+      "type": "supports"
+    },
+    {
+      "from": "施工场界噪声",
+      "to": "N-1dff222d7986",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-21ac2ea6a4ab",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-1d9bbad66196",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c810673e6119",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-99e0769bc827",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-303deda576f1",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c3ad80bc3176",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7c90a8639e27",
+      "type": "has_value"
+    },
+    {
+      "from": "开工时间",
+      "to": "竣工验收",
+      "type": "temporal"
+    },
+    {
+      "from": "建设工期",
+      "to": "开工建设",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f9ce8af03fc0",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7e2dca3b7d0c",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-802eeedef8cb",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-171f869338fe",
+      "type": "has_value"
+    },
+    {
+      "from": "勘察",
+      "to": "N-1581360ae141",
+      "type": "has_value"
+    },
+    {
+      "from": "设计",
+      "to": "N-8824177763f5",
+      "type": "has_value"
+    },
+    {
+      "from": "建安工程",
+      "to": "N-e60dafe57ee8",
+      "type": "has_value"
+    },
+    {
+      "from": "监理",
+      "to": "N-c1fd26fa6765",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-7983ecf69539",
+      "type": "has_value"
+    },
+    {
+      "from": "建安工程招标估算金额",
+      "to": "建安工程费用",
+      "type": "contradicts"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c51de871596c",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-59b9d8f6d1fc",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f470a0725f92",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-dc49a463c8e3",
+      "type": "has_value"
+    },
+    {
+      "from": "基本预备费",
+      "to": "建筑安装工程费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "基本预备费",
+      "to": "工程建设其他费",
+      "type": "depends_on"
+    },
+    {
+      "from": "桩基工程",
+      "to": "N-8c646e42426a",
+      "type": "has_value"
+    },
+    {
+      "from": "基坑围护工程",
+      "to": "N-4002faaed7b8",
+      "type": "has_value"
+    },
+    {
+      "from": "地下建筑结构工程",
+      "to": "N-17cad48fed94",
+      "type": "has_value"
+    },
+    {
+      "from": "地上建筑结构工程",
+      "to": "N-84cd9cdd7e0d",
+      "type": "has_value"
+    },
+    {
+      "from": "装配式结构增加费",
+      "to": "N-2e9eaad1259f",
+      "type": "has_value"
+    },
+    {
+      "from": "室内装饰工程",
+      "to": "N-ad6fd08cb831",
+      "type": "has_value"
+    },
+    {
+      "from": "外立面及屋面装饰工程",
+      "to": "N-767846c72651",
+      "type": "has_value"
+    },
+    {
+      "from": "立面门窗、玻璃幕墙",
+      "to": "N-0ea3008f61f9",
+      "type": "has_value"
+    },
+    {
+      "from": "立面装饰幕墙",
+      "to": "N-7930ab172a2a",
+      "type": "has_value"
+    },
+    {
+      "from": "上人屋面",
+      "to": "N-6ed5795596e9",
+      "type": "has_value"
+    },
+    {
+      "from": "设备屋面（涂料）",
+      "to": "N-be59b87fb79c",
+      "type": "has_value"
+    },
+    {
+      "from": "架空板底",
+      "to": "N-c48958c97484",
+      "type": "has_value"
+    },
+    {
+      "from": "新老建筑立面接口处理费",
+      "to": "N-7905c339c5bf",
+      "type": "has_value"
+    },
+    {
+      "from": "给排水工程",
+      "to": "N-eabadd267940",
+      "type": "has_value"
+    },
+    {
+      "from": "消防工程",
+      "to": "N-c5de22ac0e51",
+      "type": "has_value"
+    },
+    {
+      "from": "通风、空调工程",
+      "to": "N-c46ae5293e41",
+      "type": "has_value"
+    },
+    {
+      "from": "强电工程",
+      "to": "N-72507f498f8c",
+      "type": "has_value"
+    },
+    {
+      "from": "弱电工程",
+      "to": "N-809d541088ab",
+      "type": "has_value"
+    },
+    {
+      "from": "电梯工程",
+      "to": "N-d11b8963a5c2",
+      "type": "has_value"
+    },
+    {
+      "from": "道路、广场、硬地、铺装",
+      "to": "N-94e433692986",
+      "type": "has_value"
+    },
+    {
+      "from": "绿化、景观",
+      "to": "N-565398c4826c",
+      "type": "has_value"
+    },
+    {
+      "from": "室外安装工程",
+      "to": "N-eaf61c336ddf",
+      "type": "has_value"
+    },
+    {
+      "from": "标识工程",
+      "to": "N-d79f49630ce5",
+      "type": "has_value"
+    },
+    {
+      "from": "抗震支架",
+      "to": "N-2ccc0c5d1207",
+      "type": "has_value"
+    },
+    {
+      "from": "绿色二星增量费用",
+      "to": "N-4b40f9539e03",
+      "type": "has_value"
+    },
+    {
+      "from": "土建工程",
+      "to": "N-63082fae08d5",
+      "type": "has_value"
+    },
+    {
+      "from": "安装工程",
+      "to": "N-f4b6e8cc3b5f",
+      "type": "has_value"
+    },
+    {
+      "from": "单体工程",
+      "to": "N-78644662331e",
+      "type": "has_value"
+    },
+    {
+      "from": "室外总体工程",
+      "to": "N-a59ed4c3313a",
+      "type": "has_value"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "N-a564cd720a96",
+      "type": "has_value"
+    },
+    {
+      "from": "工程建设其他费",
+      "to": "N-635ce37a69fc",
+      "type": "has_value"
+    },
+    {
+      "from": "基本预备费",
+      "to": "N-d27e283b73c6",
+      "type": "has_value"
+    },
+    {
+      "from": "拆除费",
+      "to": "N-a4041fa32fd3",
+      "type": "has_value"
+    },
+    {
+      "from": "总计",
+      "to": "N-bc5af78a6b82",
+      "type": "has_value"
+    },
+    {
+      "from": "建设单位管理费",
+      "to": "N-8dad7d339b06",
+      "type": "has_value"
+    },
+    {
+      "from": "前期工程咨询费",
+      "to": "N-52349af2e44f",
+      "type": "has_value"
+    },
+    {
+      "from": "勘察费",
+      "to": "N-349ad4d2a9d0",
+      "type": "has_value"
+    },
+    {
+      "from": "设计费",
+      "to": "N-0d30a6b44768",
+      "type": "has_value"
+    },
+    {
+      "from": "招标代理费",
+      "to": "N-236dbdb1fea6",
+      "type": "has_value"
+    },
+    {
+      "from": "清单及标底编制费",
+      "to": "N-903b0ac65f67",
+      "type": "has_value"
+    },
+    {
+      "from": "施工监理费（含财务监理费）",
+      "to": "N-58f2a08d9047",
+      "type": "has_value"
+    },
+    {
+      "from": "施工图审图费",
+      "to": "N-9e5bfac670e5",
+      "type": "has_value"
+    },
+    {
+      "from": "竣工图编制费",
+      "to": "N-979e5a5ddbc9",
+      "type": "has_value"
+    },
+    {
+      "from": "场地准备及临时设施费",
+      "to": "N-d3fb4fe652f7",
+      "type": "has_value"
+    },
+    {
+      "from": "低压电缆",
+      "to": "N-31dacc87adf4",
+      "type": "has_value"
+    },
+    {
+      "from": "人防易地建设费",
+      "to": "N-a161b289c97d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-f833fd93de5e",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-257716ea5dae",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-45a10b66cf96",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-1b70a153d6ef",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-ab884f42d239",
+      "type": "has_value"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "单体工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "室外总体工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "抗震支架",
+      "type": "depends_on"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "绿色二星增量费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "单体工程",
+      "to": "土建工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "单体工程",
+      "to": "安装工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "土建工程",
+      "to": "桩基工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "土建工程",
+      "to": "地上建筑结构工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "安装工程",
+      "to": "给排水工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "安装工程",
+      "to": "通风空调工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "安装工程",
+      "to": "强电工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "安装工程",
+      "to": "弱电工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "工程建设其他费",
+      "to": "设计费",
+      "type": "depends_on"
+    },
+    {
+      "from": "工程建设其他费",
+      "to": "施工监理费",
+      "type": "depends_on"
+    },
+    {
+      "from": "工程建设其他费",
+      "to": "勘察费",
+      "type": "depends_on"
+    },
+    {
+      "from": "室外总体工程",
+      "to": "道路广场硬地铺装",
+      "type": "depends_on"
+    },
+    {
+      "from": "室外总体工程",
+      "to": "绿化景观",
+      "type": "depends_on"
+    },
+    {
+      "from": "室外总体工程",
+      "to": "室外安装工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "室外总体工程",
+      "to": "标识工程",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "建筑安装工程费用",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "工程建设其他费",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "基本预备费",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "拆除费",
+      "type": "depends_on"
+    },
+    {
+      "from": "单体工程",
+      "to": "室外总体工程",
+      "type": "contradicts"
+    },
+    {
+      "from": "建筑安装工程费用",
+      "to": "建安工程招标估算金额",
+      "type": "contradicts"
+    },
+    {
+      "from": "总投资",
+      "to": "单位造价（总投资口径）",
+      "type": "depends_on"
+    },
+    {
+      "from": "本项目",
+      "to": "N-0d4cc2051dfe",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8449f71c5773",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-8ca43cb64560",
+      "type": "has_value"
+    },
+    {
+      "from": "总建筑面积",
+      "to": "地上建筑面积",
+      "type": "contradicts"
+    },
+    {
+      "from": "本项目",
+      "to": "N-51ac31b30619",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-38de69880db3",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-3150f017809d",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-6001107c1482",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-c57d08f481b6",
+      "type": "has_value"
+    },
+    {
+      "from": "本项目",
+      "to": "N-00c4257df194",
+      "type": "has_value"
+    },
+    {
+      "from": "总投资",
+      "to": "国拨资金",
+      "type": "depends_on"
+    },
+    {
+      "from": "总投资",
+      "to": "学校自筹资金",
+      "type": "depends_on"
+    },
+    {
+      "from": "国拨资金占比",
+      "to": "国拨资金",
+      "type": "depends_on"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-c80f305bd555",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-3014e5738712",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-87567273f44b",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-db325aa01a7a",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-34ee25446ee0",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-98278b3a0e8f",
+      "type": "has_value"
+    },
+    {
+      "from": "上海财经大学",
+      "to": "N-1a424c742c02",
+      "type": "has_value"
+    },
+    {
+      "from": "CL-效益-01",
+      "to": "CL-结论-05",
+      "type": "supports"
+    },
+    {
+      "from": "附件",
+      "to": "N-b506ba5e6eaa",
+      "type": "has_value"
+    },
+    {
+      "from": "原有第五教学楼",
+      "to": "N-c679c4e79bc2",
+      "type": "has_value"
+    }
+  ],
+  "relation_types": [
+    "has_value",
+    "has_attribute",
+    "instance_of",
+    "part_of",
+    "causes",
+    "depends_on",
+    "supports",
+    "contradicts",
+    "temporal",
+    "located_in",
+    "cites",
+    "restates",
+    "derives",
+    "precedes",
+    "quantifies",
+    "specializes"
+  ]
+}

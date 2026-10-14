@@ -1,0 +1,63 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s2",
+  "name": "chunk id 重映射",
+  "script": "s0b_remap.py",
+  "script_sha256": "66b8466670374f84b461d47bd678a898",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:39",
+  "finished_at": "2026-10-14T18:05:41",
+  "elapsed_s": 1.6,
+  "declared_outputs": [
+    "build/remap_report.json"
+  ],
+  "outputs": [
+    {
+      "path": "build/remap_report.json",
+      "pattern": "build/remap_report.json",
+      "bytes": 1195,
+      "sha256": "0fbd16b369598d50652f96a0e2159083",
+      "mtime": 1791972341
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s1c/README.md",
+    "SHUFE-BDC-2019-001/handover/s1c/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s2/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s2/manifest_A_s1c.json",
+    "SHUFE-BDC-2019-001/handover/s2/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s2/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s1c.json",
+    "build/_newchunks/chunks/chunks.jsonl",
+    "build/_newchunks/source/normalized.md",
+    "build/_newchunks/source/offset_map.json"
+  ],
+  "stdout_tail": "{\n  \"old_chunks\": 1153,\n  \"new_chunks\": 1178,\n  \"mapped\": 1145,\n  \"unmatched\": 8,\n  \"levels\": {\n    \"L1\": 569,\n    \"L2\": 294,\n    \"L3\": 282,\n    \"unmatched\": 8\n  },\n  \"cited_ids\": 216,\n  \"cited_mapped\": 216,\n  \"cited_dangling\": []\n}\n",
+  "stderr_tail": ""
+}

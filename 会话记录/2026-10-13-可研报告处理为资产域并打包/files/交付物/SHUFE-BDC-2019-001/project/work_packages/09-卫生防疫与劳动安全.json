@@ -1,0 +1,114 @@
+{
+  "work_package_id": "WP-09-卫生防疫与劳动安全",
+  "outline": {
+    "section": "09-卫生防疫与劳动安全",
+    "title": "卫生防疫与劳动安全",
+    "must_cover": [
+      "结论及建议",
+      "设计依据",
+      "劳动安全",
+      "卫生防疫",
+      "结论及建议"
+    ],
+    "must_cover_legal": [
+      "技术方案",
+      "设备方案",
+      "工程方案"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-f06e00a5f844",
+      "node_id": "N-f06e00a5f844",
+      "subject": "本项目",
+      "predicate": "抗震设防类别（安全章口径）",
+      "value": "丙级（一般设防）",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-82d60e95db12"
+    },
+    {
+      "id": "N-7e339ea5a706",
+      "node_id": "N-7e339ea5a706",
+      "subject": "本项目",
+      "predicate": "抗震设防烈度（安全章口径）",
+      "value": "7",
+      "unit": "度",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-82d60e95db12"
+    },
+    {
+      "id": "ND-设备-032",
+      "node_id": "ND-设备-032",
+      "subject": "（1）新风量的取值标准符合相关规范的规定。",
+      "predicate": "铭牌参数",
+      "value": "风量的取值标准符合相关规范的规定。",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-65a93229ebc0"
+    }
+  ],
+  "facts_paging": {
+    "total": 3,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [
+    {
+      "id": "CL-安全-01",
+      "text": "通过落实以上措施，将能够保证施工人员、进出师生的安全和健康。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "落实措施后可保证施工人员与师生安全和健康",
+        "grounds": "施工期与运营期分别给出防自然灾害/安全教育/防机械伤害/安全用电/防火灾/防触电/防噪防尘/防坠落/人流安全等措施",
+        "warrant": "措施覆盖全部已识别危害因素 ⇒ 安全可控",
+        "backing": "《中华人民共和国安全生产法》/ GB50223-2008",
+        "qualifier": "能够保证",
+        "rebuttal": "实验室专业危害（辐射、化学品、生物）仅以“采取屏蔽措施”一句覆盖，未给出具体限值"
+      },
+      "evidence_refs": [
+        "EV-规范-安全-01",
+        "EV-规范-安全-02"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "09-卫生防疫与劳动安全",
+    "file": "style/section_templates/09-卫生防疫与劳动安全.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

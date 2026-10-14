@@ -1,0 +1,63 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7m",
+  "name": "引用 ID 可解析门禁（集合差·客观）",
+  "script": "s33_id_resolution.py",
+  "script_sha256": "7a6dc9db601dcf610128143b671a9e11",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:26",
+  "finished_at": "2026-10-14T18:06:27",
+  "elapsed_s": 1.0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/id_resolution.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/id_resolution.yaml",
+      "bytes": 203,
+      "sha256": "4d174f218999e8c8b7223b07b2a20d9a",
+      "mtime": 1791972387
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7k/README.md",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7m/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7m/manifest_A_s7k.json",
+    "SHUFE-BDC-2019-001/handover/s7m/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s7m/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s7k.json"
+  ],
+  "stdout_tail": "{\n  \"verdict\": \"pass\",\n  \"nodes\": 959,\n  \"gaps\": 0,\n  \"bad_form\": 0,\n  \"unresolved\": 0,\n  \"detail\": [],\n  \"note\": \"引用 ID 必须可解析（集合差）；形态非法者几乎必然是替换污染\"\n}\n",
+  "stderr_tail": ""
+}

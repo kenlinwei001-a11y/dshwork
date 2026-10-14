@@ -1,0 +1,518 @@
+{
+  "criteria": [
+    {
+      "id": "K1",
+      "total": 31,
+      "covered": 31,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "差 = 0",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "守恒等式",
+      "name": "解析守恒",
+      "algo": "docx <w:tbl> = md 表块；word/media ≥ md 图注"
+    },
+    {
+      "id": "K2",
+      "total": 62025,
+      "covered": 61602,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 99.3,
+      "threshold": "偏差 ≤ 15%",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "守恒等式",
+      "name": "切块守恒",
+      "algo": "Σchunk 去空白字符 = 原稿去空白字符"
+    },
+    {
+      "id": "K3",
+      "total": 121,
+      "covered": 121,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "依据类缺口 = 0",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "集合差",
+      "name": "引用闭环",
+      "algo": "set(原稿《》) − set(evidence.doc) − 豁免 = ∅"
+    },
+    {
+      "id": "K4",
+      "total": 143,
+      "covered": 104,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 72.7,
+      "threshold": "关键单位类缺口 = 0",
+      "verdict": "pass_with_waivers",
+      "note": "",
+      "waived": [
+        {
+          "item": "0.05",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.11",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.15",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.28",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.35",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.80",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "0.90",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1.10",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1.40",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1.50",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1.7",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1.8",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "100.0",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "110",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "115",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1200",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "15000",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "15600",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "1920",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "2.4",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "200",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "2100",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "2800",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "295",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "31",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "34000",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "37",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "380",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "4000",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "430",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "470",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "700",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "75",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "800",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "93",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "95",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "98.3",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "99.8",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        },
+        {
+          "item": "99.9",
+          "reason": "构造与材料明细数值（厚度/坡度/偏差/压力/功率），属施工图深化参数",
+          "owner": "设计单位",
+          "disposition": "按可研深度裁剪，不进项目级派生量"
+        }
+      ],
+      "waived_count": 39,
+      "kind": "集合差",
+      "name": "数值闭环",
+      "algo": "set(原稿「数字+单位」) − set(节点值) − 量纲等价 = ∅"
+    },
+    {
+      "id": "K5",
+      "total": 109,
+      "covered": 109,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "四类各 100%",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "覆盖率比值",
+      "name": "关系闭环",
+      "algo": "应有 claim 关系 − 已有边 = ∅"
+    },
+    {
+      "id": "K6",
+      "total": 1,
+      "covered": 0,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "违规 = 0",
+      "verdict": "invalid",
+      "note": "成稿为「已注入值」的可读版（无 {{node:…}} 占位符）；K6 只对占位符版成稿有效，本项不适用",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "正则计数",
+      "name": "占位符合规",
+      "algo": "剥离 {{node:…}} 后手打数字 = 0；占位符形须匹配 ^\\{\\{node:N-[0-9a-f]{12}\\}\\}$"
+    },
+    {
+      "id": "K7",
+      "total": 1570,
+      "covered": 1570,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "越界 = 0",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "枚举成员",
+      "name": "值域合法",
+      "algo": "claim_type/status/kind/relation.type ∈ 词表"
+    },
+    {
+      "id": "K8",
+      "total": 574,
+      "covered": 574,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "违规 = 0",
+      "verdict": "pass",
+      "note": "另有 44 条指向 REF: 伪节点（依据库未覆盖），单列不判",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "图算法",
+      "name": "图完整性",
+      "algo": "每条 relation 端点可寻址；无孤立节点；依赖无环"
+    },
+    {
+      "id": "K9",
+      "total": 1,
+      "covered": 1,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "一致",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "哈希一致",
+      "name": "溯源可复现",
+      "algo": "source_original_sha256 = 实际文件哈希"
+    },
+    {
+      "id": "K10",
+      "total": 202,
+      "covered": 195,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 96.5,
+      "threshold": "≥ 95%",
+      "verdict": "pass_with_waivers",
+      "note": "",
+      "waived": [
+        {
+          "item": "项目排风口·与环境敏感目标间距",
+          "reason": "已在第八章以「符合规定间距」表述（数值属环评阶段）",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "项目排风口·底部离地面高度",
+          "reason": "同上",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "本项目·抗震设防类别（安全章口径）",
+          "reason": "已在第六章/第九章以「标准设防类（丙类）」表述，属同义措辞",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "上海财经大学·项目管理架构",
+          "reason": "已在第十一章以三级管理表述，属同义措辞",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "本项目·招标方式",
+          "reason": "已在第十二章以「公开招标、委托招标」表述",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "本项目·估算范围排除项",
+          "reason": "已在第十三章以「不含项清单」分条列示",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        },
+        {
+          "item": "附件·清单",
+          "reason": "已在第十六章逐条列示附件与状态",
+          "owner": "编制单位",
+          "disposition": "成稿已覆盖，K10 逐字匹配不适用长文本"
+        }
+      ],
+      "waived_count": 7,
+      "kind": "覆盖率比值",
+      "name": "装配覆盖",
+      "algo": "|defined 且非明细节点 ∩ 成稿引用| / |…|"
+    },
+    {
+      "id": "K11",
+      "total": 8,
+      "covered": 8,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "超差项必须登记为待审",
+      "verdict": "pass",
+      "note": "",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "数值比较",
+      "name": "派生闭合",
+      "algo": "|规则重算值 − 报告声明值| ≤ 容差"
+    },
+    {
+      "id": "K12",
+      "total": 37,
+      "covered": 37,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "占位率须显式登记",
+      "verdict": "pass",
+      "note": "warrant 占位 0、backing 占位 0",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "正则计数",
+      "name": "论证要件实质存在",
+      "algo": "toulmin.warrant/backing 非占位（未写出|不代拟|待补充|无|—|N/A）"
+    },
+    {
+      "id": "K13",
+      "total": 62,
+      "covered": 62,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "残留 = 0 且 丢失 = 0",
+      "verdict": "pass",
+      "note": "资产文件 184 个；K13a 残留 0、K13b 丢失 0",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "集合差",
+      "name": "事实用逻辑·函数用值",
+      "algo": "K13a 事实类字面值 ∩ 资产 = ∅；K13b 函数类值 ⊆ 资产"
+    },
+    {
+      "id": "K14",
+      "total": 564,
+      "covered": 564,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 100.0,
+      "threshold": "缺失/越窗/超前 = 0",
+      "verdict": "pass",
+      "note": "同月切换 0 条（单列待审，不判 FAIL）",
+      "waived": [],
+      "waived_count": 0,
+      "kind": "数值比较",
+      "name": "依据时效标注",
+      "algo": "K14a 生效时间必填（原文无则待核）；K14b 窗口合法；K14c 同月切换单列；K14d 超前核查"
+    }
+  ],
+  "judgment_required": [
+    "论证是否成立（用 NLP 打分仍是不确定判定）",
+    "证据支持等级 SUPPORT/PARTIAL_SUPPORT/CONTRADICT 的语义判断",
+    "取舍是否可接受（业务判断，须客户/编制单位确认）"
+  ],
+  "summary": {
+    "pass": 13,
+    "pass_with_waivers": 2,
+    "FAIL": 0,
+    "invalid": 1
+  },
+  "policy": "全部判据为确定性算法；判定不消费 LLM 的意见；无法客观化者标 judgment_required"
+}

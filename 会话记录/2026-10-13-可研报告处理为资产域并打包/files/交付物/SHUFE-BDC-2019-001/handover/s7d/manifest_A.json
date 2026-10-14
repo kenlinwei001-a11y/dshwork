@@ -1,0 +1,16 @@
+{
+  "stage": "s7d",
+  "script": "s16_handover.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "交付物/写作输入/交接说明-给推演写作专家.md"
+  ],
+  "produced": [
+    {
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "sha256": "cd165634fab3368b43f6f43b256daa83",
+      "bytes": 14591
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

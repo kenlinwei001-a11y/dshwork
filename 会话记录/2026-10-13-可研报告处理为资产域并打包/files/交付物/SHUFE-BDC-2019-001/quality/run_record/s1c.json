@@ -1,0 +1,70 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s1c",
+  "name": "语义抽取 P6/P7",
+  "script": "s3c_extract.py",
+  "script_sha256": "a1aef4170ff119b6a72c94efabe18eb3",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:39",
+  "finished_at": "2026-10-14T18:05:39",
+  "elapsed_s": 0.11,
+  "declared_outputs": [
+    "build/extractions-clean/P6.json",
+    "build/extractions-clean/P7.json"
+  ],
+  "outputs": [
+    {
+      "path": "build/extractions-clean/P6.json",
+      "pattern": "build/extractions-clean/P6.json",
+      "bytes": 23398,
+      "sha256": "865e11dbf234a12a35864a32bc8a9b1e",
+      "mtime": 1791972229
+    },
+    {
+      "path": "build/extractions-clean/P7.json",
+      "pattern": "build/extractions-clean/P7.json",
+      "bytes": 46859,
+      "sha256": "fdddf21132f59a8871262ba2534d9d49",
+      "mtime": 1791972229
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [],
+  "noop": true,
+  "noop_allowed": true,
+  "must_change": false,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s1b/README.md",
+    "SHUFE-BDC-2019-001/handover/s1b/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s1c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s1c/manifest_A_s1b.json",
+    "SHUFE-BDC-2019-001/handover/s1c/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s1c/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s1b.json",
+    "build/extractions/P6.json",
+    "build/extractions/P7.json"
+  ],
+  "stdout_tail": "P6 extracted: facts=19 rules=2 claims=6 evidence=19 relations=8\nP7 extracted: facts=73 rules=12 claims=3 evidence=13 relations=33\n",
+  "stderr_tail": ""
+}

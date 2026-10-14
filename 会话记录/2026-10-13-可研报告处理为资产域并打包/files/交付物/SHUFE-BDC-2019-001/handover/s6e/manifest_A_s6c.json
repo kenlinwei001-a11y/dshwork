@@ -1,0 +1,22 @@
+{
+  "stage": "s6c",
+  "script": "s13_assets_ext.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "sha256": "c846378756b73f2f58a3de0af14e2ce7",
+      "bytes": 57587
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "sha256": "72bfff2cf23db53378fc22dab6bae045",
+      "bytes": 7182
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

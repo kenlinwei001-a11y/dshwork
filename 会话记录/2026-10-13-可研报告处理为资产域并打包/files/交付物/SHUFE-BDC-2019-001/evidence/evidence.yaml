@@ -1,0 +1,6478 @@
+[
+  {
+    "id": "EV-选址-01",
+    "kind": "E1",
+    "doc": "项目概况",
+    "chunk": "c-129c2dbdd766",
+    "quote": "西侧为校园绿地，东侧临近现有建筑教育中心，北侧靠近校内便利店，南侧为学校下沉式广场及图书馆",
+    "status": "verified",
+    "locator": "1.1",
+    "chunk_original": "c-c81b4c075659"
+  },
+  {
+    "id": "EV-指标-01",
+    "kind": "E2",
+    "doc": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+    "chunk": "c-58c19badde7f",
+    "quote": "《普通高等学校建筑规划面积指标》（建标191-2018）",
+    "status": "in_use_unverified",
+    "locator": "1.2 编制依据",
+    "chunk_original": "c-8dfde7c45562"
+  },
+  {
+    "id": "EV-法规-01",
+    "kind": "E3",
+    "doc": "国家及上海市颁布的有关政策、法规、定额、税费等文件",
+    "chunk": "c-1b181a91ebe0",
+    "quote": "国家及上海市颁布的有关政策、法规、定额、税费等文件",
+    "status": "unverified",
+    "locator": "1.2",
+    "chunk_original": "c-c872dfb8d098"
+  },
+  {
+    "id": "EV-内部-01",
+    "kind": "E1",
+    "doc": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+    "chunk": "c-c51311b1b9ab",
+    "quote": "中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+    "status": "verified",
+    "locator": "1.2 编制依据",
+    "chunk_original": "c-dd40e39ed14b"
+  },
+  {
+    "id": "EV-内部-02",
+    "kind": "E1",
+    "doc": "《上海财经大学“十三五”发展规划纲要》",
+    "chunk": "c-42ac8cba7290",
+    "quote": "《上海财经大学“十三五”发展规划纲要》",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-6edc390fed52"
+  },
+  {
+    "id": "EV-内部-03",
+    "kind": "E1",
+    "doc": "《上海财经大学“十三五”基本建设规划》",
+    "chunk": "c-c8d99f4d114f",
+    "quote": "《上海财经大学“十三五”基本建设规划》",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-937ba677471d"
+  },
+  {
+    "id": "EV-内部-04",
+    "kind": "E1",
+    "doc": "《上海财经大学“十三五”校园总体规划》（2016.11）",
+    "chunk": "c-7477027ce534",
+    "quote": "《上海财经大学“十三五”校园总体规划》（2016.11）",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-4a982265f5b9"
+  },
+  {
+    "id": "EV-内部-05",
+    "kind": "E1",
+    "doc": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+    "chunk": "c-f9291d86ccc5",
+    "quote": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-e1a154af796f"
+  },
+  {
+    "id": "EV-内部-06",
+    "kind": "E1",
+    "doc": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+    "chunk": "c-5b988dee5ee8",
+    "quote": "《上海财经大学学科建设规划》（2018-2025年）精编版",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-0d57702aa2b8"
+  },
+  {
+    "id": "EV-委托-01",
+    "kind": "E5",
+    "doc": "项目规划设计方案（2019年4月）",
+    "chunk": "c-54b1d05dda2a",
+    "quote": "项目规划设计方案（2019年4月）",
+    "status": "verified",
+    "locator": "1.2",
+    "chunk_original": "c-a3ba0a5fccc5"
+  },
+  {
+    "id": "EV-委托-02",
+    "kind": "E6",
+    "doc": "业主提供的其他资料",
+    "chunk": "c-39e7e79951ac",
+    "quote": "业主提供的其他资料",
+    "status": "unverified",
+    "locator": "1.2",
+    "chunk_original": "c-d07cf8109ea4"
+  },
+  {
+    "id": "EV-财务-01",
+    "kind": "E1",
+    "doc": "学校财务决算数据（2016-2018）",
+    "chunk": "c-198ee2fbd3f6",
+    "quote": "截至2018年未，学校资产总额为373711.34万元，负债总额为9452.14万元，净资产总额为364259.20万元。资产负债率为2.53%",
+    "status": "verified",
+    "locator": "13.4",
+    "chunk_original": "c-198ee2fbd3f6"
+  },
+  {
+    "id": "EV-统计-01",
+    "kind": "E4",
+    "doc": "上海财经大学高等教育基层统计报表（2018/2019学年初）",
+    "chunk": "c-e6649218e0c0",
+    "quote": "截至2018年12月，学校有各类在校生20576人，其中全日制15643人",
+    "status": "verified",
+    "locator": "2.4 办学规模",
+    "chunk_original": "c-e6649218e0c0"
+  },
+  {
+    "id": "EV-统计-01",
+    "kind": "E4",
+    "doc": "高等教育基层统计报表",
+    "chunk": "c-f35eec1d877c",
+    "quote": "专职教师1044人",
+    "status": "verified",
+    "locator": "2.5",
+    "chunk_original": "c-f35eec1d877c"
+  },
+  {
+    "id": "EV-统计-01",
+    "kind": "E4",
+    "doc": "校区分划",
+    "chunk": "c-067b6352bde6",
+    "quote": "校园占地826亩，分设三个校区",
+    "status": "verified",
+    "locator": "2.6",
+    "chunk_original": "c-067b6352bde6"
+  },
+  {
+    "id": "EV-内部-05",
+    "kind": "E1",
+    "doc": "《上海财经大学学科建设规划（2018-2025）》",
+    "chunk": "c-27fb26d91615",
+    "quote": "到2025年，“经济学与商学”力争整体进入世界一流学科前列，力争进入ESI全球前1%",
+    "status": "verified",
+    "locator": "2.2",
+    "chunk_original": "c-27fb26d91615"
+  },
+  {
+    "id": "EV-政策-02",
+    "kind": "E3",
+    "doc": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "chunk": "c-7943443eae1d",
+    "quote": "要深入实施创新驱动发展战略……推进有特色高水平大学和科研院所建设",
+    "status": "verified",
+    "locator": "3.2.1",
+    "chunk_original": "c-7943443eae1d"
+  },
+  {
+    "id": "EV-内部-03",
+    "kind": "E1",
+    "doc": "《上海财经大学“十三五”基本建设规划》",
+    "chunk": "c-bf70219e8bc1",
+    "quote": "本项目作为上海财经大学大数据研究领域的重要建设项目，已纳入学校“十三五”基建规划中",
+    "status": "verified",
+    "locator": "3.2.1",
+    "chunk_original": "c-bf70219e8bc1"
+  },
+  {
+    "id": "EV-政策-03",
+    "kind": "E3",
+    "doc": "《国务院关于印发促进大数据发展行动纲要的通知》（国发〔2015〕50号）",
+    "chunk": "c-9890238fab90",
+    "quote": "行动纲要提出，要推动产业创新发展，培育新兴业态，助力经济转型",
+    "status": "verified",
+    "locator": "3.1.1",
+    "chunk_original": "c-9890238fab90"
+  },
+  {
+    "id": "EV-政策-04",
+    "kind": "E3",
+    "doc": "《工业和信息化部关于印发大数据产业发展规划（2016-2020年）的通知》",
+    "chunk": "c-41ef1ee98576",
+    "quote": "推动大数据应用，加快传统产业数字化、智能化，做大做强数字经济",
+    "status": "verified",
+    "locator": "3.2.2",
+    "chunk_original": "c-41ef1ee98576"
+  },
+  {
+    "id": "EV-对标-01",
+    "kind": "E4",
+    "doc": "上海高校既有大数据研究机构（公开信息）",
+    "chunk": "c-81b4c35d5eef",
+    "quote": "上海高校的大数据研究机构有复旦大学大数据研究院、上海交通大学大数据工程技术研究中心、华东理工大学金融大数据研究中心等",
+    "status": "verified",
+    "locator": "3.2.2",
+    "chunk_original": "c-81b4c35d5eef"
+  },
+  {
+    "id": "EV-战略-01",
+    "kind": "E3",
+    "doc": "《中共中央关于制定国民经济和社会发展第十三个五年规划的建议》",
+    "chunk": "c-41ef1ee98576",
+    "quote": "我国将大数据上升至国家战略",
+    "status": "verified",
+    "locator": "3.2.2",
+    "chunk_original": "c-41ef1ee98576"
+  },
+  {
+    "id": "EV-现状-01",
+    "kind": "E1",
+    "doc": "校区现状调查",
+    "chunk": "c-8d533f9bfa12",
+    "quote": "上海财经大学中山北一路校区成立于90年代，距今年份久远，校区内部分设备设施已不能满足目前学校的发展需求",
+    "status": "verified",
+    "locator": "3.2.3",
+    "chunk_original": "c-8d533f9bfa12"
+  },
+  {
+    "id": "EV-现状-02",
+    "kind": "E1",
+    "doc": "原第五教学楼现状",
+    "chunk": "c-c1117e5ea37e",
+    "quote": "中山北一路校区原第五教学楼建设年代较久，为四层框架结构，建筑面积2758平方米，1960年代建造。目前因经久失修，原教学楼内部设施较为陈旧，功能及布局不能适应教学需求",
+    "status": "verified",
+    "locator": "3.2.3",
+    "chunk_original": "c-c1117e5ea37e"
+  },
+  {
+    "id": "EV-政策-05",
+    "kind": "E3",
+    "doc": "《统筹推进世界一流大学和一流学科建设总体方案》",
+    "chunk": "c-7712b28d1eac",
+    "quote": "2015年10月24日，国务院印发《统筹推进世界一流大学和一流学科建设总体方案》",
+    "status": "verified",
+    "locator": "3.1.4",
+    "chunk_original": "c-7712b28d1eac"
+  },
+  {
+    "id": "EV-政策-06",
+    "kind": "E3",
+    "doc": "《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》（发改社会【2017】1916号）",
+    "chunk": "c-6e2f045ef188",
+    "quote": "要支持与经济社会重点领域产业发展高度关联、紧密契合的学科建设所需的基础设施和大型仪器装置装备建设",
+    "status": "verified",
+    "locator": "3.2.4",
+    "chunk_original": "c-6e2f045ef188"
+  },
+  {
+    "id": "EV-科研-01",
+    "kind": "E1",
+    "doc": "统计与管理学院科研工作统计（2018）",
+    "chunk": "c-129739dbd201",
+    "quote": "2018年学院师生发表各类论文87篇",
+    "status": "verified",
+    "locator": "3.1.5",
+    "chunk_original": "c-129739dbd201"
+  },
+  {
+    "id": "EV-内部-02",
+    "kind": "E1",
+    "doc": "《上海财经大学“十三五”发展规划纲要》",
+    "chunk": "c-eb1f797961d9",
+    "quote": "到2020年，学校要坚实完成“三步走”战略的第二步",
+    "status": "verified",
+    "locator": "3.1.2",
+    "chunk_original": "c-eb1f797961d9"
+  },
+  {
+    "id": "EV-地勘-01",
+    "kind": "E5",
+    "doc": "项目所在区域地质资料",
+    "chunk": "c-ec5e925841ef",
+    "quote": "虹口区为坦荡低平的平原，平均海拔高度为4米左右",
+    "status": "verified",
+    "locator": "4.2.1",
+    "chunk_original": "c-ec5e925841ef"
+  },
+  {
+    "id": "EV-现状-02",
+    "kind": "E1",
+    "doc": "原建筑现状",
+    "chunk": "c-4d8b131dacf8",
+    "quote": "建筑结构老化、功能布局不合理等情况难以改善",
+    "status": "verified",
+    "locator": "4.1",
+    "chunk_original": "c-4d8b131dacf8"
+  },
+  {
+    "id": "EV-气象-01",
+    "kind": "E4",
+    "doc": "上海市气象与水文资料",
+    "chunk": "c-3a040d14af4d",
+    "quote": "上海市位于北亚热带南缘，属亚热带季风气候",
+    "status": "verified",
+    "locator": "4.2.1",
+    "chunk_original": "c-3a040d14af4d"
+  },
+  {
+    "id": "EV-市政-01",
+    "kind": "E5",
+    "doc": "校区市政配套条件",
+    "chunk": "c-ddad520b4a13",
+    "quote": "项目所在地的供水、排水、供电、交通条件齐备",
+    "status": "verified",
+    "locator": "4.2.2",
+    "chunk_original": "c-ddad520b4a13"
+  },
+  {
+    "id": "EV-规划-01",
+    "kind": "E1",
+    "doc": "各研究中心规划人数表（表5-1~5-4）",
+    "chunk": "c-223358da3e9d",
+    "quote": "根据现有科研团队及未来发展需求，拟再引进（增加）部分人员",
+    "status": "verified",
+    "locator": "5.1",
+    "chunk_original": "c-223358da3e9d"
+  },
+  {
+    "id": "EV-规划-01",
+    "kind": "E1",
+    "doc": "表5-2 理论计算机研究中心规划人数",
+    "chunk": "c-b7027573785d",
+    "quote": "规划人数具体如下表所示",
+    "status": "verified",
+    "locator": "5.2",
+    "chunk_original": "c-b7027573785d"
+  },
+  {
+    "id": "EV-规划-01",
+    "kind": "E1",
+    "doc": "表5-3 应用统计研究中心规划人数",
+    "chunk": "c-9d9be0511932",
+    "quote": "未来将申请国家级研究基地",
+    "status": "verified",
+    "locator": "5.3",
+    "chunk_original": "c-9d9be0511932"
+  },
+  {
+    "id": "EV-规划-01",
+    "kind": "E1",
+    "doc": "表5-4 数据科研与统计研究院规划人数",
+    "chunk": "c-f397b7a348a5",
+    "quote": "规划人数具体如下表所示",
+    "status": "verified",
+    "locator": "5.4",
+    "chunk_original": "c-f397b7a348a5"
+  },
+  {
+    "id": "EV-需求-01",
+    "kind": "E1",
+    "doc": "表5-5 公共服务配套用房规模需求",
+    "chunk": "c-d8ff50ae58f4",
+    "quote": "使用面积需求合计约1210平方米，按照0.55的综合平面利用系数换算为建筑面积需求为2200平方米",
+    "status": "verified",
+    "locator": "5.5",
+    "chunk_original": "c-d8ff50ae58f4"
+  },
+  {
+    "id": "EV-指标-02",
+    "kind": "E2",
+    "doc": "《普通高等学校建筑面积指标》（建标191-2018）",
+    "chunk": "c-79069a20782b",
+    "quote": "参考《普通高等学校建筑面积指标》（建标191-2018）对专职科研机构用房的规划建筑面积指标的规定",
+    "status": "in_use_unverified",
+    "locator": "5.6",
+    "chunk_original": "c-79069a20782b"
+  },
+  {
+    "id": "EV-需求-02",
+    "kind": "E1",
+    "doc": "表5-6 项目规模需求汇总表",
+    "chunk": "c-c011c764a24d",
+    "quote": "科研人员用房 315 16 5040；研究生、博士生、访问学者用房 1350 8 10800；公共服务配套用房 2200；合计 1665（人数）18040（面积）",
+    "status": "verified",
+    "locator": "5.6",
+    "chunk_original": "c-c011c764a24d"
+  },
+  {
+    "id": "EV-规范-建筑-01",
+    "kind": "E2",
+    "doc": "《建筑设计防火规范》GB50016-2014（2018年版）",
+    "chunk": "c-d541985db789",
+    "quote": "GB50016-2014（2018年版）",
+    "status": "in_use_unverified",
+    "locator": "6.1 设计依据",
+    "chunk_original": "c-957f1189f675"
+  },
+  {
+    "id": "EV-规范-建筑-02",
+    "kind": "E2",
+    "doc": "《汽车库、修车库、停车场设计防火规范》GB50067-2014",
+    "chunk": "c-e2a123393159",
+    "quote": "GB50067-2014",
+    "status": "in_use_unverified",
+    "locator": "6.1",
+    "chunk_original": "c-fa32d3aed451"
+  },
+  {
+    "id": "EV-规范-建筑-03",
+    "kind": "E2",
+    "doc": "《建筑防烟排烟系统技术标准》GB51251-2017",
+    "chunk": "c-5072cbfd7edf",
+    "quote": "GB51251-2017",
+    "status": "in_use_unverified",
+    "locator": "6.1",
+    "chunk_original": "c-80b174a4bdd0"
+  },
+  {
+    "id": "EV-规范-建筑-04",
+    "kind": "E2",
+    "doc": "《民用建筑设计通则》GB50352-2005",
+    "chunk": "c-c57ac7f400eb",
+    "quote": "GB50352-2005",
+    "status": "in_use_unverified",
+    "locator": "6.1",
+    "chunk_original": "c-f7dbd37e339e"
+  },
+  {
+    "id": "EV-规范-建筑-05",
+    "kind": "E2",
+    "doc": "《汽车库建筑设计规范》JGJ100-1998",
+    "chunk": "c-f5976bd25f6c",
+    "quote": "JGJI00-1998（原文写作 JGJI00-1998）",
+    "status": "unverified",
+    "locator": "6.1",
+    "chunk_original": "c-a2c282406cbf"
+  },
+  {
+    "id": "EV-规范-建筑-06",
+    "kind": "E2",
+    "doc": "《地下工程防水技术规范》GB50108-2008",
+    "chunk": "c-fd35c1e54d7b",
+    "quote": "GB50108-2008",
+    "status": "in_use_unverified",
+    "locator": "6.1",
+    "chunk_original": "c-d1d881cf28ba"
+  },
+  {
+    "id": "EV-规范-建筑-07",
+    "kind": "E2",
+    "doc": "《无障碍设计规范》GB50763-2012",
+    "chunk": "c-d2fb62082841",
+    "quote": "《无障碍设计规范》GB50763-2012",
+    "status": "in_use_unverified",
+    "locator": "6.1 设计依据",
+    "chunk_original": "c-45fb4189ba95"
+  },
+  {
+    "id": "EV-规范-建筑-08",
+    "kind": "E2",
+    "doc": "《建筑工程建筑面积计算规范》GB/T50353-2013",
+    "chunk": "c-2107c9cb9389",
+    "quote": "GB/T50353-2013",
+    "status": "in_use_unverified",
+    "locator": "6.1",
+    "chunk_original": "c-46de14e1450e"
+  },
+  {
+    "id": "EV-规范-建筑-09",
+    "kind": "E2",
+    "doc": "《高层民用建筑设计防火规范》",
+    "chunk": "c-df1ebc3f5d4e",
+    "quote": "防火等级：根据《高层民用建筑设计防火规范》和《建筑设计防火规范》规定。本项目为高层民用建筑，建筑耐火等级为二级。",
+    "status": "superseded_unverified",
+    "locator": "6.1 设计总说明",
+    "chunk_original": "c-df1ebc3f5d4e"
+  },
+  {
+    "id": "EV-规范-无障碍-01",
+    "kind": "E2",
+    "doc": "《城市道路和建筑物无障碍设计规范》（JGJ50-2001）",
+    "chunk": "c-325a2d4e4d8d",
+    "quote": "《城市道路和建筑物无障碍设计规范》（JGJ50-2001）",
+    "status": "superseded_unverified",
+    "locator": "6.2.7 无障碍设计",
+    "chunk_original": "c-325a2d4e4d8d"
+  },
+  {
+    "id": "EV-规范-无障碍-02",
+    "kind": "E2",
+    "doc": "《无障碍设计规范》（GB50673-2002）",
+    "chunk": "c-325a2d4e4d8d",
+    "quote": "《无障碍设计规范》（GB50673-2002）",
+    "status": "invalid_number_unverified",
+    "locator": "6.2.7",
+    "chunk_original": "c-325a2d4e4d8d"
+  },
+  {
+    "id": "EV-规范-结构-01",
+    "kind": "E2",
+    "doc": "《建筑结构荷载规范》GB50009-2012",
+    "chunk": "c-742a38ec8440",
+    "quote": "GB50009-2012",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-b1c7aee18c6e"
+  },
+  {
+    "id": "EV-规范-结构-02",
+    "kind": "E2",
+    "doc": "《建筑抗震设计规范》GB50011-2010（2016年版）",
+    "chunk": "c-124163776e04",
+    "quote": "GB50011-2010）2016年版",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-8af0d9b7d69e"
+  },
+  {
+    "id": "EV-规范-结构-03",
+    "kind": "E2",
+    "doc": "《高层建筑混凝土结构技术规程》JGJ 3-2010",
+    "chunk": "c-5e8d24ca33e2",
+    "quote": "JGJ 3-2010",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-f7f9f19e6769"
+  },
+  {
+    "id": "EV-规范-结构-04",
+    "kind": "E2",
+    "doc": "《建筑桩基设计规范》（JGJ94-2008）",
+    "chunk": "c-e7a578389576",
+    "quote": "《建筑桩基设计规范》（JGJ94-2008）",
+    "status": "unverified",
+    "locator": "6.3",
+    "chunk_original": "c-a901f2199e55"
+  },
+  {
+    "id": "EV-规范-结构-05",
+    "kind": "E2",
+    "doc": "《建筑工程抗震设防分类标准》（GB50223-2008）",
+    "chunk": "c-851102b884c8",
+    "quote": "GB50223-2008",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-54799ea75230"
+  },
+  {
+    "id": "EV-规范-装配-01",
+    "kind": "E2",
+    "doc": "《装配式混凝土结构技术规程》（JGJ1-2014）",
+    "chunk": "c-d30cbaaef1c5",
+    "quote": "JGJ1-2014",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-fa4be6dbecef"
+  },
+  {
+    "id": "EV-规范-装配-02",
+    "kind": "E2",
+    "doc": "《装配整体式混凝土公共建筑设计规程》（DG/TJ08-2154-2014）",
+    "chunk": "c-9c1fe29427f3",
+    "quote": "DG/TJ08-2154-2014",
+    "status": "in_use_unverified",
+    "locator": "6.3",
+    "chunk_original": "c-518e6d306230"
+  },
+  {
+    "id": "EV-规范-给排水-01",
+    "kind": "E2",
+    "doc": "《建筑给水排水设计规范》GB50015-2003（2009年版）",
+    "chunk": "c-93dc67a87175",
+    "quote": "GB50015-2003（2009年版）",
+    "status": "in_use_unverified",
+    "locator": "6.4 设计依据",
+    "chunk_original": "c-a2f42b8e6e53"
+  },
+  {
+    "id": "EV-规范-给排水-02",
+    "kind": "E2",
+    "doc": "《消防给水及消火栓系统技术规范》GB50974-2014",
+    "chunk": "c-15e3c7d9a76d",
+    "quote": "GB50974-2014",
+    "status": "in_use_unverified",
+    "locator": "6.4",
+    "chunk_original": "c-742af79237af"
+  },
+  {
+    "id": "EV-规范-给排水-03",
+    "kind": "E2",
+    "doc": "《自动喷水灭火系统设计规范》GBJ50084-2017",
+    "chunk": "c-9a5b4b820bc6",
+    "quote": "GBJ50084-2017（原文写作 GBJ50084-2017）",
+    "status": "unverified",
+    "locator": "6.4",
+    "chunk_original": "c-118cb1e20a07"
+  },
+  {
+    "id": "EV-规范-给排水-04",
+    "kind": "E2",
+    "doc": "上海市《公共建筑节能设计标准》DGJ08-107-2015",
+    "chunk": "c-ed36e407b977",
+    "quote": "DGJ08-107-2015",
+    "status": "in_use_unverified",
+    "locator": "6.4",
+    "chunk_original": "c-44e64a889cd3"
+  },
+  {
+    "id": "EV-定额-01",
+    "kind": "E5",
+    "doc": "表6-2 主要用水项目及其用水指标表",
+    "chunk": "c-354e031a9916",
+    "quote": "科研学生 1800人(暂定) 40L/生、日；办公 288人(暂定) 50L/人、日；总计 95.04 m³/d",
+    "status": "verified",
+    "locator": "6.4.2",
+    "chunk_original": "c-951d51ce96e3"
+  },
+  {
+    "id": "EV-规范-给排水-03",
+    "kind": "E2",
+    "doc": "《自动喷水灭火系统设计规范》GBJ50084-2017",
+    "chunk": "c-8aa08d82d0f2",
+    "quote": "自动喷水灭火系统 25 L/s",
+    "status": "unverified",
+    "locator": "表6-3",
+    "chunk_original": "c-04e6d161a590"
+  },
+  {
+    "id": "EV-规范-电气-01",
+    "kind": "E2",
+    "doc": "《民用建筑电气设计规范》JGJ16-2008",
+    "chunk": "c-45e93a934425",
+    "quote": "JGJ16-2008",
+    "status": "in_use_unverified",
+    "locator": "6.5 强电设计依据",
+    "chunk_original": "c-454986ab78c1"
+  },
+  {
+    "id": "EV-规范-电气-02",
+    "kind": "E2",
+    "doc": "《供配电系统设计规范》GB50052-2009",
+    "chunk": "c-be46dcd3e8b3",
+    "quote": "GB50052-2009",
+    "status": "in_use_unverified",
+    "locator": "6.5",
+    "chunk_original": "c-69ffb9969a05"
+  },
+  {
+    "id": "EV-规范-电气-03",
+    "kind": "E2",
+    "doc": "《建筑照明设计标准》GB50034-2013",
+    "chunk": "c-4a380fc0196a",
+    "quote": "GB50034-2013",
+    "status": "in_use_unverified",
+    "locator": "6.5 强电设计依据",
+    "chunk_original": "c-38ad12573516"
+  },
+  {
+    "id": "EV-规范-电气-04",
+    "kind": "E2",
+    "doc": "《教育建筑电气设计规范》JGJ310-2013",
+    "chunk": "c-316cd218588b",
+    "quote": "JGJ310-2013",
+    "status": "in_use_unverified",
+    "locator": "6.5",
+    "chunk_original": "c-23b0231f6610"
+  },
+  {
+    "id": "EV-规范-电气-05",
+    "kind": "E2",
+    "doc": "《绿色建筑评价标准》GB-T50378-2014",
+    "chunk": "c-f2ebb3c4addb",
+    "quote": "GB-T50378-2014",
+    "status": "in_use_unverified",
+    "locator": "6.5",
+    "chunk_original": "c-b5ab3d3aed46"
+  },
+  {
+    "id": "EV-负荷估算-01",
+    "kind": "E5",
+    "doc": "6.5.1 负荷估算",
+    "chunk": "c-100dadfa18ab",
+    "quote": "空调用电按45W/平方米估算，照明及其他负荷按25W/平方米估算。总计算负荷为952KW。",
+    "status": "verified",
+    "locator": "6.5.1",
+    "chunk_original": "c-100dadfa18ab"
+  },
+  {
+    "id": "EV-规范-电气-06",
+    "kind": "E2",
+    "doc": "《建筑物防雷设计规范》GB50057-2010",
+    "chunk": "c-d4f4e98c4a21",
+    "quote": "GB50057-2010",
+    "status": "in_use_unverified",
+    "locator": "6.5",
+    "chunk_original": "c-fb974afde598"
+  },
+  {
+    "id": "EV-规范-暖通-01",
+    "kind": "E2",
+    "doc": "《民用建筑供暖通风与空气调节设计规范》GB50736-2012",
+    "chunk": "c-05bfe579e2ed",
+    "quote": "GB50736-2012",
+    "status": "in_use_unverified",
+    "locator": "6.7 暖通设计依据",
+    "chunk_original": "c-ef9d7dc6b8b3"
+  },
+  {
+    "id": "EV-规范-暖通-02",
+    "kind": "E2",
+    "doc": "《多联机空调系统工程技术规程》JGJ 174-2010",
+    "chunk": "c-702d7a2de862",
+    "quote": "JGJ 174-2010",
+    "status": "in_use_unverified",
+    "locator": "6.7",
+    "chunk_original": "c-c22ef2d8037f"
+  },
+  {
+    "id": "EV-规范-暖通-03",
+    "kind": "E2",
+    "doc": "上海市《公共建筑节能设计标准》DGJ 08-107-2015",
+    "chunk": "c-5e8426866f38",
+    "quote": "DGJ 08-107-2015",
+    "status": "in_use_unverified",
+    "locator": "6.7 暖通设计依据",
+    "chunk_original": "c-61264b8dd65f"
+  },
+  {
+    "id": "EV-规范-暖通-04",
+    "kind": "E2",
+    "doc": "沪建交〔2012〕1273号文",
+    "chunk": "c-c26c8cad803e",
+    "quote": "沪建交〔2012〕1273号文",
+    "status": "in_use_unverified",
+    "locator": "6.7",
+    "chunk_original": "c-591b0c4e92de"
+  },
+  {
+    "id": "EV-参数-01",
+    "kind": "E2",
+    "doc": "室外空气计算参数（表6-6）",
+    "chunk": "c-4b8bc5c96c14",
+    "quote": "夏季 34.4/27.9℃；冬季 -2.2℃",
+    "status": "in_use_unverified",
+    "locator": "6.7.1",
+    "chunk_original": "c-5960047e007e"
+  },
+  {
+    "id": "EV-参数-02",
+    "kind": "E5",
+    "doc": "室内空气计算参数（表6-7）",
+    "chunk": "c-a43d02463116",
+    "quote": "科研用房 26/18℃ 新风30m³/h·P 噪声≤50dB(A)",
+    "status": "verified",
+    "locator": "6.7.1",
+    "chunk_original": "c-b354006b940e"
+  },
+  {
+    "id": "EV-负荷-01",
+    "kind": "E5",
+    "doc": "表6-9 空调系统负荷指标",
+    "chunk": "c-27c9dd83b0ec",
+    "quote": "18319㎡ 单位面积冷负荷135W/㎡ 冷负荷2473kW；热负荷指标80W/㎡ 热负荷1465kW",
+    "status": "verified",
+    "locator": "6.7.2",
+    "chunk_original": "c-30cb2169734b"
+  },
+  {
+    "id": "EV-缺口-01",
+    "kind": "E6",
+    "doc": "实验室通风专项取值（通风柜台数/排风量/实验室换气次数）",
+    "chunk": "c-6a36b8de406d",
+    "quote": "表6-8 通风换气次数仅列 卫生间/电梯机房/水泵房，未给出实验室与科研用房的换气次数、通风柜台数与排风量",
+    "status": "insufficient",
+    "locator": "6.7.4 通风系统",
+    "chunk_original": "c-6a36b8de406d"
+  },
+  {
+    "id": "EV-规范-暖通-05",
+    "kind": "E2",
+    "doc": "《建筑防烟排烟系统技术标准》GB51251-2017",
+    "chunk": "c-a55664bd812e",
+    "quote": "排烟防火阀在280℃时应自行关闭，并应连锁关闭排烟风机和补风机",
+    "status": "in_use_unverified",
+    "locator": "6.7.5 消防系统",
+    "chunk_original": "c-a2fc352d7d9b"
+  },
+  {
+    "id": "EV-设备-01",
+    "kind": "E5",
+    "doc": "表6-11 主要设备表",
+    "chunk": "c-387f65b6c162",
+    "quote": "30HP×22、16HP×10、10HP×2；室内机 50+40+76 台",
+    "status": "verified",
+    "locator": "6.7.8",
+    "chunk_original": "c-a439e050bbfe"
+  },
+  {
+    "id": "EV-规范-节能-01",
+    "kind": "E2",
+    "doc": "《公共建筑节能设计标准》（GB50189-2005）",
+    "chunk": "c-16dcab65f155",
+    "quote": "《公共建筑节能设计标准》（GB50189-2005）",
+    "status": "superseded_unverified",
+    "locator": "7.1 用能标准和节能规范",
+    "chunk_original": "c-c5d5f9bf5b14"
+  },
+  {
+    "id": "EV-规范-节能-02",
+    "kind": "E2",
+    "doc": "上海市《公共建筑节能设计标准》（DGJ08-107-2012）",
+    "chunk": "c-e94e90f7f5e2",
+    "quote": "《公共建筑节能设计标准》（DGJ08-107-2012）",
+    "status": "superseded_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-aa0f3ef156aa"
+  },
+  {
+    "id": "EV-规范-节能-03",
+    "kind": "E2",
+    "doc": "《建筑照明设计标准》（GB50034-2004）",
+    "chunk": "c-056cfe16201a",
+    "quote": "《建筑照明设计标准》（GB50034-2004）",
+    "status": "superseded_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-b3ade66af700"
+  },
+  {
+    "id": "EV-规范-节能-04",
+    "kind": "E2",
+    "doc": "《采暖通风与空气调节设计规范》（GB50019-2003）",
+    "chunk": "c-3e9523a63070",
+    "quote": "《采暖通风与空气调节设计规范》（GB50019-2003）",
+    "status": "superseded_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-448916ce6db5"
+  },
+  {
+    "id": "EV-规范-节能-05",
+    "kind": "E2",
+    "doc": "《建筑采光设计标准》（GB50033-2001）",
+    "chunk": "c-22cd13a19965",
+    "quote": "《建筑采光设计标准》（GB50033-2001）",
+    "status": "superseded_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-6cd0d8a57e1e"
+  },
+  {
+    "id": "EV-规范-节能-06",
+    "kind": "E2",
+    "doc": "《固定资产投资项目节能审查办法》（2016年第44号令）",
+    "chunk": "c-c01da439044f",
+    "quote": "2016年第44号令",
+    "status": "in_use_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-73bcc1957263"
+  },
+  {
+    "id": "EV-规范-节能-07",
+    "kind": "E2",
+    "doc": "《综合能耗计算通则》（GB/T2589-2008）",
+    "chunk": "c-e21781743238",
+    "quote": "GB/T2589-2008",
+    "status": "in_use_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-67a99aa8c86d"
+  },
+  {
+    "id": "EV-规范-节能-08",
+    "kind": "E2",
+    "doc": "《用能单位能源计量器具配备和管理导则》（GB17167-2006）",
+    "chunk": "c-49b25a675e8a",
+    "quote": "GB17167-2006",
+    "status": "in_use_unverified",
+    "locator": "7.1",
+    "chunk_original": "c-1e5cb8074e9b"
+  },
+  {
+    "id": "EV-定额-02",
+    "kind": "E5",
+    "doc": "表7-1 年用水量汇总表",
+    "chunk": "c-303a6a09db8e",
+    "quote": "教师用水35L/人·d×288人=10.1m³/d；学生用水40L/人·d×1800人=72.0m³/d；合计1.74万m³",
+    "status": "verified",
+    "locator": "7.2",
+    "chunk_original": "c-303a6a09db8e"
+  },
+  {
+    "id": "EV-定额-03",
+    "kind": "E5",
+    "doc": "表7-2 年用电量汇总表",
+    "chunk": "c-46385d4ae269",
+    "quote": "科研用房14883㎡×60W/㎡×0.8×0.6×8h×193d=66万kWh；公共配套2182㎡×60×0.6×0.5×8×193=6万kWh",
+    "status": "verified",
+    "locator": "7.2",
+    "chunk_original": "c-46385d4ae269"
+  },
+  {
+    "id": "EV-定额-03",
+    "kind": "E5",
+    "doc": "表7-3 项目综合能耗及能耗分析表",
+    "chunk": "c-9b17de8351af",
+    "quote": "当量值 90 tce / 4.91 kgce·㎡⁻¹；等价值 218 tce / 11.87 kgce·㎡⁻¹；单位建筑面积电耗 39.30 kW·h/㎡",
+    "status": "verified",
+    "locator": "7.2",
+    "chunk_original": "c-9b17de8351af"
+  },
+  {
+    "id": "EV-规范-环评-01",
+    "kind": "E2",
+    "doc": "《社会生活环境噪声排放标准》（GB22337-2008）",
+    "chunk": "c-0118a84ca461",
+    "quote": "GB22337-2008",
+    "status": "in_use_unverified",
+    "locator": "8.1",
+    "chunk_original": "c-317ae37d512b"
+  },
+  {
+    "id": "EV-规范-环评-02",
+    "kind": "E2",
+    "doc": "《建筑施工场界环境噪声排放标准》（GB12523-2011）",
+    "chunk": "c-c5bf0bfe7a4c",
+    "quote": "建筑施工场界噪声应达到《建筑施工场界噪声标准》（GB12523-2011）",
+    "status": "in_use_unverified",
+    "locator": "8.3",
+    "chunk_original": "c-c5bf0bfe7a4c"
+  },
+  {
+    "id": "EV-规范-环评-03",
+    "kind": "E2",
+    "doc": "《水污染物排放标准》（DB44/26-2001，广东省地方标准）",
+    "chunk": "c-fa15b444428b",
+    "quote": "《水污染物排放标准》（DB44/26-2001）",
+    "status": "geographic_mismatch",
+    "locator": "8.1 环境影响评价标准",
+    "chunk_original": "c-2b9bb305d2da"
+  },
+  {
+    "id": "EV-规范-环评-02",
+    "kind": "E2",
+    "doc": "《建筑施工场界环境噪声排放标准》（GB12523-2011）",
+    "chunk": "c-d3f7b33459d8",
+    "quote": "昼间应≤70 dB(A)、夜间≤55 dB(A)",
+    "status": "in_use_unverified",
+    "locator": "10.4",
+    "chunk_original": "c-d3f7b33459d8"
+  },
+  {
+    "id": "EV-规范-安全-01",
+    "kind": "E2",
+    "doc": "《中华人民共和国安全生产法》",
+    "chunk": "c-2c41f9c0e1d8",
+    "quote": "《中华人民共和国安全生产法》",
+    "status": "in_use_unverified",
+    "locator": "9.1 设计依据",
+    "chunk_original": "c-1e94ff2a3108"
+  },
+  {
+    "id": "EV-规范-安全-02",
+    "kind": "E2",
+    "doc": "《采暖通风与空气调节设计规范》（GB 50019-2003）",
+    "chunk": "c-06242bf1a432",
+    "quote": "《采暖通风与空气调节设计规范》（GB 50019-2003）",
+    "status": "superseded_unverified",
+    "locator": "9.1",
+    "chunk_original": "c-067b4654884c"
+  },
+  {
+    "id": "EV-规范-安全-03",
+    "kind": "E2",
+    "doc": "《社会生活环境噪声排放标准》（GB 22337-2008）",
+    "chunk": "c-dbe9a28d351e",
+    "quote": "GB 22337-2008",
+    "status": "in_use_unverified",
+    "locator": "9.1",
+    "chunk_original": "c-b5ebd165ec87"
+  },
+  {
+    "id": "EV-规范-结构-05",
+    "kind": "E2",
+    "doc": "《建筑工程抗震设防分类标准》(GB50223-2008)",
+    "chunk": "c-82d60e95db12",
+    "quote": "关于科学实验建筑的规定，确定本工程抗震设防类别为丙级",
+    "status": "in_use_unverified",
+    "locator": "9.2",
+    "chunk_original": "c-82d60e95db12"
+  },
+  {
+    "id": "EV-规范-抗震-沪-01",
+    "kind": "E2",
+    "doc": "《上海市建筑抗震设计规程》(DGJ08-9-2003)",
+    "chunk": "c-82d60e95db12",
+    "quote": "《上海市建筑抗震设计规程》(DGJ08-9-2003)",
+    "status": "superseded_unverified",
+    "locator": "9.2",
+    "chunk_original": "c-82d60e95db12"
+  },
+  {
+    "id": "EV-措施-安全-01",
+    "kind": "E1",
+    "doc": "9.2~9.3 劳动安全与卫生防疫措施",
+    "chunk": "c-cd63bc00a31f",
+    "quote": "采取屏蔽措施，将专业实验设备可能的对外界放射或辐射强度限制在许可范围内",
+    "status": "insufficient",
+    "locator": "9.3",
+    "chunk_original": "c-2e5c570f4cc4"
+  },
+  {
+    "id": "EV-规范-稳评-01",
+    "kind": "E3",
+    "doc": "《国家发展改革委重大固定资产投资项目社会稳定风险评估暂行办法》（发改投资[2012]2492号）",
+    "chunk": "c-5514e623fa27",
+    "quote": "发改投资[2012]2492号",
+    "status": "in_use_unverified",
+    "locator": "10.1 编制依据",
+    "chunk_original": "c-5536934c8ca9"
+  },
+  {
+    "id": "EV-规范-稳评-02",
+    "kind": "E3",
+    "doc": "《重大固定资产投资项目社会稳定风险分析篇章编制大纲及说明（试行）》（发改办投资[2013]428号）",
+    "chunk": "c-2e30f1a453f5",
+    "quote": "发改办投资[2013]428号",
+    "status": "in_use_unverified",
+    "locator": "10.1",
+    "chunk_original": "c-b56821708fbb"
+  },
+  {
+    "id": "EV-规范-稳评-03",
+    "kind": "E3",
+    "doc": "上海市《关于建立重大事项社会稳定风险分析和评估机制的意见（试行）》",
+    "chunk": "c-764b35de37ea",
+    "quote": "上海市《关于建立重大事项社会稳定风险分析和评估机制的意见（试行）》",
+    "status": "in_use_unverified",
+    "locator": "10.1",
+    "chunk_original": "c-fcb1db9ae08b"
+  },
+  {
+    "id": "EV-规范-稳评-04",
+    "kind": "E3",
+    "doc": "沪委办发[2011]32号《关于深入推行重大事项社会稳定风险评估机制的通知》",
+    "chunk": "c-16d4df4b4eae",
+    "quote": "沪委办发[2011]32号",
+    "status": "in_use_unverified",
+    "locator": "10.1",
+    "chunk_original": "c-96fa1cf736ef"
+  },
+  {
+    "id": "EV-稳评-结论-01",
+    "kind": "E5",
+    "doc": "10.5~10.6 风险等级评判与结论",
+    "chunk": "c-5c447607c3cd",
+    "quote": "确定本项目的措施后风险等级为低风险",
+    "status": "verified",
+    "locator": "10.5",
+    "chunk_original": "c-1dc4966aac97"
+  },
+  {
+    "id": "EV-措施-交通-01",
+    "kind": "E1",
+    "doc": "10.4 风险防范和化解措施",
+    "chunk": "c-036c6049b45b",
+    "quote": "施工阶段安排专人负责管理施工车辆进出，尽可能避免在道路易拥堵的高峰时段安排施工车辆进出场地",
+    "status": "verified",
+    "locator": "10.4",
+    "chunk_original": "c-036c6049b45b"
+  },
+  {
+    "id": "EV-组织-01",
+    "kind": "E1",
+    "doc": "11.1 项目组织管理框架",
+    "chunk": "c-e81b2fb16995",
+    "quote": "上海财经大学成立了建设领导小组，建立起三级管理方式",
+    "status": "verified",
+    "locator": "11.1",
+    "chunk_original": "c-e81b2fb16995"
+  },
+  {
+    "id": "EV-工期-01",
+    "kind": "E2",
+    "doc": "《上海市建设工程施工工期定额（建筑、市政和轨道交通工程）》",
+    "chunk": "c-749cc0303bb6",
+    "quote": "根据《上海市建设工程施工工期定额（建筑、市政和轨道交通工程）》，本项目建设工期约为24个月",
+    "status": "in_use_unverified",
+    "locator": "11.4",
+    "chunk_original": "c-749cc0303bb6"
+  },
+  {
+    "id": "EV-运营-01",
+    "kind": "E1",
+    "doc": "11.3 项目运营期管理",
+    "chunk": "c-815d12a2f622",
+    "quote": "由学校后勤部门实施物业管理、绿化保洁、电气、给排水等系统的运行等后勤保障服务",
+    "status": "verified",
+    "locator": "11.3",
+    "chunk_original": "c-815d12a2f622"
+  },
+  {
+    "id": "EV-规范-招标-01",
+    "kind": "E3",
+    "doc": "《中华人民共和国招标投标法》",
+    "chunk": "c-f2f29db0c4ec",
+    "quote": "《中华人民共和国招标投标法》",
+    "status": "in_use_unverified",
+    "locator": "12.1 编制依据",
+    "chunk_original": "c-6eb7d65def7f"
+  },
+  {
+    "id": "EV-规范-招标-02",
+    "kind": "E3",
+    "doc": "《必须招标的工程项目规定》（国家发展和改革委员会令第16号）",
+    "chunk": "c-7d427b1bb5f1",
+    "quote": "国家发展和改革委员会令第16号",
+    "status": "in_use_unverified",
+    "locator": "12.1",
+    "chunk_original": "c-eaf95f2b8ede"
+  },
+  {
+    "id": "EV-规范-招标-03",
+    "kind": "E3",
+    "doc": "《工程项目招标范围和规模标准规定》（国家发展计划委员会令第3号）",
+    "chunk": "c-649018d9612c",
+    "quote": "国家发展计划委员会令第3号",
+    "status": "in_use_unverified",
+    "locator": "12.1",
+    "chunk_original": "c-2d130027cf74"
+  },
+  {
+    "id": "EV-招标-01",
+    "kind": "E1",
+    "doc": "表12-1 项目招标基本情况",
+    "chunk": "c-c790d7886310",
+    "quote": "勘察 39（不招标）、设计 336、建安工程 10135、监理 239",
+    "status": "verified",
+    "locator": "12.4",
+    "chunk_original": "c-da7266de963d"
+  },
+  {
+    "id": "EV-估算依据-01",
+    "kind": "E5",
+    "doc": "13.1 估算依据",
+    "chunk": "c-279ba9a10632",
+    "quote": "建设工程概预算定额及造价资料；类似工程造价指标；提供的设计指标和工程概况",
+    "status": "verified",
+    "locator": "13.1",
+    "chunk_original": "c-933f41d1afd8"
+  },
+  {
+    "id": "EV-估算说明-01",
+    "kind": "E5",
+    "doc": "13.2 估算说明",
+    "chunk": "c-cf8f0b4e2668",
+    "quote": "本项目基本预备费按前两项之和的5%计算，未设置建设期涨价预备费",
+    "status": "verified",
+    "locator": "13.2",
+    "chunk_original": "c-cf8f0b4e2668"
+  },
+  {
+    "id": "EV-投资表-01",
+    "kind": "E5",
+    "doc": "表13-1 项目投资估算表",
+    "chunk": "c-7226f71c0917",
+    "quote": "总投资13032万元：建安工程费用11188、工程建设其他费用1171、基本预备费618、拆除费55",
+    "status": "verified",
+    "locator": "13.3 投资估算",
+    "chunk_original": "c-d8eaa250581d"
+  },
+  {
+    "id": "EV-造价依据-01",
+    "kind": "E2",
+    "doc": "财建〔2016〕504号（建设单位管理费）",
+    "chunk": "c-7226f71c0917",
+    "quote": "建设单位管理费 170 财建〔2016〕504号",
+    "status": "in_use_unverified",
+    "locator": "表13-1 二.1",
+    "chunk_original": "c-d8eaa250581d"
+  },
+  {
+    "id": "EV-造价依据-02",
+    "kind": "E2",
+    "doc": "计价格(2002)10号（设计费）",
+    "chunk": "c-7226f71c0917",
+    "quote": "设计费 336 参考计价格(2002)10号",
+    "status": "in_use_unverified",
+    "locator": "表13-1 二.4",
+    "chunk_original": "c-d8eaa250581d"
+  },
+  {
+    "id": "EV-造价依据-03",
+    "kind": "E2",
+    "doc": "发改价格(2007)670号（施工监理费）",
+    "chunk": "c-7226f71c0917",
+    "quote": "施工监理费 239 参考发改价格(2007)670号",
+    "status": "in_use_unverified",
+    "locator": "表13-1 二.7",
+    "chunk_original": "c-d8eaa250581d"
+  },
+  {
+    "id": "EV-造价依据-04",
+    "kind": "E2",
+    "doc": "类似工程造价指标",
+    "chunk": "c-8c97c05a28d4",
+    "quote": "类似工程造价指标",
+    "status": "insufficient",
+    "locator": "13.1",
+    "chunk_original": "c-0d003faf7d2f"
+  },
+  {
+    "id": "EV-财务-02",
+    "kind": "E1",
+    "doc": "表13-5 项目建设资金年度需求表",
+    "chunk": "c-193aad847a10",
+    "quote": "合计 4000+6500+2532=13032；其中拟申请国拨资金 1500+4000+500=6000；拟学校自筹资金 2500+2500+2032=7032",
+    "status": "verified",
+    "locator": "13.4",
+    "chunk_original": "c-193aad847a10"
+  },
+  {
+    "id": "EV-财务-01",
+    "kind": "E1",
+    "doc": "表13-2/13-3/13-4 学校2016-2018年财务状况",
+    "chunk": "c-198ee2fbd3f6",
+    "quote": "2018年资产总额373711.34万元，负债9452.14万元，净资产364259.20万元，资产负债率2.53%",
+    "status": "verified",
+    "locator": "13.4",
+    "chunk_original": "c-198ee2fbd3f6"
+  },
+  {
+    "id": "EV-附件-01",
+    "kind": "E1",
+    "doc": "附件1 中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+    "chunk": "c-f508d7cfad78",
+    "quote": "附件1.中共上海财经大学党委常委会议纪要（上财委会〔2019〕5号）",
+    "status": "verified",
+    "locator": "附件",
+    "chunk_original": "c-2ef86d73a905"
+  },
+  {
+    "id": "EV-附件-02",
+    "kind": "E1",
+    "doc": "附件2 项目资金筹措方案说明",
+    "chunk": "c-2d6d11f26a8f",
+    "quote": "附件2：项目资金筹措方案说明",
+    "status": "verified",
+    "locator": "附件",
+    "chunk_original": "c-2d6d11f26a8f"
+  },
+  {
+    "id": "EV-附件-03",
+    "kind": "E5",
+    "doc": "附件3 上海财经大学虹口校区规划总平面图",
+    "chunk": "c-c4ef114e6fb9",
+    "quote": "附件3：上海财经大学虹口校区规划总平面图",
+    "status": "verified",
+    "locator": "附件",
+    "chunk_original": "c-c4ef114e6fb9"
+  },
+  {
+    "id": "EV-缺口-02",
+    "kind": "E1",
+    "doc": "原有第五教学楼拆除手续",
+    "chunk": "c-5e339feba7c8",
+    "quote": "上海财经大学中山北一路校区原有第五教学楼拆除手续（待补充）",
+    "status": "insufficient",
+    "locator": "附件",
+    "chunk_original": "c-0013ced7e298"
+  },
+  {
+    "id": "ev-N-a401574f2a5a",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-a401574f2a5a"
+  },
+  {
+    "id": "ev-N-924bfe9e84e1",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-924bfe9e84e1"
+  },
+  {
+    "id": "ev-N-61c229a9d6b7",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-61c229a9d6b7"
+  },
+  {
+    "id": "ev-N-043715904e92",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-043715904e92"
+  },
+  {
+    "id": "ev-N-1349678c3c0f",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-1349678c3c0f"
+  },
+  {
+    "id": "ev-N-933f9428a895",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-933f9428a895"
+  },
+  {
+    "id": "ev-N-5a111cfec9f6",
+    "claim": "",
+    "doc": "c-de837f636aa0",
+    "span": [
+      0,
+      331
+    ],
+    "kind": "fact",
+    "fact": "N-5a111cfec9f6"
+  },
+  {
+    "id": "ev-N-e76603e442a7",
+    "claim": "",
+    "doc": "c-3f9e4a26e26d",
+    "span": [
+      0,
+      26
+    ],
+    "kind": "fact",
+    "fact": "N-e76603e442a7"
+  },
+  {
+    "id": "ev-N-47ae73a84dc9",
+    "claim": "",
+    "doc": "c-3f9e4a26e26d",
+    "span": [
+      0,
+      26
+    ],
+    "kind": "fact",
+    "fact": "N-47ae73a84dc9"
+  },
+  {
+    "id": "ev-N-5a334efaaea3",
+    "claim": "",
+    "doc": "c-129c2dbdd766",
+    "span": [
+      0,
+      108
+    ],
+    "kind": "fact",
+    "fact": "N-5a334efaaea3"
+  },
+  {
+    "id": "ev-N-4299f5d02831",
+    "claim": "",
+    "doc": "c-3f5a2f4d0ca7",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-4299f5d02831"
+  },
+  {
+    "id": "ev-N-8f432cf2e264",
+    "claim": "",
+    "doc": "c-3f5a2f4d0ca7",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-8f432cf2e264"
+  },
+  {
+    "id": "ev-N-8449f71c5773",
+    "claim": "",
+    "doc": "c-3f5a2f4d0ca7",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-8449f71c5773"
+  },
+  {
+    "id": "ev-N-8ca43cb64560",
+    "claim": "",
+    "doc": "c-3f5a2f4d0ca7",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-8ca43cb64560"
+  },
+  {
+    "id": "ev-N-51ac31b30619",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-51ac31b30619"
+  },
+  {
+    "id": "ev-N-70459ce61f9b",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-70459ce61f9b"
+  },
+  {
+    "id": "ev-N-a831d44a85f1",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-a831d44a85f1"
+  },
+  {
+    "id": "ev-N-24d5bb9ca97f",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-24d5bb9ca97f"
+  },
+  {
+    "id": "ev-N-c790ee245521",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-c790ee245521"
+  },
+  {
+    "id": "ev-N-2175c0aa83e6",
+    "claim": "",
+    "doc": "c-9420f385e8f5",
+    "span": [
+      0,
+      104
+    ],
+    "kind": "fact",
+    "fact": "N-2175c0aa83e6"
+  },
+  {
+    "id": "ev-N-7e2dca3b7d0c",
+    "claim": "",
+    "doc": "c-ea950cb1598c",
+    "span": [
+      0,
+      47
+    ],
+    "kind": "fact",
+    "fact": "N-7e2dca3b7d0c"
+  },
+  {
+    "id": "ev-N-802eeedef8cb",
+    "claim": "",
+    "doc": "c-ea950cb1598c",
+    "span": [
+      0,
+      47
+    ],
+    "kind": "fact",
+    "fact": "N-802eeedef8cb"
+  },
+  {
+    "id": "ev-N-f9ce8af03fc0",
+    "claim": "",
+    "doc": "c-ea950cb1598c",
+    "span": [
+      0,
+      47
+    ],
+    "kind": "fact",
+    "fact": "N-f9ce8af03fc0"
+  },
+  {
+    "id": "ev-N-256337bd52c5",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-256337bd52c5"
+  },
+  {
+    "id": "ev-N-ae0e16e8ffda",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-ae0e16e8ffda"
+  },
+  {
+    "id": "ev-N-a676855d455f",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-a676855d455f"
+  },
+  {
+    "id": "ev-N-834f7a185cea",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-834f7a185cea"
+  },
+  {
+    "id": "ev-N-4bead401268c",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-4bead401268c"
+  },
+  {
+    "id": "ev-N-35745c2c896d",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-35745c2c896d"
+  },
+  {
+    "id": "ev-N-7c2ba8a26d0b",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-7c2ba8a26d0b"
+  },
+  {
+    "id": "ev-N-9fbee31a8232",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-9fbee31a8232"
+  },
+  {
+    "id": "ev-N-1c60e0220ade",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-1c60e0220ade"
+  },
+  {
+    "id": "ev-N-6f16d28f00ad",
+    "claim": "",
+    "doc": "c-e6649218e0c0",
+    "span": [
+      0,
+      158
+    ],
+    "kind": "fact",
+    "fact": "N-6f16d28f00ad"
+  },
+  {
+    "id": "ev-N-f1d5baf0c89b",
+    "claim": "",
+    "doc": "c-f35eec1d877c",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-f1d5baf0c89b"
+  },
+  {
+    "id": "ev-N-19a3e510b260",
+    "claim": "",
+    "doc": "c-f35eec1d877c",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-19a3e510b260"
+  },
+  {
+    "id": "ev-N-e20265e53710",
+    "claim": "",
+    "doc": "c-f35eec1d877c",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-e20265e53710"
+  },
+  {
+    "id": "ev-N-4e9960d6ccda",
+    "claim": "",
+    "doc": "c-f35eec1d877c",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-4e9960d6ccda"
+  },
+  {
+    "id": "ev-N-c394bad87430",
+    "claim": "",
+    "doc": "c-067b6352bde6",
+    "span": [
+      0,
+      108
+    ],
+    "kind": "fact",
+    "fact": "N-c394bad87430"
+  },
+  {
+    "id": "ev-N-85a9a5716f1d",
+    "claim": "",
+    "doc": "c-067b6352bde6",
+    "span": [
+      0,
+      108
+    ],
+    "kind": "fact",
+    "fact": "N-85a9a5716f1d"
+  },
+  {
+    "id": "ev-N-34f59d23f033",
+    "claim": "",
+    "doc": "c-067b6352bde6",
+    "span": [
+      0,
+      108
+    ],
+    "kind": "fact",
+    "fact": "N-34f59d23f033"
+  },
+  {
+    "id": "ev-N-e308966174c1",
+    "claim": "",
+    "doc": "c-067b6352bde6",
+    "span": [
+      0,
+      108
+    ],
+    "kind": "fact",
+    "fact": "N-e308966174c1"
+  },
+  {
+    "id": "ev-N-9814e9f0db35",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-9814e9f0db35"
+  },
+  {
+    "id": "ev-N-8ebe6fdf6b9a",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-8ebe6fdf6b9a"
+  },
+  {
+    "id": "ev-N-84523f29f638",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-84523f29f638"
+  },
+  {
+    "id": "ev-N-d0e09bfa0818",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-d0e09bfa0818"
+  },
+  {
+    "id": "ev-N-6fef5f8bfa13",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-6fef5f8bfa13"
+  },
+  {
+    "id": "ev-N-254f45e2d082",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-254f45e2d082"
+  },
+  {
+    "id": "ev-N-239f7a20f877",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-239f7a20f877"
+  },
+  {
+    "id": "ev-N-57ed2116b6e9",
+    "claim": "",
+    "doc": "c-6006b1889f95",
+    "span": [
+      0,
+      338
+    ],
+    "kind": "fact",
+    "fact": "N-57ed2116b6e9"
+  },
+  {
+    "id": "ev-N-a3f0d71e10e5",
+    "claim": "",
+    "doc": "c-e6a978691d8c",
+    "span": [
+      0,
+      199
+    ],
+    "kind": "fact",
+    "fact": "N-a3f0d71e10e5"
+  },
+  {
+    "id": "ev-N-fa0dd79ca413",
+    "claim": "",
+    "doc": "c-fc1be7087c63",
+    "span": [
+      0,
+      252
+    ],
+    "kind": "fact",
+    "fact": "N-fa0dd79ca413"
+  },
+  {
+    "id": "ev-N-37d514c98f96",
+    "claim": "",
+    "doc": "c-129739dbd201",
+    "span": [
+      0,
+      311
+    ],
+    "kind": "fact",
+    "fact": "N-37d514c98f96"
+  },
+  {
+    "id": "ev-N-723bfe3fc6d2",
+    "claim": "",
+    "doc": "c-129739dbd201",
+    "span": [
+      0,
+      311
+    ],
+    "kind": "fact",
+    "fact": "N-723bfe3fc6d2"
+  },
+  {
+    "id": "ev-N-e5f7701a892f",
+    "claim": "",
+    "doc": "c-19ef774b3e1c",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-e5f7701a892f"
+  },
+  {
+    "id": "ev-N-f97cbdbe6afe",
+    "claim": "",
+    "doc": "c-19ef774b3e1c",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-f97cbdbe6afe"
+  },
+  {
+    "id": "ev-N-4ae46c29d85f",
+    "claim": "",
+    "doc": "c-19ef774b3e1c",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-4ae46c29d85f"
+  },
+  {
+    "id": "ev-N-2350885b04e2",
+    "claim": "",
+    "doc": "c-19ef774b3e1c",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-2350885b04e2"
+  },
+  {
+    "id": "ev-N-9bd50795df49",
+    "claim": "",
+    "doc": "c-2ac8aaa4a9e1",
+    "span": [
+      0,
+      276
+    ],
+    "kind": "fact",
+    "fact": "N-9bd50795df49"
+  },
+  {
+    "id": "ev-N-53ad5074ad4a",
+    "claim": "",
+    "doc": "c-b5613f87479d",
+    "span": [
+      0,
+      255
+    ],
+    "kind": "fact",
+    "fact": "N-53ad5074ad4a"
+  },
+  {
+    "id": "ev-N-ee882814713f",
+    "claim": "",
+    "doc": "c-2ac8aaa4a9e1",
+    "span": [
+      0,
+      276
+    ],
+    "kind": "fact",
+    "fact": "N-ee882814713f"
+  },
+  {
+    "id": "ev-N-85e27f0ad472",
+    "claim": "",
+    "doc": "c-ceac393c790a",
+    "span": [
+      0,
+      132
+    ],
+    "kind": "fact",
+    "fact": "N-85e27f0ad472"
+  },
+  {
+    "id": "ev-N-5780eeb6777a",
+    "claim": "",
+    "doc": "c-ec5e925841ef",
+    "span": [
+      0,
+      199
+    ],
+    "kind": "fact",
+    "fact": "N-5780eeb6777a"
+  },
+  {
+    "id": "ev-N-9d7e4c2b9b50",
+    "claim": "",
+    "doc": "c-4d8b131dacf8",
+    "span": [
+      0,
+      155
+    ],
+    "kind": "fact",
+    "fact": "N-9d7e4c2b9b50"
+  },
+  {
+    "id": "ev-N-4752fe0c4e17",
+    "claim": "",
+    "doc": "c-4d8b131dacf8",
+    "span": [
+      0,
+      155
+    ],
+    "kind": "fact",
+    "fact": "N-4752fe0c4e17"
+  },
+  {
+    "id": "ev-N-f24d0d077f03",
+    "claim": "",
+    "doc": "c-4d8b131dacf8",
+    "span": [
+      0,
+      155
+    ],
+    "kind": "fact",
+    "fact": "N-f24d0d077f03"
+  },
+  {
+    "id": "ev-N-8a66c92ca8a4",
+    "claim": "",
+    "doc": "c-3a040d14af4d",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-8a66c92ca8a4"
+  },
+  {
+    "id": "ev-N-c44bd9bd0df3",
+    "claim": "",
+    "doc": "c-3a040d14af4d",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-c44bd9bd0df3"
+  },
+  {
+    "id": "ev-N-a55e26642db6",
+    "claim": "",
+    "doc": "c-3a040d14af4d",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-a55e26642db6"
+  },
+  {
+    "id": "ev-N-fcd2cfa44fc4",
+    "claim": "",
+    "doc": "c-7509f0d21229",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-fcd2cfa44fc4"
+  },
+  {
+    "id": "ev-N-8984af8e2bbf",
+    "claim": "",
+    "doc": "c-7509f0d21229",
+    "span": [
+      0,
+      186
+    ],
+    "kind": "fact",
+    "fact": "N-8984af8e2bbf"
+  },
+  {
+    "id": "ev-N-7db13fda38e0",
+    "claim": "",
+    "doc": "c-0b1e344882c9",
+    "span": [
+      0,
+      58
+    ],
+    "kind": "fact",
+    "fact": "N-7db13fda38e0"
+  },
+  {
+    "id": "ev-N-6cd37976dd8f",
+    "claim": "",
+    "doc": "c-50352f4b9d99",
+    "span": [
+      0,
+      70
+    ],
+    "kind": "fact",
+    "fact": "N-6cd37976dd8f"
+  },
+  {
+    "id": "ev-N-81e15dad5d7e",
+    "claim": "",
+    "doc": "c-54b04a30becc",
+    "span": [
+      0,
+      68
+    ],
+    "kind": "fact",
+    "fact": "N-81e15dad5d7e"
+  },
+  {
+    "id": "ev-N-c0a7fc8afdaf",
+    "claim": "",
+    "doc": "c-223358da3e9d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-c0a7fc8afdaf"
+  },
+  {
+    "id": "ev-N-687ac5c1dfdf",
+    "claim": "",
+    "doc": "c-223358da3e9d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-687ac5c1dfdf"
+  },
+  {
+    "id": "ev-N-29c0367999ed",
+    "claim": "",
+    "doc": "c-223358da3e9d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-29c0367999ed"
+  },
+  {
+    "id": "ev-N-0118435ab5f0",
+    "claim": "",
+    "doc": "c-b7027573785d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-0118435ab5f0"
+  },
+  {
+    "id": "ev-N-1713829984c4",
+    "claim": "",
+    "doc": "c-b7027573785d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-1713829984c4"
+  },
+  {
+    "id": "ev-N-be54469ceabb",
+    "claim": "",
+    "doc": "c-b7027573785d",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-be54469ceabb"
+  },
+  {
+    "id": "ev-N-9949f87bf2ae",
+    "claim": "",
+    "doc": "c-9d9be0511932",
+    "span": [
+      0,
+      75
+    ],
+    "kind": "fact",
+    "fact": "N-9949f87bf2ae"
+  },
+  {
+    "id": "ev-N-f853aaf03baf",
+    "claim": "",
+    "doc": "c-9d9be0511932",
+    "span": [
+      0,
+      75
+    ],
+    "kind": "fact",
+    "fact": "N-f853aaf03baf"
+  },
+  {
+    "id": "ev-N-28f623934060",
+    "claim": "",
+    "doc": "c-9d9be0511932",
+    "span": [
+      0,
+      75
+    ],
+    "kind": "fact",
+    "fact": "N-28f623934060"
+  },
+  {
+    "id": "ev-N-6dcf7ef888b2",
+    "claim": "",
+    "doc": "c-f397b7a348a5",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-6dcf7ef888b2"
+  },
+  {
+    "id": "ev-N-a2aedb523791",
+    "claim": "",
+    "doc": "c-f397b7a348a5",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-a2aedb523791"
+  },
+  {
+    "id": "ev-N-fa5b27eaf63d",
+    "claim": "",
+    "doc": "c-f397b7a348a5",
+    "span": [
+      0,
+      74
+    ],
+    "kind": "fact",
+    "fact": "N-fa5b27eaf63d"
+  },
+  {
+    "id": "ev-N-d63d65ebe9a4",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-d63d65ebe9a4"
+  },
+  {
+    "id": "ev-N-3e141a1e1100",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-3e141a1e1100"
+  },
+  {
+    "id": "ev-N-ee95096f1d6e",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-ee95096f1d6e"
+  },
+  {
+    "id": "ev-N-d1cb826c6ec2",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-d1cb826c6ec2"
+  },
+  {
+    "id": "ev-N-3007b66b8f03",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-3007b66b8f03"
+  },
+  {
+    "id": "ev-N-fd67f30a272a",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-fd67f30a272a"
+  },
+  {
+    "id": "ev-N-ba967b01a1cc",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-ba967b01a1cc"
+  },
+  {
+    "id": "ev-N-c6641b10b1d4",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-c6641b10b1d4"
+  },
+  {
+    "id": "ev-N-87c9bd959ddb",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-87c9bd959ddb"
+  },
+  {
+    "id": "ev-N-7f9fd332041d",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-7f9fd332041d"
+  },
+  {
+    "id": "ev-N-fc449bc873d7",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-fc449bc873d7"
+  },
+  {
+    "id": "ev-N-116f0e1c3acf",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-116f0e1c3acf"
+  },
+  {
+    "id": "ev-N-a00694625be6",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-a00694625be6"
+  },
+  {
+    "id": "ev-N-4698f7d0b38e",
+    "claim": "",
+    "doc": "c-d8ff50ae58f4",
+    "span": [
+      0,
+      298
+    ],
+    "kind": "fact",
+    "fact": "N-4698f7d0b38e"
+  },
+  {
+    "id": "ev-N-4f9c2807a62b",
+    "claim": "",
+    "doc": "c-e0e66b6fd870",
+    "span": [
+      0,
+      156
+    ],
+    "kind": "fact",
+    "fact": "N-4f9c2807a62b"
+  },
+  {
+    "id": "ev-N-cc781dfeeb3b",
+    "claim": "",
+    "doc": "c-e0e66b6fd870",
+    "span": [
+      0,
+      156
+    ],
+    "kind": "fact",
+    "fact": "N-cc781dfeeb3b"
+  },
+  {
+    "id": "ev-N-2820b26c3f35",
+    "claim": "",
+    "doc": "c-79069a20782b",
+    "span": [
+      0,
+      182
+    ],
+    "kind": "fact",
+    "fact": "N-2820b26c3f35"
+  },
+  {
+    "id": "ev-N-978a14b5186b",
+    "claim": "",
+    "doc": "c-79069a20782b",
+    "span": [
+      0,
+      182
+    ],
+    "kind": "fact",
+    "fact": "N-978a14b5186b"
+  },
+  {
+    "id": "ev-N-f07ab421166b",
+    "claim": "",
+    "doc": "c-79069a20782b",
+    "span": [
+      0,
+      182
+    ],
+    "kind": "fact",
+    "fact": "N-f07ab421166b"
+  },
+  {
+    "id": "ev-N-b3c95b844d02",
+    "claim": "",
+    "doc": "c-79069a20782b",
+    "span": [
+      0,
+      182
+    ],
+    "kind": "fact",
+    "fact": "N-b3c95b844d02"
+  },
+  {
+    "id": "ev-N-bc07423e28a8",
+    "claim": "",
+    "doc": "c-c011c764a24d",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-bc07423e28a8"
+  },
+  {
+    "id": "ev-N-49949310ec19",
+    "claim": "",
+    "doc": "c-c011c764a24d",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-49949310ec19"
+  },
+  {
+    "id": "ev-N-55c9c86a5a6c",
+    "claim": "",
+    "doc": "c-c011c764a24d",
+    "span": [
+      0,
+      197
+    ],
+    "kind": "fact",
+    "fact": "N-55c9c86a5a6c"
+  },
+  {
+    "id": "ev-N-7c3d781cf6f1",
+    "claim": "",
+    "doc": "c-79069a20782b",
+    "span": [
+      0,
+      182
+    ],
+    "kind": "fact",
+    "fact": "N-7c3d781cf6f1"
+  },
+  {
+    "id": "ev-N-eb7b8b1d20d8",
+    "claim": "",
+    "doc": "c-b506cede9b46",
+    "span": [
+      0,
+      123
+    ],
+    "kind": "fact",
+    "fact": "N-eb7b8b1d20d8"
+  },
+  {
+    "id": "ev-N-7384b88f646f",
+    "claim": "",
+    "doc": "c-b506cede9b46",
+    "span": [
+      0,
+      123
+    ],
+    "kind": "fact",
+    "fact": "N-7384b88f646f"
+  },
+  {
+    "id": "ev-N-2a335b2708af",
+    "claim": "",
+    "doc": "c-a4535feae2f8",
+    "span": [
+      0,
+      72
+    ],
+    "kind": "fact",
+    "fact": "N-2a335b2708af"
+  },
+  {
+    "id": "ev-N-be7451617729",
+    "claim": "",
+    "doc": "c-a4535feae2f8",
+    "span": [
+      0,
+      72
+    ],
+    "kind": "fact",
+    "fact": "N-be7451617729"
+  },
+  {
+    "id": "ev-N-23414ed53b65",
+    "claim": "",
+    "doc": "c-c6ad2c50804d",
+    "span": [
+      0,
+      45
+    ],
+    "kind": "fact",
+    "fact": "N-23414ed53b65"
+  },
+  {
+    "id": "ev-N-443180e0efd7",
+    "claim": "",
+    "doc": "c-c6ad2c50804d",
+    "span": [
+      0,
+      45
+    ],
+    "kind": "fact",
+    "fact": "N-443180e0efd7"
+  },
+  {
+    "id": "ev-N-08b323fd83aa",
+    "claim": "",
+    "doc": "c-df1ebc3f5d4e",
+    "span": [
+      0,
+      56
+    ],
+    "kind": "fact",
+    "fact": "N-08b323fd83aa"
+  },
+  {
+    "id": "ev-N-c1c4a9d66f5b",
+    "claim": "",
+    "doc": "c-1bbf63d02596",
+    "span": [
+      0,
+      30
+    ],
+    "kind": "fact",
+    "fact": "N-c1c4a9d66f5b"
+  },
+  {
+    "id": "ev-N-f0fd96a3a38e",
+    "claim": "",
+    "doc": "c-352c7af31132",
+    "span": [
+      0,
+      119
+    ],
+    "kind": "fact",
+    "fact": "N-f0fd96a3a38e"
+  },
+  {
+    "id": "ev-N-4605eb02d134",
+    "claim": "",
+    "doc": "c-0369985c4547",
+    "span": [
+      0,
+      98
+    ],
+    "kind": "fact",
+    "fact": "N-4605eb02d134"
+  },
+  {
+    "id": "ev-N-170213817af5",
+    "claim": "",
+    "doc": "c-0369985c4547",
+    "span": [
+      0,
+      98
+    ],
+    "kind": "fact",
+    "fact": "N-170213817af5"
+  },
+  {
+    "id": "ev-N-e35642a4b42f",
+    "claim": "",
+    "doc": "c-20bd988bc554",
+    "span": [
+      0,
+      18
+    ],
+    "kind": "fact",
+    "fact": "N-e35642a4b42f"
+  },
+  {
+    "id": "ev-N-2eb688971791",
+    "claim": "",
+    "doc": "c-036930256da3",
+    "span": [
+      0,
+      23
+    ],
+    "kind": "fact",
+    "fact": "N-2eb688971791"
+  },
+  {
+    "id": "ev-N-70b8c5416e59",
+    "claim": "",
+    "doc": "c-b712a72da18c",
+    "span": [
+      0,
+      19
+    ],
+    "kind": "fact",
+    "fact": "N-70b8c5416e59"
+  },
+  {
+    "id": "ev-N-e7ebf407a68f",
+    "claim": "",
+    "doc": "c-6c7ca103aee7",
+    "span": [
+      0,
+      11
+    ],
+    "kind": "fact",
+    "fact": "N-e7ebf407a68f"
+  },
+  {
+    "id": "ev-N-91624f921ea8",
+    "claim": "",
+    "doc": "c-9a6bda6672cf",
+    "span": [
+      0,
+      13
+    ],
+    "kind": "fact",
+    "fact": "N-91624f921ea8"
+  },
+  {
+    "id": "ev-N-e0f3cb0c51f5",
+    "claim": "",
+    "doc": "c-6e1672d1f000",
+    "span": [
+      0,
+      36
+    ],
+    "kind": "fact",
+    "fact": "N-e0f3cb0c51f5"
+  },
+  {
+    "id": "ev-N-ad4f61baf248",
+    "claim": "",
+    "doc": "c-6e1672d1f000",
+    "span": [
+      0,
+      36
+    ],
+    "kind": "fact",
+    "fact": "N-ad4f61baf248"
+  },
+  {
+    "id": "ev-N-3d4cd9a6a1f8",
+    "claim": "",
+    "doc": "c-9d7589c4c652",
+    "span": [
+      0,
+      19
+    ],
+    "kind": "fact",
+    "fact": "N-3d4cd9a6a1f8"
+  },
+  {
+    "id": "ev-N-64e67123ddc0",
+    "claim": "",
+    "doc": "c-806484d7984a",
+    "span": [
+      0,
+      26
+    ],
+    "kind": "fact",
+    "fact": "N-64e67123ddc0"
+  },
+  {
+    "id": "ev-N-629089fe05c9",
+    "claim": "",
+    "doc": "c-806484d7984a",
+    "span": [
+      0,
+      26
+    ],
+    "kind": "fact",
+    "fact": "N-629089fe05c9"
+  },
+  {
+    "id": "ev-N-0a6ab4d9cdf6",
+    "claim": "",
+    "doc": "c-2f0db31254e6",
+    "span": [
+      0,
+      16
+    ],
+    "kind": "fact",
+    "fact": "N-0a6ab4d9cdf6"
+  },
+  {
+    "id": "ev-N-b5d8de16a2a7",
+    "claim": "",
+    "doc": "c-149d6d9336e4",
+    "span": [
+      0,
+      13
+    ],
+    "kind": "fact",
+    "fact": "N-b5d8de16a2a7"
+  },
+  {
+    "id": "ev-N-d8f1204ef1a9",
+    "claim": "",
+    "doc": "c-54ff18ab0ff4",
+    "span": [
+      0,
+      12
+    ],
+    "kind": "fact",
+    "fact": "N-d8f1204ef1a9"
+  },
+  {
+    "id": "ev-N-7a09dcc73ee3",
+    "claim": "",
+    "doc": "c-fad036131263",
+    "span": [
+      0,
+      20
+    ],
+    "kind": "fact",
+    "fact": "N-7a09dcc73ee3"
+  },
+  {
+    "id": "ev-N-63b071767842",
+    "claim": "",
+    "doc": "c-e7960e774867",
+    "span": [
+      0,
+      16
+    ],
+    "kind": "fact",
+    "fact": "N-63b071767842"
+  },
+  {
+    "id": "ev-N-b44117496caa",
+    "claim": "",
+    "doc": "c-8a61534c364e",
+    "span": [
+      0,
+      28
+    ],
+    "kind": "fact",
+    "fact": "N-b44117496caa"
+  },
+  {
+    "id": "ev-N-52cbf5f50c8a",
+    "claim": "",
+    "doc": "c-3ea4fcf65543",
+    "span": [
+      0,
+      26
+    ],
+    "kind": "fact",
+    "fact": "N-52cbf5f50c8a"
+  },
+  {
+    "id": "ev-N-3a2fcf27bbe9",
+    "claim": "",
+    "doc": "c-49f2eeaf2bb6",
+    "span": [
+      0,
+      18
+    ],
+    "kind": "fact",
+    "fact": "N-3a2fcf27bbe9"
+  },
+  {
+    "id": "ev-N-81d066d6ec28",
+    "claim": "",
+    "doc": "c-9dfd85b71455",
+    "span": [
+      0,
+      17
+    ],
+    "kind": "fact",
+    "fact": "N-81d066d6ec28"
+  },
+  {
+    "id": "ev-N-4c2e3686b75a",
+    "claim": "",
+    "doc": "c-47bb9a10d950",
+    "span": [
+      0,
+      17
+    ],
+    "kind": "fact",
+    "fact": "N-4c2e3686b75a"
+  },
+  {
+    "id": "ev-N-1b1549fc44f9",
+    "claim": "",
+    "doc": "c-f747dba1bb40",
+    "span": [
+      0,
+      42
+    ],
+    "kind": "fact",
+    "fact": "N-1b1549fc44f9"
+  },
+  {
+    "id": "ev-N-25ae699e50ec",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-25ae699e50ec"
+  },
+  {
+    "id": "ev-N-68d9e0d6fc8f",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-68d9e0d6fc8f"
+  },
+  {
+    "id": "ev-N-b8e4317775b7",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-b8e4317775b7"
+  },
+  {
+    "id": "ev-N-6f81bff4c721",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-6f81bff4c721"
+  },
+  {
+    "id": "ev-N-2a951c39f9ae",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-2a951c39f9ae"
+  },
+  {
+    "id": "ev-N-514034bcf07b",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-514034bcf07b"
+  },
+  {
+    "id": "ev-N-dbb9f4111022",
+    "claim": "",
+    "doc": "c-8f2dacb35c87",
+    "span": [
+      0,
+      106
+    ],
+    "kind": "fact",
+    "fact": "N-dbb9f4111022"
+  },
+  {
+    "id": "ev-N-f08415dc191a",
+    "claim": "",
+    "doc": "c-ed400c9129b8",
+    "span": [
+      0,
+      70
+    ],
+    "kind": "fact",
+    "fact": "N-f08415dc191a"
+  },
+  {
+    "id": "ev-N-8122fb4283a7",
+    "claim": "",
+    "doc": "c-3d4daa4153d3",
+    "span": [
+      0,
+      32
+    ],
+    "kind": "fact",
+    "fact": "N-8122fb4283a7"
+  },
+  {
+    "id": "ev-N-c0667d161473",
+    "claim": "",
+    "doc": "c-3d4daa4153d3",
+    "span": [
+      0,
+      32
+    ],
+    "kind": "fact",
+    "fact": "N-c0667d161473"
+  },
+  {
+    "id": "ev-N-5e469e239754",
+    "claim": "",
+    "doc": "c-81593ee480dc",
+    "span": [
+      0,
+      37
+    ],
+    "kind": "fact",
+    "fact": "N-5e469e239754"
+  },
+  {
+    "id": "ev-N-666b00ce7f1d",
+    "claim": "",
+    "doc": "c-8090a3ade098",
+    "span": [
+      0,
+      69
+    ],
+    "kind": "fact",
+    "fact": "N-666b00ce7f1d"
+  },
+  {
+    "id": "ev-N-acc0ada964eb",
+    "claim": "",
+    "doc": "c-c01c12731457",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-acc0ada964eb"
+  },
+  {
+    "id": "ev-N-40080fc4b013",
+    "claim": "",
+    "doc": "c-c01c12731457",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-40080fc4b013"
+  },
+  {
+    "id": "ev-N-82e94e249e8f",
+    "claim": "",
+    "doc": "c-c01c12731457",
+    "span": [
+      0,
+      50
+    ],
+    "kind": "fact",
+    "fact": "N-82e94e249e8f"
+  },
+  {
+    "id": "ev-N-7e3b1c290e21",
+    "claim": "",
+    "doc": "c-3f1ae8fee030",
+    "span": [
+      0,
+      19
+    ],
+    "kind": "fact",
+    "fact": "N-7e3b1c290e21"
+  },
+  {
+    "id": "ev-N-9a5357236ac0",
+    "claim": "",
+    "doc": "c-db5ccbce7148",
+    "span": [
+      0,
+      17
+    ],
+    "kind": "fact",
+    "fact": "N-9a5357236ac0"
+  },
+  {
+    "id": "ev-N-5f65bf80349c",
+    "claim": "",
+    "doc": "c-eb6f21596ea3",
+    "span": [
+      0,
+      10
+    ],
+    "kind": "fact",
+    "fact": "N-5f65bf80349c"
+  },
+  {
+    "id": "ev-N-3f1810ee3a33",
+    "claim": "",
+    "doc": "c-354e031a9916",
+    "span": [
+      0,
+      349
+    ],
+    "kind": "fact",
+    "fact": "N-3f1810ee3a33"
+  },
+  {
+    "id": "ev-N-d33295e7e784",
+    "claim": "",
+    "doc": "c-354e031a9916",
+    "span": [
+      0,
+      349
+    ],
+    "kind": "fact",
+    "fact": "N-d33295e7e784"
+  },
+  {
+    "id": "ev-N-f4add4e0e79a",
+    "claim": "",
+    "doc": "c-354e031a9916",
+    "span": [
+      0,
+      349
+    ],
+    "kind": "fact",
+    "fact": "N-f4add4e0e79a"
+  },
+  {
+    "id": "ev-N-932c3574e3c1",
+    "claim": "",
+    "doc": "c-354e031a9916",
+    "span": [
+      0,
+      349
+    ],
+    "kind": "fact",
+    "fact": "N-932c3574e3c1"
+  },
+  {
+    "id": "ev-N-c67295c8a345",
+    "claim": "",
+    "doc": "c-2667fcd945cf",
+    "span": [
+      0,
+      40
+    ],
+    "kind": "fact",
+    "fact": "N-c67295c8a345"
+  },
+  {
+    "id": "ev-N-30650afc51a8",
+    "claim": "",
+    "doc": "c-2667fcd945cf",
+    "span": [
+      0,
+      40
+    ],
+    "kind": "fact",
+    "fact": "N-30650afc51a8"
+  },
+  {
+    "id": "ev-N-0372fd56d2be",
+    "claim": "",
+    "doc": "c-354e031a9916",
+    "span": [
+      0,
+      349
+    ],
+    "kind": "fact",
+    "fact": "N-0372fd56d2be"
+  },
+  {
+    "id": "ev-N-07c3ab150860",
+    "claim": "",
+    "doc": "c-406b862890ab",
+    "span": [
+      0,
+      40
+    ],
+    "kind": "fact",
+    "fact": "N-07c3ab150860"
+  },
+  {
+    "id": "ev-N-60f348145540",
+    "claim": "",
+    "doc": "c-406b862890ab",
+    "span": [
+      0,
+      40
+    ],
+    "kind": "fact",
+    "fact": "N-60f348145540"
+  },
+  {
+    "id": "ev-N-a3177065531f",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-a3177065531f"
+  },
+  {
+    "id": "ev-N-6a9d5e15a008",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-6a9d5e15a008"
+  },
+  {
+    "id": "ev-N-338014cbccdd",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-338014cbccdd"
+  },
+  {
+    "id": "ev-N-54705a4f8686",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-54705a4f8686"
+  },
+  {
+    "id": "ev-N-afd00934e365",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-afd00934e365"
+  },
+  {
+    "id": "ev-N-6958c266bea0",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-6958c266bea0"
+  },
+  {
+    "id": "ev-N-ae0d5d610d0a",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-ae0d5d610d0a"
+  },
+  {
+    "id": "ev-N-5e1d9ecdd02a",
+    "claim": "",
+    "doc": "c-8aa08d82d0f2",
+    "span": [
+      0,
+      215
+    ],
+    "kind": "fact",
+    "fact": "N-5e1d9ecdd02a"
+  },
+  {
+    "id": "ev-N-827b158df74b",
+    "claim": "",
+    "doc": "c-cf1076e64a43",
+    "span": [
+      0,
+      53
+    ],
+    "kind": "fact",
+    "fact": "N-827b158df74b"
+  },
+  {
+    "id": "ev-N-0bc26894f1d0",
+    "claim": "",
+    "doc": "c-cf1076e64a43",
+    "span": [
+      0,
+      53
+    ],
+    "kind": "fact",
+    "fact": "N-0bc26894f1d0"
+  },
+  {
+    "id": "ev-N-d899ed81ebaa",
+    "claim": "",
+    "doc": "c-cf1076e64a43",
+    "span": [
+      0,
+      53
+    ],
+    "kind": "fact",
+    "fact": "N-d899ed81ebaa"
+  },
+  {
+    "id": "ev-N-4e37bc3a681a",
+    "claim": "",
+    "doc": "c-a6e7789cf2d5",
+    "span": [
+      0,
+      109
+    ],
+    "kind": "fact",
+    "fact": "N-4e37bc3a681a"
+  },
+  {
+    "id": "ev-N-0207f315dd4c",
+    "claim": "",
+    "doc": "c-ab02f790a154",
+    "span": [
+      0,
+      40
+    ],
+    "kind": "fact",
+    "fact": "N-0207f315dd4c"
+  },
+  {
+    "id": "ev-N-b8e7bf4b7c1d",
+    "claim": "",
+    "doc": "c-100dadfa18ab",
+    "span": [
+      0,
+      45
+    ],
+    "kind": "fact",
+    "fact": "N-b8e7bf4b7c1d"
+  },
+  {
+    "id": "ev-N-944c3d4af11d",
+    "claim": "",
+    "doc": "c-100dadfa18ab",
+    "span": [
+      0,
+      45
+    ],
+    "kind": "fact",
+    "fact": "N-944c3d4af11d"
+  },
+  {
+    "id": "ev-N-5cb9dea74a92",
+    "claim": "",
+    "doc": "c-100dadfa18ab",
+    "span": [
+      0,
+      45
+    ],
+    "kind": "fact",
+    "fact": "N-5cb9dea74a92"
+  },
+  {
+    "id": "ev-N-a600fbe49b7b",
+    "claim": "",
+    "doc": "c-209ab8347d7c",
+    "span": [
+      0,
+      60
+    ],
+    "kind": "fact",
+    "fact": "N-a600fbe49b7b"
+  },
+  {
+    "id": "ev-N-de3e1ec1327c",
+    "claim": "",
+    "doc": "c-d8a3ec8e85ee",
+    "span": [
+      0,
+      46
+    ],
+    "kind": "fact",
+    "fact": "N-de3e1ec1327c"
+  },
+  {
+    "id": "ev-N-8107f4c126d2",
+    "claim": "",
+    "doc": "c-d8a3ec8e85ee",
+    "span": [
+      0,
+      46
+    ],
+    "kind": "fact",
+    "fact": "N-8107f4c126d2"
+  },
+  {
+    "id": "ev-N-c2f034e89954",
+    "claim": "",
+    "doc": "c-209ab8347d7c",
+    "span": [
+      0,
+      60
+    ],
+    "kind": "fact",
+    "fact": "N-c2f034e89954"
+  },
+  {
+    "id": "ev-N-416be9b34d81",
+    "claim": "",
+    "doc": "c-5f5a36ab7c15",
+    "span": [
+      0,
+      25
+    ],
+    "kind": "fact",
+    "fact": "N-416be9b34d81"
+  },
+  {
+    "id": "ev-N-60d3585c4764",
+    "claim": "",
+    "doc": "c-fe40d179350d",
+    "span": [
+      0,
+      99
+    ],
+    "kind": "fact",
+    "fact": "N-60d3585c4764"
+  },
+  {
+    "id": "ev-N-f7d381a33ae8",
+    "claim": "",
+    "doc": "c-7dba4c5af644",
+    "span": [
+      0,
+      68
+    ],
+    "kind": "fact",
+    "fact": "N-f7d381a33ae8"
+  },
+  {
+    "id": "ev-N-77ab04f9743c",
+    "claim": "",
+    "doc": "c-c6ae052959b1",
+    "span": [
+      0,
+      8
+    ],
+    "kind": "fact",
+    "fact": "N-77ab04f9743c"
+  },
+  {
+    "id": "ev-N-29a98cc4f5e9",
+    "claim": "",
+    "doc": "c-5692fc2bd855",
+    "span": [
+      0,
+      164
+    ],
+    "kind": "fact",
+    "fact": "N-29a98cc4f5e9"
+  },
+  {
+    "id": "ev-N-ca1e13d551b1",
+    "claim": "",
+    "doc": "c-8dbe43e4c726",
+    "span": [
+      0,
+      39
+    ],
+    "kind": "fact",
+    "fact": "N-ca1e13d551b1"
+  },
+  {
+    "id": "ev-N-eeb81aaca591",
+    "claim": "",
+    "doc": "c-8dbe43e4c726",
+    "span": [
+      0,
+      39
+    ],
+    "kind": "fact",
+    "fact": "N-eeb81aaca591"
+  },
+  {
+    "id": "ev-N-52b43033149e",
+    "claim": "",
+    "doc": "c-8dbe43e4c726",
+    "span": [
+      0,
+      39
+    ],
+    "kind": "fact",
+    "fact": "N-52b43033149e"
+  },
+  {
+    "id": "ev-N-850462868c75",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-850462868c75"
+  },
+  {
+    "id": "ev-N-90ea6bdf46f6",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-90ea6bdf46f6"
+  },
+  {
+    "id": "ev-N-2ec348856254",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-2ec348856254"
+  },
+  {
+    "id": "ev-N-b73bc0c48cab",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-b73bc0c48cab"
+  },
+  {
+    "id": "ev-N-f82a686a24f0",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-f82a686a24f0"
+  },
+  {
+    "id": "ev-N-a5b6b65364ac",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-a5b6b65364ac"
+  },
+  {
+    "id": "ev-N-24bce75cc617",
+    "claim": "",
+    "doc": "c-4b8bc5c96c14",
+    "span": [
+      0,
+      280
+    ],
+    "kind": "fact",
+    "fact": "N-24bce75cc617"
+  },
+  {
+    "id": "ev-N-5272963728f0",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-5272963728f0"
+  },
+  {
+    "id": "ev-N-254a74541283",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-254a74541283"
+  },
+  {
+    "id": "ev-N-242644b6a039",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-242644b6a039"
+  },
+  {
+    "id": "ev-N-7aad9b0320e0",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-7aad9b0320e0"
+  },
+  {
+    "id": "ev-N-94a1eb16a470",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-94a1eb16a470"
+  },
+  {
+    "id": "ev-N-acb430bb35b0",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-acb430bb35b0"
+  },
+  {
+    "id": "ev-N-66860a375157",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-66860a375157"
+  },
+  {
+    "id": "ev-N-0a3e9c9acc83",
+    "claim": "",
+    "doc": "c-a43d02463116",
+    "span": [
+      0,
+      447
+    ],
+    "kind": "fact",
+    "fact": "N-0a3e9c9acc83"
+  },
+  {
+    "id": "ev-N-8ca9f3898ace",
+    "claim": "",
+    "doc": "c-6a36b8de406d",
+    "span": [
+      0,
+      255
+    ],
+    "kind": "fact",
+    "fact": "N-8ca9f3898ace"
+  },
+  {
+    "id": "ev-N-2025492b72b4",
+    "claim": "",
+    "doc": "c-6a36b8de406d",
+    "span": [
+      0,
+      255
+    ],
+    "kind": "fact",
+    "fact": "N-2025492b72b4"
+  },
+  {
+    "id": "ev-N-3ed027e88c59",
+    "claim": "",
+    "doc": "c-6a36b8de406d",
+    "span": [
+      0,
+      255
+    ],
+    "kind": "fact",
+    "fact": "N-3ed027e88c59"
+  },
+  {
+    "id": "ev-N-e30b2d47398d",
+    "claim": "",
+    "doc": "c-27c9dd83b0ec",
+    "span": [
+      0,
+      152
+    ],
+    "kind": "fact",
+    "fact": "N-e30b2d47398d"
+  },
+  {
+    "id": "ev-N-a7f866d690be",
+    "claim": "",
+    "doc": "c-27c9dd83b0ec",
+    "span": [
+      0,
+      152
+    ],
+    "kind": "fact",
+    "fact": "N-a7f866d690be"
+  },
+  {
+    "id": "ev-N-6fde114502ac",
+    "claim": "",
+    "doc": "c-27c9dd83b0ec",
+    "span": [
+      0,
+      152
+    ],
+    "kind": "fact",
+    "fact": "N-6fde114502ac"
+  },
+  {
+    "id": "ev-N-564866270310",
+    "claim": "",
+    "doc": "c-27c9dd83b0ec",
+    "span": [
+      0,
+      152
+    ],
+    "kind": "fact",
+    "fact": "N-564866270310"
+  },
+  {
+    "id": "ev-N-239c8f582585",
+    "claim": "",
+    "doc": "c-2fda396d40da",
+    "span": [
+      0,
+      98
+    ],
+    "kind": "fact",
+    "fact": "N-239c8f582585"
+  },
+  {
+    "id": "ev-N-9d235ea5246a",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-9d235ea5246a"
+  },
+  {
+    "id": "ev-N-95757b570de9",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-95757b570de9"
+  },
+  {
+    "id": "ev-N-6040256abb83",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-6040256abb83"
+  },
+  {
+    "id": "ev-N-039cd700bce6",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-039cd700bce6"
+  },
+  {
+    "id": "ev-N-5a6c23c28a1a",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-5a6c23c28a1a"
+  },
+  {
+    "id": "ev-N-4132dcebb00b",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-4132dcebb00b"
+  },
+  {
+    "id": "ev-N-a7a7a7fe459d",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-a7a7a7fe459d"
+  },
+  {
+    "id": "ev-N-edc8d5efd615",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-edc8d5efd615"
+  },
+  {
+    "id": "ev-N-5f171d536786",
+    "claim": "",
+    "doc": "c-387f65b6c162",
+    "span": [
+      0,
+      1120
+    ],
+    "kind": "fact",
+    "fact": "N-5f171d536786"
+  },
+  {
+    "id": "ev-N-5859db27922c",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-5859db27922c"
+  },
+  {
+    "id": "ev-N-bf76480f8b0c",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-bf76480f8b0c"
+  },
+  {
+    "id": "ev-N-1e941f1c85b2",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-1e941f1c85b2"
+  },
+  {
+    "id": "ev-N-af196dccd886",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-af196dccd886"
+  },
+  {
+    "id": "ev-N-109f219b5cdc",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-109f219b5cdc"
+  },
+  {
+    "id": "ev-N-4a9d5aca884a",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-4a9d5aca884a"
+  },
+  {
+    "id": "ev-N-b1e9a58c3e61",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-b1e9a58c3e61"
+  },
+  {
+    "id": "ev-N-a01b53350bb8",
+    "claim": "",
+    "doc": "c-303a6a09db8e",
+    "span": [
+      0,
+      329
+    ],
+    "kind": "fact",
+    "fact": "N-a01b53350bb8"
+  },
+  {
+    "id": "ev-N-0175db4c5ff0",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-0175db4c5ff0"
+  },
+  {
+    "id": "ev-N-c8c5fd1fece2",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-c8c5fd1fece2"
+  },
+  {
+    "id": "ev-N-d47bd8140fdc",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-d47bd8140fdc"
+  },
+  {
+    "id": "ev-N-6eb51e821197",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-6eb51e821197"
+  },
+  {
+    "id": "ev-N-934942fb8325",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-934942fb8325"
+  },
+  {
+    "id": "ev-N-094c483c1ac2",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-094c483c1ac2"
+  },
+  {
+    "id": "ev-N-4aaf4c9685bf",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-4aaf4c9685bf"
+  },
+  {
+    "id": "ev-N-f52e2827a0e8",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-f52e2827a0e8"
+  },
+  {
+    "id": "ev-N-d81c8436d3ef",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-d81c8436d3ef"
+  },
+  {
+    "id": "ev-N-fbcb8688c60f",
+    "claim": "",
+    "doc": "c-46385d4ae269",
+    "span": [
+      0,
+      291
+    ],
+    "kind": "fact",
+    "fact": "N-fbcb8688c60f"
+  },
+  {
+    "id": "ev-N-43f27011e247",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-43f27011e247"
+  },
+  {
+    "id": "ev-N-e2fb043d4a06",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-e2fb043d4a06"
+  },
+  {
+    "id": "ev-N-97ae001309cd",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-97ae001309cd"
+  },
+  {
+    "id": "ev-N-aca1f741b579",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-aca1f741b579"
+  },
+  {
+    "id": "ev-N-fec5f42da5fb",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-fec5f42da5fb"
+  },
+  {
+    "id": "ev-N-b4f6323f3884",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-b4f6323f3884"
+  },
+  {
+    "id": "ev-N-27ce57f55373",
+    "claim": "",
+    "doc": "c-9b17de8351af",
+    "span": [
+      0,
+      565
+    ],
+    "kind": "fact",
+    "fact": "N-27ce57f55373"
+  },
+  {
+    "id": "ev-N-ecaf889ab916",
+    "claim": "",
+    "doc": "c-6dd94ba78b8f",
+    "span": [
+      0,
+      52
+    ],
+    "kind": "fact",
+    "fact": "N-ecaf889ab916"
+  },
+  {
+    "id": "ev-N-ac1766bae97a",
+    "claim": "",
+    "doc": "c-6dd94ba78b8f",
+    "span": [
+      0,
+      52
+    ],
+    "kind": "fact",
+    "fact": "N-ac1766bae97a"
+  },
+  {
+    "id": "ev-N-f95ce50dc7dd",
+    "claim": "",
+    "doc": "c-d3f7b33459d8",
+    "span": [
+      0,
+      246
+    ],
+    "kind": "fact",
+    "fact": "N-f95ce50dc7dd"
+  },
+  {
+    "id": "ev-N-6f8bf452fa72",
+    "claim": "",
+    "doc": "c-d3f7b33459d8",
+    "span": [
+      0,
+      246
+    ],
+    "kind": "fact",
+    "fact": "N-6f8bf452fa72"
+  },
+  {
+    "id": "ev-N-f06e00a5f844",
+    "claim": "",
+    "doc": "c-82d60e95db12",
+    "span": [
+      0,
+      111
+    ],
+    "kind": "fact",
+    "fact": "N-f06e00a5f844"
+  },
+  {
+    "id": "ev-N-7e339ea5a706",
+    "claim": "",
+    "doc": "c-82d60e95db12",
+    "span": [
+      0,
+      111
+    ],
+    "kind": "fact",
+    "fact": "N-7e339ea5a706"
+  },
+  {
+    "id": "ev-N-1dff222d7986",
+    "claim": "",
+    "doc": "c-d3f7b33459d8",
+    "span": [
+      0,
+      246
+    ],
+    "kind": "fact",
+    "fact": "N-1dff222d7986"
+  },
+  {
+    "id": "ev-N-21ac2ea6a4ab",
+    "claim": "",
+    "doc": "c-e81b2fb16995",
+    "span": [
+      0,
+      71
+    ],
+    "kind": "fact",
+    "fact": "N-21ac2ea6a4ab"
+  },
+  {
+    "id": "ev-N-1d9bbad66196",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-1d9bbad66196"
+  },
+  {
+    "id": "ev-N-c810673e6119",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-c810673e6119"
+  },
+  {
+    "id": "ev-N-99e0769bc827",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-99e0769bc827"
+  },
+  {
+    "id": "ev-N-303deda576f1",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-303deda576f1"
+  },
+  {
+    "id": "ev-N-c3ad80bc3176",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-c3ad80bc3176"
+  },
+  {
+    "id": "ev-N-7c90a8639e27",
+    "claim": "",
+    "doc": "c-c809a9cf067b",
+    "span": [
+      0,
+      229
+    ],
+    "kind": "fact",
+    "fact": "N-7c90a8639e27"
+  },
+  {
+    "id": "ev-N-171f869338fe",
+    "claim": "",
+    "doc": "c-4e577b7d8923",
+    "span": [
+      0,
+      66
+    ],
+    "kind": "fact",
+    "fact": "N-171f869338fe"
+  },
+  {
+    "id": "ev-N-1581360ae141",
+    "claim": "",
+    "doc": "c-c790d7886310",
+    "span": [
+      0,
+      480
+    ],
+    "kind": "fact",
+    "fact": "N-1581360ae141"
+  },
+  {
+    "id": "ev-N-8824177763f5",
+    "claim": "",
+    "doc": "c-c790d7886310",
+    "span": [
+      0,
+      480
+    ],
+    "kind": "fact",
+    "fact": "N-8824177763f5"
+  },
+  {
+    "id": "ev-N-e60dafe57ee8",
+    "claim": "",
+    "doc": "c-c790d7886310",
+    "span": [
+      0,
+      480
+    ],
+    "kind": "fact",
+    "fact": "N-e60dafe57ee8"
+  },
+  {
+    "id": "ev-N-c1fd26fa6765",
+    "claim": "",
+    "doc": "c-c790d7886310",
+    "span": [
+      0,
+      480
+    ],
+    "kind": "fact",
+    "fact": "N-c1fd26fa6765"
+  },
+  {
+    "id": "ev-N-7983ecf69539",
+    "claim": "",
+    "doc": "c-4701cb3feb02",
+    "span": [
+      0,
+      9
+    ],
+    "kind": "fact",
+    "fact": "N-7983ecf69539"
+  },
+  {
+    "id": "ev-N-c51de871596c",
+    "claim": "",
+    "doc": "c-cf8f0b4e2668",
+    "span": [
+      0,
+      49
+    ],
+    "kind": "fact",
+    "fact": "N-c51de871596c"
+  },
+  {
+    "id": "ev-N-59b9d8f6d1fc",
+    "claim": "",
+    "doc": "c-df2093af0240",
+    "span": [
+      0,
+      59
+    ],
+    "kind": "fact",
+    "fact": "N-59b9d8f6d1fc"
+  },
+  {
+    "id": "ev-N-f470a0725f92",
+    "claim": "",
+    "doc": "c-df2093af0240",
+    "span": [
+      0,
+      59
+    ],
+    "kind": "fact",
+    "fact": "N-f470a0725f92"
+  },
+  {
+    "id": "ev-N-dc49a463c8e3",
+    "claim": "",
+    "doc": "c-402ccafc1d64",
+    "span": [
+      0,
+      24
+    ],
+    "kind": "fact",
+    "fact": "N-dc49a463c8e3"
+  },
+  {
+    "id": "ev-N-8c646e42426a",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-8c646e42426a"
+  },
+  {
+    "id": "ev-N-4002faaed7b8",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-4002faaed7b8"
+  },
+  {
+    "id": "ev-N-17cad48fed94",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-17cad48fed94"
+  },
+  {
+    "id": "ev-N-84cd9cdd7e0d",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-84cd9cdd7e0d"
+  },
+  {
+    "id": "ev-N-2e9eaad1259f",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-2e9eaad1259f"
+  },
+  {
+    "id": "ev-N-ad6fd08cb831",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-ad6fd08cb831"
+  },
+  {
+    "id": "ev-N-767846c72651",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-767846c72651"
+  },
+  {
+    "id": "ev-N-0ea3008f61f9",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-0ea3008f61f9"
+  },
+  {
+    "id": "ev-N-7930ab172a2a",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-7930ab172a2a"
+  },
+  {
+    "id": "ev-N-6ed5795596e9",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-6ed5795596e9"
+  },
+  {
+    "id": "ev-N-be59b87fb79c",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-be59b87fb79c"
+  },
+  {
+    "id": "ev-N-c48958c97484",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-c48958c97484"
+  },
+  {
+    "id": "ev-N-7905c339c5bf",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-7905c339c5bf"
+  },
+  {
+    "id": "ev-N-eabadd267940",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-eabadd267940"
+  },
+  {
+    "id": "ev-N-c5de22ac0e51",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-c5de22ac0e51"
+  },
+  {
+    "id": "ev-N-c46ae5293e41",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-c46ae5293e41"
+  },
+  {
+    "id": "ev-N-72507f498f8c",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-72507f498f8c"
+  },
+  {
+    "id": "ev-N-809d541088ab",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-809d541088ab"
+  },
+  {
+    "id": "ev-N-d11b8963a5c2",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-d11b8963a5c2"
+  },
+  {
+    "id": "ev-N-94e433692986",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-94e433692986"
+  },
+  {
+    "id": "ev-N-565398c4826c",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-565398c4826c"
+  },
+  {
+    "id": "ev-N-eaf61c336ddf",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-eaf61c336ddf"
+  },
+  {
+    "id": "ev-N-d79f49630ce5",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-d79f49630ce5"
+  },
+  {
+    "id": "ev-N-2ccc0c5d1207",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-2ccc0c5d1207"
+  },
+  {
+    "id": "ev-N-4b40f9539e03",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-4b40f9539e03"
+  },
+  {
+    "id": "ev-N-63082fae08d5",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-63082fae08d5"
+  },
+  {
+    "id": "ev-N-f4b6e8cc3b5f",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-f4b6e8cc3b5f"
+  },
+  {
+    "id": "ev-N-78644662331e",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-78644662331e"
+  },
+  {
+    "id": "ev-N-a59ed4c3313a",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-a59ed4c3313a"
+  },
+  {
+    "id": "ev-N-a564cd720a96",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-a564cd720a96"
+  },
+  {
+    "id": "ev-N-635ce37a69fc",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-635ce37a69fc"
+  },
+  {
+    "id": "ev-N-d27e283b73c6",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-d27e283b73c6"
+  },
+  {
+    "id": "ev-N-a4041fa32fd3",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-a4041fa32fd3"
+  },
+  {
+    "id": "ev-N-bc5af78a6b82",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-bc5af78a6b82"
+  },
+  {
+    "id": "ev-N-8dad7d339b06",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-8dad7d339b06"
+  },
+  {
+    "id": "ev-N-52349af2e44f",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-52349af2e44f"
+  },
+  {
+    "id": "ev-N-349ad4d2a9d0",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-349ad4d2a9d0"
+  },
+  {
+    "id": "ev-N-0d30a6b44768",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-0d30a6b44768"
+  },
+  {
+    "id": "ev-N-236dbdb1fea6",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-236dbdb1fea6"
+  },
+  {
+    "id": "ev-N-903b0ac65f67",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-903b0ac65f67"
+  },
+  {
+    "id": "ev-N-58f2a08d9047",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-58f2a08d9047"
+  },
+  {
+    "id": "ev-N-9e5bfac670e5",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-9e5bfac670e5"
+  },
+  {
+    "id": "ev-N-979e5a5ddbc9",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-979e5a5ddbc9"
+  },
+  {
+    "id": "ev-N-d3fb4fe652f7",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-d3fb4fe652f7"
+  },
+  {
+    "id": "ev-N-31dacc87adf4",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-31dacc87adf4"
+  },
+  {
+    "id": "ev-N-a161b289c97d",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-a161b289c97d"
+  },
+  {
+    "id": "ev-N-f833fd93de5e",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-f833fd93de5e"
+  },
+  {
+    "id": "ev-N-257716ea5dae",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-257716ea5dae"
+  },
+  {
+    "id": "ev-N-45a10b66cf96",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-45a10b66cf96"
+  },
+  {
+    "id": "ev-N-1b70a153d6ef",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-1b70a153d6ef"
+  },
+  {
+    "id": "ev-N-ab884f42d239",
+    "claim": "",
+    "doc": "c-7226f71c0917",
+    "span": [
+      0,
+      2446
+    ],
+    "kind": "fact",
+    "fact": "N-ab884f42d239"
+  },
+  {
+    "id": "ev-N-0d4cc2051dfe",
+    "claim": "",
+    "doc": "c-57676fd556d8",
+    "span": [
+      0,
+      117
+    ],
+    "kind": "fact",
+    "fact": "N-0d4cc2051dfe"
+  },
+  {
+    "id": "ev-N-38de69880db3",
+    "claim": "",
+    "doc": "c-439358c3c12f",
+    "span": [
+      0,
+      97
+    ],
+    "kind": "fact",
+    "fact": "N-38de69880db3"
+  },
+  {
+    "id": "ev-N-3150f017809d",
+    "claim": "",
+    "doc": "c-439358c3c12f",
+    "span": [
+      0,
+      97
+    ],
+    "kind": "fact",
+    "fact": "N-3150f017809d"
+  },
+  {
+    "id": "ev-N-6001107c1482",
+    "claim": "",
+    "doc": "c-439358c3c12f",
+    "span": [
+      0,
+      97
+    ],
+    "kind": "fact",
+    "fact": "N-6001107c1482"
+  },
+  {
+    "id": "ev-N-c57d08f481b6",
+    "claim": "",
+    "doc": "c-439358c3c12f",
+    "span": [
+      0,
+      97
+    ],
+    "kind": "fact",
+    "fact": "N-c57d08f481b6"
+  },
+  {
+    "id": "ev-N-00c4257df194",
+    "claim": "",
+    "doc": "c-439358c3c12f",
+    "span": [
+      0,
+      97
+    ],
+    "kind": "fact",
+    "fact": "N-00c4257df194"
+  },
+  {
+    "id": "ev-N-c80f305bd555",
+    "claim": "",
+    "doc": "c-198ee2fbd3f6",
+    "span": [
+      0,
+      82
+    ],
+    "kind": "fact",
+    "fact": "N-c80f305bd555"
+  },
+  {
+    "id": "ev-N-3014e5738712",
+    "claim": "",
+    "doc": "c-198ee2fbd3f6",
+    "span": [
+      0,
+      82
+    ],
+    "kind": "fact",
+    "fact": "N-3014e5738712"
+  },
+  {
+    "id": "ev-N-87567273f44b",
+    "claim": "",
+    "doc": "c-198ee2fbd3f6",
+    "span": [
+      0,
+      82
+    ],
+    "kind": "fact",
+    "fact": "N-87567273f44b"
+  },
+  {
+    "id": "ev-N-db325aa01a7a",
+    "claim": "",
+    "doc": "c-198ee2fbd3f6",
+    "span": [
+      0,
+      82
+    ],
+    "kind": "fact",
+    "fact": "N-db325aa01a7a"
+  },
+  {
+    "id": "ev-N-34ee25446ee0",
+    "claim": "",
+    "doc": "c-20fec0ad5a29",
+    "span": [
+      0,
+      222
+    ],
+    "kind": "fact",
+    "fact": "N-34ee25446ee0"
+  },
+  {
+    "id": "ev-N-98278b3a0e8f",
+    "claim": "",
+    "doc": "c-197848094e1c",
+    "span": [
+      0,
+      245
+    ],
+    "kind": "fact",
+    "fact": "N-98278b3a0e8f"
+  },
+  {
+    "id": "ev-N-1a424c742c02",
+    "claim": "",
+    "doc": "c-8f999fea1ec3",
+    "span": [
+      0,
+      78
+    ],
+    "kind": "fact",
+    "fact": "N-1a424c742c02"
+  },
+  {
+    "id": "ev-N-b506ba5e6eaa",
+    "claim": "",
+    "doc": "c-f508d7cfad78",
+    "span": [
+      0,
+      30
+    ],
+    "kind": "fact",
+    "fact": "N-b506ba5e6eaa"
+  },
+  {
+    "id": "ev-N-c679c4e79bc2",
+    "claim": "",
+    "doc": "c-5e339feba7c8",
+    "span": [
+      0,
+      29
+    ],
+    "kind": "fact",
+    "fact": "N-c679c4e79bc2"
+  },
+  {
+    "id": "EVX-依据-009",
+    "kind": "standard",
+    "doc": "《上海市扬尘污染防治管理办法》",
+    "quote": "原报告编制依据/设计依据中引用《上海市扬尘污染防治管理办法》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-010",
+    "kind": "standard",
+    "doc": "《上海市重点建设项目和社会稳定风险分析和评估试点办法》",
+    "quote": "原报告编制依据/设计依据中引用《上海市重点建设项目和社会稳定风险分析和评估试点办法》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-017",
+    "kind": "standard",
+    "doc": "《中共上海市委办公厅、上海市人民政府办公厅<关于深入推行重大事项社会稳定风险评估机制>的通知》",
+    "quote": "原报告编制依据/设计依据中引用《中共上海市委办公厅、上海市人民政府办公厅<关于深入推行重大事项社会稳定风险评估机制>的通知》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-031",
+    "kind": "standard",
+    "doc": "《低压用户配电装置规程》",
+    "quote": "原报告编制依据/设计依据中引用《低压用户配电装置规程》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-032",
+    "kind": "standard",
+    "doc": "《低压配电设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《低压配电设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-034",
+    "kind": "standard",
+    "doc": "《全国民用建筑工程设计技术措施》",
+    "quote": "原报告编制依据/设计依据中引用《全国民用建筑工程设计技术措施》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-035",
+    "kind": "standard",
+    "doc": "《全国民用建筑工程设计技术措施节能专篇——电气》",
+    "quote": "原报告编制依据/设计依据中引用《全国民用建筑工程设计技术措施节能专篇——电气》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-036",
+    "kind": "standard",
+    "doc": "《公共建筑绿色设计标准》",
+    "quote": "原报告编制依据/设计依据中引用《公共建筑绿色设计标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-039",
+    "kind": "standard",
+    "doc": "《关于公布世界一流大学和一流学科建设高校及建设学科名单的通知》",
+    "quote": "原报告编制依据/设计依据中引用《关于公布世界一流大学和一流学科建设高校及建设学科名单的通知》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-043",
+    "kind": "standard",
+    "doc": "《国务院关于加强节能工作的决定》",
+    "quote": "原报告编制依据/设计依据中引用《国务院关于加强节能工作的决定》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-044",
+    "kind": "standard",
+    "doc": "《国务院关于加快发展循环经济的若干意见》",
+    "quote": "原报告编制依据/设计依据中引用《国务院关于加快发展循环经济的若干意见》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-047",
+    "kind": "standard",
+    "doc": "《国务院办公厅关于开展资源节约活动的通知》",
+    "quote": "原报告编制依据/设计依据中引用《国务院办公厅关于开展资源节约活动的通知》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-048",
+    "kind": "standard",
+    "doc": "《国家中长期教育改革和发展规划纲要（2010-2020年）》",
+    "quote": "原报告编制依据/设计依据中引用《国家中长期教育改革和发展规划纲要（2010-2020年）》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-051",
+    "kind": "standard",
+    "doc": "《地基基础设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《地基基础设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-052",
+    "kind": "standard",
+    "doc": "《地表水环境质量标准》",
+    "quote": "原报告编制依据/设计依据中引用《地表水环境质量标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-053",
+    "kind": "standard",
+    "doc": "《城市区域环境噪声标准》",
+    "quote": "原报告编制依据/设计依据中引用《城市区域环境噪声标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-054",
+    "kind": "standard",
+    "doc": "《城市环境(装饰)照明规范》",
+    "quote": "原报告编制依据/设计依据中引用《城市环境(装饰)照明规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-057",
+    "kind": "standard",
+    "doc": "《城镇给水排水技术规范》",
+    "quote": "原报告编制依据/设计依据中引用《城镇给水排水技术规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-059",
+    "kind": "standard",
+    "doc": "《声环境质量标准》",
+    "quote": "原报告编制依据/设计依据中引用《声环境质量标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-063",
+    "kind": "standard",
+    "doc": "《大气污染物综合排放标准》",
+    "quote": "原报告编制依据/设计依据中引用《大气污染物综合排放标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-064",
+    "kind": "standard",
+    "doc": "《室外排水设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《室外排水设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-065",
+    "kind": "standard",
+    "doc": "《室外给水设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《室外给水设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-067",
+    "kind": "standard",
+    "doc": "《工程建设项目可行性研究报告增加招标内容和核准招标事项暂行规定》",
+    "quote": "原报告编制依据/设计依据中引用《工程建设项目可行性研究报告增加招标内容和核准招标事项暂行规定》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-068",
+    "kind": "standard",
+    "doc": "《工程结构可靠性设计统一标准》",
+    "quote": "原报告编制依据/设计依据中引用《工程结构可靠性设计统一标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-070",
+    "kind": "standard",
+    "doc": "《建筑地基基础设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《建筑地基基础设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-071",
+    "kind": "standard",
+    "doc": "《建筑小区排水塑料检查井应用技术规程》",
+    "quote": "原报告编制依据/设计依据中引用《建筑小区排水塑料检查井应用技术规程》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-078",
+    "kind": "standard",
+    "doc": "《建筑机电工程抗震设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《建筑机电工程抗震设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-080",
+    "kind": "standard",
+    "doc": "《建筑灭火器配置设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《建筑灭火器配置设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-081",
+    "kind": "standard",
+    "doc": "《建筑照明标准》",
+    "quote": "原报告编制依据/设计依据中引用《建筑照明标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-083",
+    "kind": "standard",
+    "doc": "《建筑物电子信息系统防雷技术规范》",
+    "quote": "原报告编制依据/设计依据中引用《建筑物电子信息系统防雷技术规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-084",
+    "kind": "standard",
+    "doc": "《建筑物电子信息系统防雷技术规范GB50343-2012\n\n《建筑照明设计标准》",
+    "quote": "原报告编制依据/设计依据中引用《建筑物电子信息系统防雷技术规范GB50343-2012\n\n《建筑照明设计标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-086",
+    "kind": "standard",
+    "doc": "《建筑结构可靠性设计统一标准》",
+    "quote": "原报告编制依据/设计依据中引用《建筑结构可靠性设计统一标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-094",
+    "kind": "standard",
+    "doc": "《建设项目可行性研究报告增设招标内容以及核准招标事项暂行规定》",
+    "quote": "原报告编制依据/设计依据中引用《建设项目可行性研究报告增设招标内容以及核准招标事项暂行规定》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-095",
+    "kind": "standard",
+    "doc": "《建设项目环境保护管理办法》",
+    "quote": "原报告编制依据/设计依据中引用《建设项目环境保护管理办法》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-096",
+    "kind": "standard",
+    "doc": "《建设项目（工程）劳动安全卫生监察规定》",
+    "quote": "原报告编制依据/设计依据中引用《建设项目（工程）劳动安全卫生监察规定》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-104",
+    "kind": "standard",
+    "doc": "《机动车停车库(场)环境保护设计规程》",
+    "quote": "原报告编制依据/设计依据中引用《机动车停车库(场)环境保护设计规程》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-107",
+    "kind": "standard",
+    "doc": "《民用建筑水灭火系统设计规程》",
+    "quote": "原报告编制依据/设计依据中引用《民用建筑水灭火系统设计规程》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-110",
+    "kind": "standard",
+    "doc": "《民用建筑节水设计标准》",
+    "quote": "原报告编制依据/设计依据中引用《民用建筑节水设计标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-111",
+    "kind": "standard",
+    "doc": "《民用建筑节能条例》",
+    "quote": "原报告编制依据/设计依据中引用《民用建筑节能条例》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-114",
+    "kind": "standard",
+    "doc": "《污水综合排放标准》",
+    "quote": "原报告编制依据/设计依据中引用《污水综合排放标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-118",
+    "kind": "standard",
+    "doc": "《混凝土结构工程施工规范》",
+    "quote": "原报告编制依据/设计依据中引用《混凝土结构工程施工规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-119",
+    "kind": "standard",
+    "doc": "《混凝土结构工程施工质量验收规范》",
+    "quote": "原报告编制依据/设计依据中引用《混凝土结构工程施工质量验收规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-120",
+    "kind": "standard",
+    "doc": "《混凝土结构设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《混凝土结构设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-121",
+    "kind": "standard",
+    "doc": "《环境空气质量标准》",
+    "quote": "原报告编制依据/设计依据中引用《环境空气质量标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-122",
+    "kind": "standard",
+    "doc": "《生活饮用水卫生标准》",
+    "quote": "原报告编制依据/设计依据中引用《生活饮用水卫生标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-124",
+    "kind": "standard",
+    "doc": "《电力工程电缆设计标准》",
+    "quote": "原报告编制依据/设计依据中引用《电力工程电缆设计标准》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-126",
+    "kind": "standard",
+    "doc": "《砌体结构设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《砌体结构设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-133",
+    "kind": "standard",
+    "doc": "《节约用电管理办法》",
+    "quote": "原报告编制依据/设计依据中引用《节约用电管理办法》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-134",
+    "kind": "standard",
+    "doc": "《节能中长期专项规划》",
+    "quote": "原报告编制依据/设计依据中引用《节能中长期专项规划》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-141",
+    "kind": "standard",
+    "doc": "《评标委员会和评标方法暂行规定》",
+    "quote": "原报告编制依据/设计依据中引用《评标委员会和评标方法暂行规定》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-144",
+    "kind": "standard",
+    "doc": "《重点用能单位节能管理办法》",
+    "quote": "原报告编制依据/设计依据中引用《重点用能单位节能管理办法》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-145",
+    "kind": "standard",
+    "doc": "《钢筋套筒灌浆连接技术应用技术规程》",
+    "quote": "原报告编制依据/设计依据中引用《钢筋套筒灌浆连接技术应用技术规程》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-147",
+    "kind": "standard",
+    "doc": "《钢结构工程施工质量验收规范》",
+    "quote": "原报告编制依据/设计依据中引用《钢结构工程施工质量验收规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-依据-148",
+    "kind": "standard",
+    "doc": "《钢结构设计规范》",
+    "quote": "原报告编制依据/设计依据中引用《钢结构设计规范》",
+    "locator": {
+      "section": "（见原报告各章依据清单）"
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "自动登记；须按现行有效版本核对名称/编号/实施日期"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-001",
+    "kind": "standard",
+    "doc": "《政府投资项目可行性研究报告编写通用大纲（2023年版）》",
+    "quote": "通用大纲法定十章：概述；项目建设背景和必要性；项目需求分析与产出方案；项目选址与要素保障；项目建设方案；项目运营方案；项目投融资与财务方案；项目影响效果分析；项目风险管控方案；研究结论及建议。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "通用大纲目录"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-002",
+    "kind": "standard",
+    "doc": "《普通高等学校建筑面积指标》",
+    "quote": "现批准发布《普通高等学校建筑面积指标》，自2018年9月1日起施行。原《普通高等学校建筑规划面积指标》同时废止。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "批准发布通知正文"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-003",
+    "kind": "standard",
+    "doc": "《普通高等学校建筑面积指标》",
+    "quote": "专职科研机构用房：经主管部门批准设立的专职科研机构所需的实验室、研究室、资料室、咨询室等专业用房及少量配套的办公室、会议室、值班室等。建筑面积指标宜符合附表D-1的规定。【计算实例】按附录D（附表D-1）查得理工类科研人员人均面积指标是30",
+    "locator": {
+      "section": "外部依据",
+      "clause": "附录D 一 及 附表D-1（计算实例引用值）"
+    },
+    "chunk": "xc-1c18445c1849",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-004",
+    "kind": "standard",
+    "doc": "《普通高等学校建筑面积指标》",
+    "quote": "研究生使用的校舍，在实验研究、图书馆、学生宿舍三项用房上有别于本科生，应在本科生生均建筑面积指标基础上增加补助指标。研究生校舍建筑面积补助指标见附表B。【另一处，第二十五条表16】研究生学生宿舍建筑面积补助指标：硕士生每生5.0m²，博士生",
+    "locator": {
+      "section": "外部依据",
+      "clause": "附录B 研究生校舍建筑面积补助指标"
+    },
+    "chunk": "xc-6002eb41aeab",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-005",
+    "kind": "standard",
+    "doc": "《普通高等学校建筑面积指标》",
+    "quote": "使用面积系数(K)：建筑物中使用面积与建筑面积之比，即使用面积／建筑面积(％)。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "附录E 术语 三 使用面积系数"
+    },
+    "chunk": "xc-a2c2aabf45a9",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-006",
+    "kind": "standard",
+    "doc": "《建筑设计防火规范》",
+    "quote": "民用建筑根据其建筑高度和层数可分为单、多层民用建筑和高层民用建筑。高层民用建筑根据其建筑高度、使用功能和楼层的建筑面积可分为一类和二类。民用建筑的分类应符合表5.1.1的规定。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "5.1.1"
+    },
+    "chunk": "xc-129bfa6b7b2d",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-007",
+    "kind": "standard",
+    "doc": "《建筑设计防火规范》",
+    "quote": "一类高层公共建筑包括：1.建筑高度大于50m的公共建筑；2.任一楼层建筑面积大于1000㎡的商店、展览、电信、邮政、财贸金融建筑和其他多种功能组合的建筑；3.医疗建筑、重要公共建筑；4.省级及以上的广播电视和防灾指挥调度建筑、网局级和省级电",
+    "locator": {
+      "section": "外部依据",
+      "clause": "表5.1.1 民用建筑分类（一类高层公共建筑）"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-008",
+    "kind": "standard",
+    "doc": "《建筑设计防火规范》",
+    "quote": "民用建筑的耐火等级应根据其建筑高度、使用功能、重要性和火灾扑救难度等确定，并应符合下列规定：1 地下或半地下建筑（室）和一类高层建筑的耐火等级不应低于一级；2 单、多层重要公共建筑和二类高层建筑的耐火等级不应低于二级。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "5.1.3（条文说明标注为强制性条文）"
+    },
+    "chunk": "xc-f5b44ca94b44",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-009",
+    "kind": "standard",
+    "doc": "《建筑设计防火规范》/《高层民用建筑设计防火规范》",
+    "quote": "住房和城乡建设部、国家质量监督检验检疫总局于2014年8月27日联合发布了《建筑设计防火规范》（GB50016—2014），施行日期为2015年5月1日。原《建筑设计防火规范》（GB50016—2006）和《高层民用建筑设计防火规范》（GB",
+    "locator": {
+      "section": "外部依据",
+      "clause": "通知正文"
+    },
+    "chunk": "xc-eff169f59027",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-010",
+    "kind": "standard",
+    "doc": "《消防给水及消火栓系统技术规范》",
+    "quote": "临时高压消防给水系统的高位消防水箱的有效容积应满足初期火灾消防用水量的要求，并应符合下列规定：1 一类高层公共建筑，不应小于36m³，但当建筑高度大于100m时，不应小于50m³，当建筑高度大于150m时，不应小于100m³；2 多层公共建",
+    "locator": {
+      "section": "外部依据",
+      "clause": "5.2.1 第1、2款"
+    },
+    "chunk": "xc-e404e761b81d",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-011",
+    "kind": "standard",
+    "doc": "《自动喷水灭火系统设计规范》",
+    "quote": "民用建筑和厂房采用湿式系统时的设计基本参数不应低于表5.0.1的规定。（注：系统最不利点处洒水喷头的工作压力不应低于0.05MPa。）【摘录限制】表5.0.1 的表格数值在被检索页面中被剥离，未能取到危级对应的喷水强度与作用面积数值。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "5.0.1"
+    },
+    "chunk": "xc-6085fa2a108c",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-012",
+    "kind": "standard",
+    "doc": "《建筑工程抗震设防分类标准》",
+    "quote": "科学实验建筑中，研究、中试生产和存放具有高放射性物品以及剧毒的生物制品、化学制品、天然和人工细菌、病毒（如鼠疫、霍乱、伤寒和新发高危险传染病等）的建筑，抗震设防类别应划为特殊设防类。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "6.0.9"
+    },
+    "chunk": "xc-43ea19be6ef3",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-013",
+    "kind": "standard",
+    "doc": "《建筑工程抗震设防分类标准》",
+    "quote": "教育建筑中，幼儿园、小学、中学的教学用房以及学生宿舍和食堂，抗震设防类别应不低于重点设防类。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "6.0.8"
+    },
+    "chunk": "xc-ddc3719db26e",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-014",
+    "kind": "standard",
+    "doc": "《建筑工程抗震设防分类标准》",
+    "quote": "高层建筑中，当结构单元内经常使用人数超过8000人时，抗震设防类别宜划为重点设防类。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "6.0.11"
+    },
+    "chunk": "xc-7fa258194423",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-015",
+    "kind": "standard",
+    "doc": "《建筑工程抗震设防分类标准》",
+    "quote": "居住建筑的抗震设防类别不应低于标准设防类。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "6.0.12"
+    },
+    "chunk": "xc-f829f4682eb4",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-016",
+    "kind": "standard",
+    "doc": "《建筑抗震设计规范》",
+    "quote": "抗震设防烈度为7度，设计基本地震加速度值为0.10g：第一组：上海（黄浦区、卢湾区、徐汇、长宁、静安区、普陀区、闸北区、虹口、杨浦、闵行区、宝山、嘉定区、浦东、松江、青浦、南汇、奉贤）。抗震设防烈度为6度，设计基本地震加速度值为0.05g：",
+    "locator": {
+      "section": "外部依据",
+      "clause": "附录A 我国主要城镇抗震设防烈度、设计基本地震加速度和设计地震分组"
+    },
+    "chunk": "xc-51b33ffa0b11",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-017",
+    "kind": "standard",
+    "doc": "《民用建筑设计通则》",
+    "quote": "民用建筑的设计使用年限应符合表3.2.1的规定。（条文说明）民用建筑合理使用年限主要指建筑主体结构设计使用年限，根据《建筑结构可靠度设计统一标准》将设计使用年限分为四类，具体的应根据工程项目的建筑等级、重要性来确定。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "3.2.1 及条文说明"
+    },
+    "chunk": "xc-090f6e3e34f4",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-018",
+    "kind": "standard",
+    "doc": "《必须招标的工程项目规定》",
+    "quote": "本规定第二条至第四条规定范围内的项目，其勘察、设计、施工、监理以及与工程建设有关的重要设备、材料等的采购，达到下列标准之一的，必须招标：（一）施工单项合同估算价在400万元人民币以上；（二）重要设备、材料等货物的采购，单项合同估算价在200",
+    "locator": {
+      "section": "外部依据",
+      "clause": "第五条"
+    },
+    "chunk": "xc-87cad6c9e161",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-019",
+    "kind": "standard",
+    "doc": "《必须招标的工程项目规定》",
+    "quote": "全部或者部分使用国有资金投资或者国家融资的项目包括：（一）使用预算资金200万元人民币以上，并且该资金占投资额10%以上的项目；（二）使用国有企业事业单位资金，并且该资金占控股或者主导地位的项目。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "第二条"
+    },
+    "chunk": "xc-16da7da0239a",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-020",
+    "kind": "standard",
+    "doc": "《绿色建筑评价标准》",
+    "quote": "现批准《绿色建筑评价标准》为国家标准，编号为GB/T50378-2019，自2019年8月1日起实施。原《绿色建筑评价标准》（GB/T50378-2014）同时废止。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "公告正文"
+    },
+    "chunk": "xc-35094dc62496",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-021",
+    "kind": "standard",
+    "doc": "《建筑给水排水设计标准》",
+    "quote": "现批准《建筑给水排水设计标准》为国家标准，编号为GB50015-2019，自2020年3月1日起实施……原《建筑给水排水设计规范》（GB50015-2003）同时废止。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "公告正文"
+    },
+    "chunk": "xc-8a08817a4f48",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-022",
+    "kind": "standard",
+    "doc": "《固定资产投资项目节能审查办法》",
+    "quote": "《办法》自2017年1月1日起施行，《固定资产投资项目节能评估和审查暂行办法》（国家发展改革委令第6号）同时废止。",
+    "locator": {
+      "section": "外部依据",
+      "clause": "发布消息正文"
+    },
+    "chunk": "xc-dd1fd3adcb05",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-001",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-002",
+    "kind": "standard",
+    "doc": "一级",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-003",
+    "kind": "standard",
+    "doc": "二级",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-004",
+    "kind": "standard",
+    "doc": "一级",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-005",
+    "kind": "standard",
+    "doc": "36 或 18",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-006",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-007",
+    "kind": "standard",
+    "doc": "8000 人",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-008",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-009",
+    "kind": "standard",
+    "doc": "16 ㎡/人",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-010",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-011",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-012",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-013",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-014",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-015",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-016",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EVX-外部-017",
+    "kind": "standard",
+    "doc": "约束对象",
+    "quote": "",
+    "locator": {
+      "section": "外部依据",
+      "clause": "取值约束"
+    },
+    "chunk": "",
+    "doc_layer": "external",
+    "verification": {
+      "timeliness": "待核",
+      "note": "来自外部检索文档，时效状态见 effective_dates.yaml"
+    },
+    "auto_registered": true
+  },
+  {
+    "id": "EV-规范-抗震-沪-02",
+    "kind": "standard",
+    "doc": "（由关系端点引用的证据占位，待补原文）",
+    "quote": "",
+    "locator": {
+      "section": ""
+    },
+    "verification": {
+      "timeliness": "待核",
+      "note": "关系端点引用而证据未建，已补占位"
+    },
+    "auto_registered": true
+  }
+]

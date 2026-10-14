@@ -1,0 +1,40 @@
+{
+  "stage": "s1c",
+  "checked_depends_on": [
+    "s1b"
+  ],
+  "A_count": 3,
+  "B_count": 2,
+  "SOP_patterns": 2,
+  "C_entries": 0,
+  "diffs": [
+    {
+      "kind": "A_not_in_B",
+      "path": "build/extractions-clean/P4a.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "build/extractions-clean/P4b.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "A_not_in_B",
+      "path": "build/extractions-clean/P5.json",
+      "meaning": "上游虚报（自报有、实际无）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "build/extractions-clean/P6.json",
+      "meaning": "上游漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "build/extractions-clean/P7.json",
+      "meaning": "上游漏报（实际有、未自报）"
+    }
+  ],
+  "diff_count": 5,
+  "gate": "BLOCKED",
+  "rule": "四元交叉：A 自报 / B 独立清点 / C 产物自述 / SOP 契约"
+}

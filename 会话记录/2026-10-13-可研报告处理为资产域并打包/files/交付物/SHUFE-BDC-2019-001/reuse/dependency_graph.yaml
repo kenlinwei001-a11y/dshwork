@@ -1,0 +1,555 @@
+{
+  "corpus_id": "SHUFE-BDC-2019-001",
+  "version": "V1.0",
+  "domain_count": 16,
+  "domains": {
+    "ontology": {
+      "depends_on": [],
+      "dependents": [
+        "entity_relation",
+        "variable",
+        "rule",
+        "invariant",
+        "argument_chain",
+        "scenario",
+        "skill",
+        "task_dag",
+        "report_structure",
+        "report_form",
+        "quality_gate",
+        "reuse_strategy"
+      ],
+      "dependency_closure": [
+        "ontology"
+      ],
+      "impacted_assets": [
+        "argument_chain",
+        "cost_risk",
+        "entity_relation",
+        "function",
+        "invariant",
+        "ontology",
+        "prompt",
+        "quality_gate",
+        "report_form",
+        "report_structure",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ]
+    },
+    "entity_relation": {
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "entity_relation",
+        "ontology"
+      ],
+      "impacted_assets": [
+        "entity_relation"
+      ]
+    },
+    "variable": {
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "rule",
+        "invariant",
+        "scenario",
+        "function",
+        "cost_risk"
+      ],
+      "dependency_closure": [
+        "ontology",
+        "variable"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "function",
+        "invariant",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ]
+    },
+    "rule": {
+      "depends_on": [
+        "ontology",
+        "variable"
+      ],
+      "dependents": [
+        "scenario",
+        "skill",
+        "task_dag",
+        "quality_gate",
+        "cost_risk"
+      ],
+      "dependency_closure": [
+        "ontology",
+        "rule",
+        "variable"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag"
+      ]
+    },
+    "invariant": {
+      "depends_on": [
+        "ontology",
+        "variable"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "invariant",
+        "ontology",
+        "variable"
+      ],
+      "impacted_assets": [
+        "invariant"
+      ]
+    },
+    "argument_chain": {
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "quality_gate"
+      ],
+      "dependency_closure": [
+        "argument_chain",
+        "ontology"
+      ],
+      "impacted_assets": [
+        "argument_chain",
+        "quality_gate",
+        "reuse_strategy"
+      ]
+    },
+    "scenario": {
+      "depends_on": [
+        "ontology",
+        "variable",
+        "rule"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "ontology",
+        "rule",
+        "scenario",
+        "variable"
+      ],
+      "impacted_assets": [
+        "scenario"
+      ]
+    },
+    "function": {
+      "depends_on": [
+        "variable"
+      ],
+      "dependents": [
+        "skill",
+        "task_dag",
+        "cost_risk"
+      ],
+      "dependency_closure": [
+        "function",
+        "ontology",
+        "variable"
+      ],
+      "impacted_assets": [
+        "cost_risk",
+        "function",
+        "prompt",
+        "skill",
+        "task_dag"
+      ]
+    },
+    "skill": {
+      "depends_on": [
+        "ontology",
+        "rule",
+        "function"
+      ],
+      "dependents": [
+        "task_dag",
+        "prompt"
+      ],
+      "dependency_closure": [
+        "function",
+        "ontology",
+        "rule",
+        "skill",
+        "variable"
+      ],
+      "impacted_assets": [
+        "prompt",
+        "skill",
+        "task_dag"
+      ]
+    },
+    "task_dag": {
+      "depends_on": [
+        "ontology",
+        "rule",
+        "skill",
+        "function"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "function",
+        "ontology",
+        "rule",
+        "skill",
+        "task_dag",
+        "variable"
+      ],
+      "impacted_assets": [
+        "task_dag"
+      ]
+    },
+    "report_structure": {
+      "depends_on": [
+        "ontology"
+      ],
+      "dependents": [
+        "report_form",
+        "prompt"
+      ],
+      "dependency_closure": [
+        "ontology",
+        "report_structure"
+      ],
+      "impacted_assets": [
+        "prompt",
+        "report_form",
+        "report_structure"
+      ]
+    },
+    "report_form": {
+      "depends_on": [
+        "ontology",
+        "report_structure"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "ontology",
+        "report_form",
+        "report_structure"
+      ],
+      "impacted_assets": [
+        "report_form"
+      ]
+    },
+    "prompt": {
+      "depends_on": [
+        "skill",
+        "report_structure"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "function",
+        "ontology",
+        "prompt",
+        "report_structure",
+        "rule",
+        "skill",
+        "variable"
+      ],
+      "impacted_assets": [
+        "prompt"
+      ]
+    },
+    "quality_gate": {
+      "depends_on": [
+        "ontology",
+        "rule",
+        "argument_chain"
+      ],
+      "dependents": [
+        "reuse_strategy"
+      ],
+      "dependency_closure": [
+        "argument_chain",
+        "ontology",
+        "quality_gate",
+        "rule",
+        "variable"
+      ],
+      "impacted_assets": [
+        "quality_gate",
+        "reuse_strategy"
+      ]
+    },
+    "reuse_strategy": {
+      "depends_on": [
+        "ontology",
+        "quality_gate"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "argument_chain",
+        "ontology",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "variable"
+      ],
+      "impacted_assets": [
+        "reuse_strategy"
+      ]
+    },
+    "cost_risk": {
+      "depends_on": [
+        "variable",
+        "function",
+        "rule"
+      ],
+      "dependents": [],
+      "dependency_closure": [
+        "cost_risk",
+        "function",
+        "ontology",
+        "rule",
+        "variable"
+      ],
+      "impacted_assets": [
+        "cost_risk"
+      ]
+    }
+  },
+  "edges": [
+    {
+      "from": "ontology",
+      "to": "entity_relation",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "variable",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "rule",
+      "type": "upstream_of"
+    },
+    {
+      "from": "variable",
+      "to": "rule",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "invariant",
+      "type": "upstream_of"
+    },
+    {
+      "from": "variable",
+      "to": "invariant",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "argument_chain",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "scenario",
+      "type": "upstream_of"
+    },
+    {
+      "from": "variable",
+      "to": "scenario",
+      "type": "upstream_of"
+    },
+    {
+      "from": "rule",
+      "to": "scenario",
+      "type": "upstream_of"
+    },
+    {
+      "from": "variable",
+      "to": "function",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "skill",
+      "type": "upstream_of"
+    },
+    {
+      "from": "rule",
+      "to": "skill",
+      "type": "upstream_of"
+    },
+    {
+      "from": "function",
+      "to": "skill",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "task_dag",
+      "type": "upstream_of"
+    },
+    {
+      "from": "rule",
+      "to": "task_dag",
+      "type": "upstream_of"
+    },
+    {
+      "from": "skill",
+      "to": "task_dag",
+      "type": "upstream_of"
+    },
+    {
+      "from": "function",
+      "to": "task_dag",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "report_structure",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "report_form",
+      "type": "upstream_of"
+    },
+    {
+      "from": "report_structure",
+      "to": "report_form",
+      "type": "upstream_of"
+    },
+    {
+      "from": "skill",
+      "to": "prompt",
+      "type": "upstream_of"
+    },
+    {
+      "from": "report_structure",
+      "to": "prompt",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "quality_gate",
+      "type": "upstream_of"
+    },
+    {
+      "from": "rule",
+      "to": "quality_gate",
+      "type": "upstream_of"
+    },
+    {
+      "from": "argument_chain",
+      "to": "quality_gate",
+      "type": "upstream_of"
+    },
+    {
+      "from": "ontology",
+      "to": "reuse_strategy",
+      "type": "upstream_of"
+    },
+    {
+      "from": "quality_gate",
+      "to": "reuse_strategy",
+      "type": "upstream_of"
+    },
+    {
+      "from": "variable",
+      "to": "cost_risk",
+      "type": "upstream_of"
+    },
+    {
+      "from": "function",
+      "to": "cost_risk",
+      "type": "upstream_of"
+    },
+    {
+      "from": "rule",
+      "to": "cost_risk",
+      "type": "upstream_of"
+    }
+  ],
+  "note": "取代「按 16 域静态拍脑袋」，改为沿依赖图精确传播；根为 ontology。",
+  "impact_examples": [
+    {
+      "changed_asset": "ontology",
+      "change": "新增 Claim 实体类型或属性",
+      "impacted_assets": [
+        "argument_chain",
+        "cost_risk",
+        "entity_relation",
+        "function",
+        "invariant",
+        "ontology",
+        "prompt",
+        "quality_gate",
+        "report_form",
+        "report_structure",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ],
+      "impacted_count": 16,
+      "note": "本体是根，新增概念会传播到几乎全部下游域"
+    },
+    {
+      "changed_asset": "variable",
+      "change": "新增/变更一个输入变量（如分类人数口径）",
+      "impacted_assets": [
+        "cost_risk",
+        "function",
+        "invariant",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag",
+        "variable"
+      ],
+      "impacted_count": 11
+    },
+    {
+      "changed_asset": "rule",
+      "change": "新增或调整一条计算规则",
+      "impacted_assets": [
+        "cost_risk",
+        "prompt",
+        "quality_gate",
+        "reuse_strategy",
+        "rule",
+        "scenario",
+        "skill",
+        "task_dag"
+      ],
+      "impacted_count": 8
+    }
+  ]
+}

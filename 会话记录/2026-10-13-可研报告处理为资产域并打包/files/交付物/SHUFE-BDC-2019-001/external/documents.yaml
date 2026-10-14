@@ -1,0 +1,317 @@
+{
+  "note": "外部检索文件台账。与报告（D1）联合处理：报告的技术函数/规则，其取值域约束与推理保证由这些文件提供。检索状态含 ok / ok_secondary（二手转录）/ ok_partial（表格被剥离）/ ok_mislabeled（文件名与实际内容不符）/ duplicate / failed_403（不可用）/ missing。",
+  "documents": [
+    {
+      "id": "EXT-00",
+      "file": "references/依据来源README.md",
+      "kind": "索引",
+      "title": "外部核查原始摘录索引（含各来源 URL）",
+      "publisher": "（本次检索整理）",
+      "url": "",
+      "retrieval_status": "ok",
+      "serves": [
+        "全部依据的来源追溯"
+      ],
+      "sha256": "09205f64957e8a2a822a9d9309b30437afcf6ee27f7427c359d76fea607729de",
+      "bytes": 1549,
+      "kept_chunks": 14
+    },
+    {
+      "id": "EXT-01",
+      "file": "references/raw/304号大纲-通用大纲.txt",
+      "kind": "政策",
+      "title": "《政府投资项目可行性研究报告编写通用大纲（2023年版）》及印发通知",
+      "publisher": "国家发展改革委",
+      "url": "https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=20220",
+      "retrieval_status": "ok",
+      "serves": [
+        "report_structure（法定十章）",
+        "argument_chain（driver）"
+      ],
+      "sha256": "0edc70d4b1f6315cf078376d1cb7da460d282d927015ba93c3875da2799a2b20",
+      "bytes": 57492,
+      "kept_chunks": 144
+    },
+    {
+      "id": "EXT-02",
+      "file": "references/raw/建标191-2018-通知.txt",
+      "kind": "标准（建设标准）",
+      "title": "《普通高等学校建筑面积指标》批准发布通知（建标﹝2018﹞32号）",
+      "publisher": "住房城乡建设部、国家发展改革委",
+      "url": "https://www.gov.cn/zhengce/zhengceku/2018-12/31/content_5433277.htm",
+      "retrieval_status": "ok",
+      "serves": [
+        "规模链依据",
+        "规范名称与时效核对"
+      ],
+      "sha256": "eec81cdbe1470018f9b06dd2af8de742f0c57e9dba11aaa88fd56f9ba3b9bd6f",
+      "bytes": 5669,
+      "kept_chunks": 15
+    },
+    {
+      "id": "EXT-03",
+      "file": "references/raw/tmp-seismic.txt",
+      "kind": "标准（指标正文摘录）",
+      "title": "《普通高等学校建筑面积指标》条文与附录摘录（附录B/D/E 等）",
+      "publisher": "（学校建设标准国家研究中心等公开摘录）",
+      "url": "（随 EXT-02 同一标准）",
+      "retrieval_status": "ok_mislabeled",
+      "note": "文件名标注为 seismic，实际内容为建标191 指标正文与附录摘录；按实际内容使用",
+      "serves": [
+        "规模链人均指标出处核对",
+        "附录B/D 归属核对",
+        "使用面积系数口径"
+      ],
+      "sha256": "f00b6c5df111a5c814c7fc0a97e6508c35def5e5d6aef83d685294040a850a0d",
+      "bytes": 44255,
+      "kept_chunks": 200
+    },
+    {
+      "id": "EXT-04",
+      "file": "references/raw/gb50016-5.1-建筑分类和耐火等级.txt",
+      "kind": "国家标准",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节 建筑分类和耐火等级",
+      "publisher": "住建部（条文原文页）",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "retrieval_status": "ok",
+      "serves": [
+        "耐火等级判定",
+        "建筑高度分类判定"
+      ],
+      "sha256": "256ae619723bf6f416212b8cef52d3da89c36c8c67d8e6fe7d172c49a585cc45",
+      "bytes": 15688,
+      "kept_chunks": 56
+    },
+    {
+      "id": "EXT-05",
+      "file": "references/raw/gb50016-5.1-桌面版.txt",
+      "kind": "国家标准",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节（另一来源同条文）",
+      "publisher": "（条文原文页）",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "retrieval_status": "duplicate",
+      "note": "与 EXT-04 同条款的另一版式摘录，用于交叉比对",
+      "serves": [
+        "条款原文交叉核对"
+      ],
+      "sha256": "c10acfbd2d96a5c25a021a672fc39b649b5fdb556bafb08b9270351aaa956f20",
+      "bytes": 18426,
+      "kept_chunks": 63
+    },
+    {
+      "id": "EXT-06",
+      "file": "references/raw/建筑分类与耐火等级.txt",
+      "kind": "二手解读",
+      "title": "2018 消防建筑防火篇：建筑分类与耐火等级（表5.1.1 民用建筑分类转录）",
+      "publisher": "中科易朔 CASfire（行业资讯）",
+      "url": "http://www.fireresearch.cn/2018消防建筑防火篇：建筑分类与耐火等级.html",
+      "retrieval_status": "ok_secondary",
+      "note": "二手解读，含表5.1.1 分类的表格化转录（规范原文表在 EXT-04 页被剥离，此处可补）",
+      "serves": [
+        "表5.1.1「建筑高度大于50m的公共建筑为一类」取值"
+      ],
+      "sha256": "5f106f4c6586fbb748f91c76d0d08874f22f171ea96080b4b89fb5a34f8913b5",
+      "bytes": 11073,
+      "kept_chunks": 39
+    },
+    {
+      "id": "EXT-07",
+      "file": "references/raw/新版建筑设计防火规范-通知.txt",
+      "kind": "行政通知",
+      "title": "关于施行新版《建筑设计防火规范》的通知（南建〔2015〕70号）",
+      "publisher": "南充市住房和城乡建设局",
+      "url": "https://www.nanchong.gov.cn/zjj/xwdt/tzgg/201503/t20150324_1289568.html",
+      "retrieval_status": "ok",
+      "serves": [
+        "GB50045-95 与 GB50016-2006 废止、GB50016-2014 自2015-05-01施行"
+      ],
+      "sha256": "85119a32c7b3f440e68975f42fe02d25678c069cc7be2cb8a5a8086be2b4be23",
+      "bytes": 1925,
+      "kept_chunks": 5
+    },
+    {
+      "id": "EXT-08",
+      "file": "references/raw/gb50974-5.2-高位消防水箱.txt",
+      "kind": "国家标准",
+      "title": "《消防给水及消火栓系统技术规范》GB50974-2014 第5.2节 高位消防水箱",
+      "publisher": "（条文原文页）",
+      "url": "references/raw 摘录页",
+      "retrieval_status": "ok",
+      "serves": [
+        "高位消防水箱有效容积判定"
+      ],
+      "sha256": "20bfebc3fbce0ba18a2124911c99844b9c4e12899a70b6416deb2411b2df196f",
+      "bytes": 7256,
+      "kept_chunks": 38
+    },
+    {
+      "id": "EXT-09",
+      "file": "references/raw/自喷-5-设计基本参数.txt",
+      "kind": "国家标准",
+      "title": "《自动喷水灭火系统设计规范》GB50084-2017 第5章 设计基本参数",
+      "publisher": "（条文原文页）",
+      "url": "references/raw 摘录页",
+      "retrieval_status": "ok_partial",
+      "note": "条款文字已取到，但表5.0.1 的**表格数值**在摘录中被剥离（只见「不应低于表5.0.1的规定」）",
+      "serves": [
+        "喷淋设计参数取值域（部分）"
+      ],
+      "sha256": "b24dac0cf8386403e95408f1b8939a7724d73e3f2e88ea31f966df0849a8fff4",
+      "bytes": 23456,
+      "kept_chunks": 91
+    },
+    {
+      "id": "EXT-10",
+      "file": "references/raw/gb50016-6-公共建筑和居住建筑.txt",
+      "kind": "国家标准",
+      "title": "《建筑工程抗震设防分类标准》GB50223-2008 第6章 公共建筑和居住建筑",
+      "publisher": "（条文原文页）",
+      "url": "references/raw 摘录页",
+      "retrieval_status": "ok_mislabeled",
+      "note": "文件名标注为 gb50016-6，实际为 GB50223-2008 第6章；按实际内容使用",
+      "serves": [
+        "抗震设防类别判定"
+      ],
+      "sha256": "4987855c46a5bf106eee7817fbff02d6d0e564efb0efac54965c5aa382f4563a",
+      "bytes": 7848,
+      "kept_chunks": 30
+    },
+    {
+      "id": "EXT-11",
+      "file": "references/raw/抗震设防烈度各地规定.txt",
+      "kind": "规范附录转录",
+      "title": "《建筑抗震设计规范》GB50011-2010 附录A 我国主要城镇抗震设防烈度（转录）",
+      "publisher": "建设快讯（转录）",
+      "url": "references/raw 摘录页",
+      "retrieval_status": "ok_secondary",
+      "note": "二手转录，含上海市各区的烈度、设计基本地震加速度与设计地震分组",
+      "serves": [
+        "抗震设防烈度与设计地震分组取值域"
+      ],
+      "sha256": "992b8f43fd361894f1937e07b5dce4303c678ada9086a21ac83063393a28f6b3",
+      "bytes": 42883,
+      "kept_chunks": 156
+    },
+    {
+      "id": "EXT-12",
+      "file": "references/raw/gb50352-3.2-设计使用年限.txt",
+      "kind": "国家标准",
+      "title": "《民用建筑设计通则》GB50352-2005 第3.2节 设计使用年限（页面标注「已作废」）",
+      "publisher": "消防规范网",
+      "url": "https://gf.cabr-fire.com/m/article-5902.htm",
+      "retrieval_status": "ok",
+      "serves": [
+        "设计使用年限分类与建筑类别对应关系"
+      ],
+      "sha256": "c1d238bfc0cb6b2124551883b012e47bb8aabbda39764cf7f16cc04a888ddce7",
+      "bytes": 1415,
+      "kept_chunks": 5
+    },
+    {
+      "id": "EXT-13",
+      "file": "references/raw/设计使用年限分类.txt",
+      "kind": "二手解读",
+      "title": "《消防技术标准规范速查手册》1.3 使用年限分类（转述 GB50352-2005 3.2.1）",
+      "publisher": "QQ阅读",
+      "url": "references/raw 摘录页",
+      "retrieval_status": "ok_secondary",
+      "serves": [
+        "设计使用年限条文说明（类别与年限对应需依建筑等级确定）"
+      ],
+      "sha256": "2c3c5b17546f939858ed529e6ab92c0a0d3cdd179b4df0ac696b67f96255c42a",
+      "bytes": 1077,
+      "kept_chunks": 4
+    },
+    {
+      "id": "EXT-14",
+      "file": "references/raw/必须招标的工程项目规定-16号令.txt",
+      "kind": "政策",
+      "title": "《必须招标的工程项目规定》（国家发展改革委令第16号）",
+      "publisher": "国务院公报 2018年第16号",
+      "url": "https://www.gov.cn/gongbao/content/2018/content_5296544.htm",
+      "retrieval_status": "ok",
+      "serves": [
+        "招标范围与规模标准判定"
+      ],
+      "sha256": "ba47e5c4db2333e9c00cf40076b0137729209024f88f2626f2a1633859dc78bc",
+      "bytes": 4061,
+      "kept_chunks": 12
+    },
+    {
+      "id": "EXT-15",
+      "file": "references/raw/绿色建筑评价标准-公告.txt",
+      "kind": "行政公告",
+      "title": "住建部关于发布国家标准《绿色建筑评价标准》的公告（2019年第61号）",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_240717.html",
+      "retrieval_status": "ok",
+      "serves": [
+        "GB/T50378-2019 实施与 2014 版废止的时效判定"
+      ],
+      "sha256": "b035251b8a4a05e59d05e9cc90e6f74d9efbf34e5e4d365d1394d087eeac7dd2",
+      "bytes": 1849,
+      "kept_chunks": 3
+    },
+    {
+      "id": "EXT-16",
+      "file": "references/raw/建筑给水排水设计标准-公告.txt",
+      "kind": "行政公告",
+      "title": "住建部关于发布国家标准《建筑给水排水设计标准》的公告（2019年第171号）",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "url": "https://ebook.chinabuilding.com.cn/c/2019-12-11/81369.shtml",
+      "retrieval_status": "ok",
+      "serves": [
+        "GB50015-2019 自2020-03-01施行、2003版废止时点判定"
+      ],
+      "sha256": "eb9a7cb890810bcb32678c0317a7b905644e9e9e6689d0882923bf3c11bfb48c",
+      "bytes": 3330,
+      "kept_chunks": 7
+    },
+    {
+      "id": "EXT-17",
+      "file": "references/raw/固定资产投资项目节能审查办法-新闻.txt",
+      "kind": "政策",
+      "title": "国家发展改革委印发《固定资产投资项目节能审查办法》（发改委令第44号）",
+      "publisher": "国家发展和改革委员会",
+      "url": "https://www.ndrc.gov.cn/fggz/hjyzy/jnhnx/201612/t20161205_1134123_ext.html",
+      "retrieval_status": "ok",
+      "serves": [
+        "节能审查办法时效判定"
+      ],
+      "sha256": "29346c99878c9c529bb904dc3b047399678f49c097ad5ec9965cbf658c923fa0",
+      "bytes": 2094,
+      "kept_chunks": 3
+    },
+    {
+      "id": "EXT-18",
+      "file": "references/raw/民用建筑分类-考点.txt",
+      "kind": "（失败）",
+      "title": "民用建筑分类（考点）",
+      "publisher": "—",
+      "url": "（原链接）",
+      "retrieval_status": "failed_403",
+      "note": "内容为 403 Forbidden 页面，无法使用；登记备查",
+      "serves": [],
+      "sha256": "9b3a591b6886f5f4df79e7dbb21b6474077ba076cf8ff44e40c2c897ea3d6578",
+      "bytes": 47,
+      "kept_chunks": 0
+    },
+    {
+      "id": "EXT-19",
+      "file": "references/raw/gb50016-5.1-原文.html",
+      "kind": "国家标准（HTML）",
+      "title": "《建筑设计防火规范》GB50016-2014 第5.1节（HTML 原始页）",
+      "publisher": "（条文原文页）",
+      "url": "https://gf.cabr-fire.com/m/article-27247.htm",
+      "retrieval_status": "ok_raw_html",
+      "note": "未剥标签的原始页，保留用于条文比对与表格还原",
+      "serves": [
+        "条款原文交叉核对"
+      ],
+      "sha256": "3f5ed72240643e209084c5a5f2622122f7dca732a1ccc59de3944ea0e5be761b",
+      "bytes": 50540,
+      "kept_chunks": 65
+    }
+  ],
+  "count": 20
+}

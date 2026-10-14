@@ -1,0 +1,255 @@
+{
+  "note": "外部依据 → 报告技术函数的依赖边（十类关系内取用）。",
+  "edges": [
+    {
+      "from": "M-GB50016-511",
+      "to": "R-建筑高度校核",
+      "type": "constrains",
+      "binding": "B-01",
+      "role": "constrains"
+    },
+    {
+      "from": "M-GB50016-T511",
+      "to": "R-建筑高度校核",
+      "type": "constrains",
+      "binding": "B-01",
+      "role": "constrains"
+    },
+    {
+      "from": "C-耐火-01",
+      "to": "B-01",
+      "type": "depends_on",
+      "binding": "B-01"
+    },
+    {
+      "from": "M-GB50016-513",
+      "to": "耐火等级取值",
+      "type": "constrains",
+      "binding": "B-02",
+      "role": "constrains"
+    },
+    {
+      "from": "C-耐火-02",
+      "to": "B-02",
+      "type": "depends_on",
+      "binding": "B-02"
+    },
+    {
+      "from": "C-耐火-03",
+      "to": "B-02",
+      "type": "depends_on",
+      "binding": "B-02"
+    },
+    {
+      "from": "C-耐火-04",
+      "to": "B-02",
+      "type": "depends_on",
+      "binding": "B-02"
+    },
+    {
+      "from": "M-GB50974-521",
+      "to": "高位消防水箱有效容积",
+      "type": "constrains",
+      "binding": "B-03",
+      "role": "constrains"
+    },
+    {
+      "from": "C-水箱-01",
+      "to": "B-03",
+      "type": "depends_on",
+      "binding": "B-03"
+    },
+    {
+      "from": "M-GB50084-501",
+      "to": "R-消防用水量合计",
+      "type": "constrains",
+      "binding": "B-04",
+      "role": "constrains"
+    },
+    {
+      "from": "M-GB50223-609",
+      "to": "抗震设防类别取值",
+      "type": "constrains",
+      "binding": "B-05",
+      "role": "constrains"
+    },
+    {
+      "from": "M-GB50223-608",
+      "to": "抗震设防类别取值",
+      "type": "constrains",
+      "binding": "B-05",
+      "role": "constrains"
+    },
+    {
+      "from": "M-GB50223-611",
+      "to": "抗震设防类别取值",
+      "type": "constrains",
+      "binding": "B-05",
+      "role": "constrains"
+    },
+    {
+      "from": "M-GB50223-612",
+      "to": "抗震设防类别取值",
+      "type": "constrains",
+      "binding": "B-05",
+      "role": "constrains"
+    },
+    {
+      "from": "C-抗震-01",
+      "to": "B-05",
+      "type": "depends_on",
+      "binding": "B-05"
+    },
+    {
+      "from": "C-抗震-02",
+      "to": "B-05",
+      "type": "depends_on",
+      "binding": "B-05"
+    },
+    {
+      "from": "M-GB50011-A-SH",
+      "to": "R-抗震分组校核",
+      "type": "constrains",
+      "binding": "B-06",
+      "role": "constrains"
+    },
+    {
+      "from": "C-抗震-03",
+      "to": "B-06",
+      "type": "depends_on",
+      "binding": "B-06"
+    },
+    {
+      "from": "M-191-D1",
+      "to": "R-应建规模",
+      "type": "supports",
+      "binding": "B-07",
+      "role": "warrants"
+    },
+    {
+      "from": "C-指标-01",
+      "to": "B-07",
+      "type": "depends_on",
+      "binding": "B-07"
+    },
+    {
+      "from": "M-191-B",
+      "to": "R-应建规模",
+      "type": "supports",
+      "binding": "B-08",
+      "role": "warrants"
+    },
+    {
+      "from": "M-191-K",
+      "to": "R-配套用房建筑面积",
+      "type": "supports",
+      "binding": "B-09",
+      "role": "warrants"
+    },
+    {
+      "from": "C-指标-02",
+      "to": "B-09",
+      "type": "depends_on",
+      "binding": "B-09"
+    },
+    {
+      "from": "M-GBT50378-2019",
+      "to": "引用标准版本",
+      "type": "depends_on",
+      "binding": "B-10",
+      "role": "benchmark"
+    },
+    {
+      "from": "C-时效-01",
+      "to": "B-10",
+      "type": "depends_on",
+      "binding": "B-10"
+    },
+    {
+      "from": "M-GB50045-95",
+      "to": "引用标准版本",
+      "type": "depends_on",
+      "binding": "B-11",
+      "role": "benchmark"
+    },
+    {
+      "from": "C-时效-02",
+      "to": "B-11",
+      "type": "depends_on",
+      "binding": "B-11"
+    },
+    {
+      "from": "M-191-NAME",
+      "to": "引用标准名称",
+      "type": "depends_on",
+      "binding": "B-12",
+      "role": "benchmark"
+    },
+    {
+      "from": "C-时效-03",
+      "to": "B-12",
+      "type": "depends_on",
+      "binding": "B-12"
+    },
+    {
+      "from": "M-16LING-5",
+      "to": "招标范围判定（表12-1）",
+      "type": "depends_on",
+      "binding": "B-13",
+      "role": "benchmark"
+    },
+    {
+      "from": "M-16LING-2",
+      "to": "招标范围判定（表12-1）",
+      "type": "depends_on",
+      "binding": "B-13",
+      "role": "benchmark"
+    },
+    {
+      "from": "C-招标-01",
+      "to": "B-13",
+      "type": "depends_on",
+      "binding": "B-13"
+    },
+    {
+      "from": "C-招标-02",
+      "to": "B-13",
+      "type": "depends_on",
+      "binding": "B-13"
+    },
+    {
+      "from": "M-304-CH",
+      "to": "报告章节体系",
+      "type": "depends_on",
+      "binding": "B-14",
+      "role": "driver"
+    },
+    {
+      "from": "C-大纲-01",
+      "to": "B-14",
+      "type": "depends_on",
+      "binding": "B-14"
+    },
+    {
+      "from": "M-GB50015-2019",
+      "to": "引用标准时效",
+      "type": "depends_on",
+      "binding": "B-15",
+      "role": "benchmark"
+    },
+    {
+      "from": "M-44HAO",
+      "to": "引用标准时效",
+      "type": "depends_on",
+      "binding": "B-15",
+      "role": "benchmark"
+    },
+    {
+      "from": "C-时效-04",
+      "to": "B-15",
+      "type": "depends_on",
+      "binding": "B-15"
+    }
+  ],
+  "count": 38
+}

@@ -1,0 +1,77 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s4",
+  "name": "推演回放补强",
+  "script": "s5_replay.py",
+  "script_sha256": "b72470e49e855b0ff2480b8151482071",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:43",
+  "finished_at": "2026-10-14T18:05:43",
+  "elapsed_s": 0.14,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "bytes": 8162,
+      "sha256": "76f8d9b58051a98f1c97dc1c83f604f1",
+      "mtime": 1791972343
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "bytes": 17578,
+      "sha256": "1fa2e2df33a159bd28467096047068fc",
+      "mtime": 1791972343
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s3/README.md",
+    "SHUFE-BDC-2019-001/handover/s3/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s4/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_A_s3.json",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/conflicts.yaml",
+    "SHUFE-BDC-2019-001/quality/gaps.yaml",
+    "SHUFE-BDC-2019-001/quality/run_record/s3.json",
+    "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+    "SHUFE-BDC-2019-001/reasoning/judgements.yaml",
+    "SHUFE-BDC-2019-001/reasoning/replay.json"
+  ],
+  "stdout_tail": " 原文=        49 差=      3 (6.12%)\n  R-工程建设其他费                  重算=      1170 原文=      1171 差=      1 (0.09%)\n--- 判定 ---\n  J-规模符合性        不满足\n  J-建安费口径        不一致\n  J-投资构成闭合       不闭合\n--- 因未裁决冲突而阻塞的规则（不带着冲突往下算）---\n  R-冷负荷                        阻塞依赖: 本项目建筑面积=18219/18319\n  R-热负荷                        阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位面积综合能耗                   阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位建筑面积电耗                   阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位造价                       阻塞依赖: 本项目建筑面积=18219/18319\n--- 因缺事实而未解析的规则 ---\n  R-总计算负荷                      缺: ['负荷估算面积口径']\n--- 缺口登记 quality/gaps.yaml：13 条 ---\n",
+  "stderr_tail": ""
+}

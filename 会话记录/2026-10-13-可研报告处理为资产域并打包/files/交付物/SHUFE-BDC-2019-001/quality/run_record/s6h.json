@@ -1,0 +1,71 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6h",
+  "name": "残余修复",
+  "script": "fix33_residual.py",
+  "script_sha256": "03a65ef78a046a2dced286bb6d6bef9c",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:06:01",
+  "finished_at": "2026-10-14T18:06:01",
+  "elapsed_s": 0.18,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 7426,
+      "sha256": "21e02f66102a7b348028ac01d0e84bb3",
+      "mtime": 1791972361
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "bytes": 66283,
+      "sha256": "67694abec1c5fd46a544d763775ad32c",
+      "mtime": 1791972361
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s6g/README.md",
+    "SHUFE-BDC-2019-001/handover/s6g/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6h/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6h/manifest_A_s6g.json",
+    "SHUFE-BDC-2019-001/handover/s6h/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6h/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s6g.json",
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "stdout_tail": "{\n  \"k13a_tightened\": true,\n  \"k4_waivers\": 15,\n  \"k10_prefix_match\": true,\n  \"k10_waived\": [\n    \"本项目·消防水泵接合器\",\n    \"项目排风口·与环境敏感目标间距\",\n    \"项目排风口·底部离地面高度\",\n    \"本项目·抗震设防类别（安全章口径）\",\n    \"上海财经大学·项目管理架构\",\n    \"本项目·招标方式\",\n    \"本项目·估算范围排除项\",\n    \"附件·清单\"\n  ],\n  \"s11_tables_emitted\": true\n}\n",
+  "stderr_tail": ""
+}

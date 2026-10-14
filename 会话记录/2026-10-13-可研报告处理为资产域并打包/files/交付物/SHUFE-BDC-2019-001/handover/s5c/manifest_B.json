@@ -1,0 +1,18 @@
+{
+  "stage": "s5c",
+  "patterns": [
+    "SHUFE-BDC-2019-001/external/documents.yaml",
+    "SHUFE-BDC-2019-001/external/chunks.jsonl",
+    "SHUFE-BDC-2019-001/external/mandates.yaml",
+    "SHUFE-BDC-2019-001/external/constraints.yaml"
+  ],
+  "items": [],
+  "count": 0,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/external/documents.yaml",
+    "SHUFE-BDC-2019-001/external/chunks.jsonl",
+    "SHUFE-BDC-2019-001/external/mandates.yaml",
+    "SHUFE-BDC-2019-001/external/constraints.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

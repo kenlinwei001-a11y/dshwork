@@ -1,0 +1,708 @@
+{
+  "work_package_id": "WP-06-项目规划设计方案",
+  "outline": {
+    "section": "06-项目规划设计方案",
+    "title": "项目规划设计方案",
+    "must_cover": [
+      "设计总说明",
+      "建筑设计",
+      "结构设计",
+      "给排水设计",
+      "强电设计",
+      "弱电设计",
+      "暖通设计"
+    ],
+    "must_cover_legal": [
+      "技术方案",
+      "设备方案",
+      "工程方案"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-2a335b2708af",
+      "node_id": "N-2a335b2708af",
+      "subject": "大数据研究中心",
+      "predicate": "层数",
+      "value": "12",
+      "unit": "层",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-a4535feae2f8"
+    },
+    {
+      "id": "N-f0fd96a3a38e",
+      "node_id": "N-f0fd96a3a38e",
+      "subject": "大数据研究中心",
+      "predicate": "建筑高度控制",
+      "value": "60",
+      "unit": "m",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-352c7af31132"
+    },
+    {
+      "id": "N-4605eb02d134",
+      "node_id": "N-4605eb02d134",
+      "subject": "大数据研究中心",
+      "predicate": "一层层高",
+      "value": "5",
+      "unit": "米",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-0369985c4547"
+    },
+    {
+      "id": "N-170213817af5",
+      "node_id": "N-170213817af5",
+      "subject": "大数据研究中心",
+      "predicate": "标准层层高",
+      "value": "4",
+      "unit": "米",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-0369985c4547"
+    },
+    {
+      "id": "N-f4add4e0e79a",
+      "node_id": "N-f4add4e0e79a",
+      "subject": "办公",
+      "predicate": "用水定额",
+      "value": "50",
+      "unit": "L/人·日",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-354e031a9916"
+    },
+    {
+      "id": "N-5cb9dea74a92",
+      "node_id": "N-5cb9dea74a92",
+      "subject": "本项目",
+      "predicate": "总计算负荷",
+      "value": "952",
+      "unit": "kW",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "undefined",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
+      "inheritable": "yes",
+      "chunk": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-a7f866d690be",
+      "node_id": "N-a7f866d690be",
+      "subject": "本项目",
+      "predicate": "冷负荷",
+      "value": "2473",
+      "unit": "kW",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "undefined",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-564866270310",
+      "node_id": "N-564866270310",
+      "subject": "本项目",
+      "predicate": "热负荷",
+      "value": "1465",
+      "unit": "kW",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "undefined",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-c67295c8a345",
+      "node_id": "N-c67295c8a345",
+      "subject": "本项目",
+      "predicate": "最高日用水量",
+      "value": "95.04",
+      "unit": "m³/d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-2667fcd945cf"
+    },
+    {
+      "id": "N-0372fd56d2be",
+      "node_id": "N-0372fd56d2be",
+      "subject": "本项目",
+      "predicate": "未预见系数",
+      "value": "10",
+      "unit": "%",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-354e031a9916"
+    },
+    {
+      "id": "N-ae0d5d610d0a",
+      "node_id": "N-ae0d5d610d0a",
+      "subject": "本项目",
+      "predicate": "消防用水量总计",
+      "value": "85",
+      "unit": "L/s",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-8aa08d82d0f2"
+    },
+    {
+      "id": "N-b8e7bf4b7c1d",
+      "node_id": "N-b8e7bf4b7c1d",
+      "subject": "本项目",
+      "predicate": "空调负荷密度指标",
+      "value": "45",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-944c3d4af11d",
+      "node_id": "N-944c3d4af11d",
+      "subject": "本项目",
+      "predicate": "照明及其他负荷密度指标",
+      "value": "25",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-100dadfa18ab"
+    },
+    {
+      "id": "N-e30b2d47398d",
+      "node_id": "N-e30b2d47398d",
+      "subject": "本项目",
+      "predicate": "单位面积冷负荷指标",
+      "value": "135",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-6fde114502ac",
+      "node_id": "N-6fde114502ac",
+      "subject": "本项目",
+      "predicate": "单位面积热负荷指标",
+      "value": "80",
+      "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-be7451617729",
+      "node_id": "N-be7451617729",
+      "subject": "大数据研究中心",
+      "predicate": "地下层数",
+      "value": "1",
+      "unit": "层",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-a4535feae2f8"
+    },
+    {
+      "id": "N-23414ed53b65",
+      "node_id": "N-23414ed53b65",
+      "subject": "本项目",
+      "predicate": "建筑类别",
+      "value": "3类",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-c6ad2c50804d"
+    },
+    {
+      "id": "N-443180e0efd7",
+      "node_id": "N-443180e0efd7",
+      "subject": "本项目",
+      "predicate": "设计使用年限",
+      "value": "50",
+      "unit": "年",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c6ad2c50804d"
+    },
+    {
+      "id": "N-08b323fd83aa",
+      "node_id": "N-08b323fd83aa",
+      "subject": "本项目",
+      "predicate": "耐火等级",
+      "value": "二级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-df1ebc3f5d4e"
+    },
+    {
+      "id": "N-c1c4a9d66f5b",
+      "node_id": "N-c1c4a9d66f5b",
+      "subject": "本项目",
+      "predicate": "抗震设防烈度",
+      "value": "7",
+      "unit": "度",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-1bbf63d02596"
+    },
+    {
+      "id": "N-e35642a4b42f",
+      "node_id": "N-e35642a4b42f",
+      "subject": "本项目",
+      "predicate": "结构设计使用年限",
+      "value": "50",
+      "unit": "年",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-20bd988bc554"
+    },
+    {
+      "id": "N-2eb688971791",
+      "node_id": "N-2eb688971791",
+      "subject": "本项目",
+      "predicate": "基本风压",
+      "value": "0.55",
+      "unit": "kN/m²",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-036930256da3"
+    },
+    {
+      "id": "N-70b8c5416e59",
+      "node_id": "N-70b8c5416e59",
+      "subject": "本项目",
+      "predicate": "基本雪压",
+      "value": "0.20",
+      "unit": "kN/m²",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-b712a72da18c"
+    },
+    {
+      "id": "N-e7ebf407a68f",
+      "node_id": "N-e7ebf407a68f",
+      "subject": "本项目",
+      "predicate": "地面粗糙度",
+      "value": "B类",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-6c7ca103aee7"
+    },
+    {
+      "id": "N-91624f921ea8",
+      "node_id": "N-91624f921ea8",
+      "subject": "本项目",
+      "predicate": "建筑结构安全等级",
+      "value": "二级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-9a6bda6672cf"
+    },
+    {
+      "id": "N-e0f3cb0c51f5",
+      "node_id": "N-e0f3cb0c51f5",
+      "subject": "本项目",
+      "predicate": "地基基础安全等级",
+      "value": "二级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-6e1672d1f000"
+    },
+    {
+      "id": "N-ad4f61baf248",
+      "node_id": "N-ad4f61baf248",
+      "subject": "本项目",
+      "predicate": "地基基础设计等级",
+      "value": "乙级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-6e1672d1f000"
+    },
+    {
+      "id": "N-3d4cd9a6a1f8",
+      "node_id": "N-3d4cd9a6a1f8",
+      "subject": "本项目",
+      "predicate": "抗震设防类别",
+      "value": "标准设防类（丙类）",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-9d7589c4c652"
+    },
+    {
+      "id": "N-64e67123ddc0",
+      "node_id": "N-64e67123ddc0",
+      "subject": "本项目",
+      "predicate": "框架抗震等级",
+      "value": "三级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-806484d7984a"
+    },
+    {
+      "id": "N-629089fe05c9",
+      "node_id": "N-629089fe05c9",
+      "subject": "本项目",
+      "predicate": "剪力墙抗震等级",
+      "value": "二级",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-806484d7984a"
+    }
+  ],
+  "facts_paging": {
+    "total": 211,
+    "page_size": 30,
+    "pages": 8,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [
+    {
+      "id": "CL-技术-01",
+      "text": "本工程建筑类别为3类，建筑设计使用年限为50年；本项目为高层民用建筑，建筑耐火等级为二级；本工程按7度抗震设计。",
+      "claim_type": "fact",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目设计等级为：3类建筑 / 50年 / 耐火二级 / 抗震7度",
+        "grounds": "《民用建筑设计通则》建筑类别划分；《建筑设计防火规范》高层民用建筑耐火等级；国家抗震烈度划分区域表",
+        "warrant": "规范给定的分类与设防标准适用于本项目所在地与建筑高度",
+        "backing": "GB50352-2005 / GB50016-2014 / 抗震区划表",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-规范-建筑-04",
+        "EV-规范-建筑-01"
+      ]
+    },
+    {
+      "id": "CL-技术-02",
+      "text": "上部结构采用装配整体式钢筋混凝土框架-剪力墙结构；地下室基础拟采用桩筏基础，基础埋深不小于3.5m。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目采用装配整体式钢筋混凝土框架-剪力墙结构 + 桩筏基础",
+        "grounds": "12 层、建筑高度控制 60m、抗震 7 度、IV 类场地、特征周期 0.9s；装配式政策要求",
+        "warrant": "该结构形式在给定高度与抗震条件下满足承载与变形要求（原文给出，属方案比选结论）",
+        "backing": "JGJ 3-2010 / GB50011-2010",
+        "qualifier": "拟采用",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-规范-结构-03",
+        "EV-规范-结构-01"
+      ]
+    },
+    {
+      "id": "CL-技术-03",
+      "text": "本工程采用变制冷剂流量多联机系统作为空调冷热源，室外机集中放置在屋面上，室内机为卡式或内藏风管机，并设新风机组供新风。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目空调系统采用变制冷剂流量多联机系统",
+        "grounds": "冷负荷 2473kW、热负荷 1465kW；建筑为 12 层科研用房，房间使用时间不统一",
+        "warrant": "多联机系统适合分区、分时使用且无需集中机房（属方案比选结论，原文未展开比选过程）",
+        "backing": "JGJ 174-2010 / DGJ08-107-2015",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-负荷-01",
+        "EV-规范-暖通-01"
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "type": "numeric",
+      "subject": "办公用水（288 人）",
+      "predicate": "用水定额",
+      "values": [
+        "35",
+        "50"
+      ],
+      "involved": [
+        "N-5859db27922c",
+        "N-f4add4e0e79a"
+      ],
+      "status": "待审",
+      "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
+    },
+    {
+      "type": "derivation",
+      "subject": "建筑高度控制",
+      "predicate": "派生值 vs 原文值",
+      "values": [
+        "原文 60.0",
+        "重算 49.0"
+      ],
+      "involved": [
+        "N-170213817af5",
+        "N-2a335b2708af",
+        "N-4605eb02d134",
+        "N-f0fd96a3a38e"
+      ],
+      "status": "待审",
+      "note": "按规则 R-建筑高度校核 重算得 49.0，原文写 60.0（差 11.0，18.33%）；按铁律不擅自改数"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G-001",
+      "type": "missing_fact",
+      "rule": "R-总计算负荷",
+      "label": "总计算负荷",
+      "missing": [
+        "负荷估算面积口径"
+      ],
+      "note": "原文未给出该口径，保持显式未知；不估算、不套用同类项目。"
+    },
+    {
+      "id": "G-002",
+      "type": "blocked_by_conflict",
+      "rule": "R-冷负荷",
+      "label": "冷负荷",
+      "depends_on_conflict": [
+        "本项目建筑面积"
+      ],
+      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
+    },
+    {
+      "id": "G-003",
+      "type": "blocked_by_conflict",
+      "rule": "R-热负荷",
+      "label": "热负荷",
+      "depends_on_conflict": [
+        "本项目建筑面积"
+      ],
+      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
+    }
+  ],
+  "undefined": [
+    {
+      "node_id": "N-5cb9dea74a92",
+      "predicate": "总计算负荷",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
+    },
+    {
+      "node_id": "N-a7f866d690be",
+      "predicate": "冷负荷",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
+    },
+    {
+      "node_id": "N-564866270310",
+      "predicate": "热负荷",
+      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
+    }
+  ],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "06-项目规划设计方案",
+    "file": "style/section_templates/06-项目规划设计方案.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [
+    {
+      "id": "R-建筑高度校核",
+      "label": "建筑高度控制",
+      "expr": "round({一层层高}+({层数}-1)*{标准层层高}, 1)",
+      "deps": [
+        "一层层高",
+        "层数",
+        "标准层层高"
+      ],
+      "target": "建筑高度控制",
+      "recheck": "派生差异"
+    },
+    {
+      "id": "R-最高日用水量",
+      "label": "最高日用水量",
+      "expr": "round(({科研学生用水人数}*{科研学生用水定额}+{办公用水人数}*{办公用水定额})/1000*(1+{未预见系数}/100), 2)",
+      "deps": [
+        "科研学生用水人数",
+        "科研学生用水定额",
+        "办公用水人数",
+        "办公用水定额",
+        "未预见系数"
+      ],
+      "target": "最高日用水量",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-消防用水量合计",
+      "label": "消防用水量总计",
+      "expr": "{室外消火栓系统用水量}+{室内消火栓系统用水量}+{自动喷水灭火系统用水量}",
+      "deps": [
+        "室外消火栓系统用水量",
+        "室内消火栓系统用水量",
+        "自动喷水灭火系统用水量"
+      ],
+      "target": "消防用水量总计",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-总计算负荷",
+      "label": "总计算负荷",
+      "expr": "round({本项目面积口径}*({空调负荷密度指标}+{照明及其他负荷密度指标})/1000, 0)",
+      "deps": [
+        "负荷估算面积口径",
+        "空调负荷密度指标",
+        "照明及其他负荷密度指标"
+      ],
+      "target": "总计算负荷",
+      "recheck": "未解(缺口径)"
+    },
+    {
+      "id": "R-供电容量匹配",
+      "label": "变压器容量匹配校核",
+      "expr": "{原变电站变压器容量} -> {增容后变压器容量} >= {总计算负荷}/{功率因数} => 通过；口径不全 => 待审",
+      "deps": [
+        "原变电站变压器容量",
+        "增容后变压器容量",
+        "总计算负荷"
+      ],
+      "target": "供电容量匹配校核",
+      "recheck": "闭合"
+    },
+    {
+      "id": "R-冷负荷",
+      "label": "冷负荷",
+      "expr": "round({本项目建筑面积}*{单位面积冷负荷指标}/1000, 0)",
+      "deps": [
+        "本项目建筑面积",
+        "单位面积冷负荷指标"
+      ],
+      "target": "冷负荷",
+      "recheck": "阻塞(冲突未裁决)"
+    },
+    {
+      "id": "R-热负荷",
+      "label": "热负荷",
+      "expr": "round({本项目建筑面积}*{单位面积热负荷指标}/1000, 0)",
+      "deps": [
+        "本项目建筑面积",
+        "单位面积热负荷指标"
+      ],
+      "target": "热负荷",
+      "recheck": "阻塞(冲突未裁决)"
+    },
+    {
+      "id": "R-年用水量",
+      "label": "年总用水量",
+      "expr": "round({教师用水日水量}*{年工作天数}/10000, 2)+round({学生用水日水量}*{年工作天数}/10000, 2)+round(({教师用水日水量}+{学生用水日水量})*{年工作天数}/10000*({未预见系数}/100), 2)",
+      "deps": [
+        "教师用水日水量",
+        "学生用水日水量",
+        "年工作天数",
+        "未预见系数"
+      ],
+      "target": "年总用水量",
+      "recheck": "闭合"
+    }
+  ],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

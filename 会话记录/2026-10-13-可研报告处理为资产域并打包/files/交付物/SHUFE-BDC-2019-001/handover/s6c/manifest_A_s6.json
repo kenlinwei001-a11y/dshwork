@@ -1,0 +1,97 @@
+{
+  "stage": "s6",
+  "script": "s6_domains.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/*.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "sha256": "79736f9808b017e077bb1903e6fe1674",
+      "bytes": 54955
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+      "sha256": "7413717281816da091a3bfddfd5c67dd",
+      "bytes": 8029
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
+      "sha256": "0f3442c991181bbc58785657b39955c7",
+      "bytes": 7501
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
+      "sha256": "71c1573a9bec16a35254babbc71e3845",
+      "bytes": 10559
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
+      "sha256": "24374182a38b788a76fa28a0fdb35bdc",
+      "bytes": 14849
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
+      "sha256": "d0596e6d3112c10259cd8414702db16f",
+      "bytes": 4820
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
+      "sha256": "ebde9e3b681e2f89d2cb28eeda475e37",
+      "bytes": 7974
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+      "sha256": "721a886062c8f4657e19910dc5f40df5",
+      "bytes": 8086
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
+      "sha256": "fad2f02ade615cf3000f69cb6d9d6e8c",
+      "bytes": 14830
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+      "sha256": "b3794ef694665039ef306f682cec49f1",
+      "bytes": 5962
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
+      "sha256": "7ce3522dfddbf40547c58c94ad479fdb",
+      "bytes": 6138
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+      "sha256": "6425d3ae6cb22cf090a4253e9f37d961",
+      "bytes": 6475
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
+      "sha256": "41a4eda084b2912d797c3e6f0fa823db",
+      "bytes": 4789
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
+      "sha256": "c96bec652639bf0453a483f93e442d5a",
+      "bytes": 17276
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
+      "sha256": "b746cbf8b81c2833b9569bfde0864877",
+      "bytes": 9805
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
+      "sha256": "5b4c53490752bf626c207de61c4456fe",
+      "bytes": 5481
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+      "sha256": "98b98768a8f2594e46445f4530558133",
+      "bytes": 9326
+    }
+  ],
+  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

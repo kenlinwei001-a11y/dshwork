@@ -1,0 +1,78 @@
+{
+  "section": "附件",
+  "section_index": 16,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "附件",
+    "skeleton": "style/section_skeletons/16-附件.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-b506ba5e6eaa",
+      "subject": "附件",
+      "predicate": "清单",
+      "value": "党委常委会会议纪要；项目资金筹措方案说明；虹口校区规划总平面图；项目设计方案图纸；原有第五教学楼拆除手续（待补充）",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-f508d7cfad78"
+    },
+    {
+      "node_id": "N-c679c4e79bc2",
+      "subject": "原有第五教学楼",
+      "predicate": "拆除手续状态",
+      "value": "待补充",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "never",
+      "instruction": "",
+      "chunk": "c-5e339feba7c8"
+    },
+    {
+      "node_id": "EN-0388",
+      "subject": "原有第五教学楼",
+      "predicate": "实体名",
+      "value": "原有第五教学楼",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-5e339feba7c8"
+    },
+    {
+      "node_id": "EN-0514",
+      "subject": "附件",
+      "predicate": "实体名",
+      "value": "附件",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-f508d7cfad78"
+    }
+  ],
+  "facts_total_in_section": 4,
+  "facts_truncated": false,
+  "claims": [],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

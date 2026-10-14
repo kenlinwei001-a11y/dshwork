@@ -1,0 +1,177 @@
+{
+  "work_package_id": "WP-12-项目招投标方案",
+  "outline": {
+    "section": "12-项目招投标方案",
+    "title": "项目招投标方案",
+    "must_cover": [
+      "编制依据",
+      "编制依据",
+      "招标范围",
+      "招标组织形式",
+      "招标方式"
+    ],
+    "must_cover_legal": [
+      "建设管理方案"
+    ],
+    "word_budget": [
+      1200,
+      1800
+    ],
+    "length_note": "客户未给分章字数；按章节形态把握详略（见 写作输入/章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "id": "N-1581360ae141",
+      "node_id": "N-1581360ae141",
+      "subject": "勘察",
+      "predicate": "招标估算金额",
+      "value": "39",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "N-8824177763f5",
+      "node_id": "N-8824177763f5",
+      "subject": "设计",
+      "predicate": "招标估算金额",
+      "value": "336",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "N-e60dafe57ee8",
+      "node_id": "N-e60dafe57ee8",
+      "subject": "建安工程",
+      "predicate": "招标估算金额",
+      "value": "10135",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "N-c1fd26fa6765",
+      "node_id": "N-c1fd26fa6765",
+      "subject": "监理",
+      "predicate": "招标估算金额",
+      "value": "239",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "N-7983ecf69539",
+      "node_id": "N-7983ecf69539",
+      "subject": "本项目",
+      "predicate": "招标方式",
+      "value": "公开招标、委托招标",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "never",
+      "chunk": "c-4701cb3feb02"
+    },
+    {
+      "id": "EN-0376",
+      "node_id": "EN-0376",
+      "subject": "勘察",
+      "predicate": "实体名",
+      "value": "勘察",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "EN-0429",
+      "node_id": "EN-0429",
+      "subject": "建安工程",
+      "predicate": "实体名",
+      "value": "建安工程",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "EN-0474",
+      "node_id": "EN-0474",
+      "subject": "监理",
+      "predicate": "实体名",
+      "value": "监理",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    },
+    {
+      "id": "EN-0506",
+      "node_id": "EN-0506",
+      "subject": "设计",
+      "predicate": "实体名",
+      "value": "设计",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-c790d7886310"
+    }
+  ],
+  "facts_paging": {
+    "total": 9,
+    "page_size": 30,
+    "pages": 1,
+    "tool": "wp_get_facts",
+    "note": "facts 超过 30 条时按页拉取（本节完整条数见 facts_paging.total）"
+  },
+  "claims": [],
+  "conflicts": [],
+  "gaps": [],
+  "undefined": [],
+  "skeleton": {
+    "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
+    "section": "12-项目招投标方案",
+    "file": "style/section_templates/12-项目招投标方案.yaml",
+    "forbid": [
+      "原文中的字面数值",
+      "把本项目的结论当新项目结论"
+    ]
+  },
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

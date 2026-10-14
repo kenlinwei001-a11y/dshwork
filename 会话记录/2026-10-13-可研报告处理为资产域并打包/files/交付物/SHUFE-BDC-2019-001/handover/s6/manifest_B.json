@@ -1,0 +1,26 @@
+{
+  "stage": "s6",
+  "patterns": [
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/*.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "bytes": 207253,
+      "sha256": "724b212fcec852f817e3ac5bb467e6e6",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "domains"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/reuse/domains/*.yaml"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}

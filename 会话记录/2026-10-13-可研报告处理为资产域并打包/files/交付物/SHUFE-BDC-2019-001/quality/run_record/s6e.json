@@ -1,0 +1,251 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s6e",
+  "name": "对齐写作专家消费契约",
+  "script": "s15_writing_contract.py",
+  "script_sha256": "fd5275ffaad32d50fee57d301efd4b1a",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:59",
+  "finished_at": "2026-10-14T18:06:00",
+  "elapsed_s": 0.81,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/project/work_packages/*.json"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 12735,
+      "sha256": "15c36ac164f478194af53e6a523eb7c7",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 11930,
+      "sha256": "617872eebe6b1fb4df0ec5e7c50dd1f1",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 15393,
+      "sha256": "19ecfb064f99dda406a344d56ddebf47",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 8974,
+      "sha256": "b08385754ba301edf5f5b4bf62101752",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 21719,
+      "sha256": "ce844920ecd970b25a29f1c0c9548a98",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 20973,
+      "sha256": "10f0c22e692e48018fb550113f04ed2d",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 18807,
+      "sha256": "6b7c52ec6e7d1cbab9db208aada9aeaa",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3787,
+      "sha256": "18f6703b75dbcfac7d9a816c039e8f15",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3734,
+      "sha256": "efe523108c181afd14cf2873c4447e06",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3732,
+      "sha256": "4e420e67e8255f0aa204b320dd4927fa",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 4574,
+      "sha256": "f98e6beff57a37d58b9f15f15c7f8954",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 4853,
+      "sha256": "f18c0b55b971e88de185d320aa8196b5",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 21747,
+      "sha256": "170a74e56b452e9639f21c6d828a978d",
+      "mtime": 1791972359
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2574,
+      "sha256": "d99449e58a3f5953634f1d75253ba1ed",
+      "mtime": 1791972360
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2278,
+      "sha256": "0e7091341cce41a2a9a31c2e851995db",
+      "mtime": 1791972360
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/16-附件.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2931,
+      "sha256": "4f08452dadc63fe98f4876ecae300348",
+      "mtime": 1791972360
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+    "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+    "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+    "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+    "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+    "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+    "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+    "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+    "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+    "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+    "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+    "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+    "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+    "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+    "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+    "SHUFE-BDC-2019-001/project/work_packages/16-附件.json"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/handover/s6c/README.md",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6e/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6e/manifest_A_s6c.json",
+    "SHUFE-BDC-2019-001/handover/s6e/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s6e/manifest_C.json",
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+    "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+    "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+    "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+    "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+    "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+    "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+    "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+    "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+    "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+    "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+    "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+    "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+    "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+    "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+    "SHUFE-BDC-2019-001/project/work_packages/16-附件.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s6c.json",
+    "SHUFE-BDC-2019-001/style/section_skeletons/01-总论.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/02-学校简介.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/03-项目建设背景及必要性分析.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/04-项目选址及建设条件.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/05-项目建设内容及规模.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/06-项目规划设计方案.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/07-节能设计.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/08-环境影响评价.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/09-卫生防疫与劳动安全.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/10-社会稳定风险分析.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/11-项目管理及实施进度.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/12-项目招投标方案.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/13-投资估算及资金筹措.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/14-社会效益.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/15-结论与建议.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/16-附件.yaml",
+    "SHUFE-BDC-2019-001/style/section_skeletons/index.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/01-总论.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/02-学校简介.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/03-项目建设背景及必要性分析.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/04-项目选址及建设条件.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/05-项目建设内容及规模.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/06-项目规划设计方案.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/07-节能设计.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/08-环境影响评价.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/09-卫生防疫与劳动安全.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/10-社会稳定风险分析.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/11-项目管理及实施进度.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/12-项目招投标方案.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/13-投资估算及资金筹措.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/14-社会效益.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/15-结论与建议.yaml",
+    "SHUFE-BDC-2019-001/style/section_templates/16-附件.yaml",
+    "SHUFE-BDC-2019-001/style/style_profile.yaml",
+    "SHUFE-BDC-2019-001/wp/01-总论.yaml",
+    "SHUFE-BDC-2019-001/wp/02-学校简介.yaml",
+    "SHUFE-BDC-2019-001/wp/03-项目建设背景及必要性分析.yaml",
+    "SHUFE-BDC-2019-001/wp/04-项目选址及建设条件.yaml",
+    "SHUFE-BDC-2019-001/wp/05-项目建设内容及规模.yaml",
+    "SHUFE-BDC-2019-001/wp/06-项目规划设计方案.yaml",
+    "SHUFE-BDC-2019-001/wp/07-节能设计.yaml",
+    "SHUFE-BDC-2019-001/wp/08-环境影响评价.yaml",
+    "SHUFE-BDC-2019-001/wp/09-卫生防疫与劳动安全.yaml",
+    "SHUFE-BDC-2019-001/wp/10-社会稳定风险分析.yaml",
+    "SHUFE-BDC-2019-001/wp/11-项目管理及实施进度.yaml",
+    "SHUFE-BDC-2019-001/wp/12-项目招投标方案.yaml",
+    "SHUFE-BDC-2019-001/wp/13-投资估算及资金筹措.yaml",
+    "SHUFE-BDC-2019-001/wp/14-社会效益.yaml",
+    "SHUFE-BDC-2019-001/wp/15-结论与建议.yaml",
+    "SHUFE-BDC-2019-001/wp/16-附件.yaml",
+    "SHUFE-BDC-2019-001/wp/index.yaml"
+  ],
+  "stdout_tail": "{\n  \"nodes_total\": 959,\n  \"kind\": {\n    \"quantity\": 285,\n    \"judgment\": 81,\n    \"text\": 593\n  },\n  \"status\": {\n    \"defined\": 951,\n    \"undefined\": 6,\n    \"pending_review\": 2\n  },\n  \"caliber_filled\": 97,\n  \"inheritable_never\": 81,\n  \"section_skeletons\": 16,\n  \"workpackages\": 16,\n  \"terminology_entries\": 4\n}\n",
+  "stderr_tail": ""
+}

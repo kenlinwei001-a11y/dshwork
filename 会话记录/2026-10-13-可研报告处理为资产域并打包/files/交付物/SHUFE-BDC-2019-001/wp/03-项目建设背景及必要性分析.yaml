@@ -1,0 +1,348 @@
+{
+  "section": "项目建设背景及必要性分析",
+  "section_index": 3,
+  "level": 1,
+  "outline": {
+    "must_cover": [],
+    "title": "项目建设背景及必要性分析",
+    "skeleton": "style/section_skeletons/03-项目建设背景及必要性分析.yaml",
+    "length_target": null,
+    "length_note": "客户未给分章字数；按 §2 形态描述把握详略（该章形态见 章节提示词索引.md）"
+  },
+  "facts": [
+    {
+      "node_id": "N-a3f0d71e10e5",
+      "subject": "本项目",
+      "predicate": "建设性质",
+      "value": "拆除重建",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "never",
+      "instruction": "",
+      "chunk": "c-e6a978691d8c"
+    },
+    {
+      "node_id": "N-fa0dd79ca413",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "本科专业（数据科学与大数据技术）获批年份",
+      "value": "2018",
+      "unit": "年",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-fc1be7087c63"
+    },
+    {
+      "node_id": "N-37d514c98f96",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年发表论文数",
+      "value": "87",
+      "unit": "篇",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-129739dbd201"
+    },
+    {
+      "node_id": "N-723bfe3fc6d2",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年A级期刊论文",
+      "value": "39",
+      "unit": "篇",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-129739dbd201"
+    },
+    {
+      "node_id": "N-e5f7701a892f",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年国家自然科学基金项目",
+      "value": "6",
+      "unit": "项",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-19ef774b3e1c"
+    },
+    {
+      "node_id": "N-f97cbdbe6afe",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年省部级课题",
+      "value": "8",
+      "unit": "项",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-19ef774b3e1c"
+    },
+    {
+      "node_id": "N-4ae46c29d85f",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年横向课题",
+      "value": "11",
+      "unit": "项",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-19ef774b3e1c"
+    },
+    {
+      "node_id": "N-2350885b04e2",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "2018年合同经费",
+      "value": "428",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-19ef774b3e1c"
+    },
+    {
+      "node_id": "N-9bd50795df49",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·教师规模",
+      "value": "950",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-2ac8aaa4a9e1"
+    },
+    {
+      "node_id": "N-53ad5074ad4a",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·一级学科数",
+      "value": "18",
+      "unit": "个",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-b5613f87479d"
+    },
+    {
+      "node_id": "N-ee882814713f",
+      "subject": "上海财经大学",
+      "predicate": "2020年目标·国际知名学术领军人才",
+      "value": "30",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-2ac8aaa4a9e1"
+    },
+    {
+      "node_id": "EN-0347",
+      "subject": "上海财经大学统计与管理学院",
+      "predicate": "实体名",
+      "value": "上海财经大学统计与管理学院",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-fc1be7087c63"
+    }
+  ],
+  "facts_total_in_section": 12,
+  "facts_truncated": false,
+  "claims": [
+    {
+      "id": "CL-必要性-00",
+      "text": "为实现上海财经大学“初步建成具有鲜明财经特色的高水平研究型大学”的战略目标，推进学校“统计学”世界一流学科的发展，本项目提出对中山北一路校区原有第五教学楼进行拆除，重新建设大数据研究中心。",
+      "claim_type": "inference",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目应当立项建设",
+        "grounds": "学校战略目标 + 统计学一流学科发展 + 现有第五教学楼条件不足",
+        "warrant": "一流学科建设依赖科研能力提升，而科研用房是科研能力的基础与支撑（原文第3.2.3节给出）",
+        "backing": "《上海财经大学推进世界一流大学和一流学科建设方案》",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-内部-05",
+        "EV-内部-06"
+      ]
+    },
+    {
+      "id": "CL-必要性-01",
+      "text": "本项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目建设是提升我国新兴领域科研水平、加速向创新型经济转型发展的需要",
+        "grounds": "《中共中央关于制定国民经济和社会发展第十三个五年规划》要求深入实施创新驱动发展战略、推进有特色高水平大学和科研院所建设；本项目已纳入学校“十三五”基建规划",
+        "warrant": "**（原文未写出保证）** 从“国家层面要求创新驱动”到“因此本校必须建设这栋楼”之间的推理许可未给出",
+        "backing": "——",
+        "qualifier": "因此",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-内部-03"
+      ]
+    },
+    {
+      "id": "CL-必要性-02",
+      "text": "本项目是推进上海大数据研究与发展，加快建设数字中国的需要。上海财经大学作为国家经济学基础人才基地，目前尚未建立相应的大数据专业研究平台，本项目的建设是填补上海财经大学大数据研究机构空缺的必要举措。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目建设是推进上海大数据研究与发展、加快建设数字中国的需要",
+        "grounds": "国家大数据战略；上海市已建成复旦大学大数据研究院、上海交通大学大数据工程技术研究中心、华东理工大学金融大数据研究中心；上海财经大学尚无大数据专业研究平台",
+        "warrant": "同类高校已建、本校缺失 ⇒ 本校需要建设（原文以“填补空缺”表述，未展开保证）",
+        "backing": "《国务院关于印发促进大数据发展行动纲要的通知》（国发〔2015〕50号）",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-政策-03",
+        "EV-对标-01"
+      ]
+    },
+    {
+      "id": "CL-必要性-03",
+      "text": "本项目的建设是改善中山北一路校区设施条件，建立良好科研环境的需要。中山北一路校区成立于90年代，校区内部分设备设施已不能满足目前学校的发展需求。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目建设是改善中山北一路校区设施条件、建立良好科研环境的需要",
+        "grounds": "中山北一路校区成立于 90 年代，部分设备设施已不能满足学校发展需求；原第五教学楼为 1960 年代建造的四层框架结构，建筑面积 2758 ㎡，经久失修、功能及布局不能适应需求",
+        "warrant": "既有建筑老化失修、功能不符 ⇒ 需要重建（原文以“后勤和使用部门多次提出修缮改造建议”佐证需求真实性）",
+        "backing": "学校后勤与使用部门的修缮改造建议",
+        "qualifier": "",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-现状-01",
+        "EV-现状-02"
+      ]
+    },
+    {
+      "id": "CL-必要性-04",
+      "text": "本项目的建设是推动学校“双一流”建设的非常重要的基础设施项目，也是顺利实现学校建设目标的重要保障。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "本项目建设是响应“双一流”高校建设、实现高水平研究型大学战略目标的需要",
+        "grounds": "2017年9月学校入选一流学科建设高校，统计学入选一流学科；《关于做好中央预算内投资支持中央高校“双一流”建设项目储备申报工作的通知》（发改社会〔2017〕1916号）明确支持学科建设所需基础设施建设",
+        "warrant": "国家“双一流”建设项目储备明确支持学科科研用房 ⇒ 本项目属于可申报范围",
+        "backing": "发改社会〔2017〕1916号",
+        "qualifier": "非常重要",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-政策-05",
+        "EV-政策-06",
+        "EV-内部-05"
+      ]
+    },
+    {
+      "id": "CL-结论-02",
+      "text": "综上所述，项目的建设是提升我国新兴领域科研水平，加速向创新型经济转型发展的需要；是推进上海大数据研究与发展，加快建设数字中国的需要；是改善中山北一路校区设施条件，建立良好科研环境的需要；是响应“双一流”高校建设，实现高水平研究型大学战略目标的需要。因此，项目的建设是十分必要的。",
+      "claim_type": "conclusion",
+      "status": "unverified",
+      "toulmin": {
+        "claim": "项目的建设是十分必要的",
+        "grounds": "四条分立必要性论点的合取",
+        "warrant": "四条分论点各自成立且覆盖充分 ⇒ 整体必要性成立",
+        "backing": "第3.2节",
+        "qualifier": "十分",
+        "rebuttal": "——"
+      },
+      "evidence_refs": [
+        "EV-政策-02",
+        "EV-政策-03",
+        "EV-现状-01",
+        "EV-政策-06"
+      ]
+    },
+    {
+      "id": "CL-RS-104-03",
+      "text": "建设内容及规模：本项目将对中山北一路校区的原有第五教学楼进行拆除，拆除面积2758平方米",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建设内容及规模：本项目将对中山北一路校区的原有第五教学楼进行拆除，拆除面积2758平方米",
+        "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-现状-01",
+        "EV-现状-02"
+      ]
+    },
+    {
+      "id": "CL-RS-124-03",
+      "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米",
+        "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-现状-01",
+        "EV-现状-02"
+      ]
+    },
+    {
+      "id": "CL-RS-209-03",
+      "text": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+      "claim_type": "conclusion",
+      "status": "supported",
+      "toulmin": {
+        "claim": "建设规模合理：本项目将对中山北一路校区的原有第五教学楼进行拆除重建，拆除面积2758平方米，新建总建筑面积18319平方米，其中地上18000平方米，地下319平方米（设备用房）",
+        "grounds": "复述 CL-必要性-03（项目建设背景及必要性分析）",
+        "warrant": "总论/结论按体例复述各章结论，数值与 CL-必要性-03 一致",
+        "backing": "可行性研究报告编写体例",
+        "qualifier": "在本报告范围内",
+        "rebuttal": "若被复述章数值变更，本节须同步"
+      },
+      "evidence_refs": [
+        "EV-现状-01",
+        "EV-现状-02"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "gaps": [],
+  "rules_touching_section": [],
+  "return_contract": {
+    "draft_md": "正文 Markdown，数值一律 {{node:N-xxxxxxxxxxxx}}，不得写字面量",
+    "node_mentions": "[{node_id, char_span, form}]",
+    "new_claims": "[{text, supports[], evidence[]}]",
+    "unresolved": "[{what, why, need_from_client}]"
+  }
+}

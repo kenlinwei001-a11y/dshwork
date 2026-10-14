@@ -1,0 +1,389 @@
+{
+  "docs": 21,
+  "runs": [
+    {
+      "doc_id": "DOC-REPORT-01",
+      "task": "fact_extraction",
+      "chunks": 1178,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 1178,
+      "prompt_sha256": "370f0246e1106f06eec05f41c549a058"
+    },
+    {
+      "doc_id": "DOC-REPORT-01",
+      "task": "claim_extraction",
+      "chunks": 1178,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 1178,
+      "prompt_sha256": "212a6b3fcbb1aac0df81d1cfb69cdcc2"
+    },
+    {
+      "doc_id": "EXT-00",
+      "task": "fact_extraction",
+      "chunks": 14,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 14,
+      "prompt_sha256": "88d670d6382c1d76af9a4fb0056b8f15"
+    },
+    {
+      "doc_id": "EXT-00",
+      "task": "claim_extraction",
+      "chunks": 14,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 14,
+      "prompt_sha256": "ff34b6a8438428d9b41b55ad3299b3ab"
+    },
+    {
+      "doc_id": "EXT-01",
+      "task": "fact_extraction",
+      "chunks": 144,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 144,
+      "prompt_sha256": "c134312909496a3dd9eb9f83f9bf2d7e"
+    },
+    {
+      "doc_id": "EXT-01",
+      "task": "claim_extraction",
+      "chunks": 144,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 144,
+      "prompt_sha256": "60da2f6d8766267497c500383efbca96"
+    },
+    {
+      "doc_id": "EXT-02",
+      "task": "fact_extraction",
+      "chunks": 15,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 15,
+      "prompt_sha256": "aed9698e6cc4762373e6228ad2a9bd51"
+    },
+    {
+      "doc_id": "EXT-02",
+      "task": "claim_extraction",
+      "chunks": 15,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 15,
+      "prompt_sha256": "85afc03c1bb7becd61cbb9c3e601cbb9"
+    },
+    {
+      "doc_id": "EXT-03",
+      "task": "fact_extraction",
+      "chunks": 200,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 200,
+      "prompt_sha256": "1f897f08e1b42c0eb4b66e536e7c80fb"
+    },
+    {
+      "doc_id": "EXT-03",
+      "task": "claim_extraction",
+      "chunks": 200,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 200,
+      "prompt_sha256": "6d9a3de03560c9c29e188aba866a44bc"
+    },
+    {
+      "doc_id": "EXT-04",
+      "task": "fact_extraction",
+      "chunks": 56,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 56,
+      "prompt_sha256": "111c02d3fcca07d4ae40fa79ff3a5268"
+    },
+    {
+      "doc_id": "EXT-04",
+      "task": "claim_extraction",
+      "chunks": 56,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 56,
+      "prompt_sha256": "012c1cef1114df0bcfefd2e2dd567ba5"
+    },
+    {
+      "doc_id": "EXT-05",
+      "task": "fact_extraction",
+      "chunks": 63,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 63,
+      "prompt_sha256": "d20b7c4580d1e3b66ccd8281ccbb5028"
+    },
+    {
+      "doc_id": "EXT-05",
+      "task": "claim_extraction",
+      "chunks": 63,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 63,
+      "prompt_sha256": "2982e837dab7c93c68dce9d905e367d7"
+    },
+    {
+      "doc_id": "EXT-06",
+      "task": "fact_extraction",
+      "chunks": 39,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 39,
+      "prompt_sha256": "e098b6407193f4f2c5a58952234a8510"
+    },
+    {
+      "doc_id": "EXT-06",
+      "task": "claim_extraction",
+      "chunks": 39,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 39,
+      "prompt_sha256": "ee857f7c9f88b71ae9782a7e139b5a6c"
+    },
+    {
+      "doc_id": "EXT-07",
+      "task": "fact_extraction",
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 5,
+      "prompt_sha256": "6614efaa90ce86d6917046cfcf91ac3b"
+    },
+    {
+      "doc_id": "EXT-07",
+      "task": "claim_extraction",
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 5,
+      "prompt_sha256": "96ffab0365e68693a9f57758f7b1d7d0"
+    },
+    {
+      "doc_id": "EXT-08",
+      "task": "fact_extraction",
+      "chunks": 38,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 38,
+      "prompt_sha256": "438cc7520a0b4c649795205c34015f6a"
+    },
+    {
+      "doc_id": "EXT-08",
+      "task": "claim_extraction",
+      "chunks": 38,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 38,
+      "prompt_sha256": "2a21f5856f381927c312e000e682e5a8"
+    },
+    {
+      "doc_id": "EXT-09",
+      "task": "fact_extraction",
+      "chunks": 91,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 91,
+      "prompt_sha256": "5adb15ba278e75875cd063bbd3ef867e"
+    },
+    {
+      "doc_id": "EXT-09",
+      "task": "claim_extraction",
+      "chunks": 91,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 91,
+      "prompt_sha256": "5bfdd902dd68caf8d7ae0c71518f85ac"
+    },
+    {
+      "doc_id": "EXT-10",
+      "task": "fact_extraction",
+      "chunks": 30,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 30,
+      "prompt_sha256": "b53f245c5f608e2d04e5f696e51db3a6"
+    },
+    {
+      "doc_id": "EXT-10",
+      "task": "claim_extraction",
+      "chunks": 30,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 30,
+      "prompt_sha256": "1d2e799c6a2020c00484852ac84a4b1d"
+    },
+    {
+      "doc_id": "EXT-11",
+      "task": "fact_extraction",
+      "chunks": 156,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 156,
+      "prompt_sha256": "66006e1ef65afd60547d555fe76f5359"
+    },
+    {
+      "doc_id": "EXT-11",
+      "task": "claim_extraction",
+      "chunks": 156,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 156,
+      "prompt_sha256": "e58d8646244179a06b739807d533d546"
+    },
+    {
+      "doc_id": "EXT-12",
+      "task": "fact_extraction",
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 5,
+      "prompt_sha256": "3dafc2f2aa50638cd4a2396f5abe94dc"
+    },
+    {
+      "doc_id": "EXT-12",
+      "task": "claim_extraction",
+      "chunks": 5,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 5,
+      "prompt_sha256": "9eb667357b0c75d16d95ea613d3dd2cf"
+    },
+    {
+      "doc_id": "EXT-13",
+      "task": "fact_extraction",
+      "chunks": 4,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 4,
+      "prompt_sha256": "7362b59d834b918140f82924de429dcb"
+    },
+    {
+      "doc_id": "EXT-13",
+      "task": "claim_extraction",
+      "chunks": 4,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 4,
+      "prompt_sha256": "aaf5a417a04f444d4a20736a0567cbfe"
+    },
+    {
+      "doc_id": "EXT-14",
+      "task": "fact_extraction",
+      "chunks": 12,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 12,
+      "prompt_sha256": "dce45b5328f68e8b92305d5316fadca7"
+    },
+    {
+      "doc_id": "EXT-14",
+      "task": "claim_extraction",
+      "chunks": 12,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 12,
+      "prompt_sha256": "e25df16ff3bd41e774d5ffbe9558aff3"
+    },
+    {
+      "doc_id": "EXT-15",
+      "task": "fact_extraction",
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 3,
+      "prompt_sha256": "2e5fda47ef41298180e0d5e692a4e339"
+    },
+    {
+      "doc_id": "EXT-15",
+      "task": "claim_extraction",
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 3,
+      "prompt_sha256": "2d2330b7b1b5433fdd1702146b4c663e"
+    },
+    {
+      "doc_id": "EXT-16",
+      "task": "fact_extraction",
+      "chunks": 7,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 7,
+      "prompt_sha256": "48bb5f6b5b642db5d717d88a56bfe114"
+    },
+    {
+      "doc_id": "EXT-16",
+      "task": "claim_extraction",
+      "chunks": 7,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 7,
+      "prompt_sha256": "a92eae509d251b3d7fe9ac6c4880a8e5"
+    },
+    {
+      "doc_id": "EXT-17",
+      "task": "fact_extraction",
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 3,
+      "prompt_sha256": "07d4987c66c3a3e4350337a269a466a0"
+    },
+    {
+      "doc_id": "EXT-17",
+      "task": "claim_extraction",
+      "chunks": 3,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 3,
+      "prompt_sha256": "6b50e27db2deaf0c0d3bc57d8d07ad5f"
+    },
+    {
+      "doc_id": "EXT-18",
+      "task": "fact_extraction",
+      "chunks": 1,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 0,
+      "prompt_sha256": "f0deae5c9e3517e05a5948d59662be63"
+    },
+    {
+      "doc_id": "EXT-18",
+      "task": "claim_extraction",
+      "chunks": 1,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 0,
+      "prompt_sha256": "5ef85b9b6bf5892f2c2f780ca38be0dd"
+    },
+    {
+      "doc_id": "EXT-19",
+      "task": "fact_extraction",
+      "chunks": 65,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 65,
+      "prompt_sha256": "68f403ee9c11e9ea7b1aacd898d6c91f"
+    },
+    {
+      "doc_id": "EXT-19",
+      "task": "claim_extraction",
+      "chunks": 65,
+      "distinct_prompt_sha256": 1,
+      "invoked": 0,
+      "not_invoked": 65,
+      "prompt_sha256": "7e95eda5057d6f9f2fedd6ccaf6cab47"
+    }
+  ],
+  "runs_with_chunks": 42,
+  "total_chunk_requests": 4258,
+  "invoked": 0,
+  "not_invoked": 4256,
+  "prompt_reuse_violations": [],
+  "note": "同一 (doc,task) 的所有分片共用 1 条 prompt_sha256 ⇒ 提示词复用、可被缓存；not_invoked 表示本环境无 LLM provider，**不得计为通过**"
+}

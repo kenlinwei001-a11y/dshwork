@@ -1,0 +1,84 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s4b",
+  "name": "图谱补全与去重（**须在脱敏之前**）",
+  "script": "s4b_fill_dedup.py",
+  "script_sha256": "31359344f9c292a9c4becfc2ac6fe32c",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T18:05:46",
+  "finished_at": "2026-10-14T18:05:46",
+  "elapsed_s": 0.23,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+      "bytes": 6439,
+      "sha256": "89c2ef8f8e53630d0c157f05b52ac5ff",
+      "mtime": 1791972346
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "bytes": 233810,
+      "sha256": "edd8795d30b1a1dbc7027d21c8e7eb0c",
+      "mtime": 1791972346
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "bytes": 103522,
+      "sha256": "8752620c1ee9456105f9d5429ce3a3a4",
+      "mtime": 1791972346
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/handover/s4/README.md",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s4b/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s4b/manifest_A_s4.json",
+    "SHUFE-BDC-2019-001/handover/s4b/manifest_B.json",
+    "SHUFE-BDC-2019-001/handover/s4b/manifest_C.json",
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/quality/nonstandalone_values.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s4.json"
+  ],
+  "stdout_tail": "    \"note\": \"登记为公式项 ⇒ 是推导式的操作数，**不再计入未建模缺口**\"\n  },\n  \"nonstandalone\": {\n    \"count\": 11,\n    \"values\": {\n      \"315\": \"推导式操作数（公式的一部分，非独立事实）\",\n      \"16\": \"推导式操作数（公式的一部分，非独立事实）\",\n      \"1350\": \"推导式操作数（公式的一部分，非独立事实）\",\n      \"8\": \"推导式操作数（公式的一部分，非独立事实）\",\n      \"2200\": \"推导式操作数（公式的一部分，非独立事实）\",\n      \"0.5\": \"区间端点（该区间已建模为一条区间事实 0.5~1.5 米）\",\n      \"1.5\": \"区间端点（该区间已建模为一条区间事实 0.5~1.5 米）\",\n      \"0.06\": \"区间端点（该区间已建模为一条区间事实 0.06~0.08 米/昼夜）\",\n      \"0.08\": \"区间端点（该区间已建模为一条区间事实 0.06~0.08 米/昼夜）\",\n      \"0.04\": \"区间端点（该区间已建模为一条区间事实 0.04~0.11 米/昼夜）\",\n      \"0.11\": \"区间端点（该区间已建模为一条区间事实 0.04~0.11 米/昼夜）\"\n    }\n  }\n}\n",
+  "stderr_tail": ""
+}

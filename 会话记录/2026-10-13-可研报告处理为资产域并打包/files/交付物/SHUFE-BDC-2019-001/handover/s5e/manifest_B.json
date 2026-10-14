@@ -1,0 +1,24 @@
+{
+  "stage": "s5e",
+  "patterns": [
+    "SHUFE-BDC-2019-001/source_ledger.json",
+    "SHUFE-BDC-2019-001/graph/relations.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "bytes": 43965,
+      "sha256": "76d71821f18ed18adc16703f1d2e520f",
+      "probe": {
+        "parsable": true,
+        "keys": "list[466]"
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [
+    "SHUFE-BDC-2019-001/source_ledger.json"
+  ],
+  "source": "B=下游独立清点（实际读盘，不读上游 claim）"
+}
