@@ -50,12 +50,13 @@ def test_import_roundtrip():
 def test_bootstrap_claim():
     diffs = diff_schemas({"facts": {"type": "array"}}, {"facts": {"type": "array"}, "claims": {"type": "array"}})
     r = bootstrap_claim_ontology(diffs)
-    assert r["bootstrapped"] is True and r["source"] == "deterministic"
+    # Semantica 已接入：默认自动连接成功 → source="semantica"；未部署 → 降级 "deterministic"。
+    assert r["bootstrapped"] is True and r["source"] in ("deterministic", "semantica")
     onto = r["ontology"]
     assert any(c["name"] == "Claim" for c in onto["classes"])
     assert any(p["name"] == "has_evidence" for p in onto["properties"])
     assert any(c["shape"] == "ClaimShape" for c in onto["constraints"])
-    print("[OK] bootstrap：Claim 新增 → 诱导 Claim 类 + has_evidence/has_premise 属性 + ClaimShape 约束")
+    print(f"[OK] bootstrap：Claim 新增 → 诱导 Claim 类 + has_evidence/has_premise 属性 + ClaimShape 约束（source={r['source']}）")
 
 
 def test_bootstrap_no_claim():

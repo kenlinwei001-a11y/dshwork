@@ -65,7 +65,7 @@ class CompositeProvider:
         self.capabilities = caps
         self.capability_source = cap_source
         self.name = f"composite[{getattr(primary,'name','?')}+{getattr(fallback,'name','?')}]"
-        self.fallbacks: list[str] = []
+        self.failure_log: list[str] = []   # 记录失败（不再有 fallback）
 
     def _call(self, meth, *a, **kw):
         for impl, tag in ((self.primary, "semantica"), (self.fallback, "local")):
@@ -84,7 +84,7 @@ class CompositeProvider:
     def extract(self, text):        return self._call("extract", text)
     def disambiguate(self, names):  return self._call("disambiguate", names)
     # RelationProtocol
-    def derive(self, facts, rules): return self._call("derive", facts, rules)
+    def run_reasoning(self, facts, rules): return self._call("derive", facts, rules)
     # GraphProtocol
     def add_entity(self, node_id, label, **meta):        return self._call("add_entity", node_id, label, **meta)
     def add_relationship(self, src, dst, t, **meta):     return self._call("add_relationship", src, dst, t, **meta)
@@ -121,7 +121,7 @@ class _SRelation:
     def extract(self, text, entities):
         return self.c.call("extract_relations", {"text": text, "entities": entities})
 
-    def derive(self, facts, rules):
+    def run_reasoning(self, facts, rules):
         return self.c.run_reasoning([json.dumps(f, ensure_ascii=False) if isinstance(f, dict) else str(f)
                                      for f in (facts or [])])
 
@@ -188,7 +188,7 @@ def register_semantica_providers(corpus_dir=None, force: bool = False) -> dict:
                                  "probe": evidence}, ensure_ascii=False, indent=2), encoding="utf-8")
     if not probe.get("available") or not probe.get("live"):
         return {"registered": False, "probe": evidence,
-                "note": "Semantica 不可用或活体探测失败 —— **保持本地实现，不声明任何 semantica 能力**"}
+                "note": "Semantica 不可用或活体探测失败 —— **不注册任何能力（fail-closed，禁止替身与降级）**"}
     client = probe["client"]
     caps = probe["capabilities"]
 

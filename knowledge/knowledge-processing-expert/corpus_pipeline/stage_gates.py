@@ -191,7 +191,11 @@ def run_stage_gates(corpus_dir, *, draft_path=None, source_md=None, source_docx=
     m10 = []
     for f in wps:
         w = _j(f, {})
-        bad_mc = [k for k in (w.get("outline", {}).get("must_cover") or []) if draft and k not in draft]
+        # ★ 诚实出口：工作包可把某条 must_cover 标为 not_applicable（附理由）；
+        #   否则「必须全覆盖」会逼写作阶段把关键词硬塞进正文（= 造假压力）。
+        _na = {x.get('keyword') for x in ((w.get('outline') or {}).get('not_applicable') or [])}
+        bad_mc = [k for k in ((w.get("outline") or {}).get("must_cover") or [])
+                  if draft and k not in draft and k not in _na]
         if bad_mc:
             m10.append(f"{w.get('outline',{}).get('section')}: must_cover 缺 {bad_mc}")
     g.append(_gate("S10", "装配闭环", max(len(wps), 1), len(wps) - len(m10), m10,

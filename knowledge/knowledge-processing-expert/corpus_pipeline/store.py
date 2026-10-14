@@ -105,18 +105,53 @@ def corpus_get_chunk(corpus_dir, chunk_id=None, limit=20):
         c = json.loads(line)
         if chunk_id is None or c["id"] == chunk_id:
             out.append(c)
-    return out[:limit] if chunk_id is None else (out[0] if out else {"error": f"chunk {chunk_id} 不存在"})
+    if chunk_id is not None:
+        # 单条：始终返回对象（MCP structuredContent 必须是 object）
+        return out[0] if out else {"error": f"chunk {chunk_id} 不存在"}
+    # 列举：返回对象而非裸数组，兼容 MCP structuredContent 契约
+    return {"count": len(out), "limit": limit, "returned": len(out[:limit]), "chunks": out[:limit],
+            "note": "数值已替换为 {{node:Nxx}} 占位符；含值原文 chunks/chunks.jsonl 不对外"}
 
 
 def corpus_get_skeleton(corpus_dir, section=None):
-    """从 section_templates 取节模板。"""
+    """从 section_templates 取节模板。
+
+    section 依次尝试三种写法：
+      1) 完整文件名或词干，如 "32-项目建设内容及规模"
+      2) 序号，如 "32" / "S032"（匹配文件名前缀 NN-）
+      3) 标题片段，如 "项目建设内容及规模"
+    返回值始终是对象（MCP structuredContent 契约要求 object）。
+    """
     d = Path(corpus_dir) / "style" / "section_templates"
     if not d.exists():
         return {"error": "section_templates 不存在"}
-    if section:
-        p = d / f"{section}.yaml"
-        return {"section": section, "content": p.read_text(encoding="utf-8")} if p.exists() else {"error": f"模板 {section} 不存在"}
-    return {p.stem: p.read_text(encoding="utf-8") for p in sorted(d.glob("*.yaml"))}
+    files = sorted(d.glob("*.yaml"))
+
+    def _load(p):
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return {"raw": p.read_text(encoding="utf-8")}
+
+    if not section:
+        return {"count": len(files), "templates": {p.stem: _load(p) for p in files}}
+
+    key = str(section).strip()
+    if key.lower().endswith(".yaml"):
+        key = key[:-5]
+    digits = "".join(ch for ch in key if ch.isdigit())
+    hits = [p for p in files if p.stem == key]
+    if not hits and digits:
+        want = str(int(digits)).zfill(2)
+        hits = [p for p in files if p.stem.split("-", 1)[0].zfill(2) == want]
+    if not hits:
+        hits = [p for p in files if key and key in p.stem.split("-", 1)[-1]]
+    if not hits:
+        return {"error": f"模板 {section} 不存在",
+                "hint": "可用完整文件名（32-项目建设内容及规模）、序号（32）或标题片段",
+                "count": len(files)}
+    p = hits[0]
+    return {"section": p.stem, "file": p.name, "matches": len(hits), "template": _load(p)}
 
 
 def corpus_where_used(corpus_dir, node_id):

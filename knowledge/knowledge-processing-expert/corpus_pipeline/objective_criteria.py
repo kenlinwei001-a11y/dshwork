@@ -181,8 +181,10 @@ def run_objective_criteria(corpus_dir, *, draft_path=None, source_md=None,
         tot10, m10 = 0, []
         for n in pk["nodes"]:
             v = re.sub(r"[\s　]", "", str(n.get("value", "")))
+            # fix34：外部依据节点不计入装配覆盖分母（语义：依据 ≠ 待引用取值）
             if (len(v) < 3 or _SKIP_PRED.search(n.get("predicate", ""))
-                    or n.get("status", "defined") != "defined"):
+                    or n.get("status", "defined") != "defined"
+                    or n.get("doc_layer") == "external" or n.get("ext_source")):
                 continue
             tot10 += 1
             if v not in dn:

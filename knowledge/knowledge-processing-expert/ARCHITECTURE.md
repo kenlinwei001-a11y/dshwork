@@ -93,7 +93,8 @@ Schema Diff → Asset Resolver → Reuse Policy → Asset Assembler → Validati
 |---|---|---|
 | Apache Ossie | 语义对齐标准字典 | `import_ossie_yaml` / `export_ossie_yaml` |
 | Jev（TypeSafe） | 语义分类决策模型 | `semantic_classify` 预留 MCP 插槽 |
-| Semantica | 本体管理（OWL/SHACL/SKOS） | `ontology_schema` + `bootstrap_claim_ontology`（预留 `semantica_client`） |
+| Semantica | 本体管理（OWL/SHACL/SKOS）+ 图原生上下文与决策 | **已接入**：`corpus_pipeline/semantica_client.py`（纯标准库 stdio MCP 客户端，NDJSON 帧）→ `bootstrap_claim_ontology` 自动连接（`KP_SEMANTICA_AUTO=0` 关闭、失败降级确定性规则）+ `ontology_export(source=semantica/both)` 拉取图快照 + `ontology_import(push_to_semantica)` 把类/属性/词表推入 Semantica 图（`push_ontology_to_semantica`）。部署形态：`python -m semantica.mcp_server`（15 工具，KG 默认 `~/.semantica/graph.json`，可 `KP_SEMANTICA_KG_PATH` 覆盖） |
+| Semantica LLM | 中文语义抽取 + 规则推理 | **本机已配置 DeepSeek**（`openai` + `instructor` 依赖，凭据 `~/.semantica/env`）：`NERExtractor/RelationExtractor/TripletExtractor(method="llm", provider="deepseek")` 中文可用（1 chunk 得 8 实体 / 24 关系 / 25 三元组）；`reasoning` 规则前向链经 MCP `run_reasoning` 暴露，用作实体归一判官（暂代 JEV），对 17 组人工标准答案 15/17 = 88% |
 
 ---
 

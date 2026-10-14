@@ -122,8 +122,11 @@ def closure_verify(corpus_dir, *, draft_path=None, thresholds=None) -> dict:
         tot, m6 = 0, []
         for n in pk["nodes"]:
             v = re.sub(r"[\s　]", "", str(n.get("value", "")))
+            # fix34：外部依据节点属依据层，由 C1/K3 依据闭环核对，
+            # **不计入装配覆盖分母**（否则会把「报告没引用该条款摘要」误判为漏引）
             if (len(v) < 3 or _SKIP_PRED.search(n.get("predicate", ""))
-                    or n.get("status", "defined") != "defined"):
+                    or n.get("status", "defined") != "defined"
+                    or n.get("doc_layer") == "external" or n.get("ext_source")):
                 continue
             tot += 1
             if v not in dn:

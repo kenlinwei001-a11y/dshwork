@@ -113,7 +113,9 @@ def apply_manifest_gate(corpus_dir, result: dict | None = None) -> dict:
                            "checked_at_source": "quality/verify_pipeline.yaml"}
     prev = man.get("status", "draft")
     if verdict == "blocked":
-        man["status"] = "draft" if prev == "draft" else prev
+        # 修正：门禁未通过时**必须回到 draft**，不得停留在 validated
+        #（原先写成「prev==draft 才置 draft」，导致 validated + blocked 说明并存的矛盾状态）
+        man["status"] = "draft"
         man["status_note"] = (f"门禁未通过（{result.get('blocking_count')} 项 FAIL）——"
                               f"不得进入 validated；阻塞项见 manifest.gate_summary 与 quality/*.yaml")
     elif verdict == "passed" and prev == "draft":
