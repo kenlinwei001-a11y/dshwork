@@ -41,12 +41,32 @@ git clone <repo> && cd <repo> && bash knowledge/setup.sh
 # 2. semantica MCP（含上游补丁）
 bash deploy/scripts/install-semantica-mcp.sh
 
-# 3. 登记连接器：把 deploy/connectors/*.json 复制到
-#    <DSH_HOME>/storages/workdsh_connectors/definitions/
-#    （只放这一处）
+# 3. 把存档的配置装进部署：技能 / 专家 / MCP 连接器 / Agent 预设
+#    —— 只克隆不跑这步，系统里看不到这些内容（deploy/config/ 只是存档，不会自动生效）
+bash deploy/scripts/install-local-config.sh [DSH_HOME] [DSH_AGENTS_HOME]
+#    脚本会把存档里写死的原作者路径改写成本机的；装完会告警哪些 MCP 的命令不存在
 
 # 4. 服务：按 deploy/launchd/*.template 填好路径后放进 ~/Library/LaunchAgents/
 
 # 5. 每次插件升级后
 bash deploy/scripts/reapply-local-patches.sh
 ```
+
+## 关于 deploy/config/
+
+这里是**存档**，不是安装好的配置。三个必须知道的点：
+
+- **必须跑 `install-local-config.sh` 才会生效**——文件在仓库里 ≠ 系统里有。
+- 存档里含原作者机器的绝对路径（`/Users/apple/...`），安装脚本会按下列规则改写：
+  `.../Desktop/workdsh`→ 当前仓库根、`.../workdsh/.test-runtime/preview`→ 目标 DSH_HOME、
+  `.../.venvs/semantica`→ 本机 venv、`.../workdsh-mcp-servers`→ `$MCP_SERVERS_ROOT`。
+- `experts/bindings/` **不安装**：那是按会话 ID 绑定的状态，换机器后对应会话不存在。
+  `plugin-manifest/` **也不安装**：里面的 package.json 写的是本机缓存 tarball 的绝对路径，
+  属于安装产物，应由 `preview:install` 流程重新生成。
+
+### 会话记录（`../会话记录/`）是归档，不是可导入的会话
+
+放进去的是原始 JSONL 文本。应用的会话列表读的是 `<DSH_HOME>/sessions/`，
+所以**它们不会自动出现在界面的会话列表里**——要恢复某条会话上屏，需按应用格式放回
+`<DSH_HOME>/sessions/<项目>/session-<id>/`（正文 `session.v4.jsonl.zstd`）
+并在 `storages/session_projcache/sessions/` 补对应元数据；两者的 cwd 字段还需改成本机路径。
