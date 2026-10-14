@@ -1,0 +1,42 @@
+{
+  "stage": "s5e",
+  "patterns": [
+    "SHUFE-BDC-2019-001/source_ledger.json",
+    "SHUFE-BDC-2019-001/graph/relations.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/source_ledger.json",
+      "pattern": "SHUFE-BDC-2019-001/source_ledger.json",
+      "bytes": 18292,
+      "sha256": "b09982601670de47102dac87b7709855",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "citations",
+          "citations_raw",
+          "tables",
+          "valued_numbers",
+          "headings",
+          "device_param_lines",
+          "captions",
+          "images_in_docx"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "bytes": 52262,
+      "sha256": "a057612ab004193d5d0fa95bc3886d65",
+      "probe": {
+        "parsable": true,
+        "keys": "list[553]"
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

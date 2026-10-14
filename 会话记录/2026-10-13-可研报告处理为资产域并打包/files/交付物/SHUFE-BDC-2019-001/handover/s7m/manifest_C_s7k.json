@@ -1,0 +1,23 @@
+{
+  "stage": "s7k",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml": {
+      "verdict": "passed",
+      "summary": {}
+    },
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml": {
+      "verdict": null,
+      "summary": {}
+    },
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml": {
+      "verdict": null,
+      "summary": {}
+    },
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml": {
+      "verdict": null,
+      "summary": {}
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

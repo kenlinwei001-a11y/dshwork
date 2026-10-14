@@ -1,0 +1,73 @@
+{
+  "stage": "s3",
+  "patterns": [
+    "SHUFE-BDC-2019-001/manifest.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+    "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+    "SHUFE-BDC-2019-001/source/original.docx"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/manifest.yaml",
+      "pattern": "SHUFE-BDC-2019-001/manifest.yaml",
+      "bytes": 5351,
+      "sha256": "72aaec2e78b1ab98e529f2a3799f8d81",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "corpus_id",
+          "version",
+          "status",
+          "source_fingerprint",
+          "constraints",
+          "files"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "bytes": 97896,
+      "sha256": "da80a2481d1dc7d13260e84b873054b8",
+      "probe": {
+        "parsable": true,
+        "keys": "list[358]"
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "bytes": 279822,
+      "sha256": "bce38e57bae797cab9989597101990bb",
+      "probe": {
+        "parsable": true,
+        "records": 1178
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
+      "bytes": 450,
+      "sha256": "315d0aa67e71e7592c259d6928a82163",
+      "probe": {
+        "parsable": true,
+        "records": 7
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/source/original.docx",
+      "pattern": "SHUFE-BDC-2019-001/source/original.docx",
+      "bytes": 1123286,
+      "sha256": "00d9f1a3645c89b9d66d2df74fb4e70d",
+      "probe": {
+        "parsable": true,
+        "text_chars": 611808
+      }
+    }
+  ],
+  "count": 5,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

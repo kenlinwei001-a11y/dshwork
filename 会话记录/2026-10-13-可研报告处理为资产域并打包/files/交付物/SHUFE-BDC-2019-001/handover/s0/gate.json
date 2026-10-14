@@ -1,0 +1,15 @@
+{
+  "stage": "s0",
+  "depends_on": [],
+  "per_dep": [],
+  "diffs": [],
+  "diff_count": 0,
+  "gate": "CONFIRMED",
+  "rule": "逐依赖四元交叉：A 上游自报 / B 下游对上游产物独立清点 / C 产物自述 / SOP 契约",
+  "C_compared": true,
+  "C_checks": [
+    "自述状态 vs 门禁结论",
+    "自述计数 vs 实际记录数"
+  ],
+  "generated_at": "2026-10-14T20:13:41"
+}

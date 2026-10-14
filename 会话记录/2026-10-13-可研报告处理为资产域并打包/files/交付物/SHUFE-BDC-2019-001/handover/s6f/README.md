@@ -1,6 +1,6 @@
 # 环节 s6f 交接说明（README）
 
-- 脚本：`fix30_remediate.py`　退出码：0　耗时：0.32s
+- 脚本：`fix30_remediate.py`　退出码：0　耗时：0.38s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）
@@ -15,8 +15,8 @@
   "ledger_entries": 4,
   "relations_added": 21,
   "registered": {
-    "conflicts_added": 10,
-    "rules_registered": 9,
+    "conflicts_added": 8,
+    "rules_registered": 35,
     "warrant_filled": 1
   },
   "waivers": 14

@@ -1,0 +1,25 @@
+{
+  "stage": "s6i",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 11506,
+      "sha256": "ad97986d166ab2f05b46893353e4aca3",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "waivers"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

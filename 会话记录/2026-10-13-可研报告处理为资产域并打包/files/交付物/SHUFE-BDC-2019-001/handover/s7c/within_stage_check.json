@@ -1,0 +1,125 @@
+{
+  "stage": "s7c",
+  "scope": "within_stage",
+  "SOP_patterns": 2,
+  "A": 0,
+  "diff_kinds": [
+    "A_missing_self_report",
+    "B_not_in_SOP"
+  ],
+  "B": 19,
+  "C": 0,
+  "independence": {
+    "ok": false,
+    "reason": "清单不足三份（2）⇒ 四元不成立",
+    "tags": [
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "A_missing_self_report",
+      "path": "s7c",
+      "meaning": "环节未写自报文件 ⇒ 内部四元不成立（判 invalid，不判 pass）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/01-总论.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/02-学校简介.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/03-项目建设背景及必要性分析.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/04-项目选址及建设条件.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/05-项目建设内容及规模.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/06-项目规划设计方案.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/07-节能设计.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/08-环境影响评价.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/09-卫生防疫与劳动安全.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/10-社会稳定风险分析.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/11-项目管理及实施进度.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/12-项目招投标方案.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/13-投资估算及资金筹措.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/14-社会效益.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/15-结论与建议.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/chapters/16-附件.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/推演写作输入包.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/知识资产索引.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/写作输入/章节提示词索引.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    }
+  ],
+  "diff_count": 20,
+  "gate": "INVALID",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid"
+}

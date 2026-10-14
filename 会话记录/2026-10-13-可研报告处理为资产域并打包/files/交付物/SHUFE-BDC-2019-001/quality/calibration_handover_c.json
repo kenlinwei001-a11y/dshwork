@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "case": "基线（未注入）",
+      "expect": "不命中",
+      "got": 0,
+      "ok": true,
+      "kinds": []
+    },
+    {
+      "case": "注入：manifest=validated 且 verdict=blocked",
+      "expect": "命中 C_internal_contradiction",
+      "got": 0,
+      "ok": false,
+      "kinds": []
+    },
+    {
+      "case": "注入：产物自述 count 偏 +7",
+      "expect": "命中 C_self_inconsistent",
+      "got": 0,
+      "ok": false,
+      "kinds": []
+    }
+  ],
+  "stage": "s5a",
+  "dep": "s4b",
+  "summary": {
+    "cases": 3,
+    "fired": 0,
+    "recall_on_positive": 0.0,
+    "false_positive_on_baseline": 0.0,
+    "verdict": "NOT_CALIBRATED"
+  }
+}

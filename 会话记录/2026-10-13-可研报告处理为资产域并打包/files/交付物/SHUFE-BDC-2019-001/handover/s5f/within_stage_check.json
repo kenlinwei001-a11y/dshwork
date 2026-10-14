@@ -1,0 +1,35 @@
+{
+  "stage": "s5f",
+  "scope": "within_stage",
+  "SOP_patterns": 1,
+  "A": 0,
+  "diff_kinds": [
+    "A_missing_self_report",
+    "B_not_in_SOP"
+  ],
+  "B": 2,
+  "C": 1,
+  "independence": {
+    "ok": false,
+    "reason": "清单不足三份（2）⇒ 四元不成立",
+    "tags": [
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "A_missing_self_report",
+      "path": "s5f",
+      "meaning": "环节未写自报文件 ⇒ 内部四元不成立（判 invalid，不判 pass）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "交付物/报告/质量门控工具需求.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    }
+  ],
+  "diff_count": 2,
+  "gate": "INVALID",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid"
+}

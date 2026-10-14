@@ -1,0 +1,22 @@
+{
+  "stage": "s0",
+  "patterns": [
+    "build/doc-clean/*.md"
+  ],
+  "items": [
+    {
+      "path": "build/doc-clean/大数据研究中心可研.md",
+      "pattern": "build/doc-clean/*.md",
+      "bytes": 170597,
+      "sha256": "e906e68b385d4de7a652babedc6ab9a8",
+      "probe": {
+        "parsable": true,
+        "text_chars": 68518
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

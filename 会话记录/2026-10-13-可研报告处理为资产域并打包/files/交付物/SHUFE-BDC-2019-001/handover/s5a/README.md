@@ -1,6 +1,6 @@
 # 环节 s5a 交接说明（README）
 
-- 脚本：`s7b_desensitize.py`　退出码：0　耗时：0.32s
+- 脚本：`s7b_desensitize.py`　退出码：0　耗时：0.31s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

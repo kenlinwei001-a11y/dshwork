@@ -1,0 +1,329 @@
+{
+  "stage": "s6",
+  "patterns": [
+    "SHUFE-BDC-2019-001/reuse/domains.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains/*.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "bytes": 54955,
+      "sha256": "4fbbef8a84ce013be7c6e652243ad388",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "domains"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 8030,
+      "sha256": "51e5afcaf557e37695444d13873a0d97",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 7502,
+      "sha256": "e8cbe3449cd59d26d87657f47abdb49c",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 10560,
+      "sha256": "9348ea66193aa2baa0922ecbbee46d48",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 14459,
+      "sha256": "95a9cc1dba743b005984204990521b6e",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 4821,
+      "sha256": "a1596a7ac37a91c35b2548974979371d",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 7975,
+      "sha256": "1a78abcc6c75131d2d935b98be926d4c",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 7845,
+      "sha256": "4cf05050e52b46cb7e5d1ea0066ad80d",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 14831,
+      "sha256": "8455cee2f28736403c2c007efd34303e",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 5963,
+      "sha256": "67b83b0aa65782ca58c079831152d623",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 6139,
+      "sha256": "d2e03de7b02c8c4afef0aa4ef9c166a3",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 6476,
+      "sha256": "74ce9490020ecb1af54df77c3b0b5dc6",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 4790,
+      "sha256": "d4a7fd5c05a53b861ebb56db44345cca",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 17074,
+      "sha256": "d29832f988710627acd323a492442d92",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 9806,
+      "sha256": "91cf43f8f7934e94a11bbaf627fa7f5c",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 5482,
+      "sha256": "0751dcaadabd630a6083124c8288c53a",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
+      "bytes": 9126,
+      "sha256": "8b97e6796ab3ee427e3d1a3e4c2214b3",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "depends_on",
+          "dependents"
+        ]
+      }
+    }
+  ],
+  "count": 17,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

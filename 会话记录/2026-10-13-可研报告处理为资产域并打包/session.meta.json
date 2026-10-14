@@ -11,34 +11,34 @@
     "rows": {
       "title": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": "可研报告处理为资产域并打包"
       },
       "titleInput": {
         "ver": 3,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "first": {
             "seq": 8,
             "text": "把这个可研报告处理为可以复用的资产域以及每个域对应的文件，打包为ZIP"
           },
-          "count": 70,
-          "lastSeq": 4906
+          "count": 89,
+          "lastSeq": 5968
         }
       },
       "llmRetry": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": {}
       },
       "sandboxMode": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": "workspace-write"
       },
       "goal": {
         "ver": 6,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "current": null,
           "seenGoalIds": [],
@@ -47,21 +47,21 @@
       },
       "tokenUsage": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "totals": {
-            "uncachedInputTokens": 1473352,
-            "outputTokens": 1071866,
-            "cacheReadTokens": 327227648,
+            "uncachedInputTokens": 1738185,
+            "outputTokens": 1291932,
+            "cacheReadTokens": 398211968,
             "cacheWriteTokens": 0
           },
           "last": {
-            "turn": 49,
-            "step": 16,
+            "turn": 60,
+            "step": 4,
             "buckets": {
-              "uncachedInputTokens": 142,
-              "outputTokens": 76,
-              "cacheReadTokens": 566016,
+              "uncachedInputTokens": 1084,
+              "outputTokens": 152,
+              "cacheReadTokens": 402688,
               "cacheWriteTokens": 0
             }
           }
@@ -69,17 +69,17 @@
       },
       "contextPressure": {
         "ver": 5,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
-          "surfaceTokens": 365760,
+          "surfaceTokens": 242873,
           "contextWindow": 1000000,
-          "pressureTokens": 566158,
-          "sampledSurfaceTokens": 365730
+          "pressureTokens": 403772,
+          "sampledSurfaceTokens": 242759
         }
       },
       "contextBreakdown": {
         "ver": 5,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "nodes": [
             {
@@ -88,2528 +88,8 @@
               "system": true
             },
             {
-              "seq": 3635,
-              "heuristicTokens": 2827,
-              "system": false
-            },
-            {
-              "seq": 2961,
-              "heuristicTokens": 4305,
-              "system": false
-            },
-            {
-              "seq": 2963,
-              "heuristicTokens": 61,
-              "system": false
-            },
-            {
-              "seq": 2967,
-              "heuristicTokens": 122,
-              "system": false
-            },
-            {
-              "seq": 2969,
-              "heuristicTokens": 109,
-              "system": false
-            },
-            {
-              "seq": 2973,
-              "heuristicTokens": 425,
-              "system": false
-            },
-            {
-              "seq": 2975,
-              "heuristicTokens": 202,
-              "system": false
-            },
-            {
-              "seq": 2979,
-              "heuristicTokens": 779,
-              "system": false
-            },
-            {
-              "seq": 2981,
-              "heuristicTokens": 172,
-              "system": false
-            },
-            {
-              "seq": 2985,
-              "heuristicTokens": 2872,
-              "system": false
-            },
-            {
-              "seq": 2987,
-              "heuristicTokens": 62,
-              "system": false
-            },
-            {
-              "seq": 2991,
-              "heuristicTokens": 459,
-              "system": false
-            },
-            {
-              "seq": 2993,
-              "heuristicTokens": 177,
-              "system": false
-            },
-            {
-              "seq": 2997,
-              "heuristicTokens": 1604,
-              "system": false
-            },
-            {
-              "seq": 2999,
-              "heuristicTokens": 80,
-              "system": false
-            },
-            {
-              "seq": 3003,
-              "heuristicTokens": 1169,
-              "system": false
-            },
-            {
-              "seq": 3007,
-              "heuristicTokens": 91,
-              "system": false
-            },
-            {
-              "seq": 3011,
-              "heuristicTokens": 1332,
-              "system": false
-            },
-            {
-              "seq": 3015,
-              "heuristicTokens": 215,
-              "system": false
-            },
-            {
-              "seq": 3019,
-              "heuristicTokens": 880,
-              "system": false
-            },
-            {
-              "seq": 3023,
-              "heuristicTokens": 135,
-              "system": false
-            },
-            {
-              "seq": 3027,
-              "heuristicTokens": 866,
-              "system": false
-            },
-            {
-              "seq": 3031,
-              "heuristicTokens": 149,
-              "system": false
-            },
-            {
-              "seq": 3035,
-              "heuristicTokens": 975,
-              "system": false
-            },
-            {
-              "seq": 3039,
-              "heuristicTokens": 476,
-              "system": false
-            },
-            {
-              "seq": 3043,
-              "heuristicTokens": 1045,
-              "system": false
-            },
-            {
-              "seq": 3047,
-              "heuristicTokens": 133,
-              "system": false
-            },
-            {
-              "seq": 3051,
-              "heuristicTokens": 499,
-              "system": false
-            },
-            {
-              "seq": 3053,
-              "heuristicTokens": 129,
-              "system": false
-            },
-            {
-              "seq": 3057,
-              "heuristicTokens": 543,
-              "system": false
-            },
-            {
-              "seq": 3065,
-              "heuristicTokens": 21,
-              "system": false
-            },
-            {
-              "seq": 3067,
-              "heuristicTokens": 1331,
-              "system": false
-            },
-            {
-              "seq": 3069,
-              "heuristicTokens": 680,
-              "system": false
-            },
-            {
-              "seq": 3073,
-              "heuristicTokens": 1803,
-              "system": false
-            },
-            {
-              "seq": 3077,
-              "heuristicTokens": 292,
-              "system": false
-            },
-            {
-              "seq": 3081,
-              "heuristicTokens": 850,
-              "system": false
-            },
-            {
-              "seq": 3085,
-              "heuristicTokens": 144,
-              "system": false
-            },
-            {
-              "seq": 3089,
-              "heuristicTokens": 636,
-              "system": false
-            },
-            {
-              "seq": 3096,
-              "heuristicTokens": 11,
-              "system": false
-            },
-            {
-              "seq": 3098,
-              "heuristicTokens": 1038,
-              "system": false
-            },
-            {
-              "seq": 3100,
-              "heuristicTokens": 270,
-              "system": false
-            },
-            {
-              "seq": 3104,
-              "heuristicTokens": 937,
-              "system": false
-            },
-            {
-              "seq": 3111,
-              "heuristicTokens": 12,
-              "system": false
-            },
-            {
-              "seq": 3113,
-              "heuristicTokens": 902,
-              "system": false
-            },
-            {
-              "seq": 3115,
-              "heuristicTokens": 76,
-              "system": false
-            },
-            {
-              "seq": 3119,
-              "heuristicTokens": 1398,
-              "system": false
-            },
-            {
-              "seq": 3121,
-              "heuristicTokens": 212,
-              "system": false
-            },
-            {
-              "seq": 3125,
-              "heuristicTokens": 570,
-              "system": false
-            },
-            {
-              "seq": 3127,
-              "heuristicTokens": 113,
-              "system": false
-            },
-            {
-              "seq": 3131,
-              "heuristicTokens": 982,
-              "system": false
-            },
-            {
-              "seq": 3135,
-              "heuristicTokens": 274,
-              "system": false
-            },
-            {
-              "seq": 3139,
-              "heuristicTokens": 668,
-              "system": false
-            },
-            {
-              "seq": 3141,
-              "heuristicTokens": 169,
-              "system": false
-            },
-            {
-              "seq": 3145,
-              "heuristicTokens": 431,
-              "system": false
-            },
-            {
-              "seq": 3147,
-              "heuristicTokens": 166,
-              "system": false
-            },
-            {
-              "seq": 3151,
-              "heuristicTokens": 422,
-              "system": false
-            },
-            {
-              "seq": 3158,
-              "heuristicTokens": 10,
-              "system": false
-            },
-            {
-              "seq": 3160,
-              "heuristicTokens": 884,
-              "system": false
-            },
-            {
-              "seq": 3162,
-              "heuristicTokens": 336,
-              "system": false
-            },
-            {
-              "seq": 3166,
-              "heuristicTokens": 2918,
-              "system": false
-            },
-            {
-              "seq": 3168,
-              "heuristicTokens": 15,
-              "system": false
-            },
-            {
-              "seq": 3172,
-              "heuristicTokens": 3645,
-              "system": false
-            },
-            {
-              "seq": 3174,
-              "heuristicTokens": 67,
-              "system": false
-            },
-            {
-              "seq": 3178,
-              "heuristicTokens": 182,
-              "system": false
-            },
-            {
-              "seq": 3182,
-              "heuristicTokens": 133,
-              "system": false
-            },
-            {
-              "seq": 3186,
-              "heuristicTokens": 740,
-              "system": false
-            },
-            {
-              "seq": 3188,
-              "heuristicTokens": 213,
-              "system": false
-            },
-            {
-              "seq": 3192,
-              "heuristicTokens": 789,
-              "system": false
-            },
-            {
-              "seq": 3194,
-              "heuristicTokens": 180,
-              "system": false
-            },
-            {
-              "seq": 3198,
-              "heuristicTokens": 677,
-              "system": false
-            },
-            {
-              "seq": 3207,
-              "heuristicTokens": 18,
-              "system": false
-            },
-            {
-              "seq": 3210,
-              "heuristicTokens": 1418,
-              "system": false
-            },
-            {
-              "seq": 3212,
-              "heuristicTokens": 331,
-              "system": false
-            },
-            {
-              "seq": 3216,
-              "heuristicTokens": 917,
-              "system": false
-            },
-            {
-              "seq": 3218,
-              "heuristicTokens": 290,
-              "system": false
-            },
-            {
-              "seq": 3222,
-              "heuristicTokens": 864,
-              "system": false
-            },
-            {
-              "seq": 3224,
-              "heuristicTokens": 121,
-              "system": false
-            },
-            {
-              "seq": 3228,
-              "heuristicTokens": 855,
-              "system": false
-            },
-            {
-              "seq": 3235,
-              "heuristicTokens": 9,
-              "system": false
-            },
-            {
-              "seq": 3237,
-              "heuristicTokens": 1293,
-              "system": false
-            },
-            {
-              "seq": 3239,
-              "heuristicTokens": 860,
-              "system": false
-            },
-            {
-              "seq": 3244,
-              "heuristicTokens": 3559,
-              "system": false
-            },
-            {
-              "seq": 3246,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 3250,
-              "heuristicTokens": 1373,
-              "system": false
-            },
-            {
-              "seq": 3254,
-              "heuristicTokens": 43,
-              "system": false
-            },
-            {
-              "seq": 3258,
-              "heuristicTokens": 121,
-              "system": false
-            },
-            {
-              "seq": 3260,
-              "heuristicTokens": 195,
-              "system": false
-            },
-            {
-              "seq": 3264,
-              "heuristicTokens": 1238,
-              "system": false
-            },
-            {
-              "seq": 3266,
-              "heuristicTokens": 688,
-              "system": false
-            },
-            {
-              "seq": 3270,
-              "heuristicTokens": 1157,
-              "system": false
-            },
-            {
-              "seq": 3274,
-              "heuristicTokens": 289,
-              "system": false
-            },
-            {
-              "seq": 3278,
-              "heuristicTokens": 731,
-              "system": false
-            },
-            {
-              "seq": 3284,
-              "heuristicTokens": 11,
-              "system": false
-            },
-            {
-              "seq": 3286,
-              "heuristicTokens": 991,
-              "system": false
-            },
-            {
-              "seq": 3288,
-              "heuristicTokens": 188,
-              "system": false
-            },
-            {
-              "seq": 3292,
-              "heuristicTokens": 1483,
-              "system": false
-            },
-            {
-              "seq": 3294,
-              "heuristicTokens": 542,
-              "system": false
-            },
-            {
-              "seq": 3298,
-              "heuristicTokens": 1544,
-              "system": false
-            },
-            {
-              "seq": 3302,
-              "heuristicTokens": 909,
-              "system": false
-            },
-            {
-              "seq": 3306,
-              "heuristicTokens": 803,
-              "system": false
-            },
-            {
-              "seq": 3310,
-              "heuristicTokens": 165,
-              "system": false
-            },
-            {
-              "seq": 3314,
-              "heuristicTokens": 578,
-              "system": false
-            },
-            {
-              "seq": 3316,
-              "heuristicTokens": 816,
-              "system": false
-            },
-            {
-              "seq": 3320,
-              "heuristicTokens": 443,
-              "system": false
-            },
-            {
-              "seq": 3327,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 3329,
-              "heuristicTokens": 843,
-              "system": false
-            },
-            {
-              "seq": 3331,
-              "heuristicTokens": 736,
-              "system": false
-            },
-            {
-              "seq": 3335,
-              "heuristicTokens": 1469,
-              "system": false
-            },
-            {
-              "seq": 3337,
-              "heuristicTokens": 472,
-              "system": false
-            },
-            {
-              "seq": 3341,
-              "heuristicTokens": 888,
-              "system": false
-            },
-            {
-              "seq": 3343,
-              "heuristicTokens": 122,
-              "system": false
-            },
-            {
-              "seq": 3347,
-              "heuristicTokens": 143,
-              "system": false
-            },
-            {
-              "seq": 3349,
-              "heuristicTokens": 18,
-              "system": false
-            },
-            {
-              "seq": 3353,
-              "heuristicTokens": 320,
-              "system": false
-            },
-            {
-              "seq": 3355,
-              "heuristicTokens": 508,
-              "system": false
-            },
-            {
-              "seq": 3359,
-              "heuristicTokens": 625,
-              "system": false
-            },
-            {
-              "seq": 3361,
-              "heuristicTokens": 166,
-              "system": false
-            },
-            {
-              "seq": 3365,
-              "heuristicTokens": 738,
-              "system": false
-            },
-            {
-              "seq": 3367,
-              "heuristicTokens": 143,
-              "system": false
-            },
-            {
-              "seq": 3371,
-              "heuristicTokens": 964,
-              "system": false
-            },
-            {
-              "seq": 3373,
-              "heuristicTokens": 325,
-              "system": false
-            },
-            {
-              "seq": 3377,
-              "heuristicTokens": 1082,
-              "system": false
-            },
-            {
-              "seq": 3384,
-              "heuristicTokens": 15,
-              "system": false
-            },
-            {
-              "seq": 3386,
-              "heuristicTokens": 789,
-              "system": false
-            },
-            {
-              "seq": 3388,
-              "heuristicTokens": 157,
-              "system": false
-            },
-            {
-              "seq": 3392,
-              "heuristicTokens": 164,
-              "system": false
-            },
-            {
-              "seq": 3394,
-              "heuristicTokens": 18,
-              "system": false
-            },
-            {
-              "seq": 3398,
-              "heuristicTokens": 379,
-              "system": false
-            },
-            {
-              "seq": 3400,
-              "heuristicTokens": 711,
-              "system": false
-            },
-            {
-              "seq": 3404,
-              "heuristicTokens": 1152,
-              "system": false
-            },
-            {
-              "seq": 3406,
-              "heuristicTokens": 378,
-              "system": false
-            },
-            {
-              "seq": 3410,
-              "heuristicTokens": 789,
-              "system": false
-            },
-            {
-              "seq": 3412,
-              "heuristicTokens": 291,
-              "system": false
-            },
-            {
-              "seq": 3419,
-              "heuristicTokens": 1026,
-              "system": false
-            },
-            {
-              "seq": 3421,
-              "heuristicTokens": 319,
-              "system": false
-            },
-            {
-              "seq": 3425,
-              "heuristicTokens": 25,
-              "system": false
-            },
-            {
-              "seq": 3427,
-              "heuristicTokens": 1367,
-              "system": false
-            },
-            {
-              "seq": 3429,
-              "heuristicTokens": 527,
-              "system": false
-            },
-            {
-              "seq": 3433,
-              "heuristicTokens": 1125,
-              "system": false
-            },
-            {
-              "seq": 3435,
-              "heuristicTokens": 63,
-              "system": false
-            },
-            {
-              "seq": 3439,
-              "heuristicTokens": 265,
-              "system": false
-            },
-            {
-              "seq": 3441,
-              "heuristicTokens": 89,
-              "system": false
-            },
-            {
-              "seq": 3445,
-              "heuristicTokens": 1202,
-              "system": false
-            },
-            {
-              "seq": 3447,
-              "heuristicTokens": 407,
-              "system": false
-            },
-            {
-              "seq": 3451,
-              "heuristicTokens": 370,
-              "system": false
-            },
-            {
-              "seq": 3453,
-              "heuristicTokens": 71,
-              "system": false
-            },
-            {
-              "seq": 3457,
-              "heuristicTokens": 1202,
-              "system": false
-            },
-            {
-              "seq": 3459,
-              "heuristicTokens": 68,
-              "system": false
-            },
-            {
-              "seq": 3463,
-              "heuristicTokens": 938,
-              "system": false
-            },
-            {
-              "seq": 3468,
-              "heuristicTokens": 60,
-              "system": false
-            },
-            {
-              "seq": 3472,
-              "heuristicTokens": 17,
-              "system": false
-            },
-            {
-              "seq": 3474,
-              "heuristicTokens": 630,
-              "system": false
-            },
-            {
-              "seq": 3476,
-              "heuristicTokens": 200,
-              "system": false
-            },
-            {
-              "seq": 3480,
-              "heuristicTokens": 1736,
-              "system": false
-            },
-            {
-              "seq": 3482,
-              "heuristicTokens": 304,
-              "system": false
-            },
-            {
-              "seq": 3486,
-              "heuristicTokens": 266,
-              "system": false
-            },
-            {
-              "seq": 3488,
-              "heuristicTokens": 124,
-              "system": false
-            },
-            {
-              "seq": 3492,
-              "heuristicTokens": 2147,
-              "system": false
-            },
-            {
-              "seq": 3496,
-              "heuristicTokens": 71,
-              "system": false
-            },
-            {
-              "seq": 3507,
-              "heuristicTokens": 2473,
-              "system": false
-            },
-            {
-              "seq": 3509,
-              "heuristicTokens": 64,
-              "system": false
-            },
-            {
-              "seq": 3513,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 3515,
-              "heuristicTokens": 715,
-              "system": false
-            },
-            {
-              "seq": 3517,
-              "heuristicTokens": 810,
-              "system": false
-            },
-            {
-              "seq": 3524,
-              "heuristicTokens": 1259,
-              "system": false
-            },
-            {
-              "seq": 3526,
-              "heuristicTokens": 160,
-              "system": false
-            },
-            {
-              "seq": 3530,
-              "heuristicTokens": 15,
-              "system": false
-            },
-            {
-              "seq": 3532,
-              "heuristicTokens": 1414,
-              "system": false
-            },
-            {
-              "seq": 3534,
-              "heuristicTokens": 399,
-              "system": false
-            },
-            {
-              "seq": 3538,
-              "heuristicTokens": 932,
-              "system": false
-            },
-            {
-              "seq": 3540,
-              "heuristicTokens": 126,
-              "system": false
-            },
-            {
-              "seq": 3544,
-              "heuristicTokens": 785,
-              "system": false
-            },
-            {
-              "seq": 3547,
-              "heuristicTokens": 17,
-              "system": false
-            },
-            {
-              "seq": 3551,
-              "heuristicTokens": 772,
-              "system": false
-            },
-            {
-              "seq": 3559,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 3561,
-              "heuristicTokens": 579,
-              "system": false
-            },
-            {
-              "seq": 3563,
-              "heuristicTokens": 241,
-              "system": false
-            },
-            {
-              "seq": 3567,
-              "heuristicTokens": 1207,
-              "system": false
-            },
-            {
-              "seq": 3569,
-              "heuristicTokens": 109,
-              "system": false
-            },
-            {
-              "seq": 3573,
-              "heuristicTokens": 2746,
-              "system": false
-            },
-            {
-              "seq": 3575,
-              "heuristicTokens": 62,
-              "system": false
-            },
-            {
-              "seq": 3579,
-              "heuristicTokens": 542,
-              "system": false
-            },
-            {
-              "seq": 3583,
-              "heuristicTokens": 183,
-              "system": false
-            },
-            {
-              "seq": 3587,
-              "heuristicTokens": 817,
-              "system": false
-            },
-            {
-              "seq": 3589,
-              "heuristicTokens": 251,
-              "system": false
-            },
-            {
-              "seq": 3593,
-              "heuristicTokens": 691,
-              "system": false
-            },
-            {
-              "seq": 3595,
-              "heuristicTokens": 101,
-              "system": false
-            },
-            {
-              "seq": 3599,
-              "heuristicTokens": 609,
-              "system": false
-            },
-            {
-              "seq": 3601,
-              "heuristicTokens": 107,
-              "system": false
-            },
-            {
-              "seq": 3605,
-              "heuristicTokens": 437,
-              "system": false
-            },
-            {
-              "seq": 3607,
-              "heuristicTokens": 81,
-              "system": false
-            },
-            {
-              "seq": 3611,
-              "heuristicTokens": 78,
-              "system": false
-            },
-            {
-              "seq": 3614,
-              "heuristicTokens": 31,
-              "system": false
-            },
-            {
-              "seq": 3618,
-              "heuristicTokens": 741,
-              "system": false
-            },
-            {
-              "seq": 3626,
-              "heuristicTokens": 43,
-              "system": false
-            },
-            {
-              "seq": 3628,
-              "heuristicTokens": 1562,
-              "system": false
-            },
-            {
-              "seq": 3630,
-              "heuristicTokens": 851,
-              "system": false
-            },
-            {
-              "seq": 3638,
-              "heuristicTokens": 1703,
-              "system": false
-            },
-            {
-              "seq": 3639,
-              "heuristicTokens": 1743,
-              "system": false
-            },
-            {
-              "seq": 3642,
-              "heuristicTokens": 5397,
-              "system": false
-            },
-            {
-              "seq": 3644,
-              "heuristicTokens": 59,
-              "system": false
-            },
-            {
-              "seq": 3647,
-              "heuristicTokens": 150,
-              "system": false
-            },
-            {
-              "seq": 3649,
-              "heuristicTokens": 1025,
-              "system": false
-            },
-            {
-              "seq": 3651,
-              "heuristicTokens": 20,
-              "system": false
-            },
-            {
-              "seq": 3655,
-              "heuristicTokens": 133,
-              "system": false
-            },
-            {
-              "seq": 3657,
-              "heuristicTokens": 711,
-              "system": false
-            },
-            {
-              "seq": 3664,
-              "heuristicTokens": 1892,
-              "system": false
-            },
-            {
-              "seq": 3666,
-              "heuristicTokens": 470,
-              "system": false
-            },
-            {
-              "seq": 3670,
-              "heuristicTokens": 19,
-              "system": false
-            },
-            {
-              "seq": 3675,
-              "heuristicTokens": 1802,
-              "system": false
-            },
-            {
-              "seq": 3677,
-              "heuristicTokens": 602,
-              "system": false
-            },
-            {
-              "seq": 3681,
-              "heuristicTokens": 19,
-              "system": false
-            },
-            {
-              "seq": 3683,
-              "heuristicTokens": 1220,
-              "system": false
-            },
-            {
-              "seq": 3685,
-              "heuristicTokens": 456,
-              "system": false
-            },
-            {
-              "seq": 3689,
-              "heuristicTokens": 2979,
-              "system": false
-            },
-            {
-              "seq": 3691,
-              "heuristicTokens": 77,
-              "system": false
-            },
-            {
-              "seq": 3695,
-              "heuristicTokens": 2984,
-              "system": false
-            },
-            {
-              "seq": 3697,
-              "heuristicTokens": 64,
-              "system": false
-            },
-            {
-              "seq": 3701,
-              "heuristicTokens": 3401,
-              "system": false
-            },
-            {
-              "seq": 3703,
-              "heuristicTokens": 135,
-              "system": false
-            },
-            {
-              "seq": 3707,
-              "heuristicTokens": 650,
-              "system": false
-            },
-            {
-              "seq": 3709,
-              "heuristicTokens": 297,
-              "system": false
-            },
-            {
-              "seq": 3713,
-              "heuristicTokens": 1176,
-              "system": false
-            },
-            {
-              "seq": 3715,
-              "heuristicTokens": 409,
-              "system": false
-            },
-            {
-              "seq": 3722,
-              "heuristicTokens": 370,
-              "system": false
-            },
-            {
-              "seq": 3724,
-              "heuristicTokens": 25,
-              "system": false
-            },
-            {
-              "seq": 3729,
-              "heuristicTokens": 83,
-              "system": false
-            },
-            {
-              "seq": 3731,
-              "heuristicTokens": 292,
-              "system": false
-            },
-            {
-              "seq": 3737,
-              "heuristicTokens": 613,
-              "system": false
-            },
-            {
-              "seq": 3739,
-              "heuristicTokens": 208,
-              "system": false
-            },
-            {
-              "seq": 3743,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 3746,
-              "heuristicTokens": 1202,
-              "system": false
-            },
-            {
-              "seq": 3748,
-              "heuristicTokens": 25,
-              "system": false
-            },
-            {
-              "seq": 3752,
-              "heuristicTokens": 412,
-              "system": false
-            },
-            {
-              "seq": 3754,
-              "heuristicTokens": 568,
-              "system": false
-            },
-            {
-              "seq": 3756,
-              "heuristicTokens": 152,
-              "system": false
-            },
-            {
-              "seq": 3760,
-              "heuristicTokens": 379,
-              "system": false
-            },
-            {
-              "seq": 3762,
-              "heuristicTokens": 18,
-              "system": false
-            },
-            {
-              "seq": 3766,
-              "heuristicTokens": 92,
-              "system": false
-            },
-            {
-              "seq": 3768,
-              "heuristicTokens": 254,
-              "system": false
-            },
-            {
-              "seq": 3772,
-              "heuristicTokens": 524,
-              "system": false
-            },
-            {
-              "seq": 3775,
-              "heuristicTokens": 72,
-              "system": false
-            },
-            {
-              "seq": 3781,
-              "heuristicTokens": 131,
-              "system": false
-            },
-            {
-              "seq": 3783,
-              "heuristicTokens": 94,
-              "system": false
-            },
-            {
-              "seq": 3787,
-              "heuristicTokens": 39,
-              "system": false
-            },
-            {
-              "seq": 3789,
-              "heuristicTokens": 1054,
-              "system": false
-            },
-            {
-              "seq": 3791,
-              "heuristicTokens": 48,
-              "system": false
-            },
-            {
-              "seq": 3795,
-              "heuristicTokens": 1034,
-              "system": false
-            },
-            {
-              "seq": 3797,
-              "heuristicTokens": 90,
-              "system": false
-            },
-            {
-              "seq": 3801,
-              "heuristicTokens": 1690,
-              "system": false
-            },
-            {
-              "seq": 3803,
-              "heuristicTokens": 63,
-              "system": false
-            },
-            {
-              "seq": 3807,
-              "heuristicTokens": 3441,
-              "system": false
-            },
-            {
-              "seq": 3809,
-              "heuristicTokens": 93,
-              "system": false
-            },
-            {
-              "seq": 3813,
-              "heuristicTokens": 505,
-              "system": false
-            },
-            {
-              "seq": 3815,
-              "heuristicTokens": 182,
-              "system": false
-            },
-            {
-              "seq": 3819,
-              "heuristicTokens": 109,
-              "system": false
-            },
-            {
-              "seq": 3821,
-              "heuristicTokens": 380,
-              "system": false
-            },
-            {
-              "seq": 3825,
-              "heuristicTokens": 1408,
-              "system": false
-            },
-            {
-              "seq": 3827,
-              "heuristicTokens": 1219,
-              "system": false
-            },
-            {
-              "seq": 3831,
-              "heuristicTokens": 346,
-              "system": false
-            },
-            {
-              "seq": 3833,
-              "heuristicTokens": 211,
-              "system": false
-            },
-            {
-              "seq": 3837,
-              "heuristicTokens": 410,
-              "system": false
-            },
-            {
-              "seq": 3839,
-              "heuristicTokens": 284,
-              "system": false
-            },
-            {
-              "seq": 3843,
-              "heuristicTokens": 677,
-              "system": false
-            },
-            {
-              "seq": 3845,
-              "heuristicTokens": 26,
-              "system": false
-            },
-            {
-              "seq": 3849,
-              "heuristicTokens": 727,
-              "system": false
-            },
-            {
-              "seq": 3851,
-              "heuristicTokens": 58,
-              "system": false
-            },
-            {
-              "seq": 3855,
-              "heuristicTokens": 563,
-              "system": false
-            },
-            {
-              "seq": 3857,
-              "heuristicTokens": 230,
-              "system": false
-            },
-            {
-              "seq": 3861,
-              "heuristicTokens": 927,
-              "system": false
-            },
-            {
-              "seq": 3863,
-              "heuristicTokens": 77,
-              "system": false
-            },
-            {
-              "seq": 3867,
-              "heuristicTokens": 469,
-              "system": false
-            },
-            {
-              "seq": 3869,
-              "heuristicTokens": 159,
-              "system": false
-            },
-            {
-              "seq": 3873,
-              "heuristicTokens": 1019,
-              "system": false
-            },
-            {
-              "seq": 3876,
-              "heuristicTokens": 17,
-              "system": false
-            },
-            {
-              "seq": 3880,
-              "heuristicTokens": 1018,
-              "system": false
-            },
-            {
-              "seq": 3888,
-              "heuristicTokens": 21,
-              "system": false
-            },
-            {
-              "seq": 3890,
-              "heuristicTokens": 2375,
-              "system": false
-            },
-            {
-              "seq": 3892,
-              "heuristicTokens": 1086,
-              "system": false
-            },
-            {
-              "seq": 3896,
-              "heuristicTokens": 343,
-              "system": false
-            },
-            {
-              "seq": 3898,
-              "heuristicTokens": 75,
-              "system": false
-            },
-            {
-              "seq": 3902,
-              "heuristicTokens": 608,
-              "system": false
-            },
-            {
-              "seq": 3904,
-              "heuristicTokens": 88,
-              "system": false
-            },
-            {
-              "seq": 3908,
-              "heuristicTokens": 653,
-              "system": false
-            },
-            {
-              "seq": 3915,
-              "heuristicTokens": 14,
-              "system": false
-            },
-            {
-              "seq": 3917,
-              "heuristicTokens": 2700,
-              "system": false
-            },
-            {
-              "seq": 3919,
-              "heuristicTokens": 288,
-              "system": false
-            },
-            {
-              "seq": 3923,
-              "heuristicTokens": 1499,
-              "system": false
-            },
-            {
-              "seq": 3930,
-              "heuristicTokens": 21,
-              "system": false
-            },
-            {
-              "seq": 3932,
-              "heuristicTokens": 2525,
-              "system": false
-            },
-            {
-              "seq": 3934,
-              "heuristicTokens": 64,
-              "system": false
-            },
-            {
-              "seq": 3938,
-              "heuristicTokens": 1871,
-              "system": false
-            },
-            {
-              "seq": 3940,
-              "heuristicTokens": 135,
-              "system": false
-            },
-            {
-              "seq": 3944,
-              "heuristicTokens": 415,
-              "system": false
-            },
-            {
-              "seq": 3947,
-              "heuristicTokens": 22,
-              "system": false
-            },
-            {
-              "seq": 3951,
-              "heuristicTokens": 617,
-              "system": false
-            },
-            {
-              "seq": 3958,
-              "heuristicTokens": 14,
-              "system": false
-            },
-            {
-              "seq": 3960,
-              "heuristicTokens": 2243,
-              "system": false
-            },
-            {
-              "seq": 3962,
-              "heuristicTokens": 191,
-              "system": false
-            },
-            {
-              "seq": 3966,
-              "heuristicTokens": 811,
-              "system": false
-            },
-            {
-              "seq": 3969,
-              "heuristicTokens": 95,
-              "system": false
-            },
-            {
-              "seq": 3973,
-              "heuristicTokens": 2782,
-              "system": false
-            },
-            {
-              "seq": 3975,
-              "heuristicTokens": 148,
-              "system": false
-            },
-            {
-              "seq": 3979,
-              "heuristicTokens": 1839,
-              "system": false
-            },
-            {
-              "seq": 3981,
-              "heuristicTokens": 41,
-              "system": false
-            },
-            {
-              "seq": 3985,
-              "heuristicTokens": 352,
-              "system": false
-            },
-            {
-              "seq": 3987,
-              "heuristicTokens": 60,
-              "system": false
-            },
-            {
-              "seq": 3991,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 3993,
-              "heuristicTokens": 278,
-              "system": false
-            },
-            {
-              "seq": 3997,
-              "heuristicTokens": 328,
-              "system": false
-            },
-            {
-              "seq": 3999,
-              "heuristicTokens": 14,
-              "system": false
-            },
-            {
-              "seq": 4003,
-              "heuristicTokens": 1004,
-              "system": false
-            },
-            {
-              "seq": 4005,
-              "heuristicTokens": 60,
-              "system": false
-            },
-            {
-              "seq": 4011,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4013,
-              "heuristicTokens": 279,
-              "system": false
-            },
-            {
-              "seq": 4017,
-              "heuristicTokens": 12,
-              "system": false
-            },
-            {
-              "seq": 4019,
-              "heuristicTokens": 2748,
-              "system": false
-            },
-            {
-              "seq": 4021,
-              "heuristicTokens": 114,
-              "system": false
-            },
-            {
-              "seq": 4025,
-              "heuristicTokens": 1418,
-              "system": false
-            },
-            {
-              "seq": 4027,
-              "heuristicTokens": 81,
-              "system": false
-            },
-            {
-              "seq": 4031,
-              "heuristicTokens": 1199,
-              "system": false
-            },
-            {
-              "seq": 4033,
-              "heuristicTokens": 247,
-              "system": false
-            },
-            {
-              "seq": 4037,
-              "heuristicTokens": 1813,
-              "system": false
-            },
-            {
-              "seq": 4040,
-              "heuristicTokens": 43,
-              "system": false
-            },
-            {
-              "seq": 4044,
-              "heuristicTokens": 1192,
-              "system": false
-            },
-            {
-              "seq": 4046,
-              "heuristicTokens": 173,
-              "system": false
-            },
-            {
-              "seq": 4050,
-              "heuristicTokens": 1174,
-              "system": false
-            },
-            {
-              "seq": 4052,
-              "heuristicTokens": 42,
-              "system": false
-            },
-            {
-              "seq": 4056,
-              "heuristicTokens": 763,
-              "system": false
-            },
-            {
-              "seq": 4058,
-              "heuristicTokens": 60,
-              "system": false
-            },
-            {
-              "seq": 4062,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4064,
-              "heuristicTokens": 50,
-              "system": false
-            },
-            {
-              "seq": 4068,
-              "heuristicTokens": 470,
-              "system": false
-            },
-            {
-              "seq": 4070,
-              "heuristicTokens": 238,
-              "system": false
-            },
-            {
-              "seq": 4074,
-              "heuristicTokens": 287,
-              "system": false
-            },
-            {
-              "seq": 4076,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 4080,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4086,
-              "heuristicTokens": 261,
-              "system": false
-            },
-            {
-              "seq": 4090,
-              "heuristicTokens": 9,
-              "system": false
-            },
-            {
-              "seq": 4092,
-              "heuristicTokens": 557,
-              "system": false
-            },
-            {
-              "seq": 4094,
-              "heuristicTokens": 184,
-              "system": false
-            },
-            {
-              "seq": 4098,
-              "heuristicTokens": 1510,
-              "system": false
-            },
-            {
-              "seq": 4105,
-              "heuristicTokens": 12,
-              "system": false
-            },
-            {
-              "seq": 4107,
-              "heuristicTokens": 1002,
-              "system": false
-            },
-            {
-              "seq": 4109,
-              "heuristicTokens": 131,
-              "system": false
-            },
-            {
-              "seq": 4113,
-              "heuristicTokens": 1595,
-              "system": false
-            },
-            {
-              "seq": 4115,
-              "heuristicTokens": 45,
-              "system": false
-            },
-            {
-              "seq": 4119,
-              "heuristicTokens": 414,
-              "system": false
-            },
-            {
-              "seq": 4126,
-              "heuristicTokens": 15,
-              "system": false
-            },
-            {
-              "seq": 4128,
-              "heuristicTokens": 1309,
-              "system": false
-            },
-            {
-              "seq": 4130,
-              "heuristicTokens": 393,
-              "system": false
-            },
-            {
-              "seq": 4134,
-              "heuristicTokens": 1412,
-              "system": false
-            },
-            {
-              "seq": 4137,
-              "heuristicTokens": 292,
-              "system": false
-            },
-            {
-              "seq": 4141,
-              "heuristicTokens": 1288,
-              "system": false
-            },
-            {
-              "seq": 4147,
-              "heuristicTokens": 12,
-              "system": false
-            },
-            {
-              "seq": 4149,
-              "heuristicTokens": 1282,
-              "system": false
-            },
-            {
-              "seq": 4151,
-              "heuristicTokens": 270,
-              "system": false
-            },
-            {
-              "seq": 4155,
-              "heuristicTokens": 813,
-              "system": false
-            },
-            {
-              "seq": 4157,
-              "heuristicTokens": 252,
-              "system": false
-            },
-            {
-              "seq": 4161,
-              "heuristicTokens": 2278,
-              "system": false
-            },
-            {
-              "seq": 4163,
-              "heuristicTokens": 318,
-              "system": false
-            },
-            {
-              "seq": 4167,
-              "heuristicTokens": 1059,
-              "system": false
-            },
-            {
-              "seq": 4169,
-              "heuristicTokens": 302,
-              "system": false
-            },
-            {
-              "seq": 4173,
-              "heuristicTokens": 968,
-              "system": false
-            },
-            {
-              "seq": 4180,
-              "heuristicTokens": 9,
-              "system": false
-            },
-            {
-              "seq": 4182,
-              "heuristicTokens": 984,
-              "system": false
-            },
-            {
-              "seq": 4184,
-              "heuristicTokens": 265,
-              "system": false
-            },
-            {
-              "seq": 4188,
-              "heuristicTokens": 827,
-              "system": false
-            },
-            {
-              "seq": 4190,
-              "heuristicTokens": 285,
-              "system": false
-            },
-            {
-              "seq": 4194,
-              "heuristicTokens": 402,
-              "system": false
-            },
-            {
-              "seq": 4201,
-              "heuristicTokens": 27,
-              "system": false
-            },
-            {
-              "seq": 4203,
-              "heuristicTokens": 1569,
-              "system": false
-            },
-            {
-              "seq": 4205,
-              "heuristicTokens": 308,
-              "system": false
-            },
-            {
-              "seq": 4210,
-              "heuristicTokens": 1129,
-              "system": false
-            },
-            {
-              "seq": 4212,
-              "heuristicTokens": 222,
-              "system": false
-            },
-            {
-              "seq": 4216,
-              "heuristicTokens": 1141,
-              "system": false
-            },
-            {
-              "seq": 4222,
-              "heuristicTokens": 10,
-              "system": false
-            },
-            {
-              "seq": 4224,
-              "heuristicTokens": 639,
-              "system": false
-            },
-            {
-              "seq": 4226,
-              "heuristicTokens": 266,
-              "system": false
-            },
-            {
-              "seq": 4230,
-              "heuristicTokens": 1840,
-              "system": false
-            },
-            {
-              "seq": 4232,
-              "heuristicTokens": 65,
-              "system": false
-            },
-            {
-              "seq": 4236,
-              "heuristicTokens": 104,
-              "system": false
-            },
-            {
-              "seq": 4238,
-              "heuristicTokens": 11,
-              "system": false
-            },
-            {
-              "seq": 4242,
-              "heuristicTokens": 176,
-              "system": false
-            },
-            {
-              "seq": 4244,
-              "heuristicTokens": 52,
-              "system": false
-            },
-            {
-              "seq": 4248,
-              "heuristicTokens": 209,
-              "system": false
-            },
-            {
-              "seq": 4252,
-              "heuristicTokens": 72,
-              "system": false
-            },
-            {
-              "seq": 4257,
-              "heuristicTokens": 661,
-              "system": false
-            },
-            {
-              "seq": 4259,
-              "heuristicTokens": 32,
-              "system": false
-            },
-            {
-              "seq": 4263,
-              "heuristicTokens": 130,
-              "system": false
-            },
-            {
-              "seq": 4265,
-              "heuristicTokens": 60,
-              "system": false
-            },
-            {
-              "seq": 4269,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4271,
-              "heuristicTokens": 59,
-              "system": false
-            },
-            {
-              "seq": 4275,
-              "heuristicTokens": 681,
-              "system": false
-            },
-            {
-              "seq": 4277,
-              "heuristicTokens": 186,
-              "system": false
-            },
-            {
-              "seq": 4281,
-              "heuristicTokens": 449,
-              "system": false
-            },
-            {
-              "seq": 4287,
-              "heuristicTokens": 27,
-              "system": false
-            },
-            {
-              "seq": 4289,
-              "heuristicTokens": 1709,
-              "system": false
-            },
-            {
-              "seq": 4291,
-              "heuristicTokens": 145,
-              "system": false
-            },
-            {
-              "seq": 4295,
-              "heuristicTokens": 1194,
-              "system": false
-            },
-            {
-              "seq": 4301,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4303,
-              "heuristicTokens": 795,
-              "system": false
-            },
-            {
-              "seq": 4305,
-              "heuristicTokens": 689,
-              "system": false
-            },
-            {
-              "seq": 4309,
-              "heuristicTokens": 1434,
-              "system": false
-            },
-            {
-              "seq": 4311,
-              "heuristicTokens": 156,
-              "system": false
-            },
-            {
-              "seq": 4315,
-              "heuristicTokens": 2490,
-              "system": false
-            },
-            {
-              "seq": 4317,
-              "heuristicTokens": 238,
-              "system": false
-            },
-            {
-              "seq": 4321,
-              "heuristicTokens": 1311,
-              "system": false
-            },
-            {
-              "seq": 4323,
-              "heuristicTokens": 1126,
-              "system": false
-            },
-            {
-              "seq": 4327,
-              "heuristicTokens": 764,
-              "system": false
-            },
-            {
-              "seq": 4329,
-              "heuristicTokens": 459,
-              "system": false
-            },
-            {
-              "seq": 4333,
-              "heuristicTokens": 1452,
-              "system": false
-            },
-            {
-              "seq": 4335,
-              "heuristicTokens": 41,
-              "system": false
-            },
-            {
-              "seq": 4339,
-              "heuristicTokens": 358,
-              "system": false
-            },
-            {
-              "seq": 4341,
-              "heuristicTokens": 104,
-              "system": false
-            },
-            {
-              "seq": 4345,
-              "heuristicTokens": 513,
-              "system": false
-            },
-            {
-              "seq": 4347,
-              "heuristicTokens": 383,
-              "system": false
-            },
-            {
-              "seq": 4351,
-              "heuristicTokens": 957,
-              "system": false
-            },
-            {
-              "seq": 4353,
-              "heuristicTokens": 169,
-              "system": false
-            },
-            {
-              "seq": 4357,
-              "heuristicTokens": 1019,
-              "system": false
-            },
-            {
-              "seq": 4359,
-              "heuristicTokens": 100,
-              "system": false
-            },
-            {
-              "seq": 4363,
-              "heuristicTokens": 225,
-              "system": false
-            },
-            {
-              "seq": 4365,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 4369,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4371,
-              "heuristicTokens": 205,
-              "system": false
-            },
-            {
-              "seq": 4375,
-              "heuristicTokens": 567,
-              "system": false
-            },
-            {
-              "seq": 4377,
-              "heuristicTokens": 171,
-              "system": false
-            },
-            {
-              "seq": 4381,
-              "heuristicTokens": 1461,
-              "system": false
-            },
-            {
-              "seq": 4383,
-              "heuristicTokens": 169,
-              "system": false
-            },
-            {
-              "seq": 4387,
-              "heuristicTokens": 1027,
-              "system": false
-            },
-            {
-              "seq": 4389,
-              "heuristicTokens": 272,
-              "system": false
-            },
-            {
-              "seq": 4393,
-              "heuristicTokens": 1119,
-              "system": false
-            },
-            {
-              "seq": 4399,
-              "heuristicTokens": 24,
-              "system": false
-            },
-            {
-              "seq": 4401,
-              "heuristicTokens": 2886,
-              "system": false
-            },
-            {
-              "seq": 4403,
-              "heuristicTokens": 138,
-              "system": false
-            },
-            {
-              "seq": 4407,
-              "heuristicTokens": 1841,
-              "system": false
-            },
-            {
-              "seq": 4409,
-              "heuristicTokens": 123,
-              "system": false
-            },
-            {
-              "seq": 4413,
-              "heuristicTokens": 628,
-              "system": false
-            },
-            {
-              "seq": 4415,
-              "heuristicTokens": 112,
-              "system": false
-            },
-            {
-              "seq": 4419,
-              "heuristicTokens": 503,
-              "system": false
-            },
-            {
-              "seq": 4421,
-              "heuristicTokens": 2131,
-              "system": false
-            },
-            {
-              "seq": 4425,
-              "heuristicTokens": 737,
-              "system": false
-            },
-            {
-              "seq": 4427,
-              "heuristicTokens": 2054,
-              "system": false
-            },
-            {
-              "seq": 4431,
-              "heuristicTokens": 360,
-              "system": false
-            },
-            {
-              "seq": 4433,
-              "heuristicTokens": 83,
-              "system": false
-            },
-            {
-              "seq": 4437,
-              "heuristicTokens": 720,
-              "system": false
-            },
-            {
-              "seq": 4439,
-              "heuristicTokens": 2087,
-              "system": false
-            },
-            {
-              "seq": 4443,
-              "heuristicTokens": 608,
-              "system": false
-            },
-            {
-              "seq": 4450,
-              "heuristicTokens": 29,
-              "system": false
-            },
-            {
-              "seq": 4452,
-              "heuristicTokens": 669,
-              "system": false
-            },
-            {
-              "seq": 4454,
-              "heuristicTokens": 93,
-              "system": false
-            },
-            {
-              "seq": 4458,
-              "heuristicTokens": 1344,
-              "system": false
-            },
-            {
-              "seq": 4460,
-              "heuristicTokens": 314,
-              "system": false
-            },
-            {
-              "seq": 4464,
-              "heuristicTokens": 1184,
-              "system": false
-            },
-            {
-              "seq": 4466,
-              "heuristicTokens": 196,
-              "system": false
-            },
-            {
-              "seq": 4470,
-              "heuristicTokens": 795,
-              "system": false
-            },
-            {
-              "seq": 4472,
-              "heuristicTokens": 473,
-              "system": false
-            },
-            {
-              "seq": 4477,
-              "heuristicTokens": 2144,
-              "system": false
-            },
-            {
-              "seq": 4479,
-              "heuristicTokens": 158,
-              "system": false
-            },
-            {
-              "seq": 4483,
-              "heuristicTokens": 1282,
-              "system": false
-            },
-            {
-              "seq": 4485,
-              "heuristicTokens": 182,
-              "system": false
-            },
-            {
-              "seq": 4489,
-              "heuristicTokens": 282,
-              "system": false
-            },
-            {
-              "seq": 4491,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 4495,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4498,
-              "heuristicTokens": 159,
-              "system": false
-            },
-            {
-              "seq": 4502,
-              "heuristicTokens": 725,
-              "system": false
-            },
-            {
-              "seq": 4504,
-              "heuristicTokens": 140,
-              "system": false
-            },
-            {
-              "seq": 4508,
-              "heuristicTokens": 598,
-              "system": false
-            },
-            {
-              "seq": 4514,
-              "heuristicTokens": 32,
-              "system": false
-            },
-            {
-              "seq": 4516,
-              "heuristicTokens": 1181,
-              "system": false
-            },
-            {
-              "seq": 4518,
-              "heuristicTokens": 178,
-              "system": false
-            },
-            {
-              "seq": 4522,
-              "heuristicTokens": 1313,
-              "system": false
-            },
-            {
-              "seq": 4524,
-              "heuristicTokens": 49,
-              "system": false
-            },
-            {
-              "seq": 4530,
-              "heuristicTokens": 197,
-              "system": false
-            },
-            {
-              "seq": 4532,
-              "heuristicTokens": 269,
-              "system": false
-            },
-            {
-              "seq": 4536,
-              "heuristicTokens": 19,
-              "system": false
-            },
-            {
-              "seq": 4538,
-              "heuristicTokens": 2257,
-              "system": false
-            },
-            {
-              "seq": 4540,
-              "heuristicTokens": 127,
-              "system": false
-            },
-            {
-              "seq": 4544,
-              "heuristicTokens": 727,
-              "system": false
-            },
-            {
-              "seq": 4546,
-              "heuristicTokens": 397,
-              "system": false
-            },
-            {
-              "seq": 4550,
-              "heuristicTokens": 1066,
-              "system": false
-            },
-            {
-              "seq": 4552,
-              "heuristicTokens": 133,
-              "system": false
-            },
-            {
-              "seq": 4556,
-              "heuristicTokens": 1335,
-              "system": false
-            },
-            {
-              "seq": 4558,
-              "heuristicTokens": 125,
-              "system": false
-            },
-            {
-              "seq": 4562,
-              "heuristicTokens": 543,
-              "system": false
-            },
-            {
-              "seq": 4564,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 4568,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4573,
-              "heuristicTokens": 162,
-              "system": false
-            },
-            {
-              "seq": 4577,
-              "heuristicTokens": 13,
-              "system": false
-            },
-            {
-              "seq": 4579,
-              "heuristicTokens": 1370,
-              "system": false
-            },
-            {
-              "seq": 4581,
-              "heuristicTokens": 395,
-              "system": false
-            },
-            {
-              "seq": 4585,
-              "heuristicTokens": 1346,
-              "system": false
-            },
-            {
-              "seq": 4587,
-              "heuristicTokens": 115,
-              "system": false
-            },
-            {
-              "seq": 4591,
-              "heuristicTokens": 845,
-              "system": false
-            },
-            {
-              "seq": 4593,
-              "heuristicTokens": 388,
-              "system": false
-            },
-            {
-              "seq": 4597,
-              "heuristicTokens": 1763,
-              "system": false
-            },
-            {
-              "seq": 4601,
-              "heuristicTokens": 178,
-              "system": false
-            },
-            {
-              "seq": 4605,
-              "heuristicTokens": 292,
-              "system": false
-            },
-            {
-              "seq": 4607,
-              "heuristicTokens": 16,
-              "system": false
-            },
-            {
-              "seq": 4611,
-              "heuristicTokens": 30,
-              "system": false
-            },
-            {
-              "seq": 4613,
-              "heuristicTokens": 239,
-              "system": false
-            },
-            {
-              "seq": 4617,
-              "heuristicTokens": 340,
-              "system": false
-            },
-            {
-              "seq": 4619,
-              "heuristicTokens": 396,
-              "system": false
-            },
-            {
-              "seq": 4623,
-              "heuristicTokens": 609,
-              "system": false
-            },
-            {
-              "seq": 4627,
-              "heuristicTokens": 50,
+              "seq": 5332,
+              "heuristicTokens": 2456,
               "system": false
             },
             {
@@ -3071,101 +551,1733 @@
               "seq": 4920,
               "heuristicTokens": 30,
               "system": false
+            },
+            {
+              "seq": 4925,
+              "heuristicTokens": 316,
+              "system": false
+            },
+            {
+              "seq": 4929,
+              "heuristicTokens": 79,
+              "system": false
+            },
+            {
+              "seq": 4931,
+              "heuristicTokens": 1926,
+              "system": false
+            },
+            {
+              "seq": 4933,
+              "heuristicTokens": 695,
+              "system": false
+            },
+            {
+              "seq": 4937,
+              "heuristicTokens": 2334,
+              "system": false
+            },
+            {
+              "seq": 4939,
+              "heuristicTokens": 104,
+              "system": false
+            },
+            {
+              "seq": 4943,
+              "heuristicTokens": 3864,
+              "system": false
+            },
+            {
+              "seq": 4945,
+              "heuristicTokens": 81,
+              "system": false
+            },
+            {
+              "seq": 4949,
+              "heuristicTokens": 445,
+              "system": false
+            },
+            {
+              "seq": 4951,
+              "heuristicTokens": 264,
+              "system": false
+            },
+            {
+              "seq": 4955,
+              "heuristicTokens": 829,
+              "system": false
+            },
+            {
+              "seq": 4957,
+              "heuristicTokens": 86,
+              "system": false
+            },
+            {
+              "seq": 4961,
+              "heuristicTokens": 849,
+              "system": false
+            },
+            {
+              "seq": 4963,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 4967,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 4975,
+              "heuristicTokens": 89,
+              "system": false
+            },
+            {
+              "seq": 4979,
+              "heuristicTokens": 14,
+              "system": false
+            },
+            {
+              "seq": 4980,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 4982,
+              "heuristicTokens": 1577,
+              "system": false
+            },
+            {
+              "seq": 4984,
+              "heuristicTokens": 206,
+              "system": false
+            },
+            {
+              "seq": 4988,
+              "heuristicTokens": 1365,
+              "system": false
+            },
+            {
+              "seq": 4990,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 4994,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 4996,
+              "heuristicTokens": 73,
+              "system": false
+            },
+            {
+              "seq": 5000,
+              "heuristicTokens": 490,
+              "system": false
+            },
+            {
+              "seq": 5002,
+              "heuristicTokens": 114,
+              "system": false
+            },
+            {
+              "seq": 5006,
+              "heuristicTokens": 1182,
+              "system": false
+            },
+            {
+              "seq": 5013,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 5015,
+              "heuristicTokens": 447,
+              "system": false
+            },
+            {
+              "seq": 5017,
+              "heuristicTokens": 854,
+              "system": false
+            },
+            {
+              "seq": 5021,
+              "heuristicTokens": 402,
+              "system": false
+            },
+            {
+              "seq": 5023,
+              "heuristicTokens": 545,
+              "system": false
+            },
+            {
+              "seq": 5027,
+              "heuristicTokens": 222,
+              "system": false
+            },
+            {
+              "seq": 5029,
+              "heuristicTokens": 437,
+              "system": false
+            },
+            {
+              "seq": 5033,
+              "heuristicTokens": 379,
+              "system": false
+            },
+            {
+              "seq": 5035,
+              "heuristicTokens": 199,
+              "system": false
+            },
+            {
+              "seq": 5039,
+              "heuristicTokens": 165,
+              "system": false
+            },
+            {
+              "seq": 5041,
+              "heuristicTokens": 910,
+              "system": false
+            },
+            {
+              "seq": 5045,
+              "heuristicTokens": 824,
+              "system": false
+            },
+            {
+              "seq": 5047,
+              "heuristicTokens": 447,
+              "system": false
+            },
+            {
+              "seq": 5051,
+              "heuristicTokens": 1178,
+              "system": false
+            },
+            {
+              "seq": 5053,
+              "heuristicTokens": 1037,
+              "system": false
+            },
+            {
+              "seq": 5057,
+              "heuristicTokens": 2349,
+              "system": false
+            },
+            {
+              "seq": 5059,
+              "heuristicTokens": 233,
+              "system": false
+            },
+            {
+              "seq": 5063,
+              "heuristicTokens": 1227,
+              "system": false
+            },
+            {
+              "seq": 5067,
+              "heuristicTokens": 37,
+              "system": false
+            },
+            {
+              "seq": 5071,
+              "heuristicTokens": 815,
+              "system": false
+            },
+            {
+              "seq": 5073,
+              "heuristicTokens": 250,
+              "system": false
+            },
+            {
+              "seq": 5077,
+              "heuristicTokens": 809,
+              "system": false
+            },
+            {
+              "seq": 5079,
+              "heuristicTokens": 138,
+              "system": false
+            },
+            {
+              "seq": 5083,
+              "heuristicTokens": 375,
+              "system": false
+            },
+            {
+              "seq": 5085,
+              "heuristicTokens": 239,
+              "system": false
+            },
+            {
+              "seq": 5089,
+              "heuristicTokens": 1211,
+              "system": false
+            },
+            {
+              "seq": 5093,
+              "heuristicTokens": 133,
+              "system": false
+            },
+            {
+              "seq": 5097,
+              "heuristicTokens": 670,
+              "system": false
+            },
+            {
+              "seq": 5099,
+              "heuristicTokens": 112,
+              "system": false
+            },
+            {
+              "seq": 5103,
+              "heuristicTokens": 1499,
+              "system": false
+            },
+            {
+              "seq": 5110,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 5112,
+              "heuristicTokens": 1263,
+              "system": false
+            },
+            {
+              "seq": 5114,
+              "heuristicTokens": 593,
+              "system": false
+            },
+            {
+              "seq": 5118,
+              "heuristicTokens": 867,
+              "system": false
+            },
+            {
+              "seq": 5120,
+              "heuristicTokens": 157,
+              "system": false
+            },
+            {
+              "seq": 5125,
+              "heuristicTokens": 943,
+              "system": false
+            },
+            {
+              "seq": 5131,
+              "heuristicTokens": 10,
+              "system": false
+            },
+            {
+              "seq": 5133,
+              "heuristicTokens": 867,
+              "system": false
+            },
+            {
+              "seq": 5135,
+              "heuristicTokens": 548,
+              "system": false
+            },
+            {
+              "seq": 5139,
+              "heuristicTokens": 478,
+              "system": false
+            },
+            {
+              "seq": 5141,
+              "heuristicTokens": 1454,
+              "system": false
+            },
+            {
+              "seq": 5145,
+              "heuristicTokens": 2566,
+              "system": false
+            },
+            {
+              "seq": 5147,
+              "heuristicTokens": 151,
+              "system": false
+            },
+            {
+              "seq": 5152,
+              "heuristicTokens": 758,
+              "system": false
+            },
+            {
+              "seq": 5154,
+              "heuristicTokens": 425,
+              "system": false
+            },
+            {
+              "seq": 5158,
+              "heuristicTokens": 1163,
+              "system": false
+            },
+            {
+              "seq": 5160,
+              "heuristicTokens": 154,
+              "system": false
+            },
+            {
+              "seq": 5164,
+              "heuristicTokens": 1834,
+              "system": false
+            },
+            {
+              "seq": 5168,
+              "heuristicTokens": 206,
+              "system": false
+            },
+            {
+              "seq": 5172,
+              "heuristicTokens": 1252,
+              "system": false
+            },
+            {
+              "seq": 5174,
+              "heuristicTokens": 177,
+              "system": false
+            },
+            {
+              "seq": 5178,
+              "heuristicTokens": 1484,
+              "system": false
+            },
+            {
+              "seq": 5180,
+              "heuristicTokens": 290,
+              "system": false
+            },
+            {
+              "seq": 5184,
+              "heuristicTokens": 489,
+              "system": false
+            },
+            {
+              "seq": 5186,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5190,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5192,
+              "heuristicTokens": 89,
+              "system": false
+            },
+            {
+              "seq": 5196,
+              "heuristicTokens": 646,
+              "system": false
+            },
+            {
+              "seq": 5198,
+              "heuristicTokens": 208,
+              "system": false
+            },
+            {
+              "seq": 5202,
+              "heuristicTokens": 636,
+              "system": false
+            },
+            {
+              "seq": 5208,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5210,
+              "heuristicTokens": 1497,
+              "system": false
+            },
+            {
+              "seq": 5212,
+              "heuristicTokens": 125,
+              "system": false
+            },
+            {
+              "seq": 5216,
+              "heuristicTokens": 362,
+              "system": false
+            },
+            {
+              "seq": 5218,
+              "heuristicTokens": 54,
+              "system": false
+            },
+            {
+              "seq": 5222,
+              "heuristicTokens": 1025,
+              "system": false
+            },
+            {
+              "seq": 5226,
+              "heuristicTokens": 187,
+              "system": false
+            },
+            {
+              "seq": 5230,
+              "heuristicTokens": 654,
+              "system": false
+            },
+            {
+              "seq": 5234,
+              "heuristicTokens": 64,
+              "system": false
+            },
+            {
+              "seq": 5238,
+              "heuristicTokens": 1020,
+              "system": false
+            },
+            {
+              "seq": 5240,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5244,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5249,
+              "heuristicTokens": 114,
+              "system": false
+            },
+            {
+              "seq": 5253,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5255,
+              "heuristicTokens": 1258,
+              "system": false
+            },
+            {
+              "seq": 5257,
+              "heuristicTokens": 283,
+              "system": false
+            },
+            {
+              "seq": 5261,
+              "heuristicTokens": 615,
+              "system": false
+            },
+            {
+              "seq": 5268,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 5270,
+              "heuristicTokens": 1404,
+              "system": false
+            },
+            {
+              "seq": 5272,
+              "heuristicTokens": 296,
+              "system": false
+            },
+            {
+              "seq": 5276,
+              "heuristicTokens": 1392,
+              "system": false
+            },
+            {
+              "seq": 5283,
+              "heuristicTokens": 9,
+              "system": false
+            },
+            {
+              "seq": 5285,
+              "heuristicTokens": 3163,
+              "system": false
+            },
+            {
+              "seq": 5287,
+              "heuristicTokens": 812,
+              "system": false
+            },
+            {
+              "seq": 5291,
+              "heuristicTokens": 551,
+              "system": false
+            },
+            {
+              "seq": 5293,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 5297,
+              "heuristicTokens": 247,
+              "system": false
+            },
+            {
+              "seq": 5299,
+              "heuristicTokens": 66,
+              "system": false
+            },
+            {
+              "seq": 5303,
+              "heuristicTokens": 415,
+              "system": false
+            },
+            {
+              "seq": 5305,
+              "heuristicTokens": 334,
+              "system": false
+            },
+            {
+              "seq": 5309,
+              "heuristicTokens": 2132,
+              "system": false
+            },
+            {
+              "seq": 5311,
+              "heuristicTokens": 87,
+              "system": false
+            },
+            {
+              "seq": 5315,
+              "heuristicTokens": 223,
+              "system": false
+            },
+            {
+              "seq": 5317,
+              "heuristicTokens": 169,
+              "system": false
+            },
+            {
+              "seq": 5321,
+              "heuristicTokens": 1921,
+              "system": false
+            },
+            {
+              "seq": 5323,
+              "heuristicTokens": 161,
+              "system": false
+            },
+            {
+              "seq": 5335,
+              "heuristicTokens": 1703,
+              "system": false
+            },
+            {
+              "seq": 5336,
+              "heuristicTokens": 1743,
+              "system": false
+            },
+            {
+              "seq": 5339,
+              "heuristicTokens": 477,
+              "system": false
+            },
+            {
+              "seq": 5341,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5344,
+              "heuristicTokens": 150,
+              "system": false
+            },
+            {
+              "seq": 5346,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 5348,
+              "heuristicTokens": 150,
+              "system": false
+            },
+            {
+              "seq": 5352,
+              "heuristicTokens": 557,
+              "system": false
+            },
+            {
+              "seq": 5359,
+              "heuristicTokens": 9,
+              "system": false
+            },
+            {
+              "seq": 5362,
+              "heuristicTokens": 2186,
+              "system": false
+            },
+            {
+              "seq": 5364,
+              "heuristicTokens": 182,
+              "system": false
+            },
+            {
+              "seq": 5370,
+              "heuristicTokens": 1791,
+              "system": false
+            },
+            {
+              "seq": 5372,
+              "heuristicTokens": 128,
+              "system": false
+            },
+            {
+              "seq": 5376,
+              "heuristicTokens": 18,
+              "system": false
+            },
+            {
+              "seq": 5378,
+              "heuristicTokens": 1076,
+              "system": false
+            },
+            {
+              "seq": 5380,
+              "heuristicTokens": 283,
+              "system": false
+            },
+            {
+              "seq": 5384,
+              "heuristicTokens": 1988,
+              "system": false
+            },
+            {
+              "seq": 5386,
+              "heuristicTokens": 120,
+              "system": false
+            },
+            {
+              "seq": 5390,
+              "heuristicTokens": 555,
+              "system": false
+            },
+            {
+              "seq": 5392,
+              "heuristicTokens": 103,
+              "system": false
+            },
+            {
+              "seq": 5396,
+              "heuristicTokens": 1032,
+              "system": false
+            },
+            {
+              "seq": 5398,
+              "heuristicTokens": 98,
+              "system": false
+            },
+            {
+              "seq": 5402,
+              "heuristicTokens": 1695,
+              "system": false
+            },
+            {
+              "seq": 5404,
+              "heuristicTokens": 139,
+              "system": false
+            },
+            {
+              "seq": 5408,
+              "heuristicTokens": 978,
+              "system": false
+            },
+            {
+              "seq": 5410,
+              "heuristicTokens": 196,
+              "system": false
+            },
+            {
+              "seq": 5414,
+              "heuristicTokens": 1559,
+              "system": false
+            },
+            {
+              "seq": 5416,
+              "heuristicTokens": 237,
+              "system": false
+            },
+            {
+              "seq": 5420,
+              "heuristicTokens": 1438,
+              "system": false
+            },
+            {
+              "seq": 5422,
+              "heuristicTokens": 128,
+              "system": false
+            },
+            {
+              "seq": 5426,
+              "heuristicTokens": 1836,
+              "system": false
+            },
+            {
+              "seq": 5428,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5432,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5434,
+              "heuristicTokens": 112,
+              "system": false
+            },
+            {
+              "seq": 5438,
+              "heuristicTokens": 502,
+              "system": false
+            },
+            {
+              "seq": 5440,
+              "heuristicTokens": 51,
+              "system": false
+            },
+            {
+              "seq": 5444,
+              "heuristicTokens": 1214,
+              "system": false
+            },
+            {
+              "seq": 5451,
+              "heuristicTokens": 9,
+              "system": false
+            },
+            {
+              "seq": 5453,
+              "heuristicTokens": 3901,
+              "system": false
+            },
+            {
+              "seq": 5455,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5459,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5461,
+              "heuristicTokens": 142,
+              "system": false
+            },
+            {
+              "seq": 5465,
+              "heuristicTokens": 2258,
+              "system": false
+            },
+            {
+              "seq": 5467,
+              "heuristicTokens": 112,
+              "system": false
+            },
+            {
+              "seq": 5471,
+              "heuristicTokens": 1136,
+              "system": false
+            },
+            {
+              "seq": 5473,
+              "heuristicTokens": 136,
+              "system": false
+            },
+            {
+              "seq": 5477,
+              "heuristicTokens": 811,
+              "system": false
+            },
+            {
+              "seq": 5479,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5483,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5485,
+              "heuristicTokens": 183,
+              "system": false
+            },
+            {
+              "seq": 5489,
+              "heuristicTokens": 2136,
+              "system": false
+            },
+            {
+              "seq": 5491,
+              "heuristicTokens": 101,
+              "system": false
+            },
+            {
+              "seq": 5495,
+              "heuristicTokens": 506,
+              "system": false
+            },
+            {
+              "seq": 5497,
+              "heuristicTokens": 83,
+              "system": false
+            },
+            {
+              "seq": 5501,
+              "heuristicTokens": 1201,
+              "system": false
+            },
+            {
+              "seq": 5503,
+              "heuristicTokens": 139,
+              "system": false
+            },
+            {
+              "seq": 5507,
+              "heuristicTokens": 852,
+              "system": false
+            },
+            {
+              "seq": 5509,
+              "heuristicTokens": 80,
+              "system": false
+            },
+            {
+              "seq": 5513,
+              "heuristicTokens": 363,
+              "system": false
+            },
+            {
+              "seq": 5515,
+              "heuristicTokens": 332,
+              "system": false
+            },
+            {
+              "seq": 5519,
+              "heuristicTokens": 1267,
+              "system": false
+            },
+            {
+              "seq": 5521,
+              "heuristicTokens": 61,
+              "system": false
+            },
+            {
+              "seq": 5525,
+              "heuristicTokens": 677,
+              "system": false
+            },
+            {
+              "seq": 5527,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5531,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5533,
+              "heuristicTokens": 100,
+              "system": false
+            },
+            {
+              "seq": 5537,
+              "heuristicTokens": 536,
+              "system": false
+            },
+            {
+              "seq": 5539,
+              "heuristicTokens": 129,
+              "system": false
+            },
+            {
+              "seq": 5543,
+              "heuristicTokens": 1240,
+              "system": false
+            },
+            {
+              "seq": 5550,
+              "heuristicTokens": 9,
+              "system": false
+            },
+            {
+              "seq": 5552,
+              "heuristicTokens": 2392,
+              "system": false
+            },
+            {
+              "seq": 5554,
+              "heuristicTokens": 104,
+              "system": false
+            },
+            {
+              "seq": 5558,
+              "heuristicTokens": 1821,
+              "system": false
+            },
+            {
+              "seq": 5560,
+              "heuristicTokens": 114,
+              "system": false
+            },
+            {
+              "seq": 5564,
+              "heuristicTokens": 1261,
+              "system": false
+            },
+            {
+              "seq": 5566,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5570,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5572,
+              "heuristicTokens": 105,
+              "system": false
+            },
+            {
+              "seq": 5576,
+              "heuristicTokens": 765,
+              "system": false
+            },
+            {
+              "seq": 5578,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5582,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5584,
+              "heuristicTokens": 190,
+              "system": false
+            },
+            {
+              "seq": 5588,
+              "heuristicTokens": 646,
+              "system": false
+            },
+            {
+              "seq": 5590,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5594,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5596,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 5600,
+              "heuristicTokens": 155,
+              "system": false
+            },
+            {
+              "seq": 5602,
+              "heuristicTokens": 98,
+              "system": false
+            },
+            {
+              "seq": 5606,
+              "heuristicTokens": 356,
+              "system": false
+            },
+            {
+              "seq": 5608,
+              "heuristicTokens": 229,
+              "system": false
+            },
+            {
+              "seq": 5612,
+              "heuristicTokens": 1928,
+              "system": false
+            },
+            {
+              "seq": 5614,
+              "heuristicTokens": 91,
+              "system": false
+            },
+            {
+              "seq": 5618,
+              "heuristicTokens": 2563,
+              "system": false
+            },
+            {
+              "seq": 5620,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5624,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5632,
+              "heuristicTokens": 126,
+              "system": false
+            },
+            {
+              "seq": 5636,
+              "heuristicTokens": 17,
+              "system": false
+            },
+            {
+              "seq": 5637,
+              "heuristicTokens": 22,
+              "system": false
+            },
+            {
+              "seq": 5639,
+              "heuristicTokens": 2662,
+              "system": false
+            },
+            {
+              "seq": 5641,
+              "heuristicTokens": 245,
+              "system": false
+            },
+            {
+              "seq": 5645,
+              "heuristicTokens": 663,
+              "system": false
+            },
+            {
+              "seq": 5647,
+              "heuristicTokens": 200,
+              "system": false
+            },
+            {
+              "seq": 5651,
+              "heuristicTokens": 818,
+              "system": false
+            },
+            {
+              "seq": 5653,
+              "heuristicTokens": 174,
+              "system": false
+            },
+            {
+              "seq": 5657,
+              "heuristicTokens": 885,
+              "system": false
+            },
+            {
+              "seq": 5659,
+              "heuristicTokens": 106,
+              "system": false
+            },
+            {
+              "seq": 5663,
+              "heuristicTokens": 1893,
+              "system": false
+            },
+            {
+              "seq": 5670,
+              "heuristicTokens": 9,
+              "system": false
+            },
+            {
+              "seq": 5672,
+              "heuristicTokens": 1214,
+              "system": false
+            },
+            {
+              "seq": 5674,
+              "heuristicTokens": 73,
+              "system": false
+            },
+            {
+              "seq": 5678,
+              "heuristicTokens": 271,
+              "system": false
+            },
+            {
+              "seq": 5680,
+              "heuristicTokens": 700,
+              "system": false
+            },
+            {
+              "seq": 5684,
+              "heuristicTokens": 962,
+              "system": false
+            },
+            {
+              "seq": 5686,
+              "heuristicTokens": 178,
+              "system": false
+            },
+            {
+              "seq": 5690,
+              "heuristicTokens": 1488,
+              "system": false
+            },
+            {
+              "seq": 5692,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5696,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5698,
+              "heuristicTokens": 155,
+              "system": false
+            },
+            {
+              "seq": 5702,
+              "heuristicTokens": 759,
+              "system": false
+            },
+            {
+              "seq": 5704,
+              "heuristicTokens": 87,
+              "system": false
+            },
+            {
+              "seq": 5708,
+              "heuristicTokens": 1262,
+              "system": false
+            },
+            {
+              "seq": 5710,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5714,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5716,
+              "heuristicTokens": 103,
+              "system": false
+            },
+            {
+              "seq": 5720,
+              "heuristicTokens": 656,
+              "system": false
+            },
+            {
+              "seq": 5722,
+              "heuristicTokens": 114,
+              "system": false
+            },
+            {
+              "seq": 5726,
+              "heuristicTokens": 265,
+              "system": false
+            },
+            {
+              "seq": 5728,
+              "heuristicTokens": 519,
+              "system": false
+            },
+            {
+              "seq": 5732,
+              "heuristicTokens": 603,
+              "system": false
+            },
+            {
+              "seq": 5734,
+              "heuristicTokens": 158,
+              "system": false
+            },
+            {
+              "seq": 5738,
+              "heuristicTokens": 663,
+              "system": false
+            },
+            {
+              "seq": 5740,
+              "heuristicTokens": 100,
+              "system": false
+            },
+            {
+              "seq": 5744,
+              "heuristicTokens": 1173,
+              "system": false
+            },
+            {
+              "seq": 5746,
+              "heuristicTokens": 95,
+              "system": false
+            },
+            {
+              "seq": 5750,
+              "heuristicTokens": 686,
+              "system": false
+            },
+            {
+              "seq": 5752,
+              "heuristicTokens": 94,
+              "system": false
+            },
+            {
+              "seq": 5756,
+              "heuristicTokens": 867,
+              "system": false
+            },
+            {
+              "seq": 5758,
+              "heuristicTokens": 65,
+              "system": false
+            },
+            {
+              "seq": 5762,
+              "heuristicTokens": 506,
+              "system": false
+            },
+            {
+              "seq": 5764,
+              "heuristicTokens": 180,
+              "system": false
+            },
+            {
+              "seq": 5768,
+              "heuristicTokens": 658,
+              "system": false
+            },
+            {
+              "seq": 5770,
+              "heuristicTokens": 108,
+              "system": false
+            },
+            {
+              "seq": 5774,
+              "heuristicTokens": 1609,
+              "system": false
+            },
+            {
+              "seq": 5776,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5780,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5782,
+              "heuristicTokens": 129,
+              "system": false
+            },
+            {
+              "seq": 5786,
+              "heuristicTokens": 954,
+              "system": false
+            },
+            {
+              "seq": 5788,
+              "heuristicTokens": 44,
+              "system": false
+            },
+            {
+              "seq": 5792,
+              "heuristicTokens": 271,
+              "system": false
+            },
+            {
+              "seq": 5794,
+              "heuristicTokens": 543,
+              "system": false
+            },
+            {
+              "seq": 5798,
+              "heuristicTokens": 1191,
+              "system": false
+            },
+            {
+              "seq": 5800,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5804,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5807,
+              "heuristicTokens": 96,
+              "system": false
+            },
+            {
+              "seq": 5811,
+              "heuristicTokens": 906,
+              "system": false
+            },
+            {
+              "seq": 5813,
+              "heuristicTokens": 260,
+              "system": false
+            },
+            {
+              "seq": 5817,
+              "heuristicTokens": 2184,
+              "system": false
+            },
+            {
+              "seq": 5819,
+              "heuristicTokens": 84,
+              "system": false
+            },
+            {
+              "seq": 5823,
+              "heuristicTokens": 831,
+              "system": false
+            },
+            {
+              "seq": 5825,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5830,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5835,
+              "heuristicTokens": 121,
+              "system": false
+            },
+            {
+              "seq": 5839,
+              "heuristicTokens": 20,
+              "system": false
+            },
+            {
+              "seq": 5841,
+              "heuristicTokens": 2435,
+              "system": false
+            },
+            {
+              "seq": 5843,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 5847,
+              "heuristicTokens": 440,
+              "system": false
+            },
+            {
+              "seq": 5849,
+              "heuristicTokens": 98,
+              "system": false
+            },
+            {
+              "seq": 5853,
+              "heuristicTokens": 1866,
+              "system": false
+            },
+            {
+              "seq": 5855,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5859,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5861,
+              "heuristicTokens": 147,
+              "system": false
+            },
+            {
+              "seq": 5865,
+              "heuristicTokens": 598,
+              "system": false
+            },
+            {
+              "seq": 5867,
+              "heuristicTokens": 213,
+              "system": false
+            },
+            {
+              "seq": 5871,
+              "heuristicTokens": 1254,
+              "system": false
+            },
+            {
+              "seq": 5873,
+              "heuristicTokens": 156,
+              "system": false
+            },
+            {
+              "seq": 5877,
+              "heuristicTokens": 1974,
+              "system": false
+            },
+            {
+              "seq": 5879,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5883,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5885,
+              "heuristicTokens": 59,
+              "system": false
+            },
+            {
+              "seq": 5889,
+              "heuristicTokens": 1076,
+              "system": false
+            },
+            {
+              "seq": 5891,
+              "heuristicTokens": 122,
+              "system": false
+            },
+            {
+              "seq": 5895,
+              "heuristicTokens": 1375,
+              "system": false
+            },
+            {
+              "seq": 5897,
+              "heuristicTokens": 33,
+              "system": false
+            },
+            {
+              "seq": 5901,
+              "heuristicTokens": 407,
+              "system": false
+            },
+            {
+              "seq": 5903,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5907,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5909,
+              "heuristicTokens": 85,
+              "system": false
+            },
+            {
+              "seq": 5913,
+              "heuristicTokens": 1232,
+              "system": false
+            },
+            {
+              "seq": 5915,
+              "heuristicTokens": 57,
+              "system": false
+            },
+            {
+              "seq": 5919,
+              "heuristicTokens": 528,
+              "system": false
+            },
+            {
+              "seq": 5921,
+              "heuristicTokens": 239,
+              "system": false
+            },
+            {
+              "seq": 5925,
+              "heuristicTokens": 964,
+              "system": false
+            },
+            {
+              "seq": 5927,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5931,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5933,
+              "heuristicTokens": 88,
+              "system": false
+            },
+            {
+              "seq": 5937,
+              "heuristicTokens": 1119,
+              "system": false
+            },
+            {
+              "seq": 5939,
+              "heuristicTokens": 16,
+              "system": false
+            },
+            {
+              "seq": 5943,
+              "heuristicTokens": 30,
+              "system": false
+            },
+            {
+              "seq": 5945,
+              "heuristicTokens": 76,
+              "system": false
+            },
+            {
+              "seq": 5949,
+              "heuristicTokens": 655,
+              "system": false
+            },
+            {
+              "seq": 5951,
+              "heuristicTokens": 127,
+              "system": false
+            },
+            {
+              "seq": 5955,
+              "heuristicTokens": 1787,
+              "system": false
+            },
+            {
+              "seq": 5957,
+              "heuristicTokens": 117,
+              "system": false
+            },
+            {
+              "seq": 5961,
+              "heuristicTokens": 1269,
+              "system": false
+            },
+            {
+              "seq": 5968,
+              "heuristicTokens": 15,
+              "system": false
+            },
+            {
+              "seq": 5970,
+              "heuristicTokens": 1357,
+              "system": false
+            },
+            {
+              "seq": 5973,
+              "heuristicTokens": 531,
+              "system": false
+            },
+            {
+              "seq": 5977,
+              "heuristicTokens": 878,
+              "system": false
+            },
+            {
+              "seq": 5982,
+              "heuristicTokens": 59,
+              "system": false
+            },
+            {
+              "seq": 5986,
+              "heuristicTokens": 355,
+              "system": false
+            },
+            {
+              "seq": 5989,
+              "heuristicTokens": 539,
+              "system": false
+            },
+            {
+              "seq": 5993,
+              "heuristicTokens": 114,
+              "system": false
             }
           ],
           "breakdown": {
             "systemTokens": 8704,
             "toolsTokens": 54247,
-            "messageTokens": 357056
+            "messageTokens": 234169
           }
         }
       },
       "turnBoundary": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
-          "openTurnStartSeq": 4819,
-          "lastStepStartSeq": 4918,
+          "openTurnStartSeq": 5965,
+          "lastStepStartSeq": 5991,
           "lastStepBoundary": {
             "kind": "start",
-            "seq": 4918
+            "seq": 5991
           },
-          "lastTurn": 49
+          "lastTurn": 60
         }
       },
       "inbox": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
-          "next-turn": [
-            {
-              "content": [
-                {
-                  "type": "text",
-                  "text": "环节内容，是否已经实现了类似的四元交叉校验?"
-                }
-              ],
-              "source": {
-                "kind": "user",
-                "rpcId": "641139fb-4f68-46e5-b71d-97b74fd7d960",
-                "clientTimeZone": "Asia/Shanghai"
-              },
-              "role": "user",
-              "id": "0370968e-3b87-453b-b294-240088492057"
-            }
-          ],
-          "next-step": [
-            {
-              "content": [
-                {
-                  "type": "image",
-                  "attachment": {
-                    "attachmentId": "sha256:c8ff717a81e1f65c39112aa7e44b1e0be247189e46c6d5be1b1e004f14c1bc69",
-                    "mediaType": "image/jpeg",
-                    "width": 768,
-                    "height": 771,
-                    "bytes": 125717,
-                    "name": "a968ea32fcf7a70c9c83c78f142e311a.jpg"
-                  }
-                },
-                {
-                  "type": "text",
-                  "text": "以上是客户反馈，基于你抽取的知识骨架，写的还原文档，存在图片中的问题"
-                }
-              ],
-              "source": {
-                "kind": "user",
-                "rpcId": "b9bb203b-c6dd-474d-b95a-e8c014382aeb",
-                "clientTimeZone": "Asia/Shanghai"
-              },
-              "role": "user",
-              "id": "9dc0f3a5-4fd4-4cb9-ad25-8441718e98bf"
-            }
-          ]
+          "next-turn": [],
+          "next-step": []
         }
       },
       "sessionStats": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
-          "turns": 49,
-          "steps": 743,
-          "llmMs": 8509534,
-          "toolMs": 6686184,
-          "ttftMs": 3524011,
-          "ttftSteps": 744,
-          "decodeMs": 4985523,
-          "decodeTokens": 1071866,
-          "lastTurn": 49,
+          "turns": 60,
+          "steps": 905,
+          "llmMs": 9806941,
+          "toolMs": 11829958,
+          "ttftMs": 3769316,
+          "ttftSteps": 906,
+          "decodeMs": 6037625,
+          "decodeTokens": 1291932,
+          "lastTurn": 60,
           "openStep": null,
           "pendingCalls": {
-            "call_00_ET_E5yyj3aT1NYZ5ek3A7Xn7766": 1791972340421
+            "call_00_EBSvk8HZUHNr38juqUpG1433": 1791980370723
           }
         }
       },
       "turnOutline": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "turns": [
             {
@@ -3460,20 +2572,86 @@
               "turn": 49,
               "seq": 4819,
               "prompt": "继续以上2个事项",
+              "response": "两个问题都有确定答案了。 ## Q1：四元交叉校验——**实现了，但第一版是坏的** | 状态 | 结果 | |---|---| | 第一版 | **通过率 0%**（0 CONFIRMED / 42 BLOCKED）——**这个门等于没…"
+            },
+            {
+              "turn": 50,
+              "seq": 5010,
+              "prompt": "在其他对话里面，需要semantica参与的环节都调整了完毕，你看一下文档记录",
+              "response": "记录看完了。**发现一个必须立刻处理的冲突，我已修复并验证。** ## 一、对方这轮做了什么（23:56 的三个新文件 + README） | 文件 | 作用 | |---|---| | **`semantica_workflow.py`…"
+            },
+            {
+              "turn": 51,
+              "seq": 5107,
+              "prompt": "目前新版本的semantica模式，是否可以解决之前的错误了？哪些还未解决？",
+              "response": "基于**实际读到的覆盖范围**回答。 ## 一、新模式解决了什么 | 错误 | 新模式能否解 | 依据 | |---|---|---| | **设备名未消歧**（多联机室外机组16HP ↔ 变制冷剂流量多联室外机组（16HP）） | ✅…"
+            },
+            {
+              "turn": 52,
+              "seq": 5128,
+              "prompt": "1-3项，逐一做",
+              "response": "三项逐一做完，全部有验证。 ## 第 1 项：删除 `s5_replay` 的手写前向链 ✅ **删除的内容**（客户反馈 ②④⑤ 全部源自这一段）： | 原实现 | 发现 | |---|---| | B. `for r in rules…"
+            },
+            {
+              "turn": 53,
+              "seq": 5205,
+              "prompt": "未解决的 4 类，是否通过run_reasoning可以解决？",
+              "response": "按你的定义重新量，结论要**大幅下修**。 ## 一、用\"下次不会再犯\"重新评估 | 项 | 我做的 | 按你的定义 | |---|---|---| | 手写替身 / 静默降级 | 删前向链 + `get_provider` 触发注册 +…"
+            },
+            {
+              "turn": 54,
+              "seq": 5265,
+              "prompt": "你分析一下目前最新的semantica工作机制，是否它可以从根源上解决一些问题。",
+              "response": "读完关键部分，他们机制的**本质**清楚了。 ## 一、他们的架构 = 四层分离，且\"根治\"来自分离本身 ``` 引擎层 Semantica Reasoner（前向链） 不可改 换文档：0 改动 谓词层 role / year / std…"
+            },
+            {
+              "turn": 55,
+              "seq": 5280,
+              "prompt": "推进",
+              "response": "推进完成。**第 4 项（`lint_no_overfit`）已建成并生效**，同时它倒逼我把 3 处真过拟合改成了结构判定。 ## 一、建成的机制：受控词表 + 过拟合 lint ``` build/sop/criteria_vocab…"
+            },
+            {
+              "turn": 56,
+              "seq": 5356,
+              "prompt": "继续",
+              "response": "**审计答案：两份都不到位，而且\"环节内部\"的根本没做。** ## 一、环节之间（四元交叉）—— 名为四元，实为三元 | 清单 | 实现 | 说明 | |---|---|---| | **A 上游自报** | ✅ | 从操作记录导出 |…"
+            },
+            {
+              "turn": 57,
+              "seq": 5448,
+              "prompt": "推进",
+              "response": "机制抓到了**两个新的真缺口**（s5a），现在可以回答你的问题了。 ## 你的问题：四元交叉是否都做了？——**实测答案** | 覆盖 | 之前 | 现在 | |---|---|---| | **环节之间** | ⚠️ **名为四元，实…"
+            },
+            {
+              "turn": 58,
+              "seq": 5547,
+              "prompt": "继续",
+              "response": "诊断结果本身**就是你问题的证据**： ``` sop.yaml（19:06）里 s4b 声明 4 个产物 BLOCKED 记录（19:29）却写 per_dep={'dep':'s4b','A':4,'B':3,'SOP_pattern…"
+            },
+            {
+              "turn": 59,
+              "seq": 5667,
+              "prompt": "ok",
+              "response": "SOP V1.0 已立，且在推进过程中**隔离了一个严重缺陷**。 ## 一、SOP V1.0（你要的基线） ``` version : 1.0 冻结于 2026-10-14 sha256 d7385ee5f58e0173 环节 : 43…"
+            },
+            {
+              "turn": 60,
+              "seq": 5965,
+              "prompt": "按这个方式起一个独立 agent 处理 OD-001",
               "response": ""
             }
           ],
-          "draft": "库写好了。接进链路：**每个环节开工前先做四元交叉校验**（上游 A vs 独立清点 B vs 产物自述 C vs SOP），**通过才开工**（不符预期则阻断）。"
+          "draft": "任务已归属（in_progress）。等它的结论——它需要跑 3 次链路（每次 3–6 分钟），我会等。"
         }
       },
       "agentPreset": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": "wd-exp-expert-a54010bbb24e-beb53841680d"
       },
       "clearai": {
         "ver": 11,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "goal": null,
           "hypotheses": [],
@@ -3603,13 +2781,13 @@
             "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/build/fix34_blockers.py",
             "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/build/sop.py"
           ],
-          "writeCalls": 636,
+          "writeCalls": 759,
           "sessionId": "session-9b496023dca67e6b220f7130478cca37"
         }
       },
       "userQuestions": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "inheritedEventCount": 0,
           "timed": false,
@@ -3621,7 +2799,7 @@
       },
       "subagentCatalog": {
         "ver": 3,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "inheritedEventCount": 0,
           "head": {
@@ -3681,6 +2859,13 @@
                 "childCreatedAt": 1791893866423,
                 "mode": "continuable",
                 "label": "Extract P7"
+              },
+              {
+                "version": 0,
+                "childId": "bb0ed558-2147-4a84-bafd-76b8fa234ea7",
+                "childCreatedAt": 1791980337735,
+                "mode": "continuable",
+                "label": "独立定位 OD-001：环节间四元交叉上游声明与磁盘不一致的根因"
               }
             ]
           }
@@ -3688,62 +2873,87 @@
       },
       "subagentTiming": {
         "ver": 3,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "descriptorSeen": false,
           "settledMs": 0,
-          "pendingTurnStart": 1791971928243
+          "pendingTurnStart": 1791980313515
         }
       },
       "subagent": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {}
       },
       "agentTeam": {
         "ver": 4,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "id": "session-9b496023dca67e6b220f7130478cca37",
-          "members": [],
-          "tasks": [],
+          "members": [
+            {
+              "id": "bb0ed558-2147-4a84-bafd-76b8fa234ea7",
+              "name": "od001-hunter",
+              "description": "独立定位 OD-001：环节间四元交叉上游声明与磁盘不一致的根因",
+              "provider": "spawn",
+              "context": "fresh",
+              "phase": "active"
+            }
+          ],
+          "tasks": [
+            {
+              "id": "task-1",
+              "revision": 2,
+              "subject": "OD-001：定位环节间四元交叉「上游声明与磁盘不一致」的根因",
+              "description": "工作目录：/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0\nPython：/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python\n\n【症状】build/handover.py 的 compare(entry, upstream_entries) 在**链路内**为 s5a（依赖 s4b）计算时，\nupstream_entries['s4b']['outputs'] 等于\n  ['SHUFE-BDC-2019-001/manifest.yaml', 'SHUFE-BDC-2019-001/quality/verify_pipeline.yaml',\n   'SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json']\n—— 这三个分属 s3 / s5a / s7k，没有一个属于 s4b。\n同一时刻 build/sop/sop.yaml 中 s4b.outputs 是 4 个正确产物：\n  fill_dedup_report.json / graph.yaml / nodes.yaml / nonstandalone_values.json\n后果：检查器把 s4b 真实产物判为「上游虚报」(A_not_in_B) 与「上游漏报」(B_not_in_A)，多轮 BLOCKED 全为假判断。\n**非确定性**：带诊断打印时内存与现载都正确；去掉诊断又复现。\n\n【已排除（各有证据，勿重复尝试）】重复环节 id；共享 dict 对象（43 环节 43 唯一对象）；\nYAML 锚点/别名；import sop 解析到包而非模块；缺 deepcopy（调用点与 compare 内均已 deepcopy）；\napply_decisions 写 SOP（已改为只写 sop.proposed.yaml）；陈旧 __pycache__（run_all.py 已清并禁用字节码）；\nrun_all.py --fresh（只清 SHUFE-BDC-2019-001 包，不动 build/）。\n\n【取证入口】\n- 缺陷工单：build/sop/open_defects/OD-001.yaml（含 next_tests 1-4）\n- 证据文件：SHUFE-BDC-2019-001/handover/s5a/gate.json 或同名 INVALID 文件\n  其中 per_dep[0].ent_outputs = 内存值；per_dep[0].sop_file_outputs = 文件值\n- 复现：先跑一次 `build/run_all.py --fresh`，再读上述文件\n\n【验收标准】\n1. 给出**最小可复现**（脱离整链，最好 ≤30 行脚本）证明该不一致如何产生；\n2. 定位根因（不是\"可能是\"，要能指出具体代码行/机制）；\n3. 修复后：链路内 ent_dep 的 outputs 必须恒等于 sop.yaml 文件内容；连续跑 3 次 build/run_all.py --fresh，每次 s5a 的 gate.json 中 ent_outputs == sop_file_outputs；\n4. 加一条回归检查（不一致即 FAIL），不得削弱 handover.py 现有的自检（checker_input_mismatch → INVALID）；\n5. 产出 build/sop/open_defects/OD-001-report.md：症状/复现步骤/根因/证据/修复/回归/残留风险；\n6. 若确实定位不到，如实写明并保留可复现脚本——**不得宣称已解决**。\n\n【禁止】\n- 不得写入或修改 build/sop/sop.yaml（V1.0 已冻结，SOP 只能由人预先写定）\n- 不得为了\"看起来通过\"而放宽或删除判据\n- 不得用\"重跑一次就好了\"作为结论（该缺陷非确定性，必须给出机制性解释）",
+              "status": "in_progress",
+              "ownerId": "bb0ed558-2147-4a84-bafd-76b8fa234ea7",
+              "blockedBy": [],
+              "writeScopes": [
+                "build/handover.py",
+                "build/sop.py",
+                "build/run_all.py",
+                "build/sop/open_defects"
+              ]
+            }
+          ],
           "messages": [],
           "delivered": [],
-          "nextTaskNumber": 1
+          "nextTaskNumber": 2
         }
       },
       "costUsage": {
         "ver": 11,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "provider": "deepseek-official",
           "model": "deepseek-flash",
           "totals": {
-            "input": 1474486,
-            "output": 1080657,
-            "cacheRead": 328240256,
+            "input": 1790924,
+            "output": 1305261,
+            "cacheRead": 399674112,
             "cacheWrite": 0,
             "reasoning": 0,
-            "cost": 1.9245389519999985
+            "cost": 2.3210686199999997
           },
           "byModel": {
             "deepseek-flash": {
-              "input": 1474486,
-              "output": 1080657,
-              "cacheRead": 328240256,
+              "input": 1790924,
+              "output": 1305261,
+              "cacheRead": 399674112,
               "cacheWrite": 0,
               "reasoning": 0,
-              "cost": 1.9245389519999985
+              "cost": 2.3210686199999997
             }
           },
           "byProviderModel": {
             "deepseek-official:deepseek-flash": {
-              "input": 1474486,
-              "output": 1080657,
-              "cacheRead": 328240256,
+              "input": 1790924,
+              "output": 1305261,
+              "cacheRead": 399674112,
               "cacheWrite": 0,
               "reasoning": 0,
-              "cost": 1.9245389519999985
+              "cost": 2.3210686199999997
             }
           },
           "createdAt": 1791893562322,
@@ -3764,33 +2974,33 @@
           },
           "recent": [
             {
-              "fp": "[\"deepseek-official\",\"deepseek-flash\",3092,1511,561536,0,0]",
-              "at": 1791972337048
+              "fp": "[\"deepseek-official\",\"deepseek-flash\",196,406,402176,0,0]",
+              "at": 1791980365387
             },
             {
-              "fp": "[\"deepseek-official\",\"deepseek-flash\",142,76,566016,0,0]",
-              "at": 1791972340419
+              "fp": "[\"deepseek-official\",\"deepseek-flash\",1084,152,402688,0,0]",
+              "at": 1791980370721
             }
           ],
           "nativeSearchIds": [],
           "last": {
-            "key": "49:16",
+            "key": "60:4",
             "provider": "deepseek-official",
             "model": "deepseek-flash",
             "buckets": {
-              "input": 142,
-              "output": 76,
-              "cacheRead": 566016,
+              "input": 1084,
+              "output": 152,
+              "cacheRead": 402688,
               "cacheWrite": 0,
               "reasoning": 0
             },
-            "cost": 0.0017649480000000001
+            "cost": 0.001461864
           }
         }
       },
       "permissions": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "preset": "workspace-write",
           "sandbox": "workspace-write",
@@ -3800,12 +3010,12 @@
       },
       "todos": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": null
       },
       "plan": {
         "ver": 3,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "active": false,
           "wanted": null,
@@ -3815,12 +3025,12 @@
       },
       "subagentModelSelectionPolicy": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": null
       },
       "modelSelection": {
         "ver": 2,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "lastUsed": {
             "provider": "deepseek-official",
@@ -3832,15 +3042,15 @@
       },
       "sessionListMetadata": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": {
           "blank": false,
-          "lastPromptAt": 1791972305074
+          "lastPromptAt": 1791980314647
         }
       },
       "imageLimits": {
         "ver": 1,
-        "seq": 4924,
+        "seq": 5994,
         "val": null
       }
     }

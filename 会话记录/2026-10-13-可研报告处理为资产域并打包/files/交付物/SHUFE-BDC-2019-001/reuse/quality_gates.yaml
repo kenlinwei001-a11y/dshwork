@@ -78,7 +78,7 @@
     "QG3": {
       "gate": "QG3",
       "name": "资产可复用性",
-      "passed": true,
+      "passed": false,
       "checks": [
         {
           "check": "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
@@ -92,13 +92,13 @@
         },
         {
           "check": "能确定性复算",
-          "passed": true,
-          "detail": "22 条规则重算，12 条闭合"
+          "passed": false,
+          "detail": "22 条规则重算，0 条闭合"
         },
         {
           "check": "冲突未裁决不阻塞交付但阻塞写作",
           "passed": true,
-          "detail": "待审 15 条；因未裁决冲突阻塞的派生规则 5 条"
+          "detail": "待审 7 条；因未裁决冲突阻塞的派生规则 0 条"
         }
       ]
     },
@@ -177,34 +177,26 @@
     "failed": []
   },
   "measured": {
-    "rules_replayed": 23,
-    "rules_closure_ok": 12,
-    "derivation_diff": 8,
-    "rules_blocked_by_conflict": [
-      "R-冷负荷",
-      "R-热负荷",
-      "R-单位面积综合能耗",
-      "R-单位建筑面积电耗",
-      "R-单位造价"
-    ],
-    "rules_missing_fact": [
-      "R-总计算负荷"
-    ],
+    "rules_replayed": 0,
+    "rules_closure_ok": 0,
+    "derivation_diff": 0,
+    "rules_blocked_by_conflict": [],
+    "rules_missing_fact": [],
     "judgements": [
       {
         "id": "J-规模符合性",
-        "verdict": "不满足"
+        "verdict": null
       },
       {
         "id": "J-建安费口径",
-        "verdict": "不一致"
+        "verdict": null
       },
       {
         "id": "J-投资构成闭合",
-        "verdict": "不闭合"
+        "verdict": null
       }
     ],
-    "conflicts_pending_review": 15,
-    "gaps_registered": 15
+    "conflicts_pending_review": 7,
+    "gaps_registered": 9
   }
 }

@@ -1,13 +1,13 @@
 # 环节 s7k 交接说明（README）
 
-- 脚本：`s31_gates_upstream.py`　退出码：0　耗时：20.43s
+- 脚本：`s31_gates_upstream.py`　退出码：0　耗时：6.97s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）
 - `SHUFE-BDC-2019-001/quality/verify_pipeline.yaml`（441 B）
 - `SHUFE-BDC-2019-001/quality/closure_report.yaml`（19942 B）
 - `SHUFE-BDC-2019-001/quality/stage_gates.yaml`（10485 B）
-- `SHUFE-BDC-2019-001/quality/objective_verify.yaml`（19328 B）
+- `SHUFE-BDC-2019-001/quality/objective_verify.yaml`（19326 B）
 - `SHUFE-BDC-2019-001/quality/provider_probe.yaml`（883 B）
 
 ## 给下游的说明

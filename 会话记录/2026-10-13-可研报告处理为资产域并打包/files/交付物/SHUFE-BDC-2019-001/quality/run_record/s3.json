@@ -8,9 +8,9 @@
   "script_sha256": "31d0327507c7cb87937e08a7fc792f0b",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:41",
-  "finished_at": "2026-10-14T18:05:43",
-  "elapsed_s": 1.75,
+  "started_at": "2026-10-14T20:13:47",
+  "finished_at": "2026-10-14T20:13:49",
+  "elapsed_s": 2.03,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/manifest.yaml",
     "SHUFE-BDC-2019-001/graph/nodes.yaml",
@@ -24,28 +24,28 @@
       "pattern": "SHUFE-BDC-2019-001/manifest.yaml",
       "bytes": 5351,
       "sha256": "72aaec2e78b1ab98e529f2a3799f8d81",
-      "mtime": 1791972343
+      "mtime": 1791980029
     },
     {
       "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
       "pattern": "SHUFE-BDC-2019-001/graph/nodes.yaml",
       "bytes": 97896,
       "sha256": "da80a2481d1dc7d13260e84b873054b8",
-      "mtime": 1791972341
+      "mtime": 1791980028
     },
     {
       "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
       "pattern": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
       "bytes": 279822,
       "sha256": "bce38e57bae797cab9989597101990bb",
-      "mtime": 1791972341
+      "mtime": 1791980027
     },
     {
       "path": "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
       "pattern": "SHUFE-BDC-2019-001/reasoning/trace.jsonl",
       "bytes": 450,
       "sha256": "315d0aa67e71e7592c259d6928a82163",
-      "mtime": 1791972342
+      "mtime": 1791980029
     },
     {
       "path": "SHUFE-BDC-2019-001/source/original.docx",
@@ -439,10 +439,12 @@
     "SHUFE-BDC-2019-001/graph/rules.yaml",
     "SHUFE-BDC-2019-001/handover/s2/README.md",
     "SHUFE-BDC-2019-001/handover/s2/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s3/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s2/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s2/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s3/gate.json",
     "SHUFE-BDC-2019-001/handover/s3/manifest_A_s2.json",
-    "SHUFE-BDC-2019-001/handover/s3/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s3/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s3/manifest_B_s2.json",
+    "SHUFE-BDC-2019-001/handover/s3/manifest_C_s2.json",
     "SHUFE-BDC-2019-001/index/node_index.json",
     "SHUFE-BDC-2019-001/index/signature.yaml",
     "SHUFE-BDC-2019-001/index/term_index.json",

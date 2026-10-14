@@ -1,0 +1,10 @@
+{
+  "stage": "s5a",
+  "script": "s7b_desensitize.py",
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "counts": {},
+  "written_by": "stage:s5a"
+}

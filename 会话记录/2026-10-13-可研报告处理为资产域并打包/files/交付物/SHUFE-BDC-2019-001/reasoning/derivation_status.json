@@ -1,0 +1,9 @@
+{
+  "status": {
+    "engine": "composite[semantica-relation+local-relation]",
+    "status": "invalid",
+    "outputs": 0,
+    "reason": "引擎已调用但输出为空 —— 疑似静默降级（require(min_output=1) 应拦截），不得视为推理完成"
+  },
+  "note": "推理（规则求值/前向链）必须由 Semantica Reasoner 承担；未参与时**不产出结论**，判据据此判 invalid —— 禁止降级或替身"
+}

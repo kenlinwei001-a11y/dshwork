@@ -8,9 +8,9 @@
   "script_sha256": "668a4acf380d8f3daca9c6ca4ada2874",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:05",
-  "finished_at": "2026-10-14T18:06:26",
-  "elapsed_s": 20.43,
+  "started_at": "2026-10-14T20:15:38",
+  "finished_at": "2026-10-14T20:15:45",
+  "elapsed_s": 6.97,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
     "SHUFE-BDC-2019-001/quality/closure_report.yaml",
@@ -24,35 +24,35 @@
       "pattern": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
       "bytes": 441,
       "sha256": "1a56ea93ae2e26d4206ffce05237d892",
-      "mtime": 1791972386
+      "mtime": 1791980145
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
       "bytes": 19942,
-      "sha256": "1d99b7af947db8c104e4adc7bfc8942e",
-      "mtime": 1791972367
+      "sha256": "092a34c41ab87b3b53cb8d2ff56cd0fc",
+      "mtime": 1791980139
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
       "bytes": 10485,
       "sha256": "35676a8f95f33636b3dc000b93410fda",
-      "mtime": 1791972367
+      "mtime": 1791980139
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
-      "bytes": 19328,
-      "sha256": "5f4204505b14876cfa392f03b32793c3",
-      "mtime": 1791972367
+      "bytes": 19326,
+      "sha256": "c336864ae213f50f144e9d6ab8af91d4",
+      "mtime": 1791980139
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
       "bytes": 883,
       "sha256": "2bfc42b785e7e555fe30554e97acac54",
-      "mtime": 1791972386
+      "mtime": 1791980145
     }
   ],
   "outputs_missing": [],
@@ -87,10 +87,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7d/README.md",
     "SHUFE-BDC-2019-001/handover/s7d/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s7k/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7d/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7d/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7k/gate.json",
     "SHUFE-BDC-2019-001/handover/s7k/manifest_A_s7g.json",
-    "SHUFE-BDC-2019-001/handover/s7k/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s7k/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_B_s7g.json",
+    "SHUFE-BDC-2019-001/handover/s7k/manifest_C_s7g.json",
     "SHUFE-BDC-2019-001/manifest.yaml",
     "SHUFE-BDC-2019-001/quality/closure_report.yaml",
     "SHUFE-BDC-2019-001/quality/objective_verify.yaml",

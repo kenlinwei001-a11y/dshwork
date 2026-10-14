@@ -18,5 +18,6 @@
       "bytes": 52262
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

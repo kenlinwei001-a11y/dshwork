@@ -9,8 +9,8 @@
   "produced": [
     {
       "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
-      "sha256": "c846378756b73f2f58a3de0af14e2ce7",
-      "bytes": 57587
+      "sha256": "72b7f1227d97eccde5ce224d5c5ba64e",
+      "bytes": 53915
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
@@ -18,5 +18,6 @@
       "bytes": 7182
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

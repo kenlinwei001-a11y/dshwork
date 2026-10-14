@@ -9,14 +9,15 @@
   "produced": [
     {
       "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
-      "sha256": "76f8d9b58051a98f1c97dc1c83f604f1",
-      "bytes": 8162
+      "sha256": "31cabb7758aab82a3746c04807867bb0",
+      "bytes": 3436
     },
     {
       "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
-      "sha256": "1fa2e2df33a159bd28467096047068fc",
-      "bytes": 17578
+      "sha256": "6971d604eb1a5a160a18367155f18616",
+      "bytes": 125
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

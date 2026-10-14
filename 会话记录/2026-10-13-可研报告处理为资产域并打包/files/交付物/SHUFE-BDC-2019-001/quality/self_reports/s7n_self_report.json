@@ -1,0 +1,9 @@
+{
+  "stage": "s7n",
+  "script": "s35_semantic_criteria.py",
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml"
+  ],
+  "counts": {},
+  "written_by": "stage:s7n"
+}

@@ -1,6 +1,6 @@
 # 环节 s2 交接说明（README）
 
-- 脚本：`s0b_remap.py`　退出码：0　耗时：1.6s
+- 脚本：`s0b_remap.py`　退出码：0　耗时：1.28s
 - 是否产生变更：否（幂等）　must_change：False
 
 ## 我产出了什么（自报，见 manifest_A.json）

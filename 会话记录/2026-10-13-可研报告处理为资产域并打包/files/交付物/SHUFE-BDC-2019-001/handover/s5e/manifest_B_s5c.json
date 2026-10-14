@@ -1,0 +1,69 @@
+{
+  "stage": "s5c",
+  "patterns": [
+    "SHUFE-BDC-2019-001/external/documents.yaml",
+    "SHUFE-BDC-2019-001/external/chunks.jsonl",
+    "SHUFE-BDC-2019-001/external/mandates.yaml",
+    "SHUFE-BDC-2019-001/external/constraints.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/external/documents.yaml",
+      "pattern": "SHUFE-BDC-2019-001/external/documents.yaml",
+      "bytes": 13165,
+      "sha256": "b43b61d92e0d686b7e3b691587c3417a",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "note",
+          "documents",
+          "count"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/chunks.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/external/chunks.jsonl",
+      "bytes": 470087,
+      "sha256": "6aa9252a9568407f1711bb6c94947104",
+      "probe": {
+        "parsable": true,
+        "records": 950
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/mandates.yaml",
+      "pattern": "SHUFE-BDC-2019-001/external/mandates.yaml",
+      "bytes": 19272,
+      "sha256": "a62a3cd732662e5999e7e0d07b7063f9",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "note",
+          "mandates",
+          "count",
+          "located"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/external/constraints.yaml",
+      "pattern": "SHUFE-BDC-2019-001/external/constraints.yaml",
+      "bytes": 5750,
+      "sha256": "c49e52f9d88d1d9d5cd4303844da2799",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "note",
+          "constraints",
+          "count",
+          "mandatory"
+        ]
+      }
+    }
+  ],
+  "count": 4,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

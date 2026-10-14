@@ -1,0 +1,53 @@
+{
+  "stage": "s9",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+    "SHUFE-BDC-2019-001/quality/trigger_cards.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+      "pattern": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
+      "bytes": 313,
+      "sha256": "200aabc1e3ec2d235db9f4a03da269cf",
+      "probe": {
+        "parsable": true,
+        "text_chars": 188
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+      "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
+      "bytes": 221,
+      "sha256": "12bd9ed5037b134e538dc1c227d603d1",
+      "probe": {
+        "parsable": true,
+        "text_chars": 110
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
+      "bytes": 446,
+      "sha256": "e9ca0a71f2707b1fde6cf85cdd72809a",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "cards",
+          "summary",
+          "blocking_count",
+          "decision_required_count",
+          "advisory_count",
+          "scanner_calibrated",
+          "rule",
+          "escalation"
+        ]
+      }
+    }
+  ],
+  "count": 3,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

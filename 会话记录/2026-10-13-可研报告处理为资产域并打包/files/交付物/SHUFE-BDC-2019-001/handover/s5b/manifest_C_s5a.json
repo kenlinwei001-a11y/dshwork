@@ -1,0 +1,17 @@
+{
+  "stage": "s5a",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl": {
+      "records": 1178
+    },
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json": {
+      "self_consistency": {
+        "declared_count": 1625,
+        "items_len": 1625,
+        "ok": true
+      }
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

@@ -1,0 +1,40 @@
+{
+  "stage": "s5a",
+  "depends_on": [
+    "s4b"
+  ],
+  "per_dep": [
+    {
+      "dep": "s4b",
+      "ent_outputs": [
+        "manifest.yaml",
+        "verify_pipeline.yaml",
+        "gaps_unmodeled_values.json"
+      ],
+      "sop_file_outputs": [
+        "fill_dedup_report.json",
+        "graph.yaml",
+        "nodes.yaml",
+        "nonstandalone_values.json"
+      ],
+      "self_check": "FAIL"
+    }
+  ],
+  "diffs": [
+    {
+      "kind": "checker_input_mismatch",
+      "dep": "s4b",
+      "path": "s4b",
+      "meaning": "**检查器自检失败**：链路内的上游声明与 sop.yaml 文件内容不一致 ⇒ harness 缺陷；**不得据此指控上游**（判 invalid，不判 BLOCKED）"
+    }
+  ],
+  "diff_count": 1,
+  "gate": "INVALID",
+  "rule": "逐依赖四元交叉：A 上游自报 / B 下游对上游产物独立清点 / C 产物自述 / SOP 契约",
+  "C_compared": true,
+  "C_checks": [
+    "自述状态 vs 门禁结论",
+    "自述计数 vs 实际记录数"
+  ],
+  "generated_at": "2026-10-14T20:15:50"
+}

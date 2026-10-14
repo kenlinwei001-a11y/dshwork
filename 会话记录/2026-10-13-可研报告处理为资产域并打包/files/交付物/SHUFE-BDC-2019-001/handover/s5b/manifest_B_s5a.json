@@ -1,0 +1,42 @@
+{
+  "stage": "s5a",
+  "patterns": [
+    "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+    "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "bytes": 291253,
+      "sha256": "da8f50c03b0c59fe7becdb82e614cc79",
+      "probe": {
+        "parsable": true,
+        "records": 1178
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
+      "bytes": 259262,
+      "sha256": "b072d4844ea389c284a7ba6029000dfd",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "count",
+          "by_kind",
+          "real_gap",
+          "nonstandalone",
+          "value_collisions",
+          "coverage",
+          "note",
+          "items"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

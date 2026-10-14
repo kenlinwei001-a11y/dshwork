@@ -1,0 +1,27 @@
+{
+  "stage": "s7o",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/calibration_handover_c.json"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+      "bytes": 687,
+      "sha256": "25951c21dbd209b2d25d17b2f461823f",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "checks",
+          "stage",
+          "dep",
+          "summary"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

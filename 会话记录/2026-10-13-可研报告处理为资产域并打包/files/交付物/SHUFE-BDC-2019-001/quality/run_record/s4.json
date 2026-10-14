@@ -5,12 +5,12 @@
   "stage_id": "s4",
   "name": "推演回放补强",
   "script": "s5_replay.py",
-  "script_sha256": "b72470e49e855b0ff2480b8151482071",
+  "script_sha256": "0538497557b56cb0b0d4fe6a1d043ffb",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:43",
-  "finished_at": "2026-10-14T18:05:43",
-  "elapsed_s": 0.14,
+  "started_at": "2026-10-14T20:13:59",
+  "finished_at": "2026-10-14T20:14:05",
+  "elapsed_s": 5.86,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
     "SHUFE-BDC-2019-001/reasoning/derivation.yaml"
@@ -19,16 +19,16 @@
     {
       "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
       "pattern": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
-      "bytes": 8162,
-      "sha256": "76f8d9b58051a98f1c97dc1c83f604f1",
-      "mtime": 1791972343
+      "bytes": 3436,
+      "sha256": "31cabb7758aab82a3746c04807867bb0",
+      "mtime": 1791980045
     },
     {
       "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
       "pattern": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
-      "bytes": 17578,
-      "sha256": "1fa2e2df33a159bd28467096047068fc",
-      "mtime": 1791972343
+      "bytes": 125,
+      "sha256": "6971d604eb1a5a160a18367155f18616",
+      "mtime": 1791980045
     }
   ],
   "outputs_missing": [],
@@ -60,18 +60,21 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s3/README.md",
     "SHUFE-BDC-2019-001/handover/s3/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s4/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s3/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s3/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s4/gate.json",
     "SHUFE-BDC-2019-001/handover/s4/manifest_A_s3.json",
-    "SHUFE-BDC-2019-001/handover/s4/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s4/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_B_s3.json",
+    "SHUFE-BDC-2019-001/handover/s4/manifest_C_s3.json",
     "SHUFE-BDC-2019-001/quality/conflicts.yaml",
     "SHUFE-BDC-2019-001/quality/gaps.yaml",
     "SHUFE-BDC-2019-001/quality/run_record/s3.json",
     "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
     "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation_status.json",
     "SHUFE-BDC-2019-001/reasoning/judgements.yaml",
     "SHUFE-BDC-2019-001/reasoning/replay.json"
   ],
-  "stdout_tail": " 原文=        49 差=      3 (6.12%)\n  R-工程建设其他费                  重算=      1170 原文=      1171 差=      1 (0.09%)\n--- 判定 ---\n  J-规模符合性        不满足\n  J-建安费口径        不一致\n  J-投资构成闭合       不闭合\n--- 因未裁决冲突而阻塞的规则（不带着冲突往下算）---\n  R-冷负荷                        阻塞依赖: 本项目建筑面积=18219/18319\n  R-热负荷                        阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位面积综合能耗                   阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位建筑面积电耗                   阻塞依赖: 本项目建筑面积=18219/18319\n  R-单位造价                       阻塞依赖: 本项目建筑面积=18219/18319\n--- 因缺事实而未解析的规则 ---\n  R-总计算负荷                      缺: ['负荷估算面积口径']\n--- 缺口登记 quality/gaps.yaml：13 条 ---\n",
+  "stdout_tail": "{\n  \"conflicts_total\": 7,\n  \"by_type\": {\n    \"numeric\": 2,\n    \"spec_naming\": 1,\n    \"spec_version\": 4\n  },\n  \"rules_replayed\": 0,\n  \"rules_unresolved\": 0,\n  \"closure_ok\": 0,\n  \"derivation_diff\": 0,\n  \"judgements\": 3\n}\n--- 派生差异 ---\n--- 判定 ---\n  J-规模符合性        None\n  J-建安费口径        None\n  J-投资构成闭合       None\n--- 因未裁决冲突而阻塞的规则（不带着冲突往下算）---\n--- 因缺事实而未解析的规则 ---\n--- 缺口登记 quality/gaps.yaml：7 条 ---\n",
   "stderr_tail": ""
 }

@@ -1,0 +1,39 @@
+{
+  "stage": "s4",
+  "patterns": [
+    "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+    "SHUFE-BDC-2019-001/reasoning/derivation.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "bytes": 3436,
+      "sha256": "31cabb7758aab82a3746c04807867bb0",
+      "probe": {
+        "parsable": true,
+        "keys": "list[7]"
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "bytes": 125,
+      "sha256": "6971d604eb1a5a160a18367155f18616",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "replayed_rules",
+          "unresolved_rules",
+          "closure_ok",
+          "derivation_diff",
+          "derivation_nostated"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

@@ -33,170 +33,6 @@
   },
   {
     "id": "D-003",
-    "type": "derivation",
-    "subject": "建筑高度控制",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 60.0",
-      "重算 49.0"
-    ],
-    "rationale": "按规则 R-建筑高度校核 重算得 49.0，原文写 60.0（差 11.0，18.33%）；按铁律不擅自改数",
-    "involved": [
-      "N-170213817af5",
-      "N-2a335b2708af",
-      "N-4605eb02d134",
-      "N-f0fd96a3a38e"
-    ]
-  },
-  {
-    "id": "D-004",
-    "type": "derivation",
-    "subject": "年总耗电量",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 72.0",
-      "重算 72.2"
-    ],
-    "rationale": "按规则 R-年用电量 重算得 72.2，原文写 72.0（差 0.2，0.28%）；按铁律不擅自改数",
-    "involved": [
-      "N-0175db4c5ff0",
-      "N-094c483c1ac2",
-      "N-4aaf4c9685bf",
-      "N-6eb51e821197",
-      "N-934942fb8325",
-      "N-b1e9a58c3e61",
-      "N-c8c5fd1fece2",
-      "N-d47bd8140fdc",
-      "N-d81c8436d3ef",
-      "N-f52e2827a0e8",
-      "N-fbcb8688c60f"
-    ]
-  },
-  {
-    "id": "D-005",
-    "type": "derivation",
-    "subject": "基本预备费",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 618.0",
-      "重算 617.95"
-    ],
-    "rationale": "按规则 R-基本预备费 重算得 617.95，原文写 618.0（差 0.05，0.01%）；按铁律不擅自改数",
-    "involved": [
-      "N-a564cd720a96",
-      "N-a831d44a85f1",
-      "N-c51de871596c",
-      "N-d27e283b73c6"
-    ]
-  },
-  {
-    "id": "D-006",
-    "type": "derivation",
-    "subject": "建筑安装工程费用",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 11188.0",
-      "重算 11189.0"
-    ],
-    "rationale": "按规则 R-建安工程费用 重算得 11189.0，原文写 11188.0（差 1.0，0.01%）；按铁律不擅自改数",
-    "involved": [
-      "N-2ccc0c5d1207",
-      "N-4b40f9539e03",
-      "N-78644662331e",
-      "N-a564cd720a96",
-      "N-a59ed4c3313a"
-    ]
-  },
-  {
-    "id": "D-007",
-    "type": "derivation",
-    "subject": "单体工程",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 10828.0",
-      "重算 10827.0"
-    ],
-    "rationale": "按规则 R-单体工程 重算得 10827.0，原文写 10828.0（差 1.0，0.01%）；按铁律不擅自改数",
-    "involved": [
-      "N-63082fae08d5",
-      "N-78644662331e",
-      "N-f4b6e8cc3b5f"
-    ]
-  },
-  {
-    "id": "D-008",
-    "type": "derivation",
-    "subject": "安装工程",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 3034.0",
-      "重算 3035.0"
-    ],
-    "rationale": "按规则 R-安装工程 重算得 3035.0，原文写 3034.0（差 1.0，0.03%）；按铁律不擅自改数",
-    "involved": [
-      "N-72507f498f8c",
-      "N-809d541088ab",
-      "N-c46ae5293e41",
-      "N-c5de22ac0e51",
-      "N-d11b8963a5c2",
-      "N-eabadd267940",
-      "N-f4b6e8cc3b5f"
-    ]
-  },
-  {
-    "id": "D-009",
-    "type": "derivation",
-    "subject": "室外总体工程",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 49.0",
-      "重算 52.0"
-    ],
-    "rationale": "按规则 R-室外总体工程 重算得 52.0，原文写 49.0（差 3.0，6.12%）；按铁律不擅自改数",
-    "involved": [
-      "N-565398c4826c",
-      "N-94e433692986",
-      "N-a59ed4c3313a",
-      "N-d79f49630ce5",
-      "N-eaf61c336ddf"
-    ]
-  },
-  {
-    "id": "D-010",
-    "type": "derivation",
-    "subject": "工程建设其他费",
-    "predicate": "派生值 vs 原文值",
-    "decision": "待审（呈现客户裁决，未擅自改数或补口径）",
-    "values": [
-      "原文 1171.0",
-      "重算 1170.0"
-    ],
-    "rationale": "按规则 R-工程建设其他费 重算得 1170.0，原文写 1171.0（差 1.0，0.09%）；按铁律不擅自改数",
-    "involved": [
-      "N-0d30a6b44768",
-      "N-236dbdb1fea6",
-      "N-31dacc87adf4",
-      "N-349ad4d2a9d0",
-      "N-52349af2e44f",
-      "N-58f2a08d9047",
-      "N-8dad7d339b06",
-      "N-903b0ac65f67",
-      "N-979e5a5ddbc9",
-      "N-9e5bfac670e5",
-      "N-a161b289c97d",
-      "N-a831d44a85f1",
-      "N-d3fb4fe652f7"
-    ]
-  },
-  {
-    "id": "D-011",
     "type": "spec_version",
     "subject": "无障碍设计规范",
     "predicate": "引用版本",
@@ -210,7 +46,7 @@
     "involved": []
   },
   {
-    "id": "D-012",
+    "id": "D-004",
     "type": "spec_version",
     "subject": "公共建筑节能设计标准",
     "predicate": "引用版本",
@@ -224,7 +60,7 @@
     "involved": []
   },
   {
-    "id": "D-013",
+    "id": "D-005",
     "type": "spec_version",
     "subject": "建筑照明设计标准",
     "predicate": "引用版本",
@@ -237,7 +73,7 @@
     "involved": []
   },
   {
-    "id": "D-014",
+    "id": "D-006",
     "type": "spec_version",
     "subject": "采暖通风与空气调节设计规范",
     "predicate": "引用版本",
@@ -250,7 +86,7 @@
     "involved": []
   },
   {
-    "id": "D-015",
+    "id": "D-007",
     "type": "spec_naming",
     "subject": "建标191-2018",
     "predicate": "规范名称写法",

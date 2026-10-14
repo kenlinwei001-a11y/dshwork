@@ -7,8 +7,8 @@
       "facts": 18,
       "of_total": 18,
       "claims": 0,
-      "conflicts": 3,
-      "gaps": 1,
+      "conflicts": 1,
+      "gaps": 0,
       "must_cover": 5,
       "file": "wp/01-总论.yaml",
       "kp_workpackage": "project/work_packages/01-总论.json"
@@ -72,8 +72,8 @@
       "facts": 30,
       "of_total": 211,
       "claims": 3,
-      "conflicts": 2,
-      "gaps": 3,
+      "conflicts": 1,
+      "gaps": 0,
       "must_cover": 7,
       "file": "wp/06-项目规划设计方案.yaml",
       "kp_workpackage": "project/work_packages/06-项目规划设计方案.json"
@@ -85,8 +85,8 @@
       "facts": 30,
       "of_total": 33,
       "claims": 1,
-      "conflicts": 2,
-      "gaps": 2,
+      "conflicts": 1,
+      "gaps": 0,
       "must_cover": 4,
       "file": "wp/07-节能设计.yaml",
       "kp_workpackage": "project/work_packages/07-节能设计.json"
@@ -163,8 +163,8 @@
       "facts": 30,
       "of_total": 114,
       "claims": 2,
-      "conflicts": 7,
-      "gaps": 1,
+      "conflicts": 1,
+      "gaps": 0,
       "must_cover": 4,
       "file": "wp/13-投资估算及资金筹措.yaml",
       "kp_workpackage": "project/work_packages/13-投资估算及资金筹措.json"

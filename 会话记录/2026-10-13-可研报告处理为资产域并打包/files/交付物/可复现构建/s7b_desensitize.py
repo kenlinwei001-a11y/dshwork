@@ -190,3 +190,14 @@ print(json.dumps({"chunks": len(skeletons), "numeric_slots_replaced": replaced,
                   "node_index_entries": len(node_index),
                   "nested_after_fix": len(nested), "malformed_after_fix": len(bad_ph)},
                  ensure_ascii=False, indent=2))
+
+
+# ★ 环节自报（四元交叉的 A 来源；必须由本环节自己写，不得由 harness 代写）
+try:
+    import sys as _sys2
+    _sys2.path.insert(0, str(Path(__file__).resolve().parent)) if "Path" in dir() else None
+    from self_report import declare as _declare
+    _declare("s5a", ['SHUFE-BDC-2019-001/chunks/skeletons.jsonl',
+                              'SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json'], script="s7b_desensitize.py")
+except Exception as _e:
+    print(f"[self_report] 未写出: {_e}")

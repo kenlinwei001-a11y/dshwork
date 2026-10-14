@@ -32,162 +32,6 @@
       "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
     },
     {
-      "type": "derivation",
-      "subject": "建筑高度控制",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 60.0",
-        "重算 49.0"
-      ],
-      "involved": [
-        "N-170213817af5",
-        "N-2a335b2708af",
-        "N-4605eb02d134",
-        "N-f0fd96a3a38e"
-      ],
-      "status": "待审",
-      "note": "按规则 R-建筑高度校核 重算得 49.0，原文写 60.0（差 11.0，18.33%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "年总耗电量",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 72.0",
-        "重算 72.2"
-      ],
-      "involved": [
-        "N-0175db4c5ff0",
-        "N-094c483c1ac2",
-        "N-4aaf4c9685bf",
-        "N-6eb51e821197",
-        "N-934942fb8325",
-        "N-b1e9a58c3e61",
-        "N-c8c5fd1fece2",
-        "N-d47bd8140fdc",
-        "N-d81c8436d3ef",
-        "N-f52e2827a0e8",
-        "N-fbcb8688c60f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-年用电量 重算得 72.2，原文写 72.0（差 0.2，0.28%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "基本预备费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 618.0",
-        "重算 617.95"
-      ],
-      "involved": [
-        "N-a564cd720a96",
-        "N-a831d44a85f1",
-        "N-c51de871596c",
-        "N-d27e283b73c6"
-      ],
-      "status": "待审",
-      "note": "按规则 R-基本预备费 重算得 617.95，原文写 618.0（差 0.05，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "建筑安装工程费用",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 11188.0",
-        "重算 11189.0"
-      ],
-      "involved": [
-        "N-2ccc0c5d1207",
-        "N-4b40f9539e03",
-        "N-78644662331e",
-        "N-a564cd720a96",
-        "N-a59ed4c3313a"
-      ],
-      "status": "待审",
-      "note": "按规则 R-建安工程费用 重算得 11189.0，原文写 11188.0（差 1.0，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "单体工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 10828.0",
-        "重算 10827.0"
-      ],
-      "involved": [
-        "N-63082fae08d5",
-        "N-78644662331e",
-        "N-f4b6e8cc3b5f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-单体工程 重算得 10827.0，原文写 10828.0（差 1.0，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "安装工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 3034.0",
-        "重算 3035.0"
-      ],
-      "involved": [
-        "N-72507f498f8c",
-        "N-809d541088ab",
-        "N-c46ae5293e41",
-        "N-c5de22ac0e51",
-        "N-d11b8963a5c2",
-        "N-eabadd267940",
-        "N-f4b6e8cc3b5f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-安装工程 重算得 3035.0，原文写 3034.0（差 1.0，0.03%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "室外总体工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 49.0",
-        "重算 52.0"
-      ],
-      "involved": [
-        "N-565398c4826c",
-        "N-94e433692986",
-        "N-a59ed4c3313a",
-        "N-d79f49630ce5",
-        "N-eaf61c336ddf"
-      ],
-      "status": "待审",
-      "note": "按规则 R-室外总体工程 重算得 52.0，原文写 49.0（差 3.0，6.12%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "工程建设其他费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 1171.0",
-        "重算 1170.0"
-      ],
-      "involved": [
-        "N-0d30a6b44768",
-        "N-236dbdb1fea6",
-        "N-31dacc87adf4",
-        "N-349ad4d2a9d0",
-        "N-52349af2e44f",
-        "N-58f2a08d9047",
-        "N-8dad7d339b06",
-        "N-903b0ac65f67",
-        "N-979e5a5ddbc9",
-        "N-9e5bfac670e5",
-        "N-a161b289c97d",
-        "N-a831d44a85f1",
-        "N-d3fb4fe652f7"
-      ],
-      "status": "待审",
-      "note": "按规则 R-工程建设其他费 重算得 1170.0，原文写 1171.0（差 1.0，0.09%）；按铁律不擅自改数"
-    },
-    {
       "type": "spec_version",
       "subject": "无障碍设计规范",
       "predicate": "引用版本",
@@ -253,42 +97,33 @@
   "judgements": [
     {
       "id": "J-规模符合性",
-      "question": "设计地上建筑面积是否满足人均指标法测算的用房需求？",
-      "premises": {
-        "地上总建筑面积需求": 18040.0,
-        "设计地上建筑面积": 18000.0
-      },
-      "verdict": "不满足",
-      "note": "需求 18040 ㎡ > 设计 18000 ㎡，差 40 ㎡；原文结论为「设计规模在各类用房面积需求范围内，规模设置合理」，该结论与自身测算不符",
-      "status": "待审"
+      "question": "设计地上建筑面积是否满足人均指标法测算的用房需求？（须先取人均指标的口径方向：上限/下限）",
+      "premises": {},
+      "verdict": null,
+      "status": "judgment_required",
+      "note": "推理未执行（Semantica 未参与）⇒ 不由本地判定；交 Semantica Reasoner 或人工，**不产出任何结论**"
     },
     {
       "id": "J-建安费口径",
-      "question": "表12-1 建安工程招标估算金额与表13-1 建安工程费用是否一致？",
-      "premises": {
-        "表12-1 建安工程": 10135.0,
-        "表13-1 建筑安装工程费用": 11189.0
-      },
-      "verdict": "不一致",
-      "note": "差 1054 万元；招标估算金额通常应小于等于估算费用，此处口径差异需客户说明是否含拆除费/室外总体/抗震支架/绿色二星增量",
-      "status": "待审"
+      "question": "表12-1 建安工程招标估算金额与表13-1 建安工程费用是否一致？（须先确认口径范围：是否含拆除费/室外总体/抗震支架）",
+      "premises": {},
+      "verdict": null,
+      "status": "judgment_required",
+      "note": "推理未执行（Semantica 未参与）⇒ 不由本地判定；交 Semantica Reasoner 或人工，**不产出任何结论**"
     },
     {
       "id": "J-投资构成闭合",
-      "question": "投资估算表各层级「分项之和」是否等于「合计」？",
-      "premises": {
-        "存在差异的规则数": 8,
-        "差额合计(万元)": 18.25
-      },
-      "verdict": "不闭合",
-      "note": "建筑高度控制: 49 vs 60；年总耗电量: 72.2 vs 72；基本预备费: 617.95 vs 618；建筑安装工程费用: 11189 vs 11188；单体工程: 10827 vs 10828；安装工程: 3035 vs 3034；室外总体工程: 52 vs 49；工程建设其他费: 1170 vs 1171",
-      "status": "待审"
+      "question": "投资估算表各层级「分项之和」是否等于「合计」？（须按量纲分组核对，**不得跨量纲求和**）",
+      "premises": {},
+      "verdict": null,
+      "status": "judgment_required",
+      "note": "推理未执行（Semantica 未参与）⇒ 不由本地判定；交 Semantica Reasoner 或人工，**不产出任何结论**"
     }
   ],
   "derivation": {
-    "rules_replayed": 23,
-    "rules_unresolved": 6,
-    "closure_ok": 12,
-    "derivation_diff": 8
+    "rules_replayed": 0,
+    "rules_unresolved": 0,
+    "closure_ok": 0,
+    "derivation_diff": 0
   }
 }

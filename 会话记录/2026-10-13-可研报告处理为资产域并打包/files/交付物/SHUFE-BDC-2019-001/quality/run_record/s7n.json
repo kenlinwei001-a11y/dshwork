@@ -1,0 +1,69 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7n",
+  "name": "语义维度判据 K15–K20（加法合法性/归属汇总/口径方向/域匹配/角色舍入/级联撤销）",
+  "script": "s35_semantic_criteria.py",
+  "script_sha256": "bd3cad29271ff85d41cf6db6c7af2fe6",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T20:15:51",
+  "finished_at": "2026-10-14T20:15:52",
+  "elapsed_s": 0.73,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml",
+      "bytes": 12424,
+      "sha256": "05e2b4d8fe3f610a3b0474ae751f8cab",
+      "mtime": 1791980152
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s7n/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_A_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_A_s7o.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_B_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_B_s7o.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_C_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7n/manifest_C_s7o.json",
+    "SHUFE-BDC-2019-001/handover/s7o/README.md",
+    "SHUFE-BDC-2019-001/handover/s7o/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7o/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7o/within_stage_check.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7o.json",
+    "SHUFE-BDC-2019-001/quality/self_reports/s7n_self_report.json",
+    "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml"
+  ],
+  "stdout_tail": "{\"pass\": 1, \"FAIL\": 7, \"invalid\": 0}\n  ❌ K15 加法合法性（量纲/域一致）                命中 3\n  ❌ K16 归属汇总一致（通用表内对账）               命中 5\n  ❌ K17 口径方向（上限不得当最低需求）              命中 1\n  ❌ K18 专业域匹配（跨域不得替代）                命中 1\n  ✅ K19 对象角色区分与舍入等价                  命中 3\n  ❌ K20 级联撤销（基础判据撤销则下游结论连带撤销）        命中 7\n  ❌ K21 生成侧一致性（同节 prose 参数 vs 表格参数   命中 4\n  ❌ K22 探针标定门禁（未标定不得采信）              命中 1\n",
+  "stderr_tail": ""
+}

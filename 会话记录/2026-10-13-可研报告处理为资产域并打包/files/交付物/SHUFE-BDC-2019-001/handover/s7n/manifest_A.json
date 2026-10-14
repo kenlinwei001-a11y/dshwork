@@ -1,0 +1,17 @@
+{
+  "stage": "s7n",
+  "script": "s35_semantic_criteria.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/semantic_criteria.yaml",
+      "sha256": "05e2b4d8fe3f610a3b0474ae751f8cab",
+      "bytes": 12424
+    }
+  ],
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

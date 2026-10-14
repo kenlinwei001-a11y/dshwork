@@ -1,0 +1,12 @@
+{
+  "stage": "s4b",
+  "script": "s4b_fill_dedup.py",
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/quality/nonstandalone_values.json"
+  ],
+  "counts": {},
+  "written_by": "stage:s4b"
+}

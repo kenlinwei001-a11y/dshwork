@@ -1,6 +1,6 @@
 # 环节 s9 交接说明（README）
 
-- 脚本：`s_sop_selfaudit.py`　退出码：0　耗时：1.15s
+- 脚本：`s_sop_selfaudit.py`　退出码：0　耗时：1.81s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

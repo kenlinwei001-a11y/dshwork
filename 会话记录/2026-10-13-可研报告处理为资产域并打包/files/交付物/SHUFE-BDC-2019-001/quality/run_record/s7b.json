@@ -8,9 +8,9 @@
   "script_sha256": "c40ddc5aa77d89d1079dee491f92aff4",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:03",
-  "finished_at": "2026-10-14T18:06:03",
-  "elapsed_s": 0.23,
+  "started_at": "2026-10-14T20:15:34",
+  "finished_at": "2026-10-14T20:15:34",
+  "elapsed_s": 0.25,
   "declared_outputs": [
     "交付物/装配输入包-报告还原.md"
   ],
@@ -18,9 +18,9 @@
     {
       "path": "交付物/装配输入包-报告还原.md",
       "pattern": "交付物/装配输入包-报告还原.md",
-      "bytes": 277051,
-      "sha256": "148612eca91496fecfa62d6ffe76fdaf",
-      "mtime": 1791972363
+      "bytes": 270995,
+      "sha256": "feebf70087fc6432b1b89e86dbf4d4b7",
+      "mtime": 1791980134
     }
   ],
   "outputs_missing": [],
@@ -49,13 +49,15 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7/README.md",
     "SHUFE-BDC-2019-001/handover/s7/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s7b/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7b/gate.json",
     "SHUFE-BDC-2019-001/handover/s7b/manifest_A_s7.json",
-    "SHUFE-BDC-2019-001/handover/s7b/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s7b/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7b/manifest_B_s7.json",
+    "SHUFE-BDC-2019-001/handover/s7b/manifest_C_s7.json",
     "SHUFE-BDC-2019-001/quality/run_record/s7.json",
     "交付物/装配输入包-报告还原.md"
   ],
-  "stdout_tail": "{\n  \"file\": \"交付物/装配输入包-报告还原.md\",\n  \"bytes\": 277051,\n  \"lines\": 3174,\n  \"facts\": 959,\n  \"rules\": 35,\n  \"claims\": 37,\n  \"curated_evidence\": 128,\n  \"auto_evidence\": 436,\n  \"mandates\": 22,\n  \"bindings\": 15,\n  \"chapters\": 16,\n  \"conflicts\": 25,\n  \"gaps\": 15\n}\n",
+  "stdout_tail": "{\n  \"file\": \"交付物/装配输入包-报告还原.md\",\n  \"bytes\": 270995,\n  \"lines\": 3118,\n  \"facts\": 959,\n  \"rules\": 35,\n  \"claims\": 37,\n  \"curated_evidence\": 128,\n  \"auto_evidence\": 436,\n  \"mandates\": 22,\n  \"bindings\": 15,\n  \"chapters\": 16,\n  \"conflicts\": 15,\n  \"gaps\": 9\n}\n",
   "stderr_tail": ""
 }

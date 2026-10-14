@@ -1,0 +1,514 @@
+{
+  "version": 7,
+  "record": {
+    "identity": {
+      "formatVersion": 4,
+      "createdAt": 1791893488572,
+      "cwd": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0",
+      "isSeeded": false,
+      "inheritedEventCount": 0
+    },
+    "rows": {
+      "title": {
+        "ver": 1,
+        "seq": 144,
+        "val": "可研报告转知识资产ZIP"
+      },
+      "titleInput": {
+        "ver": 3,
+        "seq": 144,
+        "val": {
+          "first": {
+            "seq": 8,
+            "text": "把这个可研报告处理为可复用的知识资产，形成ZIP\n@资料库/上海财经大学中山北一路校区大数据研究中心 可行性研究报告（修订版）.docx"
+          },
+          "count": 1,
+          "lastSeq": 8
+        }
+      },
+      "llmRetry": {
+        "ver": 1,
+        "seq": 144,
+        "val": {}
+      },
+      "sandboxMode": {
+        "ver": 1,
+        "seq": 144,
+        "val": "workspace-write"
+      },
+      "goal": {
+        "ver": 6,
+        "seq": 144,
+        "val": {
+          "current": null,
+          "seenGoalIds": [],
+          "failure": null
+        }
+      },
+      "tokenUsage": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "totals": {
+            "uncachedInputTokens": 68591,
+            "outputTokens": 55412,
+            "cacheReadTokens": 1512448,
+            "cacheWriteTokens": 0
+          },
+          "last": {
+            "turn": 1,
+            "step": 12,
+            "buckets": {
+              "uncachedInputTokens": 149,
+              "outputTokens": 9594,
+              "cacheReadTokens": 196480,
+              "cacheWriteTokens": 0
+            }
+          }
+        }
+      },
+      "contextPressure": {
+        "ver": 5,
+        "seq": 144,
+        "val": {
+          "surfaceTokens": 142591,
+          "contextWindow": 1000000,
+          "pressureTokens": 196629,
+          "sampledSurfaceTokens": 135792
+        }
+      },
+      "contextBreakdown": {
+        "ver": 5,
+        "seq": 144,
+        "val": {
+          "nodes": [
+            {
+              "seq": 7,
+              "heuristicTokens": 55010,
+              "system": true
+            },
+            {
+              "seq": 8,
+              "heuristicTokens": 25,
+              "system": false
+            },
+            {
+              "seq": 9,
+              "heuristicTokens": 1703,
+              "system": false
+            },
+            {
+              "seq": 10,
+              "heuristicTokens": 10376,
+              "system": false
+            },
+            {
+              "seq": 11,
+              "heuristicTokens": 1777,
+              "system": false
+            },
+            {
+              "seq": 19,
+              "heuristicTokens": 666,
+              "system": false
+            },
+            {
+              "seq": 25,
+              "heuristicTokens": 1407,
+              "system": false
+            },
+            {
+              "seq": 29,
+              "heuristicTokens": 369,
+              "system": false
+            },
+            {
+              "seq": 33,
+              "heuristicTokens": 1546,
+              "system": false
+            },
+            {
+              "seq": 37,
+              "heuristicTokens": 1074,
+              "system": false
+            },
+            {
+              "seq": 45,
+              "heuristicTokens": 3142,
+              "system": false
+            },
+            {
+              "seq": 49,
+              "heuristicTokens": 440,
+              "system": false
+            },
+            {
+              "seq": 59,
+              "heuristicTokens": 6426,
+              "system": false
+            },
+            {
+              "seq": 63,
+              "heuristicTokens": 2649,
+              "system": false
+            },
+            {
+              "seq": 77,
+              "heuristicTokens": 12491,
+              "system": false
+            },
+            {
+              "seq": 81,
+              "heuristicTokens": 2153,
+              "system": false
+            },
+            {
+              "seq": 89,
+              "heuristicTokens": 611,
+              "system": false
+            },
+            {
+              "seq": 93,
+              "heuristicTokens": 2223,
+              "system": false
+            },
+            {
+              "seq": 97,
+              "heuristicTokens": 1780,
+              "system": false
+            },
+            {
+              "seq": 101,
+              "heuristicTokens": 1134,
+              "system": false
+            },
+            {
+              "seq": 105,
+              "heuristicTokens": 5268,
+              "system": false
+            },
+            {
+              "seq": 109,
+              "heuristicTokens": 2207,
+              "system": false
+            },
+            {
+              "seq": 113,
+              "heuristicTokens": 4761,
+              "system": false
+            },
+            {
+              "seq": 117,
+              "heuristicTokens": 12505,
+              "system": false
+            },
+            {
+              "seq": 121,
+              "heuristicTokens": 43,
+              "system": false
+            },
+            {
+              "seq": 125,
+              "heuristicTokens": 3968,
+              "system": false
+            },
+            {
+              "seq": 129,
+              "heuristicTokens": 38,
+              "system": false
+            },
+            {
+              "seq": 133,
+              "heuristicTokens": 5570,
+              "system": false
+            },
+            {
+              "seq": 137,
+              "heuristicTokens": 39,
+              "system": false
+            },
+            {
+              "seq": 141,
+              "heuristicTokens": 1190,
+              "system": false
+            }
+          ],
+          "breakdown": {
+            "systemTokens": 55010,
+            "toolsTokens": 536,
+            "messageTokens": 87581
+          }
+        }
+      },
+      "turnBoundary": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "openTurnStartSeq": null,
+          "lastStepStartSeq": 139,
+          "lastStepBoundary": {
+            "kind": "end",
+            "seq": 142
+          },
+          "lastTurn": 1
+        }
+      },
+      "inbox": {
+        "ver": 1,
+        "seq": 144,
+        "val": {
+          "next-turn": [],
+          "next-step": []
+        }
+      },
+      "sessionStats": {
+        "ver": 1,
+        "seq": 144,
+        "val": {
+          "turns": 1,
+          "steps": 13,
+          "llmMs": 277246,
+          "toolMs": 18234,
+          "ttftMs": 21511,
+          "ttftSteps": 13,
+          "decodeMs": 239710,
+          "decodeTokens": 55412,
+          "lastTurn": 1,
+          "openStep": null,
+          "pendingCalls": {}
+        }
+      },
+      "turnOutline": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "turns": [
+            {
+              "turn": 1,
+              "seq": 4,
+              "prompt": "把这个可研报告处理为可复用的知识资产，形成ZIP @资料库/上海财经大学中山北一路校区大数据研究中…",
+              "response": "I have the full document. Now I'll author the semantic extraction layer (facts/rules/claims/evidence) as anchor-bound s…"
+            }
+          ],
+          "draft": ""
+        }
+      },
+      "agentPreset": {
+        "ver": 1,
+        "seq": 144,
+        "val": "ptc"
+      },
+      "clearai": {
+        "ver": 11,
+        "seq": 144,
+        "val": {
+          "goal": null,
+          "hypotheses": [],
+          "plans": [],
+          "evidence": [],
+          "audits": [],
+          "materials": [],
+          "facts": [],
+          "forks": [],
+          "scouts": [],
+          "brainCandidates": [],
+          "skillPromotions": [],
+          "brain": null,
+          "skillCatalog": null,
+          "skillUsage": {},
+          "blocks": {},
+          "releases": [],
+          "autonomy": {
+            "override": null,
+            "effective": null
+          },
+          "constitution": null,
+          "ontology": null,
+          "lexicon": {
+            "terms": [],
+            "predicates": []
+          },
+          "entities": [],
+          "entityAssertions": [],
+          "hostHealth": [],
+          "continuation": null,
+          "inFlight": null,
+          "written": [],
+          "writeCalls": 0,
+          "sessionId": "session-1fb7686c-ecc1-4c0c-9742-edf2fde39e1c"
+        }
+      },
+      "userQuestions": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "inheritedEventCount": 0,
+          "timed": false,
+          "questions": {
+            "active": [],
+            "settled": []
+          }
+        }
+      },
+      "subagentCatalog": {
+        "ver": 3,
+        "seq": 144,
+        "val": {
+          "inheritedEventCount": 0
+        }
+      },
+      "subagentTiming": {
+        "ver": 3,
+        "seq": 144,
+        "val": {
+          "descriptorSeen": false,
+          "settledMs": 0
+        }
+      },
+      "subagent": {
+        "ver": 2,
+        "seq": 144,
+        "val": {}
+      },
+      "agentTeam": {
+        "ver": 4,
+        "seq": 144,
+        "val": {
+          "id": "session-1fb7686c-ecc1-4c0c-9742-edf2fde39e1c",
+          "members": [],
+          "tasks": [],
+          "messages": [],
+          "delivered": [],
+          "nextTaskNumber": 1
+        }
+      },
+      "costUsage": {
+        "ver": 11,
+        "seq": 144,
+        "val": {
+          "provider": "deepseek-official",
+          "model": "deepseek-flash",
+          "totals": {
+            "input": 68591,
+            "output": 55412,
+            "cacheRead": 1512448,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "cost": 0.04807319400000001
+          },
+          "byModel": {
+            "deepseek-flash": {
+              "input": 68591,
+              "output": 55412,
+              "cacheRead": 1512448,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "cost": 0.04807319400000001
+            }
+          },
+          "byProviderModel": {
+            "deepseek-official:deepseek-flash": {
+              "input": 68591,
+              "output": 55412,
+              "cacheRead": 1512448,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "cost": 0.04807319400000001
+            }
+          },
+          "createdAt": 1791893488572,
+          "seedEndSeq": -1,
+          "seedLength": -1,
+          "seedDeducted": true,
+          "shadow": {
+            "totals": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "reasoning": 0,
+              "cost": 0
+            },
+            "byModel": {},
+            "byProviderModel": {}
+          },
+          "recent": [
+            {
+              "fp": "[\"deepseek-official\",\"deepseek-flash\",149,9594,196480,0,0]",
+              "at": 1791893785097
+            }
+          ],
+          "nativeSearchIds": [],
+          "last": {
+            "key": "1:12",
+            "provider": "deepseek-official",
+            "model": "deepseek-flash",
+            "buckets": {
+              "input": 149,
+              "output": 9594,
+              "cacheRead": 196480,
+              "cacheWrite": 0,
+              "reasoning": 0
+            },
+            "cost": 0.00636819
+          }
+        }
+      },
+      "permissions": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "preset": "workspace-write",
+          "sandbox": "workspace-write",
+          "approval": "ask",
+          "seeded": false
+        }
+      },
+      "todos": {
+        "ver": 2,
+        "seq": 144,
+        "val": null
+      },
+      "plan": {
+        "ver": 3,
+        "seq": 144,
+        "val": {
+          "active": false,
+          "wanted": null,
+          "running": null,
+          "activeAtLastHeader": false
+        }
+      },
+      "subagentModelSelectionPolicy": {
+        "ver": 1,
+        "seq": 144,
+        "val": null
+      },
+      "modelSelection": {
+        "ver": 2,
+        "seq": 144,
+        "val": {
+          "lastUsed": {
+            "provider": "deepseek-official",
+            "model": "deepseek-flash",
+            "reasoningEffort": "high"
+          },
+          "pending": null
+        }
+      },
+      "sessionListMetadata": {
+        "ver": 1,
+        "seq": 144,
+        "val": {
+          "blank": false,
+          "lastPromptAt": 1791893504334
+        }
+      },
+      "imageLimits": {
+        "ver": 1,
+        "seq": 144,
+        "val": null
+      }
+    }
+  }
+}

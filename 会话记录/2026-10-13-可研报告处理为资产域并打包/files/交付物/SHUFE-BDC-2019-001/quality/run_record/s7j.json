@@ -8,9 +8,9 @@
   "script_sha256": "758ffb4d433419552bf38a33c31b10f4",
   "exit_code": 0,
   "blocking": false,
-  "started_at": "2026-10-14T18:06:30",
-  "finished_at": "2026-10-14T18:06:31",
-  "elapsed_s": 0.18,
+  "started_at": "2026-10-14T20:15:56",
+  "finished_at": "2026-10-14T20:15:56",
+  "elapsed_s": 0.11,
   "declared_outputs": [
     "交付物/报告/知识抽取与推演写作环节优化总案.md"
   ],
@@ -19,8 +19,8 @@
       "path": "交付物/报告/知识抽取与推演写作环节优化总案.md",
       "pattern": "交付物/报告/知识抽取与推演写作环节优化总案.md",
       "bytes": 8366,
-      "sha256": "4a1d3f56d5e495e40f24e4b703094dfe",
-      "mtime": 1791972391
+      "sha256": "83fa71278fb69cbc88660c75d11f6332",
+      "mtime": 1791980156
     }
   ],
   "outputs_missing": [],
@@ -49,10 +49,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7i/README.md",
     "SHUFE-BDC-2019-001/handover/s7i/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s7j/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7i/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7i/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7j/gate.json",
     "SHUFE-BDC-2019-001/handover/s7j/manifest_A_s7i.json",
-    "SHUFE-BDC-2019-001/handover/s7j/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s7j/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7j/manifest_B_s7i.json",
+    "SHUFE-BDC-2019-001/handover/s7j/manifest_C_s7i.json",
     "SHUFE-BDC-2019-001/quality/run_record/s7i.json",
     "交付物/报告/知识抽取与推演写作环节优化总案.md"
   ],

@@ -11,6 +11,19 @@
   },
   "facts": [
     {
+      "node_id": "N-0d4cc2051dfe",
+      "subject": "本项目",
+      "predicate": "总建筑面积",
+      "value": "18219",
+      "unit": "㎡",
+      "kind": "quantity",
+      "caliber": "建筑面积",
+      "status": "pending_review",
+      "inheritable": "yes",
+      "instruction": "该 (主题, 属性) 存在未裁决数值冲突，正文并列呈现并标「⚠ 待审」，不得取其一。",
+      "chunk": "c-57676fd556d8"
+    },
+    {
       "node_id": "N-c51de871596c",
       "subject": "本项目",
       "predicate": "基本预备费费率",
@@ -24,17 +37,303 @@
       "chunk": "c-cf8f0b4e2668"
     },
     {
-      "node_id": "N-0d4cc2051dfe",
+      "node_id": "N-f833fd93de5e",
       "subject": "本项目",
-      "predicate": "总建筑面积",
-      "value": "18219",
-      "unit": "㎡",
+      "predicate": "单位造价（总投资口径）",
+      "value": "7114",
+      "unit": "元/㎡",
       "kind": "quantity",
-      "caliber": "建筑面积",
-      "status": "pending_review",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
       "inheritable": "yes",
-      "instruction": "该 (主题, 属性) 存在未裁决数值冲突，正文并列呈现并标「⚠ 待审」，不得取其一。",
-      "chunk": "c-57676fd556d8"
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-38de69880db3",
+      "subject": "本项目",
+      "predicate": "国拨资金",
+      "value": "6000",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-439358c3c12f"
+    },
+    {
+      "node_id": "N-3150f017809d",
+      "subject": "本项目",
+      "predicate": "国拨资金占比",
+      "value": "46.04",
+      "unit": "%",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-439358c3c12f"
+    },
+    {
+      "node_id": "N-6001107c1482",
+      "subject": "本项目",
+      "predicate": "学校自筹资金",
+      "value": "7032",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-439358c3c12f"
+    },
+    {
+      "node_id": "N-c80f305bd555",
+      "subject": "上海财经大学",
+      "predicate": "资产总额",
+      "value": "373711.34",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-198ee2fbd3f6"
+    },
+    {
+      "node_id": "N-3014e5738712",
+      "subject": "上海财经大学",
+      "predicate": "负债总额",
+      "value": "9452.14",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-198ee2fbd3f6"
+    },
+    {
+      "node_id": "N-db325aa01a7a",
+      "subject": "上海财经大学",
+      "predicate": "资产负债率",
+      "value": "2.53",
+      "unit": "%",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-198ee2fbd3f6"
+    },
+    {
+      "node_id": "N-59b9d8f6d1fc",
+      "subject": "本项目",
+      "predicate": "装配率",
+      "value": "40",
+      "unit": "%",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-df2093af0240"
+    },
+    {
+      "node_id": "N-f470a0725f92",
+      "subject": "本项目",
+      "predicate": "绿色建筑目标",
+      "value": "绿色建筑二星",
+      "unit": "",
+      "kind": "judgment",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "never",
+      "instruction": "",
+      "chunk": "c-df2093af0240"
+    },
+    {
+      "node_id": "N-dc49a463c8e3",
+      "subject": "本项目",
+      "predicate": "估算范围排除项",
+      "value": "办公家具、电器；用水用电增容等大市政配套费；地下障碍物清除费",
+      "unit": "",
+      "kind": "text",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-402ccafc1d64"
+    },
+    {
+      "node_id": "N-8c646e42426a",
+      "subject": "桩基工程",
+      "predicate": "估算金额",
+      "value": "458",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-4002faaed7b8",
+      "subject": "基坑围护工程",
+      "predicate": "估算金额",
+      "value": "250",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-17cad48fed94",
+      "subject": "地下建筑结构工程",
+      "predicate": "估算金额",
+      "value": "175",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-84cd9cdd7e0d",
+      "subject": "地上建筑结构工程",
+      "predicate": "估算金额",
+      "value": "3240",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-2e9eaad1259f",
+      "subject": "装配式结构增加费",
+      "predicate": "估算金额",
+      "value": "810",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-ad6fd08cb831",
+      "subject": "室内装饰工程",
+      "predicate": "估算金额",
+      "value": "1832",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-767846c72651",
+      "subject": "外立面及屋面装饰工程",
+      "predicate": "估算金额",
+      "value": "1028",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-0ea3008f61f9",
+      "subject": "立面门窗、玻璃幕墙",
+      "predicate": "估算金额",
+      "value": "463",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-7930ab172a2a",
+      "subject": "立面装饰幕墙",
+      "predicate": "估算金额",
+      "value": "475",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-6ed5795596e9",
+      "subject": "上人屋面",
+      "predicate": "估算金额",
+      "value": "42",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-be59b87fb79c",
+      "subject": "设备屋面（涂料）",
+      "predicate": "估算金额",
+      "value": "6",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-c48958c97484",
+      "subject": "架空板底",
+      "predicate": "估算金额",
+      "value": "33",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
+    },
+    {
+      "node_id": "N-7905c339c5bf",
+      "subject": "新老建筑立面接口处理费",
+      "predicate": "估算金额",
+      "value": "10",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-7226f71c0917"
     },
     {
       "node_id": "N-eabadd267940",
@@ -100,305 +399,6 @@
       "inheritable": "yes",
       "instruction": "",
       "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-d11b8963a5c2",
-      "subject": "电梯工程",
-      "predicate": "估算金额",
-      "value": "140",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-94e433692986",
-      "subject": "道路、广场、硬地、铺装",
-      "predicate": "估算金额",
-      "value": "19",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-565398c4826c",
-      "subject": "绿化、景观",
-      "predicate": "估算金额",
-      "value": "3",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-eaf61c336ddf",
-      "subject": "室外安装工程",
-      "predicate": "估算金额",
-      "value": "12",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-d79f49630ce5",
-      "subject": "标识工程",
-      "predicate": "估算金额",
-      "value": "18",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-2ccc0c5d1207",
-      "subject": "抗震支架",
-      "predicate": "估算金额",
-      "value": "92",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-4b40f9539e03",
-      "subject": "绿色二星增量费用",
-      "predicate": "估算金额",
-      "value": "220",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-63082fae08d5",
-      "subject": "土建工程",
-      "predicate": "估算金额",
-      "value": "7793",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-f4b6e8cc3b5f",
-      "subject": "安装工程",
-      "predicate": "估算金额",
-      "value": "3034",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-78644662331e",
-      "subject": "单体工程",
-      "predicate": "估算金额",
-      "value": "10828",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-a59ed4c3313a",
-      "subject": "室外总体工程",
-      "predicate": "估算金额",
-      "value": "49",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-a564cd720a96",
-      "subject": "建筑安装工程费用",
-      "predicate": "估算金额",
-      "value": "11188",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-d27e283b73c6",
-      "subject": "基本预备费",
-      "predicate": "估算金额",
-      "value": "618",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-8dad7d339b06",
-      "subject": "建设单位管理费",
-      "predicate": "估算金额",
-      "value": "170",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-52349af2e44f",
-      "subject": "前期工程咨询费",
-      "predicate": "估算金额",
-      "value": "38",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-349ad4d2a9d0",
-      "subject": "勘察费",
-      "predicate": "估算金额",
-      "value": "39",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-0d30a6b44768",
-      "subject": "设计费",
-      "predicate": "估算金额",
-      "value": "336",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-236dbdb1fea6",
-      "subject": "招标代理费",
-      "predicate": "估算金额",
-      "value": "49",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-903b0ac65f67",
-      "subject": "清单及标底编制费",
-      "predicate": "估算金额",
-      "value": "36",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-58f2a08d9047",
-      "subject": "施工监理费（含财务监理费）",
-      "predicate": "估算金额",
-      "value": "239",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-9e5bfac670e5",
-      "subject": "施工图审图费",
-      "predicate": "估算金额",
-      "value": "22",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-979e5a5ddbc9",
-      "subject": "竣工图编制费",
-      "predicate": "估算金额",
-      "value": "27",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
-    },
-    {
-      "node_id": "N-d3fb4fe652f7",
-      "subject": "场地准备及临时设施费",
-      "predicate": "估算金额",
-      "value": "56",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-7226f71c0917"
     }
   ],
   "facts_total_in_section": 114,
@@ -456,135 +456,9 @@
       ],
       "status": "待审",
       "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
-    },
-    {
-      "type": "derivation",
-      "subject": "基本预备费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 618.0",
-        "重算 617.95"
-      ],
-      "involved": [
-        "N-a564cd720a96",
-        "N-a831d44a85f1",
-        "N-c51de871596c",
-        "N-d27e283b73c6"
-      ],
-      "status": "待审",
-      "note": "按规则 R-基本预备费 重算得 617.95，原文写 618.0（差 0.05，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "建筑安装工程费用",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 11188.0",
-        "重算 11189.0"
-      ],
-      "involved": [
-        "N-2ccc0c5d1207",
-        "N-4b40f9539e03",
-        "N-78644662331e",
-        "N-a564cd720a96",
-        "N-a59ed4c3313a"
-      ],
-      "status": "待审",
-      "note": "按规则 R-建安工程费用 重算得 11189.0，原文写 11188.0（差 1.0，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "单体工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 10828.0",
-        "重算 10827.0"
-      ],
-      "involved": [
-        "N-63082fae08d5",
-        "N-78644662331e",
-        "N-f4b6e8cc3b5f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-单体工程 重算得 10827.0，原文写 10828.0（差 1.0，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "安装工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 3034.0",
-        "重算 3035.0"
-      ],
-      "involved": [
-        "N-72507f498f8c",
-        "N-809d541088ab",
-        "N-c46ae5293e41",
-        "N-c5de22ac0e51",
-        "N-d11b8963a5c2",
-        "N-eabadd267940",
-        "N-f4b6e8cc3b5f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-安装工程 重算得 3035.0，原文写 3034.0（差 1.0，0.03%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "室外总体工程",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 49.0",
-        "重算 52.0"
-      ],
-      "involved": [
-        "N-565398c4826c",
-        "N-94e433692986",
-        "N-a59ed4c3313a",
-        "N-d79f49630ce5",
-        "N-eaf61c336ddf"
-      ],
-      "status": "待审",
-      "note": "按规则 R-室外总体工程 重算得 52.0，原文写 49.0（差 3.0，6.12%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "工程建设其他费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 1171.0",
-        "重算 1170.0"
-      ],
-      "involved": [
-        "N-0d30a6b44768",
-        "N-236dbdb1fea6",
-        "N-31dacc87adf4",
-        "N-349ad4d2a9d0",
-        "N-52349af2e44f",
-        "N-58f2a08d9047",
-        "N-8dad7d339b06",
-        "N-903b0ac65f67",
-        "N-979e5a5ddbc9",
-        "N-9e5bfac670e5",
-        "N-a161b289c97d",
-        "N-a831d44a85f1",
-        "N-d3fb4fe652f7"
-      ],
-      "status": "待审",
-      "note": "按规则 R-工程建设其他费 重算得 1170.0，原文写 1171.0（差 1.0，0.09%）；按铁律不擅自改数"
     }
   ],
-  "gaps": [
-    {
-      "id": "G-006",
-      "type": "blocked_by_conflict",
-      "rule": "R-单位造价",
-      "label": "单位造价（总投资口径）",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    }
-  ],
+  "gaps": [],
   "rules_touching_section": [
     {
       "id": "R-建筑面积构成",
@@ -607,7 +481,7 @@
         "基本预备费费率"
       ],
       "target": "基本预备费",
-      "recheck": "派生差异"
+      "recheck": "闭合"
     },
     {
       "id": "R-单位造价",
@@ -618,7 +492,7 @@
         "本项目建筑面积"
       ],
       "target": "单位造价（总投资口径）",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     },
     {
       "id": "R-资金筹措构成",

@@ -17,7 +17,7 @@
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
-      "sha256": "1d99b7af947db8c104e4adc7bfc8942e",
+      "sha256": "092a34c41ab87b3b53cb8d2ff56cd0fc",
       "bytes": 19942
     },
     {
@@ -27,8 +27,8 @@
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
-      "sha256": "5f4204505b14876cfa392f03b32793c3",
-      "bytes": 19328
+      "sha256": "c336864ae213f50f144e9d6ab8af91d4",
+      "bytes": 19326
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
@@ -36,5 +36,6 @@
       "bytes": 883
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

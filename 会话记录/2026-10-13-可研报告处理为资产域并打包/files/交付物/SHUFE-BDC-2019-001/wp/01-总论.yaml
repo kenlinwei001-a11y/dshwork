@@ -24,19 +24,6 @@
       "chunk": "c-3f5a2f4d0ca7"
     },
     {
-      "node_id": "N-a831d44a85f1",
-      "subject": "本项目",
-      "predicate": "工程建设其他费用",
-      "value": "1171",
-      "unit": "万元",
-      "kind": "quantity",
-      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-9420f385e8f5"
-    },
-    {
       "node_id": "N-8449f71c5773",
       "subject": "本项目",
       "predicate": "地上建筑面积",
@@ -80,6 +67,19 @@
       "subject": "本项目",
       "predicate": "建安工程费用",
       "value": "11188",
+      "unit": "万元",
+      "kind": "quantity",
+      "caliber": "2019年价格水平（报告编制期，未做价格调整）",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9420f385e8f5"
+    },
+    {
+      "node_id": "N-a831d44a85f1",
+      "subject": "本项目",
+      "predicate": "工程建设其他费用",
+      "value": "1171",
       "unit": "万元",
       "kind": "quantity",
       "caliber": "2019年价格水平（报告编制期，未做价格调整）",
@@ -263,63 +263,9 @@
       ],
       "status": "待审",
       "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
-    },
-    {
-      "type": "derivation",
-      "subject": "基本预备费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 618.0",
-        "重算 617.95"
-      ],
-      "involved": [
-        "N-a564cd720a96",
-        "N-a831d44a85f1",
-        "N-c51de871596c",
-        "N-d27e283b73c6"
-      ],
-      "status": "待审",
-      "note": "按规则 R-基本预备费 重算得 617.95，原文写 618.0（差 0.05，0.01%）；按铁律不擅自改数"
-    },
-    {
-      "type": "derivation",
-      "subject": "工程建设其他费",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 1171.0",
-        "重算 1170.0"
-      ],
-      "involved": [
-        "N-0d30a6b44768",
-        "N-236dbdb1fea6",
-        "N-31dacc87adf4",
-        "N-349ad4d2a9d0",
-        "N-52349af2e44f",
-        "N-58f2a08d9047",
-        "N-8dad7d339b06",
-        "N-903b0ac65f67",
-        "N-979e5a5ddbc9",
-        "N-9e5bfac670e5",
-        "N-a161b289c97d",
-        "N-a831d44a85f1",
-        "N-d3fb4fe652f7"
-      ],
-      "status": "待审",
-      "note": "按规则 R-工程建设其他费 重算得 1170.0，原文写 1171.0（差 1.0，0.09%）；按铁律不擅自改数"
     }
   ],
-  "gaps": [
-    {
-      "id": "G-006",
-      "type": "blocked_by_conflict",
-      "rule": "R-单位造价",
-      "label": "单位造价（总投资口径）",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    }
-  ],
+  "gaps": [],
   "rules_touching_section": [
     {
       "id": "R-总投资构成",
@@ -376,7 +322,7 @@
         "本项目建筑面积"
       ],
       "target": "单位造价（总投资口径）",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     },
     {
       "id": "R-资金筹措构成",

@@ -8,9 +8,9 @@
   "script_sha256": "a0026326f3ce5f1eefc521a8247b695d",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:51",
-  "finished_at": "2026-10-14T18:05:51",
-  "elapsed_s": 0.52,
+  "started_at": "2026-10-14T20:14:48",
+  "finished_at": "2026-10-14T20:14:49",
+  "elapsed_s": 1.17,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/chunks/sentences.jsonl"
   ],
@@ -20,7 +20,7 @@
       "pattern": "SHUFE-BDC-2019-001/chunks/sentences.jsonl",
       "bytes": 511636,
       "sha256": "2e97ba2d1669a0a6341001d5f63c3e2b",
-      "mtime": 1791972351
+      "mtime": 1791980088
     }
   ],
   "outputs_missing": [],
@@ -52,10 +52,12 @@
     "SHUFE-BDC-2019-001/chunks/sentences.jsonl",
     "SHUFE-BDC-2019-001/handover/s5e2/README.md",
     "SHUFE-BDC-2019-001/handover/s5e2/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s5f/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s5f/gate.json",
     "SHUFE-BDC-2019-001/handover/s5f/manifest_A_s5e2.json",
-    "SHUFE-BDC-2019-001/handover/s5f/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s5f/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5f/manifest_B_s5e2.json",
+    "SHUFE-BDC-2019-001/handover/s5f/manifest_C_s5e2.json",
     "SHUFE-BDC-2019-001/quality/run_record/s5e2.json",
     "交付物/报告/质量门控工具需求.md"
   ],

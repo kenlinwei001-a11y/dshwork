@@ -8,8 +8,8 @@
   "produced": [
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
-      "sha256": "15c36ac164f478194af53e6a523eb7c7",
-      "bytes": 12735
+      "sha256": "c7575d824f897f4e0b5e3f00d03a8ca0",
+      "bytes": 11157
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
@@ -33,13 +33,13 @@
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
-      "sha256": "10f0c22e692e48018fb550113f04ed2d",
-      "bytes": 20973
+      "sha256": "ab8fac49565dbb4d862900b87f009670",
+      "bytes": 18467
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
-      "sha256": "6b7c52ec6e7d1cbab9db208aada9aeaa",
-      "bytes": 18807
+      "sha256": "da88fb49315603a401fdc815258cf9c6",
+      "bytes": 16666
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
@@ -68,8 +68,8 @@
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
-      "sha256": "170a74e56b452e9639f21c6d828a978d",
-      "bytes": 21747
+      "sha256": "2994bef9134d53c32ba5e23adb112e79",
+      "bytes": 17925
     },
     {
       "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
@@ -87,5 +87,6 @@
       "bytes": 2931
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

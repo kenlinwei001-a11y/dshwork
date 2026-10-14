@@ -1,0 +1,92 @@
+{
+  "stage": "s7k",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+    "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+    "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+    "SHUFE-BDC-2019-001/quality/provider_probe.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/verify_pipeline.yaml",
+      "bytes": 441,
+      "sha256": "1a56ea93ae2e26d4206ffce05237d892",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "verdict",
+          "closure",
+          "stage_gates",
+          "objective",
+          "blocking_count",
+          "blocking",
+          "invalid_count",
+          "note"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/closure_report.yaml",
+      "bytes": 19942,
+      "sha256": "092a34c41ab87b3b53cb8d2ff56cd0fc",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "closures",
+          "summary",
+          "policy"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/stage_gates.yaml",
+      "bytes": 10485,
+      "sha256": "35676a8f95f33636b3dc000b93410fda",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "gates",
+          "calibration",
+          "by_stage",
+          "policy"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_verify.yaml",
+      "bytes": 19326,
+      "sha256": "c336864ae213f50f144e9d6ab8af91d4",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "criteria",
+          "judgment_required",
+          "summary",
+          "policy"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/provider_probe.yaml",
+      "bytes": 883,
+      "sha256": "2bfc42b785e7e555fe30554e97acac54",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "probe"
+        ]
+      }
+    }
+  ],
+  "count": 5,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

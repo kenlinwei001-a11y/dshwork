@@ -1,0 +1,30 @@
+{
+  "stage": "s7m",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/id_resolution.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/id_resolution.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/id_resolution.yaml",
+      "bytes": 203,
+      "sha256": "4d174f218999e8c8b7223b07b2a20d9a",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "verdict",
+          "nodes",
+          "gaps",
+          "bad_form",
+          "unresolved",
+          "detail",
+          "note"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

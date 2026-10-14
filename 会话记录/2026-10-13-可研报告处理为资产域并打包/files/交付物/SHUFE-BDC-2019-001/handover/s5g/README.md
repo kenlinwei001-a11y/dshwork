@@ -1,6 +1,6 @@
 # 环节 s5g 交接说明（README）
 
-- 脚本：`s7p_prompt_compile.py`　退出码：0　耗时：2.18s
+- 脚本：`s7p_prompt_compile.py`　退出码：0　耗时：2.63s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）
@@ -34,10 +34,10 @@
   "FAIL": 10,
   "compiled": 42,
   "by_type": {
-    "feasibility-report": 4,
     "generic": 10,
+    "national-standard": 26,
     "policy": 2,
-    "national-standard": 26
+    "feasibility-report": 4
   },
   "note": "识别不出类型的文档记 invalid 并落 generic —— 不猜；新增类型只需加 doc_types.yaml 条目与模板文件，不改代码"
 }

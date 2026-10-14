@@ -8,9 +8,9 @@
   "script_sha256": "ac4e5d831a955bc3d6503d76ff67aafd",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:58",
-  "finished_at": "2026-10-14T18:05:58",
-  "elapsed_s": 0.25,
+  "started_at": "2026-10-14T20:15:02",
+  "finished_at": "2026-10-14T20:15:03",
+  "elapsed_s": 0.83,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/reuse/domains.yaml",
     "SHUFE-BDC-2019-001/reuse/domains/*.yaml"
@@ -20,120 +20,120 @@
       "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
       "bytes": 54955,
-      "sha256": "79736f9808b017e077bb1903e6fe1674",
-      "mtime": 1791972358
+      "sha256": "4fbbef8a84ce013be7c6e652243ad388",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 8029,
-      "sha256": "7413717281816da091a3bfddfd5c67dd",
-      "mtime": 1791972358
+      "bytes": 8030,
+      "sha256": "51e5afcaf557e37695444d13873a0d97",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 7501,
-      "sha256": "0f3442c991181bbc58785657b39955c7",
-      "mtime": 1791972358
+      "bytes": 7502,
+      "sha256": "e8cbe3449cd59d26d87657f47abdb49c",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 10559,
-      "sha256": "71c1573a9bec16a35254babbc71e3845",
-      "mtime": 1791972358
+      "bytes": 10560,
+      "sha256": "9348ea66193aa2baa0922ecbbee46d48",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 14849,
-      "sha256": "24374182a38b788a76fa28a0fdb35bdc",
-      "mtime": 1791972358
+      "bytes": 14459,
+      "sha256": "95a9cc1dba743b005984204990521b6e",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 4820,
-      "sha256": "d0596e6d3112c10259cd8414702db16f",
-      "mtime": 1791972358
+      "bytes": 4821,
+      "sha256": "a1596a7ac37a91c35b2548974979371d",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 7974,
-      "sha256": "ebde9e3b681e2f89d2cb28eeda475e37",
-      "mtime": 1791972358
+      "bytes": 7975,
+      "sha256": "1a78abcc6c75131d2d935b98be926d4c",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 8086,
-      "sha256": "721a886062c8f4657e19910dc5f40df5",
-      "mtime": 1791972358
+      "bytes": 7845,
+      "sha256": "4cf05050e52b46cb7e5d1ea0066ad80d",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 14830,
-      "sha256": "fad2f02ade615cf3000f69cb6d9d6e8c",
-      "mtime": 1791972358
+      "bytes": 14831,
+      "sha256": "8455cee2f28736403c2c007efd34303e",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 5962,
-      "sha256": "b3794ef694665039ef306f682cec49f1",
-      "mtime": 1791972358
+      "bytes": 5963,
+      "sha256": "67b83b0aa65782ca58c079831152d623",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 6138,
-      "sha256": "7ce3522dfddbf40547c58c94ad479fdb",
-      "mtime": 1791972358
+      "bytes": 6139,
+      "sha256": "d2e03de7b02c8c4afef0aa4ef9c166a3",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 6475,
-      "sha256": "6425d3ae6cb22cf090a4253e9f37d961",
-      "mtime": 1791972358
+      "bytes": 6476,
+      "sha256": "74ce9490020ecb1af54df77c3b0b5dc6",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 4789,
-      "sha256": "41a4eda084b2912d797c3e6f0fa823db",
-      "mtime": 1791972358
+      "bytes": 4790,
+      "sha256": "d4a7fd5c05a53b861ebb56db44345cca",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 17276,
-      "sha256": "c96bec652639bf0453a483f93e442d5a",
-      "mtime": 1791972358
+      "bytes": 17074,
+      "sha256": "d29832f988710627acd323a492442d92",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 9805,
-      "sha256": "b746cbf8b81c2833b9569bfde0864877",
-      "mtime": 1791972358
+      "bytes": 9806,
+      "sha256": "91cf43f8f7934e94a11bbaf627fa7f5c",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 5481,
-      "sha256": "5b4c53490752bf626c207de61c4456fe",
-      "mtime": 1791972358
+      "bytes": 5482,
+      "sha256": "0751dcaadabd630a6083124c8288c53a",
+      "mtime": 1791980103
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/domains/*.yaml",
-      "bytes": 9326,
-      "sha256": "98b98768a8f2594e46445f4530558133",
-      "mtime": 1791972358
+      "bytes": 9126,
+      "sha256": "8b97e6796ab3ee427e3d1a3e4c2214b3",
+      "mtime": 1791980103
     }
   ],
   "outputs_missing": [],
@@ -180,10 +180,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s5i/README.md",
     "SHUFE-BDC-2019-001/handover/s5i/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s6/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5i/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s5i/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s6/gate.json",
     "SHUFE-BDC-2019-001/handover/s6/manifest_A_s5i.json",
-    "SHUFE-BDC-2019-001/handover/s6/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s6/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s6/manifest_B_s5i.json",
+    "SHUFE-BDC-2019-001/handover/s6/manifest_C_s5i.json",
     "SHUFE-BDC-2019-001/manifest.yaml",
     "SHUFE-BDC-2019-001/quality/run_record/s5i.json",
     "SHUFE-BDC-2019-001/reuse/dependency_graph.yaml",
@@ -206,6 +208,6 @@
     "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
     "SHUFE-BDC-2019-001/reuse/quality_gates.yaml"
   ],
-  "stdout_tail": ".yaml\",\n    \"reuse/domains/16-cost_risk.yaml\"\n  ],\n  \"gate_qg1\": true,\n  \"gate_qg2\": false,\n  \"gate_qg3\": true,\n  \"all_passed\": false,\n  \"kp_all_passed\": true,\n  \"kp_failed\": []\n}\nQG2 明细：\n  [PASS] 结构完整性：16 个资产域齐备 — 16 域\n  [PASS] 证据覆盖：Claim 绑定证据比例 — 37/37 = 100%；无证据的 Claim 已登记为缺口，不硬撑结论\n  [PASS] 证据引用无悬空 — 悬空 0 条\n  [FAIL] 关系合法（只用十类关系） — 非法 81 条 / 共 553 条\n  [FAIL] 孤立节点 — 449/959 个节点未出现在任何关系中（多为源数据类气象/水文参数）\n  [PASS] 跨项目污染：未注入产线类领域规则 — 建库时显式不传 doc_type，避免 kp 内置「新增生产线数量/合格产能」规格注入本域\n  [PASS] 报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why） — 15 条绑定；角色分布 {\"benchmark\": 5, \"constrains\": 6, \"driver\": 1, \"warrants\": 3}\n",
+  "stdout_tail": "yaml\",\n    \"reuse/domains/16-cost_risk.yaml\"\n  ],\n  \"gate_qg1\": true,\n  \"gate_qg2\": false,\n  \"gate_qg3\": false,\n  \"all_passed\": false,\n  \"kp_all_passed\": true,\n  \"kp_failed\": []\n}\nQG2 明细：\n  [PASS] 结构完整性：16 个资产域齐备 — 16 域\n  [PASS] 证据覆盖：Claim 绑定证据比例 — 37/37 = 100%；无证据的 Claim 已登记为缺口，不硬撑结论\n  [PASS] 证据引用无悬空 — 悬空 0 条\n  [FAIL] 关系合法（只用十类关系） — 非法 81 条 / 共 553 条\n  [FAIL] 孤立节点 — 449/959 个节点未出现在任何关系中（多为源数据类气象/水文参数）\n  [PASS] 跨项目污染：未注入产线类领域规则 — 建库时显式不传 doc_type，避免 kp 内置「新增生产线数量/合格产能」规格注入本域\n  [PASS] 报告技术函数与外部依据的绑定完整（每条绑定有 role 与 why） — 15 条绑定；角色分布 {\"benchmark\": 5, \"constrains\": 6, \"driver\": 1, \"warrants\": 3}\n",
   "stderr_tail": ""
 }

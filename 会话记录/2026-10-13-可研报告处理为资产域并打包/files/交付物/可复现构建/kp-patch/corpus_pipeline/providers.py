@@ -46,7 +46,7 @@ class ReasoningProvider(Protocol):
     name: str
     capabilities: set[str]
 
-    def derive(self, facts: list[dict], rules: list[dict]) -> list[dict]:
+    def run_reasoning(self, facts: list[dict], rules: list[dict]) -> list[dict]:
         """→ [{rule, computed, steps}]"""
 
     def causal_chain(self, start: str) -> list[dict]:
@@ -77,7 +77,16 @@ def register_provider(slot: str, provider) -> None:
 
 
 def get_provider(slot: str, default=None):
-    """取 provider；未注册则返回传入的本地默认实现。"""
+    """取 provider；未注册则返回传入的默认实现。
+
+    ★ 取之前先触发惰性注册：否则直接 get_provider('relation') 会拿到**本地 provider**，
+    推理路径永远调不到 Semantica，而报错信息还会误导为「引擎不可用」
+    —— 典型的「静默失效」（本会话实测踩到过）。
+    """
+    try:
+        ensure_semantica_providers()
+    except Exception:                                     # noqa: BLE001
+        pass                                              # 注册失败不得掩盖真实取用
     return _REGISTRY.get(slot, default)
 
 
@@ -126,8 +135,8 @@ if __name__ == "__main__":
                      ensure_ascii=False, indent=2))
 
 # ------------------------------------------------------------------ 本地默认实现
-# 默认全部为确定性本地实现（零 LLM）。semantica 版本可随时 register_provider 覆盖，
-# 门禁与下游无需改动。
+# 默认只注册**确定性辅助能力**（实体/图 的读写与检索）。
+# ★ 推理类能力（前向链/因果）**不得**由本模块提供——必须经 Semantica。
 class LocalEntityProvider:
     name = "local-entity"
     capabilities = {"extract", "disambiguate"}
@@ -147,13 +156,19 @@ class LocalEntityProvider:
 
 class LocalRelationProvider:
     name = "local-relation"
-    capabilities = {"extract", "reasoning"}
+    # ★ 不声明 reasoning：本 provider 不提供推理（会抛 NotImplementedError）。
+    #   声明与实现不一致本身即「假能力」——依赖它的判据会假 pass。
+    capabilities = {"extract"}
 
     def extract(self, text: str, entities: list[dict]) -> list[dict]:
         return []            # 关系抽取暂由 LLM 层承担；结构化关系由 relations_ext 推导
 
-    def derive(self, facts: list[dict], rules: list[dict]) -> list[dict]:
-        return []            # 由既有的 stage_5 回放承担（确定性）
+    def run_reasoning(self, facts, rules):
+        # ★ 铁律：推演（前向链）**必须走 Semantica Reasoner**。此处曾返回 [] 并注明
+        #   「由 stage_5 回放承担」——那是手写替身，会让 Semantica 未参与却被记成完成。
+        #   现 fail-closed：不提供任何替身。
+        raise NotImplementedError(
+            "推理能力未注册：必须经 Semantica（run_reasoning / get_causal_chain）；本模块不提供替身")
 
 
 class LocalGraphProvider:
@@ -193,7 +208,7 @@ class LocalGraphProvider:
         if fmt in ("json", "json-ld"):
             return {"nodes": self._load("graph/nodes.yaml", []),
                     "relations": self._load("graph/relations.yaml", [])}
-        raise ValueError(f"本地实现仅支持 json/json-ld，收到 {fmt}")
+        raise ValueError(f"当前 provider 仅支持 json/json-ld，收到 {fmt}")
 
 
 def register_local_defaults(graph_corpus_dir=None) -> dict:
@@ -248,6 +263,6 @@ def provider_status() -> dict:                              # noqa: F811
         if hasattr(p, "capability_source"):
             v = st[slot]
             v["capability_source"] = p.capability_source
-            if getattr(p, "fallbacks", None):
-                v["fallbacks"] = p.fallbacks[-8:]
+            if getattr(p, "failure_log", None):
+                v["failures"] = p.failure_log[-8:]
     return st

@@ -1,10 +1,10 @@
 # 环节 s7i 交接说明（README）
 
-- 脚本：`opt27_objective.py`　退出码：0　耗时：1.08s
+- 脚本：`opt27_objective.py`　退出码：0　耗时：0.87s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）
-- `SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml`（6086 B）
+- `SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml`（5944 B）
 - `SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml`（3661 B）
 
 ## 给下游的说明
@@ -18,15 +18,15 @@
       29
     ],
     "K11": [
-      "FAIL",
-      2
+      "pass",
+      0
     ],
     "K12": [
       "pass",
       0
     ]
   },
-  "pass": 8,
+  "pass": 9,
   "judgment_required": [
     "还原稿「论证质量优于原稿」",
     "评估报告中的「影响度 高/中/低」",

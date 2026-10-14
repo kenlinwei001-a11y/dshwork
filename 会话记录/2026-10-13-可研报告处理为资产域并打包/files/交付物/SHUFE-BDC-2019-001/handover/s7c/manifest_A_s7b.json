@@ -8,9 +8,10 @@
   "produced": [
     {
       "path": "交付物/装配输入包-报告还原.md",
-      "sha256": "148612eca91496fecfa62d6ffe76fdaf",
-      "bytes": 277051
+      "sha256": "feebf70087fc6432b1b89e86dbf4d4b7",
+      "bytes": 270995
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

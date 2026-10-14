@@ -1,0 +1,33 @@
+{
+  "stage": "s7c",
+  "patterns": [
+    "交付物/写作输入/交接说明-给推演写作专家.md",
+    "交付物/写作输入/投递清单.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "pattern": "交付物/写作输入/交接说明-给推演写作专家.md",
+      "bytes": 14591,
+      "sha256": "2b626536ed7b12859bc7eff30c4fd98e",
+      "probe": {
+        "parsable": true,
+        "text_chars": 8826
+      }
+    },
+    {
+      "path": "交付物/写作输入/投递清单.md",
+      "pattern": "交付物/写作输入/投递清单.md",
+      "bytes": 16030,
+      "sha256": "0c301134c133c3c5c9542e7065dd2cc1",
+      "probe": {
+        "parsable": true,
+        "text_chars": 10502
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

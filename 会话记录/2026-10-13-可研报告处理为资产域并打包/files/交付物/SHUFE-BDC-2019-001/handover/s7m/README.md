@@ -1,6 +1,6 @@
 # 环节 s7m 交接说明（README）
 
-- 脚本：`s33_id_resolution.py`　退出码：0　耗时：1.0s
+- 脚本：`s33_id_resolution.py`　退出码：0　耗时：0.26s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

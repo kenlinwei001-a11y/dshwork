@@ -1,0 +1,40 @@
+{
+  "stage": "s6h",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/waivers.yaml",
+    "SHUFE-BDC-2019-001/reuse/domains.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/waivers.yaml",
+      "bytes": 7426,
+      "sha256": "21e02f66102a7b348028ac01d0e84bb3",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "waivers"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "bytes": 66283,
+      "sha256": "f0b8fef504a92df238e94cff26772d0a",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "domains",
+          "extension_assets",
+          "function_constants"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

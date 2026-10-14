@@ -1,0 +1,17 @@
+{
+  "stage": "s4c",
+  "script": "s4c_semantics.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/semantic_dims.yaml"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/semantic_dims.yaml",
+      "sha256": "d244d32c8a17a6ad0b8b740ff934a377",
+      "bytes": 855
+    }
+  ],
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

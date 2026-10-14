@@ -8,9 +8,10 @@
   "produced": [
     {
       "path": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.md",
-      "sha256": "d4d3346a9e6f74421affde0fcc2cacdf",
-      "bytes": 148676
+      "sha256": "90b565c626bf83cb11cb0f1bf006a038",
+      "bytes": 145352
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

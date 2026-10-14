@@ -7,7 +7,16 @@
       "value": "2019ZX054",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-924bfe9e84e1",
@@ -16,7 +25,16 @@
       "value": "上海财经大学中山北一路校区大数据研究中心可行性研究报告（修订版）",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-61c229a9d6b7",
@@ -25,7 +43,16 @@
       "value": "上海同济工程咨询有限公司",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-043715904e92",
@@ -34,7 +61,16 @@
       "value": "王玉萍（高级工程师、注册造价工程师、注册咨询工程师）",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1349678c3c0f",
@@ -43,7 +79,16 @@
       "value": "程愚（高级工程师）",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-933f9428a895",
@@ -52,7 +97,16 @@
       "value": "谭念莹、李燕、陈超、周致芬、王飞、郭咏婷",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5a111cfec9f6",
@@ -61,7 +115,16 @@
       "value": "二〇一九年八月",
       "unit": "",
       "time": "2019",
-      "source": "c-de837f636aa0"
+      "source": "c-de837f636aa0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e76603e442a7",
@@ -70,7 +133,16 @@
       "value": "上海财经大学中山北一路校区大数据研究中心",
       "unit": "",
       "time": "2019",
-      "source": "c-3f9e4a26e26d"
+      "source": "c-3f9e4a26e26d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-47ae73a84dc9",
@@ -79,7 +151,16 @@
       "value": "上海财经大学",
       "unit": "",
       "time": "2019",
-      "source": "c-3f9e4a26e26d"
+      "source": "c-3f9e4a26e26d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5a334efaaea3",
@@ -88,7 +169,16 @@
       "value": "上海财经大学中山北一路校区东部",
       "unit": "",
       "time": "2019",
-      "source": "c-129c2dbdd766"
+      "source": "c-129c2dbdd766",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4299f5d02831",
@@ -97,7 +187,16 @@
       "value": "2758",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-3f5a2f4d0ca7"
+      "source": "c-3f5a2f4d0ca7",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8f432cf2e264",
@@ -112,7 +211,16 @@
         "c-52db29d351e4",
         "c-a4535feae2f8"
       ],
-      "merged_count": 4
+      "merged_count": 4,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8449f71c5773",
@@ -127,7 +235,16 @@
         "c-52db29d351e4",
         "c-57676fd556d8"
       ],
-      "merged_count": 4
+      "merged_count": 4,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8ca43cb64560",
@@ -142,7 +259,16 @@
         "c-52db29d351e4",
         "c-57676fd556d8"
       ],
-      "merged_count": 4
+      "merged_count": 4,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-51ac31b30619",
@@ -156,7 +282,16 @@
         "c-439358c3c12f",
         "c-9420f385e8f5"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-70459ce61f9b",
@@ -165,7 +300,16 @@
       "value": "11188",
       "unit": "万元",
       "time": "2019",
-      "source": "c-9420f385e8f5"
+      "source": "c-9420f385e8f5",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a831d44a85f1",
@@ -174,7 +318,16 @@
       "value": "1171",
       "unit": "万元",
       "time": "2019",
-      "source": "c-9420f385e8f5"
+      "source": "c-9420f385e8f5",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-24d5bb9ca97f",
@@ -183,7 +336,16 @@
       "value": "618",
       "unit": "万元",
       "time": "2019",
-      "source": "c-9420f385e8f5"
+      "source": "c-9420f385e8f5",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c790ee245521",
@@ -192,7 +354,16 @@
       "value": "55",
       "unit": "万元",
       "time": "2019",
-      "source": "c-9420f385e8f5"
+      "source": "c-9420f385e8f5",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2175c0aa83e6",
@@ -201,7 +372,16 @@
       "value": "国拨资金及学校自筹",
       "unit": "",
       "time": "2019",
-      "source": "c-9420f385e8f5"
+      "source": "c-9420f385e8f5",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7e2dca3b7d0c",
@@ -215,7 +395,16 @@
         "c-749cc0303bb6",
         "c-ea950cb1598c"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-802eeedef8cb",
@@ -229,7 +418,16 @@
         "c-749cc0303bb6",
         "c-ea950cb1598c"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f9ce8af03fc0",
@@ -243,7 +441,16 @@
         "c-749cc0303bb6",
         "c-ea950cb1598c"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-256337bd52c5",
@@ -252,7 +459,16 @@
       "value": "20576",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ae0e16e8ffda",
@@ -261,7 +477,16 @@
       "value": "15643",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a676855d455f",
@@ -270,7 +495,16 @@
       "value": "8006",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-834f7a185cea",
@@ -279,7 +513,16 @@
       "value": "30",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4bead401268c",
@@ -288,7 +531,16 @@
       "value": "8127",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-35745c2c896d",
@@ -297,7 +549,16 @@
       "value": "6151",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7c2ba8a26d0b",
@@ -306,7 +567,16 @@
       "value": "5631",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9fbee31a8232",
@@ -315,7 +585,16 @@
       "value": "520",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1c60e0220ade",
@@ -324,7 +603,16 @@
       "value": "1219",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6f16d28f00ad",
@@ -333,7 +621,16 @@
       "value": "757",
       "unit": "人",
       "time": "2018",
-      "source": "c-e6649218e0c0"
+      "source": "c-e6649218e0c0",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f1d5baf0c89b",
@@ -342,7 +639,16 @@
       "value": "1044",
       "unit": "人",
       "time": "2018",
-      "source": "c-f35eec1d877c"
+      "source": "c-f35eec1d877c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-19a3e510b260",
@@ -351,7 +657,16 @@
       "value": "127",
       "unit": "人",
       "time": "2018",
-      "source": "c-f35eec1d877c"
+      "source": "c-f35eec1d877c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e20265e53710",
@@ -360,7 +675,16 @@
       "value": "55",
       "unit": "人",
       "time": "2018",
-      "source": "c-f35eec1d877c"
+      "source": "c-f35eec1d877c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4e9960d6ccda",
@@ -369,7 +693,16 @@
       "value": "72",
       "unit": "人",
       "time": "2018",
-      "source": "c-f35eec1d877c"
+      "source": "c-f35eec1d877c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c394bad87430",
@@ -378,7 +711,16 @@
       "value": "826",
       "unit": "亩",
       "time": "2019",
-      "source": "c-067b6352bde6"
+      "source": "c-067b6352bde6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-85a9a5716f1d",
@@ -387,7 +729,16 @@
       "value": "3",
       "unit": "个",
       "time": "2019",
-      "source": "c-067b6352bde6"
+      "source": "c-067b6352bde6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-34f59d23f033",
@@ -396,7 +747,16 @@
       "value": "中山北一路369号",
       "unit": "",
       "time": "2019",
-      "source": "c-067b6352bde6"
+      "source": "c-067b6352bde6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e308966174c1",
@@ -405,7 +765,16 @@
       "value": "昆山路146号",
       "unit": "",
       "time": "2019",
-      "source": "c-067b6352bde6"
+      "source": "c-067b6352bde6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9814e9f0db35",
@@ -414,7 +783,16 @@
       "value": "17",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8ebe6fdf6b9a",
@@ -423,7 +801,16 @@
       "value": "8",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-84523f29f638",
@@ -432,7 +819,16 @@
       "value": "9",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d0e09bfa0818",
@@ -441,7 +837,16 @@
       "value": "15",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6fef5f8bfa13",
@@ -450,7 +855,16 @@
       "value": "13",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-254f45e2d082",
@@ -459,7 +873,16 @@
       "value": "7",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-239f7a20f877",
@@ -468,7 +891,16 @@
       "value": "1",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-57ed2116b6e9",
@@ -477,7 +909,16 @@
       "value": "4",
       "unit": "个",
       "time": "2018",
-      "source": "c-6006b1889f95"
+      "source": "c-6006b1889f95",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a3f0d71e10e5",
@@ -486,7 +927,16 @@
       "value": "拆除重建",
       "unit": "",
       "time": "2019",
-      "source": "c-e6a978691d8c"
+      "source": "c-e6a978691d8c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fa0dd79ca413",
@@ -495,7 +945,16 @@
       "value": "2018",
       "unit": "年",
       "time": "2018",
-      "source": "c-fc1be7087c63"
+      "source": "c-fc1be7087c63",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-37d514c98f96",
@@ -504,7 +963,16 @@
       "value": "87",
       "unit": "篇",
       "time": "2018",
-      "source": "c-129739dbd201"
+      "source": "c-129739dbd201",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-723bfe3fc6d2",
@@ -513,7 +981,16 @@
       "value": "39",
       "unit": "篇",
       "time": "2018",
-      "source": "c-129739dbd201"
+      "source": "c-129739dbd201",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e5f7701a892f",
@@ -522,7 +999,16 @@
       "value": "6",
       "unit": "项",
       "time": "2018",
-      "source": "c-19ef774b3e1c"
+      "source": "c-19ef774b3e1c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f97cbdbe6afe",
@@ -531,7 +1017,16 @@
       "value": "8",
       "unit": "项",
       "time": "2018",
-      "source": "c-19ef774b3e1c"
+      "source": "c-19ef774b3e1c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4ae46c29d85f",
@@ -540,7 +1035,16 @@
       "value": "11",
       "unit": "项",
       "time": "2018",
-      "source": "c-19ef774b3e1c"
+      "source": "c-19ef774b3e1c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2350885b04e2",
@@ -549,7 +1053,16 @@
       "value": "428",
       "unit": "万元",
       "time": "2018",
-      "source": "c-19ef774b3e1c"
+      "source": "c-19ef774b3e1c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9bd50795df49",
@@ -558,7 +1071,16 @@
       "value": "950",
       "unit": "人",
       "time": "2020",
-      "source": "c-2ac8aaa4a9e1"
+      "source": "c-2ac8aaa4a9e1",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-53ad5074ad4a",
@@ -567,7 +1089,16 @@
       "value": "18",
       "unit": "个",
       "time": "2020",
-      "source": "c-b5613f87479d"
+      "source": "c-b5613f87479d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ee882814713f",
@@ -576,7 +1107,16 @@
       "value": "30",
       "unit": "人",
       "time": "2020",
-      "source": "c-2ac8aaa4a9e1"
+      "source": "c-2ac8aaa4a9e1",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-85e27f0ad472",
@@ -585,7 +1125,16 @@
       "value": "东面毗邻赤峰路、南近广秀路、西近广灵一路、北至广灵二路",
       "unit": "",
       "time": "2019",
-      "source": "c-ceac393c790a"
+      "source": "c-ceac393c790a",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5780eeb6777a",
@@ -594,7 +1143,16 @@
       "value": "地面以下0.5m~1m处为耕土层，1m~5m处为粘土或亚粘土层，5m或更深为亚粘土夹砂或细砂层",
       "unit": "",
       "time": "2019",
-      "source": "c-ec5e925841ef"
+      "source": "c-ec5e925841ef",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9d7e4c2b9b50",
@@ -603,7 +1161,16 @@
       "value": "2758",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-4d8b131dacf8"
+      "source": "c-4d8b131dacf8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4752fe0c4e17",
@@ -612,7 +1179,16 @@
       "value": "上世纪六十年代",
       "unit": "",
       "time": "2019",
-      "source": "c-4d8b131dacf8"
+      "source": "c-4d8b131dacf8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f24d0d077f03",
@@ -621,7 +1197,16 @@
       "value": "拆除手续正同步进行办理中",
       "unit": "",
       "time": "2019",
-      "source": "c-4d8b131dacf8"
+      "source": "c-4d8b131dacf8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8a66c92ca8a4",
@@ -630,7 +1215,16 @@
       "value": "114~118",
       "unit": "千卡/平方厘米·年",
       "time": "2019",
-      "source": "c-3a040d14af4d"
+      "source": "c-3a040d14af4d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c44bd9bd0df3",
@@ -639,7 +1233,16 @@
       "value": "1040~1060",
       "unit": "毫米",
       "time": "2019",
-      "source": "c-3a040d14af4d"
+      "source": "c-3a040d14af4d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a55e26642db6",
@@ -648,7 +1251,16 @@
       "value": "600~640",
       "unit": "毫米",
       "time": "2019",
-      "source": "c-3a040d14af4d"
+      "source": "c-3a040d14af4d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fcd2cfa44fc4",
@@ -657,7 +1269,16 @@
       "value": "0.5~1.5",
       "unit": "米",
       "time": "2019",
-      "source": "c-7509f0d21229"
+      "source": "c-7509f0d21229",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8984af8e2bbf",
@@ -666,7 +1287,16 @@
       "value": "3000~5000",
       "unit": "吨/日",
       "time": "2019",
-      "source": "c-7509f0d21229"
+      "source": "c-7509f0d21229",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7db13fda38e0",
@@ -675,7 +1305,16 @@
       "value": "从学校原变电站引来5回路380V电源",
       "unit": "",
       "time": "2019",
-      "source": "c-0b1e344882c9"
+      "source": "c-0b1e344882c9",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6cd37976dd8f",
@@ -684,7 +1323,16 @@
       "value": "市政供水管网",
       "unit": "",
       "time": "2019",
-      "source": "c-50352f4b9d99"
+      "source": "c-50352f4b9d99",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-81e15dad5d7e",
@@ -693,7 +1341,16 @@
       "value": "室内污废合流；室外污废合流、雨污分流",
       "unit": "",
       "time": "2019",
-      "source": "c-54b04a30becc"
+      "source": "c-54b04a30becc",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c0a7fc8afdaf",
@@ -702,7 +1359,16 @@
       "value": "65",
       "unit": "人",
       "time": "2019",
-      "source": "c-223358da3e9d"
+      "source": "c-223358da3e9d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-687ac5c1dfdf",
@@ -711,7 +1377,16 @@
       "value": "300",
       "unit": "人",
       "time": "2019",
-      "source": "c-223358da3e9d"
+      "source": "c-223358da3e9d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-29c0367999ed",
@@ -720,7 +1395,16 @@
       "value": "365",
       "unit": "人",
       "time": "2019",
-      "source": "c-223358da3e9d"
+      "source": "c-223358da3e9d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0118435ab5f0",
@@ -729,7 +1413,16 @@
       "value": "60",
       "unit": "人",
       "time": "2019",
-      "source": "c-b7027573785d"
+      "source": "c-b7027573785d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1713829984c4",
@@ -738,7 +1431,16 @@
       "value": "300",
       "unit": "人",
       "time": "2019",
-      "source": "c-b7027573785d"
+      "source": "c-b7027573785d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-be54469ceabb",
@@ -747,7 +1449,16 @@
       "value": "360",
       "unit": "人",
       "time": "2019",
-      "source": "c-b7027573785d"
+      "source": "c-b7027573785d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9949f87bf2ae",
@@ -756,7 +1467,16 @@
       "value": "120",
       "unit": "人",
       "time": "2019",
-      "source": "c-9d9be0511932"
+      "source": "c-9d9be0511932",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f853aaf03baf",
@@ -765,7 +1485,16 @@
       "value": "400",
       "unit": "人",
       "time": "2019",
-      "source": "c-9d9be0511932"
+      "source": "c-9d9be0511932",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-28f623934060",
@@ -774,7 +1503,16 @@
       "value": "520",
       "unit": "人",
       "time": "2019",
-      "source": "c-9d9be0511932"
+      "source": "c-9d9be0511932",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6dcf7ef888b2",
@@ -783,7 +1521,16 @@
       "value": "70",
       "unit": "人",
       "time": "2019",
-      "source": "c-f397b7a348a5"
+      "source": "c-f397b7a348a5",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a2aedb523791",
@@ -792,7 +1539,16 @@
       "value": "350",
       "unit": "人",
       "time": "2019",
-      "source": "c-f397b7a348a5"
+      "source": "c-f397b7a348a5",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fa5b27eaf63d",
@@ -801,7 +1557,16 @@
       "value": "420",
       "unit": "人",
       "time": "2019",
-      "source": "c-f397b7a348a5"
+      "source": "c-f397b7a348a5",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d63d65ebe9a4",
@@ -810,7 +1575,16 @@
       "value": "5",
       "unit": "间",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3e141a1e1100",
@@ -819,7 +1593,16 @@
       "value": "80",
       "unit": "㎡/间",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ee95096f1d6e",
@@ -828,7 +1611,16 @@
       "value": "400",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d1cb826c6ec2",
@@ -837,7 +1629,16 @@
       "value": "1",
       "unit": "间",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3007b66b8f03",
@@ -846,7 +1647,16 @@
       "value": "60",
       "unit": "㎡/间",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fd67f30a272a",
@@ -855,7 +1665,16 @@
       "value": "70",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ba967b01a1cc",
@@ -864,7 +1683,16 @@
       "value": "150",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c6641b10b1d4",
@@ -873,7 +1701,16 @@
       "value": "2",
       "unit": "间",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-87c9bd959ddb",
@@ -882,7 +1719,16 @@
       "value": "160",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7f9fd332041d",
@@ -891,7 +1737,16 @@
       "value": "150",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fc449bc873d7",
@@ -900,7 +1755,16 @@
       "value": "120",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-116f0e1c3acf",
@@ -909,7 +1773,16 @@
       "value": "80",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a00694625be6",
@@ -918,7 +1791,16 @@
       "value": "80",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4698f7d0b38e",
@@ -927,7 +1809,16 @@
       "value": "1210",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-d8ff50ae58f4"
+      "source": "c-d8ff50ae58f4",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4f9c2807a62b",
@@ -936,7 +1827,16 @@
       "value": "0.55",
       "unit": "-",
       "time": "2019",
-      "source": "c-e0e66b6fd870"
+      "source": "c-e0e66b6fd870",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-cc781dfeeb3b",
@@ -945,7 +1845,16 @@
       "value": "2200",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-e0e66b6fd870"
+      "source": "c-e0e66b6fd870",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2820b26c3f35",
@@ -954,7 +1863,16 @@
       "value": "16",
       "unit": "㎡/人",
       "time": "2019",
-      "source": "c-79069a20782b"
+      "source": "c-79069a20782b",
+      "object_role": "指标值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-978a14b5186b",
@@ -963,7 +1881,16 @@
       "value": "8",
       "unit": "㎡/人",
       "time": "2019",
-      "source": "c-79069a20782b"
+      "source": "c-79069a20782b",
+      "object_role": "指标值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f07ab421166b",
@@ -972,7 +1899,16 @@
       "value": "315",
       "unit": "人",
       "time": "2019",
-      "source": "c-79069a20782b"
+      "source": "c-79069a20782b",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b3c95b844d02",
@@ -981,7 +1917,16 @@
       "value": "1350",
       "unit": "人",
       "time": "2019",
-      "source": "c-79069a20782b"
+      "source": "c-79069a20782b",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-bc07423e28a8",
@@ -990,7 +1935,16 @@
       "value": "1665",
       "unit": "人",
       "time": "2019",
-      "source": "c-c011c764a24d"
+      "source": "c-c011c764a24d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-49949310ec19",
@@ -999,7 +1953,16 @@
       "value": "5040",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-c011c764a24d"
+      "source": "c-c011c764a24d",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-55c9c86a5a6c",
@@ -1008,7 +1971,16 @@
       "value": "10800",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-c011c764a24d"
+      "source": "c-c011c764a24d",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7c3d781cf6f1",
@@ -1017,7 +1989,16 @@
       "value": "18040",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-79069a20782b"
+      "source": "c-79069a20782b",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-eb7b8b1d20d8",
@@ -1026,7 +2007,16 @@
       "value": "18000",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-b506cede9b46"
+      "source": "c-b506cede9b46",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7384b88f646f",
@@ -1035,7 +2025,16 @@
       "value": "40",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-b506cede9b46"
+      "source": "c-b506cede9b46",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2a335b2708af",
@@ -1044,7 +2043,16 @@
       "value": "12",
       "unit": "层",
       "time": "2019",
-      "source": "c-a4535feae2f8"
+      "source": "c-a4535feae2f8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-be7451617729",
@@ -1053,7 +2061,16 @@
       "value": "1",
       "unit": "层",
       "time": "2019",
-      "source": "c-a4535feae2f8"
+      "source": "c-a4535feae2f8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-23414ed53b65",
@@ -1062,7 +2079,16 @@
       "value": "3类",
       "unit": "",
       "time": "2019",
-      "source": "c-c6ad2c50804d"
+      "source": "c-c6ad2c50804d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-443180e0efd7",
@@ -1071,7 +2097,16 @@
       "value": "50",
       "unit": "年",
       "time": "2019",
-      "source": "c-c6ad2c50804d"
+      "source": "c-c6ad2c50804d",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-08b323fd83aa",
@@ -1080,7 +2115,16 @@
       "value": "二级",
       "unit": "",
       "time": "2019",
-      "source": "c-df1ebc3f5d4e"
+      "source": "c-df1ebc3f5d4e",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c1c4a9d66f5b",
@@ -1094,7 +2138,16 @@
         "c-1bbf63d02596",
         "c-6177b56d2c09"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f0fd96a3a38e",
@@ -1103,7 +2156,16 @@
       "value": "60",
       "unit": "m",
       "time": "2019",
-      "source": "c-352c7af31132"
+      "source": "c-352c7af31132",
+      "object_role": "控制值",
+      "domain": "unknown",
+      "caliber_direction": "上限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4605eb02d134",
@@ -1112,7 +2174,16 @@
       "value": "5",
       "unit": "米",
       "time": "2019",
-      "source": "c-0369985c4547"
+      "source": "c-0369985c4547",
+      "object_role": "推演值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-170213817af5",
@@ -1121,7 +2192,16 @@
       "value": "4",
       "unit": "米",
       "time": "2019",
-      "source": "c-0369985c4547"
+      "source": "c-0369985c4547",
+      "object_role": "推演值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e35642a4b42f",
@@ -1130,7 +2210,16 @@
       "value": "50",
       "unit": "年",
       "time": "2019",
-      "source": "c-20bd988bc554"
+      "source": "c-20bd988bc554",
+      "object_role": "设计值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2eb688971791",
@@ -1139,7 +2228,16 @@
       "value": "0.55",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-036930256da3"
+      "source": "c-036930256da3",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-70b8c5416e59",
@@ -1148,7 +2246,16 @@
       "value": "0.20",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-b712a72da18c"
+      "source": "c-b712a72da18c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e7ebf407a68f",
@@ -1157,7 +2264,16 @@
       "value": "B类",
       "unit": "",
       "time": "2019",
-      "source": "c-6c7ca103aee7"
+      "source": "c-6c7ca103aee7",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-91624f921ea8",
@@ -1166,7 +2282,16 @@
       "value": "二级",
       "unit": "",
       "time": "2019",
-      "source": "c-9a6bda6672cf"
+      "source": "c-9a6bda6672cf",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e0f3cb0c51f5",
@@ -1175,7 +2300,16 @@
       "value": "二级",
       "unit": "",
       "time": "2019",
-      "source": "c-6e1672d1f000"
+      "source": "c-6e1672d1f000",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ad4f61baf248",
@@ -1184,7 +2318,16 @@
       "value": "乙级",
       "unit": "",
       "time": "2019",
-      "source": "c-6e1672d1f000"
+      "source": "c-6e1672d1f000",
+      "object_role": "设计值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3d4cd9a6a1f8",
@@ -1193,7 +2336,16 @@
       "value": "标准设防类（丙类）",
       "unit": "",
       "time": "2019",
-      "source": "c-9d7589c4c652"
+      "source": "c-9d7589c4c652",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-64e67123ddc0",
@@ -1202,7 +2354,16 @@
       "value": "三级",
       "unit": "",
       "time": "2019",
-      "source": "c-806484d7984a"
+      "source": "c-806484d7984a",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-629089fe05c9",
@@ -1211,7 +2372,16 @@
       "value": "二级",
       "unit": "",
       "time": "2019",
-      "source": "c-806484d7984a"
+      "source": "c-806484d7984a",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0a6ab4d9cdf6",
@@ -1220,7 +2390,16 @@
       "value": "绿色建筑二星",
       "unit": "",
       "time": "2019",
-      "source": "c-2f0db31254e6"
+      "source": "c-2f0db31254e6",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b5d8de16a2a7",
@@ -1229,7 +2408,16 @@
       "value": "2.5",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-149d6d9336e4"
+      "source": "c-149d6d9336e4",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d8f1204ef1a9",
@@ -1238,7 +2426,16 @@
       "value": "4.0",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-54ff18ab0ff4"
+      "source": "c-54ff18ab0ff4",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7a09dcc73ee3",
@@ -1247,7 +2444,16 @@
       "value": "2.0",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-fad036131263"
+      "source": "c-fad036131263",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-63b071767842",
@@ -1256,7 +2462,16 @@
       "value": "2.5",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-e7960e774867"
+      "source": "c-e7960e774867",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b44117496caa",
@@ -1265,7 +2480,16 @@
       "value": "3.5",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-8a61534c364e"
+      "source": "c-8a61534c364e",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-52cbf5f50c8a",
@@ -1274,7 +2498,16 @@
       "value": "7.0",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-3ea4fcf65543"
+      "source": "c-3ea4fcf65543",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3a2fcf27bbe9",
@@ -1283,7 +2516,16 @@
       "value": "10.0",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-49f2eeaf2bb6"
+      "source": "c-49f2eeaf2bb6",
+      "object_role": "指标值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-81d066d6ec28",
@@ -1292,7 +2534,16 @@
       "value": "2.0",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-9dfd85b71455"
+      "source": "c-9dfd85b71455",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4c2e3686b75a",
@@ -1301,7 +2552,16 @@
       "value": "0.5",
       "unit": "kN/m²",
       "time": "2019",
-      "source": "c-47bb9a10d950"
+      "source": "c-47bb9a10d950",
+      "object_role": "指标值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1b1549fc44f9",
@@ -1310,7 +2570,16 @@
       "value": "1.3",
       "unit": "-",
       "time": "2019",
-      "source": "c-f747dba1bb40"
+      "source": "c-f747dba1bb40",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-25ae699e50ec",
@@ -1319,7 +2588,16 @@
       "value": "0.1",
       "unit": "g",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-68d9e0d6fc8f",
@@ -1328,7 +2606,16 @@
       "value": "第二组",
       "unit": "",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b8e4317775b7",
@@ -1337,7 +2624,16 @@
       "value": "IV类",
       "unit": "",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6f81bff4c721",
@@ -1346,7 +2642,16 @@
       "value": "0.9",
       "unit": "秒",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2a951c39f9ae",
@@ -1355,7 +2660,16 @@
       "value": "5",
       "unit": "%",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-514034bcf07b",
@@ -1364,7 +2678,16 @@
       "value": "0.08",
       "unit": "-",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-dbb9f4111022",
@@ -1373,7 +2696,16 @@
       "value": "0.5",
       "unit": "-",
       "time": "2019",
-      "source": "c-8f2dacb35c87"
+      "source": "c-8f2dacb35c87",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f08415dc191a",
@@ -1382,7 +2714,16 @@
       "value": "装配整体式钢筋混凝土框架-剪力墙结构",
       "unit": "",
       "time": "2019",
-      "source": "c-ed400c9129b8"
+      "source": "c-ed400c9129b8",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8122fb4283a7",
@@ -1391,7 +2732,16 @@
       "value": "桩筏基础",
       "unit": "",
       "time": "2019",
-      "source": "c-3d4daa4153d3"
+      "source": "c-3d4daa4153d3",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c0667d161473",
@@ -1400,7 +2750,16 @@
       "value": "不小于3.5",
       "unit": "m",
       "time": "2019",
-      "source": "c-3d4daa4153d3"
+      "source": "c-3d4daa4153d3",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5e469e239754",
@@ -1409,7 +2768,16 @@
       "value": "不小于180",
       "unit": "mm",
       "time": "2019",
-      "source": "c-81593ee480dc"
+      "source": "c-81593ee480dc",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-666b00ce7f1d",
@@ -1418,7 +2786,16 @@
       "value": "SATWE（2010版V4.3）/JCCAD",
       "unit": "",
       "time": "2019",
-      "source": "c-8090a3ade098"
+      "source": "c-8090a3ade098",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-acc0ada964eb",
@@ -1427,7 +2804,16 @@
       "value": "C20",
       "unit": "",
       "time": "2019",
-      "source": "c-c01c12731457"
+      "source": "c-c01c12731457",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-40080fc4b013",
@@ -1436,7 +2822,16 @@
       "value": "C30~C50",
       "unit": "",
       "time": "2019",
-      "source": "c-c01c12731457"
+      "source": "c-c01c12731457",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-82e94e249e8f",
@@ -1445,7 +2840,16 @@
       "value": "C30~C35",
       "unit": "",
       "time": "2019",
-      "source": "c-c01c12731457"
+      "source": "c-c01c12731457",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7e3b1c290e21",
@@ -1454,7 +2858,16 @@
       "value": "HPB300、HRB400",
       "unit": "",
       "time": "2019",
-      "source": "c-3f1ae8fee030"
+      "source": "c-3f1ae8fee030",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9a5357236ac0",
@@ -1463,7 +2876,16 @@
       "value": "Q235B、Q345B",
       "unit": "",
       "time": "2019",
-      "source": "c-db5ccbce7148"
+      "source": "c-db5ccbce7148",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5f65bf80349c",
@@ -1472,7 +2894,16 @@
       "value": "不小于40",
       "unit": "%",
       "time": "2019",
-      "source": "c-eb6f21596ea3"
+      "source": "c-eb6f21596ea3",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3f1810ee3a33",
@@ -1481,7 +2912,16 @@
       "value": "40",
       "unit": "L/生·日",
       "time": "2019",
-      "source": "c-354e031a9916"
+      "source": "c-354e031a9916",
+      "object_role": "指标值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d33295e7e784",
@@ -1490,7 +2930,16 @@
       "value": "1800",
       "unit": "人",
       "time": "2019",
-      "source": "c-354e031a9916"
+      "source": "c-354e031a9916",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f4add4e0e79a",
@@ -1499,7 +2948,16 @@
       "value": "50",
       "unit": "L/人·日",
       "time": "2019",
-      "source": "c-354e031a9916"
+      "source": "c-354e031a9916",
+      "object_role": "指标值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-932c3574e3c1",
@@ -1508,7 +2966,16 @@
       "value": "288",
       "unit": "人",
       "time": "2019",
-      "source": "c-354e031a9916"
+      "source": "c-354e031a9916",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c67295c8a345",
@@ -1517,7 +2984,16 @@
       "value": "95.04",
       "unit": "m³/d",
       "time": "2019",
-      "source": "c-2667fcd945cf"
+      "source": "c-2667fcd945cf",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "上限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-30650afc51a8",
@@ -1526,7 +3002,16 @@
       "value": "17.23",
       "unit": "m³/h",
       "time": "2019",
-      "source": "c-2667fcd945cf"
+      "source": "c-2667fcd945cf",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0372fd56d2be",
@@ -1535,7 +3020,16 @@
       "value": "10",
       "unit": "%",
       "time": "2019",
-      "source": "c-354e031a9916"
+      "source": "c-354e031a9916",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-07c3ab150860",
@@ -1544,7 +3038,16 @@
       "value": "85.54",
       "unit": "m³/d",
       "time": "2019",
-      "source": "c-406b862890ab"
+      "source": "c-406b862890ab",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "上限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-60f348145540",
@@ -1553,7 +3056,16 @@
       "value": "15.51",
       "unit": "m³/h",
       "time": "2019",
-      "source": "c-406b862890ab"
+      "source": "c-406b862890ab",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a3177065531f",
@@ -1562,7 +3074,16 @@
       "value": "40",
       "unit": "L/s",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6a9d5e15a008",
@@ -1571,7 +3092,16 @@
       "value": "288",
       "unit": "m³",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-338014cbccdd",
@@ -1585,7 +3115,16 @@
         "c-66a5ad1c99c5",
         "c-8aa08d82d0f2"
       ],
-      "merged_count": 2
+      "merged_count": 2,
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-54705a4f8686",
@@ -1594,7 +3133,16 @@
       "value": "144",
       "unit": "m³",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-afd00934e365",
@@ -1603,7 +3151,16 @@
       "value": "25",
       "unit": "L/s",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6958c266bea0",
@@ -1612,7 +3169,16 @@
       "value": "90",
       "unit": "m³",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ae0d5d610d0a",
@@ -1621,7 +3187,16 @@
       "value": "85",
       "unit": "L/s",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5e1d9ecdd02a",
@@ -1630,7 +3205,16 @@
       "value": "522",
       "unit": "m³",
       "time": "2019",
-      "source": "c-8aa08d82d0f2"
+      "source": "c-8aa08d82d0f2",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-827b158df74b",
@@ -1639,7 +3223,16 @@
       "value": "6",
       "unit": "L/min·㎡",
       "time": "2019",
-      "source": "c-cf1076e64a43"
+      "source": "c-cf1076e64a43",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0bc26894f1d0",
@@ -1648,7 +3241,16 @@
       "value": "160",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-cf1076e64a43"
+      "source": "c-cf1076e64a43",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d899ed81ebaa",
@@ -1657,7 +3259,16 @@
       "value": "21",
       "unit": "L/s",
       "time": "2019",
-      "source": "c-cf1076e64a43"
+      "source": "c-cf1076e64a43",
+      "object_role": "设计值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4e37bc3a681a",
@@ -1666,7 +3277,16 @@
       "value": "不小于18",
       "unit": "m³",
       "time": "2019",
-      "source": "c-a6e7789cf2d5"
+      "source": "c-a6e7789cf2d5",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0207f315dd4c",
@@ -1675,7 +3295,16 @@
       "value": "DN150地上式2套（消火栓）/2套（喷淋）",
       "unit": "",
       "time": "2019",
-      "source": "c-ab02f790a154"
+      "source": "c-ab02f790a154",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b8e7bf4b7c1d",
@@ -1684,7 +3313,16 @@
       "value": "45",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-100dadfa18ab"
+      "source": "c-100dadfa18ab",
+      "object_role": "指标值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-944c3d4af11d",
@@ -1693,7 +3331,16 @@
       "value": "25",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-100dadfa18ab"
+      "source": "c-100dadfa18ab",
+      "object_role": "指标值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5cb9dea74a92",
@@ -1702,7 +3349,16 @@
       "value": "952",
       "unit": "kW",
       "time": "2019",
-      "source": "c-100dadfa18ab"
+      "source": "c-100dadfa18ab",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a600fbe49b7b",
@@ -1711,7 +3367,16 @@
       "value": "5回路380V",
       "unit": "",
       "time": "2019",
-      "source": "c-209ab8347d7c"
+      "source": "c-209ab8347d7c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-de3e1ec1327c",
@@ -1720,7 +3385,16 @@
       "value": "2台1000kVA",
       "unit": "",
       "time": "2019",
-      "source": "c-d8a3ec8e85ee"
+      "source": "c-d8a3ec8e85ee",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8107f4c126d2",
@@ -1729,7 +3403,16 @@
       "value": "2台2000kVA",
       "unit": "",
       "time": "2019",
-      "source": "c-d8a3ec8e85ee"
+      "source": "c-d8a3ec8e85ee",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c2f034e89954",
@@ -1738,7 +3421,16 @@
       "value": "100",
       "unit": "m",
       "time": "2019",
-      "source": "c-209ab8347d7c"
+      "source": "c-209ab8347d7c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-416be9b34d81",
@@ -1747,7 +3439,16 @@
       "value": "二类防雷建筑",
       "unit": "",
       "time": "2019",
-      "source": "c-5f5a36ab7c15"
+      "source": "c-5f5a36ab7c15",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-60d3585c4764",
@@ -1756,7 +3457,16 @@
       "value": "小于1",
       "unit": "Ω",
       "time": "2019",
-      "source": "c-fe40d179350d"
+      "source": "c-fe40d179350d",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f7d381a33ae8",
@@ -1765,7 +3475,16 @@
       "value": "TN-S系统",
       "unit": "",
       "time": "2019",
-      "source": "c-7dba4c5af644"
+      "source": "c-7dba4c5af644",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-77ab04f9743c",
@@ -1774,7 +3493,16 @@
       "value": "7",
       "unit": "个",
       "time": "2019",
-      "source": "c-c6ae052959b1"
+      "source": "c-c6ae052959b1",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-29a98cc4f5e9",
@@ -1783,7 +3511,16 @@
       "value": "六类屏蔽线缆（STP）",
       "unit": "",
       "time": "2019",
-      "source": "c-5692fc2bd855"
+      "source": "c-5692fc2bd855",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ca1e13d551b1",
@@ -1792,7 +3529,16 @@
       "value": "31.13",
       "unit": "°",
       "time": "2019",
-      "source": "c-8dbe43e4c726"
+      "source": "c-8dbe43e4c726",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-eeb81aaca591",
@@ -1801,7 +3547,16 @@
       "value": "121.2",
       "unit": "°",
       "time": "2019",
-      "source": "c-8dbe43e4c726"
+      "source": "c-8dbe43e4c726",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-52b43033149e",
@@ -1810,7 +3565,16 @@
       "value": "2.6",
       "unit": "m",
       "time": "2019",
-      "source": "c-8dbe43e4c726"
+      "source": "c-8dbe43e4c726",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-850462868c75",
@@ -1819,7 +3583,16 @@
       "value": "34.4",
       "unit": "℃",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-90ea6bdf46f6",
@@ -1828,7 +3601,16 @@
       "value": "27.9",
       "unit": "℃",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2ec348856254",
@@ -1837,7 +3619,16 @@
       "value": "-2.2",
       "unit": "℃",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b73bc0c48cab",
@@ -1846,7 +3637,16 @@
       "value": "4.2",
       "unit": "℃",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f82a686a24f0",
@@ -1855,7 +3655,16 @@
       "value": "31.2",
       "unit": "℃",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a5b6b65364ac",
@@ -1864,7 +3673,16 @@
       "value": "100540",
       "unit": "Pa",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-24bce75cc617",
@@ -1873,7 +3691,16 @@
       "value": "102540",
       "unit": "Pa",
       "time": "2019",
-      "source": "c-4b8bc5c96c14"
+      "source": "c-4b8bc5c96c14",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5272963728f0",
@@ -1882,7 +3709,16 @@
       "value": "26",
       "unit": "℃",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-254a74541283",
@@ -1891,7 +3727,16 @@
       "value": "60",
       "unit": "%",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "上限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-242644b6a039",
@@ -1900,7 +3745,16 @@
       "value": "18",
       "unit": "℃",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7aad9b0320e0",
@@ -1909,7 +3763,16 @@
       "value": "1.5",
       "unit": "㎡/人",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-94a1eb16a470",
@@ -1918,7 +3781,16 @@
       "value": "30",
       "unit": "m³/h·P",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-acb430bb35b0",
@@ -1927,7 +3799,16 @@
       "value": "≤50",
       "unit": "dB(A)",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "环境",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-66860a375157",
@@ -1936,7 +3817,16 @@
       "value": "2",
       "unit": "㎡/人",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0a3e9c9acc83",
@@ -1945,7 +3835,16 @@
       "value": "8",
       "unit": "㎡/人",
       "time": "2019",
-      "source": "c-a43d02463116"
+      "source": "c-a43d02463116",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8ca9f3898ace",
@@ -1954,7 +3853,16 @@
       "value": "10~15",
       "unit": "h-1",
       "time": "2019",
-      "source": "c-6a36b8de406d"
+      "source": "c-6a36b8de406d",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2025492b72b4",
@@ -1963,7 +3871,16 @@
       "value": "10",
       "unit": "h-1",
       "time": "2019",
-      "source": "c-6a36b8de406d"
+      "source": "c-6a36b8de406d",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3ed027e88c59",
@@ -1972,7 +3889,16 @@
       "value": "6",
       "unit": "h-1",
       "time": "2019",
-      "source": "c-6a36b8de406d"
+      "source": "c-6a36b8de406d",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e30b2d47398d",
@@ -1981,7 +3907,16 @@
       "value": "135",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-27c9dd83b0ec"
+      "source": "c-27c9dd83b0ec",
+      "object_role": "指标值",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a7f866d690be",
@@ -1990,7 +3925,16 @@
       "value": "2473",
       "unit": "kW",
       "time": "2019",
-      "source": "c-27c9dd83b0ec"
+      "source": "c-27c9dd83b0ec",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6fde114502ac",
@@ -1999,7 +3943,16 @@
       "value": "80",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-27c9dd83b0ec"
+      "source": "c-27c9dd83b0ec",
+      "object_role": "指标值",
+      "domain": "暖通·热负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-564866270310",
@@ -2008,7 +3961,16 @@
       "value": "1465",
       "unit": "kW",
       "time": "2019",
-      "source": "c-27c9dd83b0ec"
+      "source": "c-27c9dd83b0ec",
+      "object_role": "unknown",
+      "domain": "暖通·热负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-239c8f582585",
@@ -2017,7 +3979,16 @@
       "value": "变制冷剂流量多联机系统",
       "unit": "",
       "time": "2019",
-      "source": "c-2fda396d40da"
+      "source": "c-2fda396d40da",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9d235ea5246a",
@@ -2026,7 +3997,16 @@
       "value": "22",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-95757b570de9",
@@ -2035,7 +4015,16 @@
       "value": "90",
       "unit": "kW",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6040256abb83",
@@ -2044,7 +4033,16 @@
       "value": "10",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-039cd700bce6",
@@ -2053,7 +4051,16 @@
       "value": "45",
       "unit": "kW",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5a6c23c28a1a",
@@ -2062,7 +4069,16 @@
       "value": "2",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4132dcebb00b",
@@ -2071,7 +4087,16 @@
       "value": "28",
       "unit": "kW",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a7a7a7fe459d",
@@ -2080,7 +4105,16 @@
       "value": "166",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-edc8d5efd615",
@@ -2089,7 +4123,16 @@
       "value": "6",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5f171d536786",
@@ -2098,7 +4141,16 @@
       "value": "2",
       "unit": "台",
       "time": "2019",
-      "source": "c-387f65b6c162"
+      "source": "c-387f65b6c162",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-5859db27922c",
@@ -2107,7 +4159,16 @@
       "value": "35",
       "unit": "L/人·d",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "指标值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-bf76480f8b0c",
@@ -2116,7 +4177,16 @@
       "value": "288",
       "unit": "人",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1e941f1c85b2",
@@ -2125,7 +4195,16 @@
       "value": "10.1",
       "unit": "m³/d",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-af196dccd886",
@@ -2134,7 +4213,16 @@
       "value": "40",
       "unit": "L/人·d",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "指标值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-109f219b5cdc",
@@ -2143,7 +4231,16 @@
       "value": "1800",
       "unit": "人",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4a9d5aca884a",
@@ -2152,7 +4249,16 @@
       "value": "72.0",
       "unit": "m³/d",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b1e9a58c3e61",
@@ -2161,7 +4267,16 @@
       "value": "193",
       "unit": "d",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a01b53350bb8",
@@ -2170,7 +4285,16 @@
       "value": "1.74",
       "unit": "万m³",
       "time": "2019",
-      "source": "c-303a6a09db8e"
+      "source": "c-303a6a09db8e",
+      "object_role": "unknown",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0175db4c5ff0",
@@ -2179,7 +4303,16 @@
       "value": "14883",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c8c5fd1fece2",
@@ -2188,7 +4321,16 @@
       "value": "60",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "指标值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d47bd8140fdc",
@@ -2197,7 +4339,16 @@
       "value": "0.8",
       "unit": "-",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6eb51e821197",
@@ -2206,7 +4357,16 @@
       "value": "0.6",
       "unit": "-",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-934942fb8325",
@@ -2215,7 +4375,16 @@
       "value": "2182",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-094c483c1ac2",
@@ -2224,7 +4393,16 @@
       "value": "60",
       "unit": "W/㎡",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "指标值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4aaf4c9685bf",
@@ -2233,7 +4411,16 @@
       "value": "0.6",
       "unit": "-",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "需求值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f52e2827a0e8",
@@ -2242,7 +4429,16 @@
       "value": "0.5",
       "unit": "-",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d81c8436d3ef",
@@ -2251,7 +4447,16 @@
       "value": "8",
       "unit": "h",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fbcb8688c60f",
@@ -2260,7 +4465,16 @@
       "value": "72",
       "unit": "万千瓦时",
       "time": "2019",
-      "source": "c-46385d4ae269"
+      "source": "c-46385d4ae269",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-43f27011e247",
@@ -2269,7 +4483,16 @@
       "value": "0.857",
       "unit": "tce/万m³",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 3,
+        "round_tol": 0.001
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e2fb043d4a06",
@@ -2278,7 +4501,16 @@
       "value": "1.229",
       "unit": "tce/万kW·h",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 3,
+        "round_tol": 0.001
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-97ae001309cd",
@@ -2287,7 +4519,16 @@
       "value": "90",
       "unit": "tce",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-aca1f741b579",
@@ -2296,7 +4537,16 @@
       "value": "218",
       "unit": "tce",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-fec5f42da5fb",
@@ -2305,7 +4555,16 @@
       "value": "4.91",
       "unit": "kgce/㎡",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b4f6323f3884",
@@ -2314,7 +4573,16 @@
       "value": "11.87",
       "unit": "kgce/㎡",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-27ce57f55373",
@@ -2323,7 +4591,16 @@
       "value": "39.30",
       "unit": "kW·h/㎡",
       "time": "2019",
-      "source": "c-9b17de8351af"
+      "source": "c-9b17de8351af",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ecaf889ab916",
@@ -2332,7 +4609,16 @@
       "value": "不小于10.0",
       "unit": "m",
       "time": "2019",
-      "source": "c-6dd94ba78b8f"
+      "source": "c-6dd94ba78b8f",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ac1766bae97a",
@@ -2341,7 +4627,16 @@
       "value": "不小于2.5",
       "unit": "m",
       "time": "2019",
-      "source": "c-6dd94ba78b8f"
+      "source": "c-6dd94ba78b8f",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "下限",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f95ce50dc7dd",
@@ -2350,7 +4645,16 @@
       "value": "≤70",
       "unit": "dB(A)",
       "time": "2019",
-      "source": "c-d3f7b33459d8"
+      "source": "c-d3f7b33459d8",
+      "object_role": "unknown",
+      "domain": "环境",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6f8bf452fa72",
@@ -2359,7 +4663,16 @@
       "value": "≤55",
       "unit": "dB(A)",
       "time": "2019",
-      "source": "c-d3f7b33459d8"
+      "source": "c-d3f7b33459d8",
+      "object_role": "unknown",
+      "domain": "环境",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f06e00a5f844",
@@ -2368,7 +4681,16 @@
       "value": "丙级（一般设防）",
       "unit": "",
       "time": "2019",
-      "source": "c-82d60e95db12"
+      "source": "c-82d60e95db12",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7e339ea5a706",
@@ -2377,7 +4699,16 @@
       "value": "7",
       "unit": "度",
       "time": "2019",
-      "source": "c-82d60e95db12"
+      "source": "c-82d60e95db12",
+      "object_role": "unknown",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1dff222d7986",
@@ -2386,7 +4717,16 @@
       "value": "70",
       "unit": "dB(A)",
       "time": "2019",
-      "source": "c-d3f7b33459d8"
+      "source": "c-d3f7b33459d8",
+      "object_role": "unknown",
+      "domain": "环境",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-21ac2ea6a4ab",
@@ -2395,7 +4735,16 @@
       "value": "建设领导小组—基建处—项目管理小组三级管理",
       "unit": "",
       "time": "2019",
-      "source": "c-e81b2fb16995"
+      "source": "c-e81b2fb16995",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1d9bbad66196",
@@ -2404,7 +4753,16 @@
       "value": "2019年4月-2019年10月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c810673e6119",
@@ -2413,7 +4771,16 @@
       "value": "2019年11月-2020年2月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-99e0769bc827",
@@ -2422,7 +4789,16 @@
       "value": "2020年3月-2020年5月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-303deda576f1",
@@ -2431,7 +4807,16 @@
       "value": "2020年6月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c3ad80bc3176",
@@ -2440,7 +4825,16 @@
       "value": "2020年7月-2022年5月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7c90a8639e27",
@@ -2449,7 +4843,16 @@
       "value": "2022年6月",
       "unit": "",
       "time": "2019",
-      "source": "c-c809a9cf067b"
+      "source": "c-c809a9cf067b",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-171f869338fe",
@@ -2458,7 +4861,16 @@
       "value": "上海财经大学后勤保障经费",
       "unit": "",
       "time": "2019",
-      "source": "c-4e577b7d8923"
+      "source": "c-4e577b7d8923",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1581360ae141",
@@ -2467,7 +4879,16 @@
       "value": "39",
       "unit": "万元",
       "time": "2019",
-      "source": "c-c790d7886310"
+      "source": "c-c790d7886310",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8824177763f5",
@@ -2476,7 +4897,16 @@
       "value": "336",
       "unit": "万元",
       "time": "2019",
-      "source": "c-c790d7886310"
+      "source": "c-c790d7886310",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-e60dafe57ee8",
@@ -2485,7 +4915,16 @@
       "value": "10135",
       "unit": "万元",
       "time": "2019",
-      "source": "c-c790d7886310"
+      "source": "c-c790d7886310",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c1fd26fa6765",
@@ -2494,7 +4933,16 @@
       "value": "239",
       "unit": "万元",
       "time": "2019",
-      "source": "c-c790d7886310"
+      "source": "c-c790d7886310",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7983ecf69539",
@@ -2503,7 +4951,16 @@
       "value": "公开招标、委托招标",
       "unit": "",
       "time": "2019",
-      "source": "c-4701cb3feb02"
+      "source": "c-4701cb3feb02",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c51de871596c",
@@ -2512,7 +4969,16 @@
       "value": "5",
       "unit": "%",
       "time": "2019",
-      "source": "c-cf8f0b4e2668"
+      "source": "c-cf8f0b4e2668",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-59b9d8f6d1fc",
@@ -2521,7 +4987,16 @@
       "value": "40",
       "unit": "%",
       "time": "2019",
-      "source": "c-df2093af0240"
+      "source": "c-df2093af0240",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f470a0725f92",
@@ -2530,7 +5005,16 @@
       "value": "绿色建筑二星",
       "unit": "",
       "time": "2019",
-      "source": "c-df2093af0240"
+      "source": "c-df2093af0240",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-dc49a463c8e3",
@@ -2539,7 +5023,16 @@
       "value": "办公家具、电器；用水用电增容等大市政配套费；地下障碍物清除费",
       "unit": "",
       "time": "2019",
-      "source": "c-402ccafc1d64"
+      "source": "c-402ccafc1d64",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8c646e42426a",
@@ -2548,7 +5041,16 @@
       "value": "458",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4002faaed7b8",
@@ -2557,7 +5059,16 @@
       "value": "250",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-17cad48fed94",
@@ -2566,7 +5077,16 @@
       "value": "175",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-84cd9cdd7e0d",
@@ -2575,7 +5095,16 @@
       "value": "3240",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2e9eaad1259f",
@@ -2584,7 +5113,16 @@
       "value": "810",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ad6fd08cb831",
@@ -2593,7 +5131,16 @@
       "value": "1832",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-767846c72651",
@@ -2602,7 +5149,16 @@
       "value": "1028",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0ea3008f61f9",
@@ -2611,7 +5167,16 @@
       "value": "463",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7930ab172a2a",
@@ -2620,7 +5185,16 @@
       "value": "475",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6ed5795596e9",
@@ -2629,7 +5203,16 @@
       "value": "42",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-be59b87fb79c",
@@ -2638,7 +5221,16 @@
       "value": "6",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c48958c97484",
@@ -2647,7 +5239,16 @@
       "value": "33",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7905c339c5bf",
@@ -2656,7 +5257,16 @@
       "value": "10",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "建筑·装饰",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-eabadd267940",
@@ -2665,7 +5275,16 @@
       "value": "220",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "给排水",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c5de22ac0e51",
@@ -2674,7 +5293,16 @@
       "value": "293",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c46ae5293e41",
@@ -2683,7 +5311,16 @@
       "value": "1008",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-72507f498f8c",
@@ -2692,7 +5329,16 @@
       "value": "733",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-809d541088ab",
@@ -2701,7 +5347,16 @@
       "value": "641",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d11b8963a5c2",
@@ -2710,7 +5365,16 @@
       "value": "140",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-94e433692986",
@@ -2719,7 +5383,16 @@
       "value": "19",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-565398c4826c",
@@ -2728,7 +5401,16 @@
       "value": "3",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-eaf61c336ddf",
@@ -2737,7 +5419,16 @@
       "value": "12",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d79f49630ce5",
@@ -2746,7 +5437,16 @@
       "value": "18",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2ccc0c5d1207",
@@ -2755,7 +5455,16 @@
       "value": "92",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "结构",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4b40f9539e03",
@@ -2764,7 +5473,16 @@
       "value": "220",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-63082fae08d5",
@@ -2773,7 +5491,16 @@
       "value": "7793",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f4b6e8cc3b5f",
@@ -2782,7 +5509,16 @@
       "value": "3034",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-78644662331e",
@@ -2791,7 +5527,16 @@
       "value": "10828",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a59ed4c3313a",
@@ -2800,7 +5545,16 @@
       "value": "49",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a564cd720a96",
@@ -2809,7 +5563,16 @@
       "value": "11188",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-635ce37a69fc",
@@ -2818,7 +5581,16 @@
       "value": "1171",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d27e283b73c6",
@@ -2827,7 +5599,16 @@
       "value": "618",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a4041fa32fd3",
@@ -2836,7 +5617,16 @@
       "value": "55",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-bc5af78a6b82",
@@ -2845,7 +5635,16 @@
       "value": "13032",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8dad7d339b06",
@@ -2854,7 +5653,16 @@
       "value": "170",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-52349af2e44f",
@@ -2863,7 +5671,16 @@
       "value": "38",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-349ad4d2a9d0",
@@ -2872,7 +5689,16 @@
       "value": "39",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0d30a6b44768",
@@ -2881,7 +5707,16 @@
       "value": "336",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "设计值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-236dbdb1fea6",
@@ -2890,7 +5725,16 @@
       "value": "49",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-903b0ac65f67",
@@ -2899,7 +5743,16 @@
       "value": "36",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-58f2a08d9047",
@@ -2908,7 +5761,16 @@
       "value": "239",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-9e5bfac670e5",
@@ -2917,7 +5779,16 @@
       "value": "22",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-979e5a5ddbc9",
@@ -2926,7 +5797,16 @@
       "value": "27",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-d3fb4fe652f7",
@@ -2935,7 +5815,16 @@
       "value": "56",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-31dacc87adf4",
@@ -2944,7 +5833,16 @@
       "value": "50",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "建安工程费",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a161b289c97d",
@@ -2953,7 +5851,16 @@
       "value": "108",
       "unit": "万元",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "估算值",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "unknown",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f833fd93de5e",
@@ -2962,7 +5869,16 @@
       "value": "7114",
       "unit": "元/㎡",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-257716ea5dae",
@@ -2971,7 +5887,16 @@
       "value": "6107",
       "unit": "元/㎡",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-45a10b66cf96",
@@ -2980,7 +5905,16 @@
       "value": "4",
       "unit": "部",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1b70a153d6ef",
@@ -2989,7 +5923,16 @@
       "value": "60",
       "unit": "元/㎡",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-ab884f42d239",
@@ -2998,7 +5941,16 @@
       "value": "500",
       "unit": "m",
       "time": "2019",
-      "source": "c-7226f71c0917"
+      "source": "c-7226f71c0917",
+      "object_role": "unknown",
+      "domain": "电气·电力",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0d4cc2051dfe",
@@ -3007,7 +5959,16 @@
       "value": "18219",
       "unit": "㎡",
       "time": "2019",
-      "source": "c-57676fd556d8"
+      "source": "c-57676fd556d8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-38de69880db3",
@@ -3016,7 +5977,16 @@
       "value": "6000",
       "unit": "万元",
       "time": "2019",
-      "source": "c-439358c3c12f"
+      "source": "c-439358c3c12f",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3150f017809d",
@@ -3025,7 +5995,16 @@
       "value": "46.04",
       "unit": "%",
       "time": "2019",
-      "source": "c-439358c3c12f"
+      "source": "c-439358c3c12f",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-6001107c1482",
@@ -3034,7 +6013,16 @@
       "value": "7032",
       "unit": "万元",
       "time": "2019",
-      "source": "c-439358c3c12f"
+      "source": "c-439358c3c12f",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c57d08f481b6",
@@ -3043,7 +6031,16 @@
       "value": "3",
       "unit": "年",
       "time": "2019",
-      "source": "c-439358c3c12f"
+      "source": "c-439358c3c12f",
+      "object_role": "unknown",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-00c4257df194",
@@ -3052,7 +6049,16 @@
       "value": "约2300",
       "unit": "万元",
       "time": "2019",
-      "source": "c-439358c3c12f"
+      "source": "c-439358c3c12f",
+      "object_role": "需求值",
+      "domain": "投资·费用",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c80f305bd555",
@@ -3061,7 +6067,16 @@
       "value": "373711.34",
       "unit": "万元",
       "time": "2018",
-      "source": "c-198ee2fbd3f6"
+      "source": "c-198ee2fbd3f6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-3014e5738712",
@@ -3070,7 +6085,16 @@
       "value": "9452.14",
       "unit": "万元",
       "time": "2018",
-      "source": "c-198ee2fbd3f6"
+      "source": "c-198ee2fbd3f6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-87567273f44b",
@@ -3079,7 +6103,16 @@
       "value": "364259.20",
       "unit": "万元",
       "time": "2018",
-      "source": "c-198ee2fbd3f6"
+      "source": "c-198ee2fbd3f6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-db325aa01a7a",
@@ -3088,7 +6121,16 @@
       "value": "2.53",
       "unit": "%",
       "time": "2018",
-      "source": "c-198ee2fbd3f6"
+      "source": "c-198ee2fbd3f6",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-34ee25446ee0",
@@ -3097,7 +6139,16 @@
       "value": "168206.52",
       "unit": "万元",
       "time": "2018",
-      "source": "c-20fec0ad5a29"
+      "source": "c-20fec0ad5a29",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-98278b3a0e8f",
@@ -3106,7 +6157,16 @@
       "value": "156278.08",
       "unit": "万元",
       "time": "2018",
-      "source": "c-197848094e1c"
+      "source": "c-197848094e1c",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1a424c742c02",
@@ -3115,7 +6175,16 @@
       "value": "17.25",
       "unit": "%",
       "time": "2018",
-      "source": "c-8f999fea1ec3"
+      "source": "c-8f999fea1ec3",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b506ba5e6eaa",
@@ -3124,7 +6193,16 @@
       "value": "党委常委会会议纪要；项目资金筹措方案说明；虹口校区规划总平面图；项目设计方案图纸；原有第五教学楼拆除手续（待补充）",
       "unit": "",
       "time": "2019",
-      "source": "c-f508d7cfad78"
+      "source": "c-f508d7cfad78",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-c679c4e79bc2",
@@ -3133,7 +6211,16 @@
       "value": "待补充",
       "unit": "",
       "time": "2019",
-      "source": "c-5e339feba7c8"
+      "source": "c-5e339feba7c8",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "unknown",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-30719228907b",
@@ -3146,7 +6233,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:区间取值（补全，带来源 chunk）"
+      "output_source": "extract:区间取值（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-55aa3e05c5ed",
@@ -3159,7 +6255,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:区间取值（补全，带来源 chunk）"
+      "output_source": "extract:区间取值（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-82fdaa0455c3",
@@ -3172,7 +6277,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:区间取值（补全，带来源 chunk）"
+      "output_source": "extract:区间取值（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "unknown",
+      "caliber_direction": "区间",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8d02f9ae8a4d",
@@ -3185,7 +6299,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-1d9587397bcb",
@@ -3198,7 +6321,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4374076ddf34",
@@ -3211,7 +6343,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-df515d81e9cb",
@@ -3224,7 +6365,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-af9375768f2e",
@@ -3237,7 +6387,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-dd3083092803",
@@ -3250,7 +6409,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-b481651bf919",
@@ -3263,7 +6431,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-463141dcbf28",
@@ -3276,7 +6453,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-244feb71213d",
@@ -3289,7 +6475,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-a0ace6243ce5",
@@ -3302,7 +6497,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-055c7d09d904",
@@ -3315,7 +6519,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·热负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-eeff8343fa13",
@@ -3328,7 +6541,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 3,
+        "round_tol": 0.001
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-7faa8e256de2",
@@ -3341,7 +6563,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-35eaad289352",
@@ -3354,7 +6585,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·热负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-0b63011a5c65",
@@ -3367,7 +6607,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·通风",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 2,
+        "round_tol": 0.01
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-4047ca6fa11f",
@@ -3380,7 +6629,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-8f2e80943355",
@@ -3393,7 +6651,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f444e6da208c",
@@ -3406,7 +6673,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-bfc75e3ac877",
@@ -3419,7 +6695,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-2e0dbce3a431",
@@ -3432,7 +6717,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 1,
+        "round_tol": 0.1
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-263034bea88d",
@@ -3445,7 +6739,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f7e60701f297",
@@ -3458,7 +6761,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-498dd3aba97e",
@@ -3471,7 +6783,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+      "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+      "object_role": "unknown",
+      "domain": "暖通·冷负荷",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     },
     {
       "id": "N-f9be7868ad60",
@@ -3484,7 +6805,16 @@
       "kind": "quantity",
       "status": "defined",
       "section": "",
-      "output_source": "extract:原文明写（补全，带来源 chunk）"
+      "output_source": "extract:原文明写（补全，带来源 chunk）",
+      "object_role": "需求值",
+      "domain": "投资·费用",
+      "caliber_direction": "等于",
+      "hierarchy_path": "不适用",
+      "precision": {
+        "decimals": 0,
+        "round_tol": 0.5
+      },
+      "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
     }
   ],
   "rules": [

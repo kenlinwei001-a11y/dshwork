@@ -1,0 +1,32 @@
+{
+  "stage": "s6d",
+  "depends_on": [
+    "s6i"
+  ],
+  "per_dep": [
+    {
+      "dep": "s6i",
+      "A": 1,
+      "B": 1,
+      "C": 0,
+      "SOP_patterns": 1,
+      "diffs": 0,
+      "ent_id": "s6i",
+      "ent_outputs": [
+        "waivers.yaml"
+      ],
+      "impl": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/build/handover.py",
+      "ver": "v4-20261014"
+    }
+  ],
+  "diffs": [],
+  "diff_count": 0,
+  "gate": "CONFIRMED",
+  "rule": "逐依赖四元交叉：A 上游自报 / B 下游对上游产物独立清点 / C 产物自述 / SOP 契约",
+  "C_compared": true,
+  "C_checks": [
+    "自述状态 vs 门禁结论",
+    "自述计数 vs 实际记录数"
+  ],
+  "generated_at": "2026-10-14T20:15:32"
+}

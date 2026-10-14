@@ -165,3 +165,29 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 - `references/historical-asset-reuse.md` — 写新项目时复用历史语料资产（library_* MCP 工具 + 借形不借值）。
 - `references/worked-example.md` — PX-2026-001 完整端到端示例。
 - `assets/report-outline.md` — 推演式分析报告骨架模板。
+
+<!-- kp-patch:v1 -->
+### 返回契约（v1 增补字段）
+
+原契约 4 个字段保留，**增补 1 个必填字段**：
+
+    draft_md:           正文 Markdown；数值一律写 {{node:N-xxxxxxxxxxxx}}（含 node: 前缀）
+    node_mentions:      [{node_id, char_span, form}]
+    new_claims:         [{text, supports[], evidence[]}]
+    unresolved:         [{what, why, need_from_client}]
+    unreferenced_nodes: [{node_id, reason}]    # ← 新增，必填
+
+**`unreferenced_nodes.reason` 只能取自固定枚举**（不得自由文本）：
+
+| reason | 含义 |
+|--------|------|
+| `可省略·明细类` | 设备铭牌参数、财务明细等，按可研深度裁剪 |
+| `有意留白·undefined` | 依赖缺失，正文已按 instruction 写定性措辞 |
+| `有意并列·冲突项` | 数值冲突，已以「⚠ 待审」并列呈现 |
+| `跨章已引` | 在本报告其它章节已引用 |
+| `漏引` | **不应出现**；出现即视为装配缺陷 |
+
+**为什么必须填**：门禁 C6/K10 用「defined 且非明细节点 → 成稿引用率 ≥ 95%」判定装配完整性。
+没有这张表，机器无法区分「有意省略」与「漏了」——
+本项目的实测是 12 个未引用节点中有 3 个是**真漏引**（表格里的数字被散文概括掉了）。
+

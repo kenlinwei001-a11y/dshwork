@@ -1,0 +1,17 @@
+{
+  "stage": "s7o",
+  "script": "calibrate_handover_c.py",
+  "exit_code": 0,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/calibration_handover_c.json"
+  ],
+  "produced": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+      "sha256": "25951c21dbd209b2d25d17b2f461823f",
+      "bytes": 687
+    }
+  ],
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
+}

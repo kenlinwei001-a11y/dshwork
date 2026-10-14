@@ -1,0 +1,10 @@
+{
+  "stage": "s5f",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/chunks/sentences.jsonl": {
+      "records": 1923
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

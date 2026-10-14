@@ -1,0 +1,95 @@
+{
+  "stage": "s6g",
+  "scope": "within_stage",
+  "SOP_patterns": 2,
+  "A": 0,
+  "diff_kinds": [
+    "A_missing_self_report",
+    "B_not_in_SOP"
+  ],
+  "B": 14,
+  "C": 2,
+  "independence": {
+    "ok": false,
+    "reason": "清单不足三份（2）⇒ 四元不成立",
+    "tags": [
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "A_missing_self_report",
+      "path": "s6g",
+      "meaning": "环节未写自报文件 ⇒ 内部四元不成立（判 invalid，不判 pass）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/evidence.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/external/effective_dates.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/claims.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/quality/conflicts.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    }
+  ],
+  "diff_count": 14,
+  "gate": "INVALID",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid"
+}

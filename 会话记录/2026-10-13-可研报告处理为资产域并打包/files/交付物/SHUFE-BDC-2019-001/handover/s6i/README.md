@@ -1,6 +1,6 @@
 # 环节 s6i 交接说明（README）
 
-- 脚本：`fix34_blockers.py`　退出码：0　耗时：0.18s
+- 脚本：`fix34_blockers.py`　退出码：0　耗时：0.14s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

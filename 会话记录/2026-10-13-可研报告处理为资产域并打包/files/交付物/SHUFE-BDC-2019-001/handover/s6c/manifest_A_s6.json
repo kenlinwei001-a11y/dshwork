@@ -9,89 +9,90 @@
   "produced": [
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
-      "sha256": "79736f9808b017e077bb1903e6fe1674",
+      "sha256": "4fbbef8a84ce013be7c6e652243ad388",
       "bytes": 54955
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",
-      "sha256": "7413717281816da091a3bfddfd5c67dd",
-      "bytes": 8029
+      "sha256": "51e5afcaf557e37695444d13873a0d97",
+      "bytes": 8030
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/02-argument_chain.yaml",
-      "sha256": "0f3442c991181bbc58785657b39955c7",
-      "bytes": 7501
+      "sha256": "e8cbe3449cd59d26d87657f47abdb49c",
+      "bytes": 7502
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/03-scenario.yaml",
-      "sha256": "71c1573a9bec16a35254babbc71e3845",
-      "bytes": 10559
+      "sha256": "9348ea66193aa2baa0922ecbbee46d48",
+      "bytes": 10560
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/04-variable.yaml",
-      "sha256": "24374182a38b788a76fa28a0fdb35bdc",
-      "bytes": 14849
+      "sha256": "95a9cc1dba743b005984204990521b6e",
+      "bytes": 14459
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/05-task_dag.yaml",
-      "sha256": "d0596e6d3112c10259cd8414702db16f",
-      "bytes": 4820
+      "sha256": "a1596a7ac37a91c35b2548974979371d",
+      "bytes": 4821
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/06-function.yaml",
-      "sha256": "ebde9e3b681e2f89d2cb28eeda475e37",
-      "bytes": 7974
+      "sha256": "1a78abcc6c75131d2d935b98be926d4c",
+      "bytes": 7975
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/07-rule.yaml",
-      "sha256": "721a886062c8f4657e19910dc5f40df5",
-      "bytes": 8086
+      "sha256": "4cf05050e52b46cb7e5d1ea0066ad80d",
+      "bytes": 7845
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/08-invariant.yaml",
-      "sha256": "fad2f02ade615cf3000f69cb6d9d6e8c",
-      "bytes": 14830
+      "sha256": "8455cee2f28736403c2c007efd34303e",
+      "bytes": 14831
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/09-skill.yaml",
-      "sha256": "b3794ef694665039ef306f682cec49f1",
-      "bytes": 5962
+      "sha256": "67b83b0aa65782ca58c079831152d623",
+      "bytes": 5963
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/10-report_structure.yaml",
-      "sha256": "7ce3522dfddbf40547c58c94ad479fdb",
-      "bytes": 6138
+      "sha256": "d2e03de7b02c8c4afef0aa4ef9c166a3",
+      "bytes": 6139
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/11-report_form.yaml",
-      "sha256": "6425d3ae6cb22cf090a4253e9f37d961",
-      "bytes": 6475
+      "sha256": "74ce9490020ecb1af54df77c3b0b5dc6",
+      "bytes": 6476
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/12-prompt.yaml",
-      "sha256": "41a4eda084b2912d797c3e6f0fa823db",
-      "bytes": 4789
+      "sha256": "d4a7fd5c05a53b861ebb56db44345cca",
+      "bytes": 4790
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/13-quality_gate.yaml",
-      "sha256": "c96bec652639bf0453a483f93e442d5a",
-      "bytes": 17276
+      "sha256": "d29832f988710627acd323a492442d92",
+      "bytes": 17074
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/14-reuse_strategy.yaml",
-      "sha256": "b746cbf8b81c2833b9569bfde0864877",
-      "bytes": 9805
+      "sha256": "91cf43f8f7934e94a11bbaf627fa7f5c",
+      "bytes": 9806
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/15-entity_relation.yaml",
-      "sha256": "5b4c53490752bf626c207de61c4456fe",
-      "bytes": 5481
+      "sha256": "0751dcaadabd630a6083124c8288c53a",
+      "bytes": 5482
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/domains/16-cost_risk.yaml",
-      "sha256": "98b98768a8f2594e46445f4530558133",
-      "bytes": 9326
+      "sha256": "8b97e6796ab3ee427e3d1a3e4c2214b3",
+      "bytes": 9126
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

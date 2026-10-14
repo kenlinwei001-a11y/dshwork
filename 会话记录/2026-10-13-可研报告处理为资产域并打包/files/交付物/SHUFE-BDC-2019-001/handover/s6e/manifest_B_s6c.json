@@ -1,0 +1,51 @@
+{
+  "stage": "s6c",
+  "patterns": [
+    "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+    "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "pattern": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
+      "bytes": 53915,
+      "sha256": "72b7f1227d97eccde5ce224d5c5ba64e",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "reuse_scope",
+          "reuse_scope_note",
+          "note",
+          "common",
+          "families",
+          "chapter_to_family",
+          "sections",
+          "usage"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "pattern": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
+      "bytes": 7182,
+      "sha256": "72bfff2cf23db53378fc22dab6bae045",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "id",
+          "core_domain",
+          "corpus_id",
+          "version",
+          "status",
+          "asset_origin",
+          "is_canonical_domain",
+          "contract_note"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

@@ -1,0 +1,2611 @@
+{
+  "stage": "s3",
+  "scope": "within_stage",
+  "SOP_patterns": 5,
+  "A": 0,
+  "diff_kinds": [
+    "A_missing_self_report",
+    "B_not_in_SOP"
+  ],
+  "B": 521,
+  "C": 8,
+  "independence": {
+    "ok": false,
+    "reason": "清单不足三份（2）⇒ 四元不成立",
+    "tags": [
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "A_missing_self_report",
+      "path": "s3",
+      "meaning": "环节未写自报文件 ⇒ 内部四元不成立（判 invalid，不判 pass）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/evidence.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-00c4257df194.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0118435ab5f0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0175db4c5ff0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0207f315dd4c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0372fd56d2be.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-039cd700bce6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-043715904e92.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-07c3ab150860.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-08b323fd83aa.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-094c483c1ac2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0a3e9c9acc83.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0a6ab4d9cdf6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0bc26894f1d0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0d30a6b44768.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0d4cc2051dfe.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-0ea3008f61f9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-109f219b5cdc.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-116f0e1c3acf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1349678c3c0f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1581360ae141.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-170213817af5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1713829984c4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-171f869338fe.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-17cad48fed94.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-19a3e510b260.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1a424c742c02.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1b1549fc44f9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1b70a153d6ef.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1c60e0220ade.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1d9bbad66196.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1dff222d7986.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-1e941f1c85b2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2025492b72b4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2175c0aa83e6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-21ac2ea6a4ab.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-23414ed53b65.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2350885b04e2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-236dbdb1fea6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-239c8f582585.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-239f7a20f877.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-242644b6a039.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-24bce75cc617.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-24d5bb9ca97f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-254a74541283.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-254f45e2d082.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-256337bd52c5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-257716ea5dae.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-25ae699e50ec.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-27ce57f55373.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2820b26c3f35.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-28f623934060.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-29a98cc4f5e9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-29c0367999ed.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2a335b2708af.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2a951c39f9ae.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2ccc0c5d1207.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2e9eaad1259f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2eb688971791.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-2ec348856254.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3007b66b8f03.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3014e5738712.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-303deda576f1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-30650afc51a8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3150f017809d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-31dacc87adf4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-338014cbccdd.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-349ad4d2a9d0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-34ee25446ee0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-34f59d23f033.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-35745c2c896d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-37d514c98f96.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-38de69880db3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3a2fcf27bbe9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3d4cd9a6a1f8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3e141a1e1100.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3ed027e88c59.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-3f1810ee3a33.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4002faaed7b8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-40080fc4b013.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4132dcebb00b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-416be9b34d81.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4299f5d02831.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-43f27011e247.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-443180e0efd7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-45a10b66cf96.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4605eb02d134.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4698f7d0b38e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4752fe0c4e17.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-47ae73a84dc9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-49949310ec19.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4a9d5aca884a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4aaf4c9685bf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4ae46c29d85f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4b40f9539e03.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4bead401268c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4c2e3686b75a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4e37bc3a681a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4e9960d6ccda.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-4f9c2807a62b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-514034bcf07b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-51ac31b30619.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-52349af2e44f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5272963728f0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-52b43033149e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-52cbf5f50c8a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-53ad5074ad4a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-54705a4f8686.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-55c9c86a5a6c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-564866270310.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-565398c4826c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5780eeb6777a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-57ed2116b6e9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5859db27922c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-58f2a08d9047.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-59b9d8f6d1fc.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5a111cfec9f6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5a334efaaea3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5a6c23c28a1a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5cb9dea74a92.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5e1d9ecdd02a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5e469e239754.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5f171d536786.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-5f65bf80349c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6001107c1482.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6040256abb83.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-60d3585c4764.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-60f348145540.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-61c229a9d6b7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-629089fe05c9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-63082fae08d5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-635ce37a69fc.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-63b071767842.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-64e67123ddc0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-666b00ce7f1d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-66860a375157.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-687ac5c1dfdf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-68d9e0d6fc8f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6958c266bea0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6a9d5e15a008.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6cd37976dd8f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6dcf7ef888b2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6eb51e821197.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6ed5795596e9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6f16d28f00ad.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6f81bff4c721.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6f8bf452fa72.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6fde114502ac.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-6fef5f8bfa13.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-70459ce61f9b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-70b8c5416e59.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-723bfe3fc6d2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-72507f498f8c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7384b88f646f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-767846c72651.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-77ab04f9743c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-78644662331e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7905c339c5bf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7930ab172a2a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7983ecf69539.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7a09dcc73ee3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7aad9b0320e0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7c2ba8a26d0b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7c3d781cf6f1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7c90a8639e27.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7db13fda38e0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7e2dca3b7d0c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7e339ea5a706.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7e3b1c290e21.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-7f9fd332041d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-802eeedef8cb.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-809d541088ab.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8107f4c126d2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8122fb4283a7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-81d066d6ec28.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-81e15dad5d7e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-827b158df74b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-82e94e249e8f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-834f7a185cea.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8449f71c5773.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-84523f29f638.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-84cd9cdd7e0d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-850462868c75.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-85a9a5716f1d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-85e27f0ad472.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-87567273f44b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-87c9bd959ddb.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8824177763f5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8984af8e2bbf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8a66c92ca8a4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8c646e42426a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8ca43cb64560.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8ca9f3898ace.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8dad7d339b06.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8ebe6fdf6b9a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-8f432cf2e264.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-903b0ac65f67.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-90ea6bdf46f6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-91624f921ea8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-924bfe9e84e1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-932c3574e3c1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-933f9428a895.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-934942fb8325.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-944c3d4af11d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-94a1eb16a470.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-94e433692986.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-95757b570de9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-978a14b5186b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-979e5a5ddbc9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-97ae001309cd.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9814e9f0db35.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-98278b3a0e8f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9949f87bf2ae.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-99e0769bc827.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9a5357236ac0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9bd50795df49.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9d235ea5246a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9d7e4c2b9b50.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9e5bfac670e5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-9fbee31a8232.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a00694625be6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a01b53350bb8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a161b289c97d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a2aedb523791.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a3177065531f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a3f0d71e10e5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a401574f2a5a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a4041fa32fd3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a55e26642db6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a564cd720a96.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a59ed4c3313a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a5b6b65364ac.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a600fbe49b7b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a676855d455f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a7a7a7fe459d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a7f866d690be.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-a831d44a85f1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ab884f42d239.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ac1766bae97a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-aca1f741b579.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-acb430bb35b0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-acc0ada964eb.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ad4f61baf248.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ad6fd08cb831.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ae0d5d610d0a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ae0e16e8ffda.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-af196dccd886.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-afd00934e365.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b1e9a58c3e61.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b3c95b844d02.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b44117496caa.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b4f6323f3884.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b506ba5e6eaa.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b5d8de16a2a7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b73bc0c48cab.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b8e4317775b7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-b8e7bf4b7c1d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ba967b01a1cc.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-bc07423e28a8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-bc5af78a6b82.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-be54469ceabb.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-be59b87fb79c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-be7451617729.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-bf76480f8b0c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c0667d161473.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c0a7fc8afdaf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c1c4a9d66f5b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c1fd26fa6765.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c2f034e89954.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c394bad87430.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c3ad80bc3176.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c44bd9bd0df3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c46ae5293e41.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c48958c97484.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c51de871596c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c57d08f481b6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c5de22ac0e51.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c6641b10b1d4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c67295c8a345.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c679c4e79bc2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c790ee245521.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c80f305bd555.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c810673e6119.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-c8c5fd1fece2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ca1e13d551b1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-cc781dfeeb3b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d0e09bfa0818.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d11b8963a5c2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d1cb826c6ec2.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d27e283b73c6.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d33295e7e784.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d3fb4fe652f7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d47bd8140fdc.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d63d65ebe9a4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d79f49630ce5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d81c8436d3ef.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d899ed81ebaa.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-d8f1204ef1a9.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-db325aa01a7a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-dbb9f4111022.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-dc49a463c8e3.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-de3e1ec1327c.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e0f3cb0c51f5.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e20265e53710.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e2fb043d4a06.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e308966174c1.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e30b2d47398d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e35642a4b42f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e5f7701a892f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e60dafe57ee8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e76603e442a7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-e7ebf407a68f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-eabadd267940.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-eaf61c336ddf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-eb7b8b1d20d8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ecaf889ab916.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-edc8d5efd615.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ee882814713f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-ee95096f1d6e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-eeb81aaca591.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f06e00a5f844.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f07ab421166b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f08415dc191a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f0fd96a3a38e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f1d5baf0c89b.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f24d0d077f03.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f470a0725f92.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f4add4e0e79a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f4b6e8cc3b5f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f52e2827a0e8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f7d381a33ae8.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f82a686a24f0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f833fd93de5e.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f853aaf03baf.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f95ce50dc7dd.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f97cbdbe6afe.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-f9ce8af03fc0.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fa0dd79ca413.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fa5b27eaf63d.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fbcb8688c60f.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fc449bc873d7.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fcd2cfa44fc4.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fd67f30a272a.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/evidence/excerpts/ev-N-fec5f42da5fb.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/claims.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/invariants.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/relations.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/graph/rules.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/index/node_index.json",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/index/signature.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/index/term_index.json",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/meta.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/outline.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/provenance.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/quality/conflicts.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/quality/gaps.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/quality/gate_report.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reasoning/decisions.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reasoning/derivation.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/reuse/domains.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/source/normalized.md",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/source/offset_map.json",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/01-总论.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/02-项目概况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/03-研究内容和编制依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/04-技术经济指标.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/05-结论及建议.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/06-学校简介.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/07-历史沿革.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/08-学科体系.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/09-办学特色.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/10-办学规模.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/100-给排水节能措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/101-节能效果分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/102-环境影响评价.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/103-环境影响评价标准.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/104-生态环境影响分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/105-施工期环境影响分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/106-运营期环境影响分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/107-生态环境保护措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/108-施工期环境保护措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/109-运营期环境保护措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/11-教职工情况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/110-环境影响评价结论及建议.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/111-卫生防疫与劳动安全.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/112-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/113-劳动安全.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/114-施工期危害因素分析及防范措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/115-运营期危害因素分析及防范措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/116-卫生防疫.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/117-施工期卫生防疫.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/118-运营期卫生防疫.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/119-结论及建议.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/12-校区分划.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/120-社会稳定风险分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/121-编制依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/122-风险调查.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/123-风险识别和估计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/124-风险防范和化解措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/125-项目风险等级评判.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/126-评判标准.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/127-等级判断.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/128-风险分析结论.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/129-项目管理及实施进度.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/13-项目建设背景及必要性分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/130-项目组织管理框架.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/131-项目实施过程管理.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/132-项目运营期管理.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/133-实施进度.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/134-项目招投标方案.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/135-编制依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/136-招标范围.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/137-招标组织形式.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/138-招标方式.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/139-投资估算及资金筹措.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/14-项目提出的背景.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/140-估算依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/141-估算说明.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/142-投资估算.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/143-资金筹措.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/144-学校财务状况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/145-项目资金筹措方案.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/146-社会效益.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/147-为学校建设成具有鲜明财经特色的高水平研究型大学做好基建保障.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/148-有利于提升学科科研水平，促进相关学科的快速发展.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/149-有利于优化校园环境，提升上海财经大学校园形象.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/15-大数据研究的战略意义.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/150-结论与建议.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/151-附件.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/16-学校整体发展目标.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/17-各校区规划及定位.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/18-学校“双一流”建设情况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/19-统计与管理学院发展概况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/20-本项目的提出.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/21-项目建设的必要性.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/22-提升我国新兴领域科研水平，加速向创新型经济转型发展的需要.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/23-推进上海大数据研究与发展，加快建设数字中国的需要.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/24-改善中山北一路校区设施条件，建立良好科研环境的需要.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/25-响应“双一流”高校建设，实现高水平研究型大学战略目标的需要.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/26-项目选址及建设条件.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/27-项目选址.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/28-建设条件分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/29-自然条件.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/30-外部配套条件.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/31-项目建设内容及规模.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/32-管理科学与量化信息研究中心.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/33-理论计算机研究中心.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/34-应用统计研究中心.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/35-数据科研与统计研究院.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/36-公共服务配套用房.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/37-规模分析小结.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/38-项目规划设计方案.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/39-设计总说明.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/40-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/41-设计规模和范围.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/42-主要技术指标.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/43-建筑设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/44-方案总体构思及理念.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/45-总体设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/46-交通组织.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/47-平面布局.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/48-建筑形态.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/49-景观系统设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/50-无障碍设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/51-结构设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/52-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/53-建筑分类等级.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/54-主要荷载取值.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/55-结构形式及基础设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/56-结构材料.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/57-装配率及典型节点.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/58-给排水设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/59-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/60-设计内容和范围.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/61-室外给水排水工程.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/62-室内给水排水设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/63-主要设备材料.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/64-强电设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/65-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/66-负荷估算.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/67-供、配、发电系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/68-照明设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/69-火灾自动报警系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/70-防雷接地及保安措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/71-弱电设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/72-设计内容.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/73-数据／语音通信系统与综合布线系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/74-安全防范系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/75-校园公共广播与应急广播系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/76-有线电视系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/77-会议与扩声系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/78-多媒体科研系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/79-电子信息系统防浪涌保护设施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/80-室外管线.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/81-暖通设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/82-设计依据.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/83-设计计算参数.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/84-空调系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/85-通风系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/86-消防系统.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/87-自动控制.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/88-主要材料.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/89-主要设备.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/90-节能设计.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/91-用能标准和节能规范.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/92-能耗状况和能耗指标分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/93-能耗种类及供应情况.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/94-各类能耗指标计算.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/95-能耗指标分析.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/96-节能措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/97-建筑节能措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/98-电气节能措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/section_templates/99-暖通节能措施.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/style/style_profile.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    }
+  ],
+  "diff_count": 517,
+  "gate": "INVALID",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid",
+  "generated_at": "2026-10-14T20:13:58"
+}

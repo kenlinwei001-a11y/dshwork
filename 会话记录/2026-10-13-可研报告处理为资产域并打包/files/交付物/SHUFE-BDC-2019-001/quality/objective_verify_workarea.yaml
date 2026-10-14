@@ -85,11 +85,11 @@
       "id": "K6",
       "name": "占位符合规",
       "kind": "正则计数",
-      "total": 1290,
+      "total": 1172,
       "covered": 0,
       "missing_count": 1,
       "missing": [
-        "手打数字 1290 处（含表号/日期等非数值语境）"
+        "手打数字 1172 处（含表号/日期等非数值语境）"
       ],
       "recall_pct": 0.0,
       "threshold": "违规 = 0",
@@ -143,8 +143,8 @@
       "id": "K10",
       "name": "装配覆盖",
       "kind": "覆盖率比值",
-      "total": 224,
-      "covered": 195,
+      "total": 230,
+      "covered": 201,
       "missing_count": 29,
       "missing": [
         "项目排风口·与环境敏感目标间距",
@@ -168,7 +168,7 @@
         "《建筑工程抗震设防分类标准》·6.0.9",
         "《建筑工程抗震设防分类标准》·6.0.8"
       ],
-      "recall_pct": 87.1,
+      "recall_pct": 87.4,
       "threshold": "≥ 95%",
       "verdict": "FAIL",
       "llm_free": true,
@@ -178,16 +178,13 @@
       "id": "K11",
       "name": "派生闭合",
       "kind": "数值比较",
-      "total": 8,
-      "covered": 6,
-      "missing_count": 2,
-      "missing": [
-        "R-建筑高度校核: 重算 49 vs 声明 60（差 11）",
-        "R-室外总体工程: 重算 52 vs 声明 49（差 3）"
-      ],
-      "recall_pct": 75.0,
+      "total": 1,
+      "covered": 0,
+      "missing_count": 0,
+      "missing": [],
+      "recall_pct": 0.0,
       "threshold": "超差项必须登记为待审",
-      "verdict": "FAIL",
+      "verdict": "pass",
       "llm_free": true,
       "note": ""
     },

@@ -1,0 +1,25 @@
+{
+  "stage": "s7h",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/stage_gates_workarea.yaml",
+      "bytes": 3761,
+      "sha256": "1595b2ff4889cc48ff728fd8fc5164dc",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "policy",
+          "gates"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

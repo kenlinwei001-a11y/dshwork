@@ -8,9 +8,9 @@
   "script_sha256": "78804e6f199ff7f2777c8d6bfe7310bb",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:50",
-  "finished_at": "2026-10-14T18:05:50",
-  "elapsed_s": 0.33,
+  "started_at": "2026-10-14T20:14:40",
+  "finished_at": "2026-10-14T20:14:40",
+  "elapsed_s": 0.29,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/documents.yaml",
     "SHUFE-BDC-2019-001/quality/external_merge_report.yaml"
@@ -21,14 +21,14 @@
       "pattern": "SHUFE-BDC-2019-001/documents.yaml",
       "bytes": 9129,
       "sha256": "6886370bd94184bd4a729e2fda750837",
-      "mtime": 1791972350
+      "mtime": 1791980080
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
       "bytes": 312,
       "sha256": "e97cc0562c171f30554ca662b68841a4",
-      "mtime": 1791972350
+      "mtime": 1791980080
     }
   ],
   "outputs_missing": [],
@@ -63,10 +63,12 @@
     "SHUFE-BDC-2019-001/graph/nodes.yaml",
     "SHUFE-BDC-2019-001/handover/s5e/README.md",
     "SHUFE-BDC-2019-001/handover/s5e/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s5e2/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5e/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s5e/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/gate.json",
     "SHUFE-BDC-2019-001/handover/s5e2/manifest_A_s5e.json",
-    "SHUFE-BDC-2019-001/handover/s5e2/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s5e2/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/manifest_B_s5e.json",
+    "SHUFE-BDC-2019-001/handover/s5e2/manifest_C_s5e.json",
     "SHUFE-BDC-2019-001/quality/external_merge_report.yaml",
     "SHUFE-BDC-2019-001/quality/run_record/s5e.json"
   ],

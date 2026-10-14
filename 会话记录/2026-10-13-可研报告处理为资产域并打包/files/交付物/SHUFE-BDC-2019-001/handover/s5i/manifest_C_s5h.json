@@ -1,0 +1,133 @@
+{
+  "stage": "s5h",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.claim_extraction.jsonl": {
+      "records": 1178
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/DOC-REPORT-01.fact_extraction.jsonl": {
+      "records": 1178
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.claim_extraction.jsonl": {
+      "records": 14
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-00.fact_extraction.jsonl": {
+      "records": 14
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.claim_extraction.jsonl": {
+      "records": 144
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-01.fact_extraction.jsonl": {
+      "records": 144
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.claim_extraction.jsonl": {
+      "records": 15
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-02.fact_extraction.jsonl": {
+      "records": 15
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.claim_extraction.jsonl": {
+      "records": 200
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-03.fact_extraction.jsonl": {
+      "records": 200
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.claim_extraction.jsonl": {
+      "records": 56
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-04.fact_extraction.jsonl": {
+      "records": 56
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.claim_extraction.jsonl": {
+      "records": 63
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-05.fact_extraction.jsonl": {
+      "records": 63
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.claim_extraction.jsonl": {
+      "records": 39
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-06.fact_extraction.jsonl": {
+      "records": 39
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.claim_extraction.jsonl": {
+      "records": 5
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-07.fact_extraction.jsonl": {
+      "records": 5
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.claim_extraction.jsonl": {
+      "records": 38
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-08.fact_extraction.jsonl": {
+      "records": 38
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.claim_extraction.jsonl": {
+      "records": 91
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-09.fact_extraction.jsonl": {
+      "records": 91
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.claim_extraction.jsonl": {
+      "records": 30
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-10.fact_extraction.jsonl": {
+      "records": 30
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.claim_extraction.jsonl": {
+      "records": 156
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-11.fact_extraction.jsonl": {
+      "records": 156
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.claim_extraction.jsonl": {
+      "records": 5
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-12.fact_extraction.jsonl": {
+      "records": 5
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.claim_extraction.jsonl": {
+      "records": 4
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-13.fact_extraction.jsonl": {
+      "records": 4
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.claim_extraction.jsonl": {
+      "records": 12
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-14.fact_extraction.jsonl": {
+      "records": 12
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.claim_extraction.jsonl": {
+      "records": 3
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-15.fact_extraction.jsonl": {
+      "records": 3
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.claim_extraction.jsonl": {
+      "records": 7
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-16.fact_extraction.jsonl": {
+      "records": 7
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.claim_extraction.jsonl": {
+      "records": 3
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-17.fact_extraction.jsonl": {
+      "records": 3
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.claim_extraction.jsonl": {
+      "records": 1
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-18.fact_extraction.jsonl": {
+      "records": 1
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.claim_extraction.jsonl": {
+      "records": 65
+    },
+    "SHUFE-BDC-2019-001/quality/extraction_runs/EXT-19.fact_extraction.jsonl": {
+      "records": 65
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

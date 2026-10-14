@@ -1,0 +1,66 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s7o",
+  "name": "探针标定：环节间 C 比对（未标定不得采信）",
+  "script": "calibrate_handover_c.py",
+  "script_sha256": "e2eb794883fc7bd2126989780316f8e8",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T20:15:48",
+  "finished_at": "2026-10-14T20:15:50",
+  "elapsed_s": 2.55,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/calibration_handover_c.json"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+      "bytes": 687,
+      "sha256": "25951c21dbd209b2d25d17b2f461823f",
+      "mtime": 1791980150
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/calibration_handover_c.json"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/handover/s5a/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7m/README.md",
+    "SHUFE-BDC-2019-001/handover/s7m/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s7m/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7m/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7o/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7o/manifest_A_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7o/manifest_B_s7m.json",
+    "SHUFE-BDC-2019-001/handover/s7o/manifest_C_s7m.json",
+    "SHUFE-BDC-2019-001/quality/calibration_handover_c.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s7m.json"
+  ],
+  "stdout_tail": "{\n  \"cases\": 3,\n  \"fired\": 0,\n  \"recall_on_positive\": 0.0,\n  \"false_positive_on_baseline\": 0.0,\n  \"verdict\": \"NOT_CALIBRATED\"\n}\n  ✅ 基线（未注入）                                        期望 不命中                      实际 0\n  ❌ 注入：manifest=validated 且 verdict=blocked        期望 命中 C_internal_contradiction 实际 0\n  ❌ 注入：产物自述 count 偏 +7                             期望 命中 C_self_inconsistent   实际 0\n",
+  "stderr_tail": ""
+}

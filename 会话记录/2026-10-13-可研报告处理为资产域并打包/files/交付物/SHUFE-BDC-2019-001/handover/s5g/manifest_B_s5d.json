@@ -1,0 +1,31 @@
+{
+  "stage": "s5d",
+  "patterns": [
+    "SHUFE-BDC-2019-001/external/compliance.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "pattern": "SHUFE-BDC-2019-001/external/compliance.yaml",
+      "bytes": 27064,
+      "sha256": "12cc69d13f9c4267fddcc2d7b021d3c6",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "corpus_id",
+          "input_regime",
+          "note",
+          "counts",
+          "by_verdict",
+          "results",
+          "mandatory_violations",
+          "key_finding"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

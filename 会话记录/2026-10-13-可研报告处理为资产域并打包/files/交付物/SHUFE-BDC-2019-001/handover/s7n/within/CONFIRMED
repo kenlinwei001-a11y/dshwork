@@ -1,0 +1,22 @@
+{
+  "stage": "s7n",
+  "scope": "within_stage",
+  "SOP_patterns": 1,
+  "A": 1,
+  "diff_kinds": [],
+  "B": 1,
+  "C": 0,
+  "independence": {
+    "ok": true,
+    "tags": [
+      "stage:self_report",
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [],
+  "diff_count": 0,
+  "gate": "CONFIRMED",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid",
+  "generated_at": "2026-10-14T20:15:52"
+}

@@ -1,6 +1,6 @@
 # 环节 s1b 交接说明（README）
 
-- 脚本：`s3b_extract.py`　退出码：0　耗时：0.11s
+- 脚本：`s3b_extract.py`　退出码：0　耗时：0.22s
 - 是否产生变更：否（幂等）　must_change：False
 
 ## 我产出了什么（自报，见 manifest_A.json）

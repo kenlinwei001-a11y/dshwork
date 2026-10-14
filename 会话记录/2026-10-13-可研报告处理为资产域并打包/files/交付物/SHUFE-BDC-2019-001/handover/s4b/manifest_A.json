@@ -5,7 +5,8 @@
   "declared_outputs": [
     "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
     "SHUFE-BDC-2019-001/graph/graph.yaml",
-    "SHUFE-BDC-2019-001/graph/nodes.yaml"
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/quality/nonstandalone_values.json"
   ],
   "produced": [
     {
@@ -22,7 +23,13 @@
       "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
       "sha256": "8752620c1ee9456105f9d5429ce3a3a4",
       "bytes": 103522
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/nonstandalone_values.json",
+      "sha256": "0fb4168f93bc43dc285d3a375483022d",
+      "bytes": 1054
     }
   ],
-  "source": "A=上游自报（可能虚报，故须与 B/C/SOP 交叉）"
+  "produced_by": "stage:self_report",
+  "source": "A=环节自报（可能虚报，故须与 B/C/SOP 交叉）"
 }

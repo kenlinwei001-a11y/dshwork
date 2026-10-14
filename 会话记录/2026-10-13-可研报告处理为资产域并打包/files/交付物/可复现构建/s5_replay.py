@@ -139,109 +139,71 @@ for (subj, pred), fs in by_key.items():
                      "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决")
 
 # --------------------------------------------------------------------------- #
-# B. 派生校核
+# B/C. 派生校核与判定 —— **必须路由到 Semantica Reasoner**（已删除本地实现）
 # --------------------------------------------------------------------------- #
-derivation, diff_items, unresolved = [], [], []
-for r in rules:
-    if r.get("kind") != "compute":
-        continue
-    expr = r.get("expr", "")
-    if "=>" in expr:
-        continue
-    deps = r.get("deps") or []
-    env, missing, blocked, srcs, ph = {}, [], [], [], {}
-    for i, d in enumerate(deps):
-        v, cs, why = resolve(d)
-        ph[d] = f"v{i}"                      # 安全占位名（依赖名可能以数字/中文字符开头）
-        if why == "ok":
-            env[ph[d]] = v
-            srcs.extend(c["id"] for c in cs[:1])
-        elif why == "ambiguous_conflict":
-            blocked.append({"dep": d, "values": sorted({canon(c.get("value")) for c in cs})})
-        else:
-            missing.append(d)
-    py = expr
-    for d in deps:
-        py = py.replace("{" + d + "}", ph[d])
-    if blocked:
-        unresolved.append({"rule": r["id"], "label": r.get("label"), "reason": "blocked_by_conflict",
-                           "detail": blocked})
-        continue
-    if missing or "{" in py:
-        unresolved.append({"rule": r["id"], "label": r.get("label"), "reason": "missing_deps",
-                           "missing_deps": missing})
-        continue
-    try:
-        got = eval(py, {"__builtins__": {}}, {**SAFE, **env})  # noqa: S307 受控表达式
-    except Exception as e:  # noqa: BLE001
-        unresolved.append({"rule": r["id"], "label": r.get("label"), "reason": "eval_error", "error": str(e)})
-        continue
+# 原实现（本会话删除，客户反馈 ②④⑤ 全部源自此段）：
+#   B 逐条求值 compute 规则 + computed[target] 链式传递  = **手写前向链**替身
+#     → Semantica 未参与却被记成完成，并产出假的「建筑高度 60 vs 49」冲突，级联出错误消防类别
+#   C 直接判定「规模符合性/建安费口径/投资闭合」 = 手写推理
+#     → 无视「人均指标为上限」，把 18000 < 18040 判成「不满足」
+#   diff_sum = Σ(delta) 把**不同量纲**（万元/米/千瓦时）相加 → 「差额合计 18.25 万元」，单位标签本身即错
+# 现行为：推理交给 Semantica；不可用时**不产出任何派生/判定结论**（fail-closed），
+#         只登记状态，由判据判 invalid —— 绝不硬算、绝不用替身。
+derivation, diff_items, unresolved, judgements = [], [], [], []
 
-    target = r.get("target", "")
-    # 先取原文声明值（此时 computed 尚未包含 target，resolve 走事实节点分支）
-    stated_v, stated_nodes, _why = resolve(target)
-    computed[target] = got
-    computed_nodes[target] = []
-    item = {"rule": r["id"], "label": r.get("label"), "expr": expr,
-            "inputs": {k: (round(v, 4) if isinstance(v, float) else v) for k, v in env.items()},
-            "input_nodes": sorted(set(srcs)),
-            "computed": round(got, 4) if isinstance(got, float) else got,
-            "stated": stated_v, "stated_nodes": [n["id"] for n in (stated_nodes or [])[:2]],
-            "basis": r.get("basis", "")}
-    if stated_v is None:
-        item["status"] = "已重算（原文无对应声明值）"
-        derivation.append(item)
-        continue
-    delta = abs(round(got, 2) - round(stated_v, 2))
-    ratio = (delta / stated_v * 100) if stated_v else 0.0
-    item.update({"delta": round(delta, 2), "delta_pct": round(ratio, 2)})
-    if delta > 1e-6:
-        item["status"] = "待审"
-        diff_items.append(item)
-        add_conflict("derivation", r.get("label", ""), "派生值 vs 原文值",
-                     [f"重算 {round(got, 2)}", f"原文 {round(stated_v, 2)}"],
-                     sorted(set(srcs)) + [n["id"] for n in (stated_nodes or [])[:1]],
-                     f"按规则 {r['id']} 重算得 {round(got, 2)}，原文写 {round(stated_v, 2)}"
-                     f"（差 {round(delta, 2)}，{round(ratio, 2)}%）；按铁律不擅自改数")
+_reason_status = {"engine": None, "status": "not_run", "reason": ""}
+# ★ 先把 kp 工程加入 sys.path —— 否则会把自己的 import 错误误报成「引擎失败」
+import sys as _sys
+_KP = "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert"
+if _KP not in _sys.path:
+    _sys.path.insert(0, _KP)
+try:
+    from corpus_pipeline import providers as _P          # noqa: PLC0415
+    _rp = _P.get_provider("relation")
+    _facts = [{"subject": n.get("subject"), "predicate": n.get("predicate"),
+               "value": n.get("value"), "unit": n.get("unit"), "source": n.get("source")}
+              for n in nodes]
+    _out = _rp.run_reasoning(_facts, rules)
+    # ★ 输出为空 = 静默降级：引擎被调用但没产出。**不得记成 ok**（那正是假通过）。
+    #   对应 Semantica 侧 workflow.require(step, engines, output_count, min_output)。
+    if not _out:
+        _reason_status = {"engine": getattr(_rp, "name", "?"), "status": "invalid",
+                          "outputs": 0,
+                          "reason": "引擎已调用但输出为空 —— 疑似静默降级（require(min_output=1) 应拦截），"
+                                    "不得视为推理完成"}
     else:
-        item["status"] = "闭合"
-    derivation.append(item)
+        _reason_status = {"engine": getattr(_rp, "name", "?"), "status": "ok",
+                          "outputs": len(_out)}
+        derivation = list(_out)
+except NotImplementedError as _e:
+    _reason_status = {"engine": None, "status": "invalid",
+                      "reason": f"Semantica 推理未注册：{_e}"}
+except Exception as _e:                                   # noqa: BLE001
+    _reason_status = {"engine": None, "status": "invalid",
+                      "reason": f"Semantica 推理失败：{type(_e).__name__}: {_e}"}
 
-# --------------------------------------------------------------------------- #
-# C. 判定类（select）规则的显式确定性求值
-# --------------------------------------------------------------------------- #
-judgements = []
+(ROOT / "reasoning" / "derivation_status.json").write_text(
+    json.dumps({"status": _reason_status,
+                "note": "推理（规则求值/前向链）必须由 Semantica Reasoner 承担；"
+                        "未参与时**不产出结论**，判据据此判 invalid —— 禁止降级或替身"},
+               ensure_ascii=False, indent=2), encoding="utf-8")
 
-
-def judge(rid, question, premises, verdict, note):
-    judgements.append({"id": rid, "question": question, "premises": premises,
-                       "verdict": verdict, "note": note, "status": "待审"})
-
-
-demand, _, _ = resolve("地上总建筑面积需求")
-design, _, _ = resolve("地上建筑面积")
-if demand is not None and design is not None:
-    judge("J-规模符合性", "设计地上建筑面积是否满足人均指标法测算的用房需求？",
-          {"地上总建筑面积需求": demand, "设计地上建筑面积": design},
-          "不满足" if design < demand else "满足",
-          f"需求 {demand:g} ㎡ > 设计 {design:g} ㎡，差 {demand - design:g} ㎡；"
-          f"原文结论为「设计规模在各类用房面积需求范围内，规模设置合理」，该结论与自身测算不符")
-
-bid, _, _ = resolve("建安工程招标估算金额")
-baf, _, _ = resolve("建筑安装工程费用")
-if bid is not None and baf is not None:
-    judge("J-建安费口径", "表12-1 建安工程招标估算金额与表13-1 建安工程费用是否一致？",
-          {"表12-1 建安工程": bid, "表13-1 建筑安装工程费用": baf},
-          "不一致" if abs(bid - baf) > 1e-6 else "一致",
-          f"差 {abs(baf - bid):g} 万元；招标估算金额通常应小于等于估算费用，"
-          f"此处口径差异需客户说明是否含拆除费/室外总体/抗震支架/绿色二星增量")
-
-diff_sum = sum(d.get("delta", 0) for d in diff_items)
-if diff_items:
-    judge("J-投资构成闭合", "投资估算表各层级「分项之和」是否等于「合计」？",
-          {"存在差异的规则数": len(diff_items), "差额合计(万元)": round(diff_sum, 2)},
-          "不闭合",
-          "；".join(f"{d['label']}: {d['computed']:g} vs {d['stated']:g}" for d in diff_items[:8]))
+# C.（判定类）：推理未执行时**不由本地判定**，只登记 judgment_required
+_JUDGE_Q = {
+    "J-规模符合性": "设计地上建筑面积是否满足人均指标法测算的用房需求？"
+                    "（须先取人均指标的口径方向：上限/下限）",
+    "J-建安费口径": "表12-1 建安工程招标估算金额与表13-1 建安工程费用是否一致？"
+                    "（须先确认口径范围：是否含拆除费/室外总体/抗震支架）",
+    "J-投资构成闭合": "投资估算表各层级「分项之和」是否等于「合计」？"
+                      "（须按量纲分组核对，**不得跨量纲求和**）",
+}
+for _rid, _q in _JUDGE_Q.items():
+    judgements.append({"id": _rid, "question": _q, "premises": {}, "verdict": None,
+                       "status": "judgment_required",
+                       "note": ("推理未执行（Semantica 未参与）⇒ 不由本地判定；"
+                                "交 Semantica Reasoner 或人工，**不产出任何结论**"
+                                if _reason_status["status"] != "ok" else
+                                "由 Semantica Reasoner 产出（见 derivation）")})
 
 (ROOT / "reasoning" / "judgements.yaml").write_text(json.dumps(judgements, ensure_ascii=False, indent=2), encoding="utf-8")
 

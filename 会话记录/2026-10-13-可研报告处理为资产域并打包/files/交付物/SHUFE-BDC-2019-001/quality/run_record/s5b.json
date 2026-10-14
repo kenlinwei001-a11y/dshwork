@@ -8,9 +8,9 @@
   "script_sha256": "1cef0b0d0c7e159517eb8626ebae9c18",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:47",
-  "finished_at": "2026-10-14T18:05:47",
-  "elapsed_s": 0.46,
+  "started_at": "2026-10-14T20:14:24",
+  "finished_at": "2026-10-14T20:14:24",
+  "elapsed_s": 0.34,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/chunks/chunks.jsonl"
   ],
@@ -20,7 +20,7 @@
       "pattern": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
       "bytes": 849892,
       "sha256": "39669b964b4d90a80c64ab802df48ed9",
-      "mtime": 1791972347
+      "mtime": 1791980064
     }
   ],
   "outputs_missing": [],
@@ -53,10 +53,12 @@
     "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
     "SHUFE-BDC-2019-001/handover/s5a/README.md",
     "SHUFE-BDC-2019-001/handover/s5a/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s5b/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5a/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s5a/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s5b/gate.json",
     "SHUFE-BDC-2019-001/handover/s5b/manifest_A_s5a.json",
-    "SHUFE-BDC-2019-001/handover/s5b/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s5b/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5b/manifest_B_s5a.json",
+    "SHUFE-BDC-2019-001/handover/s5b/manifest_C_s5a.json",
     "SHUFE-BDC-2019-001/quality/run_record/s5a.json"
   ],
   "stdout_tail": "{\n  \"chunks\": 1178,\n  \"skeletons\": 1178,\n  \"anchored\": 1178,\n  \"document_ids\": [\n    \"SHUFE-BDC-2019-001\"\n  ],\n  \"distinct_sections\": 145,\n  \"sample\": {\n    \"id\": \"c-68e7c6cb89b3\",\n    \"section_path\": [\n      \"项目规划设计方案\",\n      \"结构设计\",\n      \"装配率及典型节点\"\n    ]\n  }\n}\n",

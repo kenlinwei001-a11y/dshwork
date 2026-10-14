@@ -1,6 +1,6 @@
 # 环节 s5b 交接说明（README）
 
-- 脚本：`s7_anchors.py`　退出码：0　耗时：0.46s
+- 脚本：`s7_anchors.py`　退出码：0　耗时：0.34s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

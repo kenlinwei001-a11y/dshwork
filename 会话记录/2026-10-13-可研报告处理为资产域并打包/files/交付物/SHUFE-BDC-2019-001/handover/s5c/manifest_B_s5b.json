@@ -1,0 +1,22 @@
+{
+  "stage": "s5b",
+  "patterns": [
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "pattern": "SHUFE-BDC-2019-001/chunks/chunks.jsonl",
+      "bytes": 849892,
+      "sha256": "39669b964b4d90a80c64ab802df48ed9",
+      "probe": {
+        "parsable": true,
+        "records": 1178
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

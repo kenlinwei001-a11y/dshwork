@@ -1,0 +1,83 @@
+{
+  "stage": "s7",
+  "patterns": [
+    "交付物/README.md",
+    "交付物/审计/*.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/README.md",
+      "pattern": "交付物/README.md",
+      "bytes": 8011,
+      "sha256": "feeafe259806566e203b739553815643",
+      "probe": {
+        "parsable": true,
+        "text_chars": 4447
+      }
+    },
+    {
+      "path": "交付物/审计/01-资产域清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 6973,
+      "sha256": "c43f5613417033d041cccd3689178824",
+      "probe": {
+        "parsable": true,
+        "text_chars": 5110
+      }
+    },
+    {
+      "path": "交付物/审计/02-冲突待审清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 5905,
+      "sha256": "a003dc96918a4c6d544fae09e2626e96",
+      "probe": {
+        "parsable": true,
+        "text_chars": 3098
+      }
+    },
+    {
+      "path": "交付物/审计/03-缺口清单.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 1694,
+      "sha256": "c6fe526024458b4cad2bb3c234c032d4",
+      "probe": {
+        "parsable": true,
+        "text_chars": 722
+      }
+    },
+    {
+      "path": "交付物/审计/04-质量关口报告.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 4620,
+      "sha256": "79feb9972cac7dca4f44baedb783717d",
+      "probe": {
+        "parsable": true,
+        "text_chars": 2984
+      }
+    },
+    {
+      "path": "交付物/审计/05-可复现性与输入完整性说明.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 9888,
+      "sha256": "37d69c2a4c5e098c00c60d2884999feb",
+      "probe": {
+        "parsable": true,
+        "text_chars": 5196
+      }
+    },
+    {
+      "path": "交付物/审计/06-外部依据绑定与合规复核.md",
+      "pattern": "交付物/审计/*.md",
+      "bytes": 23147,
+      "sha256": "09dc2dd8bcb1a27a3659c89a5d5767ab",
+      "probe": {
+        "parsable": true,
+        "text_chars": 10790
+      }
+    }
+  ],
+  "count": 7,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

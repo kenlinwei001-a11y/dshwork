@@ -8,9 +8,9 @@
   "script_sha256": "5fefa9f8728de91a3faa39fe687b702c",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:02",
-  "finished_at": "2026-10-14T18:06:02",
-  "elapsed_s": 0.18,
+  "started_at": "2026-10-14T20:15:32",
+  "finished_at": "2026-10-14T20:15:32",
+  "elapsed_s": 0.1,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/quality/screened_evidence.yaml"
   ],
@@ -20,7 +20,7 @@
       "pattern": "SHUFE-BDC-2019-001/quality/screened_evidence.yaml",
       "bytes": 8413,
       "sha256": "62c8ef81cd412f4e542469eaa7dfdfa6",
-      "mtime": 1791972362
+      "mtime": 1791980132
     }
   ],
   "outputs_missing": [],
@@ -49,12 +49,14 @@
     }
   ],
   "observed_outputs": [
-    "SHUFE-BDC-2019-001/handover/s6d/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6d/gate.json",
     "SHUFE-BDC-2019-001/handover/s6d/manifest_A_s6i.json",
-    "SHUFE-BDC-2019-001/handover/s6d/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s6d/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s6d/manifest_B_s6i.json",
+    "SHUFE-BDC-2019-001/handover/s6d/manifest_C_s6i.json",
     "SHUFE-BDC-2019-001/handover/s6i/README.md",
     "SHUFE-BDC-2019-001/handover/s6i/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s6i/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s6i/within_stage_check.json",
     "SHUFE-BDC-2019-001/quality/run_record/s6i.json",
     "SHUFE-BDC-2019-001/quality/screened_evidence.yaml"
   ],

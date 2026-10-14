@@ -1,0 +1,30 @@
+{
+  "stage": "s7o",
+  "scope": "within_stage",
+  "SOP_patterns": 1,
+  "A": 0,
+  "diff_kinds": [
+    "A_missing_self_report"
+  ],
+  "B": 0,
+  "C": 0,
+  "independence": {
+    "ok": false,
+    "reason": "清单不足三份（2）⇒ 四元不成立",
+    "tags": [
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "A_missing_self_report",
+      "path": "s7o",
+      "meaning": "环节未写自报文件 ⇒ 内部四元不成立（判 invalid，不判 pass）"
+    }
+  ],
+  "diff_count": 1,
+  "gate": "INVALID",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid",
+  "generated_at": "2026-10-14T20:15:50"
+}

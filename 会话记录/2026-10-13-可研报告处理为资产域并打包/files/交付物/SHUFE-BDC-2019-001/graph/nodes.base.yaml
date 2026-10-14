@@ -9,7 +9,16 @@
     "inheritable": "yes",
     "predicate": "报告编号",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-924bfe9e84e1",
@@ -21,7 +30,16 @@
     "inheritable": "yes",
     "predicate": "文件全称",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-61c229a9d6b7",
@@ -33,7 +51,16 @@
     "inheritable": "yes",
     "predicate": "编制单位",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-043715904e92",
@@ -45,7 +72,16 @@
     "inheritable": "yes",
     "predicate": "项目负责人",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1349678c3c0f",
@@ -57,7 +93,16 @@
     "inheritable": "yes",
     "predicate": "项目审核人",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-933f9428a895",
@@ -69,7 +114,16 @@
     "inheritable": "yes",
     "predicate": "主要编制人",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5a111cfec9f6",
@@ -81,7 +135,16 @@
     "inheritable": "yes",
     "predicate": "编制日期",
     "time": "2019",
-    "source": "c-de837f636aa0"
+    "source": "c-de837f636aa0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e76603e442a7",
@@ -93,7 +156,16 @@
     "inheritable": "yes",
     "predicate": "项目名称",
     "time": "2019",
-    "source": "c-3f9e4a26e26d"
+    "source": "c-3f9e4a26e26d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-47ae73a84dc9",
@@ -105,7 +177,16 @@
     "inheritable": "yes",
     "predicate": "建设单位",
     "time": "2019",
-    "source": "c-3f9e4a26e26d"
+    "source": "c-3f9e4a26e26d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5a334efaaea3",
@@ -117,7 +198,16 @@
     "inheritable": "yes",
     "predicate": "建设地点",
     "time": "2019",
-    "source": "c-129c2dbdd766"
+    "source": "c-129c2dbdd766",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4299f5d02831",
@@ -129,7 +219,16 @@
     "inheritable": "yes",
     "predicate": "拆除面积",
     "time": "2019",
-    "source": "c-3f5a2f4d0ca7"
+    "source": "c-3f5a2f4d0ca7",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8f432cf2e264",
@@ -141,7 +240,16 @@
     "inheritable": "yes",
     "predicate": "总建筑面积",
     "time": "2019",
-    "source": "c-3f5a2f4d0ca7"
+    "source": "c-3f5a2f4d0ca7",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8449f71c5773",
@@ -153,7 +261,16 @@
     "inheritable": "yes",
     "predicate": "地上建筑面积",
     "time": "2019",
-    "source": "c-3f5a2f4d0ca7"
+    "source": "c-3f5a2f4d0ca7",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8ca43cb64560",
@@ -165,7 +282,16 @@
     "inheritable": "yes",
     "predicate": "地下建筑面积",
     "time": "2019",
-    "source": "c-3f5a2f4d0ca7"
+    "source": "c-3f5a2f4d0ca7",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-51ac31b30619",
@@ -177,7 +303,16 @@
     "inheritable": "yes",
     "predicate": "总投资",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-70459ce61f9b",
@@ -189,7 +324,16 @@
     "inheritable": "yes",
     "predicate": "建安工程费用",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a831d44a85f1",
@@ -201,7 +345,16 @@
     "inheritable": "yes",
     "predicate": "工程建设其他费用",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-24d5bb9ca97f",
@@ -213,7 +366,16 @@
     "inheritable": "yes",
     "predicate": "预备费",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c790ee245521",
@@ -225,7 +387,16 @@
     "inheritable": "yes",
     "predicate": "原建筑拆除费用",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2175c0aa83e6",
@@ -237,7 +408,16 @@
     "inheritable": "yes",
     "predicate": "资金来源",
     "time": "2019",
-    "source": "c-9420f385e8f5"
+    "source": "c-9420f385e8f5",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7e2dca3b7d0c",
@@ -249,7 +429,16 @@
     "inheritable": "yes",
     "predicate": "开工时间",
     "time": "2019",
-    "source": "c-ea950cb1598c"
+    "source": "c-ea950cb1598c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-802eeedef8cb",
@@ -261,7 +450,16 @@
     "inheritable": "yes",
     "predicate": "竣工时间",
     "time": "2019",
-    "source": "c-ea950cb1598c"
+    "source": "c-ea950cb1598c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f9ce8af03fc0",
@@ -273,7 +471,16 @@
     "inheritable": "yes",
     "predicate": "建设工期",
     "time": "2019",
-    "source": "c-ea950cb1598c"
+    "source": "c-ea950cb1598c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-256337bd52c5",
@@ -285,7 +492,16 @@
     "inheritable": "yes",
     "predicate": "各类在校生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ae0e16e8ffda",
@@ -297,7 +513,16 @@
     "inheritable": "yes",
     "predicate": "全日制在校生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a676855d455f",
@@ -309,7 +534,16 @@
     "inheritable": "yes",
     "predicate": "本科生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-834f7a185cea",
@@ -321,7 +555,16 @@
     "inheritable": "yes",
     "predicate": "预科生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4bead401268c",
@@ -333,7 +576,16 @@
     "inheritable": "yes",
     "predicate": "研究生在校生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-35745c2c896d",
@@ -345,7 +597,16 @@
     "inheritable": "yes",
     "predicate": "硕士生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7c2ba8a26d0b",
@@ -357,7 +618,16 @@
     "inheritable": "yes",
     "predicate": "双证硕士",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9fbee31a8232",
@@ -369,7 +639,16 @@
     "inheritable": "yes",
     "predicate": "单证硕士",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1c60e0220ade",
@@ -381,7 +660,16 @@
     "inheritable": "yes",
     "predicate": "博士生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6f16d28f00ad",
@@ -393,7 +681,16 @@
     "inheritable": "yes",
     "predicate": "在校留学生",
     "time": "2018",
-    "source": "c-e6649218e0c0"
+    "source": "c-e6649218e0c0",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f1d5baf0c89b",
@@ -405,7 +702,16 @@
     "inheritable": "yes",
     "predicate": "专职教师",
     "time": "2018",
-    "source": "c-f35eec1d877c"
+    "source": "c-f35eec1d877c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-19a3e510b260",
@@ -417,7 +723,16 @@
     "inheritable": "yes",
     "predicate": "新增硕士生导师",
     "time": "2018",
-    "source": "c-f35eec1d877c"
+    "source": "c-f35eec1d877c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e20265e53710",
@@ -429,7 +744,16 @@
     "inheritable": "yes",
     "predicate": "专职硕导",
     "time": "2018",
-    "source": "c-f35eec1d877c"
+    "source": "c-f35eec1d877c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4e9960d6ccda",
@@ -441,7 +765,16 @@
     "inheritable": "yes",
     "predicate": "兼职硕导",
     "time": "2018",
-    "source": "c-f35eec1d877c"
+    "source": "c-f35eec1d877c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c394bad87430",
@@ -453,7 +786,16 @@
     "inheritable": "yes",
     "predicate": "校园占地",
     "time": "2019",
-    "source": "c-067b6352bde6"
+    "source": "c-067b6352bde6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-85a9a5716f1d",
@@ -465,7 +807,16 @@
     "inheritable": "yes",
     "predicate": "校区数量",
     "time": "2019",
-    "source": "c-067b6352bde6"
+    "source": "c-067b6352bde6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-34f59d23f033",
@@ -477,7 +828,16 @@
     "inheritable": "yes",
     "predicate": "地址",
     "time": "2019",
-    "source": "c-067b6352bde6"
+    "source": "c-067b6352bde6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e308966174c1",
@@ -489,7 +849,16 @@
     "inheritable": "yes",
     "predicate": "地址",
     "time": "2019",
-    "source": "c-067b6352bde6"
+    "source": "c-067b6352bde6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9814e9f0db35",
@@ -501,7 +870,16 @@
     "inheritable": "yes",
     "predicate": "一级学科",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8ebe6fdf6b9a",
@@ -513,7 +891,16 @@
     "inheritable": "yes",
     "predicate": "学科门类",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-84523f29f638",
@@ -525,7 +912,16 @@
     "inheritable": "yes",
     "predicate": "一级学科博士学位授权点",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d0e09bfa0818",
@@ -537,7 +933,16 @@
     "inheritable": "yes",
     "predicate": "一级学科硕士学位授权点",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6fef5f8bfa13",
@@ -549,7 +954,16 @@
     "inheritable": "yes",
     "predicate": "硕士专业学位授权点",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-254f45e2d082",
@@ -561,7 +975,16 @@
     "inheritable": "yes",
     "predicate": "博士后科研流动站",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-239f7a20f877",
@@ -573,7 +996,16 @@
     "inheritable": "yes",
     "predicate": "国家“双一流”建设学科",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-57ed2116b6e9",
@@ -585,7 +1017,16 @@
     "inheritable": "yes",
     "predicate": "国家重点学科",
     "time": "2018",
-    "source": "c-6006b1889f95"
+    "source": "c-6006b1889f95",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a3f0d71e10e5",
@@ -597,7 +1038,16 @@
     "inheritable": "yes",
     "predicate": "建设性质",
     "time": "2019",
-    "source": "c-e6a978691d8c"
+    "source": "c-e6a978691d8c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fa0dd79ca413",
@@ -609,7 +1059,16 @@
     "inheritable": "yes",
     "predicate": "本科专业（数据科学与大数据技术）获批年份",
     "time": "2018",
-    "source": "c-fc1be7087c63"
+    "source": "c-fc1be7087c63",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-37d514c98f96",
@@ -621,7 +1080,16 @@
     "inheritable": "yes",
     "predicate": "2018年发表论文数",
     "time": "2018",
-    "source": "c-129739dbd201"
+    "source": "c-129739dbd201",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-723bfe3fc6d2",
@@ -633,7 +1101,16 @@
     "inheritable": "yes",
     "predicate": "2018年A级期刊论文",
     "time": "2018",
-    "source": "c-129739dbd201"
+    "source": "c-129739dbd201",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e5f7701a892f",
@@ -645,7 +1122,16 @@
     "inheritable": "yes",
     "predicate": "2018年国家自然科学基金项目",
     "time": "2018",
-    "source": "c-19ef774b3e1c"
+    "source": "c-19ef774b3e1c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f97cbdbe6afe",
@@ -657,7 +1143,16 @@
     "inheritable": "yes",
     "predicate": "2018年省部级课题",
     "time": "2018",
-    "source": "c-19ef774b3e1c"
+    "source": "c-19ef774b3e1c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4ae46c29d85f",
@@ -669,7 +1164,16 @@
     "inheritable": "yes",
     "predicate": "2018年横向课题",
     "time": "2018",
-    "source": "c-19ef774b3e1c"
+    "source": "c-19ef774b3e1c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2350885b04e2",
@@ -681,7 +1185,16 @@
     "inheritable": "yes",
     "predicate": "2018年合同经费",
     "time": "2018",
-    "source": "c-19ef774b3e1c"
+    "source": "c-19ef774b3e1c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9bd50795df49",
@@ -693,7 +1206,16 @@
     "inheritable": "yes",
     "predicate": "2020年目标·教师规模",
     "time": "2020",
-    "source": "c-2ac8aaa4a9e1"
+    "source": "c-2ac8aaa4a9e1",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-53ad5074ad4a",
@@ -705,7 +1227,16 @@
     "inheritable": "yes",
     "predicate": "2020年目标·一级学科数",
     "time": "2020",
-    "source": "c-b5613f87479d"
+    "source": "c-b5613f87479d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ee882814713f",
@@ -717,7 +1248,16 @@
     "inheritable": "yes",
     "predicate": "2020年目标·国际知名学术领军人才",
     "time": "2020",
-    "source": "c-2ac8aaa4a9e1"
+    "source": "c-2ac8aaa4a9e1",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-85e27f0ad472",
@@ -729,7 +1269,16 @@
     "inheritable": "yes",
     "predicate": "四至",
     "time": "2019",
-    "source": "c-ceac393c790a"
+    "source": "c-ceac393c790a",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5780eeb6777a",
@@ -741,7 +1290,16 @@
     "inheritable": "yes",
     "predicate": "地质条件",
     "time": "2019",
-    "source": "c-ec5e925841ef"
+    "source": "c-ec5e925841ef",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9d7e4c2b9b50",
@@ -753,7 +1311,16 @@
     "inheritable": "yes",
     "predicate": "建筑面积",
     "time": "2019",
-    "source": "c-4d8b131dacf8"
+    "source": "c-4d8b131dacf8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4752fe0c4e17",
@@ -765,7 +1332,16 @@
     "inheritable": "yes",
     "predicate": "建造年代",
     "time": "2019",
-    "source": "c-4d8b131dacf8"
+    "source": "c-4d8b131dacf8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f24d0d077f03",
@@ -777,7 +1353,16 @@
     "inheritable": "yes",
     "predicate": "拆除手续状态",
     "time": "2019",
-    "source": "c-4d8b131dacf8"
+    "source": "c-4d8b131dacf8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8a66c92ca8a4",
@@ -789,7 +1374,16 @@
     "inheritable": "yes",
     "predicate": "年总辐射量",
     "time": "2019",
-    "source": "c-3a040d14af4d"
+    "source": "c-3a040d14af4d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c44bd9bd0df3",
@@ -801,7 +1395,16 @@
     "inheritable": "yes",
     "predicate": "年降雨量",
     "time": "2019",
-    "source": "c-3a040d14af4d"
+    "source": "c-3a040d14af4d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a55e26642db6",
@@ -813,7 +1416,16 @@
     "inheritable": "yes",
     "predicate": "汛期雨量",
     "time": "2019",
-    "source": "c-3a040d14af4d"
+    "source": "c-3a040d14af4d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fcd2cfa44fc4",
@@ -825,7 +1437,16 @@
     "inheritable": "yes",
     "predicate": "区域潜水位",
     "time": "2019",
-    "source": "c-7509f0d21229"
+    "source": "c-7509f0d21229",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8984af8e2bbf",
@@ -837,7 +1458,16 @@
     "inheritable": "yes",
     "predicate": "单井出水量",
     "time": "2019",
-    "source": "c-7509f0d21229"
+    "source": "c-7509f0d21229",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7db13fda38e0",
@@ -849,7 +1479,16 @@
     "inheritable": "yes",
     "predicate": "供电电源",
     "time": "2019",
-    "source": "c-0b1e344882c9"
+    "source": "c-0b1e344882c9",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6cd37976dd8f",
@@ -861,7 +1500,16 @@
     "inheritable": "yes",
     "predicate": "供水水源",
     "time": "2019",
-    "source": "c-50352f4b9d99"
+    "source": "c-50352f4b9d99",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-81e15dad5d7e",
@@ -873,7 +1521,16 @@
     "inheritable": "yes",
     "predicate": "排水体制",
     "time": "2019",
-    "source": "c-54b04a30becc"
+    "source": "c-54b04a30becc",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c0a7fc8afdaf",
@@ -885,7 +1542,16 @@
     "inheritable": "yes",
     "predicate": "规划科研人员",
     "time": "2019",
-    "source": "c-223358da3e9d"
+    "source": "c-223358da3e9d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-687ac5c1dfdf",
@@ -897,7 +1563,16 @@
     "inheritable": "yes",
     "predicate": "规划研究生博士生访问学者",
     "time": "2019",
-    "source": "c-223358da3e9d"
+    "source": "c-223358da3e9d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-29c0367999ed",
@@ -909,7 +1584,16 @@
     "inheritable": "yes",
     "predicate": "规划人数合计",
     "time": "2019",
-    "source": "c-223358da3e9d"
+    "source": "c-223358da3e9d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0118435ab5f0",
@@ -921,7 +1605,16 @@
     "inheritable": "yes",
     "predicate": "规划科研人员",
     "time": "2019",
-    "source": "c-b7027573785d"
+    "source": "c-b7027573785d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1713829984c4",
@@ -933,7 +1626,16 @@
     "inheritable": "yes",
     "predicate": "规划研究生博士生访问学者",
     "time": "2019",
-    "source": "c-b7027573785d"
+    "source": "c-b7027573785d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-be54469ceabb",
@@ -945,7 +1647,16 @@
     "inheritable": "yes",
     "predicate": "规划人数合计",
     "time": "2019",
-    "source": "c-b7027573785d"
+    "source": "c-b7027573785d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9949f87bf2ae",
@@ -957,7 +1668,16 @@
     "inheritable": "yes",
     "predicate": "规划科研人员",
     "time": "2019",
-    "source": "c-9d9be0511932"
+    "source": "c-9d9be0511932",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f853aaf03baf",
@@ -969,7 +1689,16 @@
     "inheritable": "yes",
     "predicate": "规划研究生博士生访问学者",
     "time": "2019",
-    "source": "c-9d9be0511932"
+    "source": "c-9d9be0511932",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-28f623934060",
@@ -981,7 +1710,16 @@
     "inheritable": "yes",
     "predicate": "规划人数合计",
     "time": "2019",
-    "source": "c-9d9be0511932"
+    "source": "c-9d9be0511932",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6dcf7ef888b2",
@@ -993,7 +1731,16 @@
     "inheritable": "yes",
     "predicate": "规划科研人员",
     "time": "2019",
-    "source": "c-f397b7a348a5"
+    "source": "c-f397b7a348a5",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a2aedb523791",
@@ -1005,7 +1752,16 @@
     "inheritable": "yes",
     "predicate": "规划研究生博士生访问学者",
     "time": "2019",
-    "source": "c-f397b7a348a5"
+    "source": "c-f397b7a348a5",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fa5b27eaf63d",
@@ -1017,7 +1773,16 @@
     "inheritable": "yes",
     "predicate": "规划人数合计",
     "time": "2019",
-    "source": "c-f397b7a348a5"
+    "source": "c-f397b7a348a5",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d63d65ebe9a4",
@@ -1029,7 +1794,16 @@
     "inheritable": "yes",
     "predicate": "间数",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3e141a1e1100",
@@ -1041,7 +1815,16 @@
     "inheritable": "yes",
     "predicate": "单间用房标准",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ee95096f1d6e",
@@ -1053,7 +1836,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d1cb826c6ec2",
@@ -1065,7 +1857,16 @@
     "inheritable": "yes",
     "predicate": "间数",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3007b66b8f03",
@@ -1077,7 +1878,16 @@
     "inheritable": "yes",
     "predicate": "单间用房标准",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fd67f30a272a",
@@ -1089,7 +1899,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ba967b01a1cc",
@@ -1101,7 +1920,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c6641b10b1d4",
@@ -1113,7 +1941,16 @@
     "inheritable": "yes",
     "predicate": "间数",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-87c9bd959ddb",
@@ -1125,7 +1962,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7f9fd332041d",
@@ -1137,7 +1983,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fc449bc873d7",
@@ -1149,7 +2004,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-116f0e1c3acf",
@@ -1161,7 +2025,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a00694625be6",
@@ -1173,7 +2046,16 @@
     "inheritable": "yes",
     "predicate": "面积需求",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4698f7d0b38e",
@@ -1185,7 +2067,16 @@
     "inheritable": "yes",
     "predicate": "使用面积需求合计",
     "time": "2019",
-    "source": "c-d8ff50ae58f4"
+    "source": "c-d8ff50ae58f4",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4f9c2807a62b",
@@ -1197,7 +2088,16 @@
     "inheritable": "yes",
     "predicate": "综合平面利用系数",
     "time": "2019",
-    "source": "c-e0e66b6fd870"
+    "source": "c-e0e66b6fd870",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-cc781dfeeb3b",
@@ -1209,7 +2109,16 @@
     "inheritable": "yes",
     "predicate": "建筑面积需求",
     "time": "2019",
-    "source": "c-e0e66b6fd870"
+    "source": "c-e0e66b6fd870",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2820b26c3f35",
@@ -1221,7 +2130,16 @@
     "inheritable": "yes",
     "predicate": "科研人员用房人均建筑面积指标",
     "time": "2019",
-    "source": "c-79069a20782b"
+    "source": "c-79069a20782b",
+    "object_role": "指标值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-978a14b5186b",
@@ -1233,7 +2151,16 @@
     "inheritable": "yes",
     "predicate": "研究生博士生访问学者用房人均建筑面积指标",
     "time": "2019",
-    "source": "c-79069a20782b"
+    "source": "c-79069a20782b",
+    "object_role": "指标值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f07ab421166b",
@@ -1245,7 +2172,16 @@
     "inheritable": "yes",
     "predicate": "科研人员规划人数",
     "time": "2019",
-    "source": "c-79069a20782b"
+    "source": "c-79069a20782b",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b3c95b844d02",
@@ -1257,7 +2193,16 @@
     "inheritable": "yes",
     "predicate": "研究生博士生访问学者规划人数",
     "time": "2019",
-    "source": "c-79069a20782b"
+    "source": "c-79069a20782b",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-bc07423e28a8",
@@ -1269,7 +2214,16 @@
     "inheritable": "yes",
     "predicate": "总规划人数",
     "time": "2019",
-    "source": "c-c011c764a24d"
+    "source": "c-c011c764a24d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-49949310ec19",
@@ -1281,7 +2235,16 @@
     "inheritable": "yes",
     "predicate": "科研人员用房需求建筑面积",
     "time": "2019",
-    "source": "c-c011c764a24d"
+    "source": "c-c011c764a24d",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-55c9c86a5a6c",
@@ -1293,7 +2256,16 @@
     "inheritable": "yes",
     "predicate": "研究生用房需求建筑面积",
     "time": "2019",
-    "source": "c-c011c764a24d"
+    "source": "c-c011c764a24d",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7c3d781cf6f1",
@@ -1305,7 +2277,16 @@
     "inheritable": "yes",
     "predicate": "地上总建筑面积需求",
     "time": "2019",
-    "source": "c-79069a20782b"
+    "source": "c-79069a20782b",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-eb7b8b1d20d8",
@@ -1317,7 +2298,16 @@
     "inheritable": "yes",
     "predicate": "设计地上建筑面积",
     "time": "2019",
-    "source": "c-b506cede9b46"
+    "source": "c-b506cede9b46",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7384b88f646f",
@@ -1329,7 +2319,16 @@
     "inheritable": "yes",
     "predicate": "地上建筑面积缺口",
     "time": "2019",
-    "source": "c-b506cede9b46"
+    "source": "c-b506cede9b46",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2a335b2708af",
@@ -1341,7 +2340,16 @@
     "inheritable": "yes",
     "predicate": "层数",
     "time": "2019",
-    "source": "c-a4535feae2f8"
+    "source": "c-a4535feae2f8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-be7451617729",
@@ -1353,7 +2361,16 @@
     "inheritable": "yes",
     "predicate": "地下层数",
     "time": "2019",
-    "source": "c-a4535feae2f8"
+    "source": "c-a4535feae2f8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-23414ed53b65",
@@ -1365,7 +2382,16 @@
     "inheritable": "yes",
     "predicate": "建筑类别",
     "time": "2019",
-    "source": "c-c6ad2c50804d"
+    "source": "c-c6ad2c50804d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-443180e0efd7",
@@ -1377,7 +2403,16 @@
     "inheritable": "yes",
     "predicate": "设计使用年限",
     "time": "2019",
-    "source": "c-c6ad2c50804d"
+    "source": "c-c6ad2c50804d",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-08b323fd83aa",
@@ -1389,7 +2424,16 @@
     "inheritable": "yes",
     "predicate": "耐火等级",
     "time": "2019",
-    "source": "c-df1ebc3f5d4e"
+    "source": "c-df1ebc3f5d4e",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c1c4a9d66f5b",
@@ -1401,7 +2445,16 @@
     "inheritable": "yes",
     "predicate": "抗震设防烈度",
     "time": "2019",
-    "source": "c-1bbf63d02596"
+    "source": "c-1bbf63d02596",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f0fd96a3a38e",
@@ -1413,7 +2466,16 @@
     "inheritable": "yes",
     "predicate": "建筑高度控制",
     "time": "2019",
-    "source": "c-352c7af31132"
+    "source": "c-352c7af31132",
+    "object_role": "控制值",
+    "domain": "unknown",
+    "caliber_direction": "上限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4605eb02d134",
@@ -1425,7 +2487,16 @@
     "inheritable": "yes",
     "predicate": "一层层高",
     "time": "2019",
-    "source": "c-0369985c4547"
+    "source": "c-0369985c4547",
+    "object_role": "推演值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-170213817af5",
@@ -1437,7 +2508,16 @@
     "inheritable": "yes",
     "predicate": "标准层层高",
     "time": "2019",
-    "source": "c-0369985c4547"
+    "source": "c-0369985c4547",
+    "object_role": "推演值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e35642a4b42f",
@@ -1449,7 +2529,16 @@
     "inheritable": "yes",
     "predicate": "结构设计使用年限",
     "time": "2019",
-    "source": "c-20bd988bc554"
+    "source": "c-20bd988bc554",
+    "object_role": "设计值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2eb688971791",
@@ -1461,7 +2550,16 @@
     "inheritable": "yes",
     "predicate": "基本风压",
     "time": "2019",
-    "source": "c-036930256da3"
+    "source": "c-036930256da3",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-70b8c5416e59",
@@ -1473,7 +2571,16 @@
     "inheritable": "yes",
     "predicate": "基本雪压",
     "time": "2019",
-    "source": "c-b712a72da18c"
+    "source": "c-b712a72da18c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e7ebf407a68f",
@@ -1485,7 +2592,16 @@
     "inheritable": "yes",
     "predicate": "地面粗糙度",
     "time": "2019",
-    "source": "c-6c7ca103aee7"
+    "source": "c-6c7ca103aee7",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-91624f921ea8",
@@ -1497,7 +2613,16 @@
     "inheritable": "yes",
     "predicate": "建筑结构安全等级",
     "time": "2019",
-    "source": "c-9a6bda6672cf"
+    "source": "c-9a6bda6672cf",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e0f3cb0c51f5",
@@ -1509,7 +2634,16 @@
     "inheritable": "yes",
     "predicate": "地基基础安全等级",
     "time": "2019",
-    "source": "c-6e1672d1f000"
+    "source": "c-6e1672d1f000",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ad4f61baf248",
@@ -1521,7 +2655,16 @@
     "inheritable": "yes",
     "predicate": "地基基础设计等级",
     "time": "2019",
-    "source": "c-6e1672d1f000"
+    "source": "c-6e1672d1f000",
+    "object_role": "设计值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3d4cd9a6a1f8",
@@ -1533,7 +2676,16 @@
     "inheritable": "yes",
     "predicate": "抗震设防类别",
     "time": "2019",
-    "source": "c-9d7589c4c652"
+    "source": "c-9d7589c4c652",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-64e67123ddc0",
@@ -1545,7 +2697,16 @@
     "inheritable": "yes",
     "predicate": "框架抗震等级",
     "time": "2019",
-    "source": "c-806484d7984a"
+    "source": "c-806484d7984a",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-629089fe05c9",
@@ -1557,7 +2718,16 @@
     "inheritable": "yes",
     "predicate": "剪力墙抗震等级",
     "time": "2019",
-    "source": "c-806484d7984a"
+    "source": "c-806484d7984a",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0a6ab4d9cdf6",
@@ -1569,7 +2739,16 @@
     "inheritable": "yes",
     "predicate": "绿色建筑设计标准",
     "time": "2019",
-    "source": "c-2f0db31254e6"
+    "source": "c-2f0db31254e6",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b5d8de16a2a7",
@@ -1581,7 +2760,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-149d6d9336e4"
+    "source": "c-149d6d9336e4",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d8f1204ef1a9",
@@ -1593,7 +2781,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-54ff18ab0ff4"
+    "source": "c-54ff18ab0ff4",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7a09dcc73ee3",
@@ -1605,7 +2802,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-fad036131263"
+    "source": "c-fad036131263",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-63b071767842",
@@ -1617,7 +2823,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-e7960e774867"
+    "source": "c-e7960e774867",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b44117496caa",
@@ -1629,7 +2844,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-8a61534c364e"
+    "source": "c-8a61534c364e",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-52cbf5f50c8a",
@@ -1641,7 +2865,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-3ea4fcf65543"
+    "source": "c-3ea4fcf65543",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3a2fcf27bbe9",
@@ -1653,7 +2886,16 @@
     "inheritable": "yes",
     "predicate": "楼面活荷载标准值",
     "time": "2019",
-    "source": "c-49f2eeaf2bb6"
+    "source": "c-49f2eeaf2bb6",
+    "object_role": "指标值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-81d066d6ec28",
@@ -1665,7 +2907,16 @@
     "inheritable": "yes",
     "predicate": "屋面活荷载标准值",
     "time": "2019",
-    "source": "c-9dfd85b71455"
+    "source": "c-9dfd85b71455",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4c2e3686b75a",
@@ -1677,7 +2928,16 @@
     "inheritable": "yes",
     "predicate": "屋面活荷载标准值",
     "time": "2019",
-    "source": "c-47bb9a10d950"
+    "source": "c-47bb9a10d950",
+    "object_role": "指标值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1b1549fc44f9",
@@ -1689,7 +2949,16 @@
     "inheritable": "yes",
     "predicate": "风荷载体型系数",
     "time": "2019",
-    "source": "c-f747dba1bb40"
+    "source": "c-f747dba1bb40",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-25ae699e50ec",
@@ -1701,7 +2970,16 @@
     "inheritable": "yes",
     "predicate": "设计基本地震加速度",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-68d9e0d6fc8f",
@@ -1713,7 +2991,16 @@
     "inheritable": "yes",
     "predicate": "设计地震分组",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b8e4317775b7",
@@ -1725,7 +3012,16 @@
     "inheritable": "yes",
     "predicate": "建筑场地类别",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6f81bff4c721",
@@ -1737,7 +3033,16 @@
     "inheritable": "yes",
     "predicate": "特征周期",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2a951c39f9ae",
@@ -1749,7 +3054,16 @@
     "inheritable": "yes",
     "predicate": "结构阻尼比",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-514034bcf07b",
@@ -1761,7 +3075,16 @@
     "inheritable": "yes",
     "predicate": "多遇水平地震影响系数",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-dbb9f4111022",
@@ -1773,7 +3096,16 @@
     "inheritable": "yes",
     "predicate": "罕遇水平地震影响系数",
     "time": "2019",
-    "source": "c-8f2dacb35c87"
+    "source": "c-8f2dacb35c87",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f08415dc191a",
@@ -1785,7 +3117,16 @@
     "inheritable": "yes",
     "predicate": "上部结构形式",
     "time": "2019",
-    "source": "c-ed400c9129b8"
+    "source": "c-ed400c9129b8",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8122fb4283a7",
@@ -1797,7 +3138,16 @@
     "inheritable": "yes",
     "predicate": "基础形式",
     "time": "2019",
-    "source": "c-3d4daa4153d3"
+    "source": "c-3d4daa4153d3",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c0667d161473",
@@ -1809,7 +3159,16 @@
     "inheritable": "yes",
     "predicate": "基础埋深",
     "time": "2019",
-    "source": "c-3d4daa4153d3"
+    "source": "c-3d4daa4153d3",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5e469e239754",
@@ -1821,7 +3180,16 @@
     "inheritable": "yes",
     "predicate": "地下室顶板厚度",
     "time": "2019",
-    "source": "c-81593ee480dc"
+    "source": "c-81593ee480dc",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-666b00ce7f1d",
@@ -1833,7 +3201,16 @@
     "inheritable": "yes",
     "predicate": "结构计算软件",
     "time": "2019",
-    "source": "c-8090a3ade098"
+    "source": "c-8090a3ade098",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-acc0ada964eb",
@@ -1845,7 +3222,16 @@
     "inheritable": "yes",
     "predicate": "基础垫层混凝土强度等级",
     "time": "2019",
-    "source": "c-c01c12731457"
+    "source": "c-c01c12731457",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-40080fc4b013",
@@ -1857,7 +3243,16 @@
     "inheritable": "yes",
     "predicate": "框架柱剪力墙混凝土强度等级",
     "time": "2019",
-    "source": "c-c01c12731457"
+    "source": "c-c01c12731457",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-82e94e249e8f",
@@ -1869,7 +3264,16 @@
     "inheritable": "yes",
     "predicate": "梁板混凝土强度等级",
     "time": "2019",
-    "source": "c-c01c12731457"
+    "source": "c-c01c12731457",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7e3b1c290e21",
@@ -1881,7 +3285,16 @@
     "inheritable": "yes",
     "predicate": "钢筋牌号",
     "time": "2019",
-    "source": "c-3f1ae8fee030"
+    "source": "c-3f1ae8fee030",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9a5357236ac0",
@@ -1893,7 +3306,16 @@
     "inheritable": "yes",
     "predicate": "钢材牌号",
     "time": "2019",
-    "source": "c-db5ccbce7148"
+    "source": "c-db5ccbce7148",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5f65bf80349c",
@@ -1905,7 +3327,16 @@
     "inheritable": "yes",
     "predicate": "预制率",
     "time": "2019",
-    "source": "c-eb6f21596ea3"
+    "source": "c-eb6f21596ea3",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3f1810ee3a33",
@@ -1917,7 +3348,16 @@
     "inheritable": "yes",
     "predicate": "用水定额",
     "time": "2019",
-    "source": "c-354e031a9916"
+    "source": "c-354e031a9916",
+    "object_role": "指标值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d33295e7e784",
@@ -1929,7 +3369,16 @@
     "inheritable": "yes",
     "predicate": "用水人数",
     "time": "2019",
-    "source": "c-354e031a9916"
+    "source": "c-354e031a9916",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f4add4e0e79a",
@@ -1941,7 +3390,16 @@
     "inheritable": "yes",
     "predicate": "用水定额",
     "time": "2019",
-    "source": "c-354e031a9916"
+    "source": "c-354e031a9916",
+    "object_role": "指标值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-932c3574e3c1",
@@ -1953,7 +3411,16 @@
     "inheritable": "yes",
     "predicate": "用水人数",
     "time": "2019",
-    "source": "c-354e031a9916"
+    "source": "c-354e031a9916",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c67295c8a345",
@@ -1965,7 +3432,16 @@
     "inheritable": "yes",
     "predicate": "最高日用水量",
     "time": "2019",
-    "source": "c-2667fcd945cf"
+    "source": "c-2667fcd945cf",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "上限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-30650afc51a8",
@@ -1977,7 +3453,16 @@
     "inheritable": "yes",
     "predicate": "最大小时用水量",
     "time": "2019",
-    "source": "c-2667fcd945cf"
+    "source": "c-2667fcd945cf",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0372fd56d2be",
@@ -1989,7 +3474,16 @@
     "inheritable": "yes",
     "predicate": "未预见系数",
     "time": "2019",
-    "source": "c-354e031a9916"
+    "source": "c-354e031a9916",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-07c3ab150860",
@@ -2001,7 +3495,16 @@
     "inheritable": "yes",
     "predicate": "最高日排水量",
     "time": "2019",
-    "source": "c-406b862890ab"
+    "source": "c-406b862890ab",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "上限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-60f348145540",
@@ -2013,7 +3516,16 @@
     "inheritable": "yes",
     "predicate": "最大时排水量",
     "time": "2019",
-    "source": "c-406b862890ab"
+    "source": "c-406b862890ab",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a3177065531f",
@@ -2025,7 +3537,16 @@
     "inheritable": "yes",
     "predicate": "用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6a9d5e15a008",
@@ -2037,7 +3558,16 @@
     "inheritable": "yes",
     "predicate": "一次灭火用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-338014cbccdd",
@@ -2049,7 +3579,16 @@
     "inheritable": "yes",
     "predicate": "用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-54705a4f8686",
@@ -2061,7 +3600,16 @@
     "inheritable": "yes",
     "predicate": "一次灭火用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-afd00934e365",
@@ -2073,7 +3621,16 @@
     "inheritable": "yes",
     "predicate": "用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6958c266bea0",
@@ -2085,7 +3642,16 @@
     "inheritable": "yes",
     "predicate": "一次灭火用水量",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ae0d5d610d0a",
@@ -2097,7 +3663,16 @@
     "inheritable": "yes",
     "predicate": "消防用水量总计",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5e1d9ecdd02a",
@@ -2109,7 +3684,16 @@
     "inheritable": "yes",
     "predicate": "消防一次灭火用水量总计",
     "time": "2019",
-    "source": "c-8aa08d82d0f2"
+    "source": "c-8aa08d82d0f2",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-827b158df74b",
@@ -2121,7 +3705,16 @@
     "inheritable": "yes",
     "predicate": "喷水强度",
     "time": "2019",
-    "source": "c-cf1076e64a43"
+    "source": "c-cf1076e64a43",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0bc26894f1d0",
@@ -2133,7 +3726,16 @@
     "inheritable": "yes",
     "predicate": "作用面积",
     "time": "2019",
-    "source": "c-cf1076e64a43"
+    "source": "c-cf1076e64a43",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d899ed81ebaa",
@@ -2145,7 +3747,16 @@
     "inheritable": "yes",
     "predicate": "设计最小用水量",
     "time": "2019",
-    "source": "c-cf1076e64a43"
+    "source": "c-cf1076e64a43",
+    "object_role": "设计值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4e37bc3a681a",
@@ -2157,7 +3768,16 @@
     "inheritable": "yes",
     "predicate": "有效容积",
     "time": "2019",
-    "source": "c-a6e7789cf2d5"
+    "source": "c-a6e7789cf2d5",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0207f315dd4c",
@@ -2169,7 +3789,16 @@
     "inheritable": "yes",
     "predicate": "消防水泵接合器",
     "time": "2019",
-    "source": "c-ab02f790a154"
+    "source": "c-ab02f790a154",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b8e7bf4b7c1d",
@@ -2181,7 +3810,16 @@
     "inheritable": "yes",
     "predicate": "空调负荷密度指标",
     "time": "2019",
-    "source": "c-100dadfa18ab"
+    "source": "c-100dadfa18ab",
+    "object_role": "指标值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-944c3d4af11d",
@@ -2193,7 +3831,16 @@
     "inheritable": "yes",
     "predicate": "照明及其他负荷密度指标",
     "time": "2019",
-    "source": "c-100dadfa18ab"
+    "source": "c-100dadfa18ab",
+    "object_role": "指标值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5cb9dea74a92",
@@ -2205,7 +3852,16 @@
     "inheritable": "yes",
     "predicate": "总计算负荷",
     "time": "2019",
-    "source": "c-100dadfa18ab"
+    "source": "c-100dadfa18ab",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a600fbe49b7b",
@@ -2217,7 +3873,16 @@
     "inheritable": "yes",
     "predicate": "供电电源回路",
     "time": "2019",
-    "source": "c-209ab8347d7c"
+    "source": "c-209ab8347d7c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-de3e1ec1327c",
@@ -2229,7 +3894,16 @@
     "inheritable": "yes",
     "predicate": "原配置",
     "time": "2019",
-    "source": "c-d8a3ec8e85ee"
+    "source": "c-d8a3ec8e85ee",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8107f4c126d2",
@@ -2241,7 +3915,16 @@
     "inheritable": "yes",
     "predicate": "增容后配置",
     "time": "2019",
-    "source": "c-d8a3ec8e85ee"
+    "source": "c-d8a3ec8e85ee",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c2f034e89954",
@@ -2253,7 +3936,16 @@
     "inheritable": "yes",
     "predicate": "供电电源距离",
     "time": "2019",
-    "source": "c-209ab8347d7c"
+    "source": "c-209ab8347d7c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-416be9b34d81",
@@ -2265,7 +3957,16 @@
     "inheritable": "yes",
     "predicate": "防雷类别",
     "time": "2019",
-    "source": "c-5f5a36ab7c15"
+    "source": "c-5f5a36ab7c15",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-60d3585c4764",
@@ -2277,7 +3978,16 @@
     "inheritable": "yes",
     "predicate": "联合接地电阻",
     "time": "2019",
-    "source": "c-fe40d179350d"
+    "source": "c-fe40d179350d",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f7d381a33ae8",
@@ -2289,7 +3999,16 @@
     "inheritable": "yes",
     "predicate": "接地形式",
     "time": "2019",
-    "source": "c-7dba4c5af644"
+    "source": "c-7dba4c5af644",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-77ab04f9743c",
@@ -2301,7 +4020,16 @@
     "inheritable": "yes",
     "predicate": "子系统数量",
     "time": "2019",
-    "source": "c-c6ae052959b1"
+    "source": "c-c6ae052959b1",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-29a98cc4f5e9",
@@ -2313,7 +4041,16 @@
     "inheritable": "yes",
     "predicate": "水平线缆类别",
     "time": "2019",
-    "source": "c-5692fc2bd855"
+    "source": "c-5692fc2bd855",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ca1e13d551b1",
@@ -2325,7 +4062,16 @@
     "inheritable": "yes",
     "predicate": "纬度",
     "time": "2019",
-    "source": "c-8dbe43e4c726"
+    "source": "c-8dbe43e4c726",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-eeb81aaca591",
@@ -2337,7 +4083,16 @@
     "inheritable": "yes",
     "predicate": "经度",
     "time": "2019",
-    "source": "c-8dbe43e4c726"
+    "source": "c-8dbe43e4c726",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-52b43033149e",
@@ -2349,7 +4104,16 @@
     "inheritable": "yes",
     "predicate": "海拔高度",
     "time": "2019",
-    "source": "c-8dbe43e4c726"
+    "source": "c-8dbe43e4c726",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-850462868c75",
@@ -2361,7 +4125,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-90ea6bdf46f6",
@@ -2373,7 +4146,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2ec348856254",
@@ -2385,7 +4167,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b73bc0c48cab",
@@ -2397,7 +4188,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f82a686a24f0",
@@ -2409,7 +4209,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a5b6b65364ac",
@@ -2421,7 +4230,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-24bce75cc617",
@@ -2433,7 +4251,16 @@
     "inheritable": "yes",
     "predicate": "取值",
     "time": "2019",
-    "source": "c-4b8bc5c96c14"
+    "source": "c-4b8bc5c96c14",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5272963728f0",
@@ -2445,7 +4272,16 @@
     "inheritable": "yes",
     "predicate": "夏季室内温度",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-254a74541283",
@@ -2457,7 +4293,16 @@
     "inheritable": "yes",
     "predicate": "夏季相对湿度上限",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "上限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-242644b6a039",
@@ -2469,7 +4314,16 @@
     "inheritable": "yes",
     "predicate": "冬季室内温度",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7aad9b0320e0",
@@ -2481,7 +4335,16 @@
     "inheritable": "yes",
     "predicate": "人均使用面积",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-94a1eb16a470",
@@ -2493,7 +4356,16 @@
     "inheritable": "yes",
     "predicate": "新风量",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-acb430bb35b0",
@@ -2505,7 +4377,16 @@
     "inheritable": "yes",
     "predicate": "噪声标准",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "环境",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-66860a375157",
@@ -2517,7 +4398,16 @@
     "inheritable": "yes",
     "predicate": "人均使用面积",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0a3e9c9acc83",
@@ -2529,7 +4419,16 @@
     "inheritable": "yes",
     "predicate": "人均使用面积",
     "time": "2019",
-    "source": "c-a43d02463116"
+    "source": "c-a43d02463116",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8ca9f3898ace",
@@ -2541,7 +4440,16 @@
     "inheritable": "yes",
     "predicate": "排风换气次数",
     "time": "2019",
-    "source": "c-6a36b8de406d"
+    "source": "c-6a36b8de406d",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2025492b72b4",
@@ -2553,7 +4461,16 @@
     "inheritable": "yes",
     "predicate": "排风换气次数",
     "time": "2019",
-    "source": "c-6a36b8de406d"
+    "source": "c-6a36b8de406d",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3ed027e88c59",
@@ -2565,7 +4482,16 @@
     "inheritable": "yes",
     "predicate": "排风换气次数",
     "time": "2019",
-    "source": "c-6a36b8de406d"
+    "source": "c-6a36b8de406d",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e30b2d47398d",
@@ -2577,7 +4503,16 @@
     "inheritable": "yes",
     "predicate": "单位面积冷负荷指标",
     "time": "2019",
-    "source": "c-27c9dd83b0ec"
+    "source": "c-27c9dd83b0ec",
+    "object_role": "指标值",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a7f866d690be",
@@ -2589,7 +4524,16 @@
     "inheritable": "yes",
     "predicate": "冷负荷",
     "time": "2019",
-    "source": "c-27c9dd83b0ec"
+    "source": "c-27c9dd83b0ec",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6fde114502ac",
@@ -2601,7 +4545,16 @@
     "inheritable": "yes",
     "predicate": "单位面积热负荷指标",
     "time": "2019",
-    "source": "c-27c9dd83b0ec"
+    "source": "c-27c9dd83b0ec",
+    "object_role": "指标值",
+    "domain": "暖通·热负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-564866270310",
@@ -2613,7 +4566,16 @@
     "inheritable": "yes",
     "predicate": "热负荷",
     "time": "2019",
-    "source": "c-27c9dd83b0ec"
+    "source": "c-27c9dd83b0ec",
+    "object_role": "unknown",
+    "domain": "暖通·热负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-239c8f582585",
@@ -2625,7 +4587,16 @@
     "inheritable": "yes",
     "predicate": "冷热源形式",
     "time": "2019",
-    "source": "c-2fda396d40da"
+    "source": "c-2fda396d40da",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9d235ea5246a",
@@ -2637,7 +4608,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-95757b570de9",
@@ -2649,7 +4629,16 @@
     "inheritable": "yes",
     "predicate": "单台制冷量",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6040256abb83",
@@ -2661,7 +4650,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-039cd700bce6",
@@ -2673,7 +4671,16 @@
     "inheritable": "yes",
     "predicate": "单台制冷量",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5a6c23c28a1a",
@@ -2685,7 +4692,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4132dcebb00b",
@@ -2697,7 +4713,16 @@
     "inheritable": "yes",
     "predicate": "单台制冷量",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a7a7a7fe459d",
@@ -2709,7 +4734,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-edc8d5efd615",
@@ -2721,7 +4755,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5f171d536786",
@@ -2733,7 +4776,16 @@
     "inheritable": "yes",
     "predicate": "台数",
     "time": "2019",
-    "source": "c-387f65b6c162"
+    "source": "c-387f65b6c162",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-5859db27922c",
@@ -2745,7 +4797,16 @@
     "inheritable": "yes",
     "predicate": "用水定额",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "指标值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-bf76480f8b0c",
@@ -2757,7 +4818,16 @@
     "inheritable": "yes",
     "predicate": "用水人数",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1e941f1c85b2",
@@ -2769,7 +4839,16 @@
     "inheritable": "yes",
     "predicate": "日用水量",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-af196dccd886",
@@ -2781,7 +4860,16 @@
     "inheritable": "yes",
     "predicate": "用水定额",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "指标值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-109f219b5cdc",
@@ -2793,7 +4881,16 @@
     "inheritable": "yes",
     "predicate": "用水人数",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4a9d5aca884a",
@@ -2805,7 +4902,16 @@
     "inheritable": "yes",
     "predicate": "日用水量",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b1e9a58c3e61",
@@ -2817,7 +4923,16 @@
     "inheritable": "yes",
     "predicate": "年工作天数",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a01b53350bb8",
@@ -2829,7 +4944,16 @@
     "inheritable": "yes",
     "predicate": "年总用水量",
     "time": "2019",
-    "source": "c-303a6a09db8e"
+    "source": "c-303a6a09db8e",
+    "object_role": "unknown",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0175db4c5ff0",
@@ -2841,7 +4965,16 @@
     "inheritable": "yes",
     "predicate": "用电面积",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c8c5fd1fece2",
@@ -2853,7 +4986,16 @@
     "inheritable": "yes",
     "predicate": "用电指标",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "指标值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d47bd8140fdc",
@@ -2865,7 +5007,16 @@
     "inheritable": "yes",
     "predicate": "需要系数",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6eb51e821197",
@@ -2877,7 +5028,16 @@
     "inheritable": "yes",
     "predicate": "同时使用系数",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-934942fb8325",
@@ -2889,7 +5049,16 @@
     "inheritable": "yes",
     "predicate": "用电面积",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-094c483c1ac2",
@@ -2901,7 +5070,16 @@
     "inheritable": "yes",
     "predicate": "用电指标",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "指标值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4aaf4c9685bf",
@@ -2913,7 +5091,16 @@
     "inheritable": "yes",
     "predicate": "需要系数",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "需求值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f52e2827a0e8",
@@ -2925,7 +5112,16 @@
     "inheritable": "yes",
     "predicate": "同时使用系数",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d81c8436d3ef",
@@ -2937,7 +5133,16 @@
     "inheritable": "yes",
     "predicate": "日均工作小时数",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fbcb8688c60f",
@@ -2949,7 +5154,16 @@
     "inheritable": "yes",
     "predicate": "年总耗电量",
     "time": "2019",
-    "source": "c-46385d4ae269"
+    "source": "c-46385d4ae269",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-43f27011e247",
@@ -2961,7 +5175,16 @@
     "inheritable": "yes",
     "predicate": "折标系数",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 3,
+      "round_tol": 0.001
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e2fb043d4a06",
@@ -2973,7 +5196,16 @@
     "inheritable": "yes",
     "predicate": "折标系数（当量值）",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 3,
+      "round_tol": 0.001
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-97ae001309cd",
@@ -2985,7 +5217,16 @@
     "inheritable": "yes",
     "predicate": "综合能耗（当量值）",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-aca1f741b579",
@@ -2997,7 +5238,16 @@
     "inheritable": "yes",
     "predicate": "综合能耗（等价值）",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-fec5f42da5fb",
@@ -3009,7 +5259,16 @@
     "inheritable": "yes",
     "predicate": "单位面积综合能耗（当量值）",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b4f6323f3884",
@@ -3021,7 +5280,16 @@
     "inheritable": "yes",
     "predicate": "单位面积综合能耗（等价值）",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-27ce57f55373",
@@ -3033,7 +5301,16 @@
     "inheritable": "yes",
     "predicate": "单位建筑面积电耗",
     "time": "2019",
-    "source": "c-9b17de8351af"
+    "source": "c-9b17de8351af",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ecaf889ab916",
@@ -3045,7 +5322,16 @@
     "inheritable": "yes",
     "predicate": "与环境敏感目标间距",
     "time": "2019",
-    "source": "c-6dd94ba78b8f"
+    "source": "c-6dd94ba78b8f",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ac1766bae97a",
@@ -3057,7 +5343,16 @@
     "inheritable": "yes",
     "predicate": "底部离地面高度",
     "time": "2019",
-    "source": "c-6dd94ba78b8f"
+    "source": "c-6dd94ba78b8f",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "下限",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f95ce50dc7dd",
@@ -3069,7 +5364,16 @@
     "inheritable": "yes",
     "predicate": "昼间限值",
     "time": "2019",
-    "source": "c-d3f7b33459d8"
+    "source": "c-d3f7b33459d8",
+    "object_role": "unknown",
+    "domain": "环境",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6f8bf452fa72",
@@ -3081,7 +5385,16 @@
     "inheritable": "yes",
     "predicate": "夜间限值",
     "time": "2019",
-    "source": "c-d3f7b33459d8"
+    "source": "c-d3f7b33459d8",
+    "object_role": "unknown",
+    "domain": "环境",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f06e00a5f844",
@@ -3093,7 +5406,16 @@
     "inheritable": "yes",
     "predicate": "抗震设防类别（安全章口径）",
     "time": "2019",
-    "source": "c-82d60e95db12"
+    "source": "c-82d60e95db12",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7e339ea5a706",
@@ -3105,7 +5427,16 @@
     "inheritable": "yes",
     "predicate": "抗震设防烈度（安全章口径）",
     "time": "2019",
-    "source": "c-82d60e95db12"
+    "source": "c-82d60e95db12",
+    "object_role": "unknown",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1dff222d7986",
@@ -3117,7 +5448,16 @@
     "inheritable": "yes",
     "predicate": "昼间限值",
     "time": "2019",
-    "source": "c-d3f7b33459d8"
+    "source": "c-d3f7b33459d8",
+    "object_role": "unknown",
+    "domain": "环境",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-21ac2ea6a4ab",
@@ -3129,7 +5469,16 @@
     "inheritable": "yes",
     "predicate": "项目管理架构",
     "time": "2019",
-    "source": "c-e81b2fb16995"
+    "source": "c-e81b2fb16995",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1d9bbad66196",
@@ -3141,7 +5490,16 @@
     "inheritable": "yes",
     "predicate": "方案设计与可研编制",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c810673e6119",
@@ -3153,7 +5511,16 @@
     "inheritable": "yes",
     "predicate": "初步设计及概算",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-99e0769bc827",
@@ -3165,7 +5532,16 @@
     "inheritable": "yes",
     "predicate": "施工图设计",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-303deda576f1",
@@ -3177,7 +5553,16 @@
     "inheritable": "yes",
     "predicate": "施工招标",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c3ad80bc3176",
@@ -3189,7 +5574,16 @@
     "inheritable": "yes",
     "predicate": "开工建设",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7c90a8639e27",
@@ -3201,7 +5595,16 @@
     "inheritable": "yes",
     "predicate": "竣工验收",
     "time": "2019",
-    "source": "c-c809a9cf067b"
+    "source": "c-c809a9cf067b",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-171f869338fe",
@@ -3213,7 +5616,16 @@
     "inheritable": "yes",
     "predicate": "运行费用列支渠道",
     "time": "2019",
-    "source": "c-4e577b7d8923"
+    "source": "c-4e577b7d8923",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1581360ae141",
@@ -3225,7 +5637,16 @@
     "inheritable": "yes",
     "predicate": "招标估算金额",
     "time": "2019",
-    "source": "c-c790d7886310"
+    "source": "c-c790d7886310",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8824177763f5",
@@ -3237,7 +5658,16 @@
     "inheritable": "yes",
     "predicate": "招标估算金额",
     "time": "2019",
-    "source": "c-c790d7886310"
+    "source": "c-c790d7886310",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-e60dafe57ee8",
@@ -3249,7 +5679,16 @@
     "inheritable": "yes",
     "predicate": "招标估算金额",
     "time": "2019",
-    "source": "c-c790d7886310"
+    "source": "c-c790d7886310",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c1fd26fa6765",
@@ -3261,7 +5700,16 @@
     "inheritable": "yes",
     "predicate": "招标估算金额",
     "time": "2019",
-    "source": "c-c790d7886310"
+    "source": "c-c790d7886310",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7983ecf69539",
@@ -3273,7 +5721,16 @@
     "inheritable": "yes",
     "predicate": "招标方式",
     "time": "2019",
-    "source": "c-4701cb3feb02"
+    "source": "c-4701cb3feb02",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c51de871596c",
@@ -3285,7 +5742,16 @@
     "inheritable": "yes",
     "predicate": "基本预备费费率",
     "time": "2019",
-    "source": "c-cf8f0b4e2668"
+    "source": "c-cf8f0b4e2668",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-59b9d8f6d1fc",
@@ -3297,7 +5763,16 @@
     "inheritable": "yes",
     "predicate": "装配率",
     "time": "2019",
-    "source": "c-df2093af0240"
+    "source": "c-df2093af0240",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f470a0725f92",
@@ -3309,7 +5784,16 @@
     "inheritable": "yes",
     "predicate": "绿色建筑目标",
     "time": "2019",
-    "source": "c-df2093af0240"
+    "source": "c-df2093af0240",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-dc49a463c8e3",
@@ -3321,7 +5805,16 @@
     "inheritable": "yes",
     "predicate": "估算范围排除项",
     "time": "2019",
-    "source": "c-402ccafc1d64"
+    "source": "c-402ccafc1d64",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8c646e42426a",
@@ -3333,7 +5826,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4002faaed7b8",
@@ -3345,7 +5847,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-17cad48fed94",
@@ -3357,7 +5868,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-84cd9cdd7e0d",
@@ -3369,7 +5889,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2e9eaad1259f",
@@ -3381,7 +5910,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ad6fd08cb831",
@@ -3393,7 +5931,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-767846c72651",
@@ -3405,7 +5952,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0ea3008f61f9",
@@ -3417,7 +5973,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7930ab172a2a",
@@ -3429,7 +5994,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6ed5795596e9",
@@ -3441,7 +6015,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-be59b87fb79c",
@@ -3453,7 +6036,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c48958c97484",
@@ -3465,7 +6057,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7905c339c5bf",
@@ -3477,7 +6078,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "建筑·装饰",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-eabadd267940",
@@ -3489,7 +6099,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "给排水",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c5de22ac0e51",
@@ -3501,7 +6120,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c46ae5293e41",
@@ -3513,7 +6141,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-72507f498f8c",
@@ -3525,7 +6162,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-809d541088ab",
@@ -3537,7 +6183,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d11b8963a5c2",
@@ -3549,7 +6204,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-94e433692986",
@@ -3561,7 +6225,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-565398c4826c",
@@ -3573,7 +6246,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-eaf61c336ddf",
@@ -3585,7 +6267,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d79f49630ce5",
@@ -3597,7 +6288,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2ccc0c5d1207",
@@ -3609,7 +6309,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "结构",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4b40f9539e03",
@@ -3621,7 +6330,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-63082fae08d5",
@@ -3633,7 +6351,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f4b6e8cc3b5f",
@@ -3645,7 +6372,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-78644662331e",
@@ -3657,7 +6393,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a59ed4c3313a",
@@ -3669,7 +6414,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a564cd720a96",
@@ -3681,7 +6435,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-635ce37a69fc",
@@ -3693,7 +6456,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d27e283b73c6",
@@ -3705,7 +6477,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a4041fa32fd3",
@@ -3717,7 +6498,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-bc5af78a6b82",
@@ -3729,7 +6519,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8dad7d339b06",
@@ -3741,7 +6540,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-52349af2e44f",
@@ -3753,7 +6561,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-349ad4d2a9d0",
@@ -3765,7 +6582,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0d30a6b44768",
@@ -3777,7 +6603,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "设计值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-236dbdb1fea6",
@@ -3789,7 +6624,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-903b0ac65f67",
@@ -3801,7 +6645,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-58f2a08d9047",
@@ -3813,7 +6666,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-9e5bfac670e5",
@@ -3825,7 +6687,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-979e5a5ddbc9",
@@ -3837,7 +6708,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-d3fb4fe652f7",
@@ -3849,7 +6729,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-31dacc87adf4",
@@ -3861,7 +6750,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "建安工程费",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a161b289c97d",
@@ -3873,7 +6771,16 @@
     "inheritable": "yes",
     "predicate": "估算金额",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "估算值",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "unknown",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f833fd93de5e",
@@ -3885,7 +6792,16 @@
     "inheritable": "yes",
     "predicate": "单位造价（总投资口径）",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-257716ea5dae",
@@ -3897,7 +6813,16 @@
     "inheritable": "yes",
     "predicate": "单位造价（建安口径）",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-45a10b66cf96",
@@ -3909,7 +6834,16 @@
     "inheritable": "yes",
     "predicate": "电梯数量",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1b70a153d6ef",
@@ -3921,7 +6855,16 @@
     "inheritable": "yes",
     "predicate": "人防易地建设费单价",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-ab884f42d239",
@@ -3933,7 +6876,16 @@
     "inheritable": "yes",
     "predicate": "低压电缆长度",
     "time": "2019",
-    "source": "c-7226f71c0917"
+    "source": "c-7226f71c0917",
+    "object_role": "unknown",
+    "domain": "电气·电力",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0d4cc2051dfe",
@@ -3945,7 +6897,16 @@
     "inheritable": "yes",
     "predicate": "总建筑面积",
     "time": "2019",
-    "source": "c-57676fd556d8"
+    "source": "c-57676fd556d8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-38de69880db3",
@@ -3957,7 +6918,16 @@
     "inheritable": "yes",
     "predicate": "国拨资金",
     "time": "2019",
-    "source": "c-439358c3c12f"
+    "source": "c-439358c3c12f",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3150f017809d",
@@ -3969,7 +6939,16 @@
     "inheritable": "yes",
     "predicate": "国拨资金占比",
     "time": "2019",
-    "source": "c-439358c3c12f"
+    "source": "c-439358c3c12f",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-6001107c1482",
@@ -3981,7 +6960,16 @@
     "inheritable": "yes",
     "predicate": "学校自筹资金",
     "time": "2019",
-    "source": "c-439358c3c12f"
+    "source": "c-439358c3c12f",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c57d08f481b6",
@@ -3993,7 +6981,16 @@
     "inheritable": "yes",
     "predicate": "自筹资金实施周期",
     "time": "2019",
-    "source": "c-439358c3c12f"
+    "source": "c-439358c3c12f",
+    "object_role": "unknown",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-00c4257df194",
@@ -4005,7 +7002,16 @@
     "inheritable": "yes",
     "predicate": "年均资金需求量",
     "time": "2019",
-    "source": "c-439358c3c12f"
+    "source": "c-439358c3c12f",
+    "object_role": "需求值",
+    "domain": "投资·费用",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c80f305bd555",
@@ -4017,7 +7023,16 @@
     "inheritable": "yes",
     "predicate": "资产总额",
     "time": "2018",
-    "source": "c-198ee2fbd3f6"
+    "source": "c-198ee2fbd3f6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-3014e5738712",
@@ -4029,7 +7044,16 @@
     "inheritable": "yes",
     "predicate": "负债总额",
     "time": "2018",
-    "source": "c-198ee2fbd3f6"
+    "source": "c-198ee2fbd3f6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-87567273f44b",
@@ -4041,7 +7065,16 @@
     "inheritable": "yes",
     "predicate": "净资产总额",
     "time": "2018",
-    "source": "c-198ee2fbd3f6"
+    "source": "c-198ee2fbd3f6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-db325aa01a7a",
@@ -4053,7 +7086,16 @@
     "inheritable": "yes",
     "predicate": "资产负债率",
     "time": "2018",
-    "source": "c-198ee2fbd3f6"
+    "source": "c-198ee2fbd3f6",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-34ee25446ee0",
@@ -4065,7 +7107,16 @@
     "inheritable": "yes",
     "predicate": "总收入",
     "time": "2018",
-    "source": "c-20fec0ad5a29"
+    "source": "c-20fec0ad5a29",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-98278b3a0e8f",
@@ -4077,7 +7128,16 @@
     "inheritable": "yes",
     "predicate": "总支出",
     "time": "2018",
-    "source": "c-197848094e1c"
+    "source": "c-197848094e1c",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1a424c742c02",
@@ -4089,7 +7149,16 @@
     "inheritable": "yes",
     "predicate": "总收入增幅（较十二五末）",
     "time": "2018",
-    "source": "c-8f999fea1ec3"
+    "source": "c-8f999fea1ec3",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b506ba5e6eaa",
@@ -4101,7 +7170,16 @@
     "inheritable": "yes",
     "predicate": "清单",
     "time": "2019",
-    "source": "c-f508d7cfad78"
+    "source": "c-f508d7cfad78",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-c679c4e79bc2",
@@ -4113,7 +7191,16 @@
     "inheritable": "yes",
     "predicate": "拆除手续状态",
     "time": "2019",
-    "source": "c-5e339feba7c8"
+    "source": "c-5e339feba7c8",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "unknown",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-30719228907b",
@@ -4126,7 +7213,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:区间取值（补全，带来源 chunk）"
+    "output_source": "extract:区间取值（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-55aa3e05c5ed",
@@ -4139,7 +7235,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:区间取值（补全，带来源 chunk）"
+    "output_source": "extract:区间取值（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-82fdaa0455c3",
@@ -4152,7 +7257,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:区间取值（补全，带来源 chunk）"
+    "output_source": "extract:区间取值（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "unknown",
+    "caliber_direction": "区间",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8d02f9ae8a4d",
@@ -4165,7 +7279,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-1d9587397bcb",
@@ -4178,7 +7301,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4374076ddf34",
@@ -4191,7 +7323,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-df515d81e9cb",
@@ -4204,7 +7345,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-af9375768f2e",
@@ -4217,7 +7367,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-dd3083092803",
@@ -4230,7 +7389,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-b481651bf919",
@@ -4243,7 +7411,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-463141dcbf28",
@@ -4256,7 +7433,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-244feb71213d",
@@ -4269,7 +7455,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-a0ace6243ce5",
@@ -4282,7 +7477,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-055c7d09d904",
@@ -4295,7 +7499,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·热负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-eeff8343fa13",
@@ -4308,7 +7521,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 3,
+      "round_tol": 0.001
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-7faa8e256de2",
@@ -4321,7 +7543,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-35eaad289352",
@@ -4334,7 +7565,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·热负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-0b63011a5c65",
@@ -4347,7 +7587,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·通风",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 2,
+      "round_tol": 0.01
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-4047ca6fa11f",
@@ -4360,7 +7609,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-8f2e80943355",
@@ -4373,7 +7631,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f444e6da208c",
@@ -4386,7 +7653,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-bfc75e3ac877",
@@ -4399,7 +7675,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-2e0dbce3a431",
@@ -4412,7 +7697,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 1,
+      "round_tol": 0.1
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-263034bea88d",
@@ -4425,7 +7719,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f7e60701f297",
@@ -4438,7 +7741,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-498dd3aba97e",
@@ -4451,7 +7763,16 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:设备参数表行（补全，带来源 chunk）"
+    "output_source": "extract:设备参数表行（补全，带来源 chunk）",
+    "object_role": "unknown",
+    "domain": "暖通·冷负荷",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   },
   {
     "id": "N-f9be7868ad60",
@@ -4464,6 +7785,15 @@
     "kind": "quantity",
     "status": "defined",
     "section": "",
-    "output_source": "extract:原文明写（补全，带来源 chunk）"
+    "output_source": "extract:原文明写（补全，带来源 chunk）",
+    "object_role": "需求值",
+    "domain": "投资·费用",
+    "caliber_direction": "等于",
+    "hierarchy_path": "不适用",
+    "precision": {
+      "decimals": 0,
+      "round_tol": 0.5
+    },
+    "sem_src": "rule:object_role/domain/direction/hierarchy/precision"
   }
 ]

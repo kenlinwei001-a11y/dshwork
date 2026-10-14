@@ -8,9 +8,9 @@
   "script_sha256": "e5a0c1b514f3aa370f273ea73a2c1719",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:03",
-  "finished_at": "2026-10-14T18:06:04",
-  "elapsed_s": 0.79,
+  "started_at": "2026-10-14T20:15:35",
+  "finished_at": "2026-10-14T20:15:35",
+  "elapsed_s": 0.31,
   "declared_outputs": [
     "交付物/写作输入/交接说明-给推演写作专家.md",
     "交付物/写作输入/投递清单.md"
@@ -20,15 +20,15 @@
       "path": "交付物/写作输入/交接说明-给推演写作专家.md",
       "pattern": "交付物/写作输入/交接说明-给推演写作专家.md",
       "bytes": 14591,
-      "sha256": "cd165634fab3368b43f6f43b256daa83",
-      "mtime": 1791972277
+      "sha256": "2b626536ed7b12859bc7eff30c4fd98e",
+      "mtime": 1791979918
     },
     {
       "path": "交付物/写作输入/投递清单.md",
       "pattern": "交付物/写作输入/投递清单.md",
-      "bytes": 15901,
-      "sha256": "a911216fa598b758d14b973d04e1614c",
-      "mtime": 1791972299
+      "bytes": 16030,
+      "sha256": "0c301134c133c3c5c9542e7065dd2cc1",
+      "mtime": 1791980008
     }
   ],
   "outputs_missing": [],
@@ -57,10 +57,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7b/README.md",
     "SHUFE-BDC-2019-001/handover/s7b/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s7c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7b/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7b/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7c/gate.json",
     "SHUFE-BDC-2019-001/handover/s7c/manifest_A_s7b.json",
-    "SHUFE-BDC-2019-001/handover/s7c/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s7c/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_B_s7b.json",
+    "SHUFE-BDC-2019-001/handover/s7c/manifest_C_s7b.json",
     "SHUFE-BDC-2019-001/quality/run_record/s7b.json",
     "交付物/写作输入/chapters/01-总论.md",
     "交付物/写作输入/chapters/02-学校简介.md",
@@ -82,6 +84,6 @@
     "交付物/写作输入/知识资产索引.md",
     "交付物/写作输入/章节提示词索引.md"
   ],
-  "stdout_tail": "{\"inject_file\": \"写作输入/推演写作输入包.md\", \"bytes\": 24106, \"kb\": 23.5}\n{\n  \"files\": {\n    \"写作输入/推演写作输入包.md\": 24106,\n    \"写作输入/章节提示词索引.md\": 24102,\n    \"写作输入/知识资产索引.md\": 6088\n  },\n  \"chapter_slices\": 16,\n  \"chapter_slice_bytes_total\": 122901,\n  \"largest\": [\n    [\n      \"06-项目规划设计方案\",\n      36330\n    ],\n    [\n      \"05-项目建设内容及规模\",\n      16706\n    ],\n    [\n      \"13-投资估算及资金筹措\",\n      15791\n    ]\n  ],\n  \"smallest\": [\n    [\n      \"16-附件\",\n      1422\n    ],\n    [\n      \"15-结论与建议\",\n      1907\n    ],\n    [\n      \"14-社会效益\",\n      1964\n    ]\n  ]\n}\n",
+  "stdout_tail": "{\"inject_file\": \"写作输入/推演写作输入包.md\", \"bytes\": 20686, \"kb\": 20.2}\n{\n  \"files\": {\n    \"写作输入/推演写作输入包.md\": 20686,\n    \"写作输入/章节提示词索引.md\": 22678,\n    \"写作输入/知识资产索引.md\": 6088\n  },\n  \"chapter_slices\": 16,\n  \"chapter_slice_bytes_total\": 121164,\n  \"largest\": [\n    [\n      \"06-项目规划设计方案\",\n      36089\n    ],\n    [\n      \"05-项目建设内容及规模\",\n      16706\n    ],\n    [\n      \"13-投资估算及资金筹措\",\n      15154\n    ]\n  ],\n  \"smallest\": [\n    [\n      \"16-附件\",\n      1422\n    ],\n    [\n      \"15-结论与建议\",\n      1907\n    ],\n    [\n      \"14-社会效益\",\n      1964\n    ]\n  ]\n}\n",
   "stderr_tail": ""
 }

@@ -8,9 +8,9 @@
   "script_sha256": "5185dccbefaac96987afc5ba7d6d9564",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:58",
-  "finished_at": "2026-10-14T18:05:59",
-  "elapsed_s": 0.37,
+  "started_at": "2026-10-14T20:15:07",
+  "finished_at": "2026-10-14T20:15:08",
+  "elapsed_s": 0.39,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/style/section_prompts.yaml",
     "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml"
@@ -19,16 +19,16 @@
     {
       "path": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
       "pattern": "SHUFE-BDC-2019-001/style/section_prompts.yaml",
-      "bytes": 57587,
-      "sha256": "c846378756b73f2f58a3de0af14e2ce7",
-      "mtime": 1791972359
+      "bytes": 53915,
+      "sha256": "72b7f1227d97eccde5ce224d5c5ba64e",
+      "mtime": 1791980108
     },
     {
       "path": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
       "pattern": "SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml",
       "bytes": 7182,
       "sha256": "72bfff2cf23db53378fc22dab6bae045",
-      "mtime": 1791972359
+      "mtime": 1791980108
     }
   ],
   "outputs_missing": [],
@@ -60,10 +60,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s6/README.md",
     "SHUFE-BDC-2019-001/handover/s6/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s6c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s6/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s6/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s6c/gate.json",
     "SHUFE-BDC-2019-001/handover/s6c/manifest_A_s6.json",
-    "SHUFE-BDC-2019-001/handover/s6c/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s6c/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_B_s6.json",
+    "SHUFE-BDC-2019-001/handover/s6c/manifest_C_s6.json",
     "SHUFE-BDC-2019-001/quality/run_record/s6.json",
     "SHUFE-BDC-2019-001/reuse/domains.yaml",
     "SHUFE-BDC-2019-001/reuse/domains/01-ontology.yaml",

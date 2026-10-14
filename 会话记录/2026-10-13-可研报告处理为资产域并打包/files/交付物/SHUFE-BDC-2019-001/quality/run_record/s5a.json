@@ -5,12 +5,12 @@
   "stage_id": "s5a",
   "name": "脱敏骨架确定性重建",
   "script": "s7b_desensitize.py",
-  "script_sha256": "da2fa4178875a7e61be336d120ad886d",
+  "script_sha256": "67172fa950592cd9eba4fd02acd4a85b",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:46",
-  "finished_at": "2026-10-14T18:05:47",
-  "elapsed_s": 0.32,
+  "started_at": "2026-10-14T20:14:23",
+  "finished_at": "2026-10-14T20:14:23",
+  "elapsed_s": 0.31,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
     "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json"
@@ -21,14 +21,14 @@
       "pattern": "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
       "bytes": 291253,
       "sha256": "da8f50c03b0c59fe7becdb82e614cc79",
-      "mtime": 1791972347
+      "mtime": 1791980063
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
       "pattern": "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
       "bytes": 259262,
       "sha256": "b072d4844ea389c284a7ba6029000dfd",
-      "mtime": 1791972347
+      "mtime": 1791980063
     }
   ],
   "outputs_missing": [],
@@ -59,15 +59,18 @@
   ],
   "observed_outputs": [
     "SHUFE-BDC-2019-001/chunks/skeletons.jsonl",
-    "SHUFE-BDC-2019-001/handover/s4b/README.md",
-    "SHUFE-BDC-2019-001/handover/s4b/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s5a/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s4c/README.md",
+    "SHUFE-BDC-2019-001/handover/s4c/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s4c/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s4c/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s5a/gate.json",
     "SHUFE-BDC-2019-001/handover/s5a/manifest_A_s4b.json",
-    "SHUFE-BDC-2019-001/handover/s5a/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s5a/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5a/manifest_B_s4b.json",
+    "SHUFE-BDC-2019-001/handover/s5a/manifest_C_s4b.json",
     "SHUFE-BDC-2019-001/index/node_index.json",
     "SHUFE-BDC-2019-001/quality/gaps_unmodeled_values.json",
-    "SHUFE-BDC-2019-001/quality/run_record/s4b.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s4c.json",
+    "SHUFE-BDC-2019-001/quality/self_reports/s5a_self_report.json",
     "SHUFE-BDC-2019-001/quality/tool_defects.yaml"
   ],
   "stdout_tail": "{\n  \"chunks\": 1178,\n  \"numeric_slots_replaced\": 2192,\n  \"node_index_entries\": 567,\n  \"nested_after_fix\": 0,\n  \"malformed_after_fix\": 0\n}\n",

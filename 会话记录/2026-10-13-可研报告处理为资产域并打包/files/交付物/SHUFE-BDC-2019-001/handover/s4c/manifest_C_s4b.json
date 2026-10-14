@@ -1,0 +1,28 @@
+{
+  "stage": "s4b",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json": {
+      "self_consistency": {
+        "before": 358,
+        "after": 343,
+        "merged": 15,
+        "ok": true
+      }
+    },
+    "SHUFE-BDC-2019-001/graph/graph.yaml": {
+      "count": {
+        "facts": 370,
+        "rules": 35,
+        "claims": 28,
+        "evidence": 127,
+        "relations": 466,
+        "relation_types": 16
+      }
+    },
+    "SHUFE-BDC-2019-001/graph/nodes.yaml": {
+      "count": 370
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

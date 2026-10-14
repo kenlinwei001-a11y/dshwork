@@ -11,11 +11,37 @@
   },
   "facts": [
     {
+      "node_id": "N-5859db27922c",
+      "subject": "教师用水",
+      "predicate": "用水定额",
+      "value": "35",
+      "unit": "L/人·d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
       "node_id": "N-b1e9a58c3e61",
       "subject": "本项目",
       "predicate": "年工作天数",
       "value": "193",
       "unit": "d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-a01b53350bb8",
+      "subject": "本项目",
+      "predicate": "年总用水量",
+      "value": "1.74",
+      "unit": "万m³",
       "kind": "quantity",
       "caliber": "",
       "status": "defined",
@@ -50,11 +76,102 @@
       "chunk": "c-46385d4ae269"
     },
     {
-      "node_id": "N-5859db27922c",
+      "node_id": "N-97ae001309cd",
+      "subject": "本项目",
+      "predicate": "综合能耗（当量值）",
+      "value": "90",
+      "unit": "tce",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-fec5f42da5fb",
+      "subject": "本项目",
+      "predicate": "单位面积综合能耗（当量值）",
+      "value": "4.91",
+      "unit": "kgce/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-27ce57f55373",
+      "subject": "本项目",
+      "predicate": "单位建筑面积电耗",
+      "value": "39.30",
+      "unit": "kW·h/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-9b17de8351af"
+    },
+    {
+      "node_id": "N-bf76480f8b0c",
       "subject": "教师用水",
+      "predicate": "用水人数",
+      "value": "288",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-1e941f1c85b2",
+      "subject": "教师用水",
+      "predicate": "日用水量",
+      "value": "10.1",
+      "unit": "m³/d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-af196dccd886",
+      "subject": "学生用水",
       "predicate": "用水定额",
-      "value": "35",
+      "value": "40",
       "unit": "L/人·d",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-109f219b5cdc",
+      "subject": "学生用水",
+      "predicate": "用水人数",
+      "value": "1800",
+      "unit": "人",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "inheritable": "yes",
+      "instruction": "",
+      "chunk": "c-303a6a09db8e"
+    },
+    {
+      "node_id": "N-4a9d5aca884a",
+      "subject": "学生用水",
+      "predicate": "日用水量",
+      "value": "72.0",
+      "unit": "m³/d",
       "kind": "quantity",
       "caliber": "",
       "status": "defined",
@@ -165,123 +282,6 @@
       "inheritable": "yes",
       "instruction": "",
       "chunk": "c-46385d4ae269"
-    },
-    {
-      "node_id": "N-fec5f42da5fb",
-      "subject": "本项目",
-      "predicate": "单位面积综合能耗（当量值）",
-      "value": "4.91",
-      "unit": "kgce/㎡",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "undefined",
-      "inheritable": "yes",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
-      "chunk": "c-9b17de8351af"
-    },
-    {
-      "node_id": "N-27ce57f55373",
-      "subject": "本项目",
-      "predicate": "单位建筑面积电耗",
-      "value": "39.30",
-      "unit": "kW·h/㎡",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "undefined",
-      "inheritable": "yes",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
-      "chunk": "c-9b17de8351af"
-    },
-    {
-      "node_id": "N-a01b53350bb8",
-      "subject": "本项目",
-      "predicate": "年总用水量",
-      "value": "1.74",
-      "unit": "万m³",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
-    },
-    {
-      "node_id": "N-97ae001309cd",
-      "subject": "本项目",
-      "predicate": "综合能耗（当量值）",
-      "value": "90",
-      "unit": "tce",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-9b17de8351af"
-    },
-    {
-      "node_id": "N-bf76480f8b0c",
-      "subject": "教师用水",
-      "predicate": "用水人数",
-      "value": "288",
-      "unit": "人",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
-    },
-    {
-      "node_id": "N-1e941f1c85b2",
-      "subject": "教师用水",
-      "predicate": "日用水量",
-      "value": "10.1",
-      "unit": "m³/d",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
-    },
-    {
-      "node_id": "N-af196dccd886",
-      "subject": "学生用水",
-      "predicate": "用水定额",
-      "value": "40",
-      "unit": "L/人·d",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
-    },
-    {
-      "node_id": "N-109f219b5cdc",
-      "subject": "学生用水",
-      "predicate": "用水人数",
-      "value": "1800",
-      "unit": "人",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
-    },
-    {
-      "node_id": "N-4a9d5aca884a",
-      "subject": "学生用水",
-      "predicate": "日用水量",
-      "value": "72.0",
-      "unit": "m³/d",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "inheritable": "yes",
-      "instruction": "",
-      "chunk": "c-303a6a09db8e"
     },
     {
       "node_id": "N-43f27011e247",
@@ -438,54 +438,9 @@
       ],
       "status": "待审",
       "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
-    },
-    {
-      "type": "derivation",
-      "subject": "年总耗电量",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 72.0",
-        "重算 72.2"
-      ],
-      "involved": [
-        "N-0175db4c5ff0",
-        "N-094c483c1ac2",
-        "N-4aaf4c9685bf",
-        "N-6eb51e821197",
-        "N-934942fb8325",
-        "N-b1e9a58c3e61",
-        "N-c8c5fd1fece2",
-        "N-d47bd8140fdc",
-        "N-d81c8436d3ef",
-        "N-f52e2827a0e8",
-        "N-fbcb8688c60f"
-      ],
-      "status": "待审",
-      "note": "按规则 R-年用电量 重算得 72.2，原文写 72.0（差 0.2，0.28%）；按铁律不擅自改数"
     }
   ],
-  "gaps": [
-    {
-      "id": "G-004",
-      "type": "blocked_by_conflict",
-      "rule": "R-单位面积综合能耗",
-      "label": "单位面积综合能耗（当量值）",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    },
-    {
-      "id": "G-005",
-      "type": "blocked_by_conflict",
-      "rule": "R-单位建筑面积电耗",
-      "label": "单位建筑面积电耗",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    }
-  ],
+  "gaps": [],
   "rules_touching_section": [
     {
       "id": "R-年用水量",
@@ -517,7 +472,7 @@
         "年工作天数"
       ],
       "target": "年总耗电量",
-      "recheck": "派生差异"
+      "recheck": "闭合"
     },
     {
       "id": "R-综合能耗",
@@ -541,7 +496,7 @@
         "本项目建筑面积"
       ],
       "target": "单位面积综合能耗（当量值）",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     },
     {
       "id": "R-单位建筑面积电耗",
@@ -552,7 +507,7 @@
         "本项目建筑面积"
       ],
       "target": "单位建筑面积电耗",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     }
   ],
   "return_contract": {

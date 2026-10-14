@@ -1,6 +1,6 @@
 # 环节 s5h 交接说明（README）
 
-- 脚本：`s1d_extract_driven.py`　退出码：0　耗时：0.82s
+- 脚本：`s1d_extract_driven.py`　退出码：0　耗时：1.07s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

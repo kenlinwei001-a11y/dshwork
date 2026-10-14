@@ -8,9 +8,9 @@
   "script_sha256": "fc4694ecf6a3db10d6c7c9215495fea9",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:38",
-  "finished_at": "2026-10-14T18:05:39",
-  "elapsed_s": 0.67,
+  "started_at": "2026-10-14T20:13:42",
+  "finished_at": "2026-10-14T20:13:42",
+  "elapsed_s": 0.8,
   "declared_outputs": [
     "build/doc-clean/*.md"
   ],
@@ -20,7 +20,7 @@
       "pattern": "build/doc-clean/*.md",
       "bytes": 170597,
       "sha256": "e906e68b385d4de7a652babedc6ab9a8",
-      "mtime": 1791972339
+      "mtime": 1791980022
     }
   ],
   "outputs_missing": [],

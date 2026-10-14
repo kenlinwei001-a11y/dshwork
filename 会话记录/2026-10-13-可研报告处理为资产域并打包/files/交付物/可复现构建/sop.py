@@ -269,6 +269,7 @@ def run_all_recorded() -> int:
     stages, problems = load_sop()
     HO.HD.mkdir(parents=True, exist_ok=True)
     blocked = []
+    within_invalid = []
     for p in problems:
         print(f"  [SOP问题] {p['kind']}: {p['detail']}")
     rc_all = 0
@@ -280,7 +281,8 @@ def run_all_recorded() -> int:
             _src = HO.HD / dep / "manifest_A.json"
             if _src.exists():
                 shutil.copy2(_src, _d / f"manifest_A_{dep}.json")
-        hv = HO.compare(entry, {})
+        import copy as _cp
+        hv = HO.compare(entry, {s['id']: _cp.deepcopy(s) for s in stages})
         if hv["gate"] == "BLOCKED":
             blocked.append({"stage": entry["id"], "diffs": hv["diffs"][:6]})
             print(f"  [交接门] {entry['id']}: BLOCKED —— {hv['diff_count']} 项差异（下游不得开工）")
@@ -309,10 +311,22 @@ def run_all_recorded() -> int:
         elif rec["noop"]:
             flags.append("idempotent")
         HO.declare(entry["id"], rec)             # ★ 上游自报清单 A + README 解释文档
+        _wi = HO.within_stage(entry, rec)        # ★ 环节内部四元（SOP/自报/清点/自述）
+        if _wi["gate"] != "CONFIRMED":
+            within_invalid.append({"stage": entry["id"], "gate": _wi["gate"],
+                                   "diffs": _wi["diffs"][:4],
+                                   "independence": _wi["independence"]})
         print(f"  [记录] {entry['id']}: {' '.join(flags) or 'ok'}"
               f" | 产物 {len(rec['outputs'])} 变更 {len(rec['outputs_changed'])} | {rec['elapsed_s']}s")
         if rec["exit_code"] != 0 and entry.get("blocking", True):
             rc_all = 1
+    if within_invalid:
+        import json as _json
+        (PKG / "quality" / "handover_within_stage.json").write_text(
+            _json.dumps({"count": len(within_invalid),
+                         "by_gate": {g: sum(1 for x in within_invalid if x["gate"] == g)
+                                     for g in ("INVALID", "BLOCKED")},
+                         "items": within_invalid}, ensure_ascii=False, indent=2), encoding="utf-8")
     if blocked:
         import json as _json
         (PKG / "quality" / "handover_blocked.json").write_text(

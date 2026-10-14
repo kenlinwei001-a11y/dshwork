@@ -1,0 +1,71 @@
+{
+  "stage": "s4b",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/quality/nonstandalone_values.json"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/fill_dedup_report.json",
+      "bytes": 6439,
+      "sha256": "89c2ef8f8e53630d0c157f05b52ac5ff",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "dedup",
+          "node_dedup",
+          "fill",
+          "nonstandalone"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/graph.yaml",
+      "bytes": 233810,
+      "sha256": "edd8795d30b1a1dbc7027d21c8e7eb0c",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "facts",
+          "rules",
+          "claims",
+          "evidence",
+          "relations",
+          "relation_types"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "pattern": "SHUFE-BDC-2019-001/graph/nodes.yaml",
+      "bytes": 103522,
+      "sha256": "8752620c1ee9456105f9d5429ce3a3a4",
+      "probe": {
+        "parsable": true,
+        "keys": "list[370]"
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/nonstandalone_values.json",
+      "pattern": "SHUFE-BDC-2019-001/quality/nonstandalone_values.json",
+      "bytes": 1054,
+      "sha256": "0fb4168f93bc43dc285d3a375483022d",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "count",
+          "note",
+          "values"
+        ]
+      }
+    }
+  ],
+  "count": 4,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

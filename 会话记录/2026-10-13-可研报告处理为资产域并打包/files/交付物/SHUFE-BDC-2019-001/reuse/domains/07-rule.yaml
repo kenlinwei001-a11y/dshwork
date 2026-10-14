@@ -209,16 +209,7 @@
       "R-年用电量"
     ]
   },
-  "related_issues": [
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值",
-    "派生值 vs 原文值"
-  ],
+  "related_issues": [],
   "reuse_boundary": {
     "inherit": [
       "结构",
@@ -262,7 +253,7 @@
       ]
     },
     "QG3": {
-      "passed": true,
+      "passed": false,
       "checks": [
         "借形不借值：域文件中的 reusable_form 只给结构/规则/口径",
         "单位与量纲显式（含本项目实测踩到的 2 处量纲坑）",

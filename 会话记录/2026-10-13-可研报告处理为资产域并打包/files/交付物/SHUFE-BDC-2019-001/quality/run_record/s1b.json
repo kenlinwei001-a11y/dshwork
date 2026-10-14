@@ -8,9 +8,9 @@
   "script_sha256": "884fd5afa76d79d2e4922191c8f7f518",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:39",
-  "finished_at": "2026-10-14T18:05:39",
-  "elapsed_s": 0.11,
+  "started_at": "2026-10-14T20:13:44",
+  "finished_at": "2026-10-14T20:13:44",
+  "elapsed_s": 0.22,
   "declared_outputs": [
     "build/extractions-clean/P4a.json",
     "build/extractions-clean/P4b.json",
@@ -22,21 +22,21 @@
       "pattern": "build/extractions-clean/P4a.json",
       "bytes": 28213,
       "sha256": "7d7d4a079ab7c1d4a0564d591f4300bd",
-      "mtime": 1791972229
+      "mtime": 1791979810
     },
     {
       "path": "build/extractions-clean/P4b.json",
       "pattern": "build/extractions-clean/P4b.json",
       "bytes": 40570,
       "sha256": "f630946ea92d5e87c337404cfc9af5d4",
-      "mtime": 1791972229
+      "mtime": 1791979810
     },
     {
       "path": "build/extractions-clean/P5.json",
       "pattern": "build/extractions-clean/P5.json",
       "bytes": 22984,
       "sha256": "224d3def04f689c664b588485cbcf5d1",
-      "mtime": 1791972229
+      "mtime": 1791979810
     }
   ],
   "outputs_missing": [],
@@ -65,10 +65,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s1a/README.md",
     "SHUFE-BDC-2019-001/handover/s1a/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s1b/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s1a/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s1a/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s1b/gate.json",
     "SHUFE-BDC-2019-001/handover/s1b/manifest_A_s1a.json",
-    "SHUFE-BDC-2019-001/handover/s1b/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s1b/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s1b/manifest_B_s1a.json",
+    "SHUFE-BDC-2019-001/handover/s1b/manifest_C_s1a.json",
     "SHUFE-BDC-2019-001/quality/run_record/s1a.json",
     "build/extractions/P4a.json",
     "build/extractions/P4b.json",

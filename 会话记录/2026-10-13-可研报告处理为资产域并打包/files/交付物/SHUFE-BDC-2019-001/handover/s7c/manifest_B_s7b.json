@@ -1,0 +1,22 @@
+{
+  "stage": "s7b",
+  "patterns": [
+    "交付物/装配输入包-报告还原.md"
+  ],
+  "items": [
+    {
+      "path": "交付物/装配输入包-报告还原.md",
+      "pattern": "交付物/装配输入包-报告还原.md",
+      "bytes": 270995,
+      "sha256": "feebf70087fc6432b1b89e86dbf4d4b7",
+      "probe": {
+        "parsable": true,
+        "text_chars": 159207
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

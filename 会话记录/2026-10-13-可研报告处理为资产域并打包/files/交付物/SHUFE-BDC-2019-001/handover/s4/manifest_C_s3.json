@@ -1,0 +1,20 @@
+{
+  "stage": "s3",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/manifest.yaml": {
+      "status": "draft",
+      "gate_summary": null
+    },
+    "SHUFE-BDC-2019-001/graph/nodes.yaml": {
+      "count": 358
+    },
+    "SHUFE-BDC-2019-001/chunks/chunks.jsonl": {
+      "records": 1178
+    },
+    "SHUFE-BDC-2019-001/reasoning/trace.jsonl": {
+      "records": 7
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

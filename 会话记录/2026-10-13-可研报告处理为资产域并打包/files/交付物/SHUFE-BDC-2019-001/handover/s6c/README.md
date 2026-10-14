@@ -1,10 +1,10 @@
 # 环节 s6c 交接说明（README）
 
-- 脚本：`s13_assets_ext.py`　退出码：0　耗时：0.37s
+- 脚本：`s13_assets_ext.py`　退出码：0　耗时：0.39s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）
-- `SHUFE-BDC-2019-001/style/section_prompts.yaml`（57587 B）
+- `SHUFE-BDC-2019-001/style/section_prompts.yaml`（53915 B）
 - `SHUFE-BDC-2019-001/reuse/regulatory_dependency.yaml`（7182 B）
 
 ## 给下游的说明

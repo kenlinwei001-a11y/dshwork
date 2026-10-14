@@ -1,0 +1,39 @@
+{
+  "stage": "s7i",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+    "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_verify_workarea.yaml",
+      "bytes": 5944,
+      "sha256": "f9ffa0ca1f375ad2ae0d9f5e10199864",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "criteria",
+          "policy"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/objective_criteria_workarea.yaml",
+      "bytes": 3661,
+      "sha256": "83de829dc044314217ec5290866b1350",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "criteria",
+          "principle"
+        ]
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

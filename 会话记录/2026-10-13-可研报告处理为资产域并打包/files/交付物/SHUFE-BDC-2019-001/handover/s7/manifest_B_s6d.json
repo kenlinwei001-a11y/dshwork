@@ -1,0 +1,28 @@
+{
+  "stage": "s6d",
+  "patterns": [
+    "SHUFE-BDC-2019-001/quality/screened_evidence.yaml"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/screened_evidence.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/screened_evidence.yaml",
+      "bytes": 8413,
+      "sha256": "62c8ef81cd412f4e542469eaa7dfdfa6",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "note",
+          "source",
+          "items",
+          "adopted_count",
+          "pending_count"
+        ]
+      }
+    }
+  ],
+  "count": 1,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

@@ -8,9 +8,9 @@
   "script_sha256": "ac690ec66e77428c2742164d1ccb7417",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:05:48",
-  "finished_at": "2026-10-14T18:05:48",
-  "elapsed_s": 0.6,
+  "started_at": "2026-10-14T20:14:25",
+  "finished_at": "2026-10-14T20:14:26",
+  "elapsed_s": 0.21,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/external/documents.yaml",
     "SHUFE-BDC-2019-001/external/chunks.jsonl",
@@ -23,28 +23,28 @@
       "pattern": "SHUFE-BDC-2019-001/external/documents.yaml",
       "bytes": 13165,
       "sha256": "b43b61d92e0d686b7e3b691587c3417a",
-      "mtime": 1791972348
+      "mtime": 1791980066
     },
     {
       "path": "SHUFE-BDC-2019-001/external/chunks.jsonl",
       "pattern": "SHUFE-BDC-2019-001/external/chunks.jsonl",
       "bytes": 470087,
       "sha256": "6aa9252a9568407f1711bb6c94947104",
-      "mtime": 1791972348
+      "mtime": 1791980066
     },
     {
       "path": "SHUFE-BDC-2019-001/external/mandates.yaml",
       "pattern": "SHUFE-BDC-2019-001/external/mandates.yaml",
       "bytes": 19272,
       "sha256": "a62a3cd732662e5999e7e0d07b7063f9",
-      "mtime": 1791972348
+      "mtime": 1791980066
     },
     {
       "path": "SHUFE-BDC-2019-001/external/constraints.yaml",
       "pattern": "SHUFE-BDC-2019-001/external/constraints.yaml",
       "bytes": 5750,
       "sha256": "c49e52f9d88d1d9d5cd4303844da2799",
-      "mtime": 1791972348
+      "mtime": 1791980066
     }
   ],
   "outputs_missing": [],
@@ -84,10 +84,12 @@
     "SHUFE-BDC-2019-001/external/mandates.yaml",
     "SHUFE-BDC-2019-001/handover/s5b/README.md",
     "SHUFE-BDC-2019-001/handover/s5b/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s5c/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s5b/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s5b/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s5c/gate.json",
     "SHUFE-BDC-2019-001/handover/s5c/manifest_A_s5b.json",
-    "SHUFE-BDC-2019-001/handover/s5c/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s5c/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s5c/manifest_B_s5b.json",
+    "SHUFE-BDC-2019-001/handover/s5c/manifest_C_s5b.json",
     "SHUFE-BDC-2019-001/quality/run_record/s5b.json"
   ],
   "stdout_tail": "{\n  \"documents\": 20,\n  \"external_chunks\": 950,\n  \"chunks_dropped_as_nav\": 963,\n  \"mandates\": 22,\n  \"mandates_located\": 19,\n  \"constraints\": 17,\n  \"mandatory_constraints\": 7,\n  \"bindings\": 15,\n  \"edges\": 38,\n  \"by_status\": {\n    \"duplicate\": 1,\n    \"failed_403\": 1,\n    \"ok\": 11,\n    \"ok_mislabeled\": 2,\n    \"ok_partial\": 1,\n    \"ok_raw_html\": 1,\n    \"ok_secondary\": 3\n  }\n}\n",

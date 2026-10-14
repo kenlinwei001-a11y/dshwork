@@ -3,16 +3,16 @@
  "record": {
   "id": "semantica",
   "title": "Semantica",
-  "description": "图原生上下文与决策基础设施（15 工具）：实体/关系抽取、决策记录与检索、先例查找、因果链、知识图谱增删改查、推理、图分析、导出。",
+  "description": "图原生上下文与决策基础设施（15 工具）：实体/关系抽取、决策记录与检索、先例查找、因果链、知识图谱增删改查、推理、图分析、导出。｜已接入 DeepSeek LLM（凭据取自 ~/.semantica/env）",
   "serverName": "semantica",
   "transport": "stdio",
   "command": "/bin/sh",
   "args": [
    "-c",
-   "SEMANTICA_KG_PATH=/Users/apple/.semantica/graph.json exec /Users/apple/.venvs/semantica/bin/python -m semantica.mcp_server"
+   "[ -f /Users/apple/.semantica/env ] && . /Users/apple/.semantica/env; SEMANTICA_KG_PATH=/Users/apple/.semantica/graph.json exec /Users/apple/.venvs/semantica/bin/python -m semantica.mcp_server"
   ],
   "enabled": true,
   "createdAt": "2026-10-13T07:18:21.700000Z",
-  "updatedAt": "2026-10-13T07:18:21.700000Z"
+  "updatedAt": "2026-10-13T00:00:00.000000Z"
  }
 }

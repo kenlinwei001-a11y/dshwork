@@ -1,0 +1,67 @@
+{
+  "_contract": "SOP 环节「操作记录」空模板 —— 由确定性代码填写，LLM 不参与；SOP 本身不得被填写/修改",
+  "_template_version": "1.1",
+  "_fields": "以下字段为预置契约，填写方只能赋值、不得增删键；需要新字段须先改本模板并重新冻结 SOP 哈希。v1.1 新增 observed_outputs（执行期快照差集，作为产物归属的一手证据）",
+  "stage_id": "s4c",
+  "name": "数值语义维度补全（对象/用途/口径/层级/精度）",
+  "script": "s4c_semantics.py",
+  "script_sha256": "2f1e0aa572ff01fefad6185a2c51305c",
+  "exit_code": 0,
+  "blocking": true,
+  "started_at": "2026-10-14T20:14:13",
+  "finished_at": "2026-10-14T20:14:13",
+  "elapsed_s": 0.25,
+  "declared_outputs": [
+    "SHUFE-BDC-2019-001/quality/semantic_dims.yaml"
+  ],
+  "outputs": [
+    {
+      "path": "SHUFE-BDC-2019-001/quality/semantic_dims.yaml",
+      "pattern": "SHUFE-BDC-2019-001/quality/semantic_dims.yaml",
+      "bytes": 855,
+      "sha256": "d244d32c8a17a6ad0b8b740ff934a377",
+      "mtime": 1791980053
+    }
+  ],
+  "outputs_missing": [],
+  "outputs_changed": [
+    "SHUFE-BDC-2019-001/quality/semantic_dims.yaml"
+  ],
+  "noop": false,
+  "noop_allowed": false,
+  "must_change": true,
+  "checks": [
+    {
+      "id": "exit_zero",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_exist",
+      "verdict": "pass"
+    },
+    {
+      "id": "outputs_nonempty",
+      "verdict": "pass"
+    },
+    {
+      "id": "noop_policy",
+      "verdict": "pass"
+    }
+  ],
+  "observed_outputs": [
+    "SHUFE-BDC-2019-001/graph/graph.yaml",
+    "SHUFE-BDC-2019-001/graph/nodes.yaml",
+    "SHUFE-BDC-2019-001/handover/s4b/README.md",
+    "SHUFE-BDC-2019-001/handover/s4b/manifest_A.json",
+    "SHUFE-BDC-2019-001/handover/s4b/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s4b/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s4c/gate.json",
+    "SHUFE-BDC-2019-001/handover/s4c/manifest_A_s4b.json",
+    "SHUFE-BDC-2019-001/handover/s4c/manifest_B_s4b.json",
+    "SHUFE-BDC-2019-001/handover/s4c/manifest_C_s4b.json",
+    "SHUFE-BDC-2019-001/quality/run_record/s4b.json",
+    "SHUFE-BDC-2019-001/quality/semantic_dims.yaml"
+  ],
+  "stdout_tail": "{\n  \"annotated_nodes\": 370,\n  \"annotated_facts\": 370,\n  \"note\": \"规则式补全；unknown 表示未命中规则，**不猜测**\"\n}\n  object_role: [('unknown', 263), ('估算值', 53), ('指标值', 21), ('需求值', 17)]\n  domain: [('unknown', 226), ('结构', 31), ('给排水', 28), ('暖通·冷负荷', 25)]\n  caliber_direction: [('等于', 289), ('unknown', 58), ('区间', 13), ('下限', 6)]\n  hierarchy_path: [('不适用', 317), ('unknown', 38), ('建安工程费', 15)]\n",
+  "stderr_tail": ""
+}

@@ -1,0 +1,19 @@
+{
+  "stage": "s5i",
+  "self_declared": {
+    "SHUFE-BDC-2019-001/quality/prompt_reuse.yaml": {
+      "verdict": "invalid",
+      "summary": {
+        "invalid": [
+          "DOC-REPORT-01.claim_extraction: 1178/1178 片未调用（无 provider）",
+          "DOC-REPORT-01.fact_extraction: 1178/1178 片未调用（无 provider）",
+          "EXT-00.claim_extraction: 14/14 片未调用（无 provider）",
+          "EXT-00.fact_extraction: 14/14 片未调用（无 provider）",
+          "EXT-01.claim_extraction: 144/144 片未调用（无 provider）"
+        ]
+      }
+    }
+  },
+  "produced_by": "artifact:content",
+  "source": "C=产物自述（从内容读出，不采信外部声明）"
+}

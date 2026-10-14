@@ -1,6 +1,6 @@
 # 环节 s5f 交接说明（README）
 
-- 脚本：`gt29_toolkit.py`　退出码：0　耗时：0.52s
+- 脚本：`gt29_toolkit.py`　退出码：0　耗时：1.17s
 - 是否产生变更：是　must_change：True
 
 ## 我产出了什么（自报，见 manifest_A.json）

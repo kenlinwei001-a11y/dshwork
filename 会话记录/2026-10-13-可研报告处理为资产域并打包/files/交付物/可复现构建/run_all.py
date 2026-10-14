@@ -18,6 +18,14 @@ import sys
 from pathlib import Path
 
 BUILD = Path(__file__).resolve().parent
+# ★ 禁用字节码：本会话实测——在同一秒内反复改源码+跑链路时，
+#   Python 的 mtime 粒度（1 秒）会判 __pycache__ 仍有效 ⇒ 加载**旧版字节码** ⇒
+#   检查器基于过期逻辑持续发出**假指控**（"上游虚报"），排查多轮无果。
+sys.dont_write_bytecode = True
+import shutil as _sh
+for _pc in BUILD.rglob("__pycache__"):
+    _sh.rmtree(_pc, ignore_errors=True)
+
 sys.path.insert(0, str(BUILD))
 import sop  # noqa: E402
 

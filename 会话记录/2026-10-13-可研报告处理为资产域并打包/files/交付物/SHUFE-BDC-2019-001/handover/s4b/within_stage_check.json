@@ -1,0 +1,21 @@
+{
+  "stage": "s4b",
+  "scope": "within_stage",
+  "SOP_patterns": 4,
+  "A": 4,
+  "diff_kinds": [],
+  "B": 4,
+  "C": 3,
+  "independence": {
+    "ok": true,
+    "tags": [
+      "stage:self_report",
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [],
+  "diff_count": 0,
+  "gate": "CONFIRMED",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid"
+}

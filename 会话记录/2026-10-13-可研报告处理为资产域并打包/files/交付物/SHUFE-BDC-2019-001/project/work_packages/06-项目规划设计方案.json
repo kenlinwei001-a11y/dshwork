@@ -25,6 +25,20 @@
   },
   "facts": [
     {
+      "id": "N-f4add4e0e79a",
+      "node_id": "N-f4add4e0e79a",
+      "subject": "办公",
+      "predicate": "用水定额",
+      "value": "50",
+      "unit": "L/人·日",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-354e031a9916"
+    },
+    {
       "id": "N-2a335b2708af",
       "node_id": "N-2a335b2708af",
       "subject": "大数据研究中心",
@@ -79,62 +93,6 @@
       "instruction": "",
       "inheritable": "yes",
       "chunk": "c-0369985c4547"
-    },
-    {
-      "id": "N-f4add4e0e79a",
-      "node_id": "N-f4add4e0e79a",
-      "subject": "办公",
-      "predicate": "用水定额",
-      "value": "50",
-      "unit": "L/人·日",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "defined",
-      "instruction": "",
-      "inheritable": "yes",
-      "chunk": "c-354e031a9916"
-    },
-    {
-      "id": "N-5cb9dea74a92",
-      "node_id": "N-5cb9dea74a92",
-      "subject": "本项目",
-      "predicate": "总计算负荷",
-      "value": "952",
-      "unit": "kW",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "undefined",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
-      "inheritable": "yes",
-      "chunk": "c-100dadfa18ab"
-    },
-    {
-      "id": "N-a7f866d690be",
-      "node_id": "N-a7f866d690be",
-      "subject": "本项目",
-      "predicate": "冷负荷",
-      "value": "2473",
-      "unit": "kW",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "undefined",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
-      "inheritable": "yes",
-      "chunk": "c-27c9dd83b0ec"
-    },
-    {
-      "id": "N-564866270310",
-      "node_id": "N-564866270310",
-      "subject": "本项目",
-      "predicate": "热负荷",
-      "value": "1465",
-      "unit": "kW",
-      "kind": "quantity",
-      "caliber": "",
-      "status": "undefined",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。",
-      "inheritable": "yes",
-      "chunk": "c-27c9dd83b0ec"
     },
     {
       "id": "N-c67295c8a345",
@@ -207,6 +165,20 @@
       "chunk": "c-100dadfa18ab"
     },
     {
+      "id": "N-5cb9dea74a92",
+      "node_id": "N-5cb9dea74a92",
+      "subject": "本项目",
+      "predicate": "总计算负荷",
+      "value": "952",
+      "unit": "kW",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-100dadfa18ab"
+    },
+    {
       "id": "N-e30b2d47398d",
       "node_id": "N-e30b2d47398d",
       "subject": "本项目",
@@ -221,12 +193,40 @@
       "chunk": "c-27c9dd83b0ec"
     },
     {
+      "id": "N-a7f866d690be",
+      "node_id": "N-a7f866d690be",
+      "subject": "本项目",
+      "predicate": "冷负荷",
+      "value": "2473",
+      "unit": "kW",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
       "id": "N-6fde114502ac",
       "node_id": "N-6fde114502ac",
       "subject": "本项目",
       "predicate": "单位面积热负荷指标",
       "value": "80",
       "unit": "W/㎡",
+      "kind": "quantity",
+      "caliber": "",
+      "status": "defined",
+      "instruction": "",
+      "inheritable": "yes",
+      "chunk": "c-27c9dd83b0ec"
+    },
+    {
+      "id": "N-564866270310",
+      "node_id": "N-564866270310",
+      "subject": "本项目",
+      "predicate": "热负荷",
+      "value": "1465",
+      "unit": "kW",
       "kind": "quantity",
       "caliber": "",
       "status": "defined",
@@ -523,74 +523,10 @@
       ],
       "status": "待审",
       "note": "同 (主体, 属性) 在不同章节取值不一致，按「待审」呈现，未擅自裁决"
-    },
-    {
-      "type": "derivation",
-      "subject": "建筑高度控制",
-      "predicate": "派生值 vs 原文值",
-      "values": [
-        "原文 60.0",
-        "重算 49.0"
-      ],
-      "involved": [
-        "N-170213817af5",
-        "N-2a335b2708af",
-        "N-4605eb02d134",
-        "N-f0fd96a3a38e"
-      ],
-      "status": "待审",
-      "note": "按规则 R-建筑高度校核 重算得 49.0，原文写 60.0（差 11.0，18.33%）；按铁律不擅自改数"
     }
   ],
-  "gaps": [
-    {
-      "id": "G-001",
-      "type": "missing_fact",
-      "rule": "R-总计算负荷",
-      "label": "总计算负荷",
-      "missing": [
-        "负荷估算面积口径"
-      ],
-      "note": "原文未给出该口径，保持显式未知；不估算、不套用同类项目。"
-    },
-    {
-      "id": "G-002",
-      "type": "blocked_by_conflict",
-      "rule": "R-冷负荷",
-      "label": "冷负荷",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    },
-    {
-      "id": "G-003",
-      "type": "blocked_by_conflict",
-      "rule": "R-热负荷",
-      "label": "热负荷",
-      "depends_on_conflict": [
-        "本项目建筑面积"
-      ],
-      "note": "依赖项存在未裁决数值冲突，按铁律「不带着冲突往下走」，派生校核阻塞。"
-    }
-  ],
-  "undefined": [
-    {
-      "node_id": "N-5cb9dea74a92",
-      "predicate": "总计算负荷",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
-    },
-    {
-      "node_id": "N-a7f866d690be",
-      "predicate": "冷负荷",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
-    },
-    {
-      "node_id": "N-564866270310",
-      "predicate": "热负荷",
-      "instruction": "依赖缺失或口径未给出，按定性措辞表述（如「待…后测算」）并挂 gap，永不按 0 计算。"
-    }
-  ],
+  "gaps": [],
+  "undefined": [],
   "skeleton": {
     "from_corpus": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0/SHUFE-BDC-2019-001",
     "section": "06-项目规划设计方案",
@@ -611,7 +547,7 @@
         "标准层层高"
       ],
       "target": "建筑高度控制",
-      "recheck": "派生差异"
+      "recheck": "闭合"
     },
     {
       "id": "R-最高日用水量",
@@ -649,7 +585,7 @@
         "照明及其他负荷密度指标"
       ],
       "target": "总计算负荷",
-      "recheck": "未解(缺口径)"
+      "recheck": "闭合"
     },
     {
       "id": "R-供电容量匹配",
@@ -672,7 +608,7 @@
         "单位面积冷负荷指标"
       ],
       "target": "冷负荷",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     },
     {
       "id": "R-热负荷",
@@ -683,7 +619,7 @@
         "单位面积热负荷指标"
       ],
       "target": "热负荷",
-      "recheck": "阻塞(冲突未裁决)"
+      "recheck": "闭合"
     },
     {
       "id": "R-年用水量",

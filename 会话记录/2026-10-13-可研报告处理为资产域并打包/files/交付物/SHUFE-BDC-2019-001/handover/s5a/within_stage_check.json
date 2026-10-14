@@ -1,0 +1,45 @@
+{
+  "stage": "s5a",
+  "scope": "within_stage",
+  "SOP_patterns": 2,
+  "A": 2,
+  "diff_kinds": [
+    "B_not_in_A",
+    "B_not_in_SOP"
+  ],
+  "B": 4,
+  "C": 2,
+  "independence": {
+    "ok": true,
+    "tags": [
+      "stage:self_report",
+      "harness:scan",
+      "artifact:content"
+    ]
+  },
+  "diffs": [
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/index/node_index.json",
+      "meaning": "环节漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_A",
+      "path": "SHUFE-BDC-2019-001/quality/tool_defects.yaml",
+      "meaning": "环节漏报（实际有、未自报）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/index/node_index.json",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    },
+    {
+      "kind": "B_not_in_SOP",
+      "path": "SHUFE-BDC-2019-001/quality/tool_defects.yaml",
+      "meaning": "**契约外产物**（实际产出但 SOP 未声明）"
+    }
+  ],
+  "diff_count": 4,
+  "gate": "BLOCKED",
+  "rule": "SOP 契约 / A 环节自报 / B 采集器清点 / C 产物自述；来源不独立 ⇒ invalid"
+}

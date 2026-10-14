@@ -8,9 +8,9 @@
   "script_sha256": "a746db02c84d7218b12a7b3dcaaf8c73",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:05",
-  "finished_at": "2026-10-14T18:06:05",
-  "elapsed_s": 0.38,
+  "started_at": "2026-10-14T20:15:37",
+  "finished_at": "2026-10-14T20:15:37",
+  "elapsed_s": 0.29,
   "declared_outputs": [
     "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx"
   ],
@@ -18,9 +18,9 @@
     {
       "path": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx",
       "pattern": "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx",
-      "bytes": 69656,
-      "sha256": "55931e9a04666fe913912c14eb4f4a9b",
-      "mtime": 1791972365
+      "bytes": 68228,
+      "sha256": "c378db3c83513bc5af82d8d51a7f6db5",
+      "mtime": 1791980137
     }
   ],
   "outputs_missing": [],
@@ -49,13 +49,15 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7f/README.md",
     "SHUFE-BDC-2019-001/handover/s7f/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s7g/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7f/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7f/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s7g/gate.json",
     "SHUFE-BDC-2019-001/handover/s7g/manifest_A_s7f.json",
-    "SHUFE-BDC-2019-001/handover/s7g/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s7g/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s7g/manifest_B_s7f.json",
+    "SHUFE-BDC-2019-001/handover/s7g/manifest_C_s7f.json",
     "SHUFE-BDC-2019-001/quality/run_record/s7f.json",
     "交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx"
   ],
-  "stdout_tail": "{'docx': '交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx', 'bytes': 69656, 'paragraphs': 2007, 'tables': 32}\n",
+  "stdout_tail": "{'docx': '交付物/报告/上海财经大学中山北一路校区大数据研究中心可行性研究报告（还原稿）.docx', 'bytes': 68228, 'paragraphs': 1933, 'tables': 32}\n",
   "stderr_tail": ""
 }

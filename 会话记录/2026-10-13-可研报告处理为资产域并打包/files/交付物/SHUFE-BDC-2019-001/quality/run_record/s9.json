@@ -8,9 +8,9 @@
   "script_sha256": "f3d06c41467d280cc0996fa5e9f06d2b",
   "exit_code": 0,
   "blocking": true,
-  "started_at": "2026-10-14T18:06:31",
-  "finished_at": "2026-10-14T18:06:32",
-  "elapsed_s": 1.15,
+  "started_at": "2026-10-14T20:15:57",
+  "finished_at": "2026-10-14T20:15:59",
+  "elapsed_s": 1.81,
   "declared_outputs": [
     "SHUFE-BDC-2019-001/quality/decision_tickets.md",
     "SHUFE-BDC-2019-001/quality/trigger_cards.md",
@@ -22,21 +22,21 @@
       "pattern": "SHUFE-BDC-2019-001/quality/decision_tickets.md",
       "bytes": 313,
       "sha256": "200aabc1e3ec2d235db9f4a03da269cf",
-      "mtime": 1791972392
+      "mtime": 1791980159
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
       "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.md",
       "bytes": 221,
       "sha256": "12bd9ed5037b134e538dc1c227d603d1",
-      "mtime": 1791972392
+      "mtime": 1791980159
     },
     {
       "path": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
       "pattern": "SHUFE-BDC-2019-001/quality/trigger_cards.yaml",
       "bytes": 446,
       "sha256": "e9ca0a71f2707b1fde6cf85cdd72809a",
-      "mtime": 1791972392
+      "mtime": 1791980159
     }
   ],
   "outputs_missing": [],
@@ -69,10 +69,12 @@
   "observed_outputs": [
     "SHUFE-BDC-2019-001/handover/s7j/README.md",
     "SHUFE-BDC-2019-001/handover/s7j/manifest_A.json",
-    "SHUFE-BDC-2019-001/handover/s9/handover_check.json",
+    "SHUFE-BDC-2019-001/handover/s7j/within/gate.json",
+    "SHUFE-BDC-2019-001/handover/s7j/within_stage_check.json",
+    "SHUFE-BDC-2019-001/handover/s9/gate.json",
     "SHUFE-BDC-2019-001/handover/s9/manifest_A_s7j.json",
-    "SHUFE-BDC-2019-001/handover/s9/manifest_B.json",
-    "SHUFE-BDC-2019-001/handover/s9/manifest_C.json",
+    "SHUFE-BDC-2019-001/handover/s9/manifest_B_s7j.json",
+    "SHUFE-BDC-2019-001/handover/s9/manifest_C_s7j.json",
     "SHUFE-BDC-2019-001/quality/decision_tickets.md",
     "SHUFE-BDC-2019-001/quality/decision_tickets.yaml",
     "SHUFE-BDC-2019-001/quality/run_record/s7j.json",

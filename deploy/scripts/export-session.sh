@@ -91,6 +91,63 @@ else
   echo "  （未指定 --files，只导出会话本身）"
 fi
 
+# 5) 强制脱敏 + 复扫。
+#    教训：本仓是 public，GitHub 有 push protection——含密钥的推送会被直接 reject。
+#    而且"我扫过了"不作数：只扫一部分、或只信自己的模式，都会漏。
+#    所以这里做成必跑的一步：先替换，再复扫，命中非 0 就报错退出。
+echo "== 脱敏与复扫 =="
+"$PY" - "$OUT" <<'PYEOF'
+import re, os, sys
+out = sys.argv[1]
+RULES = [
+    (re.compile(r'sk-[A-Za-z0-9_\-]{20,}'), 'sk-<REDACTED-LLM-API-KEY>'),
+    (re.compile(r'ghp_[A-Za-z0-9]{20,}'), 'ghp_<REDACTED-GITHUB-PAT>'),
+    (re.compile(r'github_pat_[A-Za-z0-9_]{20,}'), 'github_pat_<REDACTED-GITHUB-PAT>'),
+    (re.compile(r'(?<=token=)[A-Za-z0-9_\-]{16,}'), '<REDACTED-SESSION-TOKEN>'),
+    (re.compile(r'((?:DEEPSEEK|MOONSHOT|OPENAI|ANTHROPIC)_API_KEY["\']?\s*[:=]\s*["\']?)([A-Za-z0-9_\-]{16,})'),
+     r'\1<REDACTED-API-KEY>'),
+]
+for name in ("session.v4.jsonl", "session.meta.json", "manifest.json"):
+    p = os.path.join(out, name)
+    if not os.path.isfile(p):
+        continue
+    s = open(p, encoding="utf-8", errors="replace").read()
+    tot = 0
+    for pat, repl in RULES:
+        s, n = pat.subn(repl, s)
+        tot += n
+    open(p, "w", encoding="utf-8").write(s)
+    print(f"  {name}: 脱敏 {tot} 处")
+
+# 复扫：正文 + 元数据 + files/ 里的文本文件
+CHECK = [re.compile(r'sk-[A-Za-z0-9_\-]{20,}'), re.compile(r'ghp_[A-Za-z0-9]{20,}'),
+         re.compile(r'token=[A-Za-z0-9_\-]{16,}')]
+bad = []
+for root, _, fs in os.walk(out):
+    for f in fs:
+        p = os.path.join(root, f)
+        try:
+            if os.path.getsize(p) > 200 * 1024 * 1024:
+                continue
+            t = open(p, encoding="utf-8", errors="ignore").read()
+        except Exception:
+            continue
+        for c in CHECK:
+            if c.search(t):
+                bad.append(os.path.relpath(p, out)); break
+if bad:
+    print("  ✗ 复扫仍命中（这些文件含密钥，禁止推送）:")
+    for b in sorted(set(bad)):
+        print("     -", b)
+    sys.exit(2)
+print("  ✓ 复扫通过：真密钥残留 0")
+PYEOF
+SCAN_RC=$?
+if [ "$SCAN_RC" != "0" ]; then
+  echo "✗ 导出中止：复扫未通过，先处理上面的文件再推（files/ 里的二进制若确实含密钥，请勿入库）"
+  exit 1
+fi
+
 echo
 echo "== 导出完成 =="
 du -sh "$OUT" | sed 's/^/  体积: /'

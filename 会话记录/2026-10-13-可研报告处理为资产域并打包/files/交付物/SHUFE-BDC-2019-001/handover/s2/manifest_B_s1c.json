@@ -1,0 +1,33 @@
+{
+  "stage": "s1c",
+  "patterns": [
+    "build/extractions-clean/P6.json",
+    "build/extractions-clean/P7.json"
+  ],
+  "items": [
+    {
+      "path": "build/extractions-clean/P6.json",
+      "pattern": "build/extractions-clean/P6.json",
+      "bytes": 23398,
+      "sha256": "865e11dbf234a12a35864a32bc8a9b1e",
+      "probe": {
+        "parsable": true,
+        "keys": "list[12]"
+      }
+    },
+    {
+      "path": "build/extractions-clean/P7.json",
+      "pattern": "build/extractions-clean/P7.json",
+      "bytes": 46859,
+      "sha256": "fdddf21132f59a8871262ba2534d9d49",
+      "probe": {
+        "parsable": true,
+        "keys": "list[9]"
+      }
+    }
+  ],
+  "count": 2,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}

@@ -1,0 +1,316 @@
+{
+  "stage": "s6e",
+  "patterns": [
+    "SHUFE-BDC-2019-001/project/work_packages/*.json"
+  ],
+  "items": [
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/01-总论.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 11157,
+      "sha256": "c7575d824f897f4e0b5e3f00d03a8ca0",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/02-学校简介.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 11930,
+      "sha256": "617872eebe6b1fb4df0ec5e7c50dd1f1",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/03-项目建设背景及必要性分析.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 15393,
+      "sha256": "19ecfb064f99dda406a344d56ddebf47",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/04-项目选址及建设条件.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 8974,
+      "sha256": "b08385754ba301edf5f5b4bf62101752",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/05-项目建设内容及规模.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 21719,
+      "sha256": "ce844920ecd970b25a29f1c0c9548a98",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/06-项目规划设计方案.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 18467,
+      "sha256": "ab8fac49565dbb4d862900b87f009670",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/07-节能设计.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 16666,
+      "sha256": "da88fb49315603a401fdc815258cf9c6",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/08-环境影响评价.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3787,
+      "sha256": "18f6703b75dbcfac7d9a816c039e8f15",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/09-卫生防疫与劳动安全.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3734,
+      "sha256": "efe523108c181afd14cf2873c4447e06",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/10-社会稳定风险分析.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 3732,
+      "sha256": "4e420e67e8255f0aa204b320dd4927fa",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/11-项目管理及实施进度.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 4574,
+      "sha256": "f98e6beff57a37d58b9f15f15c7f8954",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/12-项目招投标方案.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 4853,
+      "sha256": "f18c0b55b971e88de185d320aa8196b5",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/13-投资估算及资金筹措.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 17925,
+      "sha256": "2994bef9134d53c32ba5e23adb112e79",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/14-社会效益.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2574,
+      "sha256": "d99449e58a3f5953634f1d75253ba1ed",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/15-结论与建议.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2278,
+      "sha256": "0e7091341cce41a2a9a31c2e851995db",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    },
+    {
+      "path": "SHUFE-BDC-2019-001/project/work_packages/16-附件.json",
+      "pattern": "SHUFE-BDC-2019-001/project/work_packages/*.json",
+      "bytes": 2931,
+      "sha256": "4f08452dadc63fe98f4876ecae300348",
+      "probe": {
+        "parsable": true,
+        "keys": [
+          "work_package_id",
+          "outline",
+          "facts",
+          "facts_paging",
+          "claims",
+          "conflicts",
+          "gaps",
+          "undefined"
+        ]
+      }
+    }
+  ],
+  "count": 16,
+  "missing_patterns": [],
+  "produced_by": "harness:scan",
+  "source": "B=独立清点（实际读盘，不读 A 的 claim）"
+}
