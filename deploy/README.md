@@ -8,8 +8,13 @@
 | --- | --- | --- |
 | `patches/semantica-0.7.0-graph-analytics.patch` | 修 semantica 0.7.0 `get_graph_analytics` 的三个上游 bug | 装/升级 semantica 后 |
 | `patches/dsh-mcp-connector-hide-sidebar-entry.patch` | 让 `dsh-mcp-connector` 不再往左侧栏塞「MCP连接器」入口 | **每次插件升级后** |
+| `scripts/install-mcp-servers.sh` | 装 MCP 服务端程序包（playwright / filesystem / sequential-thinking） | 新机器（不跑则这两条 MCP 连不上） |
 | `scripts/install-semantica-mcp.sh` | 建 venv + 装 semantica + 打补丁 + 生成连接器定义 | 新机器 / 升级 semantica |
+| `scripts/install-local-config.sh` | 把 `config/` 装进部署（技能/专家/MCP/预设），并改写写死的路径 | 新机器、配置有更新后 |
+| `scripts/export-session.sh` / `import-session.sh` | 会话（含产出文档）的导出与导入 | 交接会话时 |
 | `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
+| `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
+| `mcp-servers/` | MCP 服务端程序包的 `package.json` + `package-lock.json` | 由 `install-mcp-servers.sh` 使用 |
 | `connectors/*.json` | MCP 连接器定义（部署里登记用） | 重建部署时 |
 | `launchd/com.workdsh.preview.plist.template` | launchd 服务模板（含 `KeepAlive`，进程挂了会自动拉起） | 新机器 |
 
@@ -35,22 +40,38 @@
 ## 复现一个完整部署的步骤
 
 ```bash
-# 1. 代码
-git clone <repo> && cd <repo> && bash knowledge/setup.sh
+# 0. 环境：Node >=22、npm、python3.11（semantica 要求 >=3.10,<3.14，系统自带的 3.9 不行）
+git clone <repo> && cd <repo>
 
-# 2. semantica MCP（含上游补丁）
+# 1. 交付包本体（建 venv、装依赖、装 6 个 skill）
+bash knowledge/setup.sh
+
+# 2. MCP 服务端程序包（playwright / filesystem）—— 不跑这步，那两条 MCP 连不上
+bash deploy/scripts/install-mcp-servers.sh
+
+# 3. semantica MCP（建 venv + 装包 + 打上游 bug 补丁）
 bash deploy/scripts/install-semantica-mcp.sh
 
-# 3. 把存档的配置装进部署：技能 / 专家 / MCP 连接器 / Agent 预设
+# 4. 把存档的配置装进部署：技能 / 专家 / MCP 连接器 / Agent 预设
 #    —— 只克隆不跑这步，系统里看不到这些内容（deploy/config/ 只是存档，不会自动生效）
 bash deploy/scripts/install-local-config.sh [DSH_HOME] [DSH_AGENTS_HOME]
-#    脚本会把存档里写死的原作者路径改写成本机的；装完会告警哪些 MCP 的命令不存在
+#    会改写存档里写死的原作者路径；装完告警哪些 MCP 的命令不存在
 
-# 4. 服务：按 deploy/launchd/*.template 填好路径后放进 ~/Library/LaunchAgents/
+# 5. 会话（可选，看你要交接哪几条）
+bash deploy/scripts/import-session.sh "会话记录/2026-10-13-可研报告处理为资产域并打包"
 
-# 5. 每次插件升级后
+# 6. 服务：按 deploy/launchd/*.template 填好路径后放进 ~/Library/LaunchAgents/
+
+# 7. 每次插件升级后
 bash deploy/scripts/reapply-local-patches.sh
 ```
+
+### 同事还需要自己做的（不随仓库走）
+
+- **模型 API Key**：`<DSH_HOME>/.credentials.yaml` 里的 `DEEPSEEK_API_KEY` 是**本机凭据，不入库**。
+  对方要配自己的 key，否则 LLM 不通（界面上会弹「添加一个 API Key」）。这是**故意的**。
+- **只带了 3 条会话**：本机共有 90+ 条，仓库里只导出了可研相关那几条。
+- **install-local-config.sh 报「命令不存在」时**，就是对应 MCP 的依赖没装——按上面的 2/3 步补。
 
 ## 关于 deploy/config/
 
