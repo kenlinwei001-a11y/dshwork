@@ -7,10 +7,17 @@
 """
 from __future__ import annotations
 import os
+import sys
 import tempfile
 import unittest
+from pathlib import Path
 
-from .semantica_client import SemanticaClient, SemanticaUnavailable
+# 与同目录其它 test_*.py 一致：既支持 `python corpus_pipeline/test_xxx.py` 直接跑，
+# 也支持作为包的一部分跑。原来写的是相对导入（from .semantica_client ...），
+# 只有在包内运行时才成立；setup.sh 是直接当脚本跑的 ⇒ ImportError ⇒ 恒 FAIL。
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from corpus_pipeline.semantica_client import SemanticaClient, SemanticaUnavailable
 
 
 def _client():

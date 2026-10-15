@@ -23,13 +23,22 @@ YES_DOMAINS = {"ontology", "argument_chain", "task_dag", "rule", "skill",
                "report_form", "prompt", "quality_gate", "reuse_strategy", "entity_relation"}
 COND_DOMAINS = {"scenario", "variable", "function", "invariant", "report_structure", "cost_risk"}
 
+# 非域键：与 16 个变更域一起放在 changes 里，但它本身不是域，而是溯源元数据
+# （记录本体由哪个后端诱导：deterministic 规则 / semantica 抽取），供编排器与审计使用。
+# 断言时把它与域分开——否则每次加一个元数据键，这条测试都会红。
+META_KEYS = {"ontology_source"}
+
 
 def test_claim_changes_full_16_domains():
     diffs = diff_schemas({"facts": {"type": "array"}}, {"facts": {"type": "array"}, "claims": {"type": "array"}})
     r = assemble_domain_changes(diffs)
     assert r["changed"] is True
     changes = r["changes"]
-    assert set(changes.keys()) == set(DOMAINS), "16 域不齐"
+    got = set(changes.keys())
+    missing = set(DOMAINS) - got
+    assert not missing, f"16 域不齐，缺: {sorted(missing)}"
+    unexpected = got - set(DOMAINS) - META_KEYS
+    assert not unexpected, f"出现未预期的额外键: {sorted(unexpected)}（若非域元数据请加进 META_KEYS）"
     # yes 域有具体内容（非 None），conditional 域为 None
     for d in YES_DOMAINS:
         assert changes[d] is not None, f"{d} 应有具体变更集"
