@@ -1,0 +1,865 @@
+# =============================================================================
+# 可行性研究报告 元本体 (L0 Meta-Ontology)
+# -----------------------------------------------------------------------------
+# 定位：与项目类型无关的抽象层。任何类型的可研报告都必须能用本文件表达。
+# 纪律：L1 领域画像只能 specialize（收窄）/ extend（新增），不得删除或放宽 L0。
+#       若新增一个项目类型时必须修改本文件，说明 L0 抽象层次过低，应回炉。
+# =============================================================================
+
+meta:
+  id: fsr-core
+  version: 0.2.0
+  name: 可行性研究报告元本体
+  layer: L0
+  status: draft
+  normative_anchor: 发改投资规〔2023〕304号《投资项目可行性研究报告编写大纲及说明》
+  provenance: |
+    v0.1 逆向自一份真实的高校科研用房可研报告（旧口径）。
+    v0.2 起该样本**降级为验证材料**，不再作为结构依据——它是一份旧口径报告，
+    其独立的「招投标方案」「节能设计」「环境影响评价」章在 2023 大纲中均已不再单列。
+    L0 的结构依据改为下方 regulatory_anchor。
+  principles:
+    - SSOT: 任何事实在实例图中只存在一份，正文永远引用而非复制
+    - DERIVED_NEVER_TYPED: 可派生的量不得由人工录入，只能由规则计算
+    - EVIDENCE_BOUND: 任何论断必须绑定至少一个证据节点
+    - NUMBERS_NOT_OURS: 指标/单价的准确性由数据提供方负责，本体只负责传播一致性
+    - OUTLINE_IS_STATUTORY: 章节覆盖度由法定大纲决定，不由样本习惯决定
+
+# =============================================================================
+# 0. 法定锚点 —— L0 结构的权威来源
+#    样本可以是错的，法定大纲不能不覆盖。任何 L1 的章节骨架必须覆盖下列内容，
+#    覆盖缺失由 C7 检查为 error。
+# =============================================================================
+regulatory_anchor:
+
+  authority:
+    doc: 发改投资规〔2023〕304号《投资项目可行性研究报告编写大纲及说明》
+    issuer: 国家发展改革委
+    effective_from: 2023-05-01
+    url: https://www.ndrc.gov.cn/xxgk/zcfb/ghxwj/202304/t20230407_1353356.html
+    components:
+      - {id: gov,  name: 政府投资项目可行性研究报告编写通用大纲（2023年版）, force: 强制适用}
+      - {id: ent,  name: 企业投资项目可行性研究报告编写参考大纲（2023年版）, force: 参考适用}
+      - {id: note, name: 关于投资项目可行性研究报告编写大纲的说明（2023年版）, force: 释义}
+
+  # 政府投资项目通用大纲十章 → 可行性维度映射
+  # L1 冻结章节骨架时，必须能证明每一条 required 内容都有章节承载
+  mandatory_coverage:
+
+    CH1:
+      title: 概述
+      items: [项目概况, 项目单位概况, 编制依据, 主要结论和建议]
+      maps_to: [derived_only]
+      note: 纯派生章节，不得引入新事实
+
+    CH2:
+      title: 项目建设背景和必要性
+      items: [项目建设背景, 规划政策符合性, 项目建设必要性]
+      maps_to: [D1, D2]
+      note: 「规划政策符合性」是 D2 的法定落点，其论据即 Mandate(roles∋benchmark)
+
+    CH3:
+      title: 项目需求分析与产出方案
+      items: [需求分析, 建设内容和规模, 项目产出方案]
+      maps_to: [D4]
+      note: 原文「在需求分析基础上」提出规模——forecast 是制度上的强制前置
+
+    CH4:
+      title: 项目选址与要素保障
+      items: [项目选址或选线, 项目建设条件, 要素保障分析]
+      maps_to: [D3]
+      note: 映射到 Context 类。信息化类项目选址项不适用，要素保障项仍适用
+
+    CH5:
+      title: 项目建设方案
+      items: [技术方案, 设备方案, 工程方案, 用地用海征收补偿(安置)方案,
+              数字化方案, 建设管理方案]
+      maps_to: [D5]
+      note: 「数字化方案」与「建设管理方案」为 2023 新增/上收，旧口径报告常缺
+
+    CH6:
+      title: 项目运营方案
+      items: [运营模式选择, 运营组织方案, 安全保障方案, 绩效管理方案]
+      maps_to: [D10]
+      note: 独立一章。v0.1 完全遗漏，是单样本逆向的直接漏洞
+
+    CH7:
+      title: 项目投融资与财务方案
+      items: [投资估算, 盈利能力分析, 融资方案, 债务清偿能力分析, 财务可持续性分析]
+      maps_to: [D8, D11]
+      note: (二)盈利能力分析 → D11；其余 → D8。两者是不同判断，不得合并
+
+    CH8:
+      title: 项目影响效果分析
+      items: [经济影响分析, 社会影响分析, 生态环境影响分析,
+              资源和能源利用效果分析, 碳达峰碳中和分析]
+      maps_to: [D6, D7, D9]
+      note: |
+        节能 → 资源和能源利用效果分析（不再单列成章）
+        环评 → 生态环境影响分析（不再单列成章）
+        「碳达峰碳中和分析」为 2023 新增必备项
+
+    CH9:
+      title: 项目风险管控方案
+      items: [风险识别与评价, 风险管控方案, 风险应急预案]
+      maps_to: [D7]
+      note: 社会稳定风险分析归入此章，不再单列成章
+
+    CH10:
+      title: 研究结论及建议
+      items: [主要研究结论, 问题与建议]
+      maps_to: [derived_only]
+
+    CH11:
+      title: 附表、附图和附件
+      items: [附表, 附图, 附件]
+      maps_to: [artifact]
+
+  # 企业投资项目参考大纲的差异（L1 做经营性项目时按此扩展）
+  enterprise_delta:
+    CH2_extra: [企业发展战略需求分析, 项目市场需求分析, 项目商业模式]
+    CH4_extra: [资源开发方案]
+    CH5_title: 项目运营方案（含 生产经营方案）
+    known_gap:
+      note: |
+        2023 企业大纲的说明中**未出现**「敏感性分析」「盈亏平衡分析」字样，
+        这是相对《方法与参数》(第三版) 体系的缺口。实务中仍须按第三版补做，
+        L0 通过 FinancialEvaluation.uncertainty 强制要求。
+
+  invariant:
+    id: C7
+    rule: L1 的 outline 必须覆盖 mandatory_coverage 的全部 items（可合并承载，不可遗漏）
+    severity: error
+
+# =============================================================================
+# 1. 值类型系统
+#    每个槽位的值必须是下列类型之一。类型决定了它能参与哪些约束检查。
+# =============================================================================
+value_types:
+
+  quantity:
+    description: 带单位的物理量，可参与算术派生
+    fields:
+      value:      {type: number, required: true}
+      unit:       {type: string, required: true}
+      source:     {type: string, required: true, note: 来源章节或提供方}
+      basis:      {type: string, required: false, note: 依据的规范或指标编号}
+      confidence: {type: enum, values: [given, derived, estimated], default: given}
+    participates_in: [C1, C2, C3]
+
+  money:
+    description: 金额，quantity 的特化，强制币种与价格年份
+    extends: quantity
+    fields:
+      currency:   {type: string, default: CNY}
+      price_year: {type: integer, required: true, note: 价格基准年，跨年项目必填}
+    participates_in: [C1, C2, C3]
+
+  ratio:
+    description: 比率/系数，无量纲，取值域 [0,1] 或百分比
+    fields:
+      value:  {type: number, required: true}
+      form:   {type: enum, values: [fraction, percent], default: fraction}
+      source: {type: string, required: true}
+    participates_in: [C1, C2]
+
+  duration:
+    description: 时长与时点，用于工期、进度、年度分解
+    fields:
+      start:  {type: date}
+      end:    {type: date}
+      months: {type: number}
+      source: {type: string, required: true}
+    participates_in: [C1, C2, C3]
+
+  claim:
+    description: |
+      论断。可研报告的"文"的最小单位，不是自由文本。
+      结构定义见 argumentation.yaml → argument_unit（Toulmin 六元组）。
+    fields:
+      key:          {type: string, required: true, note: 全局唯一，供跨章复述引用}
+      argument:     {type: ref, required: true, target: argument_unit,
+                     note: 论点/论据/保证/支撑/限定/反驳，六元组填不满即为缺陷}
+      serves:       {type: "list[dimension_id]", required: true,
+                     note: 本论断服务于哪个可行性维度 D1-D11}
+      restated_in:  {type: "list[section_id]", note: 本论断需在哪些章节复述}
+    participates_in: [C1, C4, C5]
+
+  evidence:
+    description: |
+      证据。区分来源是因为不同来源的可核查性与失效风险完全不同。
+      分级与失效策略见 argumentation.yaml → evidence_model。
+    fields:
+      id:          {type: string, required: true}
+      provenance:  {type: enum, required: true, vocabulary: evidence_provenance}
+      content:     {type: ref, required: true, note: 指向 quantity/document_ref/text 节点}
+      provider:    {type: string, note: E1 必填}
+      url:         {type: string, note: E3 必填}
+      published_at: {type: date,   note: E2/E3 必填}
+      retrieved_at: {type: date,   note: E2/E3 必填，用于 staleness 判定}
+      comparability: {type: text,  note: E5 必填，说明可比性条件}
+      doc_no:       {type: string, note: E6 必填，批复文号}
+      issuer:       {type: string, note: E6 必填，发文机关}
+      approved_at:  {type: date,   note: E6 必填，批复日期}
+      valid_until:  {type: date,   note: E6 必填，有效期}
+      deviates:     {type: boolean, note: E6，本项目现状是否相对批复发生变化}
+      adjustment:   {type: object, note: E6，deviates=true 时必填，逐项列出调整及理由}
+    participates_in: [C4, C5]
+
+  document_ref:
+    description: 规范、政策、依据文件。可研报告的合法性基座
+    fields:
+      code:           {type: string, note: 如 GB50016-2014、建标191-2018}
+      title:          {type: string, required: true}
+      version:        {type: string}
+      issuer:         {type: string}
+      effective_from: {type: date}
+      effective_to:   {type: date, note: 空表示现行有效}
+      scope:          {type: "list[string]", note: 适用领域标签}
+      cited_by:       {type: "list[section_id]"}
+    participates_in: [C1, C4]
+
+  enumeration:
+    description: 受控词表取值，如建筑分类等级、负荷等级、风险等级
+    fields:
+      value:      {type: string, required: true}
+      vocabulary: {type: string, required: true, note: 指向受控词表 id}
+      source:     {type: string, required: true}
+    participates_in: [C1, C2]
+
+  entity_list:
+    description: 同构实体的集合，如功能单元清单、机构清单、费用条目
+    fields:
+      items:      {type: "list[object]", required: true}
+      item_class: {type: string, required: true, note: 元素所属抽象类}
+    participates_in: [C3]
+
+
+# =============================================================================
+# 2. 抽象类 (14)
+#    slot 的 tier 决定人机交互中的提问策略：
+#      core     必填，客户必须提供，无法推导
+#      derived  禁止人工录入，只能由 derivations 规则计算
+#      optional 可缺省，缺省时该章节降级或跳过
+# =============================================================================
+classes:
+
+  Project:
+    description: 项目本体。全图的根节点
+    slots:
+      name:            {type: string,      tier: core}
+      type:            {type: enumeration, tier: core, vocabulary: project_type,
+                        note: 决定加载哪个 L1 画像}
+      nature:          {type: enumeration, tier: core, vocabulary: build_nature,
+                        note: 新建/改建/扩建/迁建/拆除重建}
+      approval_stage:  {type: enumeration, tier: core, vocabulary: approval_stage}
+      funding_regime:
+        type: enumeration
+        tier: core
+        vocabulary: funding_regime
+        cannot_infer: true
+        note: |
+          由谁投资。分诊阶段权重最高的一问，**无法从项目名称推断，必须客户明确**。
+          它决定三件事：
+            1. 适用哪本法定大纲——政府投资走通用大纲（强制），企业投资走参考大纲
+            2. C7 按哪套 mandatory_coverage 检查
+            3. D11 盈利能力维度是否默认适用
+          混合投资按政府投资口径从严，并补做企业口径的盈利能力分析。
+      commercial:      {type: boolean, tier: core, note: 有无经营性收入，决定 D11 适用性}
+      physical:        {type: boolean, tier: core, note: 有无实体工程，决定 CH4.1 选址与 D3 是否退化}
+      location:        {type: ref,         tier: core, target: Site}
+      duration:        {type: duration,    tier: core, note: 工期，向下驱动进度与资金年度分解}
+
+  Subject:
+    description: 建设/运营主体。承担资金能力与运营能力的举证责任
+    slots:
+      name:             {type: string,     tier: core}
+      legal_nature:     {type: enumeration,tier: core, vocabulary: legal_nature}
+      profile:          {type: text,       tier: core, note: 主体简介，构成资质基线}
+      financial_history: {type: entity_list,tier: core, item_class: FinancialYear,
+                         note: 近3年资产/负债/收支，第13章偿付能力论证的唯一来源}
+      strategic_plans:  {type: "list[ref]",  tier: core, target: Norm,
+                         note: 主体自身的规划文件，是必要性论证的内部依据}
+
+  Driver:
+    description: 需求驱动因子。回答"为什么现在必须做"
+    slots:
+      level:      {type: enumeration, tier: core, vocabulary: driver_level,
+                   note: 国家战略/区域政策/行业趋势/主体规划/现状缺陷}
+      statement:  {type: string,      tier: core}
+      evidence:   {type: "list[ref]",   tier: core, target: Norm}
+      supports:   {type: "list[ref]",   tier: derived, target: Claim,
+                   note: 由 justifies 关系反向生成}
+
+  Mandate:
+    description: |
+      外部规范性文件的统一节点。一切国家/地方政策、法规规章、标准规范、
+      行政批复都归为此类，全图只存一份，绝不按章节重复录入。
+
+      关键：节点统一，角色不塌缩。同一份文件在不同边上承担不同角色——
+      《XX规划纲要》在必要性章是「强制驱动」，在合规性小节是「合规基准」。
+      角色由关系边决定，不由节点属性决定。
+    slots:
+      ref:          {type: document_ref, tier: core}
+      mandate_type: {type: enumeration,  tier: core, vocabulary: mandate_type,
+                     note: policy 政策 / regulation 法规规章 / standard 标准规范 / approval 行政批复}
+      scope:        {type: enumeration,  tier: core, vocabulary: mandate_scope,
+                     note: universal 普适 / project_specific 项目特定（批复类恒为后者）}
+      roles:
+        type: "list[enumeration]"
+        tier: core
+        vocabulary: mandate_role
+        note: |
+          driver     强制驱动 → 作 D1 必要性的论据
+          benchmark  合规基准 → 作 D2 合规性的论据
+          warrant    推理保证 → 作任意论断的 warrant/backing
+          domain     取值域约束 → 约束技术槽位取值，触发 C2 越界检查
+          一份文件可同时承担多个角色。角色由边决定，节点只存一份。
+      constrains:
+        type: "list[ref]"
+        tier: optional
+        note: roles 含 domain 时必填，指明约束哪些槽位
+      compliance:
+        type: object
+        tier: core
+        note: |
+          roles 含 benchmark 时必填。逐条符合性结论：
+            conclusion: 符合 / 不适用 / 需专项说明
+            basis:      正文位置
+            remark:     说明
+          这是「政策法规符合性对照表」的数据来源，也是 D2 论证的 grounds。
+      adjustment:
+        type: object
+        tier: optional
+        note: |
+          mandate_type=approval 时用于变更追溯。
+          《政务信息化项目可行性研究报告编制参考提纲》明确要求
+          「项目建议书及其批复文件、相对项目建议书批复的调整情况」。
+
+  Context:
+    description: |
+      承载语境 = 现状基线 + 要素保障。对齐 2023 通用大纲「四、项目选址与要素保障」。
+
+      v0.1 的教训：原 `Site` 类把"高校基建的场地"当成了通用抽象，
+      但信息化项目根本没有选址章，取而代之的是「现有信息系统现状及差距」
+      +「运行环境需求分析」。物理选址只是要素保障在工程类项目里的一种特化。
+    slots:
+      baseline:
+        type: object
+        tier: core
+        note: |
+          现状基线：既有什么、差距在哪。
+          工程类 = 既有建筑与场地条件；信息化类 = 既有系统、装备与能力差距。
+          对应 2023 大纲四(二)项目建设条件 / 信息化提纲二(一)2 现状及问题差距。
+      endowment:
+        type: entity_list
+        tier: core
+        item_class: EndowmentItem
+        note: |
+          要素保障：土地、能源、水、运力、环境容量、数据资源、运行环境、人力。
+          对应 2023 大纲四(三)要素保障分析。每项须给出「需求量 / 可供量 / 保障结论」。
+          与 ResourceLoad 互为校验：负荷算出的需求必须落在此处的可供量之内。
+      siting:
+        type: object
+        tier: optional
+        note: |
+          选址或选线。仅工程类项目适用，L1 特化为原 Site 的 address/四至/
+          land_status/natural_cond/utility_access。信息化类项目此槽位为空。
+      existing_assets:
+        type: entity_list
+        tier: optional
+        item_class: ExistingAsset
+        note: 拟拆除/保留/迁移的既有资产，驱动拆除费、征拆安置方案与稳评
+
+  ProgramUnit:
+    description: 功能单元。建设内容的最小可计量单位，规模测算的原子
+    slots:
+      name:          {type: string,      tier: core}
+      sizing_method:
+        type: enumeration
+        tier: core
+        vocabulary: sizing_method
+        note: |
+          规模论证路径。v0.1 只表达了 indexed 一条，压力测试暴露出另外两条：
+            indexed   指标法：数量 × 单位指标（高校基建、医院床位）
+            forecast  需求倒推：需求预测 → 规模（市政道路交通量、产业园市场需求）
+            dual      双重校验：需求倒推得总量，再用约束指标校核
+                      （产业园：容积率/建筑密度/投资强度/亩均税收）
+          2023 大纲原文「在需求分析基础上」提出规模——forecast 是制度上的强制前置。
+      driver_metric: {type: quantity,    tier: core,
+                      note: 规模驱动量（人数/床位/车位/交通量/处理量/装机容量…）}
+      index_value:   {type: quantity,    tier: optional, basis_required: true,
+                      note: 单位指标，sizing_method=indexed|dual 时必填，须绑定 Mandate}
+      forecast:
+        type: object
+        tier: optional
+        note: |
+          需求预测。sizing_method=forecast|dual 时必填。
+          须含：预测方法、预测年限（近期/远期）、情景设定、置信区间。
+          预测的不确定性必须传导到 argument_unit.robustness。
+      demand:        {type: quantity,    tier: derived}
+      remark:        {type: text,        tier: optional}
+
+  TechSolution:
+    description: 技术方案。按专业分域，域内自洽，域间通过共享参数耦合
+    slots:
+      domain:        {type: enumeration, tier: core, vocabulary: tech_domain,
+                      note: 通用槽位，L1 负责列举本领域有哪些专业}
+      classification: {type: enumeration, tier: core,
+                      note: 方案分类等级，是跨专业耦合的枢纽参数}
+      basis:         {type: "list[ref]",   tier: core, target: Norm}
+      parameters:    {type: object,      tier: core}
+      scale_binding: {type: ref,         tier: derived,
+                      note: 绑定到规模节点，规模变则方案参数需重算}
+
+  ResourceLoad:
+    description: 资源负荷。规模与技术方案的函数，节能/环评章的输入
+    slots:
+      resource:   {type: enumeration, tier: core, vocabulary: resource_type}
+      index:      {type: quantity,    tier: core, basis_required: true}
+      driver:     {type: ref,         tier: core, note: 指向规模节点}
+      load:       {type: quantity,    tier: derived, note: = driver × index}
+      normalized: {type: quantity,    tier: derived, note: 折标后的综合能耗}
+
+  Impact:
+    description: 影响与防护。含环境、卫生、安全
+    slots:
+      category:   {type: enumeration, tier: core, vocabulary: impact_category}
+      phase:      {type: enumeration, tier: core, vocabulary: project_phase,
+                   note: 施工期/运营期。同一影响在两期需分别评价}
+      factor:     {type: string,      tier: core}
+      standard:   {type: ref,         tier: core, target: Norm}
+      measure:    {type: "list[text]",  tier: core}
+      conclusion: {type: claim,       tier: core}
+
+  Risk:
+    description: 风险。含社会稳定、技术、市场、财务
+    slots:
+      category:    {type: enumeration, tier: core, vocabulary: risk_category}
+      description: {type: string,      tier: core}
+      likelihood:  {type: enumeration, tier: core, vocabulary: likelihood}
+      severity:    {type: enumeration, tier: core, vocabulary: severity}
+      level:       {type: enumeration, tier: derived, vocabulary: risk_level,
+                    note: = f(likelihood, severity)，由矩阵推导，禁止人工录入}
+      mitigation:  {type: "list[text]",  tier: core}
+
+  Governance:
+    description: |
+      建设管理。对齐 2023 通用大纲「五(七)建设管理方案」。
+      注意：2023 大纲已取消独立的「招投标方案」章，吸收进建设管理方案。
+      样本（2019年编）设独立招投标章，属旧口径。
+    slots:
+      org_structure:  {type: object,      tier: core}
+      build_management: {type: object,    tier: core,
+                       note: 建设管理模式（代建/自建/总承包）、质量安全管理、合同管理}
+      procurement:    {type: entity_list, tier: optional, item_class: ProcurementPackage,
+                       note: 招标范围/组织形式/方式。2023 起归入建设管理方案，不再单列成章}
+      schedule:       {type: entity_list, tier: derived, item_class: Milestone,
+                       note: 由 Project.duration 分解，禁止独立录入}
+
+  Operation:
+    description: |
+      运营方案。对齐 2023 通用大纲「六、项目运营方案」——独立一章。
+
+      v0.1 的漏洞：样本是高校基建，建成即交付使用，运营薄弱，因此未抽出此类。
+      但三个压力测试类型都需要它：市政道路要养护，信息化项目运维经费独立估算
+      （2007版可研第十一章单列「项目运行维护经费估算」+ 附表六），产业园区要招商运营。
+    slots:
+      model:        {type: enumeration, tier: core, vocabulary: operation_model,
+                     note: 自营/委托运营/PPP/特许经营/政府购买服务}
+      organization: {type: object,      tier: core, note: 运营组织与人员配置}
+      safety:       {type: object,      tier: core, note: 运营期安全保障方案}
+      performance:
+        type: entity_list
+        tier: core
+        item_class: PerformanceTarget
+        note: |
+          绩效目标与指标。政务信息化项目按财政部指引，
+          采用「产出指标（数量/质量/时效/成本）+ 效益指标 + 满意度指标」
+          三类结构，指标须带取值。
+      opex:
+        type: money
+        tier: core
+        note: |
+          运营期费用。与 Cost（建设期）合成全生命周期成本。
+          信息化项目此项为刚需，不得缺省。
+
+  FinancialEvaluation:
+    description: |
+      财务评价。对齐 2023 大纲「七、项目投融资与财务方案」的(二)(四)(五)三个子项，
+      指标体系依《建设项目经济评价方法与参数》(第三版)。
+
+      v0.1 的漏洞：原 Funding 只回答"钱从哪来、够不够"，
+      但经营性项目要回答的是"这笔投资本身赚不赚钱"——是两个不同的判断。
+    applicability: 经营性项目必填；公益性项目（非收费市政道路等）可仅做定性
+    slots:
+      profitability:
+        type: object
+        tier: derived
+        note: |
+          盈利能力。融资前：FIRR（所得税前/所得税后两套）、FNPV、投资回收期 Pt；
+          融资后：项目资本金 FIRR、总投资收益率 ROI、资本金净利润率 ROE。
+      solvency:
+        type: object
+        tier: derived
+        note: |
+          偿债能力：利息备付率 ICR、偿债备付率 DSCR、资产负债率。
+          注意：「借款偿还期」自第三版起已降级为估算 ICR/DSCR 的辅助参数，
+          明文规定不应与 ICR/DSCR 并列，不得写入指标表。
+      sustainability:
+        type: object
+        tier: derived
+        note: 财务生存能力：各年累计盈余资金不得为负（财务计划现金流量表）
+      uncertainty:
+        type: object
+        tier: core
+        note: |
+          不确定性分析：盈亏平衡分析、敏感性分析、临界值分析。
+          结果必须写入对应 argument_unit 的 robustness 字段，
+          而不是孤立地摆在财务章里。
+      statements:
+        type: entity_list
+        tier: derived
+        item_class: FinancialStatement
+        note: |
+          基本报表（第三版7张）：项目投资现金流量表、项目资本金现金流量表、
+          投资各方现金流量表、利润与利润分配表、财务计划现金流量表、
+          资产负债表、借款还本付息计划表。
+          注：「资金来源与运用表」是第二版术语，第三版已由财务计划现金流量表取代。
+
+  Cost:
+    description: 造价。分层汇总结构
+    slots:
+      breakdown:   {type: entity_list, tier: core, item_class: CostItem,
+                    note: 单价由造价方提供，本体只校验汇总关系}
+      contingency: {type: money,       tier: derived}
+      total:       {type: money,       tier: derived, note: = Σ breakdown + contingency}
+      price_year:  {type: integer,     tier: core}
+
+  Funding:
+    description: 资金筹措。总量守恒 + 年度守恒的双重平衡
+    slots:
+      sources:       {type: entity_list, tier: core, item_class: FundingSource}
+      total:         {type: money,       tier: derived, note: 必须 == Cost.total}
+      annual_plan:   {type: entity_list, tier: derived, item_class: AnnualDemand,
+                      note: 受 Project.duration 约束，行列双向平衡}
+      affordability: {type: claim,       tier: core,
+                      note: 证据必须来自 Subject.financial_history}
+
+  Benefit:
+    description: 效益。经济/社会/环境
+    slots:
+      category:  {type: enumeration, tier: core, vocabulary: benefit_category}
+      statement: {type: claim,       tier: core,
+                  note: 每条效益必须能追溯到某条 Driver 或 ProgramUnit}
+
+  Evidence:
+    description: |
+      证据。第14个抽象类，是论证层与实体层的接合面。
+      它不属于任何单一章节——同一条证据可被多个维度的论证共用。
+    slots:
+      provenance:   {type: enumeration, tier: core, vocabulary: evidence_provenance}
+      content:      {type: ref,         tier: core, note: 指向图中已有节点}
+      supports:     {type: "list[ref]",   tier: derived, target: Claim,
+                     note: 由 justifies 边反向生成}
+      verification: {type: object,      tier: derived,
+                     note: 核查记录。E2/E3 由 web 检索填充，含检索日期与结论}
+
+
+# =============================================================================
+# 3. 关系 (10)
+#    这是"章节之间的本体连接"的形式化定义。
+#    章节的先后不是关系，跨章的边才是关系。
+#    前 7 条是实体层的边，后 3 条是论证层的边。
+# =============================================================================
+relations:
+
+  derives:
+    signature: (source+, target, formula)
+    semantics: target 的值由 source 集合按 formula 计算得出
+    cross_section: true
+    triggers: C2
+    note: 最主要的跨章边。target 侧槽位必须 tier=derived
+
+  aggregates:
+    signature: (parts+, whole)
+    semantics: whole 是 parts 的汇总
+    triggers: C3
+
+  allocates:
+    signature: (whole, parts+, dimension)
+    semantics: whole 沿某维度（年度/标段/专业）分解为 parts
+    triggers: C3
+    note: 与 aggregates 互为逆，但校验方向不同——分解必须穷尽且不重叠
+
+  constrains:
+    signature: (mandate, slot, domain_expr)
+    semantics: 规范限定槽位取值域（Mandate.roles ∋ domain）
+    triggers: C2
+    note: 越界不一定是错误，可能需要在文中显式说明理由
+
+  complies_with:
+    signature: (project|slot, mandate, conclusion)
+    semantics: |
+      项目（或其某个属性）对某条外部政策法规的符合性判定。
+      conclusion ∈ {符合, 不适用, 需专项说明}
+    triggers: C4, C5
+    note: |
+      D2「合规性成立」的唯一论据边。对齐 2023 通用大纲「二(二)规划政策符合性」。
+      全部 complies_with 边的集合即「政策法规符合性对照表」——
+      它不是一张手写的表，是图上一类边的渲染结果。
+      任一条 conclusion=需专项说明 而无对应 rebuttal 的，C4 报 error。
+
+  mandates:
+    signature: (mandate, driver)
+    semantics: 外部政策构成项目的强制驱动（Mandate.roles ∋ driver）
+    triggers: C4
+    note: |
+      与 complies_with 的区别，是本体设计里最容易塌缩的一处：
+        mandates      —— 政策要求我们做这件事      → D1 必要性
+        complies_with —— 我们做的事不违反政策      → D2 合规性
+      同一份文件可以同时挂这两种边（如上位规划既驱动又约束），
+      但两条边服务不同维度，论证结构完全不同，必须分开。
+
+  justifies:
+    signature: (evidence+, claim)
+    semantics: 证据支撑论断
+    triggers: C4
+    note: 无证据的论断称为"裸论断"，是可研报告最常见的质量缺陷
+
+  restates:
+    signature: (origin_claim, target_section)
+    semantics: 论断在他章复述
+    triggers: C1, C4
+    note: 总论章与结论章几乎全部由此关系生成，不得引入新事实
+
+  cites:
+    signature: (section, norm)
+    semantics: 章节引用规范
+    triggers: C4, C5
+    note: 校验规范时效性与适用域匹配
+
+  # --- 论证层的边 ---
+
+  warrants:
+    signature: (norm|rule, grounds→claim)
+    semantics: 规范或计算规则授权了从论据到论点的这一步推理
+    triggers: C4a
+    note: |
+      最常被省略的一条边。写报告的人默认读者知道推理许可，于是论证断链。
+      本体化的价值之一，就是逼出这条隐性边。
+
+  rebuts:
+    signature: (condition, claim)
+    semantics: 在该条件下论点不成立
+    triggers: C4
+    note: 主动写出反驳是高质量可研的标志。空缺时报 warning 而非静默通过
+
+  projects_onto:
+    signature: (subgraph, section, dimension)
+    semantics: 全局图沿某维度投影为某章的可见子图
+    triggers: C6
+    note: |
+      章节由此获得"本体切片"的形式定义。
+      章节只能看见投影圈定的子图——这是防幻觉的结构性保障，
+      也是"跨域检索"的真正实现（图查询，而非全文向量检索）。
+
+
+# =============================================================================
+# 4. 约束模式 (C1-C4)
+#    检查器 validators.py 实现这四类，与领域无关。
+# =============================================================================
+constraints:
+
+  C1_identity:
+    name: 恒等约束
+    rule: 同一节点在全文所有出现处的值必须一致
+    input: project.occurrences
+    severity: error
+    rationale: 人工写作最高频的事故来源
+
+  C2_derivation:
+    name: 派生约束
+    rule: 声明值与按公式重算值的偏差须在容差内；单位须一致
+    input: rules/derivations.yaml
+    severity: error
+    tolerance_default: 0.005
+    note: 容差按规则单独声明，取整类规则容差应放宽
+
+  C3_balance:
+    name: 平衡约束
+    rule: Σ分项 == 总量；分解必须穷尽且不重叠
+    severity: error
+    note: 二维分解（如资金×年度）须行列双向校验
+
+  C4_argument:
+    name: 论证完备性
+    rule: 见 argumentation.yaml → constraints.C4_argument（C4a-C4d）
+    severity: error
+
+  C5_evidence_sufficiency:
+    name: 证据充分性
+    rule: 见 argumentation.yaml → constraints.C5_evidence_sufficiency（C5a-C5d）
+    severity: error
+    note: E2/E3 的时效核查需 web 检索，是"机网交互"的入口
+
+  C6_reference_consistency:
+    name: 指称一致性
+    rule: 见 argumentation.yaml → constraints.C6_reference_consistency
+    severity: error
+    note: 本体论作为支点的直接兑现——没有本体就无法执行这项检查
+
+  C7_statutory_coverage:
+    name: 法定覆盖
+    rule: |
+      L1 的 outline 必须覆盖 regulatory_anchor.mandatory_coverage 的全部 items。
+      允许多项合并由一章承载，不允许遗漏。
+      政府投资项目按 gov 通用大纲（强制），企业投资项目按 gov + enterprise_delta。
+    severity: error
+    note: |
+      这条约束的存在理由：样本可以是错的，法定大纲不能不覆盖。
+      v0.1 从 2019 年样本逆向，因而遗漏了「项目运营方案」整章。
+
+
+# =============================================================================
+# 5. 章节契约 schema
+#    章节的完整定义见 argumentation.yaml → ontology_slice。
+#    章节不是文档的段落容器，是全局图沿某个可行性维度的投影（本体切片）。
+#    L1 画像用它冻结章节骨架，同类型报告结构因此必然一致。
+# =============================================================================
+section_contract:
+  extends: argumentation.yaml#ontology_slice
+  fields:
+    id:        {type: string,   required: true, note: 稳定标识，与标题解耦}
+    title:     {type: string,   required: true}
+    level:     {type: integer,  required: true}
+    required:  {type: boolean,  default: true}
+    serves:    {type: "list[dimension_id]", required: true,
+                note: 本章服务于哪些可行性维度 D1-D9。为空的章节应当删除}
+    projection: {type: query,    required: true,
+                note: 图查询表达式。求值结果即本章可见子图 = requires}
+    argues:    {type: "list[argument_unit_id]", required: true}
+    provides:  {type: "list[node_ref]", required: true,
+                note: 本章生成后回写图的节点}
+    restates:  {type: "list[claim_key]", default: []}
+    derived_only: {type: boolean, default: false,
+                note: true 表示纯派生章节，不得引入新事实（总论章、结论章）}
+    writing_card: {type: ref, note: 指向写作卡：语气、结构、必答问题}
+
+  invariants:
+    - projection 求值出的节点必须由更早章节的 provides 提供，或来自 intake
+    - derived_only 章节的 provides 必须为空，argues 必须全部来自 restates
+    - 全部章节的 provides 并集必须覆盖实例图的全部节点（无孤儿节点）
+    - 全部章节的 serves 并集必须覆盖 D1-D9（无失守维度）
+    - serves 为空的章节视为冗余，报 warning
+
+
+# =============================================================================
+# 6. L1 画像继承机制
+# =============================================================================
+profile_mechanism:
+  declaration: |
+    profile:
+      id: <domain-id>
+      extends: fsr-core
+      version: x.y.z
+  allowed_operations:
+    specialize:    将抽象类实例化为具体类，收窄槽位取值域
+    add_slot:      为具体类新增领域槽位
+    freeze_outline: 定义 sections[]，冻结章节骨架
+    bind_rules:    绑定本领域的派生规则实例
+    bind_vocab:    填充受控词表的具体取值
+    bind_knowledge: 挂接规范库与指标库
+  forbidden_operations:
+    - 删除 L0 抽象类或其 core 槽位
+    - 放宽 L0 已声明的取值域
+    - 将 derived 槽位改为可人工录入
+    - 绕过 C1-C4 中任何一项
+  drift_metric:
+    definition: 新增一个 L1 时对 core.yaml 的改动行数
+    target: 第3个L1起应为0
+    note: 持续大于0说明 L0 把领域特性误当成了通用特性
+
+
+# =============================================================================
+# 7. 受控词表（L0 只声明存在性，取值由 L1 填充）
+# =============================================================================
+vocabularies:
+  project_type:     {values: [], filled_by: L1}
+  build_nature:     {values: [新建, 改建, 扩建, 迁建, 拆除重建]}
+  approval_stage:   {values: [项目建议书, 可行性研究, 初步设计, 概算]}
+  legal_nature:     {values: [], filled_by: L1}
+  driver_level:     {values: [国家战略, 区域政策, 行业趋势, 主体规划, 现状缺陷]}
+  land_status:      {values: [已征已供, 已征未供, 未征, 存量改造]}
+  resource_type:    {values: [电, 水, 燃气, 蒸汽, 燃油, 其他]}
+  project_phase:    {values: [施工期, 运营期]}
+  risk_category:    {values: [社会稳定, 技术, 市场, 财务, 政策, 环境]}
+  likelihood:       {values: [低, 中, 高]}
+  severity:         {values: [轻微, 一般, 严重]}
+  risk_level:       {values: [低, 中, 高], derived_from: [likelihood, severity]}
+  benefit_category: {values: [经济效益, 社会效益, 环境效益]}
+  project_type:     {values: [], filled_by: L1}
+  legal_nature:     {values: [], filled_by: L1}
+
+  # --- Mandate 相关：政策法规的统一节点由这三张词表定型 ---
+  mandate_type:
+    values: [policy, regulation, standard, approval]
+    note: |
+      policy     政策/规划/战略（国家、地方、行业）
+      regulation 法律、行政法规、部门规章、地方性法规
+      standard   标准、规范、指标、定额、计价依据
+      approval   行政批复（项目建议书批复、用地预审、稳评批复、环评批复…）
+    l1_may_extend: false
+
+  mandate_scope:
+    values: [universal, project_specific]
+    note: approval 类恒为 project_specific；其余通常为 universal
+
+  mandate_role:
+    values: [driver, benchmark, warrant, domain]
+    note: |
+      一份文件可同时承担多个角色，角色由边决定：
+        driver    → mandates 边      → D1 必要性
+        benchmark → complies_with 边 → D2 合规性
+        warrant   → warrants 边      → 任意论断的推理许可
+        domain    → constrains 边    → 技术槽位取值域
+      L0 固定，L1 不得增删。塌缩任意两个角色都会导致 D1/D2 论证混淆。
+
+  # --- 2023 大纲带来的扩充 ---
+  tech_domain:
+    values: [数字化]
+    filled_by: L1
+    note: |
+      「数字化方案」是 2023 通用大纲五(六)的必备项，所有类型都要写，
+      因此在 L0 预置。其余专业域（建筑/结构/给排水/暖通/强弱电/道路/网络…）由 L1 填充。
+
+  impact_category:
+    values: [大气, 水, 噪声, 固废, 生态, 卫生防疫, 劳动安全, 碳排放]
+    note: 「碳排放」对应 2023 通用大纲八(五)碳达峰碳中和分析，为新增必备项
+
+  sizing_method:
+    values: [indexed, forecast, dual]
+    note: |
+      indexed  指标法：数量 × 单位指标
+      forecast 需求倒推：需求预测 → 规模（2023大纲「在需求分析基础上」的制度落点）
+      dual     双重校验：需求倒推得总量，再用约束指标校核
+
+  funding_regime:
+    values: [政府投资, 企业投资, 混合投资]
+    binds:
+      政府投资: outline-gov-2023
+      企业投资: outline-ent-2023
+      混合投资: outline-gov-2023 + ent-2023#盈利能力分析
+    note: L0 固定，L1 不得增删
+
+  operation_model:
+    values: [自营, 委托运营, PPP, 特许经营, 政府购买服务]
+    l1_may_extend: true
+
+  endowment_type:
+    values: [土地, 能源, 水, 运力, 环境容量, 数据资源, 运行环境, 人力]
+    note: 对应 2023 通用大纲四(三)要素保障分析。信息化类主用后三项
+
+  evidence_provenance:
+    values: [E1_given, E2_normative, E3_external, E4_derived, E5_analogical, E6_administrative]
+    note: L0 固定，L1 不得增删。E6 为行政批复，见 argumentation.yaml → evidence_model

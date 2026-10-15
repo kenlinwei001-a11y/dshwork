@@ -1,0 +1,24 @@
+{
+  "skill_id": "SK-09",
+  "skill_name": "claim-evidence-binding-skill",
+  "type": "object",
+  "required": [
+    "project_id",
+    "document_id",
+    "version_id"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "version_id": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

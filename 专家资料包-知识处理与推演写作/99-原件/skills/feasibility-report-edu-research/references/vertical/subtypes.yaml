@@ -1,0 +1,213 @@
+# =============================================================================
+# 子类 · 高校科研用房（L1）
+# -----------------------------------------------------------------------------
+# 契约见 L0 的 references/discipline-probes.yaml → subtype_contract。
+# 本文件只写**增量**：通用取值点（common_probes）已覆盖的不重复。
+#
+# 子类可多选。一栋科研楼同时含湿实验室与洁净区是常态，取并集。
+# 识别结果须客户确认，与垂类识别同一规格。
+# =============================================================================
+
+vertical: edu-research
+
+subtypes:
+
+  ST_WET_LAB:
+    cn: 湿实验室型（化学 / 生物 / 材料）
+    recognize:
+      name_hints: [化学, 生物, 材料, 药学, 环境, 分析测试, 合成]
+      material_hints: [通风柜清单, 实验废水, 危化品储存, 生物安全]
+      ask_if_unsure: 本项目是否含涉及化学试剂、生物样本或产生实验废液的实验室？
+    review_focus: |
+      评审在这一子类上盯三件事：通风与排风是否按实验类型分区取值、
+      实验废水是否分类收集并预处理、危化品与生物安全是否有专门设计。
+      写"设置机械通风系统"必被追问换气次数。
+    probes:
+    - id: P_WET_VENT
+      discipline: HVAC
+      cn: 通风换气次数与通风柜
+      ask: 各实验区的换气次数分别取几次/小时？通风柜数量与单台排风量？补风方式？
+      why_it_matters: 换气次数直接决定风量、机房面积与运行能耗，是造价与能耗两条链的输入
+      if_missing: 暖通与节能两章只能写通用条款
+      route: ASK
+      from_material: M3_design
+    - id: P_WET_WASTE
+      discipline: ENV
+      cn: 实验废水分类与预处理
+      ask: 产生哪几类实验废水？分类收集方式？预处理工艺与排放去向？
+      why_it_matters: 实验废水不得直排市政，预处理设施要占地要投资
+      if_missing: 环保章与总平面布置都缺一块
+      route: ASK
+    - id: P_WET_CHEM
+      discipline: SPEC
+      cn: 危化品储存
+      ask: 是否设危化品储存间？防爆与泄爆做法？气体检测报警设置？储存量级？
+      if_missing: 消防与安全章写不实，且可能漏掉专项审批要求
+      route: ASK
+    - id: P_WET_BIO
+      discipline: SPEC
+      cn: 生物安全等级
+      ask: 是否含生物安全实验室？等级（BSL-1/2/3）？是否需要专项备案或认可？
+      why_it_matters: BSL-2 以上有强制性建设与备案要求，漏掉是硬伤
+      route: ASK + SEARCH
+    - id: P_WET_GAS
+      discipline: GAS
+      cn: 实验气体供应
+      ask: 是否设集中供气？气体种类、瓶组间位置、管路材质与安全措施？
+      route: ASK
+    generic_clause_ok: [ICT]
+
+  ST_DRY_LAB:
+    cn: 干实验室 / 计算平台型（数据中心、算力平台）
+    recognize:
+      name_hints: [大数据, 计算, 算力, 智能, 信息, 仿真, 数据中心]
+      material_hints: [机柜, UPS, 精密空调, 机房等级]
+      ask_if_unsure: 本项目是否含机房、机柜或高密度计算设备？
+    review_focus: |
+      供电与散热是这一子类的全部重点。评审会问机柜功率密度、
+      机房等级（A/B/C）、UPS 后备时间、以及**电力增容是否已落实**——
+      最后这条经常是前置条件风险。
+    probes:
+    - id: P_DRY_RACK
+      discipline: ELEC
+      cn: 机柜数量与功率密度
+      ask: 规划机柜数量？单柜功率密度（kW/柜）？总 IT 负荷？
+      why_it_matters: 它是供电、空调、机房面积三条链的共同源头
+      if_missing: 电气、暖通、建筑三章的取值全部落空
+      route: ASK
+      from_material: M3_design
+    - id: P_DRY_TIER
+      discipline: ELEC
+      cn: 机房等级与供电保障
+      ask: 机房按 A/B/C 哪一级设计？UPS 后备时间？是否设柴油发电机？双路电源？
+      route: ASK + SEARCH
+    - id: P_DRY_COOL
+      discipline: HVAC
+      cn: 散热方案与 PUE 目标
+      ask: 采用什么制冷形式（风冷/水冷/液冷）？PUE 目标值？余热是否回收？
+      why_it_matters: PUE 目标会写进节能篇，且影响能评结论
+      route: ASK
+    - id: P_DRY_CAPACITY
+      discipline: ELEC
+      cn: 电力增容落实情况
+      ask: 所需增容容量？供电部门是否已出具接入意见？未落实的预计何时办结？
+      why_it_matters: 增容未落实属前置条件未闭合，必须进 CH9 风险
+      route: ASK
+    generic_clause_ok: [GAS, ENV]
+
+  ST_PRECISION:
+    cn: 精密与洁净型（洁净室、微纳、精密仪器）
+    recognize:
+      name_hints: [洁净, 微纳, 超净, 精密, 计量, 量子, 光电]
+      material_hints: [洁净等级, 压差, 微振, 恒温恒湿]
+      ask_if_unsure: 本项目是否含洁净室、恒温恒湿区或对振动敏感的精密仪器？
+    review_focus: 洁净等级与压差梯度、微振控制指标、温湿度控制精度——三项都要给数字
+    probes:
+    - id: P_PRE_CLEAN
+      discipline: SPEC
+      cn: 洁净等级与压差控制
+      ask: 各洁净区的等级（ISO 几级 / 几万级）？相邻区压差梯度？换气次数？
+      route: ASK
+    - id: P_PRE_VIB
+      discipline: STRU
+      cn: 微振控制
+      ask: 精密仪器区的振动限值（VC 等级或加速度限值）？采取哪些结构与隔振措施？
+      why_it_matters: 微振要求会显著影响结构选型与造价，事后加不上去
+      if_missing: 结构章与造价都会偏离
+      route: ASK
+    - id: P_PRE_THERMAL
+      discipline: HVAC
+      cn: 恒温恒湿精度
+      ask: 温度与湿度的控制精度（±?℃ / ±?%RH）？覆盖哪些房间？空调形式？
+      route: ASK
+    - id: P_PRE_EMC
+      discipline: SPEC
+      cn: 电磁屏蔽
+      ask: 是否有电磁屏蔽要求？屏蔽等级与做法？
+      route: ASK
+    generic_clause_ok: [GAS]
+
+  ST_SHARED_PLATFORM:
+    cn: 大型仪器共享平台型
+    recognize:
+      name_hints: [共享平台, 公共平台, 分析测试中心, 大型仪器]
+      material_hints: [仪器清单, 设备基础, 吊装]
+      ask_if_unsure: 本项目是否以放置大型公用仪器设备为主要功能？
+    review_focus: |
+      这一子类的论证重心不在建筑，在**设备与运营**：
+      设备清单与投资口径、运营模式与共享机制、收费与可持续性。
+    probes:
+    - id: P_SHR_EQUIP
+      discipline: PROC
+      cn: 大型设备清单与荷载
+      ask: 主要设备清单、单台重量与尺寸、楼面荷载要求、是否需要设备基础？
+      why_it_matters: 设备荷载定结构，运输通道与吊装口定建筑，事后改不了
+      route: ASK
+      from_material: M3_design
+    - id: P_SHR_ROUTE
+      discipline: ARCH
+      cn: 运输通道与吊装
+      ask: 大型设备的运输路径、吊装口尺寸与位置、电梯载重？
+      route: ASK
+    - id: P_SHR_OPS
+      discipline: PROC
+      cn: 运营与共享机制
+      ask: 建成后由谁运营？共享机制与预约方式？是否收费、收费依据？运行经费来源？
+      why_it_matters: 共享平台类项目的必要性论证落在"提高利用率"，说不清运营就论证不成立
+      route: ASK
+    generic_clause_ok: [GAS, FIRE]
+    extra_claims:
+    - id: CL_SHARE_UTIL
+      serves: D1
+      about: 共享机制能提高设备利用率、避免重复购置
+      grounds: [G3_status_quo, G9_capacity]
+      note: 这一子类特有。没有它，评审会问"为什么不各院系自己买"
+
+  ST_PILOT:
+    cn: 中试与工程试验型
+    recognize:
+      name_hints: [中试, 试验, 工程化, 试制, 风洞, 振动台]
+      material_hints: [工艺流程, 试验台架, 大型试验设备]
+      ask_if_unsure: 本项目是否含中试线、工程试验台架或大型试验装置？
+    review_focus: 工艺流程与安全、大跨与大荷载的结构方案、试验产生的排放与噪声
+    probes:
+    - id: P_PIL_PROCESS
+      discipline: PROC
+      cn: 工艺流程与物料
+      ask: 中试的工艺流程？涉及哪些物料与介质？最大处理量？
+      route: ASK
+    - id: P_PIL_STRU
+      discipline: STRU
+      cn: 大跨与大荷载
+      ask: 试验区的跨度与净高要求？设备动荷载？是否需要反力墙、地锚或大体积基础？
+      route: ASK
+    - id: P_PIL_SAFE
+      discipline: SPEC
+      cn: 试验安全与防护
+      ask: 有无高温高压、易燃易爆、强噪声或辐射？采取哪些防护与联锁措施？
+      route: ASK
+    generic_clause_ok: [ICT]
+
+# =============================================================================
+# 本垂类的额外论点（不分子类，只要属本垂类就适用）
+# =============================================================================
+vertical_extra_claims:
+
+- id: CL_DISCIPLINE_NEED
+  serves: D1
+  about: 学科发展与科研平台的空间需求
+  grounds: [G3_status_quo, G2_demand_gap, G4_upper_plan]
+  warrant_hint: |
+    warrant 要落在可检验的中间命题上：
+    「该学科现有科研用房 X ㎡、团队 Y 人、人均 Z ㎡，低于指标值；
+     空间不足已导致 具体的某项科研活动 无法开展」——
+    而不是"国家重视，所以我们要建"。
+  note: 这是本垂类最容易断链的一条论证
+
+- id: CL_INDEX_SCOPE
+  serves: D4
+  about: 所用面积指标标准的适用范围覆盖专职科研机构用房
+  grounds: [G6_norm_compliance]
+  note: |
+    属边界情形，必须查清而不是默认。查不清就标 uncertain 交客户，
+    不要自行认定覆盖（discipline-probes 的同一条原则）

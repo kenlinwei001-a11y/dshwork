@@ -1,0 +1,237 @@
+# =============================================================================
+# 法定章节骨架：企业投资项目可行性研究报告编写参考大纲（2023年版）
+# -----------------------------------------------------------------------------
+# 依据：发改投资规〔2023〕304号，参考适用
+#
+# 与政府投资通用大纲的根本差别：
+#   通用大纲十一章，参考大纲十章——它把「建设背景和必要性」并入了「需求分析」章，
+#   因为企业投资项目的必要性论证是**市场导向**的，不是政策导向的。
+#   《说明》原文：企业投资项目"更多从项目市场需求分析、市场竞争力等角度研究论证项目建设的必要性"。
+# =============================================================================
+
+meta:
+  id: outline-ent-2023
+  layer: L0
+  version: 0.1.0
+  authority: 发改投资规〔2023〕304号《企业投资项目可行性研究报告编写参考大纲（2023年版）》
+  force: 参考适用
+  applies_when: "project.funding_regime == 企业投资"
+  url: https://www.gov.cn/zhengce/zhengceku/2023-04/11/5750844/files/e664893b21684f10bec8445dc4686d1c.pdf
+  enforcement_note: |
+    企业可研的强制力不来自核准备案环节——《企业投资项目核准和备案管理办法》
+    全文未出现"可行性研究报告"，核准类只要求项目申请报告，备案类只要求在线平台填报。
+    强制力来自：国企投资决策程序、专项债与银行授信要求、企业内部投决。
+    因此本大纲标注为"参考适用"，但一旦采用，C7 覆盖检查同样按 error 处理。
+
+sections:
+
+  - id: CH1
+    title: 概述
+    level: 1
+    required: true
+    derived_only: true
+    children:
+      - {id: CH1.1, title: 项目概况,       covers: [项目概况]}
+      - {id: CH1.2, title: 企业概况,       covers: [企业概况],
+         note: 对应通用大纲的「项目单位概况」，但须含股权结构、主营业务、经营业绩}
+      - {id: CH1.3, title: 编制依据,       covers: [编制依据], provides: [mandate.list]}
+      - {id: CH1.4, title: 主要结论和建议, covers: [主要结论和建议]}
+
+  - id: CH2
+    title: 项目建设背景、需求分析及产出方案
+    level: 1
+    required: true
+    serves: [D1, D2, D4]
+    note: |
+      通用大纲的 CH2（背景必要性）与 CH3（需求分析产出方案）在此合并为一章。
+      这不是简化，是重心转移：企业投资的必要性由市场证明，不由政策证明。
+    children:
+      - id: CH2.1
+        title: 规划政策符合性
+        covers: [规划政策符合性]
+        serves: [D2]
+        builtin_argument: AU_COMPLIANCE
+        note: 位置提前至本章之首。企业项目尤须核产业政策准入、负面清单、能耗双控
+      - id: CH2.2
+        title: 企业发展战略需求分析
+        covers: [企业发展战略需求分析]
+        serves: [D1]
+        note: 内部驱动。对应通用大纲的「项目建设背景」，但主语是企业战略而非公共需求
+      - id: CH2.3
+        title: 项目市场需求分析
+        covers: [项目市场需求分析]
+        serves: [D1, D4]
+        provides: [market.supply_demand, market.competition, market.price_forecast, market.target_customer]
+        rules: [T11_demand_forecast]
+        robustness_required: true
+        note: |
+          企业项目必要性论证的主战场，也是规模论证的上游。
+          须含：供需分析、竞争格局、价格预测、目标客户。
+          价格预测与需求预测都带不确定性，必须传导到 robustness（C4f）。
+      - id: CH2.4
+        title: 项目建设内容、规模和产出方案
+        covers: [项目建设内容、规模和产出方案]
+        serves: [D4]
+        rules: [T11_demand_forecast, T12_dual_check, T2_demand_rollup]
+        note: |
+          《说明》原文「在需求分析基础上」——市场需求倒推是制度上的强制前置。
+          产业园/厂房类还须用地方约束指标（容积率、投资强度、亩均税收）做双重校验。
+      - id: CH2.5
+        title: 项目商业模式
+        covers: [项目商业模式]
+        serves: [D11, D10]
+        note: |
+          通用大纲无此项。收入从哪来、谁付费、怎么定价——
+          它是 CH6.2 盈利能力分析的前提，也是 CH5 运营方案的前提。
+
+  - id: CH3
+    title: 项目选址与要素保障
+    level: 1
+    required: true
+    serves: [D3, D6]
+    children:
+      - {id: CH3.1, title: 项目选址或选线, covers: [项目选址或选线], required: conditional,
+         condition: "project.physical"}
+      - {id: CH3.2, title: 项目建设条件,   covers: [项目建设条件]}
+      - {id: CH3.3, title: 要素保障分析,   covers: [要素保障分析], serves: [D6]}
+
+  - id: CH4
+    title: 项目建设方案
+    level: 1
+    required: true
+    serves: [D5]
+    children:
+      - {id: CH4.1, title: 技术方案, covers: [技术方案]}
+      - {id: CH4.2, title: 设备方案, covers: [设备方案]}
+      - {id: CH4.3, title: 工程方案, covers: [工程方案]}
+      - {id: CH4.4, title: 资源开发方案, covers: [资源开发方案], required: conditional,
+         condition: "涉及矿产/林地/水资源等自然资源开发",
+         note: 通用大纲无此项}
+      - {id: CH4.5, title: 用地用海征收补偿（安置）方案, covers: [用地用海征收补偿(安置)方案],
+         required: conditional, condition: "涉及征收或拆迁"}
+      - {id: CH4.6, title: 数字化方案, covers: [数字化方案]}
+      - {id: CH4.7, title: 建设管理方案, covers: [建设管理方案]}
+
+  - id: CH5
+    title: 项目运营方案
+    level: 1
+    required: true
+    serves: [D10]
+    children:
+      - id: CH5.1
+        title: 生产经营方案
+        covers: [生产经营方案]
+        note: |
+          通用大纲此处为「运营模式选择」。企业项目关注的是生产组织、产能爬坡、
+          原料供应、销售渠道——直接喂给 CH6 的成本费用与营业收入估算。
+      - {id: CH5.2, title: 安全保障方案, covers: [安全保障方案]}
+      - {id: CH5.3, title: 运营管理方案, covers: [运营管理方案]}
+
+  - id: CH6
+    title: 项目投融资与财务方案
+    level: 1
+    required: true
+    serves: [D8, D11]
+    note: 企业投资项目的重心章。通用大纲此章多为资金落实，此处是投资回报
+    children:
+      - id: CH6.1
+        title: 投资估算
+        covers: [投资估算]
+        provides: [cost.construction, cost.working_capital, cost.total]
+        note: 须含建设投资 + 建设期利息 + 流动资金三部分，公益项目通常无后两项
+      - id: CH6.2
+        title: 盈利能力分析
+        covers: [盈利能力分析]
+        serves: [D11]
+        required: true
+        rules: [T13_financial_indicators, T14_sensitivity]
+        robustness_required: true
+        indicators:
+          融资前: [FIRR(所得税前), FIRR(所得税后), FNPV, 投资回收期Pt]
+          融资后: [项目资本金FIRR, 总投资收益率ROI, 资本金净利润率ROE]
+        statements:
+          - 项目投资现金流量表
+          - 项目资本金现金流量表
+          - 投资各方现金流量表
+          - 利润与利润分配表
+        note: 企业投资项目此节为必填，不适用条件仅限于纯公益性的企业代建项目
+      - id: CH6.3
+        title: 融资方案
+        covers: [融资方案]
+        note: |
+          三段式：资本金比例（产业类项目执行国发〔2015〕51号的20%；
+          国发〔2019〕26号只调整了基础设施口径，产业园/厂房不在其列）、
+          债务资金（来源/金额/利率/期限/宽限期/担保）、还款方式。
+          须与借款还本付息计划表勾稽，并回写 ICR、DSCR 校验。
+      - id: CH6.4
+        title: 债务清偿能力分析
+        covers: [债务清偿能力分析]
+        indicators: [利息备付率ICR, 偿债备付率DSCR, 资产负债率]
+        statements: [借款还本付息计划表, 资产负债表]
+        note: 「借款偿还期」自第三版起降级为辅助参数，不得与 ICR/DSCR 并列写入指标表
+      - id: CH6.5
+        title: 财务可持续性分析
+        covers: [财务可持续性分析]
+        statements: [财务计划现金流量表]
+        note: |
+          各年累计盈余资金不得为负。
+          注：「资金来源与运用表」是《方法与参数》第二版术语，
+          第三版已由财务计划现金流量表取代，不应再沿用旧表名。
+
+  - id: CH7
+    title: 项目影响效果分析
+    level: 1
+    required: true
+    serves: [D6, D7, D9]
+    children:
+      - {id: CH7.1, title: 经济影响分析,           covers: [经济影响分析],
+         required: conditional,
+         condition: "含政府补助投资 或 明显外部性 或 公共基础设施",
+         note: 纯市场化项目通常不做，须显式声明}
+      - {id: CH7.2, title: 社会影响分析,           covers: [社会影响分析]}
+      - {id: CH7.3, title: 生态环境影响分析,       covers: [生态环境影响分析]}
+      - {id: CH7.4, title: 资源和能源利用效果分析, covers: [资源和能源利用效果分析]}
+      - {id: CH7.5, title: 碳达峰碳中和分析,       covers: [碳达峰碳中和分析]}
+
+  - id: CH8
+    title: 项目风险管控方案
+    level: 1
+    required: true
+    serves: [D7]
+    children:
+      - {id: CH8.1, title: 风险识别与评价, covers: [风险识别与评价]}
+      - {id: CH8.2, title: 风险管控方案,   covers: [风险管控方案]}
+      - {id: CH8.3, title: 风险应急预案,   covers: [风险应急预案]}
+
+  - id: CH9
+    title: 研究结论及建议
+    level: 1
+    required: true
+    derived_only: true
+    children:
+      - {id: CH9.1, title: 主要研究结论, covers: [主要研究结论]}
+      - {id: CH9.2, title: 问题与建议,   covers: [问题与建议]}
+
+  - id: CH10
+    title: 附表、附图和附件
+    level: 1
+    required: true
+    kind: artifact
+    children:
+      - {id: CH10.1, title: 附表, covers: [附表]}
+      - {id: CH10.2, title: 附图, covers: [附图]}
+      - {id: CH10.3, title: 附件, covers: [附件]}
+
+# =============================================================================
+# 已知缺口：本大纲相对《方法与参数》(第三版) 缺少不确定性分析
+# =============================================================================
+known_gap:
+  issue: |
+    2023 企业投资参考大纲及其《说明》中**未出现**「敏感性分析」「盈亏平衡分析」字样。
+    但《建设项目经济评价方法与参数》(第三版) 体系要求做不确定性分析三件套：
+    盈亏平衡分析、敏感性分析、临界值分析。
+  resolution: |
+    L0 通过 argument_unit.robustness 强制补齐（C4f）：
+    凡 CH2.3 市场需求预测、CH6.2 盈利能力分析所支撑的论断，
+    必须给出敏感因素与临界值，否则报 error。
+    即：大纲没要求，但本体要求——因为不给临界值的财务结论是不可评审的。
