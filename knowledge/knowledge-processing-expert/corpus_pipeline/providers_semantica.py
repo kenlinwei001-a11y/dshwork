@@ -65,7 +65,8 @@ class CompositeProvider:
         self.capabilities = caps
         self.capability_source = cap_source
         self.name = f"composite[{getattr(primary,'name','?')}+{getattr(fallback,'name','?')}]"
-        self.failure_log: list[str] = []   # 记录失败（不再有 fallback）
+        self.failure_log: list[str] = []   # 记录失败
+        self.fallbacks: list[str] = []     # ★ 曾漏初始化：回落记录会 AttributeError（已修）
 
     def _call(self, meth, *a, **kw):
         for impl, tag in ((self.primary, "semantica"), (self.fallback, "local")):
@@ -78,13 +79,20 @@ class CompositeProvider:
                 return r
             except Exception as e:                        # noqa: BLE001
                 self.fallbacks.append(f"{meth}→{tag}失败:{type(e).__name__}")
-        return []
+        # ★ fail-closed：**无人提供该方法**不是"空结果"，而是**能力缺失**。
+        #   此前 return [] 把接线错误伪装成正常空输出（本会话反复出现的同一类缺陷）。
+        raise NotImplementedError(
+            f"composite[{self.slot}] 无实现提供 {meth}()：primary={getattr(self.primary,'name',None)} "
+            f"fallback={getattr(self.fallback,'name',None)}；记录={self.fallbacks}")
 
     # EntityProtocol
     def extract(self, text):        return self._call("extract", text)
     def disambiguate(self, names):  return self._call("disambiguate", names)
     # RelationProtocol
-    def run_reasoning(self, facts, rules): return self._call("derive", facts, rules)
+    # ★ 曾写作 self._call("derive", ...)：`derive` 在两侧实现里**都不存在**
+    #   ⇒ hasattr 全跳过 ⇒ 落到末尾 return [] ⇒ **永远瞬时返回空**，
+    #   表现为"Semantica 未参与"而实为**接线错误**（实测 s4 outputs=0 的真因）。
+    def run_reasoning(self, facts, rules): return self._call("run_reasoning", facts, rules)
     # GraphProtocol
     def add_entity(self, node_id, label, **meta):        return self._call("add_entity", node_id, label, **meta)
     def add_relationship(self, src, dst, t, **meta):     return self._call("add_relationship", src, dst, t, **meta)
@@ -121,9 +129,96 @@ class _SRelation:
     def extract(self, text, entities):
         return self.c.call("extract_relations", {"text": text, "entities": entities})
 
+    def _to_semantica(self, facts, rules):
+        """把本管线的 facts/rules 转成 Semantica Reasoner 的**语法与谓词**。
+
+        实测契约（semantica/reasoning/reasoner.py、mcp_server/_tool_run_reasoning）：
+          · 规则串语法 `IF <cond> AND <cond> THEN <concl>`（变量写 ?var）；**不支持 `:-`**
+          · 事实为 `pred(arg, arg)`；**只做 Horn 逻辑前向链，不做算术**
+        因此：
+          · 事实层：节点 → 取值(P,v)；依 caliber_direction → 上限(P,v)/下限(P,v)；
+            依 object_role → 设计值(P,v)；规则 → 派生(T,D)/依赖(T,D)（供模态传播与传递闭包）
+          · 规则层：加载**通用逻辑规则库** logic_rules.yaml（跨项目复用、零数据）；
+            管线里的**算术规则（computes）不传**（Semantica 不做算术），记入 skipped 不静默丢弃
+        变量名统一用 **predicate**：与 rules.yaml 的 deps/target 同一命名空间，否则无法合一。
+        """
+        gf = []
+        for f in (facts or []):
+            if not isinstance(f, dict):
+                continue
+            key = str(f.get("predicate") or f.get("subject") or "").strip()
+            val = str(f.get("value") or "").strip()
+            if not key:
+                continue
+            if val:
+                gf.append(f"取值({key}, {val})")
+                d = str(f.get("caliber_direction") or "")
+                if "上限" in d:
+                    gf.append(f"上限({key}, {val})")
+                if "下限" in d:
+                    gf.append(f"下限({key}, {val})")
+                if "设计" in str(f.get("object_role") or ""):
+                    gf.append(f"设计值({key}, {val})")
+        skipped = []
+        for r in (rules or []):
+            if not isinstance(r, dict):
+                continue
+            tgt = str(r.get("target") or r.get("label") or "").strip()
+            if not tgt:
+                continue
+            for d in (r.get("deps") or []):
+                d = str(d).strip()
+                if d:
+                    # ★ join 键（被依赖项 d）置于**第 1 参数位** —— 引擎要求 join 变量在
+                    #   两侧处于同一位置（已实测：跨位置/链式 join 不产生推导）。
+                    gf.append(f"派生源({d}, {tgt})")
+                    gf.append(f"依赖源({d}, {tgt})")
+            if str(r.get("kind") or "").lower() in ("compute", "compute_rule") or r.get("expr"):
+                skipped.append(str(r.get("id") or tgt))
+        import yaml as _y
+        lib = []
+        for c in (Path("/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert"
+                       "/corpus_pipeline/logic_rules.yaml"),
+                  Path(__file__).resolve().parent / "logic_rules.yaml"):
+            if c.exists():
+                d = _y.load(c.read_text(encoding="utf-8"),
+                            Loader=getattr(_y, "CSafeLoader", _y.SafeLoader)) or {}
+                lib = [x["if_then"] for x in (d.get("rules") or []) if x.get("if_then")]
+                break
+        return list(dict.fromkeys(gf)), lib, skipped
+
     def run_reasoning(self, facts, rules):
-        return self.c.run_reasoning([json.dumps(f, ensure_ascii=False) if isinstance(f, dict) else str(f)
-                                     for f in (facts or [])])
+        gf, lib, skipped = self._to_semantica(facts, rules)
+        self.last_adapter = {"facts_sent": len(gf), "rules_sent": len(lib),
+                             "skipped_arithmetic": skipped}
+        raw = self.c.run_reasoning(gf, lib)
+        # ★ providers.py 约定「每个 provider 返回**同一结构**」⇒ 本层负责规范化：
+        #   此前直接返回 raw dict ⇒ 下游 list(dict) 得到键名、再 .get() 即 AttributeError。
+        return self._normalize(raw)
+
+    @staticmethod
+    def _normalize(raw) -> list:
+        """{"derived_facts": ["需比对上限(X)"]} → [{rule,target,status,engine,raw}, ...]"""
+        import re as _re
+        if isinstance(raw, list):
+            items = raw
+        elif isinstance(raw, dict):
+            if raw.get("error"):
+                return [{"rule": "semantica", "target": None, "status": "错误",
+                         "engine": "semantica", "raw": str(raw["error"])}]
+            items = raw.get("derived_facts") or []
+        else:
+            items = []
+        out = []
+        for it in items:
+            t = it if isinstance(it, str) else json.dumps(it, ensure_ascii=False)
+            m = _re.match(r"^\s*([\w\u4e00-\u9fff_]+)\s*\((.*)\)\s*$", t)
+            pred = m.group(1) if m else "推演结论"
+            arg = (m.group(2).split(",")[0].strip() if m else "")
+            out.append({"rule": f"SEM-{pred}", "target": arg or t, "predicate": pred,
+                        "status": "推演结论", "engine": "semantica", "raw": t})
+        return out
+
 
     def causal_chain(self, start):
         return self.c.call("get_causal_chain", {"start": start})

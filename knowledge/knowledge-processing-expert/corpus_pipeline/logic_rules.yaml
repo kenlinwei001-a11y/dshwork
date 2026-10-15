@@ -1,0 +1,90 @@
+# ═══════════════════════════════════════════════════════════════════════
+# logic_rules.yaml —— 通用逻辑规则库（Horn 子句，供 Semantica Reasoner 前向链）
+#
+# 【实测约束 · 决定本库的写法】（逐条验证得出，非推测）
+#   ① 语法：`IF <cond> AND <cond> THEN <concl>`（变量 ?var）；**不支持 `:-` 教材式 datalog**
+#   ② 事实：`pred(arg, arg)`
+#   ③ **join 位置约束**：同一 join 变量必须在两侧处于**相同的参数位置**才生效
+#        ✅ 边(?x,?y) AND 边(?x,?z)      （?x 两侧都是第 1 位）
+#        ✅ 边(?x,?y) AND 边(?z,?y)      （?y 两侧都是第 2 位）
+#        ❌ 父(?x,?y) AND 父(?y,?z)      （?y 一侧第 2、一侧第 1 —— **链式，不支持**）
+#      ⇒ **本库所有 join 变量一律对齐到第 1 位**（需要的谓词按「join 键在前」发放）
+#      ⇒ **传递闭包/链式推理无法表达** ⇒ 移入 unsupported_by_engine，由本地代码承担
+#        （传递闭包本质是跨位置 join，重排也无法绕开——已实测）
+#   ④ 引擎**只做 Horn 逻辑，不做算术** ⇒ 算术规则由本地 computes 承担，不传入
+# ═══════════════════════════════════════════════════════════════════════
+version: "1.1"
+scope: 通用（跨文档/跨项目可复用；不含任何项目数值或专名）
+engine: semantica.reasoning.Reasoner
+syntax: "IF <cond> AND <cond> THEN <concl>"
+join_convention: "join 键一律置于每个原子的**第 1 个参数位**"
+
+rules:
+  # ── G 约束族：界限比对与判定链（?x 两侧均第 1 位 ✓）────────────────
+  - id: L-BOUND-1-需比对上限
+    family: G-约束
+    if_then: "IF 取值(?x,?v) AND 上限(?x,?u) THEN 需比对上限(?x)"
+    basis: "bounds(modality=上限)"
+  - id: L-BOUND-2-上限内
+    family: G-约束
+    if_then: "IF 需比对上限(?x) AND 设计值(?x,?d) THEN 上限内(?x,?d)"
+    basis: "判定链第二步：只判『是否在上限内』，不产出『不满足』"
+    guards_error: "客户错误④：上限被当成最低需求"
+  - id: L-BOUND-3-需比对下限
+    family: G-约束
+    if_then: "IF 取值(?x,?v) AND 下限(?x,?l) THEN 需比对下限(?x)"
+  - id: L-BOUND-4-下限上
+    family: G-约束
+    if_then: "IF 需比对下限(?x) AND 设计值(?x,?d) THEN 下限上(?x,?d)"
+
+  # ── G 约束族：**模态传播**（客户错误④ 的结构性防止）─────────────────
+  # 注意谓词是 **派生源(join键, 派生方)** —— join 键（被依赖项）在前，使 ?x 两侧同在第 1 位
+  - id: L-MOD-1-上限沿派生传播
+    family: G-约束
+    relation: propagates_modality_to
+    if_then: "IF 上限(?x,?u) AND 派生源(?x,?y) THEN 上限(?y,?u)"
+    basis: "§propagates_modality_to：上限口径沿派生链传播"
+    guards_error: "★ 客户错误④ 的结构性消除（已实测推出：上限(总需求,16)）"
+  - id: L-MOD-2-下限沿派生传播
+    family: G-约束
+    relation: propagates_modality_to
+    if_then: "IF 下限(?x,?l) AND 派生源(?x,?y) THEN 下限(?y,?l)"
+
+  # ── C 借用引用族：同源比对（?d 两侧均第 2 位 ✓）────────────────────
+  - id: L-CITE-1-同源
+    family: C-借用引用
+    if_then: "IF 来源(?x,?d) AND 来源(?y,?d) THEN 同源(?x,?y)"
+    basis: "sourced_from：同一原文位置的量 ⇒ 同源（可比对一致性）"
+
+  # ── B 结构族：同父（?c 两侧均第 2 位 ✓）───────────────────────────
+  - id: L-COMP-1-同父
+    family: B-结构
+    if_then: "IF 子项(?p,?c) AND 子项(?q,?c) THEN 同父(?p,?q)"
+    basis: "part_of(axiom=sum/containment)：同一父项的子项可对账"
+
+  # ── C 借用引用族：规范引用义务（join 键统一在第 1 位 ✓）────────────
+  - id: L-CITE-2-须引用
+    family: G-约束 + C-借用
+    if_then: "IF 受约束源(?s,?x) AND 依据源(?s,?c) THEN 须引用(?x,?c)"
+    basis: "cites：受规范约束的取值须显式引用该规范（含版本与效力）"
+
+# ═══════════════════════════════════════════════════════════════════════
+# 引擎无法表达、由**本地确定性代码**承担的推理（不经 Semantica）
+# 记录于此以免被误认为"漏配规则"；本地实现见 corpus_pipeline 的 computes/传递闭包
+# ═══════════════════════════════════════════════════════════════════════
+unsupported_by_engine:
+  - id: L-DEP-TRANS-依赖传递闭包
+    would_be: "IF 依赖(?a,?b) AND 依赖(?b,?c) THEN 依赖(?a,?c)"
+    reason: "链式 join（同一变量跨位置）引擎不支持 —— 已实测无输出"
+    handled_by: 本地传递闭包
+    family: A-推理
+  - id: L-ARITH-算术构成
+    would_be: "总投资 = Σ(建安 + 其他费 + 预备费 + 拆除费)"
+    reason: "引擎只做 Horn 逻辑、不做算术"
+    handled_by: 本地 computes（rules.yaml 的 expr）
+    family: F-规则
+  - id: L-COMP-2-参与对账
+    would_be: "IF 同父(?p,?q) AND 取值(?p,?vp) AND 取值(?q,?vq) THEN 可对账(?p,?q)"
+    reason: "三原子 join + 可加性类型检查，非纯逻辑"
+    handled_by: 本地类型检查（constraints.py 的 C3 混合单位求和）
+    family: B-结构

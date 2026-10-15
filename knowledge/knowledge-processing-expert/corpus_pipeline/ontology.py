@@ -43,6 +43,12 @@ EXTRACTION_SCHEMA = {
     "facts": [{"subject": "string", "predicate": "string", "value": "string", "unit": "string", "time": "string", "source": "string"}],
     "rules": [{"id": "string", "expr": "string", "inputs": ["node_id"], "output": "node_id"}],
     "claims": [{
+        # ★ 位置锚：**ID 是身份、锚是位置**。claim 不从属于切片；位置单独存放、可重绑。
+        "anchor": {"doc_span": "int,int|null", "quote": "string|null",
+                   "sentence_id": "string|null", "slice_id": "string|null",
+                   "order": "int|null", "locatable": "bool",
+                   "precision": "exact|slice|null",
+                   "position_status": "ok|UNLOCATED|DANGLING"},
         "id": "string", "text": "string",
         "claim_type": "fact|hypothesis|inference|conclusion|recommendation",
         "source": "string",
@@ -51,7 +57,13 @@ EXTRACTION_SCHEMA = {
         "derived_from": ["claim_id"], "confidence": "number|null",
         "valid_time": {"start": "datetime|null", "end": "datetime|null"},
     }],
-    "evidence": [{"id": "string", "claim": "claim_id", "doc": "string", "span": "int,int", "kind": "string"}],
+    "evidence": [{"id": "string", "claim": "claim_id", "doc": "string", "span": "int,int",
+                  "kind": "string",
+                  # 位置锚（evidence 自带 quote ⇒ 多为 exact 精度）
+                  "anchor": {"doc_span": "int,int|null", "quote": "string|null",
+                             "sentence_id": "string|null", "slice_id": "string|null",
+                             "precision": "exact|slice|null",
+                             "position_status": "ok|UNLOCATED|DANGLING"}}],
     "relations": [{"from": "string", "to": "string", "type": "has_value|has_attribute|instance_of|part_of|causes|depends_on|supports|contradicts|temporal|located_in"}],
 }
 

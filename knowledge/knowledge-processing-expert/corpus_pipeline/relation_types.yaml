@@ -1,0 +1,282 @@
+# ═══════════════════════════════════════════════════════════════════════
+# relation_types.yaml —— 关系类型登记表（**活件**：随抽取迭代增长）
+#
+# 生成方式：由本轮抽取的实测缺陷归纳（非先验设计）。**七族不是闭集。**
+# 扩充规则见文件末尾 governance 段：抽取只能**提议候选**，登记须过五条准入。
+#
+# 每类的必需载荷（required_payload）：缺该载荷则该关系**不可判定**，视为无效。
+# ═══════════════════════════════════════════════════════════════════════
+version: "1.0"
+generated_at: "2026-10-15"
+generated_from: "抽取实测缺陷归纳（客户反馈 4 类实质错误 + 本轮 7 类己方缺陷）"
+families:
+
+  # ── A 推理关系：一次推理的轨迹（推演期）─────────────────────────────
+  A-推理:
+    lifecycle: 推演期
+    required_payload_family: 算子
+    types:
+      derives_from:
+        required_payload: [operator]
+        operator: derive
+        applies_to: [quantity]
+        type_constraints: {dimension: compatible}
+        status: registered
+      entails:
+        required_payload: [inference_rule]
+        operator: forward_chain
+        applies_to: [proposition]
+        status: registered
+      supports:
+        required_payload: [strength]
+        operator: justify
+        applies_to: [proposition]
+        status: registered
+      contradicts:
+        required_payload: [conflict_type]
+        operator: flag_pending          # 待审，不裁决
+        applies_to: [proposition, quantity]
+        status: registered
+      presupposes:
+        required_payload: [prerequisite]
+        operator: dependency_check
+        applies_to: [proposition]
+        status: registered
+        aliases: [depends_on]
+        # ★ 归约优先（防类型爆炸）：`depends_on` 与本类同义 ⇒ 作**别名**，不新增类型。
+        #   实测本项目 depends_on 用了 60 次（关系层第二多），v1.0 初稿漏登记
+        #   —— 由 s3a 的构造点校验当场拦出。
+      causes:
+        required_payload: [mechanism]
+        operator: causal_chain
+        applies_to: [quantity, proposition]
+        status: registered
+        note: "因果：因→果。实测本项目仅 1 条（0.2%）——推演产出 0 的结构原因之一。"
+      concludes:
+        required_payload: [judgment_type, modality]
+        operator: judge
+        applies_to: [judgment]
+        status: registered
+
+  # ── B 结构关系：建世界模型（推演期；非推理步）───────────────────────
+  B-结构:
+    lifecycle: 推演期
+    required_payload_family: 公理
+    types:
+      part_of:
+        required_payload: [axiom]
+        axiom_enum: [sum, containment, membership]
+        # ★ axiom=sum 时：仅**可加量**（外延量）可求和；强度量求和无意义
+        # ★ axiom=containment/membership 时：组织/空间的归属，**不可求和**
+        precondition: "axiom==sum ⇒ extensive_quantity"
+        operator: "sum | none"
+        status: registered
+      has_part:
+        required_payload: [axiom]
+        axiom: sum
+        precondition: extensive_quantity
+        status: registered
+      composes:
+        required_payload: [composition_basis]
+        operator: compose
+        status: registered
+      located_in:
+        required_payload: [spatial_ref]
+        operator: none
+        status: registered
+      temporal:
+        required_payload: [order]
+        params: [before, after, during]
+        operator: none
+        status: registered
+      instance_of:
+        required_payload: [class]
+        operator: none
+        status: deprecated              # ★ 本项目声明 0 使用（死类型），标记弃用
+      has_attribute:
+        required_payload: [attribute_name]
+        operator: none
+        status: deprecated              # ★ 属性 ≠ 关系；应回归节点字段，不占关系层
+        note: "本项目实测 358 条 has_value 属此类伪装；应移出关系层（占 77% 关系）"
+
+  # ── C 借用/引用关系：跨骨架-项目-原文-规范四个世界（装配期）──────────
+  C-借用引用:
+    lifecycle: 装配期
+    required_payload_family: 范围
+    types:
+      reuses:
+        required_payload: [scope]
+        scope_keys: [structure, key_points, logic, coverage, types, modality, invariants, slots]
+        forbidden: [data, content]      # ★ 无范围限定 ⇒ 污染源（本项目实测 61 处）
+        operator: assemble
+        status: registered
+      instantiates:
+        required_payload: [schema_version]
+        operator: assemble
+        status: registered
+      fills:
+        required_payload: [hole_type]
+        hole_kinds: [data, content]
+        operator: bind
+        type_check: true                # 值必须匹配洞的类型（量纲/命题集）
+        status: registered
+      cites:
+        required_payload: [clause, version, effective_state]
+        operator: check_currency
+        status: registered
+      sourced_from:
+        required_payload: [anchor]
+        anchor_keys: [doc_id, chunk_id, sentence_id, table_cell]
+        operator: trace
+        status: registered
+      declared_in:
+        required_payload: [location]
+        operator: check_subset          # 引用集 ⊆ 声明集
+        status: registered
+      transfers_to:
+        required_payload: [justification]
+        operator: check_cross_domain
+        status: registered
+        note: "客户错误③（给排水参数用在强电表）= 一条缺理由的 transfers_to"
+      generalizes_to:
+        required_payload: [abstraction_level]
+        operator: induce
+        status: registered
+      supersedes:
+        required_payload: [effective_from]
+        operator: replace_with_trace
+        status: registered
+      scoped_to:
+        required_payload: [scope_enum]
+        operator: none
+        status: registered
+
+  # ── D 对齐/锚定关系（建图期）────────────────────────────────────────
+  D-对齐锚定:
+    lifecycle: 建图期
+    required_payload_family: 消歧依据
+    types:
+      same_as:
+        required_payload: [disambiguation_basis]
+        operator: resolve
+        status: registered
+      distinct_from:
+        required_payload: [basis]
+        operator: resolve
+        status: registered
+      ambiguous_with:
+        required_payload: [ambiguity_type]
+        operator: flag_pending
+        status: registered
+
+  # ── E 资产治理关系（治理期）────────────────────────────────────────
+  E-资产治理:
+    lifecycle: 治理期
+    required_payload_family: 状态与版本
+    types:
+      depends_on_asset:
+        required_payload: [dependency_type]
+        operator: propagate_impact
+        status: registered
+      gated_by:
+        required_payload: [gate_id, verdict]
+        operator: gate
+        status: registered
+      published_as:
+        required_payload: [status, version]
+        operator: state_machine        # draft → validated → published
+        status: registered
+      impacted_by:
+        required_payload: [impact_scope]
+        operator: propagate_impact
+        status: registered
+
+  # ── F 规则关系：多入单出（**超边**，二元关系层装不下）（装配期+推演期）──
+  F-规则:
+    lifecycle: [装配期, 推演期]
+    required_payload_family: 洞与类型约束
+    note: "本项目实测：规则 35 条**旁挂在 rules.yaml**，未进 relations 层
+           ⇒ 规则与节点脱钩 ⇒ 参与推导链的节点仅 4%。这是结构性原因。"
+    types:
+      computes:
+        required_payload: [inputs, output, expr, type_constraints, guard]
+        arity: "n → 1（超边）"
+        operator: derive
+        status: registered
+        example: "R-总投资构成: [建安, 其他费, 预备费, 拆除费] → 总投资"
+      judges:
+        required_payload: [inputs, output, predicate, threshold_ref, modality]
+        arity: "n → 1（超边）"
+        operator: judge
+        status: registered
+      selects:
+        required_payload: [alternatives, criterion]
+        arity: "n → 1（超边）"
+        operator: select
+        status: registered
+
+  # ── G 约束关系：权威 → 合法域（装配期+推演期）──────────────────────
+  G-约束:
+    lifecycle: [装配期, 推演期]
+    required_payload_family: 权威与模态
+    types:
+      bounds:
+        required_payload: [authority, predicate, bound, modality, strength]
+        authority_keys: [type, name, clause, effective_state]
+        predicate_enum: ["<=", ">=", "=", "in"]
+        modality_enum: [上限, 下限, 精确, 区间]
+        strength_enum: [强制, 建议, 参考]
+        operator: compare
+        status: registered
+        evidence: "客户错误④（上限当最低需求）归纳"
+      requires:
+        required_payload: [authority, strength]
+        operator: check_legality
+        status: registered
+      recommends:
+        required_payload: [authority, strength]
+        operator: check_legality
+        status: registered
+      propagates_modality_to:
+        required_payload: [modality, chain]
+        operator: propagate
+        status: registered
+        note: "★ 客户错误④ 的精确形式化：值经规则传过去了，**模态没传**
+               ⇒ 上限派生量被当成最低要求。缺这条关系 ⇒ 该错误必然发生。"
+
+# ═══════════════════════════════════════════════════════════════════════
+governance:
+  extensibility: 开放（七族为**本轮快照**，非闭集）
+  admission:                       # 五条准入——新类型必须全部满足
+    - 有算子（或可归约为已有算子）    # 无算子 ⇒ 是标注，不是关系
+    - 有必需载荷（缺即不可判定）
+    - 不与已有类型同义               # 同义 ⇒ 别名/归约（防重复实现）
+    - 有实例（附样例行）
+    - 可迁移（第二份同类文档仍成立）
+  proposal_path:
+    candidate: 抽取中不符合已有族的关系 ⇒ 记 relation_candidates.yaml（**只提议**）
+    review:    过五条准入 ⇒ registered；否则归入已有类型或弃用
+    rule:      "抽取只能**归纳候选**；登记是受控动作（不得由模型自行登记）"
+  anti_explosion:                  # 防类型爆炸四道防线
+    - 严准入（上）
+    - 归约优先（可表示为已有组合 ⇒ 不新增）
+    - 弃用清理（deprecated 类型须定期移除）
+    - 实例驱动（无实例不得登记）
+  compatibility:
+    新增族内类型: 兼容
+    新增可选载荷: 兼容
+    改必需载荷或算子: 不兼容（须重跑校验）
+    重命名或归约: 须记录映射
+  versioning: "图须记录所用词表版本；跨项目借用时按版本解释"
+
+accounting:                        # 计数与实测对照
+  本版族数: 7
+  本版类型数: 35
+  本项目实测已在用: [has_value, depends_on, supports, contradicts, part_of, located_in, temporal, causes]
+  本项目实测死类型: [instance_of, has_attribute]
+  本项目实测缺失族: [C-借用引用, F-规则, G-约束]
+  本项目实测缺失后果:
+    - "C 缺 ⇒ 可复用从未被验证；污染 61 处（无范围的复用）"
+    - "F 缺 ⇒ 规则旁挂 ⇒ 参与推导链仅 4%"
+    - "G 缺 ⇒ 无合法性判据；模态覆盖仅 8% ⇒ 客户错误④必然发生"
+  relation_layer_inflation: "has_value 358/466 = 77% 为伪装成关系的属性存储 ⇒ 剔除后关系层仅 108 条"

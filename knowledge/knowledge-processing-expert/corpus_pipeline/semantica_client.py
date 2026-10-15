@@ -253,8 +253,14 @@ class SemanticaClient:
     def get_provenance(self, entity_id: str) -> dict:
         return self.call("get_provenance", {"entity_id": entity_id})
 
-    def run_reasoning(self, facts: list[str]) -> dict:
-        return self.call("run_reasoning", {"facts": facts})
+    def run_reasoning(self, facts: list[str], rules: list | None = None) -> dict:
+        """★ 必须同时传 facts 与 rules。
+
+        此前签名为 (self, facts) 且只发 {"facts": facts} ⇒ 服务端直接回
+        `facts and rules are required`，被上层当成"空输出"⇒ 表现为
+        「Semantica 未参与」，实为**参数丢失**（与"接线错误伪装成正常空结果"同类）。
+        """
+        return self.call("run_reasoning", {"facts": facts, "rules": rules or []})
 
 
 # --------------------------------------------------------------------------- #

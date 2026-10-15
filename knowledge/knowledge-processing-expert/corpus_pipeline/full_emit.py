@@ -59,6 +59,56 @@ def _infer_kind(value) -> str:
     return "text"
 
 
+# ══ 量的类型层（量纲）══════════════════════════════════════════════
+# 为什么必须有：客户反馈的实质错误②「跨量纲相加」（11 米 + 0.2 万kWh + 7.05 万元
+# 被加成"差额合计 18.25 万元"）之所以**可表示**，正是因为节点只有 unit 字面量、
+# 没有**量纲类型**。有了 dimension，混合量纲的求和就是**类型错误**而非措辞问题。
+_DIM_EXACT = {
+    "㎡": "面积", "m²": "面积", "m2": "面积", "平方米": "面积",
+    "m": "长度", "米": "长度", "mm": "长度", "km": "长度",
+    "m³": "体积", "m3": "体积", "立方米": "体积",
+    "kW": "功率", "W": "功率", "kVA": "视在功率", "kWh": "电能",
+    "W/㎡": "功率密度", "kW/㎡": "功率密度", "W/m²": "功率密度",
+    "万元": "金额", "元": "金额", "万元/㎡": "单价", "元/㎡": "单价",
+    "%": "比率", "-": "无量纲", "": "无量纲",
+    "人": "人数", "个": "个数", "台": "台数", "套": "套数",
+    "℃": "温度", "m³/d": "流量", "m³/h": "流量", "L/s": "流量", "吨/日": "流量",
+    "L/人·日": "用水定额", "L/人·d": "用水定额", "人/㎡": "人员密度",
+    "kN/m²": "压强", "kPa": "压强", "MPa": "压强",
+    "年": "时间", "月": "时间", "日": "时间", "h": "时间",
+    "㎡/人": "面积定额", "m²/人": "面积定额",
+    "dB": "声级", "lx": "照度", "V": "电压", "A": "电流",
+    # 实测未映射项（emit 后由 unmapped_units 回报发现）——补全而非留 unknown
+    "L/生·日": "用水定额", "L/人·d": "用水定额", "d": "时间", "h-1": "频率",
+    "dB(A)": "声级", "Pa": "压强", "g": "质量", "kg": "质量", "t": "质量", "吨": "质量",
+    "kWh/㎡": "能耗强度", "GJ": "热量", "kcal": "热量", "W/m2·K": "传热系数",
+    "㎡/kW": "单位功率面积", "m/s": "速度", "kg/m³": "密度", "L": "体积", "mL": "体积",
+    "工日": "人工", "台班": "机械", "人次": "人数", "人班": "人工",
+    # 第二轮补全（仍未映射者中语义明确的部分）
+    "tce": "标准煤", "tce/万m³": "能耗强度", "万千瓦时": "电能", "万m³": "体积",
+    "亩": "面积", "层": "层数", "°": "角度", "Ω": "电阻",
+    "千卡/平方厘米·年": "能量密度", "m³/亩": "单位面积水量",
+    "毫米": "长度", "厘米": "长度", "秒": "时间", "分钟": "时间",
+    "篇": "个数", "部": "个数", "间": "个数", "项": "个数", "栋": "个数", "座": "个数",
+}
+# ★ 刻意保持 unknown（不猜）：
+#   "度" —— 中文既可指角度(kWh)又可指电能(kWh)，**上下文不足以判定** ⇒ 保持
+#            incomplete=True，交由下游按所在章节的 domain 消歧，不得静默归为电能。
+
+
+def _dimension(unit: str) -> str:
+    """unit 字面量 → 量纲类型。未映射返回 "unknown"（**不猜**）。"""
+    u = (unit or "").strip()
+    if u in _DIM_EXACT:
+        return _DIM_EXACT[u]
+    for pat, dim in (("/人", "定额"), ("/㎡", "密度"), ("/m²", "密度"), ("/d", "流量"),
+                     ("/h", "流量"), ("㎡", "面积"), ("m²", "面积"), ("kW", "功率"),
+                     ("万元", "金额"), ("%", "比率")):
+        if pat in u:
+            return dim
+    return "unknown"
+
+
 def emit_nodes(root: Path, graph: dict) -> dict:
     """#12 graph/nodes.yaml —— 变量节点。
 
@@ -68,12 +118,18 @@ def emit_nodes(root: Path, graph: dict) -> dict:
     """
     nodes = []
     for f in graph.get("facts", []):
+        _u = f.get("unit", "")
+        _d = _dimension(_u)
         nodes.append({
             "id": f["id"],
             "subject": f.get("subject", f["id"]),
             "kind": f.get("kind") or _infer_kind(f.get("value")),
             "value": f.get("value"),
-            "unit": f.get("unit", ""),
+            "unit": _u,
+            # ★ 量纲类型（跨量纲求和 ⇒ 类型错误）；未映射的量纲标 incomplete，**不猜**
+            "dimension": _d if _u else "",
+            "typed": bool(_d) and _d != "unknown",
+            "incomplete": bool(_u) and _d == "unknown",
             "caliber": f.get("caliber", ""),
             "inheritable": f.get("inheritable", "yes"),
             "predicate": f.get("predicate", ""),
@@ -83,7 +139,11 @@ def emit_nodes(root: Path, graph: dict) -> dict:
     gdir = root / "graph"
     gdir.mkdir(parents=True, exist_ok=True)
     (gdir / "nodes.yaml").write_text(json.dumps(nodes, ensure_ascii=False, indent=2), encoding="utf-8")
-    return {"nodes": len(nodes)}
+    _unmapped = sorted({n["unit"] for n in nodes if n.get("incomplete")})
+    return {"nodes": len(nodes),
+            "typed_quantity": sum(1 for n in nodes if n.get("typed")),
+            "n_untyped": sum(1 for n in nodes if n.get("incomplete")),
+            "unmapped_units": _unmapped[:12]}
 
 
 def emit_rules(root: Path, graph: dict) -> dict:
@@ -206,11 +266,19 @@ def emit_style(root: Path, chunks: list[dict], outline: dict) -> dict:
     (root / "style").mkdir(parents=True, exist_ok=True)
     (root / "style" / "style_profile.yaml").write_text(json.dumps(profile, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    # ⚠️ section_templates/ 的写入**已移交下游环节 s6e**（s15_writing_contract.py）。
+    #
+    # 原实现在此处为每节写 {level, title, template} 的 stub，而 s6e 另写富骨架
+    # （block_sequence / tables / patterns，以及骨架逆向的 key_points / logic /
+    #  coverage / slots / invariants），两者**序号空间不同**（此处按全部节 1..151，
+    # s6e 原按 L1 章 1..16）——构成**同一产物两个写入者**：
+    #   实测后果：「02-项目概况」与「02-学校简介」并存、同一节两个编号、
+    #             150 个旧 schema 残留被 s12/s16 打进交付物。
+    #
+    # 按「单一写入者」原则，本函数不再写该目录；此处只回报目录现状（由 s6e 产生）。
     tdir = root / "style" / "section_templates"
-    tdir.mkdir(parents=True, exist_ok=True)
-    for i, s in enumerate(outline.get("sections", [])):
-        (tdir / f"{i+1:02d}-{s['title']}.yaml").write_text(json.dumps({"level": s["level"], "title": s["title"], "template": "## " + s["title"]}, ensure_ascii=False, indent=2), encoding="utf-8")
-    return {"templates": len(list(tdir.glob("*.yaml")))}
+    return {"templates": len(list(tdir.glob("*.yaml"))) if tdir.exists() else 0,
+            "templates_writer": "delegated:s6e(s15_writing_contract)"}
 
 
 def emit_index(root: Path, graph: dict, chunks: list[dict], skeletons: list[dict]) -> dict:

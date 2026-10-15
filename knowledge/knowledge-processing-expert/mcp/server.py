@@ -106,6 +106,14 @@ TOOLS = [
      "inputSchema": {"type": "object", "properties": {"concepts": {"type": "object"}}, "required": []}},
     {"name": "ontology_import", "description": "从本体 Schema 导入概念字典（SKOS 词表 → 概念）",
      "inputSchema": {"type": "object", "properties": {"schema": {"type": "object"}}, "required": ["schema"]}},
+    {"name": "validate_relation", "description": "按关系类型契约校验**一条**关系：类型是否已登记（含别名归约）、是否弃用、必需载荷是否齐备；返回 verdict 与缺失载荷清单；不合格时提示走 relation_candidates 候选路径",
+     "inputSchema": {"type": "object", "properties": {"type": {"type": "string"}, "payload": {"type": "object"}}, "required": ["type"]}},
+    {"name": "classify_changes", "description": "客户改稿 diff→分类→action（零 LLM、可复现）：结构 diff 判「多了/少了/变了」、锚判「同一对象移动 vs 新对象」；返回 changes[{action,id,anchor_before,anchor_after}]（move/add/delete/edit_number/edit_claim/edit_wording/untraced）",
+     "inputSchema": {"type": "object", "properties": {"old_text": {"type": "string"}, "new_text": {"type": "string"}, "records": {"type": "array"}}, "required": ["old_text", "new_text"]}},
+    {"name": "rebind_positions", "description": "位置重绑：**ID 不变**，只按 doc_span/quote 把锚重新解析到当前这一代物理层；重绑不到 ⇒ 保持 DANGLING 待审（只处理 DANGLING，UNLOCATED 不算失效）",
+     "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "relation_types", "description": "关系类型登记表（七族·开放词表）：返回各族的类型清单与**必需载荷**，并可按 family 过滤；供抽取与校验环节引用，避免各处各写一份词表",
+     "inputSchema": {"type": "object", "properties": {"family": {"type": "string"}}, "required": []}},
     {"name": "bootstrap_ontology", "description": "从新旧 Schema 差异生成 16 域可执行装配变更集（本体/论证链/任务DAG/规则/Skill/表单/提示词/质量闸门/复用策略/实体关系）",
      "inputSchema": {"type": "object",
                      "properties": {"old_schema": {"type": "object"}, "new_schema": {"type": "object"}},
@@ -290,6 +298,67 @@ def _dispatch(name: str, args: dict):
                     "via": via, "confidence": 1.0, "classifier": "deterministic"}
         return {"name": args["name"],
                 **_schema_diff.DeterministicClassifier().classify(args["name"], args.get("field_def", {}), concepts)}
+    if name == "validate_relation":
+        from pathlib import Path as _P
+        import yaml as _y
+        _cands = [_P(__file__).resolve().parent.parent / "corpus_pipeline" / "relation_types.yaml",
+                  _P(__file__).resolve().parent.parent / "SHUFE-BDC-2019-001" / "reuse" / "relation_types.yaml"]
+        _d = {}
+        for _c in _cands:
+            if _c.exists():
+                _d = _y.load(_c.read_text(encoding="utf-8"),
+                             Loader=getattr(_y, "CSafeLoader", _y.SafeLoader)) or {}
+                break
+        _reg = {}
+        for _fam, _spec in (_d.get("families") or {}).items():
+            for _ty, _meta in (_spec.get("types") or {}).items():
+                _r = {"family": _fam, "required": _meta.get("required_payload") or [],
+                      "status": _meta.get("status", "registered"),
+                      "operator": _meta.get("operator", "")}
+                _reg[_ty] = _r
+                for _al in (_meta.get("aliases") or []):
+                    _reg[_al] = dict(_r, alias_of=_ty)
+        _ty = args.get("type")
+        _pay = args.get("payload") or {}
+        _m = _reg.get(_ty)
+        if _ty == "has_value":
+            return {"verdict": "reject", "reason": "has_value 是节点字段，不是关系",
+                    "action": "把该值写在事实节点的 value/unit 上"}
+        if not _m:
+            return {"verdict": "candidate", "reason": f"类型未登记: {_ty}",
+                    "action": "记入 relation_candidates.yaml，过五条准入后再登记",
+                    "admission": ["有算子", "有必需载荷", "不同义", "有实例", "可迁移"]}
+        if _m.get("status") == "deprecated":
+            return {"verdict": "reject", "family": _m["family"], "reason": "类型已弃用"}
+        _miss = [k for k in _m["required"] if k not in _pay]
+        if _miss:
+            return {"verdict": "candidate", "family": _m["family"], "missing": _miss,
+                    "reason": "缺必需载荷 ⇒ 该关系不可判定",
+                    "action": "补齐载荷后重提，或记入候选待审"}
+        return {"verdict": "accept", "family": _m["family"], "operator": _m.get("operator", ""),
+                "alias_of": _m.get("alias_of")}
+
+    if name == "classify_changes":
+        from corpus_pipeline.change_classify import classify as _cls
+        return _cls(args.get("old_text", ""), args.get("new_text", ""),
+                    args.get("records") or [], float(args.get("threshold", 0.72)))
+    if name == "rebind_positions":
+        # ★ 调**共享层**（不 import 项目环节脚本 —— 那会执行整条环节）
+        from pathlib import Path as _P
+        from corpus_pipeline import anchors as _anchors
+        return _anchors.rebind(_P(args["corpus_dir"]))
+    if name == "relation_types":
+        from pathlib import Path as _P
+        import json as _j, yaml as _y
+        _p = _P(__file__).resolve().parent.parent / "corpus_pipeline" / "relation_types.yaml"
+        if not _p.exists():
+            _p = _P(__file__).resolve().parent.parent / "SHUFE-BDC-2019-001" / "reuse" / "relation_types.yaml"
+        _d = _y.load(_p.read_text(encoding="utf-8"), Loader=getattr(_y, "CSafeLoader", _y.SafeLoader)) if _p.exists() else {}
+        _fams = _d.get("families") or {}
+        _want = args.get("family")
+        _out = {k: v for k, v in _fams.items() if not _want or _want in k}
+        return {"version": _d.get("version"), "families": _out,
+                "governance": _d.get("governance"), "accounting": _d.get("accounting")}
     if name == "ontology_export":
         return _ontology_schema.export_ontology_schema(args.get("concepts"),
                                                        semantica_source=args.get("source", "local"))

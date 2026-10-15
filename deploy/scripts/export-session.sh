@@ -122,7 +122,11 @@ for name in ("session.v4.jsonl", "session.meta.json", "manifest.json"):
 # 复扫：正文 + 元数据 + files/ 里的文本文件
 CHECK = [re.compile(r'sk-[A-Za-z0-9_\-]{20,}'), re.compile(r'ghp_[A-Za-z0-9]{20,}'),
          re.compile(r'token=[A-Za-z0-9_\-]{16,}')]
+# 活性对照：同样用正则去匹配一个**必然存在**的东西（"type" 在会话 JSONL 里必现）。
+# 若连它都 0 命中，说明扫描本身瞎了（读不到内容 / 模式机制失效），此时"密钥残留 0"毫无意义。
+ALIVE = re.compile(r'"type"\s*:')
 bad = []
+scanned = read_bytes = alive_hits = 0
 for root, _, fs in os.walk(out):
     for f in fs:
         p = os.path.join(root, f)
@@ -132,15 +136,22 @@ for root, _, fs in os.walk(out):
             t = open(p, encoding="utf-8", errors="ignore").read()
         except Exception:
             continue
+        scanned += 1
+        read_bytes += len(t)
+        alive_hits += len(ALIVE.findall(t))
         for c in CHECK:
             if c.search(t):
                 bad.append(os.path.relpath(p, out)); break
+print(f"  扫描覆盖: {scanned} 个文件 / {read_bytes/1048576:.1f} MB / 活性对照命中 {alive_hits} 处")
+if alive_hits == 0:
+    print("  ✗ 活性对照 0 命中 —— 扫描没读到内容，本次'残留 0'不作数，判废")
+    sys.exit(3)
 if bad:
     print("  ✗ 复扫仍命中（这些文件含密钥，禁止推送）:")
     for b in sorted(set(bad)):
         print("     -", b)
     sys.exit(2)
-print("  ✓ 复扫通过：真密钥残留 0")
+print("  ✓ 复扫通过：真密钥残留 0（且活性对照非 0，证明扫描确实在跑）")
 PYEOF
 SCAN_RC=$?
 if [ "$SCAN_RC" != "0" ]; then
