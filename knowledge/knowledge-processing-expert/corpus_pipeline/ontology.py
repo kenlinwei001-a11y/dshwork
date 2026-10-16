@@ -147,7 +147,12 @@ def apply_extraction(chunks: list[dict], extractions: list[dict]) -> dict:
             node = {"id": fid, "subject": f["subject"], "predicate": f["predicate"],
                     "value": f["value"], "unit": f.get("unit", ""), "time": f.get("time", ""), "source": f.get("source", ext["chunk_id"])}
             graph["facts"].append(node)
-            graph["relations"].append({"from": f["subject"], "to": fid, "type": "has_value"})
+            # ★ 陷阱 11（第四次定位）：此处曾把**每条 fact 展开成一条 `has_value` 关系边**。
+            #   `has_value` 是**节点字段**不是关系（已弃用）——实测 358/553 条关系出自这里，
+            #   把关系层 65% 变成伪关系，并让真关系（108 条）淹没其中。
+            #   归属无需边：fact 节点**已自带 `subject` 字段**（见上一行的 node 构造）。
+            #   若确需"拥有"语义，请用 **B 族**（part_of/has_part）并带必需载荷 `axiom`。
+            pass
         graph["rules"].extend(ext.get("rules", []))
         graph["claims"].extend(_normalize_claim(c) for c in ext.get("claims", []))
         graph["evidence"].extend(ext.get("evidence", []))
