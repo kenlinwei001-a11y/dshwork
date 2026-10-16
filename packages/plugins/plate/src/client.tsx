@@ -64,6 +64,7 @@ import { insertImage } from '@platejs/media';
 // v53 渲染挂载 = plugin.withComponent(组件)（core docstring 官方范式），
 // 不是 render 字段；Image primitive 从 ElementProvider 上下文读 url。
 import { Image, ImagePlugin } from '@platejs/media/react';
+import { TablePlugin } from '@platejs/table/react';
 
 const ImageElement = (props: { element: { url?: string }; children?: unknown }) => (
   <PlateElement {...props}>
@@ -89,6 +90,8 @@ const plugins = [
   BaseBlockquotePlugin,
   BaseHorizontalRulePlugin,
   ImageElementPlugin,
+  // v-next：启用表格（原被裁剪为「非本产品需求」，现补回 @platejs/table）。
+  TablePlugin,
   markdownPlugin,
   suggestionPlugin,
   BlockSelectionPlugin,
@@ -99,7 +102,7 @@ const plugins = [
   // 要求斜杠前一字符是空或空白——中文正文不写空格，等于句子中间永远触发不了。
   // 改为「前缀为空 / 以空白结尾 / 以中文结尾」，同时不误伤 http:// 与 1/2。
   SlashPlugin.configure({
-    options: { triggerPreviousCharPattern: /(?:^|[\s一-鿿])$/ },
+    options: { triggerPreviousCharPattern: /(?:^|[\s\p{P}一-鿿])$/u },
   }),
   SlashInputPlugin.withComponent(SlashInputElement as never),
 ];
