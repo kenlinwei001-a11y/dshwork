@@ -1,12 +1,15 @@
 import { spawn } from 'node:child_process';
+import {ensureNativeWorkbenchFrame} from './native-workbench-frame-patch.mjs';
+import { previewProcessEnvironment } from './preview-process-environment.mjs';
 import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { withoutRedundantAgentTeamProfile } from './preview-agent-team.mjs';
+import { previewHome as resolvePreviewHome } from './preview-home.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const previewHome = process.env.WORKDSH_PREVIEW_HOME ?? resolve(root, '.test-runtime/preview');
+const previewHome = resolvePreviewHome();
 const agentsHome = process.env.DSH_AGENTS_HOME ?? join(previewHome, 'agents');
 const port = process.env.WORKDSH_PREVIEW_PORT ?? '18989';
 // Preview currently needs a larger startup heap; this does not fix the underlying growth.
@@ -37,17 +40,11 @@ if (bootFor('@deepseek-ai/dsh') !== bootFor('@deepseek-ai/dsh-config-editor')) {
 }
 
 mkdirSync(previewHome, { recursive: true });
-// 会话内沙箱 bash 继承本进程 PATH。launchd 的默认 PATH 是
-// /usr/bin:/bin:/usr/sbin:/sbin，不含 /usr/local/bin，于是写盘类工具里的
-// `node -e`（如 office content_export 的导出步骤）会 command not found(127)，
-// 表现为「文件写入失败、被策略拒绝或结果未知」。把 node 自身目录与
-// /usr/local/bin 前置，使 PATH 不随启动方式变化。
-const nodeDir = dirname(process.execPath);
-const inheritedPath = process.env.PATH ?? '/usr/bin:/bin:/usr/sbin:/sbin';
-const childPath = [...new Set([nodeDir, '/usr/local/bin', ...inheritedPath.split(':').filter(Boolean)])].join(':');
+// User-authorized local-preview outer frame only; exact version and byte guards.
+await ensureNativeWorkbenchFrame(profile);
 const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '--profile', 'preview', '--host', '127.0.0.1', '--port', port, '--no-open'], {
   cwd: root,
-  env: { ...process.env, PATH: childPath, DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
+  env: { ...previewProcessEnvironment(root), DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
   stdio: 'inherit',
 });
 

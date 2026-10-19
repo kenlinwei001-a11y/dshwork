@@ -75,3 +75,11 @@ backup/
 
 # deploy 的生成物（由 install-semantica-mcp.sh 按本机路径产出，不入库）
 deploy/connectors/*.generated.json
+
+# Generated runtime extraction and local upstream reference material.
+/build/
+/examples/**/dist/
+/docs/0.2.1-alpha.2/
+
+# Local package archives are build outputs.
+/packages/plugins/*/*.tgz

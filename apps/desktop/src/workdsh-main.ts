@@ -18,7 +18,10 @@ import { parseDeploymentConfig } from './deployment-config.ts'
 import { EnterpriseLogin, startEnterpriseAuthority, type Authority } from './enterprise-auth.ts'
 import { desktopEnterprisePatch, enterpriseEnvironment, enterpriseSpace, materializeRuntimeProfile, markProfileUpdated, officialLauncher, officialHostLauncher } from './local-runtime.ts'
 import { manageCommand } from './command-management.ts'
-import { cleanOwnedProcessTree, stopOwnedProcess } from './owned-process.ts'
+import { createRuntimeOutputRedactor, redactRuntimeOutput, runtimeFailureDetail, runtimeFailureLog } from './runtime-diagnostics.ts'
+import { cleanOwnedProcessTree, stopOwnedProcess, trackOwnedProcess } from './owned-process.ts'
+import { prepareRuntimePort, runtimePortConflict } from './runtime-port.ts'
+import { runOfficialCommand } from './official-command.ts'
 
 const PROFILE_NAME = 'workdsh'
 const READY_PATTERN = /dsh web:\s+(http:\/\/127\.0\.0\.1:\d+\/?\?token=[^\s]+)/u
@@ -179,6 +182,7 @@ function runtimeEnvironment(home: string): NodeJS.ProcessEnv {
     DSH_AGENTS_HOME: enterprise ? join(enterprise.root, 'agents') : join(home, 'agents'),
     DSH_BUNDLED_PRIMARY_RUNTIME: bundledPrimaryRuntime(),
     DSH_ELECTRON_EXECUTABLE: process.execPath,
+    WORKDSH_ELECTRON_APP: app.isPackaged ? undefined : app.getAppPath(),
     ELECTRON_RUN_AS_NODE: undefined,
   }
 }
@@ -186,25 +190,15 @@ function runtimeEnvironment(home: string): NodeJS.ProcessEnv {
 async function officialCommand(home: string, args: string[], timeoutMs = 240_000): Promise<void> {
   const executable = bundledNodeExecutable()
   const launcher = officialLauncher(bundledProfileDirectory(), home, executable, join(bundledPrimaryRuntime(), 'dependencies', 'pnpm', 'bin', 'pnpm.cjs'))
-  await new Promise<void>((resolve, reject) => {
-    const child = spawn(executable, [launcher, ...args], { env: runtimeEnvironment(home), cwd: home, detached: process.platform !== 'win32', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] })
-    installer = child
-    let settled = false
-    const timer = setTimeout(() => { void stopOwnedProcess(child).then(() => finish(new Error('官方插件安装超时，请检查网络后重试')), finish) }, timeoutMs)
-    function finish(error?: Error): void {
-      if (settled) return
-      settled = true; clearTimeout(timer)
-      if (installer === child) installer = undefined
-      void cleanOwnedProcessTree(child).then(() => error ? reject(error) : resolve(), reject)
-    }
-    child.stdout.on('data', () => {})
-    child.stderr.on('data', () => {})
-    child.once('error', () => finish(new Error('无法启动官方插件安装工具')))
-    child.once('exit', code => finish(quitRequested ? new Error('插件安装已取消') : code === 0 ? undefined : new Error(`官方插件操作失败 (${code})；请核对插件版本和网络`)))
+  await runOfficialCommand({ executable, launcher, args, home, env: runtimeEnvironment(home), timeoutMs,
+    logDirectory: join(app.getPath('userData'), 'logs'), cancelled: () => quitRequested,
+    onProcess: child => { installer = child },
   })
 }
 
-async function prepareProfile(home: string): Promise<string> {
+async function prepareProfile(home: string): Promise<{ profile: string, existingHome: boolean }> {
+  // Capture this before materialization creates the new Home's Profile files.
+  const existingHome = [join(home, 'profiles', PROFILE_NAME, 'package.json'), join(home, 'profiles', PROFILE_NAME, 'cordis.yml'), join(home, 'cordis.yml'), join(home, '.workdsh-host.mjs')].some(existsSync)
   const source = bundledProfileDirectory()
   const result = materializeRuntimeProfile(source, home)
   if (result.changed) {
@@ -215,7 +209,7 @@ async function prepareProfile(home: string): Promise<string> {
     if (entry && !entry.isDestroyed()) await entry.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(connectionLoadingHtml(enterprise ? '正在启动企业工作区' : '正在启动个人工作区')))
   }
   officialLauncher(source, home, bundledNodeExecutable(), join(bundledPrimaryRuntime(), 'dependencies', 'pnpm', 'bin', 'pnpm.cjs'))
-  return result.profile
+  return { profile: result.profile, existingHome }
 }
 
 function rememberCommandSpace(home?: string): void {
@@ -224,14 +218,17 @@ function rememberCommandSpace(home?: string): void {
   writeFileSync(join(app.getPath('userData'), 'command-context.json'), JSON.stringify({ personalHome: runtimeHome(), active }), { mode: 0o600 })
 }
 
-function startRuntime(home: string, connection: DesktopConnection, patches: string[] = []): void {
+async function startRuntime(home: string, connection: DesktopConnection, patches: string[] = [], existingHome = false): Promise<void> {
   rememberCommandSpace(home)
   if (quitRequested) throw new Error('启动已取消')
   const executable = bundledNodeExecutable()
   if (!existsSync(executable)) throw new Error(`Bundled Node.js runtime is missing: ${executable}`)
   const basePatch = join(bundledProfileDirectory(), 'cordis.patch.yml')
-  const layers = [...(existsSync(basePatch) ? [basePatch] : []), ...patches]
+  const port = await prepareRuntimePort(home, [join(home, 'profiles', PROFILE_NAME, 'cordis.yml'), join(home, 'profiles', PROFILE_NAME, 'cordis.patch.yml'), join(home, 'cordis.yml'), join(home, 'cordis.patch.yml'), ...patches], { existingHome })
+  if (quitRequested) throw new Error('启动已取消')
+  const layers = [...(existsSync(basePatch) ? [basePatch] : []), ...patches, ...(port.managed ? [port.patch] : [])]
   const launcher = officialHostLauncher(bundledProfileDirectory(), home, executable, join(bundledPrimaryRuntime(), 'dependencies', 'pnpm', 'bin', 'pnpm.cjs'), layers)
+  const startedAt = Date.now()
   const child = spawn(executable, [launcher, '--no-open'], {
     env: runtimeEnvironment(home),
     cwd: enterprise ? join(enterprise.root, 'workspace') : home,
@@ -239,13 +236,21 @@ function startRuntime(home: string, connection: DesktopConnection, patches: stri
     stdio: ['ignore', 'pipe', 'pipe'],
     windowsHide: true,
   })
+  trackOwnedProcess(child, startedAt)
   runtime = child
   runtimeStarting = true
   let ready = false
   let output = ''
+  let diagnosticOutput = ''
+  const recordOutput = (safe: string): void => {
+    diagnosticOutput = `${diagnosticOutput}${safe}`.slice(-16_384)
+    process.stderr.write(safe)
+  }
+  const stdoutRedactor = createRuntimeOutputRedactor(recordOutput)
+  const stderrRedactor = createRuntimeOutputRedactor(recordOutput)
   const consume = (chunk: Buffer): void => {
     const text = chunk.toString('utf8')
-    process.stderr.write(text.replace(/\?token=[^\s]+/gu, '?token=[redacted]'))
+    stdoutRedactor.push(chunk)
     if (ready || switching || runtime !== child) return
     output = `${output}${text}`.slice(-16_384)
     const match = READY_PATTERN.exec(output)
@@ -255,20 +260,35 @@ function startRuntime(home: string, connection: DesktopConnection, patches: stri
       openWindow(match[1], connection)
     }
   }
+  const failureDetail = (code: number | null, cleanupFailed = false): string => {
+    const detail = [!ready ? runtimePortConflict(port, diagnosticOutput) : undefined, runtimeFailureDetail(ready, code, diagnosticOutput, cleanupFailed)].filter(Boolean).join('\n\n')
+    try {
+      const directory = join(app.getPath('userData'), 'logs')
+      mkdirSync(directory, { recursive: true })
+      const path = join(directory, 'runtime-failure.log')
+      writeFileSync(path, runtimeFailureLog(ready, code, diagnosticOutput, cleanupFailed), { mode: 0o600 })
+      return `${detail}\n\n错误记录：${path}`
+    } catch { return detail }
+  }
   child.stdout.on('data', consume)
-  child.stderr.on('data', chunk => process.stderr.write(chunk.toString().replace(/\?token=[^\s]+/gu, '?token=[redacted]')))
+  child.stdout.once('end', () => stdoutRedactor.end())
+  child.stderr.on('data', chunk => stderrRedactor.push(chunk))
+  child.stderr.once('end', () => stderrRedactor.end())
   child.once('error', cause => {
-    if (!quitting && runtime === child) { dialog.showErrorBox('启动失败', cause.message); void returnToEntry() }
+    if (!quitting && runtime === child) { dialog.showErrorBox('启动失败', redactRuntimeOutput(cause.message)); void returnToEntry() }
   })
   child.once('exit', code => {
     if (runtime !== child) return
     void cleanOwnedProcessTree(child).then(() => {
       if (runtime === child) { runtime = undefined; runtimeStarting = false }
       if (!quitting && !switching) {
-        dialog.showErrorBox('本机运行已停止', ready ? `官方 DSH 进程已退出 (${code})` : '官方 DSH 未能完成启动，请检查插件版本和 Profile 配置')
+        dialog.showErrorBox('本机运行已停止', failureDetail(code))
         void returnToEntry()
       }
-    }).catch(() => dialog.showErrorBox('进程清理失败', '本机工具进程停止尚未确认，请退出后检查。'))
+    }).catch(() => {
+      runtimeStarting = false
+      dialog.showErrorBox('本机运行失败，进程清理未确认', failureDetail(code, true))
+    })
   })
   const readyTimeout = setTimeout(() => { if (!ready && runtime === child) { dialog.showErrorBox('启动超时', '官方 DSH 尚未就绪，已停止本机进程'); void returnToEntry() } }, 90_000)
   child.once('exit', () => clearTimeout(readyTimeout))
@@ -356,9 +376,9 @@ function connectEntryNavigation(entry: BrowserWindow): void {
           if (enterprise) await leaveWorkspace()
           const home = runtimeHome()
           await entry.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(connectionLoadingHtml('正在启动个人工作区')))
-          await prepareProfile(home)
+          const prepared = await prepareProfile(home)
           entrySurface = false
-          startRuntime(home, { mode: 'personal' })
+          await startRuntime(home, { mode: 'personal' }, [], prepared.existingHome)
         } else if (command.hostname === 'entry') {
           await leaveWorkspace(); showConnectionEntry()
         }
@@ -375,7 +395,7 @@ function enterprisePluginAvailable():boolean {
  catch{return false}
 }
 
-async function activateEnterprise(): Promise<void> {
+async function activateEnterprise(existingHome: boolean): Promise<void> {
   const session = enterprise
   if (!session) throw new Error('请重新登录企业账号')
   await session.login.verify()
@@ -400,7 +420,7 @@ async function activateEnterprise(): Promise<void> {
   const connection: DesktopConnection = { mode: 'enterprise', portalOrigin: session.login.backendUrl, organizationId: session.login.actor.organizationId, principalId: session.login.actor.id }
   if (window) await window.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(connectionLoadingHtml('正在启动企业工作区')))
   entrySurface = false
-  startRuntime(session.home, connection, [patch.patch])
+  await startRuntime(session.home, connection, [patch.patch], existingHome)
   verifyTimer = setInterval(() => {
     if (verifying || switching) return
     verifying = true
@@ -426,8 +446,8 @@ function installLoginHandlers(): void {
       admittedLogin = login
       const space = enterpriseSpace(app.getPath('userData'), login.backendUrl, login.actor)
       enterprise = { login, ...space }
-      await prepareProfile(space.home)
-      await activateEnterprise()
+      const prepared = await prepareProfile(space.home)
+      await activateEnterprise(prepared.existingHome)
       return {}
     } catch (error) {
       const message = error instanceof Error ? error.message : '企业登录失败'

@@ -9,7 +9,7 @@ import type { ManagedSkillDetail, ManagedSkillResource, ManagedSkillSummary, Ski
 import { SkillImportStaging } from './import-staging.js';
 import { SkillCatalogStore } from './catalog.js';
 import { SkillTitleStore } from './titles.js';
-import type { SkillManagementService, SkillDependencyInspector, SkillTitleOverride } from '../shared.js';
+import type { SkillManagementService, SkillDependencyInspector, SkillTitleOverride, SkillDisplayMetadata } from '../shared.js';
 import type { RetainedSkillRevision, SkillConsumerRef, SkillRevisionCheck, SkillRevisionRef, SkillRevisionStatus } from 'workdsh-contracts';
 
 declare module '@deepseek-ai/cordis' {
@@ -169,6 +169,7 @@ export class SkillManager extends Service implements SkillManagementService {
   private readonly titleStore: SkillTitleStore;
   private readonly importRoot?: string;
   private readonly dependencyInspectors = new Set<SkillDependencyInspector>();
+  private readonly displayContributions = new Map<string, ReadonlyMap<string, SkillDisplayMetadata>>();
   readonly imports: SkillImportStaging;
 
   constructor(ctx: Context, options: SkillManagerOptions = {}) {
@@ -244,7 +245,7 @@ export class SkillManager extends Service implements SkillManagementService {
       if (disabled) rows.push(disabled);
     }
     const metadata = await this.catalogStore.metadata(new Set(rows.map(row => row.name)));
-    const merged = rows.map(row => { const entry = metadata.get(row.name); return entry ? { ...row, ...entry } : row; });
+    const merged = rows.map(row => { const entry = metadata.get(row.name); const contribution = this.contributedDisplay(row.name); return { ...row, ...contribution, ...entry, ...(entry?.title === row.name && contribution ? { title: contribution.title } : {}) }; });
     return (await this.withDisplayTitles(merged)).sort((a, b) => a.name.localeCompare(b.name));
   }
 
@@ -253,8 +254,35 @@ export class SkillManager extends Service implements SkillManagementService {
     if (!detail) return undefined;
     const metadata = await this.catalogStore.metadata(new Set([detail.name]));
     const entry = metadata.get(detail.name);
-    const [titled] = await this.withDisplayTitles([entry ? { ...detail, ...entry } : detail]);
-    return titled;
+    const contribution = this.contributedDisplay(detail.name);
+    const mergedDetail = { ...detail, ...contribution, ...entry, ...(entry?.title === detail.name && contribution ? { title: contribution.title } : {}) };
+    const [withUserTitle] = await this.withDisplayTitles([mergedDetail]);
+    return withUserTitle;
+  }
+
+  registerDisplayMetadata(namespace: string, entries: readonly SkillDisplayMetadata[]): () => void {
+    if (!skillNamePattern.test(namespace) || namespace === 'workdsh' || entries.length > 256) throw new Error('skill/display-invalid');
+    if (this.displayContributions.has(namespace)) throw new Error('skill/display-conflict');
+    const rows = new Map<string, SkillDisplayMetadata>();
+    for (const entry of entries) {
+      if (!skillNamePattern.test(entry.name) || !entry.name.startsWith(`${namespace}-`) || rows.has(entry.name)
+        || typeof entry.title !== 'string' || !entry.title.trim() || entry.title.length > 120
+        || /[\r\n\u0000-\u001f]/.test(entry.title)
+        || (entry.localizedDescription !== undefined && (typeof entry.localizedDescription !== 'string' || entry.localizedDescription.length > 4000))) throw new Error('skill/display-invalid');
+      rows.set(entry.name, Object.freeze({ name: entry.name, title: entry.title.trim(), ...(entry.localizedDescription ? { localizedDescription: entry.localizedDescription } : {}) }));
+    }
+    // Reject overlapping namespaces/claims instead of letting registration order rename another plugin.
+    for (const existing of this.displayContributions.values()) for (const name of rows.keys()) if (existing.has(name)) throw new Error('skill/display-conflict');
+    this.displayContributions.set(namespace, rows);
+    return () => { if (this.displayContributions.get(namespace) === rows) this.displayContributions.delete(namespace); };
+  }
+
+  private contributedDisplay(name: string): Omit<SkillDisplayMetadata, 'name'> | undefined {
+    for (const entries of this.displayContributions.values()) {
+      const entry = entries.get(name);
+      if (entry) return { title: entry.title, ...(entry.localizedDescription ? { localizedDescription: entry.localizedDescription } : {}) };
+    }
+    return undefined;
   }
 
   /** User display-title overrides layer on top of catalog metadata; identity stays untouched. */
