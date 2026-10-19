@@ -78,6 +78,42 @@ TOOLS = [
      "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}, "doc_id": {"type": "string"}}, "required": ["text"]}},
     {"name": "segment_chunks", "description": "确定性语义分块",
      "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}, "doc_id": {"type": "string"}}, "required": ["text"]}},
+    {"name": "disambiguate", "description": "消歧（抽取后、冲突检测前必做）：主体/型号/表述/版本四类。返回各类修正条数。不做这步会把噪声当冲突报给甲方。",
+     "inputSchema": {"type": "object", "properties": {
+         "nodes_path": {"type": "string"},
+         "chunks_path": {"type": "string", "description": "可选，用于主体消歧"},
+         "table_rows": {"type": "array", "items": {"type": "object"},
+                        "description": "可选，设备表行（no/name/air/cool/heat/power/qty），用于型号消歧"},
+         "out_path": {"type": "string"}},
+         "required": ["nodes_path", "out_path"]}},
+    {"name": "resolve_version", "description": "版本消歧：给定标准编号或名称，返回应使用的现行版本与理由。",
+     "inputSchema": {"type": "object", "properties": {"code_or_name": {"type": "string"}},
+                     "required": ["code_or_name"]}},
+    {"name": "tag_query", "description": "按标签检索公共标准库条款（域/主题/标准编号/关键词）。标签体系见 taxonomy.yaml，节点级标签如 结构.地震参数、给排水.消防给水。",
+     "inputSchema": {"type": "object", "properties": {
+         "library_path": {"type": "string", "description": "公共标准库目录"},
+         "domain": {"type": "string", "description": "专业域，如 结构 / 消防 / 给排水"},
+         "topic": {"type": "string", "description": "主题，如 地震参数 / 消防给水"},
+         "code": {"type": "string", "description": "标准编号，如 GB50011"},
+         "q": {"type": "string", "description": "条款正文关键词"}},
+         "required": ["library_path"]}},
+    {"name": "tag_text", "description": "给一段文本打标签（专业域.主题）。标准编号可优先定域，避免把防火规范误判成消防给水。",
+     "inputSchema": {"type": "object", "properties": {
+         "taxonomy_path": {"type": "string"}, "text": {"type": "string"},
+         "std_hint": {"type": "string", "description": "标准编号或名称，如 GB50016-2014"}},
+         "required": ["taxonomy_path", "text"]}},
+    {"name": "build_derivation", "description": "把规则 deps 绑定到节点并生成 computed_from 关系（推演链进图谱）。返回绑定覆盖率、可执行规则、缺依赖清单。",
+     "inputSchema": {"type": "object", "properties": {"nodes_path": {"type": "string"}, "rules_path": {"type": "string"},
+                     "relations_path": {"type": "string"}}, "required": ["nodes_path", "rules_path", "relations_path"]}},
+    {"name": "verify_derivation", "description": "执行推演链：按规则表达式算出结果，与原文值比对。返回 ✓对上 / ✗不符 / ⊘依赖缺失 明细。",
+     "inputSchema": {"type": "object", "properties": {"bindings_path": {"type": "string"}, "nodes_path": {"type": "string"}},
+                     "required": ["bindings_path", "nodes_path"]}},
+    {"name": "parse_table_grid", "description": "从 docx 还原表格真实列结构（gridSpan/vMerge）。合并单元格在转 markdown 时会丢列，导致表头与数据错位（如「事业支出」跨 3 列）。返回定宽网格 + 合并后的表头（分组·子列）。",
+     "inputSchema": {"type": "object", "properties": {"docx_path": {"type": "string"}}, "required": ["docx_path"]}},
+    {"name": "extract_table_values", "description": "从 chunks 的 ```table 块抽值节点（确定性，9 条规则：序号排除/语义对齐校验/双层表头/汇总行/值列自带单位/跨列合并还原/占位符/全角归一化）。返回 nodes + skipped（含跳过原因）。",
+     "inputSchema": {"type": "object", "properties": {"chunks_path": {"type": "string"}, "docx_path": {"type": "string"},
+                     "exist_pairs": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}},
+                     "required": ["chunks_path"]}},
     {"name": "validate_graph", "description": "校验图谱（悬空引用/重复id/统计）",
      "inputSchema": {"type": "object", "properties": {"graph": {"type": "object"}}, "required": ["graph"]}},
     {"name": "detect_numeric_conflicts", "description": "检测同一主语谓词下数值不一致，输出待审清单",
@@ -271,6 +307,76 @@ def _dispatch(name: str, args: dict):
         return segment_sentences(args["text"], args.get("doc_id", "doc"))
     if name == "segment_chunks":
         return segment_chunks(args["text"], args.get("doc_id", "doc"))
+    if name == "disambiguate":
+        import json as _j
+        from kp_toolkit.disambiguate import disambiguate as _dis
+        _nodes = _j.load(open(args["nodes_path"], encoding="utf-8"))
+        _ch = {}
+        if args.get("chunks_path"):
+            for _l in open(args["chunks_path"], encoding="utf-8"):
+                if _l.strip():
+                    _c = _j.loads(_l); _ch[_c["id"]] = _c.get("text") or ""
+        _st = _dis(_nodes,
+                   chunk_text_of=(lambda cid: _ch.get(cid, "")) if _ch else None,
+                   table_rows=args.get("table_rows"))
+        _j.dump(_nodes, open(args["out_path"], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        return _st
+    if name == "resolve_version":
+        from kp_toolkit.disambiguate import resolve_version as _rv
+        _use, _why = _rv(args["code_or_name"])
+        return {"input": args["code_or_name"], "should_use": _use, "reason": _why,
+                "status": "report_fix" if _use else "unknown"}
+
+    if name == "tag_query":
+        import yaml as _y, pathlib as _p
+        from kp_toolkit.taxonomy import query as _q
+        _lib = _p.Path(args["library_path"])
+        _all = []
+        for _d in sorted(_lib.iterdir()):
+            _cf = _d / "clauses.yaml"
+            if not _cf.exists(): continue
+            _data = _y.safe_load(open(_cf, encoding="utf-8"))
+            for _c in _data["clauses"]:
+                _c.setdefault("standard", _data.get("standard") or _d.name)
+                _all.append(_c)
+        _hits = _q(_all, domain=args.get("domain"), topic=args.get("topic"),
+                   code=args.get("code"), q=args.get("q"))
+        return {"total": len(_hits), "clauses": _hits[:200]}
+    if name == "tag_text":
+        from kp_toolkit.taxonomy import load_taxonomy, tag_text as _tt
+        _tax = load_taxonomy(args["taxonomy_path"])
+        return {"tag": _tt(_tax, args["text"], args.get("std_hint"))}
+
+    if name == "build_derivation":
+        import json as _j, yaml as _y
+        from kp_toolkit.derivation import bind_and_emit
+        _n = _j.load(open(args["nodes_path"], encoding="utf-8"))
+        _r = _y.safe_load(open(args["rules_path"], encoding="utf-8"))
+        _rel = _j.load(open(args["relations_path"], encoding="utf-8"))
+        _b, _rel2, _rep = bind_and_emit(_n, _r, _rel)
+        _y.safe_dump(_b, open(args.get("bindings_out") or (args["rules_path"] + ".bindings.yaml"), "w", encoding="utf-8"),
+                     allow_unicode=True, sort_keys=False, width=200)
+        _j.dump(_rel2, open(args["relations_path"], "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        return _rep
+    if name == "verify_derivation":
+        import json as _j, yaml as _y
+        from kp_toolkit.derivation import verify
+        _b = _y.safe_load(open(args["bindings_path"], encoding="utf-8"))
+        _n = _j.load(open(args["nodes_path"], encoding="utf-8"))
+        return verify(_b, _n)
+
+    if name == "parse_table_grid":
+        from kp_toolkit.tables import parse_docx_table_grid
+        return {"tables": parse_docx_table_grid(args["docx_path"])}
+    if name == "extract_table_values":
+        import json as _json
+        from kp_toolkit.tables import parse_docx_table_grid, extract_table_values
+        _ch = [_json.loads(l) for l in open(args["chunks_path"], encoding="utf-8") if l.strip()]
+        _g = parse_docx_table_grid(args["docx_path"]) if args.get("docx_path") else []
+        _ex = {(a, b) for a, b in (args.get("exist_pairs") or [])}
+        _n, _sk = extract_table_values(_ch, _g, _ex)
+        return {"nodes": _n, "skipped": _sk, "count": len(_n)}
+
     if name == "validate_graph":
         return validate_graph(args["graph"])
     if name == "detect_numeric_conflicts":
