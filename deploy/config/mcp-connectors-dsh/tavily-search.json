@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "tavily-search",
+    "title": "Tavily",
+    "description": "Tavily 搜索 MCP（streamable-http, OAuth）。授权凭据由 dsh 侧存储保管，不入库。",
+    "serverName": "tavily-search",
+    "transport": "streamable-http",
+    "url": "https://mcp.tavily.com/mcp",
+    "headers": {
+      "Accept": "application/json, text/event-stream"
+    },
+    "enabled": true,
+    "createdAt": "2026-10-16T04:27:29.411Z",
+    "updatedAt": "2026-10-16T04:27:30.285Z"
+  }
+}
