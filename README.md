@@ -29,9 +29,14 @@ openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 \
 mkdir update && tar -xf update-package.tar -C update
 cd update
 ./apply-update.sh <目标DSH_HOME> <AGENTS_HOME>
+
+# 回到本分支目录，修会话头部的 cwd
+cd ..
+node retarget-sessions.mjs <目标DSH_HOME> --new-repo <仓库路径>
 ```
 
-如果目标路径与 `/Users/apple/...` 不同，回到基础包目录重新运行 `retarget.sh`。
+如果目标路径与 `/Users/apple/...` 不同，先回到基础包目录重新运行 `retarget.sh`，
+再运行上面的 `retarget-sessions.mjs`。后者只改会话文件头部的 `cwd`，不改对话正文。
 
 ## 内容
 
