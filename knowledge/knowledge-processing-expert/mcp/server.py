@@ -78,6 +78,26 @@ TOOLS = [
      "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}, "doc_id": {"type": "string"}}, "required": ["text"]}},
     {"name": "segment_chunks", "description": "确定性语义分块",
      "inputSchema": {"type": "object", "properties": {"text": {"type": "string"}, "doc_id": {"type": "string"}}, "required": ["text"]}},
+    {"name": "check_standard_limit", "description": "按已转录的标准限值判定合规：围护结构热工性能（GB50189 表3.3.1-4 夏热冬冷）或照明功率密度（GB50034 表6.3）。缺参数或未匹配条目返回 UNKNOWN，不猜。",
+     "inputSchema": {"type": "object", "properties": {
+         "kind": {"type": "string", "enum": ["thermal", "lpd"]},
+         "part": {"type": "string", "description": "thermal: 屋面/外墙/架空或外挑楼板/外窗/屋顶透明部分"},
+         "k": {"type": "number", "description": "thermal: 设计传热系数 W/(m²·K)"},
+         "d": {"type": "number", "description": "thermal: 热惰性指标（屋面/外墙必填）"},
+         "wwr": {"type": "number", "description": "thermal: 窗墙面积比（外窗必填）"},
+         "shgc": {"type": "number", "description": "thermal: 太阳得热系数（可选）"},
+         "direction": {"type": "string", "description": "thermal: 东/南/西/北"},
+         "room": {"type": "string", "description": "lpd: 房间或场所"},
+         "value": {"type": "number", "description": "lpd: 设计 LPD W/㎡"},
+         "mode": {"type": "string", "enum": ["现行", "目标"]},
+         "table": {"type": "string", "description": "lpd: 表号 6.3.3/6.3.7/6.3.13"}},
+         "required": ["kind"]}},
+    {"name": "detect_citations", "description": "识别文档内引用的外部标准（GB/JGJ/DGJ/建标/发改），对比公共标准库生成待抓清单。按引用次数分必抓/应抓/暂缓三档，并标注标准类型与抓取注意事项。只识别不抓取。",
+     "inputSchema": {"type": "object", "properties": {
+         "chunks_path": {"type": "string", "description": "chunks.jsonl 路径"},
+         "library_path": {"type": "string", "description": "可选，公共标准库目录（用于判定缺哪些）"},
+         "out_path": {"type": "string", "description": "可选，待抓清单输出路径"}},
+         "required": ["chunks_path"]}},
     {"name": "disambiguate", "description": "消歧（抽取后、冲突检测前必做）：主体/型号/表述/版本四类。返回各类修正条数。不做这步会把噪声当冲突报给甲方。",
      "inputSchema": {"type": "object", "properties": {
          "nodes_path": {"type": "string"},
@@ -307,6 +327,36 @@ def _dispatch(name: str, args: dict):
         return segment_sentences(args["text"], args.get("doc_id", "doc"))
     if name == "segment_chunks":
         return segment_chunks(args["text"], args.get("doc_id", "doc"))
+    if name == "check_standard_limit":
+        from kp_toolkit.standards_check import check_thermal, check_lpd
+        if args.get("kind") == "thermal":
+            return check_thermal(part=args.get("part"), k=args.get("k"),
+                                 d=args.get("d"), wwr=args.get("wwr"),
+                                 shgc=args.get("shgc"), direction=args.get("direction") or "南")
+        if args.get("kind") == "lpd":
+            return check_lpd(room=args.get("room"), value=args.get("value"),
+                             mode=args.get("mode") or "目标", table=args.get("table"))
+        return {"error": "kind 必须是 thermal 或 lpd"}
+
+    if name == "detect_citations":
+        import json as _j, yaml as _y, pathlib as _p
+        from kp_toolkit.citations import detect as _det, make_tasks as _mk, summary as _sm
+        _ch = [_j.loads(l) for l in open(args["chunks_path"], encoding="utf-8") if l.strip()]
+        _codes = []
+        if args.get("library_path"):
+            _lf = _p.Path(args["library_path"]) / "standards.yaml"
+            if _lf.exists():
+                _codes = [x["code"] for x in _y.safe_load(open(_lf, encoding="utf-8"))["standards"]]
+        _r = _det(_ch, _codes)
+        _t = _mk(_r["missing"])
+        if args.get("out_path"):
+            _y.safe_dump({"note": "自动识别的引用缺口 → 待抓清单（按引用次数分档）",
+                          "summary": _sm(_r, _t), "tasks": _t},
+                         open(args["out_path"], "w", encoding="utf-8"),
+                         allow_unicode=True, sort_keys=False, width=200)
+        return {"summary": _sm(_r, _t), "tasks": _t[:60],
+                "named_only": list(_r["names"].keys())[:30]}
+
     if name == "disambiguate":
         import json as _j
         from kp_toolkit.disambiguate import disambiguate as _dis
