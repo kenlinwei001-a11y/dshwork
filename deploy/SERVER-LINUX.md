@@ -26,6 +26,16 @@ sudo bash deploy/bootstrap-linux.sh
 | 只打印计划 | bash deploy/bootstrap-linux.sh --dry-run |
 | 机器可读结果 | ... --json |
 
+## 不想管 Node/Python 依赖？用 Docker
+
+~~~bash
+docker compose -f deploy/docker/docker-compose.yml up -d --build
+docker compose -f deploy/docker/docker-compose.yml exec workdsh cat /data/dsh/login-url.txt
+~~~
+
+镜像内已包含 Node、apps/web 构建产物、知识处理 venv、MCP 程序包与 semantica；
+数据在命名卷 /data。细节见 deploy/docker/README.md。
+
 ## 三种拓扑，选一个
 
 ### A. nginx 反代 + HTTPS（公网/多人，推荐）

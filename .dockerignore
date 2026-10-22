@@ -1,0 +1,19 @@
+# Docker 构建上下文裁剪（只影响 docker build）
+.git
+.test-runtime
+.artifacts
+**/node_modules
+**/.venv
+**/venv
+**/__pycache__
+**/*.pyc
+**/dist
+会话记录
+专家资料包-知识处理与推演写作
+*.zip
+docs
+.idea
+.DS_Store
+**/*.bak
+**/*.bak.*
+**/*.v2bak

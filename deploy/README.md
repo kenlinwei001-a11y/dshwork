@@ -5,6 +5,18 @@
 > Windows 用户用 Web 浏览模式时，推荐走 [WINDOWS-WSL.md](WINDOWS-WSL.md) 的 WSL2 方案：
 > 应用、技能、MCP、semantica 都跑在 WSL 里，Windows 浏览器访问 `127.0.0.1:18989`。
 
+
+## 一键部署入口（按平台选一个）
+
+| 平台 | 入口 | 服务方式 | 说明 |
+| --- | --- | --- | --- |
+| Windows（WSL2） | `deploy/bootstrap-windows.ps1` | nohup（WSL 内） | 浏览器访问 127.0.0.1:18989；见 `deploy/BOOTSTRAP-WINDOWS.md` |
+| Linux 服务器 | `deploy/bootstrap-linux.sh` | systemd（`workdsh-preview`） | 支持反代/直连；见 `deploy/SERVER-LINUX.md` |
+| Docker | `deploy/docker/docker-compose.yml` | 容器 + 数据卷 | 见 `deploy/docker/README.md` |
+| macOS 本机 | `deploy/scripts/setup-all.sh` | launchd | 原有流程 |
+
+三者都共用同一份存档（`deploy/config/`）与同一套安装脚本，装完数量一致。
+改了专家或技能后，推送前跑 `bash deploy/scripts/export-local-config.sh` 刷新存档。
 ## 目录内容
 
 | 路径 | 是什么 | 什么时候用 |

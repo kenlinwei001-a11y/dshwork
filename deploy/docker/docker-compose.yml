@@ -1,0 +1,41 @@
+# WorkDSH（浏览器模式）容器编排。在仓库根目录执行：
+#   docker compose -f deploy/docker/docker-compose.yml up -d --build
+#   docker compose -f deploy/docker/docker-compose.yml logs -f
+#   cat deploy/docker/login-url.txt   # 或 docker compose exec workdsh cat /data/dsh/login-url.txt
+services:
+  workdsh:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+      args:
+        INSTALL_CHROMIUM: "0"
+    image: workdsh:local
+    container_name: workdsh
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18989:18989"
+    environment:
+      WORKDSH_PREVIEW_HOST: "0.0.0.0"
+      WORKDSH_PREVIEW_PORT: "18989"
+      WORKDSH_PREVIEW_HEAP_MB: "4096"
+      IMPORT_SESSIONS: "0"
+      FORCE_SEED: "0"
+      TZ: Asia/Shanghai
+    volumes:
+      - workdsh-data:/data
+      # 需要仓库自带会话时取消注释，并把 IMPORT_SESSIONS 设为 1
+      # - ../../会话记录:/app/会话记录:ro
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh"]
+      interval: 30s
+      timeout: 5s
+      start_period: 120s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+volumes:
+  workdsh-data:
