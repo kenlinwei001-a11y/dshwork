@@ -1,3 +1,9 @@
 * text=auto eol=lf
 patches/*.patch text eol=lf whitespace=-space-before-tab,-blank-at-eol
 .yarn/patches/*.patch text eol=lf whitespace=-space-before-tab,-blank-at-eol
+# 归档副本必须是逐字节副本：禁止换行归一化（否则 SHA-256 与源不一致）
+deploy/config/skills/** -text
+deploy/config/skills-profile/** -text
+deploy/config/experts/** -text
+deploy/config/agent-presets/** -text
+专家资料包-知识处理与推演写作/99-原件/** -text

@@ -127,7 +127,8 @@ copy_skills() {
     do_cp "$d" "$to_dir/$name"
     if [ "$MODE" = "export" ]; then
       rm -f "$to_dir/$name/.DS_Store" 2>/dev/null || true
-      rm -f "$to_dir/$name"/SKILL.md.bak* 2>/dev/null || true
+      # 顶层备份文件一律不进存档：.bak / .bak-* / .bak.* / .v2bak
+      find "$to_dir/$name" -maxdepth 1 -type f -name '*bak*' -delete 2>/dev/null || true
     fi
   done
   say "$label：$(ls -1 "$to_dir" | wc -l | tr -d ' ') 个技能"
