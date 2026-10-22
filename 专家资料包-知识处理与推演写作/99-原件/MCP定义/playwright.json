@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "record": {
+    "id": "playwright",
+    "title": "浏览器 Playwright",
+    "description": "微软官方 Playwright MCP，驱动本机 Chrome 做浏览器自动化。",
+    "serverName": "playwright",
+    "transport": "stdio",
+    "command": "/usr/local/bin/node",
+    "args": [
+      "/Users/apple/workdsh-mcp-servers/node_modules/@playwright/mcp/cli.js",
+      "--browser",
+      "chrome"
+    ],
+    "enabled": true,
+    "createdAt": "2026-09-16T08:06:05.187Z",
+    "updatedAt": "2026-09-16T08:06:05.187Z"
+  }
+}

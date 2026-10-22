@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "kp-assembly",
+    "title": "装配验证",
+    "description": "项目装配+验证+写作（16 工具）：schema_diff/decide_reuse/instantiate_project/run_quality_gates/查数",
+    "serverName": "kp-assembly",
+    "transport": "stdio",
+    "command": "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python",
+    "args": [
+      "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/mcp/servers/kp_assembly_server.py"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-10T09:45:26.713053Z",
+    "updatedAt": "2026-10-10T09:45:26.713053Z"
+  }
+}

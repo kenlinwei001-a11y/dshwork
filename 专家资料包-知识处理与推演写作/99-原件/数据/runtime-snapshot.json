@@ -1,0 +1,582 @@
+{
+ "generatedAt": "2026-10-22T05:52:28Z",
+ "note": "由会话工具采集：workdsh_expert_get / workdsh_expert_list_skills / mcp_connector_status / mcp_connector_tools_list。不是磁盘事实，重建包时用于补齐运行时观测。",
+ "experts": [
+  {
+   "id": "document-review-advisor",
+   "name": "文档评审顾问",
+   "readiness": "broken",
+   "revision": "r-c923f442-cfec-416c-ad89-19f697c4ecb9",
+   "draftRevision": "1a083831c24b",
+   "issues": []
+  },
+  {
+   "id": "expert-131e1b3979fe",
+   "name": "标准要素抽取专家",
+   "readiness": "ready",
+   "revision": "r-a6bcc0f7-722c-4658-ae6d-661ee12bb49a",
+   "draftRevision": "60b0b2b1645d",
+   "issues": []
+  },
+  {
+   "id": "expert-42bd48d396a6",
+   "name": "检测报告审核专家",
+   "readiness": "ready",
+   "revision": "r-9082275d-7bf1-4840-894b-6718364aa7f2",
+   "draftRevision": "3c1a4d88dcf5",
+   "issues": []
+  },
+  {
+   "id": "expert-46a04687c733",
+   "name": "实验室证据抽取专家",
+   "readiness": "ready",
+   "revision": "r-0d1c7907-fdfa-413f-8501-913afc59ca6e",
+   "draftRevision": "c0ac9a9ac354",
+   "issues": []
+  },
+  {
+   "id": "expert-86f3e846af69",
+   "name": "过程文档审核专家",
+   "readiness": "ready",
+   "revision": "r-29151cb1-2a9c-43d7-ab4f-24ad64120d23",
+   "draftRevision": "be79bcc4164b",
+   "issues": []
+  },
+  {
+   "id": "expert-97703554b311",
+   "name": "推演式报告写作专家",
+   "readiness": "unknown",
+   "revision": "r-d971ca99-fb48-4d7d-af97-a18a37d7c12d",
+   "draftRevision": "d4ed1161a2f7",
+   "issues": []
+  },
+  {
+   "id": "expert-a0a771c8b0da",
+   "name": "推演写作专家",
+   "readiness": "ready",
+   "revision": "r-c8bad972-64a7-482c-b165-52a5a1e2a9e4",
+   "draftRevision": "fe9b84445052",
+   "issues": []
+  },
+  {
+   "id": "expert-a54010bbb24e",
+   "name": "知识处理专家",
+   "readiness": "ready",
+   "revision": "r-1c16afad-760b-442b-bc01-08e7c1b7dd0c",
+   "draftRevision": "828138161f9c",
+   "issues": []
+  },
+  {
+   "id": "expert-bad4a0f42fda",
+   "name": "审核裁定专家",
+   "readiness": "ready",
+   "revision": "r-923ac5ee-1cf1-46e9-b171-36bb13095154",
+   "draftRevision": "9853a0de3158",
+   "issues": []
+  },
+  {
+   "id": "requirement-analysis-advisor",
+   "name": "需求分析顾问",
+   "readiness": "broken",
+   "revision": "r-a25f6e1a-a67c-4845-8bbf-8f5c717ce1db",
+   "draftRevision": "43005c7143d8",
+   "issues": []
+  },
+  {
+   "id": "work-retrospective-advisor",
+   "name": "工作复盘顾问",
+   "readiness": "broken",
+   "revision": "r-07afe59a-59ac-4b80-9474-a6d4fe7022e1",
+   "draftRevision": "7fba1973c3ce",
+   "issues": []
+  }
+ ],
+ "skillLibrary": [
+  {
+   "name": "auto-mcm",
+   "state": "enabled",
+   "selectable": true,
+   "description": "AutoMCM-Pro industrial-grade math modeling agent (Codex CLI binding). Supports AP (AI-led) and Manual (human-spec-led) dual modes with mandatory GitOps checkpoints, forced self-verification of all solver code before LaTeX inclusion, and structured human cross-validation at each pipeline stage. Use for both CUMCM (Chinese) and MCM/ICM (English) competitions."
+  },
+  {
+   "name": "claim-evidence-binding-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "判断 Evidence 与 Claim 的关系：SUPPORT、PARTIAL_SUPPORT、CONTRADICT、CONTEXT 或 INSUFFICIENT。"
+  },
+  {
+   "name": "claim-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "识别判断、结论、风险、预测、因果判断和建议等 Claim，并建立依赖关系。"
+  },
+  {
+   "name": "claim-validation-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "验证 Claim 的证据支持、时间一致性、事实依赖、推理完整性和语义范围。"
+  },
+  {
+   "name": "claude-paper-study",
+   "state": "enabled",
+   "selectable": true,
+   "description": "Use this skill when the user wants to read, study, analyze, or deeply understand a research paper (PDF)."
+  },
+  {
+   "name": "claude-paper-summary",
+   "state": "enabled",
+   "selectable": true,
+   "description": "Use this for a quick summary of a research paper's core ideas and key points. Use when you want to quickly understand a paper without deep study materials. Triggers on PDF paths, arXiv URLs, or paper URLs."
+  },
+  {
+   "name": "conflict-detection-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "检测数字、时间、实体、Claim 和版本之间的冲突，并输出待审状态而非自动裁决。"
+  },
+  {
+   "name": "design-master",
+   "state": "enabled",
+   "selectable": true,
+   "description": "央美博导·设计大师 v2.0。融合UI/UX设计智能+中西方美学+品牌VI+设计系统管理（多项目统一/跨平台同步/主题切换）。触发：「设计」「品牌」「UI」「UX」「配色」「设计系统」「组件库」「主题切换」。"
+  },
+  {
+   "name": "document-parsing-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "将 PDF/DOCX/XLSX/PPTX/扫描件解析为统一 Document IR，并保留页码、段落、表格和原文定位信息。"
+  },
+  {
+   "name": "drawio",
+   "state": "enabled",
+   "selectable": true,
+   "description": "Always use when user asks to create, generate, draw, or design a diagram, flowchart, architecture diagram, ER diagram, sequence diagram, class diagram, network diagram, mockup, wireframe, or UI sketch, or mentions draw.io, drawio, drawoi, .drawio files, or diagram export to PNG/SVG/PDF."
+  },
+  {
+   "name": "entity-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "从文本中抽取企业、基地、车间、产线、客户、材料、供应商等实体及其 mention。"
+  },
+  {
+   "name": "entity-resolution-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "解决同义词、别名、简称和跨文档实体重复问题，并识别 NOT_SAME 与 AMBIGUOUS。"
+  },
+  {
+   "name": "evidence-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "定位支持 Fact 或 Claim 的原始证据，包括文档、页码、章节、Chunk、Sentence 和文本范围。"
+  },
+  {
+   "name": "extraction-quality-audit-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "对抽取结果执行结构完整性、证据覆盖、关系合法性、跨项目污染和孤立节点等质量审计。"
+  },
+  {
+   "name": "fact-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "将文本中的可验证信息抽取为 Subject-Predicate-Value-Time-Source 结构化事实。"
+  },
+  {
+   "name": "feasibility-report-edu-research",
+   "state": "enabled",
+   "selectable": true,
+   "description": "编制、审校、修订【高校科研用房】类项目的可行性研究报告，一律以国家发改委发改投资规〔2023〕304号 《政府投资项目可行性研究报告编写通用大纲》为基准。适用对象：高校研究中心、研究院、重点实验室、 科研实验楼、交叉研究平台、中试基地及其配套用房。**最终交付一份 Word 文档（.docx）**，用本体图谱驱动生成：所有事实只存一份、跨章自动传播、 每条论断绑定证据、法定章节覆盖自动校验、客户改稿可反向回读。 当用户提到\"科研楼可研\"\"实验楼立项\"\"研究中心可行性研究\"\"科研用房建设规模论证\"\"人均科研用房面积指标\" \"建标191-2018\"，或上传一份科研用房类可研要写、要改、要审、要查数字前后矛盾、要按2023新大纲改口径时， 都应使用本 skill——即使用户没说\"本体\"或\"图谱\"。 不适用于：学生宿舍与食堂（用 feasibility-report-edu-student-life）、教学楼图书馆、 产业园区厂房、施工图设计、招标文件编制。"
+  },
+  {
+   "name": "graph-deductive-writing-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "基于语义图谱的推演式分析写作。输入 semantic-graph-compilation-skill 编译产出的语义图谱 JSON（含 entities / relations / facts / reasoning / claims / evidence / conflicts / validations），沿推理链前向推演派生新结论，并把每条论断写成绑定证据与溯源链的 Word 分析报告（.docx）。事实单源存储、跨章节自动传播、冲突以「待审」显式呈现、正文可反向回读为图谱节点。当用户要求「基于图谱的推演写作」「图谱驱动写报告」「把语义图谱写成分析报告」「推演式写作」「graph-based deductive writing」，或提供一份语义图谱 JSON / 本体图谱要求撰写、修改、审校、核查数字前后矛盾或反向回读时，应使用本 skill。上游建图（文档解析、实体/事实/关系抽取、图谱编译）由 document-parsing-skill、fact-extraction-skill、entity-extraction-skill、semantic-graph-compilation-skill 等负责，不在本 skill 范围内；本 skill 是 feasibility-report-edu-research 等特定领域报告的通用引擎。"
+  },
+  {
+   "name": "knowledge-generalization-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "从历史项目中提取可复用 Ontology、Reasoning Pattern、Claim Pattern、分析框架和规则，同时隔离项目专属事实。"
+  },
+  {
+   "name": "knowledge-processing",
+   "state": "enabled",
+   "selectable": true,
+   "description": "把文档/语料（docx/pdf/md）经七道工序处理为结构化知识图谱语料包，产出 30 个契约文件（含脱敏骨架 skeletons.jsonl）。当用户要求把稿件处理成语料包、跑「归一化→骨架→切块→本体→回放→质量→脱敏索引」七道工序流水线、产出知识图谱/脱敏骨架、或使用 kp_toolkit / corpus_pipeline / MCP 工具（5 组 65 工具）时使用。与 knowledge-processing-toolchain 的区别：本 skill 覆盖完整流水线与 30 文件产物契约，toolchain 覆盖工具+LLM 分层方法论。"
+  },
+  {
+   "name": "knowledge-processing-toolchain",
+   "state": "enabled",
+   "selectable": true,
+   "description": "以「工具 + LLM」分层模式做知识处理。确定性步骤（分句、分块、图谱编译、溯源、数字/时间冲突、schema 校验）调用 kp_toolkit 代码执行（零 LLM、可复现）；语义步骤（实体/事实/关系/Claim/证据/推理抽取、证据判断、推演写作）才调用 LLM，且必须按 schema 输出 JSON 并经 validator 校验、失败重试。当用户要求把文档/语料处理为结构化知识图谱、或要求「确定性走工具、语义走 LLM」时使用。"
+  },
+  {
+   "name": "math-modeling",
+   "state": "enabled",
+   "selectable": true,
+   "description": "当用户要求数学建模、建模竞赛、建模分析、代码求解、结果可视化或生成数学建模论文时使用。支持完整三阶段流程、单独执行任一角色，以及在关键节点使用独立 Subagent 进行阶段内质检；默认只启用质检 Subagent，用户可明确选择额外协作。"
+  },
+  {
+   "name": "nature-academic-search",
+   "state": "enabled",
+   "selectable": true,
+   "description": "Use when users ask to 找文献、做文献检索、查论文、查临床试验、核验引用、去重文献、设计 PubMed/MeSH 检索式、追踪上下游引文、解析 DOI/PMID/PMCID/arXiv/OpenAlex/Semantic Scholar/NCT ID， 或导出 RIS、BibTeX、NBIB、ENW；also use for multi-source academic search, citation verification, citation graphs, trial registration search, research workflows, or DeepSeek Harness academic-search MCP setup."
+  },
+  {
+   "name": "ontology-resolution-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "将候选 Entity 映射到项目 Ontology Registry 中的标准类型、属性和约束。"
+  },
+  {
+   "name": "ppt-generator",
+   "state": "enabled",
+   "selectable": true,
+   "description": "智能 PPT 生成助手。根据用户描述的主题、行业、风格，自动生成漂亮的 PPT 文件。支持所有行业（商务、教育、科技、医疗、金融、创意等），支持中英文双语，支持用户提供的模板或 AI 自动配色。触发词：做PPT、生成PPT、制作幻灯片、make ppt、create presentation、帮我做个PPT。"
+  },
+  {
+   "name": "ppt-master",
+   "state": "enabled",
+   "selectable": true,
+   "description": "专业PPT生成技能，支持20种图表类型、8大类别温和色系、5阶段交互工作流，生成可直接编辑的.pptx文件"
+  },
+  {
+   "name": "provenance-binding-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "建立对象之间的来源链，使 Decision 可以反向追溯到 Claim、Reasoning、Fact、Evidence、Sentence、Chunk 和 Document。"
+  },
+  {
+   "name": "reasoning-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "识别公式、规则、多步推导和中间结论，形成 Reasoning 节点及输入输出依赖。"
+  },
+  {
+   "name": "relation-extraction-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "抽取实体之间的业务语义关系，并绑定关系证据和来源 Sentence。"
+  },
+  {
+   "name": "resanity",
+   "state": "enabled",
+   "selectable": true,
+   "description": "用于投资研究中的可能性地图、承重主张审计和证据边界检查；投资研究可自动使用。请求涉及证券、上市公司、行业利润池、估值或市场定价时，即使对象尚未给全也应使用。非投资任务仅在用户明确要求使用 Resanity、绘制可能性地图、审计承重主张或更新认知锚时使用；不要用于普通总结、编码、改写或一般问答。以原子主张卡区分观察、推断边界和决策影响，并按需加载投资、锚或正式审计参考。"
+  },
+  {
+   "name": "semantic-chunking-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "按照章节、主题和语义边界将 Document IR 切分为稳定的语义 Chunk，供后续抽取和检索使用。"
+  },
+  {
+   "name": "semantic-graph-compilation-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "将 Entity、Fact、Claim、Evidence、Reasoning、Scenario、Decision 等编译成统一 Semantic Graph。"
+  },
+  {
+   "name": "sentence-segmentation-skill",
+   "state": "enabled",
+   "selectable": true,
+   "description": "将 Chunk 切分为 Sentence，并生成稳定的 Sentence ID，支撑 Claim 追踪和 Semantic Diff。"
+  },
+  {
+   "name": "standard-regulation-extraction",
+   "state": "enabled",
+   "selectable": true,
+   "description": "从「标准 / 法规 / 政策 / 公告」四类规范性文件中确定性抽取条款，产出跨项目复用的公共标准库。当需要把 GB/建标/JGJ 国家标准、条例/办法/规定类法规、通知/意见/大纲类政策、发布公告等外部文件转成可被项目引用的条款库（clause_no + clause_text + 强制性等级 + 溯源），或需要判断某份文件该用哪种抽取模式、抽取率是否达标、多源同标准如何合并时使用。与 knowledge-processing 的区别：本 skill 专管外部规范性文件的条款抽取与公共库治理，knowledge-processing 管项目内稿件的七道工序。"
+  },
+  {
+   "name": "stock-data-assistant",
+   "state": "enabled",
+   "selectable": true,
+   "description": "统一的股票数据助手 Skill，整合： (1) 数据查询 — 通过 MCP 协议查询历史 K 线、财务报表等（A 股/港股/ETF/指数）； (2) 实时搜索 — 通过 WebSocket 订阅实时行情推送（每 3~5 秒更新）； (3) 微信联动 — 通过 picoclaw + WeChat Channel 实现微信端操作数据库和订阅实时数据。 触发此 Skill 时会自动下载 picoclaw、复用项目 LLM 配置、启动微信登录。"
+  },
+  {
+   "name": "stock-mcp-query",
+   "state": "enabled",
+   "selectable": true,
+   "description": "Query historical stock market data (A-shares, HK stocks, ETFs, indices) via MCP. Use when the user wants daily K-line, financial statements, market indicators, screening, or other batch data. DeepSeek Harness clients should call stock_list_tools then stock_call_tool. Remote HTTP MCP on port 8001 still requires STOCK_MCP_TOKEN."
+  },
+  {
+   "name": "ui-design-system",
+   "state": "enabled",
+   "selectable": true,
+   "description": "专业UI生成与现有界面优化技能。当用户请求生成UI界面、设计页面、优化现有界面、创建组件库、设计系统、App界面、Web界面、Dashboard、Landing Page、或任何涉及视觉交互设计时必须触发此技能。参考Google Material Design、Apple HIG、以及Pinterest级别审美标准，输出大气简约、高级美学的UI代码。即使用户只是说\"帮我做个界面\"、\"优化一下UI\"、\"设计一个页面\"也必须触发。"
+  },
+  {
+   "name": "workdsh-excel-design",
+   "state": "readonly",
+   "selectable": true,
+   "description": "设计、分析或审查 Excel 工作簿时确定字段、来源、真实布局、公式和可用性；能力取决于当前可用表格工具，不宣称支持完整新建或高级图表。"
+  },
+  {
+   "name": "workdsh-expert-manager",
+   "state": "readonly",
+   "selectable": true,
+   "description": "通过对话制作、修改和交付可复用的专家或专家团，把行业经验、专业方法、成员分工与真实技能保存为一个完整作品。"
+  },
+  {
+   "name": "workdsh-ppt-design",
+   "state": "readonly",
+   "selectable": true,
+   "description": "通过需求对齐、逐页叙事和视觉设计，在 WorkDSH 原生 PPT 编辑器中实时创建、改写和美化演示文稿。支持红金政务、咨询与学术风格；通过 Office content_* 工具逐页保存并导出 PPTX。"
+  },
+  {
+   "name": "workdsh-skill-creator",
+   "state": "readonly",
+   "selectable": true,
+   "description": "创建或更新技能，将专业知识、工作流程、工具操作和可复用脚本、参考文档、模板组织成可校验、可分发的技能包。"
+  },
+  {
+   "name": "workdsh-web-design",
+   "state": "readonly",
+   "selectable": true,
+   "description": "制作网站、落地页或 Web 应用时组织价值叙事、设计令牌、响应式布局、中英文内容和实际交互；使用现有工程与工具，不提供 Ardot 画布或发布服务。"
+  },
+  {
+   "name": "workdsh-word-design",
+   "state": "readonly",
+   "selectable": true,
+   "description": "创作或美化 Word 报告、方案、纪要等文档时按体裁组织内容、层级、表格和版式，并通过当前内容工具交付真实 DOCX。"
+  },
+  {
+   "name": "workdsh-workbench-dev",
+   "state": "readonly",
+   "selectable": true,
+   "description": "在官方 Creator 插件开发流程上补充 WorkDSH 业务 SDK、对象协作、身份和数据保护规范。"
+  }
+ ],
+ "connectors": [
+  {
+   "key": "postgresql-postgresql",
+   "name": "PostgreSQL",
+   "connectorId": "postgresql",
+   "kind": "manual",
+   "canRename": false,
+   "canEditConfiguration": false,
+   "serverName": "postgresql",
+   "url": null,
+   "transport": "stdio",
+   "endpoint": "stdio · npx",
+   "insecurePrivateNetwork": false,
+   "enabled": true,
+   "injectionMode": "always",
+   "injectionLabel": "始终注入",
+   "authMode": "none",
+   "grant": null,
+   "lastError": null,
+   "connectionState": "unknown",
+   "healthCheckedAt": 1792381846738,
+   "lastSuccessfulAt": null,
+   "healthMessage": "Host 尚未注册该 stdio Server 的工具，请检查启动日志后重试",
+   "diagnostic": {
+    "state": "unknown",
+    "stage": "host-observation",
+    "stageLabel": "Host 状态观测",
+    "code": "host-tools-pending",
+    "message": "Host 尚未注册该 stdio Server 的工具，请检查启动日志后重试",
+    "action": "查看 Host 日志并重新检查；可用性确认前保持未知",
+    "checkedAt": 1792381846738,
+    "lastSuccessfulAt": null
+   },
+   "connectionPolicy": "inherit",
+   "serverPolicy": {
+    "configuredEffect": "inherit",
+    "desiredEffect": "allow",
+    "source": "default",
+    "sourceLabel": "默认策略",
+    "lifecycleEnabled": true
+   },
+   "scope": {
+    "binding": {
+     "connectionKey": "postgresql-postgresql",
+     "global": true,
+     "projects": []
+    },
+    "targets": [
+     {
+      "scope": "global"
+     }
+    ],
+    "label": "全局",
+    "visibleInWorkspace": true
+   }
+  },
+  {
+   "key": "tavily-search-tavily-search",
+   "name": "Tavily",
+   "connectorId": "tavily-search",
+   "kind": "oauth",
+   "canRename": false,
+   "canEditConfiguration": false,
+   "serverName": "tavily-search",
+   "url": "https://mcp.tavily.com/mcp",
+   "transport": "streamable-http",
+   "endpoint": "https://mcp.tavily.com/mcp",
+   "insecurePrivateNetwork": false,
+   "enabled": true,
+   "injectionMode": "always",
+   "injectionLabel": "始终注入",
+   "authMode": "oauth",
+   "grant": {
+    "grantKey": "grant:default:57eb01796399d7cb",
+    "accessTokenExpiresAt": 1792211249332,
+    "needsReauth": false,
+    "refreshFailureKind": "transient",
+    "lastRefreshError": "HTTP 500: Internal Server Error",
+    "refreshRetryAt": 1792648612571
+   },
+   "lastError": null,
+   "connectionState": "recovering",
+   "healthCheckedAt": 1792648347169,
+   "lastSuccessfulAt": null,
+   "healthMessage": "OAuth 刷新暂时失败，正在自动重试：HTTP 500: Internal Server Error",
+   "diagnostic": {
+    "state": "recovering",
+    "stage": "authentication",
+    "stageLabel": "鉴权",
+    "code": "refresh",
+    "message": "OAuth 刷新暂时失败，正在自动重试：HTTP 500: Internal Server Error",
+    "action": "等待自动重试；若持续失败，请检查网络和 OAuth 服务状态",
+    "checkedAt": 1792648347169,
+    "lastSuccessfulAt": null
+   },
+   "connectionPolicy": "inherit",
+   "serverPolicy": {
+    "configuredEffect": "inherit",
+    "desiredEffect": "allow",
+    "source": "default",
+    "sourceLabel": "默认策略",
+    "lifecycleEnabled": true
+   },
+   "scope": {
+    "binding": {
+     "connectionKey": "tavily-search-tavily-search",
+     "global": true,
+     "projects": []
+    },
+    "targets": [
+     {
+      "scope": "global"
+     }
+    ],
+    "label": "全局",
+    "visibleInWorkspace": true
+   }
+  }
+ ],
+ "connectorTools": {
+  "postgresql": [
+   {
+    "name": "postgres_mcp_list_connection_profiles",
+    "publicName": "mcp__postgresql__postgres_mcp_list_connection_profiles",
+    "description": "List all available PostgreSQL connection profiles. Returns a list of profiles with ID, name, host, port, and default database. Use the profile ID with postgres_mcp_connect to establish a connection."
+   },
+   {
+    "name": "postgres_mcp_connect",
+    "publicName": "mcp__postgresql__postgres_mcp_connect",
+    "description": "Connect to a PostgreSQL database server using a profile ID and optional database name. The profile ID is retrieved from postgres_mcp_list_connection_profiles. Returns a connection ID that is used to interact with the database with other tools from this postgres-mcp server. If a specific database is given and the connection fails, use postgres_mcp_list_databases against a connection to the default database to find the correct database name. The connection ID is a string formatted as 'postgres-mcp/{profile_id}[/{database name}]', where if no database name is present it's the default database for the profile."
+   },
+   {
+    "name": "postgres_mcp_disconnect",
+    "publicName": "mcp__postgresql__postgres_mcp_disconnect",
+    "description": "Disconnect from a PostgreSQL database server using a connection ID."
+   },
+   {
+    "name": "postgres_mcp_list_databases",
+    "publicName": "mcp__postgresql__postgres_mcp_list_databases",
+    "description": "List all databases on the connected PostgreSQL server. Requires a connectionId from postgres_mcp_connect. Returns a list of database names available on the server."
+   },
+   {
+    "name": "postgres_mcp_db_context",
+    "publicName": "mcp__postgresql__postgres_mcp_db_context",
+    "description": "Get context about this database by fetching the CREATE scripts for a specific type of database object or all types. Use this tool to retrieve detailed context about the database objects (e.g. tables, indexes, functions, sequences, comments, ownership, default_privileges, fdw, or all) within a given schema or across all schemas.\nNote: Always call this tool first to fetch the most up-to-date database schema context before executing any queries or modifications. This tool is strictly read-only and prevents duplicate or conflicting operations by ensuring you know the current state."
+   },
+   {
+    "name": "postgres_mcp_bulk_load_csv",
+    "publicName": "mcp__postgresql__postgres_mcp_bulk_load_csv",
+    "description": "Bulk‐load CSV file via COPY into a PostgreSQL table. Supports column mapping, optional SQL transforms, truncate-before-insert, and PK-based upsert. Use this to bulk-load CSV data into an existing table. The `path` must live under an approved bulk-load path (the current working directory by default, or one approved via `postgres-mcp allow-access-to-path <path>` / `POSTGRES_MCP_ALLOWED_PATHS`). A directory grants recursive access to descendants; a file grants access only to that exact canonical file.\nExample:\npostgres_mcp_bulk_load_csv(\n    connectionId='postgres-mcp/00000000-0000-0000-0000-000000000000/mydb',\n    path='/path/to/file.csv',\n    table='mytable',\n    mapping={'col1': 'col1', 'col2': 'col2'},\n    transforms={'col2': 'src.col2::int'},\n    mode='upsert'\n)"
+   },
+   {
+    "name": "postgres_mcp_describe_csv",
+    "publicName": "mcp__postgresql__postgres_mcp_describe_csv",
+    "description": "Describe the structure and contents of a CSV file. Returns a YAML description of the CSV file, including fields, types, and metadata. Useful for preparing to import CSV data into a database. The selected file path must be approved for CSV access (via `postgres-mcp allow-access-to-path <path>` or `POSTGRES_MCP_ALLOWED_PATHS`). A directory grants recursive access to descendants; a file grants access only to that exact canonical file."
+   },
+   {
+    "name": "postgres_mcp_get_server_capabilities",
+    "publicName": "mcp__postgresql__postgres_mcp_get_server_capabilities",
+    "description": "CALL THIS FIRST before diagnosing performance issues. Discovers what diagnostic tools are available for the connected server. Returns PostgreSQL version, Azure detection status, and available diagnostic groups for postgres_mcp_get_metrics_group. Each group includes its ID, description, and metric count. Shows why certain groups may be unavailable (missing extensions, version requirements, Azure-only features). Required step before using postgres_mcp_get_metrics_group for troubleshooting."
+   },
+   {
+    "name": "postgres_mcp_get_metrics_group",
+    "publicName": "mcp__postgresql__postgres_mcp_get_metrics_group",
+    "description": "Diagnose slow database and performance issues. USE THIS FIRST when users report slow queries, high CPU, or performance problems. Collects pre-correlated metrics by diagnostic group: core_health (CPU, memory, connections, storage), saturation (I/O pressure, disk, cache performance), throughput (transactions, tuples, workload volume), lock_contention (blocking sessions, deadlocks, lock waits). For Azure servers, includes Azure Monitor metrics automatically. Call postgres_mcp_get_server_capabilities first to see available groups. Max 5 groups per request, max 7 days for historical data."
+   },
+   {
+    "name": "postgres_mcp_query",
+    "publicName": "mcp__postgresql__postgres_mcp_query",
+    "description": "Run a formatted SQL query against a database. For performance diagnostics, prefer postgres_mcp_get_metrics_group instead. Requires a connection_id from the return value of postgres_mcp_connect. This query must not modify the database at all. Can include SELECT, SHOW, EXPLAIN etc. Do not include additional statements, e.g. SET search_path, in this query. It must only be a single, spacious, well formatted query with line breaks and tabs. The statement will be presented to the user, so focus on readability. Returns the results of the query. You MUST include a validation query to check the validity of EVERY literal value used in the SQL query. Do NOT skip this step. This tool is strictly read-only and executes a single statement only. Use EXPLAIN for performance or optimization analysis and include execution plan details. On error, return clear error messages to the user."
+   },
+   {
+    "name": "postgres_mcp_modify",
+    "publicName": "mcp__postgresql__postgres_mcp_modify",
+    "description": "Modify the database and/or schema by executing SQL statements including DDL (CREATE, ALTER, DROP) and DML (INSERT, UPDATE, DELETE). Useful when designing schemas or inserting data. It must only be a single, spacious, well formatted query with line breaks and tabs. The statement will be presented to the user, so focus on readability. Returns the results of the statement execution, if any.\nNote: Always fetch up-to-date database schema context using the postgres_mcp_db_context tool before proposing or executing modifications to avoid duplicates or conflicts. Ensure explicit user confirmation. On error, return clear and descriptive error messages to the user. NOTE: Use this tool when working with PostgreSQL databases INSTEAD of asking the user to run the psql CLI tool, unless otherwise explicitly asked to."
+   },
+   {
+    "name": "postgres_mcp_add_connection",
+    "publicName": "mcp__postgresql__postgres_mcp_add_connection",
+    "description": "Add a new PostgreSQL connection profile. The profile will be stored in ~/.postgres-mcp/connections.yaml. IMPORTANT: This tool does NOT accept passwords for security reasons. After adding the connection, the user must run this in a new terminal, not in the Copilot session: `npx -y @microsoft/postgres-mcp connection set-password <profile_name>` to securely set the password via the OS keyring. For Docker/CI environments, use the POSTGRES_MCP_CONNECTION_STRING environment variable instead. Optionally set 'accessMode' to 'ro' (read-only) to block write tools (postgres_mcp_modify, postgres_mcp_bulk_load_csv) against this profile. Defaults to 'rw' (read-write) when omitted."
+   },
+   {
+    "name": "postgres_mcp_remove_connection",
+    "publicName": "mcp__postgresql__postgres_mcp_remove_connection",
+    "description": "Remove a PostgreSQL connection profile. This removes the profile from ~/.postgres-mcp/connections.yaml and deletes its password from the OS keyring. Use postgres_mcp_list_connection_profiles to see available profiles."
+   }
+  ],
+  "tavily-search": [
+   {
+    "name": "tavily_search",
+    "publicName": "mcp__tavily-search__tavily_search",
+    "description": "Search the web for current information on any topic. Use for news, facts, or data beyond your knowledge cutoff. Returns snippets and source URLs."
+   },
+   {
+    "name": "tavily_extract",
+    "publicName": "mcp__tavily-search__tavily_extract",
+    "description": "Extract content from URLs. Returns raw page content in markdown or text format."
+   },
+   {
+    "name": "tavily_crawl",
+    "publicName": "mcp__tavily-search__tavily_crawl",
+    "description": "Crawl a website starting from a URL. Extracts content from pages with configurable depth and breadth."
+   },
+   {
+    "name": "tavily_map",
+    "publicName": "mcp__tavily-search__tavily_map",
+    "description": "Map a website's structure. Returns a list of URLs found starting from the base URL."
+   },
+   {
+    "name": "tavily_research",
+    "publicName": "mcp__tavily-search__tavily_research",
+    "description": "Perform comprehensive research on a given topic or question. Use this tool when you need to gather information from multiple sources, including web pages, documents, and other resources, to answer a question or complete a task. Returns a detailed response based on the research findings. Rate limit: 20 requests per minute."
+   }
+  ]
+ },
+ "sessionServers": [
+  "filesystem",
+  "kp-assembly",
+  "kp-library",
+  "kp-processing",
+  "kp-reserved",
+  "kp-semantic",
+  "playwright",
+  "playwright-mcp",
+  "postgresql",
+  "semantica"
+ ],
+ "sessionServersNote": "由 Harness 提供给本会话的 MCP server 列表（会话侧事实，不等于任何管理面的配置）。"
+}

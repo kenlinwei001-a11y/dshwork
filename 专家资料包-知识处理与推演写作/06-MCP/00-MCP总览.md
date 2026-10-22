@@ -1,50 +1,59 @@
 # MCP 总览
 
-> 本文件由 WorkDSH 会话依据本机真实数据生成，采集时间（UTC）：2026-10-13T07:33:15Z。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-10-22T05:53:59Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
-## 1. MCP 在本链路中的位置
+## 1. 为什么这里有三套视图
 
-MCP（Model Context Protocol）连接由连接器插件管理，向上以 mcp__<server>__<tool> 的形式暴露工具。专家定义里没有 MCP 字段；MCP 能力来自「项目/会话选择了哪条连接」。
+本机同时存在两个 MCP 管理面，它们的连接集合并不相同：
 
-## 2. 本机 6 条连接
+| 视图 | 来源 | 含义 | 本机数量 |
+|---|---|---|---|
+| 会话可见 | Harness 提供给本会话的 server 列表 | 模型实际能调用 mcp__<server>__* 的范围 | 10 |
+| WorkDSH 定义 | storages/workdsh_connectors/definitions/*.json | WorkDSH 连接器页面管理的连接 | 8 |
+| 第三方注册表 | storages/mcp_connector.json（dsh-mcp-connector） | mcp_connector_* 工具管理的连接 / 策略 / 授权 | 2 |
 
-| 连接 | key | 类型 | 传输 | 端点 | 注入 | 作用域 | 健康 |
-|---|---|---|---|---|---|---|---|
-| PostgreSQL | postgresql-postgresql | postgresql | stdio | stdio · npx | 始终注入 | 全局 | healthy |
-| kp-processing | custom-kp-processing | 自定义 | stdio | stdio · /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python | 始终注入 | 全局 | healthy |
-| kp-assembly | custom-kp-assembly | 自定义 | stdio | stdio · /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python | 始终注入 | 全局 | healthy |
-| kp-library | custom-kp-library | 自定义 | stdio | stdio · /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python | 始终注入 | 全局 | healthy |
-| kp-semantic | custom-kp-semantic | 自定义 | stdio | stdio · /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python | 始终注入 | 全局 | healthy |
-| kp-reserved | custom-kp-reserved | 自定义 | stdio | stdio · /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python | 始终注入 | 全局 | healthy |
+> 三者不一致是**本机现状**，不是本资料的判断错误。构建器如实并列，不做合并；不一致会在 `07-核对/01-校验结果.md` 的"提示"区列出。
 
-## 3. 工具规模
+## 2. 按 server 并列（11 个）
 
-| server | 工具数 | 命名空间 |
-|---|---|---|
-| postgresql | 13 | mcp__postgresql__* |
-| kp-processing | 30 | mcp__kp-processing__* |
-| kp-assembly | 16 | mcp__kp-assembly__* |
-| kp-library | 7 | mcp__kp-library__* |
-| kp-semantic | 6 | mcp__kp-semantic__* |
-| kp-reserved | 6 | mcp__kp-reserved__* |
+| server | 会话可见 | WorkDSH 定义 | 第三方注册表 | 运行时状态 | 工具数 |
+|---|---|---|---|---|---|
+| filesystem | 是 | 启用 | - | 未采集 | 0 |
+| kp-assembly | 是 | 启用 | - | 未采集 | 0 |
+| kp-library | 是 | 启用 | - | 未采集 | 0 |
+| kp-processing | 是 | 启用 | - | 未采集 | 0 |
+| kp-reserved | 是 | 启用 | - | 未采集 | 0 |
+| kp-semantic | 是 | 启用 | - | 未采集 | 0 |
+| playwright | 是 | 启用 | - | 未采集 | 0 |
+| playwright-mcp | 是 | - | - | 未采集 | 0 |
+| postgresql | 是 | - | 存在（启用） | unknown | 13 |
+| semantica | 是 | 启用 | - | 未采集 | 0 |
+| tavily-search | - | - | 存在（启用） | recovering | 5 |
 
-## 4. 与这两个专家的关系
+第三方注册表补充：grant 记录 1 条、快照 20 条；**令牌与 env 值一律不采集**。
 
-- 知识处理链路需要的 5 组工具（kp-processing / kp-assembly / kp-library / kp-semantic / kp-reserved）提供约 65 个工具，覆盖语料包七道工序与图谱/库/装配/保留区操作。
-- 推演写作链路的脚本（graph-deductive-writing-skill 的 validate_graph.py 等）不依赖 MCP，可直接用本机 python3 运行。
-- PostgreSQL 连接与两个专家无直接关系，属于本机通用数据能力。
+运行时健康（第三方注册表来源）：postgresql=unknown、tavily-search=recovering；快照 2026-10-22T05:52:28Z。
 
-## 5. 单条连接文档
+## 3. 逐 server 文档
 
-- `01-postgresql.md`
-- `02-kp-processing.md`
-- `03-kp-assembly.md`
-- `04-kp-library.md`
-- `05-kp-semantic.md`
-- `06-kp-reserved.md`
+- `06-MCP/01-filesystem.md`
+- `06-MCP/02-kp-assembly.md`
+- `06-MCP/03-kp-library.md`
+- `06-MCP/04-kp-processing.md`
+- `06-MCP/05-kp-reserved.md`
+- `06-MCP/06-kp-semantic.md`
+- `06-MCP/07-playwright.md`
+- `06-MCP/08-playwright-mcp.md`
+- `06-MCP/09-postgresql.md`
+- `06-MCP/10-semantica.md`
+- `06-MCP/11-tavily-search.md`
 
-## 6. 安全与边界
+## 4. 与技能 / 项目的关系
 
-- 令牌只写入官方凭据服务；本包不含任何凭据、token 或 API Key。
-- 健康状态是采集时刻的观测值（5 条 healthy、PostgreSQL unknown/host-tools-pending）。
-- 写操作类工具（如数据库 modify、批量装载）不因连接可用而自动获得授权，需按策略与会话可见性逐次确认。
+- 技能对 MCP 的依赖只来自正文里的 mcp__<server>__ 引用（逐条取证见各技能文档第 6 节）。
+- 项目在能力快照里以 connector 类型引用连接，构建时逐条解析到上表的 server。
+
+## 5. 安全
+
+- env 只记录键名；URL 去 userinfo；第三方注册表整体不复制（可能含 accessToken / refreshToken）。
+- 连接存在 ≠ 工具被授权调用：策略（Tool > Server > Connection）与会话可见性逐层生效。

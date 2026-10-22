@@ -1,0 +1,36 @@
+# MCP：playwright
+
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-10-22T05:53:59Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+
+## 1. 三视图在场情况
+
+| 视图 | 是否存在 | 说明 |
+|---|---|---|
+| 会话可见 | 是 | 模型可调用 mcp__playwright__* |
+| WorkDSH 定义 | 是 | DSH_HOME/storages/workdsh_connectors/definitions/playwright.json |
+| 第三方注册表 | 否 | - |
+| 运行时状态 | 未采集 | - |
+
+## 2. WorkDSH 定义（磁盘权威）
+
+| 字段 | 值 |
+|---|---|
+| id | playwright |
+| 标题 | 浏览器 Playwright |
+| 描述 | 微软官方 Playwright MCP，驱动本机 Chrome 做浏览器自动化。 |
+| 传输 | stdio |
+| 命令 | /usr/local/bin/node |
+| 参数 | /Users/apple/workdsh-mcp-servers/node_modules/@playwright/mcp/cli.js --browser chrome |
+| URL | - |
+| env 键名 | （无） |
+| 启用 | true |
+| 创建时间 | 2026-09-16T08:06:05.187Z |
+
+## 3. 工具清单（0）
+
+（无工具记录）
+
+## 4. 关联
+
+- 引用该 server 的技能：无
+- 引用该项目连接：无

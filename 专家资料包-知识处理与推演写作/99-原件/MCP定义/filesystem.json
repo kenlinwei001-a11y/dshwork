@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "record": {
+    "id": "filesystem",
+    "title": "文件系统",
+    "description": "官方 MCP 文件系统服务，读写 ~/mcp-workspace。",
+    "serverName": "filesystem",
+    "transport": "stdio",
+    "command": "/usr/local/bin/node",
+    "args": [
+      "/Users/apple/workdsh-mcp-servers/node_modules/@modelcontextprotocol/server-filesystem/dist/index.js",
+      "/Users/apple/mcp-workspace"
+    ],
+    "enabled": true,
+    "createdAt": "2026-09-16T08:05:27.958Z",
+    "updatedAt": "2026-09-16T08:05:27.958Z"
+  }
+}

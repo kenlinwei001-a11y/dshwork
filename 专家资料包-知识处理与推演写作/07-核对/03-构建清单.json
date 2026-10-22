@@ -1,0 +1,3517 @@
+{
+  "builder": "tools/expert-report/build.mjs",
+  "schemaVersion": 2,
+  "builtAt": "2026-10-22T05:53:59Z",
+  "sourceEpoch": "2026-10-22T05:53:59Z",
+  "scope": {
+    "experts": [
+      {
+        "id": "expert-a54010bbb24e",
+        "name": "知识处理专家",
+        "publishedRevisionId": "rev-a87da68acd79"
+      },
+      {
+        "id": "expert-a0a771c8b0da",
+        "name": "推演写作专家",
+        "publishedRevisionId": "rev-2e252305df1c"
+      }
+    ]
+  },
+  "counts": {
+    "expertsTotal": 11,
+    "expertsScoped": 2,
+    "skills": 43,
+    "docs": 104,
+    "copiedFiles": 641,
+    "connectors": 8,
+    "plugins": 59,
+    "projects": 3
+  },
+  "sourceUnits": 120,
+  "sourceFiles": 745,
+  "runtimeSnapshot": {
+    "file": "sources/runtime.json",
+    "sha256": "fded8e73c7805a6a3e3d7a9ec7ecd5edb458cd1a8765438f521678c60fec153d",
+    "generatedAt": "2026-10-22T05:52:28Z"
+  },
+  "checks": {
+    "ok": true,
+    "items": [
+      {
+        "name": "技能目录均含可解析的 SKILL.md",
+        "ok": true,
+        "detail": "43 个技能全部解析成功"
+      },
+      {
+        "name": "技能名称唯一",
+        "ok": true,
+        "detail": "无重复"
+      },
+      {
+        "name": "技能库（运行时）与磁盘一致",
+        "ok": true,
+        "detail": "库 43 / 磁盘 43"
+      },
+      {
+        "name": "范围内专家均已发布",
+        "ok": true,
+        "detail": "知识处理专家=rev-a87da68acd79；推演写作专家=rev-2e252305df1c"
+      },
+      {
+        "name": "专家技能依赖全部可解析",
+        "ok": true,
+        "detail": "全部命中本机技能库"
+      },
+      {
+        "name": "项目中的专家/技能引用可解析",
+        "ok": true,
+        "detail": "专家与技能引用均命中"
+      },
+      {
+        "name": "副本忽略规则只作用于备份文件",
+        "ok": true,
+        "detail": "只忽略 .bak / SKILL.md.bak* / .DS_Store"
+      },
+      {
+        "name": "原件副本逐字节一致",
+        "ok": true,
+        "detail": "641 个文件复算 SHA-256"
+      },
+      {
+        "name": "产物无密钥特征",
+        "ok": true,
+        "detail": "未命中（sk-* / Bearer / api_key 等模式）"
+      }
+    ],
+    "warnings": [
+      {
+        "name": "项目引用了不存在的连接器",
+        "detail": "项目能力快照中的 connector 引用未在两套 MCP 管理面找到：kp-mcp（该任务可能缺少对应工具，需在项目配置里改选或补建连接）"
+      },
+      {
+        "name": "三套 MCP 视图不一致",
+        "detail": "会话可见 10 / WorkDSH 定义 8 / 第三方注册表 2；仅注册表有：tavily-search；仅会话可见：playwright-mcp"
+      },
+      {
+        "name": "运行时快照是某个时刻的观测",
+        "detail": "快照时间 2026-10-22T05:52:28Z；磁盘重建不会刷新健康状态与工具清单，需要重新采集 sources/runtime.json。"
+      },
+      {
+        "name": "技能目录存在备份文件",
+        "detail": "21 个 .bak / SKILL.md.bak* 文件被排除在副本外（源码未被修改）。"
+      }
+    ]
+  },
+  "docsSha256": "e5dc610960fa7743d2a38e275f282e74f692b389de3b865e4301edebea15997d",
+  "sources": [
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/auto-mcm",
+      "bytes": 10459,
+      "sha256": "dca8369e4076e8573f65bf16528c9c6386621e2e1a216d90b40e72c6d9b2b9f1",
+      "detail": "1 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/claim-evidence-binding-skill",
+      "bytes": 2975,
+      "sha256": "ce228319755d216f66e8fb99069ef7cd16af86b0e2c03123f7c687e74a4cb018",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/claim-extraction-skill",
+      "bytes": 1871,
+      "sha256": "e926652df383161e2a0a7bbecf14223deea9f56b597a794aca37ef9f4a760358",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/claim-validation-skill",
+      "bytes": 1867,
+      "sha256": "1e6735fd1f8fb2801d151962139b30dc1ad20706f7b9994927e983f970523fdb",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/claude-paper-study",
+      "bytes": 10618,
+      "sha256": "2c8b5843e850d1be5ef5062623c690f239dd5a088277e5dddb1576e6116f0027",
+      "detail": "1 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/claude-paper-summary",
+      "bytes": 8860,
+      "sha256": "6e1e91920fcb88c1339400102785a3acf2e4ee00675d3e95ee4a86974ee885ba",
+      "detail": "1 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/conflict-detection-skill",
+      "bytes": 1899,
+      "sha256": "3955ae890ee00c84e6834178f3bfdac8b46baa353951afd95ef1430f7da14dfd",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/skills/design-master",
+      "bytes": 561144,
+      "sha256": "b18d0c88a7f9c043f95ad0a92e5b49302a803f16c9306d48ba0bef669e31769f",
+      "detail": "40 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/document-parsing-skill",
+      "bytes": 1980,
+      "sha256": "c7ed88e30cea11a6d0510f354ff5266663880e9da2d7d26b3554eda9ec9cde79",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/skills/drawio-diagrams",
+      "bytes": 8084,
+      "sha256": "7909291bfa2290d0bd38a6fc422b337f12ecd3eb7dea06b36c0c7a88fb8699b6",
+      "detail": "2 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/entity-extraction-skill",
+      "bytes": 1892,
+      "sha256": "4a7ced17c75073eeebac874564c361e327086ead4814f6ae5e417c3b3a213f31",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/entity-resolution-skill",
+      "bytes": 4449,
+      "sha256": "9723dfd12abf5ccb2e21f73622b9d69cfd15290059887bf39d3f141a4ed1189b",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/evidence-extraction-skill",
+      "bytes": 1916,
+      "sha256": "987c3a28ad7eaf84656cf8301841f47fde0f148fb6e4f16fc463628b088c0929",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/extraction-quality-audit-skill",
+      "bytes": 6513,
+      "sha256": "d90679b867e8e907e2a4ec2c74d49efc548e2f5a301c6f0abf96960c98830822",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/fact-extraction-skill",
+      "bytes": 1856,
+      "sha256": "5483046d6d05779ca7781af07249f86de624a92938846c087520e86dcefe1292",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/feasibility-report-edu-research",
+      "bytes": 943691,
+      "sha256": "d9f448b3b788e704db3e9a528ea9d6fcf1509e6034ad49d02e82456b3c4e1559",
+      "detail": "49 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/graph-deductive-writing-skill",
+      "bytes": 59317,
+      "sha256": "d61aa838558428c9774a1c01b86e086906ac3b43b0b684034f8375b756fddf66",
+      "detail": "8 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/knowledge-generalization-skill",
+      "bytes": 1989,
+      "sha256": "1737063d4d6863ffe03732cd5120964b2b57020bb611dec5215bd8888ed8d890",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/knowledge-processing",
+      "bytes": 42960,
+      "sha256": "d63577cf81762ee0df28b3e6ac48c47d3f0a9cd21c8b2a4a769eb819bc31cf08",
+      "detail": "2 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/knowledge-processing-toolchain",
+      "bytes": 5137,
+      "sha256": "867aed980c73fa498152a953d759d8bf76db7f821c4e2e7583b92724ee306314",
+      "detail": "1 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/math-modeling",
+      "bytes": 890300,
+      "sha256": "8c75d651b36980ce70f4e299623fcf91fbea20d715b21f38c84dc8b21ee2bd48",
+      "detail": "106 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/nature-academic-search",
+      "bytes": 1163079,
+      "sha256": "ed1acfd618b02894c892fdd8572b08cdef5208aa49c8955fea45c44a5b3aa5dd",
+      "detail": "146 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/ontology-resolution-skill",
+      "bytes": 1868,
+      "sha256": "07eb47002343ee1282678cdcb8f408596d98f96720239e44e236beb7b3339915",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/skills/ppt-generator-skill",
+      "bytes": 180967,
+      "sha256": "3c654f20e3f53b826f32f6dc639b14e43abcccdca488f9e9f698cd92fc57d0a7",
+      "detail": "18 files"
+    },
+    {
+      "kind": "skill:profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/skills/ai-ppt-skill",
+      "bytes": 41977,
+      "sha256": "438d96b678ca536a15456175bb1aac85066af95bf7c8b780fa647785071e675c",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/provenance-binding-skill",
+      "bytes": 5145,
+      "sha256": "71cef4fbd0e449317147db71413e18b8f7438af1caad0bfb792376b3f19da8ca",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/reasoning-extraction-skill",
+      "bytes": 1895,
+      "sha256": "b9da3d2972ed0ed96f3bdeca13d99db818912d13d4ae7acf701ca2f93a6fb16a",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/relation-extraction-skill",
+      "bytes": 3925,
+      "sha256": "7c172c1eadd49798b0b510a620ba72afe2433286fc66b2bf177178e4a4132b5c",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/resanity",
+      "bytes": 588805,
+      "sha256": "3cf00679436fd3b52851a950f7b0a9aa82475f060955adde27b37632ded94532",
+      "detail": "77 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/semantic-chunking-skill",
+      "bytes": 1914,
+      "sha256": "84a9e60c190ca0a83252fdaffe3b50385faf9e24012daa5b9fe17d469d7cf39d",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/semantic-graph-compilation-skill",
+      "bytes": 8183,
+      "sha256": "14af4fabb35f40b22b5e2a6078702c443059917fb32ca1d2df3fc8412d8e988e",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/sentence-segmentation-skill",
+      "bytes": 1904,
+      "sha256": "0aad321a1620be31f9f5f7d71c398f637772630b4599d536cae406e7c5ec3f15",
+      "detail": "6 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/standard-regulation-extraction",
+      "bytes": 16508,
+      "sha256": "b6e2e7bca5130db3657fd24c9c70caadb04353c3af2eb5a5f09e058fcfec3af2",
+      "detail": "2 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/stock-data-assistant",
+      "bytes": 46555,
+      "sha256": "79458e7dfa62b2c673ef6233a3142bb7e68f8adce9c0d23ce50520d63e2e0de6",
+      "detail": "5 files"
+    },
+    {
+      "kind": "skill:user",
+      "path": "/Users/apple/.agents/skills/stock-mcp-query",
+      "bytes": 4414,
+      "sha256": "49de6b60f5ddd94d006151592ab447c6b13eab7112c2974f5a8c9054f1cba1cf",
+      "detail": "1 files"
+    },
+    {
+      "kind": "skill:profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/skills/ui-new",
+      "bytes": 45766,
+      "sha256": "80b40f7553adeb34f378982812ce99acb7ee4b44b75895987566bb24aee0cdbc",
+      "detail": "4 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-excel-design",
+      "bytes": 5026,
+      "sha256": "9cbbe6d75f1230b5c71557cacf6eb3073093b35977eaf0eace0bc0b783feb238",
+      "detail": "3 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-experts/resources/skills/workdsh-expert-manager",
+      "bytes": 43034,
+      "sha256": "6c0a02667694de861aa058066750a79c1bd8d5c0c42ac83127d93a28060a626c",
+      "detail": "9 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-ppt-design",
+      "bytes": 16922,
+      "sha256": "a1419593d5028a4c94ca2a4045304a68ba4bee64d35198d36cec8b4f7be07e59",
+      "detail": "10 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-skill-creator",
+      "bytes": 50662,
+      "sha256": "52955e7c7893a15b7699b74472eaf305d1f09d90c8fb114304881509ce451caa",
+      "detail": "10 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-web-design",
+      "bytes": 14890,
+      "sha256": "59af5d31a15e72439bf6afeb8a84942a614bb735e8114c3e84cfd9a7cc375f55",
+      "detail": "4 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-word-design",
+      "bytes": 4514,
+      "sha256": "74de9eb56125ba4a00d0389b0562b39ed396ca179b112f368d8c37c40510d0d5",
+      "detail": "3 files"
+    },
+    {
+      "kind": "skill:bundled",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-workbench-dev",
+      "bytes": 48026,
+      "sha256": "a1c4c619955e286e4aa32873d7b345573fc287e917acd5b8c0d70abad739b94c",
+      "detail": "8 files"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a54010bbb24e.json",
+      "bytes": 559,
+      "sha256": "47fb9625ce2b773d3bdd721fa64ff588cd7130cfd5db7ae149bd093a77ef2554",
+      "detail": "expert-a54010bbb24e.json"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-a87da68acd79.json",
+      "bytes": 46083,
+      "sha256": "e9ac008fef1a729893fa0bd27330165b756d1522dd130ef93b7974522f06849a",
+      "detail": "expert-a54010bbb24e_rev-a87da68acd79.json"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/drafts/expert-a54010bbb24e.json",
+      "bytes": 40162,
+      "sha256": "50f856453bb4fe977284a30f8d8b6dbbd8f8fcc2f6d521c75d3ee85bdb3bc426",
+      "detail": "expert-a54010bbb24e.json"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a0a771c8b0da.json",
+      "bytes": 559,
+      "sha256": "10140f4b5e04ae8b4fddf21c8ee302183a1ecb7020388c8a885438c34cbb4ed8",
+      "detail": "expert-a0a771c8b0da.json"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-2e252305df1c.json",
+      "bytes": 29124,
+      "sha256": "757d6498be8496ec8bb3f74054f23cb62a97d312e8af8854df5650cd423f864a",
+      "detail": "expert-a0a771c8b0da_rev-2e252305df1c.json"
+    },
+    {
+      "kind": "expert",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/drafts/expert-a0a771c8b0da.json",
+      "bytes": 26777,
+      "sha256": "dc89dcf4caafcd107622b017d6e2eff8bcf11310bb2c6d596fb1ba8ec830d943",
+      "detail": "expert-a0a771c8b0da.json"
+    },
+    {
+      "kind": "project",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_projects/states/local-personal_local-user.json",
+      "bytes": 76450,
+      "sha256": "46c19f8eed88934ca803fbbb94090263ace48ce464ee2779ec4ffb93f274c09c",
+      "detail": "local-personal_local-user"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/filesystem.json",
+      "bytes": 542,
+      "sha256": "6701aa0d0762c0bdf3b633aeedd18ac322cad0aadd2c792a62e0af969fa7721a",
+      "detail": "filesystem"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-assembly.json",
+      "bytes": 634,
+      "sha256": "5bd2cd46ecbd633e5752901de88481ad97dd1a71a419fcd579bcd92f9449ccd8",
+      "detail": "kp-assembly"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-library.json",
+      "bytes": 585,
+      "sha256": "6fd0a7b7c326503397f8ce681352fd10cdf1173e2de513ad88856fd0aee81c70",
+      "detail": "kp-library"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-processing.json",
+      "bytes": 633,
+      "sha256": "ca2ed3b9caee701c75a71758b94f96fffd37b3ee221f070dc348e1b2400e931b",
+      "detail": "kp-processing"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-reserved.json",
+      "bytes": 586,
+      "sha256": "d6b51d2f5f9a190e78ba63ea08c84f448bf10b99ff8e5f1c93c6b297c5199e56",
+      "detail": "kp-reserved"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-semantic.json",
+      "bytes": 587,
+      "sha256": "e93d3a28b262146c303c0be6070cb068e030d78cb62596c764a6e7e18acf29d2",
+      "detail": "kp-semantic"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/playwright.json",
+      "bytes": 535,
+      "sha256": "91d1e175c5dbda4b48cd79201db3eb4876cbefc3e36004da1aaef83b6fd7d341",
+      "detail": "playwright"
+    },
+    {
+      "kind": "connector",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/semantica.json",
+      "bytes": 757,
+      "sha256": "ceebe1e6af63a42541a51961ac5c60b788291767633d270c23cbf2ad8e59d05c",
+      "detail": "semantica"
+    },
+    {
+      "kind": "profile",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json",
+      "bytes": 4739,
+      "sha256": "97df39181a2ac99680db590eaed77a4f8a79b14f032ef8d4c55226f49e9349aa",
+      "detail": "profile composition"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@cocofhu/skillhub/package.json",
+      "bytes": 2778,
+      "sha256": "a736efd874d6e91f252ee58d01cb2dd3599231c25664c683d5a4f91af8dc636d",
+      "detail": "@cocofhu/skillhub"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/cordis-plugin-group/package.json",
+      "bytes": 861,
+      "sha256": "050a441daa0457c11fd2ec434b8cdf547e536cafd24a0c554e38e290cb87cc3d",
+      "detail": "@deepseek-ai/cordis-plugin-group"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh/package.json",
+      "bytes": 7989,
+      "sha256": "bea4288aa88eb54efe829686553100a75fdf09d11c5e3bf6b329badb9a0368dd",
+      "detail": "@deepseek-ai/dsh"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-agent-preset-registry/package.json",
+      "bytes": 3123,
+      "sha256": "68a32854e6492b0f92be76e7f9f5be61909bf7798ab22c210362e259947680d5",
+      "detail": "@deepseek-ai/dsh-agent-preset-registry"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-anonymous-user-id/package.json",
+      "bytes": 1058,
+      "sha256": "9ada3e8246444e19f9bacbf4e782be6770e00f747065bcd44eff99a570281de9",
+      "detail": "@deepseek-ai/dsh-anonymous-user-id"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-attachment/package.json",
+      "bytes": 1058,
+      "sha256": "e5d8fe6f42ccf07445398e818ad63f416d3a672e4ff585a5e527f0e42a265cdf",
+      "detail": "@deepseek-ai/dsh-attachment"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-base/package.json",
+      "bytes": 6127,
+      "sha256": "238a9c488f0eb58933b931451445f3d5b087f9938c51a8626467425e1aff28b1",
+      "detail": "@deepseek-ai/dsh-base"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-bash-local/package.json",
+      "bytes": 1243,
+      "sha256": "0914aa630b44f5998fb467dca5944ca80760ebee35f8a0826d09d418c3636c31",
+      "detail": "@deepseek-ai/dsh-bash-local"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-client-store/package.json",
+      "bytes": 903,
+      "sha256": "a42c55828297c2b80b631a8c8f74d159c024797f2827dc7027e370d531edd0a4",
+      "detail": "@deepseek-ai/dsh-client-store"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-client-ui-primitives/package.json",
+      "bytes": 1814,
+      "sha256": "94f9353a4ec8939102d096809eee78ea688b22f3013bf4b1a12b101ba2f94b75",
+      "detail": "@deepseek-ai/dsh-client-ui-primitives"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-client-ui-slots/package.json",
+      "bytes": 981,
+      "sha256": "be465fe9cfe1aa9563847406a060534660b9f4c3ac4a277514da46be2f86084f",
+      "detail": "@deepseek-ai/dsh-client-ui-slots"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-compaction/package.json",
+      "bytes": 1456,
+      "sha256": "c141732c29849fb134f9f676a4c597a437b274fff3b0f1cc80b3b13357edc4a3",
+      "detail": "@deepseek-ai/dsh-compaction"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-deepseek-account/package.json",
+      "bytes": 1426,
+      "sha256": "0592dbc822abeb085c0e3931b64a4547a698c5725c5a6608898f9ab2dff9cadc",
+      "detail": "@deepseek-ai/dsh-deepseek-account"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-experimental-agent-team/package.json",
+      "bytes": 2234,
+      "sha256": "6ad87c296b2d313f307a72c2e773ce9cae070a639ce18f7e7f6a51c36b00641f",
+      "detail": "@deepseek-ai/dsh-experimental-agent-team"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-experimental-client-ui-agent-team/package.json",
+      "bytes": 2231,
+      "sha256": "4589a2bc73682a460dfeb58bbafdf728c16135b4bd9911afe29fc2022fb60a5d",
+      "detail": "@deepseek-ai/dsh-experimental-client-ui-agent-team"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-experimental-tool-agent-team/package.json",
+      "bytes": 2132,
+      "sha256": "8f09d5849a6420e99686da1bdd06033829e07bda72dae09f892f61f22f8ff8e4",
+      "detail": "@deepseek-ai/dsh-experimental-tool-agent-team"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-fs/package.json",
+      "bytes": 1220,
+      "sha256": "fa6fe8277b1088a0f330bd36e2972f098a992bafe448b2dfd69140ca074d044f",
+      "detail": "@deepseek-ai/dsh-fs"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-hook-protocol/package.json",
+      "bytes": 1098,
+      "sha256": "25ac9ccdc84e84c15dde1e3351fed80d13f7bd71edefd9deec4694ea08e33d43",
+      "detail": "@deepseek-ai/dsh-hook-protocol"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-jobs/package.json",
+      "bytes": 1617,
+      "sha256": "d27ae9f18ab6095229722cd3c206fae636f262bcb9b27f7efe27b72b62bb8ad2",
+      "detail": "@deepseek-ai/dsh-jobs"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-llm-deepseek/package.json",
+      "bytes": 3059,
+      "sha256": "96b1b628317603b3d287683bf8abec84a17c407d5e69e2177c48bebb4a750fb4",
+      "detail": "@deepseek-ai/dsh-llm-deepseek"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-mcp-client/package.json",
+      "bytes": 2272,
+      "sha256": "43b54ea675c6aac0cc135ee0aa9951ae7f2808be4b65576cd2baed83851a7f33",
+      "detail": "@deepseek-ai/dsh-mcp-client"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-output-retention/package.json",
+      "bytes": 912,
+      "sha256": "085a45822ca8b54fd7965ca2ae67aa52781130f2db8c5d508c1ab72ed3ae480d",
+      "detail": "@deepseek-ai/dsh-output-retention"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-persona/package.json",
+      "bytes": 1114,
+      "sha256": "7ef56d90a19a1256daa5439b1825dc12dcf15f6b12e6e31299b5a6a05d13d17f",
+      "detail": "@deepseek-ai/dsh-persona"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-ptc-runtime/package.json",
+      "bytes": 938,
+      "sha256": "7c04f703966db43d6d6d7c66d270c6eb91145c3bb6520eecc0352ad9807ee313",
+      "detail": "@deepseek-ai/dsh-ptc-runtime"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-sandbox/package.json",
+      "bytes": 1151,
+      "sha256": "d83c79364d7ae2bd670b61d7d392268a62f606a9e4716195c211c63fed614c02",
+      "detail": "@deepseek-ai/dsh-sandbox"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-scope/package.json",
+      "bytes": 864,
+      "sha256": "3720f660ae9e868ef6eafcb04f879de6cc5ee26572b2b41edda3182e98a618e6",
+      "detail": "@deepseek-ai/dsh-scope"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-sdk-protocol/package.json",
+      "bytes": 1220,
+      "sha256": "370e1278613c02b38e57ca2e1bc9e669c6b77ba89e863bc3a225f25b3e484b4b",
+      "detail": "@deepseek-ai/dsh-sdk-protocol"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-session-persistence/package.json",
+      "bytes": 1270,
+      "sha256": "c7b9a12d966df8e096865cf50f63e37ac3cb763a51d5d1fbd8cc4a07050cc42a",
+      "detail": "@deepseek-ai/dsh-session-persistence"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-session-query/package.json",
+      "bytes": 2032,
+      "sha256": "6822705a3f1fccd30d0d2cc5c6c15d70361419ae3e3dc9a62f45a34c533279f5",
+      "detail": "@deepseek-ai/dsh-session-query"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-session-telemetry/package.json",
+      "bytes": 1100,
+      "sha256": "8cb6f0a50738e1b5565ffd49bc0338858484062cc6de4b720651efbc8715472f",
+      "detail": "@deepseek-ai/dsh-session-telemetry"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-session-title-llm/package.json",
+      "bytes": 1347,
+      "sha256": "250ec3f1b2e9d885b83c6f8e7cd0d0d1095b18424354e062169fcb3c412d18f7",
+      "detail": "@deepseek-ai/dsh-session-title-llm"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-shell/package.json",
+      "bytes": 1013,
+      "sha256": "fe35fa1a11ee3b1fcd85f2b52807f616dad45f5fd78e6091368cadd1bd91231e",
+      "detail": "@deepseek-ai/dsh-shell"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-skill-filesystem/package.json",
+      "bytes": 1282,
+      "sha256": "f9fc985e175f71474df07f60e239711c1bc1ebafb7499bf80d57324164382f5a",
+      "detail": "@deepseek-ai/dsh-skill-filesystem"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-spill/package.json",
+      "bytes": 1152,
+      "sha256": "f20272ec9aae02625594e790742114cc8747457e2406acebd6c6e3422d280cd8",
+      "detail": "@deepseek-ai/dsh-spill"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-tool-skill/package.json",
+      "bytes": 1617,
+      "sha256": "32e44d663b7546c166fe75f22dbde0444e8dcef719a19cd3abe939a2eaab7f62",
+      "detail": "@deepseek-ai/dsh-tool-skill"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-util-time/package.json",
+      "bytes": 907,
+      "sha256": "b1e406ef521434108208f3c1c7c527ff9b50818ddd8688c6cd8c214ad70f5c58",
+      "detail": "@deepseek-ai/dsh-util-time"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-util-workspace-path/package.json",
+      "bytes": 828,
+      "sha256": "c94c758a789c0c4308a4cdcdbc523fd16df91548162423e11bad18ec0b9dd793",
+      "detail": "@deepseek-ai/dsh-util-workspace-path"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-web-app/package.json",
+      "bytes": 9983,
+      "sha256": "62a904e28901801f7ed114867d84f813ec136133c43f21e0f575dd1db5f5289a",
+      "detail": "@deepseek-ai/dsh-web-app"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh-workflow/package.json",
+      "bytes": 1341,
+      "sha256": "e98a020a36dc12f8692c01ce0b076537c643820fd108b43ae12945d68bb17d6c",
+      "detail": "@deepseek-ai/dsh-workflow"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/clearai-dsh/package.json",
+      "bytes": 2591,
+      "sha256": "30d9539280926e3284160befd9c7f8b30581f9e53e7da0d8c8ebd76403bfa689",
+      "detail": "clearai-dsh"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-cost-meter/package.json",
+      "bytes": 5236,
+      "sha256": "ad46502d92ec86ad9c47e7e1f0df36c682c781244456c901f3d47bf1a1c9baba",
+      "detail": "dsh-cost-meter"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-mcp-connector/package.json",
+      "bytes": 6624,
+      "sha256": "2f60cfae8984578b30b1f5b359b2acd88b2441a423319ab6609e7e95029762ee",
+      "detail": "dsh-mcp-connector"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-plugin-ssh/package.json",
+      "bytes": 3793,
+      "sha256": "4b704258a581359452363fe7baaa2d95f8cf17d65a3d8ae6bd4c3f7f60a0b7ca",
+      "detail": "dsh-plugin-ssh"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dshmarket/package.json",
+      "bytes": 3786,
+      "sha256": "3a156a8bc16ad8234e6d26f053db8cbf58796f4f543d36fc6730362a984df0f0",
+      "detail": "dshmarket"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-bundle/package.json",
+      "bytes": 3599,
+      "sha256": "b1b00dfc7c7e249dace766cc880ca428571c6a44494ced2288038f744d157e7d",
+      "detail": "workdsh-bundle"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-access/package.json",
+      "bytes": 1742,
+      "sha256": "ab5009834f63eeb1f1e416a4e4fba1d10c4d5a2f7feb9856e953fbd5174f732e",
+      "detail": "workdsh-plugin-access"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-activity/package.json",
+      "bytes": 2337,
+      "sha256": "3e2be2f0652c7082ebce63c8053362a6cd53abef0df7c8af5587963cab43e383",
+      "detail": "workdsh-plugin-activity"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-audit/package.json",
+      "bytes": 1012,
+      "sha256": "eee59c8f7a1e6208cd53e281f13e9ad7c7a45775754dfa41f6ec3691ec85b465",
+      "detail": "workdsh-plugin-audit"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-connectors/package.json",
+      "bytes": 3171,
+      "sha256": "8ceaf8bbb22a17018a20982ea1ce09d42ccd3939e0beb20f1e5c63a30bc91901",
+      "detail": "workdsh-plugin-connectors"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-experts/package.json",
+      "bytes": 4085,
+      "sha256": "378acbbf1b68951779a62ccbc5a5af205bead54c485e5b1127afff0bdec1f8ff",
+      "detail": "workdsh-plugin-experts"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-library/package.json",
+      "bytes": 4516,
+      "sha256": "e7db1649ed7143490cc6a438e6b3b8515a69a5c7e52d5eccfb43e107e7f6fb8e",
+      "detail": "workdsh-plugin-library"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office/package.json",
+      "bytes": 3856,
+      "sha256": "f7cf3881042196c3e7a33b0e65c5f2e281bbd8d5752fa2d098e58c0bb95c19d7",
+      "detail": "workdsh-plugin-office"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-plate/package.json",
+      "bytes": 3459,
+      "sha256": "fdb87cc2b7c3d3a747f07675079751e29480cecc1abaa2849fe090200efb82f1",
+      "detail": "workdsh-plugin-plate"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-projects/package.json",
+      "bytes": 4315,
+      "sha256": "71ae18b82f78a10c526a2c14a454fef700eb0c5fac9dc6f42f63889a2c32160f",
+      "detail": "workdsh-plugin-projects"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-quality-analysis/package.json",
+      "bytes": 2900,
+      "sha256": "1e5c932c6913255a5442abcf2b189a4989a00ef0c283aee095cce593f5b5a829",
+      "detail": "workdsh-plugin-quality-analysis"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/package.json",
+      "bytes": 3176,
+      "sha256": "d26e5486f2594d338b7788ed095106946a22f2ced21dadd582ebc0bacebf9a64",
+      "detail": "workdsh-plugin-skills"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-workbenches/package.json",
+      "bytes": 3429,
+      "sha256": "dd1e81cc3f96ddc476a55cc2fd05db73af9230d7cd8e37218ecf004480778172",
+      "detail": "workdsh-plugin-workbenches"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-provider-browser-session/package.json",
+      "bytes": 2937,
+      "sha256": "35ea42fdb5b4b19edd11b37da06700b748b614618a2ecb163a4f3ec7bc1e333f",
+      "detail": "workdsh-provider-browser-session"
+    },
+    {
+      "kind": "plugin",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-provider-identity-local/package.json",
+      "bytes": 1074,
+      "sha256": "e479193225c0b90373144a090f020dd1df6f99ed5d03afe04e885d8cdb60e5fa",
+      "detail": "workdsh-provider-identity-local"
+    },
+    {
+      "kind": "runtime",
+      "path": "/Users/apple/Desktop/workdsh/tools/expert-report/sources/runtime.json",
+      "bytes": 32271,
+      "sha256": "fded8e73c7805a6a3e3d7a9ec7ecd5edb458cd1a8765438f521678c60fec153d",
+      "detail": "generatedAt=2026-10-22T05:52:28Z"
+    },
+    {
+      "kind": "mcp-registry",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/mcp_connector.json",
+      "bytes": 430986,
+      "sha256": "834863a98afbca8260d81ee6892ed5a37dff800096e2eb299265dc5c0265c9c6",
+      "detail": "2 connections (not copied: secrets)"
+    }
+  ],
+  "copies": [
+    {
+      "path": "99-原件/skills/auto-mcm/SKILL.md",
+      "sha256": "10f392df770b6a8bc17c0aa109970fed3db73827043506314537f81817297af0"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/SKILL.md",
+      "sha256": "a464a84bd385b029d85d4e56abe2be72db27a541e51eea3179bb0b2960ba150e"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/prompts/system.md",
+      "sha256": "3c7ef331f57425ca37b75dac7a1fc00969f92c9751a989993aabaeb29456d0f3"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/schema/output.json",
+      "sha256": "49a21f7072d1ab92fe9c14a0b34a09d01eedf3ad472ad81b49cd03f5fb250643"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/tests/expected.json",
+      "sha256": "a1dacbe5e304b77cb572442a9121cba094decc565e85a2fb393a304fd650ee77"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/claim-evidence-binding-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/SKILL.md",
+      "sha256": "8f4bd6dbb9768b558355a6c50592b46cf20ff2bb3d6516450aa2e56d026ae1e4"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/prompts/system.md",
+      "sha256": "ffcdfc228a26ad5ca4a9ea71bcadc415f47a9288ded1c5bb37b657a93a841e3d"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/schema/output.json",
+      "sha256": "9b8af7c0020d2b150d803929599a2a33ab1e9a1cffcb7e2de22e40e7a53d2a05"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/tests/expected.json",
+      "sha256": "a7bc3cc95962b0d7d0b643dece5e24cf8a318676d2c092de143a63b6bbaa52bf"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/claim-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/SKILL.md",
+      "sha256": "bfd05e00b31b0f1c5dba1ceefaea4652fc37e9e0264df4e61367e9a9bdb620d1"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/prompts/system.md",
+      "sha256": "413d8db0196bb8fe25c7e13c9d57ab8192d9eb0bd03620be61ddeef5a70b758e"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/schema/output.json",
+      "sha256": "1a57719dfc9bce77b7e3c1f8236a97efb00f36b79965d0359545c26d2b8870b9"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/tests/expected.json",
+      "sha256": "4c48005e382365945dcc87e91bd614f51f8a5bb4b2317a9ac2904e5d5940c2e0"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/claim-validation-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/claude-paper-study/SKILL.md",
+      "sha256": "de7db6de182a90102f3d91a6273f3da1475c9e16b8b135f8b1ea37bc3871ad7d"
+    },
+    {
+      "path": "99-原件/skills/claude-paper-summary/SKILL.md",
+      "sha256": "c8d07a7c478e578c732eb2d91509cfaf7885a876934ab1ccbc92018eab3d4c04"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/SKILL.md",
+      "sha256": "f0c93cfca579d5d7773b902984882f7543ab0dbb920e7c56c8ff8b0f7da0a25f"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/prompts/system.md",
+      "sha256": "963fe75f7b42a8ea3fba5de270a0cd0a72b4f94f9d10a0e53ccd5f97335f5675"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/schema/output.json",
+      "sha256": "dcf1d4f558af60601a2f9c01bd7080642d255c4ad13b0d9f072678a50dfca60b"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/tests/expected.json",
+      "sha256": "c84c8a4f6dddf3f7085425072773cbbb18cd2f7be47bc2f6345d348249d0799a"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/conflict-detection-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/design-master/SKILL.md",
+      "sha256": "31dfe535366b9c530b832a589398ef821f85064e3b1d169b428ef60dc849e7f7"
+    },
+    {
+      "path": "99-原件/skills/design-master/_meta.json",
+      "sha256": "423338d93de98f3827013bf57c6d844692667e516d3d6953787f7bce51c960ed"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ai-design-tools.md",
+      "sha256": "8839d71c3653f52ff2d9844fffc396b32c8f677702f1277a9433d8c3657204c2"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/brand-vi-system.md",
+      "sha256": "d66f8fed7e188f3ea70a9c9757469c0db27b598cea532a4996c91cf65e68b983"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/chinese-aesthetics.md",
+      "sha256": "4f629ddaf35d3daed72cedff9051d081ce366e8b839bd31e37b56b93c6cd6e25"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/cross-platform-sync.md",
+      "sha256": "339efab170531dc3225235cee77b231464ea9b7c9273e3531e35dbc1e08c9531"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/design-principles.md",
+      "sha256": "639b48101422cb1721b4e8c3cb947b5231e35c70df8c70ee4a44e9fc5bd3b19a"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/design-psychology.md",
+      "sha256": "16c37da33f538b1062fb605e680c81b10504e926e13a2dc796343bf1b48ad849"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/design-styles.md",
+      "sha256": "07c5c9b267197c188e01a846ccd819f00ab1d2befeb2700c8f4b46d7692bedf6"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/design-tokens-spec.md",
+      "sha256": "d8e8b4205dc7097353ca082775cf80361d30eb771607c36ecdd545659c1f64f5"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/scripts/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/scripts/core.py",
+      "sha256": "5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/scripts/design_system.py",
+      "sha256": "1f8d1961c9166fe4772522d6458f6a1ec13a7c00ebfd5effa41c47e1c7cc9e7a"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/scripts/search.py",
+      "sha256": "8ef258d6aed922f4b813b5ac21e8f484dec71fede9409f949224d75adbd82df5"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/theme-switching.md",
+      "sha256": "4c85797f81f3d088e1be9e407be33bdfb22a5d210e69ea6340d7ad83bc3b5e10"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/charts.csv",
+      "sha256": "b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/colors.csv",
+      "sha256": "4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/icons.csv",
+      "sha256": "351fe61ba45b8146c66de6ea7d67297654639d79a94f537b4d0bad570058c28f"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/landing.csv",
+      "sha256": "010e1e46db271b94e0af6f18973bea86ddba62feeccd62aeeaa6ed40e2ae2db1"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/products.csv",
+      "sha256": "5359e3037dcb84e99c792ea13dd44f5b78ab6a53557afb309cf19140512aaf5b"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/react-performance.csv",
+      "sha256": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/astro.csv",
+      "sha256": "ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/flutter.csv",
+      "sha256": "e470e6bc2bcd8562667cc764d1e1afb0be0a30ca4dc9ec12fa18b19d46f156bd"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/html-tailwind.csv",
+      "sha256": "1f004891dd189f6bc2a7717401e3100244326e7e2f3963a79bf7b2349d85e091"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/jetpack-compose.csv",
+      "sha256": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/nextjs.csv",
+      "sha256": "06a8e8c13bd44696c6ebb4cb6c4d8dea440e3de8cce77616512529ed29258f0c"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/nuxt-ui.csv",
+      "sha256": "05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/nuxtjs.csv",
+      "sha256": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/react-native.csv",
+      "sha256": "a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/react.csv",
+      "sha256": "b6e3eb0e4c9c01bd00ffb951d5ca224a19d488b4544c75436f48cf92ff12bf45"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/shadcn.csv",
+      "sha256": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/svelte.csv",
+      "sha256": "bc8d158994a8bdf412830a9dd5e5a5534edd2f367a6e50e0ebd4d76f592dfa3f"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/swiftui.csv",
+      "sha256": "e87cb9eee208bb753bdab96d4a261c7f830c4317ee90ec098316b248fc32be85"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/stacks/vue.csv",
+      "sha256": "9b793c3f4eec85f77a758c09322f2b62f3b3ca549bb713ccf0849ef885934395"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/styles.csv",
+      "sha256": "ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/typography.csv",
+      "sha256": "64695e05ac335ba534aff396c4ba9241c642f80ea53b424251d2669b71c4772b"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/ui-reasoning.csv",
+      "sha256": "58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/ux-guidelines.csv",
+      "sha256": "1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/ui-ux-data/web-interface.csv",
+      "sha256": "10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54"
+    },
+    {
+      "path": "99-原件/skills/design-master/references/upstream-README.md",
+      "sha256": "b8cca8dbb183bcf81c03a66a7ca5ad8b7259cd38bee2232cabb65c1b4acf435b"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/SKILL.md",
+      "sha256": "16a36e5450a1ac497e572fee280d5e8e295ecc7c1d7f7af3c4006dc5ca70d428"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/prompts/system.md",
+      "sha256": "dff84826558acecc64c916a07e712d6d32df483633cdeb8ea7143a2f5e2f531b"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/schema/output.json",
+      "sha256": "f31b8026845fde1f9c6c49727191992ade95f475b38b0d43a95a643553d1111a"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/tests/expected.json",
+      "sha256": "7c0fb9ae3fca7352e3d484b3ffb692177804189dd6e88f32411130a9be21e305"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/document-parsing-skill/validators/validator.py",
+      "sha256": "35471886643f7c0552b14ab3ea9784a29778b500220e07d6aea47d30a8dc3250"
+    },
+    {
+      "path": "99-原件/skills/drawio/SKILL.md",
+      "sha256": "94d53f31fc65db1818471444a0e84c1f0b6edb7c4b54c6efc4eef066204b0c01"
+    },
+    {
+      "path": "99-原件/skills/drawio/_meta.json",
+      "sha256": "7b68c83090431deb8a8891c98fabd7518a7e5bb93c78b0a57610c499ffea6f36"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/SKILL.md",
+      "sha256": "9cebbea4e9d9f1139b798b4a5ab74606fe3e5f534ecf29ab9bd4f3d5ea4ee957"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/prompts/system.md",
+      "sha256": "efeac18ca4460fa5b4c42836a5826ea0c93fd9acdd31d8bacbc48ff099fa6ed2"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/schema/output.json",
+      "sha256": "35d307b1ceba39be9635e126ca177162cea39092a8657927233d15fd26ea42e5"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/tests/expected.json",
+      "sha256": "ef9690da48c2d6a6f7afba2c0036a13884d6b569f68a62dd3121155886b3e796"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/entity-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/SKILL.md",
+      "sha256": "03f06f4bec1ea95e5bc1d5bbfffe1e9a9536c0911a7392c40cbef72930c15700"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/prompts/system.md",
+      "sha256": "ee1d7d986902e558d78f39a76b14ff2ffe4cfe7557b81e018b9d15af94f433d3"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/schema/output.json",
+      "sha256": "6e3827b1ced34d9c970c5f1e05036286852a83f3143ddbe11a6110e5ca2ac905"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/tests/expected.json",
+      "sha256": "0cd03afa2219d61543cd0c8462fca4d438c701f77c9958e5ca91464a7a74ecba"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/entity-resolution-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/SKILL.md",
+      "sha256": "f6bab616060b55d8eec56eb45f79c7644fd602f751d54e61c9c91e97e41dd2e6"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/prompts/system.md",
+      "sha256": "2ebe5a6fb7225d9f8367ee4b451066692f755ff01ae4449f446eadf044ce6d12"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/schema/output.json",
+      "sha256": "2af549c6c7a53189d93826d42edfe04804a919a8f08ba0750be90af6cdd5b19b"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/tests/expected.json",
+      "sha256": "33c34269b70b8dfeccb2d60cc435a0106ca74e6823de91487c8052459eb813de"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/evidence-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/SKILL.md",
+      "sha256": "43929fc9134596fb7baec91f2d939d0edc645e94f13ec7e652f3b4f6b1f53801"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/prompts/system.md",
+      "sha256": "cc43f45d5671d64a2695f73c2910eac706a1ac6a83ccb07a64361c69110c0f65"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/schema/output.json",
+      "sha256": "ced80bb9082b37bc030e3398088c8594f8132b27bd9d290bf490b927237bbfef"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/tests/expected.json",
+      "sha256": "9d3c1739ec41bb79ee32aed177b84390ab1e45c7fae1d52e8011cf1480b0b4e2"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/extraction-quality-audit-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/SKILL.md",
+      "sha256": "c5b68a5fe5d0e580a7a61d38cbb746ff81ec0b346b7a236b6bf1bc6a3292c695"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/prompts/system.md",
+      "sha256": "577de86641e9c876bd1e00f5e77e336009b722cf945b25b5cdea70237c7903f5"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/schema/output.json",
+      "sha256": "27a42c18f725be78b0eacded7cbba993b8bd402c7e0ba987026a867f94922ec9"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/tests/expected.json",
+      "sha256": "5d712dd7c5c3f7902a76798f0a5a0e46988965a20653b6465d747a98eb82f9fe"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/fact-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/SKILL.md",
+      "sha256": "084ec3d004636d32e59e3eee8b45ce3285c40ee437b67883f6253ee687523fb1"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/claim-derivation.yaml",
+      "sha256": "4af098fcca97d9471dfc70e6788c1d057a77eed32dbd95b0c6df65b62253fc48"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/corpus.yaml",
+      "sha256": "8bd13c97fffb739a62bce734ec94663d657749dd1bfd6b6278772afb5f51d96d"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/derivations.yaml",
+      "sha256": "38ccce9b403488932311b67738f9c73f4cad25f98af24389d8aa2ffaa64efe63"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/discipline-probes.yaml",
+      "sha256": "f1ab1cae126ba9e2b268dc947ade6a6fb3dffe792ed2aa463b5280b6f08eebdf"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/external-fit.yaml",
+      "sha256": "638a6362fdc17f25b4b27d6304ba0fa4c445077b8c916359041675c82418260e"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/figures.yaml",
+      "sha256": "8c3db24cb671bf240394f45034a6de5ff13afefc31090431c5994ad4de99af58"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/interaction.yaml",
+      "sha256": "bc096027e80074c083d903397397719c1c5e391f3d8fa92757e886402eaae0ec"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/materials.yaml",
+      "sha256": "52dff9b3a3920fb2400446fa250d422bd0ba2cf0d40a0c1a2516737101090c01"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/norms.yaml",
+      "sha256": "be572d01305598845d912e8503e3a526181b80f337b8ca0f9e3e1ac39ddfc811"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/ontology-argumentation.yaml",
+      "sha256": "8f20e04f555d36cc273c574cee312cd8fbb073733ffce693fbebc1c132ad7cc1"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/ontology-core.yaml",
+      "sha256": "2665ae77c9b4327ef5217ecfe621355abb7f516aea96a1775bc718b8c2fb868f"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/outline-ent-2023.yaml",
+      "sha256": "8d057e00f4cef344880cf809a1c856cbc8b914d72f3d7bee97644ff5468083ef"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/outline-gov-2023.yaml",
+      "sha256": "5ff1870ee2e57afb557c9c74c8046f0e43467e5a8329e626e01d359880e441ec"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/outline-shaping.yaml",
+      "sha256": "e0169954a1cffdce49a4d11bfd183e9e553195641985b7c84693aa9fe0e96719"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/provenance-routing.yaml",
+      "sha256": "308aab2d64ceec415a67f3e7466da46f3b5c0150acefc838c37dfb57ca5f98d9"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/reconcile.yaml",
+      "sha256": "3024cc7d5fcbc0d23c0f0e43113682d8df4e2eace43e63105a1f480354264c40"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/section-prompts.yaml",
+      "sha256": "f90041311a7945c2d07a813ad2a34c547daba157bc780def3059817ae8ee3d83"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/section-research.yaml",
+      "sha256": "2747105c5872445375e688fb6567a4cc5c5ffc93ce8f102eeb86fb34e3c5f40d"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/triage.yaml",
+      "sha256": "2e0ac173d8bdf60b2e49d8147b30c946a857a1ce6c3443edf118acbca2191b0d"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/typography.yaml",
+      "sha256": "54d0c5e1ebef37e2d1f3926279dcfa072c27509d876c0e64dcc7ed856d50dab4"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/content-template.yaml",
+      "sha256": "20f8c4edcd0470044c92c117dde95a0825ca4403e9012b0cfa10b37c10b139ef"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/fixture.yaml",
+      "sha256": "d346c31e5c83693d8a84f634135943569b6ac8cde2c516bf55b845047c71f1b6"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/knowledge.md",
+      "sha256": "b6470eeaa9982125132d427a5c5afb90ab00a5502f45d006293d1b3fe28de62c"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/materials.yaml",
+      "sha256": "039c32b81c3e02150ba4138d4a3cdf503290bded51d7b8b141e00d480b85d81a"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/meta.yaml",
+      "sha256": "1e806675443570cd728a46909399ec209696fd1c7d5051b9f7ba55c07d4bc5bc"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/outline.yaml",
+      "sha256": "51534c828b8886dbdf5cb4a554b18e604e24b12b90976eb4d552c50fa06e703f"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/profile.yaml",
+      "sha256": "69b7abaeb528bb84a491250bc509711a5f072362c586fd9cf079fbab8df90d52"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/rules.yaml",
+      "sha256": "b5268d0b91f9e62ef9059c67cea37a95017233d6877e6961cd793f5d7dcbe40f"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/vertical/subtypes.yaml",
+      "sha256": "df058efdf41a0c2443fab3ad436ddfbb291c0489aaf56e97a90cc1f65d5d8923"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/references/volatility.yaml",
+      "sha256": "966ab8849b8525fa525c768c12b1823413b60efb07678b5a45ce58187a1abe31"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/assets.py",
+      "sha256": "633f33648f499e4dfdc536d788e69a997a662b98e981941c46fced7f515e5508"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/audit.py",
+      "sha256": "b6617608d03d03dced131ec80122ee668989b584c55a5ebe6a2cd92cd0af5f02"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/chain.py",
+      "sha256": "cc3e55c6ca484c0b2e471cfd81fac0ea0058c811d7dfb2f63994e613ea527337"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/claim_derive.py",
+      "sha256": "b68a3050c6e1642406c70de4ed3b4164d6bf4ee0434f1c388aa80ce1e8e844b9"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/corpus.py",
+      "sha256": "aef0dcd2a07325cbc303d82fdfc1eb439fee5cfb46da2bd0e262d7640ffb9f26"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/figures.py",
+      "sha256": "0d3b5277c77c2345e4845d1b355c52b59028256c3250c7152bcf23287c405b06"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/fit_rank.py",
+      "sha256": "958aa2e2a45f8ad4f7f79afb656e397304162ec6d9f2b271dfd0f0ba5b039c8b"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/impact.py",
+      "sha256": "a637813e7a63608b173d6200805d3d07b88655e5519fc8d03cf24e703f4ef645"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/intake_gen.py",
+      "sha256": "8e967721c63e6ca7b53dab1fd105f102fc69b7016a02a1d0da87c9edbe7e82df"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/intake_scan.py",
+      "sha256": "3ae80fbe281346494f1c445d2e843317d4f750ed97414723c25373258e46fbd9"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/length_gate.py",
+      "sha256": "bdb359c0852a9f1c62f8b21ee84e3833ab0385e03941e8cfb1ebf7c1c115517b"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/reconcile.py",
+      "sha256": "ad880111ea4db162544caf17902e1d8fafb51b6a7ee6744d21033d15e2517ad0"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/render.py",
+      "sha256": "6b11e47d5299f3fd091741f0c3f005ef1c63ece6dffd0da2550e5dc853d0365e"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/run_tests.py",
+      "sha256": "0b9934a082824a37b7f778e51e38ef8f7dd282610e5f685f4b35a7aa5be81c57"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/schema.py",
+      "sha256": "63773c40d92f415df0b81d3e35e772b26029ab48ff6490516dda2de822217d82"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/section_brief.py",
+      "sha256": "ae6d71ea5fc65e3962a0d29f8e6733994c92b5ae303a5de8765ca7b7b02257f1"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/scripts/validators.py",
+      "sha256": "a9e89f38c37e94e0d9f9ac2a48418a13d4df2a03deb7072157ab7cfb53917222"
+    },
+    {
+      "path": "99-原件/skills/feasibility-report-edu-research/templates/content-template.yaml",
+      "sha256": "20f8c4edcd0470044c92c117dde95a0825ca4403e9012b0cfa10b37c10b139ef"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/SKILL.md",
+      "sha256": "dfe891964aee83e48eb13c5d278771930b8b329f9a1e3b44b0512b758e4f01cb"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/assets/report-outline.md",
+      "sha256": "8dbb340414cb792088000dc0cbe4a57409148ebb227e1fec2be92a42a4d414a8"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/references/deduction-patterns.md",
+      "sha256": "de87999b91a8795df1d416255242701acdd0208a9681f33b1f902f6c69634e82"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/references/historical-asset-reuse.md",
+      "sha256": "f0091bd27097356b6329cf9549b7a7980df21dd79619da6b9c7f3da5154d0aa6"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/references/provenance-writing.md",
+      "sha256": "e49d7334dd92d100ae34c0f91ed386c3d4d929bec48deb6262c32d48017f48d1"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/references/semantic-graph-schema.md",
+      "sha256": "46d22825a88fe8fb82cacf28c41ce568b46922eea6d11641ba802f752af64afc"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/references/worked-example.md",
+      "sha256": "3184b24eee62b4733fb8b1fa8a0397cf6134b5cf5ec04250457c994f89e0451b"
+    },
+    {
+      "path": "99-原件/skills/graph-deductive-writing-skill/scripts/validate_graph.py",
+      "sha256": "e33be69df72fe13ca6f664d396986e1187c772d4c4cabc25746cd985b2000970"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/SKILL.md",
+      "sha256": "c66d048701313f5dd6747c6165f3f7c5d13e2b5cac9730beb734a994737b9f75"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/prompts/system.md",
+      "sha256": "95a778660ab660362a87994098d83577ca083e1785683ea7aa23b3840cb4d1fb"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/schema/output.json",
+      "sha256": "fdd35a6d27f7ba63054434f3ee344cf6d45f36fb281494d1781e641bdfb28cab"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/tests/expected.json",
+      "sha256": "2c1ce3b7ed8b667aa888f72f21721c7cedaffb0929ef09ca04911215ad871485"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/knowledge-generalization-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/knowledge-processing/SKILL.md",
+      "sha256": "98722b52b5121a82a8bb071bef3ca28ce9cd0b32b75ad3a5c4ffb66f677ccde5"
+    },
+    {
+      "path": "99-原件/skills/knowledge-processing/SKILL.md.v2bak",
+      "sha256": "c92c69a18bda2a5e05a7da00e9d53759dd12d370e06c4ffcae15f406160c782a"
+    },
+    {
+      "path": "99-原件/skills/knowledge-processing-toolchain/SKILL.md",
+      "sha256": "9e6327ea16d84219a19e2920e666f557c951633ccd92a8541a3132590f405848"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/.github/workflows/update-star-history.yml",
+      "sha256": "123e11072a52e66147f608dc84f777c515e9f74ea305a86ea91b05de30ea5ee5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/.gitignore",
+      "sha256": "60cf3c74225281d1b73e08085d812765a3d07980992ba25f8e4f1234ac2cef80"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/CHANGELOG.md",
+      "sha256": "65915d0787499d2f649d3bfd7c52a9be027cd06f18c99287a8d4567ec98f3680"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/README.md",
+      "sha256": "373015cf34ffe858810bd2df1e679e565d0aa74f11e2d113811f5ef01239c824"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/SKILL.md",
+      "sha256": "3cbb7985e91d97ce92fd83da222e1709faa52fe6e1994b78a5b41e1620c25e41"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/VERSION",
+      "sha256": "64d23f858ef51b0f996e4966d4e27c0371b437e2d2787890b1f7ad22d4ec5663"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/assets/README.md",
+      "sha256": "12688aeb56346fa84e9c19b42f8f6d74202f43a67c0418f8d331e67148a6ab57"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/imgs/star-history.json",
+      "sha256": "23deff86c41e95a34623e476d273fc372687eb318b030825aa7128c487309d9a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/imgs/star-history.svg",
+      "sha256": "eeca09a93e05333a2f39990000bfd8ff7ea0a13f683e69b98410bcd9c4b13a13"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/references/README.md",
+      "sha256": "41208ab34ec51368e610fd486362553cc01ec2c019fa3bcec8180ed870937e08"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/scripts/sync_dsh_plugin.py",
+      "sha256": "7b3781ff35cffb4b75a1d7b0c1a2588d4f037c7bc29871143c33e2ed52d68f72"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_delivery_protocol.py",
+      "sha256": "feea1fb67ce9a28f02ec1c483c2d528394b39b8f23badede2295de14e49d8f32"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_docx_tools.py",
+      "sha256": "92ec737e547e766affa81e56c4a9a5699078e210acdb88f3f6cfb8462ed01fbb"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_equations.py",
+      "sha256": "349d869f466e2cf431c9e715326569667933b00fb94ef190a96def9bf4cdea1f"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_figure_tools.py",
+      "sha256": "c1b5dd43dbd9e04329afde5bd4c43a0c527a9655ea4337bf73d88819ceb325a0"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_latex_paper.py",
+      "sha256": "292d2e1c3c30e3e12cad75ede27bdf7b8c746c4e90d2312e7590423afe700c90"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_paper_format.py",
+      "sha256": "8652d8ba103b7940d870865c2daeb0db5f8b57dd35ba877077043b4b4febcb9a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_paper_search.py",
+      "sha256": "288b91c6daa4d756043ba02a95e7e574c2b992c4d824c7f02b19a23b50df1b80"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_recalc.py",
+      "sha256": "0b9060d40e3152c7e0ae23ae983eb418a7930d3094a5c6821f05330363edada7"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_reproducibility.py",
+      "sha256": "d6eb17008d4d62739ca53f1162b9c32656071c4f5be8df2016212a702e10b6f9"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_star_history.py",
+      "sha256": "50cd0af8a6f9f7c25419fb7438c54e56de1d16230f4f739f461bb85f16f73807"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_subagent_protocol.py",
+      "sha256": "f405ccf9908713bbb33300f04b7d5df3b86cccee824f3cd2de0eeee36152f12b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tests/test_xlsx_read.py",
+      "sha256": "8fb66e9c3d75618da44720d2203871596268b68524874d7c6fe03ca56452a9dc"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/SKILL.md",
+      "sha256": "f81aa71a841ed285dc155dd6f2df4c84e9b5e6ab9fd94eba8553329ce56f3a37"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/accept_changes.py",
+      "sha256": "735646d6f2376ef7de45aa43c2fb32b019200f2d7ca4b8dcc9fb42a4a448f901"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/check_env.py",
+      "sha256": "0c6fd7a2cad7da59087e8e2b9c1c68c3933fe2bc8767239491898dd3352a154c"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/comment.py",
+      "sha256": "f17900815781c0c537b427141e3f896a302b2e2d6947b50b7d0ac9a8c80ac87a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/equations.py",
+      "sha256": "b822831e5c7c0df282e3baf1473460b6cad093660a12dd5292a007218b458cee"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/inspect_template_format.py",
+      "sha256": "1ac06042f92e28d0c64cf28eed64478d63aac5d7bf8312686af764b358e1bddb"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/helpers/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/helpers/merge_runs.py",
+      "sha256": "7c40ed838b88639c51f9ffdcfd564b568f26832b78fe44008c0e01b742669ca7"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/helpers/simplify_redlines.py",
+      "sha256": "560cb55978a834c505406eb18e2c61f62f998fc7a2d8e9721b9c563b42597896"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/pack.py",
+      "sha256": "b1800987e568261a31f462df8e1303d386e9e6ccc11a75ef46e60cc528c20683"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/soffice.py",
+      "sha256": "0c1d10d9465feff5c0f34897d3fadffecf50b63e11d1cacbeff2384d8e0cc8c4"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/unpack.py",
+      "sha256": "83f69cecc87910183654c06345837244402e8a99edbf3bdddc1cf72f11304b62"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validate.py",
+      "sha256": "c2333bef79104eccdcd0c2c2e2874c4a20cf321b56d255d3f22b42675923576b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validators/__init__.py",
+      "sha256": "83e0f035c5abea238d3f2c3968afbd511ed022b527b7c9cb60a9434cc34ff987"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validators/base.py",
+      "sha256": "a9f6ad2d007794a18ca4d43b4140ef988da7e9364f75c271dace933c246e006f"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validators/docx.py",
+      "sha256": "0ef04ce86b2e6b6a1cb088c0276fd0bd5b770d96fdfe7a6cc73d005feb3f0345"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validators/pptx.py",
+      "sha256": "f937961e62a5fa0d002b8dc51a4c4e2cd8fcd59fe65853fa54edaca3fe99eccc"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/office/validators/redlining.py",
+      "sha256": "f4c33fdb9da0651d1d9aa76f0d5294cc9955869339ae131b2f75f3b2e366cb40"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/paper_format.py",
+      "sha256": "d046ff7e27294bda01550a1aba248045f33ddf48ae04859f5ee16317e140acdf"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/self_check.py",
+      "sha256": "536046c262fbb734ce15454496d255572f620da60a168457ed0d3c617f155df7"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/templates/comments.xml",
+      "sha256": "a08ba83ee8790ac9e3dc61921f4988f19edd7e06ac09d6f1897a877c1581818d"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/templates/commentsExtended.xml",
+      "sha256": "544eeecfeceed4b468fff163cd9c366d33641c8b8ab691ce002576197846afe8"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/templates/commentsExtensible.xml",
+      "sha256": "bad10b3283e6ad6e7ef6d1ca5169683721ed690ee331282c65df04017e080631"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/templates/commentsIds.xml",
+      "sha256": "db20f9616e004ec42ef736e80c2384e45db0f8d1194d31dc8b37c7d6ecdd6420"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/docx/scripts/templates/people.xml",
+      "sha256": "056f63aa1197fd8c9dda980c9f1b9ff016fd5fa4a462df8aec5f384f39d23e37"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/SKILL.md",
+      "sha256": "540e6b1ada2f6c6a4a964947a20f887d02c52b5d042e0f3be4586047a7fa08d5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/api-templates/api.md",
+      "sha256": "22306e56fcc4c6d1f7e190cb951612dba456edbaa68447fe0b76becb0db59761"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/api-templates/plot_recipes.md",
+      "sha256": "dc0209b9d6f436a5e4787d533b3e35dce05a742409fb6b2ec06aa409d12449b5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/api-templates/template_catalog.md",
+      "sha256": "d0d9d9fba4d6e2238dddfcc075e3cc7f6cf3f3e3bb79c07bebd48b72a714b7a1"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/chart-types/chart_selection.md",
+      "sha256": "d830e922c6b174166babfcc270162f9322772d0224e56432ed9713c567458dc1"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/chart-types/chart_types.md",
+      "sha256": "3d81372103c400e4f2a9561a2453a048c0faa461ccec3b7eeeae98429989ae49"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/chart-types/flowchart.md",
+      "sha256": "b2bd70f115354e2978053bbdc2f4c1e277354ed63e365f0e6bf8f9eaf512bd0e"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/design/common_patterns.md",
+      "sha256": "46c408a97f093bd4ebc76ec6beed60f755ed48519d85ad47b15f3ec84dc0a23b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/design/design_theory.md",
+      "sha256": "5b5ec4e3aed2b51a65e0f570cd86a2538bae150e1067257d75a97a97f4d7269a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/design/viz_pitfalls.md",
+      "sha256": "36293fd60e50ac2c217a99605bb4cf9b2cdc10b69919c3000fdb94a54a88195e"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/asset_adaptation.md",
+      "sha256": "5535fa0b376262a6a6a4caf6ad428afd5ea7e3479cea34ea55b88103e5e97230"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/data_profiling.md",
+      "sha256": "ec2f87a5a09db0db00198b6b462b374c2640a57dfc41e2e884928c15145e27be"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/figure_contract.md",
+      "sha256": "7c69c2f6c03157d2e577fdc1c8b5a8fdbd1a43269660f5dcf491512ead69c3dd"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/figure_legend_conventions.md",
+      "sha256": "0b1d8a8b5ffd0519d847d3f846451be2453fd16cb27cd8ca7cada958efd8a33b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/nature_2026_observations.md",
+      "sha256": "c141fdfcc0247b882c1ce8923a5614a4b601d9330df2fadeb928ca393fdd0fd5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/guides/tutorials.md",
+      "sha256": "fcad4ee2f09e4524928170f2fe911053cb2e771d3fc865348893bf0a3a970c45"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/quality/journal_specs.md",
+      "sha256": "a8e9654f55994d692d585e69fb3a68f5618ecf766d8ce0e95fdda6d12e786263"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/quality/publication_checklist.md",
+      "sha256": "3eb979927e88e1398e09fef052cf9eb4d22b1ab99eeefcde67d309a8851d0b7e"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/quality/qa_contract.md",
+      "sha256": "9806b5ce99aa062832487e965e752f3ed8a3deb5d84b4225ae7e1e29f840ecf7"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/references/quality/visual_review.md",
+      "sha256": "c4ca4a28a315e7de46f67b5972b3765b979f01fe30616c0681dd2595bed554a1"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/check_figure.py",
+      "sha256": "861191858ff47c5af5247f08d0759b14956a2a7e7d8eafcc6b414d37b9d70f06"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/export_figure.py",
+      "sha256": "40ce3bcd31dfc4b33e38a1cb180c75dc730ee6fa046f04934c79f285c6f890c1"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/layout_tools.py",
+      "sha256": "68e1d25774148fe78f5d87035d651f5e3707382502505cb11f62f9ec7ae88e49"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/profile_data.py",
+      "sha256": "d8a2a72c2607c390f2d3ed1508209d515ad4fbf833fa1602ab9da519b3596ec4"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/setup_style.py",
+      "sha256": "d58ef81684577bb605a92733dd2ca48ade03b4f819b3d255fd62f319be7fea82"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/style_constants.py",
+      "sha256": "d574969063fc1fb0fbd2449c4a77201ae8e46bb837cf4db8467c36bb0073dc8b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/validate_figure.py",
+      "sha256": "1886d3cb050c9e0eea6a17d798e3ec8df823b3abbfd50b4490c6c910c95c92d8"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/scripts/visual_qa.py",
+      "sha256": "67675709e523c76e2748d50749de7bc6332f07df865379b26d024321fb40120f"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/static/core/contract.md",
+      "sha256": "17314f0914712ce0e57c95d4936f0cece2315e3a5048d9a9a2ab2744b3a8dd73"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/figure/static/core/stance.md",
+      "sha256": "46d1a49608ccf240af4237b5fdb7925b67f4589d7f445d2bcb36506e88985b2f"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/SKILL.md",
+      "sha256": "0b7486727a8593e5f0b8f3bf94078a4ec17c32fac23b62962463271825deabcd"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/assets/templates/cumcm/main.tex",
+      "sha256": "d606c76d66e26729d352fc81eae25c82850a5f5633c46167f626db402c7ae91b"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/assets/templates/cumcm/references.bib",
+      "sha256": "c85fa9f8c7cdb3b0c8c2f394bebd7624f6ff5abdd6bac5b4f43b58e67ee7c222"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/assets/templates/mcm-icm/main.tex",
+      "sha256": "de74c3cdd704c9a8c1da68cca4dcee9a79a74900a405d35100960f329027032e"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/assets/templates/mcm-icm/references.bib",
+      "sha256": "c0401239e1bf74dca7bcb854be54695d6b2a06ddf065bef33ee4c0329ecb845a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/latex/scripts/latex_paper.py",
+      "sha256": "b8b0f4bf9e7901ce9601e3bb26c61fb82dffd71cac0748b2b893899875e0edbd"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/paper_search/SKILL.md",
+      "sha256": "3cf7a34e9762eedf781a7ff856a60f91c01e825cc2f016b78f85aa3c7770c91a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/paper_search/scripts/anysearch_academic.py",
+      "sha256": "736b35d909fa69252a4e70e7431f20cbced23fed5c4ffdb8f8c1c15a531dbc9e"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/paper_search/scripts/hybrid_scholar.py",
+      "sha256": "a07e7638f8a27d6103fa1a6f1fd95fcbc36cf620556087f562e07476b9c8a0e0"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/paper_search/scripts/openalex_scholar.py",
+      "sha256": "5070c2e52a6ba8554f20e1a6f11c95208b6b6371e8959ff93a3df1f92905954a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/SKILL.md",
+      "sha256": "6c29abbce8b2dd347498c907c5f21cf29f6baed0659928f59d4345d07e5cd9da"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/forms.md",
+      "sha256": "9530b3f57034792e0242a3abfe8b3c296466329551916f2ff6c5a70db78f7e44"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/reference.md",
+      "sha256": "03a5f964f8abecbbe156f363356e927e864d7ee964f1012c84ee1bfc8acbeb95"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/check_bounding_boxes.py",
+      "sha256": "0ced522402dd7b3c82a0be9518cf4e485fa9cc0467d7beab6ddb04cb36fcc3e1"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/check_fillable_fields.py",
+      "sha256": "1fe10b9980a5493c9bbec8c20630c603eaa475b45403751c08f26738736647b8"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/convert_pdf_to_images.py",
+      "sha256": "7f58e292a67e18a8ff000d30bad2469389546731f7e8a698cc1d0aed001ea15d"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/extract_form_field_info.py",
+      "sha256": "bb235b36f497bbb1c7c6821cecf527bbba7213520de11219da99f7b13a38c109"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/extract_form_structure.py",
+      "sha256": "6814e3fe8f78c2b16d766c132b5a727ff7a31b71d76a7d46bd6e40fe50bc97c5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/fill_fillable_fields.py",
+      "sha256": "d140872c2e92e41b1e05370ae8d270c5b7f5ebdf55d9905f03bc974a9c708ff5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "sha256": "8c321928a3b7b9740168fe14e00de94c2a58b9f76d5c13122e51cfea07961921"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/update_star_history.py",
+      "sha256": "56edb26ec75ed274780557fb579e6f4d2af3d336e7cba737ab21189f15dcd2a5"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/xlsx/LICENSE.txt",
+      "sha256": "79f6d8f5b427252fa3b1c11ecdbdb6bf610b944f7530b4de78f770f38741cfaa"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/xlsx/SKILL.md",
+      "sha256": "582e00a939b2d3cadf41a2da4bdfeefcfb8d4a02d8c7b6faab3f5b6a5476e85a"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/xlsx/scripts/read_rows.py",
+      "sha256": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17"
+    },
+    {
+      "path": "99-原件/skills/math-modeling/tools/xlsx/scripts/recalc.py",
+      "sha256": "950e427a07f6c66cd4eb8c12a5d82c9cafbd2ced7aa31aad97692b8be37c916b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.agents/plugins/marketplace.json",
+      "sha256": "c0c85b6ac234749fb1ec5d56501298dc0d9060f964c826b087d4f72569aaf23c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.claude-plugin/marketplace.json",
+      "sha256": "e3e503d2f0adc62e206dc1b8ec686934bd1df7d69b5e1d484fda1fa5bb169bdf"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.github/dependabot.yml",
+      "sha256": "f2b9f03020b1c136c417bf43e1dce56ab30d4f510b3f6d18d1c555ab191e1e2c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.github/workflows/ci.yml",
+      "sha256": "c7de45d82c5d0c4aec0a4746c222515b1c7f686e509971ddba329a8e6dc41b83"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.github/workflows/network-smoke.yml",
+      "sha256": "e7fe6bd66317eafdf9091d15aeb08af250eff191bd8b4eac6137c15b2a8c01fd"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.github/workflows/publish.yml",
+      "sha256": "1d2b19074ca774f59a56d83e5295f664ca065b481c2c19fd5a92736713ced713"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/.gitignore",
+      "sha256": "ba8ebe6f587052e13a8114f5f269f59fa56a71fe423abc8813607b4bf78ef7f3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/LICENSE",
+      "sha256": "19c109d0a12b72bc0df627b5902d0853235227e57de7f8754f73243af93dff7c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/README.md",
+      "sha256": "6446d4defdac90ae737cc9ca16f5595c206dd0e3fad009dc3399bf63297056b5"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/SKILL.md",
+      "sha256": "68293f30edcec62791b45c5b1506bc13c2f2bf2b16db1fbf44d08c9a714f8376"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/config/mcp-snippet.json",
+      "sha256": "f988aa2c2de0477a3988403dded1b1b9a43eb03d8fc53c672757ae28b52a4744"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/config/settings-snippet.json",
+      "sha256": "9c1eaadd248ee983a6ae15b44bef8f77236b358e9155b0066607bf8e6fcc543f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/config/triggers-academic-search.toml",
+      "sha256": "b43f09b234ca62fcc60497892fd14188a75e0c9f77f9d1e1f43881602a04824b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/assets/academic-search-citation-verification.png",
+      "sha256": "8288f9ca601f8a6b0c922c21793dccaebc7bb5a619d4681a74c71b81f7f1f296"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/assets/academic-search-pubmed-mesh.png",
+      "sha256": "ad9b26d24825e3e5d73df7906d1d74aa18d906d1dcf2bf58165524a6dbbff4e9"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/assets/academic-search-topic-scoping.png",
+      "sha256": "69393d0bad43167a9d47bed3f7e599bf2d8d43ded0af706634d9720351c12a7b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/community-growth.md",
+      "sha256": "931fbea1e24755091660aeaa55503c85f7b2886fb67261e901cbe43c555137fd"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/community-submissions.md",
+      "sha256": "40f2b7e25db3bcd13174121b5249921ba3027302e71a47c0bc8694e1be006cfc"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/examples/citation-verification.md",
+      "sha256": "6d5b4944a787ddc23ee60255f89f1588eeac0c1da5e9bf9542dbec7fadaa20ea"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/examples/pubmed-mesh.md",
+      "sha256": "1702b4b33c2a885b91a979773a63869fb971707b54e271aa848e4cf002464343"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/examples/topic-scoping.md",
+      "sha256": "3a726e026fb1b69fcf4e55046ebcfde0237c4f8cf60d150ae4bcf5d924448bdd"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/installation.md",
+      "sha256": "eb80c7ab8a4cfbbf4d3ab53f39c8bedea54bbac396b4302f4d8e8109decec071"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/maintenance.md",
+      "sha256": "0d19105aa5443f8fcba56210e6c604ebd14e4155ecd33da5e361a99a445f6b37"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-academic-paper-search-brand-design.md",
+      "sha256": "fe80263579f8a58d5101e08469741526d752498eaea29703d8a7dec996933288"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-academic-paper-search-brand-implementation.md",
+      "sha256": "147c31da6a9ef2a0416aadbc6851a3795465278ddff99ebf5a379f9a6e2a82ff"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-pypi-plugin-redesign-design.md",
+      "sha256": "dcb2a24e880e11a5b556d643d9c547ce682d407be92b573f4c70f449f2f8544b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-pypi-plugin-redesign-implementation.md",
+      "sha256": "3fd6c2846946caa52140bed092e2fb43aee84764cada2394f8934e1b1c55dbe4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-readme-skill-star-conversion-design.md",
+      "sha256": "717b00147e83680c1fc6165006eeafc18c86575e4f00f4ad5f08d112cd390b0f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-15-readme-skill-star-conversion-implementation.md",
+      "sha256": "6603bc4220ae25ae4ebda1113eae7c3f247aac084bd905b3e1b957ec7b2fa481"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-20-academic-search-source-expansion-design.md",
+      "sha256": "7e512fd1a0b8854006d5e24cacd3da59c20b7698fcbfb2329da6757c0118e4cf"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-20-academic-search-source-expansion-implementation.md",
+      "sha256": "916118fa982fb1712c516316bedd09566fae8cd150c50a3c9abcfc13d4197abb"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-31-community-discovery-growth-design.md",
+      "sha256": "37cc8e71dfc5c9eb55f72a96a413c059d2dd41250036160bafca94830fb04ab8"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-07-31-community-discovery-growth-implementation.md",
+      "sha256": "388c09e786768325297435b211666c496f4da4eb6d3ef03e9cb7d745bdb2fb81"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-16-readme-relay-promotion-design.md",
+      "sha256": "b6a31a7cf0afc29cd01fa762634f6d56915d36c5442cb7d9e79759cea512870f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-16-readme-relay-promotion-implementation.md",
+      "sha256": "0afcfec34306170e483d345bd9aa42faa6d2cbaf96b549631f8a772835fd5e33"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-24-evidence-grade-search-implementation.md",
+      "sha256": "dd4b13bb581fbcd42ceb4ceadb4d923835c2a8794d9993ddf12ff7df3993e447"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-24-research-workflow-automation-design.md",
+      "sha256": "41f0fe67a89213cd94abffec52d175a77389630d10f00f92465de5e9bdbb28d3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-24-research-workflow-implementation.md",
+      "sha256": "9811f3e354275f200f1cc19d468279bb5490658d553090531546075f930a1a08"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-24-smart-discovery-implementation.md",
+      "sha256": "612afd14c26af4581309f62491af9e6986deb19425233b1c56413a18d539bb99"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-26-citation-graph-design.md",
+      "sha256": "332d6ee3fd2d02b0fc773b37087574463e48722bf298b7009aaef9cc1ebab78f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-26-citation-graph-implementation.md",
+      "sha256": "14738e68aafd25aa8b545419148bc732b42c2b5c601d87a5cf362661de477583"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-26-relay-visibility-design.md",
+      "sha256": "b58cc15e55cd3300347a0e28d49f6e1ca8d7586dc5a8b8ac8eb4689029c2661c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-26-relay-visibility-implementation.md",
+      "sha256": "e53817fc666940330a1125e37ec9a8c2b855c017e2e236681eea13cd72343db7"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-27-readme-skill-redesign-design.md",
+      "sha256": "478cea0696b2a712fe01e98b8607fddcc6088a21da2e243b86cca88c372aeb61"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-27-readme-skill-redesign-implementation.md",
+      "sha256": "739e8b42b781902af812c0702189f905f9c9752ea69e759a8e97e0ce36c3d60c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-29-clarify-academic-search-skill.md",
+      "sha256": "ab4c88c923924ca428fb84f717474fc2bc76461fe3f8a23aa66a158e7d41ed2a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-29-deepseek-harness-bundle-design.md",
+      "sha256": "ae598737c1404a100e8bc6933656de2b522aa03499291533ee2d00c467d569b1"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-29-deepseek-harness-bundle-implementation.md",
+      "sha256": "a4772a3ae9d0b3a24161708ec925b45f5cbea87936dffb7f44eb27cdd5d3b38a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-08-29-premium-readme-implementation.md",
+      "sha256": "8153219c53b206c4e173aeb54aa0f762bc79e08b3042ac74afa735bdd4be3475"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/docs/plans/2026-09-09-workflow-release-skill-fixes.md",
+      "sha256": "e07e315f7f23c4d9696e40d7ebaba25b83973829ee1b0f021207a8a6a1a7e58c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/install.sh",
+      "sha256": "58e3f2a2f8a53b4a4770bced1e92de6c757edfd4921840beff1c148f0122eae6"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/README.md",
+      "sha256": "7ac95213ba917513716819cb8f95d9032cd981226987b384dcfa959670ef2a86"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/academic_search_server.py",
+      "sha256": "6de7ba5a261cce93d06a2cebe1afc7957aa77cc92270b99a8fe2b8d27187f6e0"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/config.toml",
+      "sha256": "6838b27467458c79ab66d8e59cff5e10baa742bb55ba2fa683873acd8de2368a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/requirements.txt",
+      "sha256": "dc6e75fed15c38367a56203c51ae29c3d3fd757db67345053513b321c9b3aad3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/sources/__init__.py",
+      "sha256": "87013ce1d8f568cadbf63a643b681da4e75c3c9954da8d54cf4f7260a55d9be8"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/sources/arxiv.py",
+      "sha256": "c0792ac4b38fe2c00d3d61843b2ff6513e8840a70d7ab4c099291481ff18606c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/sources/crossref.py",
+      "sha256": "25c18b6ae4f3c6fdc8c8b6f3d97e8fa80be9b30a21cfa10cdf5e3385da29ee94"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/sources/pubmed.py",
+      "sha256": "ea69d6c47e6b8008b10914c966efaddced65b4cb52e5f1c0f54d669396c98e90"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/tests/__init__.py",
+      "sha256": "be5036e0c0559ed641e0cb52698f7ff6f289a1269dfd902f55195b8094066447"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/tests/test_sources.py",
+      "sha256": "13adb71a21e817cdbc4efd4e39c0b1855237e4036711628c2496f8ba710ce21d"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/utils/__init__.py",
+      "sha256": "3fe4a38f8922efc550cc39dcfd16a0771d9ea9ab376ee1e0ac3e1d675b586b6f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/utils/config.py",
+      "sha256": "da1e92409aba06f0a8a3829e042ca4f23685bf9e37d52d861460a4904ec147f2"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/utils/errors.py",
+      "sha256": "bb1272a161c9c7333a84f62dfdb30a6161085718733c8f6a695de7363ec23188"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/mcp-server/utils/logging.py",
+      "sha256": "bd34f60b64f54fc53cd6d8f1244a099623736fbc7790af3d3aebbffb6be12ba4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/pyproject.toml",
+      "sha256": "6cbf53464896037a75a3a80e9215e23478ab639ea8d9cbe1e31c189512e4521a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/citation-files.md",
+      "sha256": "756f3b0d04859da0b0d777280218eda648d40ade6e4c092f56a9555dcf0d1086"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/citation-parser.md",
+      "sha256": "7569d5a42b41c32a61eb19419c86c158ed304291f33afd6a542c95019e5aa70e"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/dedup-engine.md",
+      "sha256": "8358fd66e9f2f52ee11b17024ff79af769494b4d90b008f098621832d6254f2d"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/pubmed-28344011.bib",
+      "sha256": "476340d7ac4bb4bc850bfb82e3c6fbe33e479f0089663321da0e091987a98ac1"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/pubmed-28344011.nbib",
+      "sha256": "1705f5869235a3486dfc259db66611617045d814dd0c8f2751ec7a9f879a65c4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/pubmed-28344011.ris",
+      "sha256": "62e55bea966681ef054a96d642ab135501056483b5994023967c3f033f41e2d8"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/ris-bibtex-format.md",
+      "sha256": "fdd4eaff2a8a070b8a0d3b2562838ba970922adcf07ce18ca282e18ac5e5a298"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/search-strategy.md",
+      "sha256": "510c397cad6e55a3c139c133885444e79bc4634e19db1ff354ceb1f314bad649"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/search-workflows.md",
+      "sha256": "a1d8885f9487abe6b0d45705913c3fe61eaf7a53ac139770d0dcec5f8b577640"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/source-tiers.md",
+      "sha256": "ae53e26bb5ab2bb29c4b2dd0c22746ec899eb9886b68b911f484b115ac28c47a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/workflows/wf1-multi-source-search.md",
+      "sha256": "5696df60a78c7d9d77b67eadbc21503cce6b2d5d11a7ddba10271faf8022bb3d"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/workflows/wf2-citation-verification.md",
+      "sha256": "b96f621862229d5909096187ea474afac81e53f11d6bc26494b9a78a0fbc6dc7"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/workflows/wf3-mesh-strategy.md",
+      "sha256": "7b9e470ec10dc48bf4d233b58ac9830a7d601ac503f16a6d1bf2f714f06dff91"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/workflows/wf4-citation-file-mgmt.md",
+      "sha256": "ac93c8ff76afc4ab48f0e193069b831bbcc72589f6bcd3c2709b17b30fbdc4cc"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/references/workflows/wf5-reference-mgmt.md",
+      "sha256": "2b19f942cbb65bdf2cb9be2b2b3cc7fe07e7a6b766f3b20f5c2e5af1b85b21ca"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/scripts/check_wheel.py",
+      "sha256": "a43b65d74e4710fe1f93be2c3bfe9b653526c5aa46af863d8446e2ce071b4b4f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/scripts/converters.py",
+      "sha256": "c0960efd2b1dce63925c38bafe2e7bc72c577277465075cccf8f44414d865760"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/scripts/format-converter.py",
+      "sha256": "62299022711010abc22b6a1d5c69efa3c16a1fa08e2580a62567e5abd0531db9"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/scripts/preflight.py",
+      "sha256": "4fc0d32b7cb9d69248b751a8e8c13ffcbc6459b18193c6ff300b0b234f19cc69"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/scripts/sync_skill.py",
+      "sha256": "9c00d355fc0eae614b915d117a13c78acd9161dd99c827d7a52b0a81ce0cbb67"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/__init__.py",
+      "sha256": "d935e4b0feffb40301af354eaeb46e4bc60b5b4bcba39b79916418c8fa935f92"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/__main__.py",
+      "sha256": "1ba8f35b5fc1293209d82f5ba74f936ac4caf7891c7e84fcf5f15040f38e3fc7"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/citation.py",
+      "sha256": "e91fe050871aeb47f5bcaeb26e0c7110aed1963f664d7d56e3e6ca686df4504e"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/cli.py",
+      "sha256": "d713692207995d4df2cc906e8a0deabda3161bd749b7cc61e287d88712e400ed"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/config.py",
+      "sha256": "f979ccc06163e94fc0aa9fae4b6818422fa74991adc6c27a29bdbf14c174bef6"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/conversion/__init__.py",
+      "sha256": "30d6c79407fd4f6b1cc8b48d1daca0c64d40ab55719aebc112b511e890dde42f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/conversion/converters.py",
+      "sha256": "e828b54497b5c9f75296b73bf574d81067b33b0a08722677dca6046ceb0d7d4b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/discovery.py",
+      "sha256": "f90e93122990abfb06e0363f5301bdc86b58bbb9190215b27f4ec4ab179ebd71"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/errors.py",
+      "sha256": "e232e5d477472536639acfd05fada5a815f955a6ecd3d31263aec60a16969867"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/filters.py",
+      "sha256": "4cac13c6e7f8c3b7956b02c993febd2faf0d3881e32bed62928916547fa2e8d3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/graph.py",
+      "sha256": "87ff39efa60a043aa6cbb3aa8bcad0c13e3474ab898dadf2a4717a7413beaa14"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/http.py",
+      "sha256": "4d350d3986ddafff5760495a689da2dc34d4dc697594f23ac5b0d05dfd6e02a6"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/installer.py",
+      "sha256": "1a66b99aeb4410b4b319a37eedca981b39ec59e2a703a4f0b707e111af444523"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/logging.py",
+      "sha256": "67596640ef174cd17ef9d297662867d1a05caa852cd5b9a8d11cfc1b82092b81"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/preflight.py",
+      "sha256": "15264939ce4368f85da2c6f316deb7fed07690d1fd0526f649ec7a71d4d123d0"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/provenance.py",
+      "sha256": "aeb963007820376025b1455f0e339736e00be365c56430b87bc99bb94f3bbb0b"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/ranking.py",
+      "sha256": "9391a125aa9077c80f2a85a55f9f0a8f990c78e7e2d7583ddc68f5e2c792925a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/relay.py",
+      "sha256": "425ac1411a1230d6e1e4b22e9b9e32a76d44d8c413ae0b5ebd3585cf04ee4341"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/search.py",
+      "sha256": "f6c2230ecd2b416a18753f90dcf03a5a31b6b4894504d3eb72b7caec38200f79"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/server.py",
+      "sha256": "8d2e36c712035a3a978a9782a29364a9b0cea703259bbef3ecb384c79ab8bf93"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/__init__.py",
+      "sha256": "f30b650d8801666b5433da4d0879063c6e77fbeb3e722f986850ee8539439cd8"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/arxiv.py",
+      "sha256": "f9ea4a5a4b9c8f7728f5eb3af6a01fc0911a0b217e9f0c0e9d298ed5016e57e3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/clinicaltrials.py",
+      "sha256": "326d3d4f69f9d4b6d9343e675689e9d7975421a4b2430312a4ccb3e1e7a80579"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/crossref.py",
+      "sha256": "b68b432b90c3a99aa651244a3dbad457926842da61ad8fdb10879e8774c3201c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/europe_pmc.py",
+      "sha256": "dc85f3bdf1b28d55c494b9fb26f8e29bccab5661991a5133935ab77a9c766fc3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/openalex.py",
+      "sha256": "9a3947c11f5f0f95e752de7e6bd0d505f27103febd362539c609561591b12672"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/pubmed.py",
+      "sha256": "b27cc9e780029648c2e80660b5c8f8e4f7df2ac3e10a06d766ac0f43961c34f8"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/registry.py",
+      "sha256": "8e4b846568324566acff58940e3767402bb92d40e90ef18f7ee234311ac7b31f"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/sources/semantic_scholar.py",
+      "sha256": "44b36247176e772562b6cfdbe7c6ad4811380c4d015c107718bd2386aa4c2c7c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/verification.py",
+      "sha256": "9f8ec7f994b043163d7055c3436fe223b6b4da539e5854c85e90337ef4067891"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/src/nature_academic_search/workflow.py",
+      "sha256": "72a24bc0f0b14243852b42d63c6f9d05161b043550ab4d588265def9f9ababf4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/fixtures/sources/clinicaltrials-search.json",
+      "sha256": "f3c39d1f640c157b1f4f53b1fff5811d7b122f3227bfd78c7f2fc5e16bde1c6c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/fixtures/sources/europe-pmc-search.json",
+      "sha256": "c2c4ba2acae8cb1e28e4c0496c9cb48d1adb4d19fdbb65c226fdb593bfb6e1b1"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/fixtures/sources/openalex-search.json",
+      "sha256": "0ed154bd2e65ab212f8365ca106bfa0e4e0f130bc9ca3afe2e957df4276867a0"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/fixtures/sources/semantic-scholar-search.json",
+      "sha256": "be1c77d3f1385fa954a1aafef661a75768ce3c3dbe52438c632b800af3401400"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_cli.py",
+      "sha256": "ad3de72236f7dd584a5a597562e183504c3af84847078d856b4edb15211761ba"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_conversion.py",
+      "sha256": "11969e97f63875b3d5bfc08af7d0ae0c7dddfef92ddf9ea6d50c195e026c8c3c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_discovery.py",
+      "sha256": "f10b35702fd5a893abd007a77561b7372a0e20cd9c22e27fe13cce66c9549a5c"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_discovery_source_queries.py",
+      "sha256": "8508487aaa7e8912d235a38a7ec13b866cdbcc4774c5528ae6f2ba1334df7b4a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_graph.py",
+      "sha256": "5052aa659a83b0bfd789291bad2842216ec7bffda27ad8cdd084569f6434f9a9"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_graph_sources.py",
+      "sha256": "eaebc97f024867b1b69dd54ad9b675a87cc36da9989e25215e350980e1fe48e3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_http.py",
+      "sha256": "f7c6e03b4a055f54e153c2a8ab253817c5c1c6970030ea9f3f57e3751f05be45"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_installer.py",
+      "sha256": "7d19dc458581aec5a388d9a52866e6105ed5cc79c06027bce3a91da84a13e5a3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_package_metadata.py",
+      "sha256": "44c37e28dde68894daad19cda01505fde183c5844e5bf89f32862eccf4b818e4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_plugin_artifacts.py",
+      "sha256": "1d2c719c769b9447c6d97b60e9ed1c90c0b095fc6a3316bfbf652a37863e27e3"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_provenance.py",
+      "sha256": "f56932007f1c939c2434ab9e8adf65a36ba7d3020a63f0d8b01c646058f0fc9a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_relay.py",
+      "sha256": "58e9565bb460058ffc8b1ccb7d873854e43fd439d9d3efdc0015e6cc32df24fd"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_release_metadata.py",
+      "sha256": "dbe4c7edf6724b25fb630a61945902fca0b2f77268a570f4e906e4d9925bc5d4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_search.py",
+      "sha256": "ab3b1820afb507c8b1ba2169959058cdc90e6282669b8a7d226caaa1b2c1b484"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_server.py",
+      "sha256": "4e1e2c75ff49ab87ce6133ae6e8c22ab20ec7521c6fc05d04f5f486af7e9f42a"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_clinicaltrials.py",
+      "sha256": "6897f35c807ed1febd97e84c46217c07b77417fd31ed3abd6cfd48dc74ad5089"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_europe_pmc.py",
+      "sha256": "e1bc64704b863b0eeec4cbd95f9fa17a5dd0f46a49ee8d741274c070371062f1"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_openalex.py",
+      "sha256": "0ca7f6077f7e16e39739455cd36a5147e05bf5712f2adcbe421f0405aac398cb"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_pubmed.py",
+      "sha256": "60786957b7e4d27d33e6a1e35a3a1a3bedde01481146e3ce0c02d35220723b72"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_registry.py",
+      "sha256": "866b37233d53d4cd504aedb3fc3743ea3bb3879e8cc609b5fe95abdf39cec2fb"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_source_semantic_scholar.py",
+      "sha256": "8ae706f52fb0b1abc66ede610cdd9365beba9ddfe47e265a7d62752654ece5d4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_sources.py",
+      "sha256": "cb619357676ce00e1eb10a90a0c25d0c6dacca4195d7bcb63d8fecad578356b4"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_verification.py",
+      "sha256": "633e25c44b29b1befb824a41e28934632b788e0f025f3d497815b1d987dd40f5"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_wheel_smoke.py",
+      "sha256": "c3f755c646b4047148c5a79cac3362c4ddbee092470b7e5be1a1aa47e20d3c81"
+    },
+    {
+      "path": "99-原件/skills/nature-academic-search/tests/test_workflow.py",
+      "sha256": "21c2fe7d5ee8fed6699a491e52b58683d550ef71e2b3af8e27e6aa50d70273fe"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/SKILL.md",
+      "sha256": "4cc49d6f2a19453dcb47eb2f3656df4b449ad869f54106035310adbafb782f86"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/prompts/system.md",
+      "sha256": "d7512d3ee97365d0c2d3d306bc87b7bc1ae48971b63b21bee03a52320b609aa6"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/schema/output.json",
+      "sha256": "47932e1f9d1b57e2f5d61b5d5d9a1346e4bd765d550ccdd27a04d3957815f545"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/tests/expected.json",
+      "sha256": "ecf16fc0c3a66bb2725932d0d75766eff7418887a80c5fe437eb0ff265e4052d"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/ontology-resolution-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/SKILL.md",
+      "sha256": "cf6dc641d042334d344038e683cb4a680c1ebd09dde949b9f9ff6dfa617ccf92"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/7套新增风格规范.md",
+      "sha256": "e06794960a84fa9a3d09fd88b883d13991fe40af65781be0a0abbf4844f1d167"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/9套新增风格规范.md",
+      "sha256": "955bd8aa74751b7067fb81c447198d46cc974a31d8bb67693fcc8b6a0b858a74"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/MBE插画风格规范.md",
+      "sha256": "2774a252c6e381d7b3dcf60f2f0d8d9d4071ea7327b986dbd339613c12c19c08"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/复古卡通风格规范.md",
+      "sha256": "764e79f95a19c1f4a870fa62b3c408a3c2d96e4fe8ff74457a63a2b97863f4dc"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/孟菲斯设计风格规范.md",
+      "sha256": "765a856e70da05fb255c2b6b1d56fef91dd9b59a3a469f08bf5cb67bdf088ba6"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/深色科技风PPT模板.md",
+      "sha256": "30c49fbb75f24fb89c44c4cc7f14e4ac41f9871005264faca29065eeddf3c505"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/现代科技风格PPT模板.md",
+      "sha256": "9294a3d1b7474bf4dcbe1de0d0801fdb3dbfac7e629d78e5295c37535f482147"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/第七套_莫兰迪绿方块风.md",
+      "sha256": "e4a508eb289fc473d2fccc34b7842ec0f1679af525aa54b20a00275be37cc167"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/第九套_手绘线条风儿童产品.md",
+      "sha256": "b34e6e86e2789240ed1b4f9c0664eeacd0b4da4b9fd6d15c7602d271ffbfe643"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/粗线条感风格 PPT 模板.md",
+      "sha256": "0c64266ee4046312be90c380d3b947c47fdcbec8c9343b313f40fa64039cff40"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/配色方案.md",
+      "sha256": "a7aa2cc7269cfb0f97d29dd807fcc6f0053bb3abb2a328532a82e94d0a2d1206"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/references/黑色背景紫色科技风PPT模板.md",
+      "sha256": "33e746ab48ac557f39441a6fa019f269e6c42f0b1e7db43520d78ad7db8fe103"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/scripts/generate.js",
+      "sha256": "4124295638330468a26eb613940e635fe12c297ceb4972851c94e83903070650"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/scripts/generate_full.py",
+      "sha256": "7ba0e9f6bba5a73bcd91c505dbdddefafdc723cfef72dade8c6c687f9bb594b5"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/scripts/generate_grand.py",
+      "sha256": "f76c5c033c29dc725c9ec6292fd83e05d57d8bdf4043dd61661c2fc66cb75b0a"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/scripts/generate_mbe.py",
+      "sha256": "bf067446698f16f49dc96972bf2ca6d9e3cfa6a775270199aeef33b5fdffd967"
+    },
+    {
+      "path": "99-原件/skills/ppt-generator/scripts/generate_ppt.py",
+      "sha256": "0223f63e49bf58396e17c24c0c95fa7f93d81ace4d6ea9f643e46301e676d3d2"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/SKILL.md",
+      "sha256": "83f49339e8efbc0894deb4e38750c21a432a898538f9ba104105a40d506e60dd"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/_meta.json",
+      "sha256": "cfe0464c113c14b13f374d2a60a1ffe2bf4978eff8f6cad246bccbb2d1f44379"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/references/chart-guide.md",
+      "sha256": "7a32218c7227ca5bb1b09cf661219b3dc4962b635cf7282aa9dd3b0fce81c7d5"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/references/example-config-warm.json",
+      "sha256": "4bf62939158b614d6c2b5514d9fc12530ccc83948b15fb0dedea4722b285600c"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/references/example-config.json",
+      "sha256": "83946e4835aa7c0ea7870a5cb25fc05279c901432602c243373fae9f4edf38e7"
+    },
+    {
+      "path": "99-原件/skills/ppt-master/scripts/generate_ppt.py",
+      "sha256": "3a1313186a7cf49790b0b6ccd7a35594395ed5d4a0226d55b6b575c9b20b697a"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/SKILL.md",
+      "sha256": "c928de678e7b615d5350ed8ab4e4e5222fd598e8e4f6431d3b37a4c97810fc74"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/prompts/system.md",
+      "sha256": "b1f310ee1ae36f3bf8aa97ab7e359643dd1d3a689623b99221285694c300ad50"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/schema/output.json",
+      "sha256": "81916098068b2d5fe06d4ddec2615db2482f246df8145bac380526205fd3a1fc"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/tests/expected.json",
+      "sha256": "e00fd84a1c59c5b09211bd7934eba20891f30efbf598eff8893602f56bfb3730"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/provenance-binding-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/SKILL.md",
+      "sha256": "18960c3de4740c00f2c37bad811481108f3245cbecbfaf591183ee0f0c2fe082"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/prompts/system.md",
+      "sha256": "7fb0bbcfb56d4275df921d26ed14b37dc28dd8f1a7b7fcde1787fef58c2175a8"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/schema/output.json",
+      "sha256": "98212a06cec8adedc5a76dce36ee4f4441d122b3dc8a4c32d32579c0b24c426c"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/tests/expected.json",
+      "sha256": "d97e6810f903b7d1eb2952033e52fe05b598afda4ecef183b4ab8425334eea45"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/reasoning-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/SKILL.md",
+      "sha256": "993b9fae57f2a6b351ee7ac08c2f2d11fbabf1c5fe626aa53930d8f6b88dfdfe"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/prompts/system.md",
+      "sha256": "490c15099aea4f054f42e18f66e3d58062a6e7748e79997e5361e71bf644e182"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/schema/output.json",
+      "sha256": "6509f816896870f88e28182b640738a831704c3f5a9dbd1e8183babc3bec8fb1"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/tests/expected.json",
+      "sha256": "668a592b56879baded1af5657cd41bd43f19982447f7f55e8fa8f2185dcc1a56"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/relation-extraction-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/resanity/.gitignore",
+      "sha256": "0d06a6c4b63e505701fb1828ded6eb0e3992ef51005ac72f1a82070458534ad6"
+    },
+    {
+      "path": "99-原件/skills/resanity/ARCHITECTURE.md",
+      "sha256": "1d101be75ed5c0fe881bfa5b37ff0e63330a47a4019535fea7e21fe9fa3b621f"
+    },
+    {
+      "path": "99-原件/skills/resanity/LICENSE",
+      "sha256": "9461be74c2f55ec96f99cd04e6f3b6e6ea2f6623f8f990ea4ccf448c16000233"
+    },
+    {
+      "path": "99-原件/skills/resanity/README.md",
+      "sha256": "feeb10b6f523be52a7828b9ebd9f9891c022492d8709e4fba90dd0141bd9dc55"
+    },
+    {
+      "path": "99-原件/skills/resanity/SKILL.md",
+      "sha256": "f55a77f8f9f9d0d2fa343a222d975136a7abfb2cff089a8dce920e03e09504ab"
+    },
+    {
+      "path": "99-原件/skills/resanity/agents/openai.yaml",
+      "sha256": "20b26429cc3c3d6b72d187c467dd79f9d5474aa579ca97269b88da8346c89eff"
+    },
+    {
+      "path": "99-原件/skills/resanity/anchors/_example.md",
+      "sha256": "ae8461ec7daf38259c619a5e475f2557831921d7056dcefbf66f672435162417"
+    },
+    {
+      "path": "99-原件/skills/resanity/anchors/index.md",
+      "sha256": "1fd6475a396e5e1993d4786ccd9eba712deffdf72b47d2ffac52aef8801a5c64"
+    },
+    {
+      "path": "99-原件/skills/resanity/assets/logo.svg",
+      "sha256": "796add41b57c655f50965e3abd2ed8d05dd1f49b30e86b870f1a5398eef0ece6"
+    },
+    {
+      "path": "99-原件/skills/resanity/cordis.patch.yml",
+      "sha256": "b4886bbc2a1cacb4261620888287ed436907a8a67f77098b3ec853f8593ef1c0"
+    },
+    {
+      "path": "99-原件/skills/resanity/journal/decisions.md",
+      "sha256": "664dbabdb4a333c38213d25e44f6ba31df1a1164b243ea14fa42e993c670fd2f"
+    },
+    {
+      "path": "99-原件/skills/resanity/lib/index.js",
+      "sha256": "f94eac796cf1376637b9dfe6d1e3ba82de4c06bee012c84dee394976163ea98d"
+    },
+    {
+      "path": "99-原件/skills/resanity/package.json",
+      "sha256": "564abcf6e47a07f7999b5e36db9e796ee554edf89173d7c8d000fc18dcd66c62"
+    },
+    {
+      "path": "99-原件/skills/resanity/preset/agent.cordis.yml",
+      "sha256": "80539aa34bda39b7e5eaf87336b05229212a3e061dc3a89b7901637dbe92985d"
+    },
+    {
+      "path": "99-原件/skills/resanity/preset/preset.yml",
+      "sha256": "52594dc37eb57faa505aac97af012c9f6061a265ad5dcc16146213cddd6c1b37"
+    },
+    {
+      "path": "99-原件/skills/resanity/references/anchors.md",
+      "sha256": "03cbcfb34d1c8ed272b3ea84a7368a669da5b309c8e809480f6dbaf42cef8bbd"
+    },
+    {
+      "path": "99-原件/skills/resanity/references/formal-audit.md",
+      "sha256": "62097c69d6a5e845c700202e9a66d737546d0409308210d9cfd44f464aa8d1f3"
+    },
+    {
+      "path": "99-原件/skills/resanity/references/investing.md",
+      "sha256": "e768592c953076705108993cb70b128c34a55e6955b07007fafa9b591d564837"
+    },
+    {
+      "path": "99-原件/skills/resanity/scripts/ashare_disclosures.py",
+      "sha256": "d3842f292358975af17d84a952755a2f66dd1a42f49b37c9ab48bc132303ba22"
+    },
+    {
+      "path": "99-原件/skills/resanity/scripts/free_market_observations.py",
+      "sha256": "bdc62eb3d77373baa6d6adb639fc2488f886986ceedfd5b2fe64476722e6b4a5"
+    },
+    {
+      "path": "99-原件/skills/resanity/scripts/tier1_providers.py",
+      "sha256": "e794ea1f1879eeda3db9329ae81847cbe5bfb66f8f3a77ef4b74b4509e35d9c4"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/dsh-budget-guard.test.mjs",
+      "sha256": "b83fa95ee6c8a7df4930559ba44c2bd1707e58e6322eaa3716f09ceb11c1fcef"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/fixtures/unreadable-decision.md",
+      "sha256": "165bc2e1ef6ee458983ce505cc40f91ce630ffdcb14ffae4b1f352fb9db0c9a1"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/plugin.test.mjs",
+      "sha256": "2d327d9827f57886698050a7813612d3d5f14faf402cc3d690f4b54d1cdcf55b"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_anchor_check.py",
+      "sha256": "dccf611f16af0c0b398f1c6e8e37a58439ea199af3ea0c4029aa3e998fe01ead"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_ashare_disclosures.py",
+      "sha256": "9a7ca5cc79d76b04cb07ede06c08e5e6c1277d79f3c0aecf3f2a993e587be767"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_failure_tracker.py",
+      "sha256": "e7ad6b13504a47bc63b557e0d94fb8b399b698ded9ae30e5089c0d7590fb78fe"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_final_ab_dsh_runner.py",
+      "sha256": "2ada0c286f3d5690fcd17bdd6345d2809fcb37fefeff432a43c9865770225e94"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_final_ab_runner.py",
+      "sha256": "1356d6decc1558cf8edd7abbf9840ee7f044a4c105e15617fbdef0f7f184149b"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_free_market_observations.py",
+      "sha256": "c41b30ad6b60dad654137137e3858262447d0c982d094399bfdaf923aa933cea"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_release_tree.py",
+      "sha256": "17ad6c39d56c8f07d461600ae13ede8c874c3a591a51165ef90333101ddb48d2"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_report_check.py",
+      "sha256": "2562c5b1a675d37447aa88d4e437ababcacaca809ad9b6bcdd369edf6d9bbc8f"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_research_check.py",
+      "sha256": "83a615aa0b3ea6ab13ace75eb2e2b3880bdeffa7ac6ba98ee560febdabe94037"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_skill_identity.py",
+      "sha256": "28119115758005d22b53ec18bb758f7aed009d374743378fc2d62b1342c94cda"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_v2_validation_runner.py",
+      "sha256": "610fc24c103913c9444a68b01d5c55e19649a65b95227cfb9792040e02b452ae"
+    },
+    {
+      "path": "99-原件/skills/resanity/test/test_validation_contract.py",
+      "sha256": "acb523784e519df5b1b368899abd4f0bdcdc3c7fb4eda4fcbb74b5c45dd11034"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/anchor_check.py",
+      "sha256": "fa7d5c0815fbe782331419159705c996475a047b48f77f9e33fc73618718c905"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/failure_tracker.py",
+      "sha256": "ff3231f2f5f7292ade5be7465f7f2e1b5f0fff7c2cb288b2914afc5e3219b3aa"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/report_check.py",
+      "sha256": "257c3b4a8deb11ead8b47f18d1ff044ec90fa4fd72830978622ab6ca160fe79d"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/research_check.py",
+      "sha256": "b1eba5b05f652955eb98f6efa56767fca6f856b9a9d255b604bd3a95bdb79bbf"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/skill_identity.py",
+      "sha256": "d313206f7d8fc1d858bf1efe06f6bf0701869068c4516b606c6a901afb485658"
+    },
+    {
+      "path": "99-原件/skills/resanity/tools/validation_source_check.py",
+      "sha256": "c74728bb8170fb9b09f9f34c469bfd299fc0c05ea17da6c3443dceb2549ba141"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/README.md",
+      "sha256": "650908eb2e9d629522bebe3d3ee971ea122d3351ea3f2373c233b0e9292e1e8a"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/eval/README.md",
+      "sha256": "3b6b6aa6f08c40821fb8b33db6f2364cb039053f01f1714e452fa68c504646bb"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/eval/collect.py",
+      "sha256": "5cd68fbe67b5b86cb90bd49558c118e58315445614f6fd93513c75f78d0a76b8"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/eval/questions.md",
+      "sha256": "a0c610a7c8b5467db70d3e280b214f12761089c8f7fc3e30385a26e169caf1ad"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/eval/rubric.md",
+      "sha256": "f4d988027b274c24616d5b76c9d80968c724b17e05490164821389d2dec8b163"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/host-receipt-template.json",
+      "sha256": "5f88e6c56d002a3129acf20c1acc57ca778aef0e755a0b54add48ba8fb8a803b"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/receipt-template.json",
+      "sha256": "6f1b7eb63d2db12d23790ce95f04390f6f7c536e837d980973945c6c57a58d7d"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/README.md",
+      "sha256": "91dd398e3fb817b77aaeb5a1f792c05822b00f9536fe4a51c772c0e78d6a955c"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/check_preset.mjs",
+      "sha256": "2ccadcc1089935315fc4bfb9e1b3e302e268f6bedddaffae37acadab879e4e7d"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/dsh-budget-guard/cordis.patch.yml",
+      "sha256": "c7c9bd4a4b03ff60205a32fc8218107e9e180dfc2f6fc2bd6486735f6245b37a"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/dsh-budget-guard/index.js",
+      "sha256": "6b38c77aed3cfeff684fbc6d2bf30f0ee94f6d180c6d56d3256e9073ce080b51"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/dsh-budget-guard/package.json",
+      "sha256": "f3524c780fcdea39f4a1ca1bad9284573a4d7d5915fd3b5ee26c0a696a488453"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prelayers-receipt-template.json",
+      "sha256": "4923ca6a553c1d0dc42d7f563fc44e565d32b0a202b27b145debcabc2a284c31"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-active-archived.md",
+      "sha256": "dd4bb4015ebc959f13363b887c629b547447074735450c8b30e7c468a198f0b2"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-active-realized.md",
+      "sha256": "210a50fb08d5fe1dadfadfdc36530382f77e97d976e26af619548d58957202ac"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-active.md",
+      "sha256": "db3a69b3a77e9118a40526a482ed903fba74f2faaf6069a2366fdad8ce440078"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-archived.md",
+      "sha256": "af1fd10eded836a504e76b8c8975731300e9af9b35d99bfb657d65b1d69b8cc9"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-realized.md",
+      "sha256": "72193fd97ff2ef15c11f82d796d06d8791afd1809f1ba12853b246f142ce0fc4"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/anchor-refuted.md",
+      "sha256": "cdfd6fede43cc94e848bbca7f1787942224b838c5cd4cf57696aef8dd20eac54"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/candidate-instruction.md",
+      "sha256": "fabf5623093b82babd92195461eae4d61458b389e75183a4b67972b392d725f8"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/core-debug.md",
+      "sha256": "b6f4942fce6c56d08450d468eefd8e9b55d47aef509ca6725654109338c077cc"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/core-policy.md",
+      "sha256": "15ed83f5f3f1ce0b017d59ad9edcd7c788d035353124f3c1ec6287f67bd1b7f7"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/core-product.md",
+      "sha256": "cfb81e655337e1301db7360581129af6c8b16ba8526b55c367e5cf4feb80aefd"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/investing-company.md",
+      "sha256": "784cff6af63799380f7273b0f502a6606ee74cdab53800273ea176c91adcd286"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/investing-profit-pool.md",
+      "sha256": "2137a92d10ad59a550ba52458de5c985cc520dd3b5deee90d34b1056a37230b9"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/network-investing.md",
+      "sha256": "cfa7ba24bdfd3f52edea54aef6c3861b6c0c8e282e0db0b2ca5fb5b689885ec0"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/network-policy.md",
+      "sha256": "4708d5df8533a7e605ebc31f3f6511407bef0e8752ed3afc2a0d886920c259f4"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/network-product.md",
+      "sha256": "feeb8e27aab469def1448775c0bfd5c0e7006ba3af815ee6be873db3e2976aac"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/prompts/strong-baseline.md",
+      "sha256": "572a787b42159e28f88d2274e6c798c97b2df80eb1b10bc60cb3b626af6f4a43"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/run_dsh_prelayers.py",
+      "sha256": "bbd861150e58c3a222cda3bce876181aac8125ce8573a0638f71af2227ff0e1c"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/run_final_ab.py",
+      "sha256": "daa29c354c52eff8f826674c54bc1990ec0353569524210675ca65898c69f00d"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/run_final_ab_dsh.py",
+      "sha256": "01436538f8cc360cdc07384dd683ee8f2e79143896bf2cbe5e2e33afe42680f3"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/run_validation.py",
+      "sha256": "930e4ea4acc94d8aaf9811391db903b8b095c3031bdafed000c71d48f191eb13"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/suite.json",
+      "sha256": "aa4829b3dfa230dd52c8e1e7337f04c4525c969a01b853ddabbba36587918136"
+    },
+    {
+      "path": "99-原件/skills/resanity/validation/v2/sync_preset.mjs",
+      "sha256": "9c1c339e27905cea298253e6394685e6af72d41bc1d86c393ac5c0abb7275d79"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/SKILL.md",
+      "sha256": "deec26c17b37102f35edf18742e62889dee2ef84570e0423df33cc89ec7ac268"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/prompts/system.md",
+      "sha256": "7acd6bac8421e101d91b8ddbe18f58b31759036767d787244e0e7fc61a870eec"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/schema/output.json",
+      "sha256": "dbb32986ee9968fbdc908467853fab4530a27e3c501965db79758ad3092da7b4"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/tests/expected.json",
+      "sha256": "c768c657d9ae90ac825583fd666e27ca17fd21084584ec4d50905fdb0fb1e7a2"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/semantic-chunking-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/SKILL.md",
+      "sha256": "5d5ee74898ff668efcbe0af0af193eeb55c95c00806b8451a6e8d2cbcce37872"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/prompts/system.md",
+      "sha256": "0aacb19b78c35a486a644e36e58b256be3755b59eda09ab74e8ad9495477ce9c"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/schema/output.json",
+      "sha256": "2811cb6282535b1d5e190b8bb0e571ce1cec63f35fb45c7bf91f7b8488e5440e"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/tests/expected.json",
+      "sha256": "7309ac8cfaa021db51dbf81371e46ed65784cc08621f9513b7ddab6be396b8fe"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/semantic-graph-compilation-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/SKILL.md",
+      "sha256": "083495f95555c92161577d5ff5d4b0b6f22553091652d26291b4999725b75ffc"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/prompts/system.md",
+      "sha256": "e722e80b4310eb747113398e435fe33ea45b7d1161289cb75e40e94d671169cb"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/schema/output.json",
+      "sha256": "9aa89972c75cd9ef0705f63a55aba7bdc7d0258a04a11d6d3931ebcd3de9f1a9"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/tests/expected.json",
+      "sha256": "7888fce2fc51a4bca98708a1e98ce7982b833c3ef77da8e3764ef54a1f37ff78"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/tests/golden.json",
+      "sha256": "e6f9967349a4bfc7ab6b17b1033a0a36e39da24caa6f78dbbfe5d06232efc879"
+    },
+    {
+      "path": "99-原件/skills/sentence-segmentation-skill/validators/validator.py",
+      "sha256": "b98df48348d743f615d203a9758c277c57fb955bf29975ccb7bd9faf47a56369"
+    },
+    {
+      "path": "99-原件/skills/standard-regulation-extraction/SKILL.md",
+      "sha256": "7c63d8b4e794b7fbe5da9954c47a23a8afd029518928a0eed33e1fea6b5f785f"
+    },
+    {
+      "path": "99-原件/skills/standard-regulation-extraction/scripts/extractors.py",
+      "sha256": "d2ed688bf8283e31b06d7091ad7689b11ecb1d0cbd1cbddf2f4b6bc0fcc08680"
+    },
+    {
+      "path": "99-原件/skills/stock-data-assistant/SKILL.md",
+      "sha256": "5dae3e350965babe5a6cfaa9c2b2627abccab302746ea4914fa59b79c2a63b23"
+    },
+    {
+      "path": "99-原件/skills/stock-data-assistant/generate_picoclaw_config.py",
+      "sha256": "c800c4bc3d1aca857448c9d1b9a1ee137b24ce8b66d5f91f717d682960d00d60"
+    },
+    {
+      "path": "99-原件/skills/stock-data-assistant/references/picoclaw_config_example.yaml",
+      "sha256": "db1a9da218f1a37f09f750bc46d6ea589498ff3631dd927c6aa37529dc3f8b42"
+    },
+    {
+      "path": "99-原件/skills/stock-data-assistant/setup_picoclaw.sh",
+      "sha256": "1b1da328ae8e9bb7a5492b02d2e7f3f529095fb1b2ba75a93c3909a751e7e584"
+    },
+    {
+      "path": "99-原件/skills/stock-data-assistant/start_wechat_bridge.sh",
+      "sha256": "796e4874fe960a63bab42919fe827513f8426eeb51c7e18ae6e95b6cbafa7092"
+    },
+    {
+      "path": "99-原件/skills/stock-mcp-query/SKILL.md",
+      "sha256": "915c00dd6820a8ac2a729d71433d327530dddd7a866609e73a375bf2a8f431a2"
+    },
+    {
+      "path": "99-原件/skills/ui-design-system/SKILL.md",
+      "sha256": "b3da25bc7fb581167e2a7be8bfe8e0bfa12d3498984bc43925fcdfe7d341e0db"
+    },
+    {
+      "path": "99-原件/skills/ui-design-system/references/color-systems.md",
+      "sha256": "2da0de98daa9dc5dd190ff4c1c3e6a49371bfd51081b1bfdcb97ef276ab3f64f"
+    },
+    {
+      "path": "99-原件/skills/ui-design-system/references/component-patterns.md",
+      "sha256": "7abee90b97b8a6354338e84f8160f3bad8684f8faf8f6d41046316aca854afb2"
+    },
+    {
+      "path": "99-原件/skills/ui-design-system/references/layout-templates.md",
+      "sha256": "6d4c887b37134fc217777caf1393269bcd7c88063b5f3b7693032ca271243fa3"
+    },
+    {
+      "path": "99-原件/skills/workdsh-excel-design/SKILL.md",
+      "sha256": "9007ad5a621e852551dbbacd8d786f73cd66a1a86f13aab15a2b126431009428"
+    },
+    {
+      "path": "99-原件/skills/workdsh-excel-design/references/audit-and-usability.md",
+      "sha256": "d783d223eacb4522da68e72745cbcd37f43e7b2c50cb52c97587746c5729ca50"
+    },
+    {
+      "path": "99-原件/skills/workdsh-excel-design/references/schema-and-formulas.md",
+      "sha256": "98c137228befb2ba73166d28f15df082f2e2a44255ee201b6237f42dc542115a"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/LICENSE.workbuddy.txt",
+      "sha256": "ef715b0cdf10700ae842e88844989391dc3bd9efd397bd399212d32f8862f633"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/NOTICE.md",
+      "sha256": "9a0b5601b1f5ca69ae00e7bcf272862580923253d56f25a47c535ebaec308a64"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/SKILL.md",
+      "sha256": "0f50ed609f297898066863b0b639e459131078e0567958cb560b7112b06477e6"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/references/agent-md-spec.md",
+      "sha256": "ec7373578a5f84d73ba16dcc71e73755e57aa4170cb07cd9bf379627c0f9c007"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/references/authoring-api.md",
+      "sha256": "f7a5892e6958f03ed8806889274bb4c09bd23bfb4212d22bc2e5410878010893"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/references/avatar-spec.md",
+      "sha256": "0b42762e05e311632b2f89af35f34458f851a03cce3fcc0300ca0a75e9f8890e"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/references/plugin-json-spec.md",
+      "sha256": "b680fb86361efd562298aa817e97fe906dff7da1d4dcea55f29d804555ddde3d"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/references/team-spec.md",
+      "sha256": "1400af007c6b1179429c6d8c856dc1d45ae25dae63645097ddbc801d25d324f9"
+    },
+    {
+      "path": "99-原件/skills/workdsh-expert-manager/runtime/team-lead.md",
+      "sha256": "6f70e67d0b487ec922254681ae4298c30f00b28e178613327aaf0b1e161098c4"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/SKILL.md",
+      "sha256": "2a31a97da9bbb23d8e744793d7e348b7bdf6fcceea94b8970ea3f967628d047e"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/charts-and-delivery.md",
+      "sha256": "0d6db7f144243d1af012cb0d4685f4df5779ff6178461e31b33a5914a11b2fff"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/design-principle.md",
+      "sha256": "d140986c14ba66cbe85bc7dd8c713732bd54e456625dd8f0df5d055a66b935a0"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/designs/design-principle.academic.md",
+      "sha256": "464fc6a077bd225a666a329a8fe56195a99362bca478d3fb5f636c1cab4db3b1"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/designs/design-principle.consulting.md",
+      "sha256": "e6a3fc22f707dc9ddacd5ec3b383abf369831c85d924e7964717cd8ec010da3a"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/designs/design-principle.redgold.md",
+      "sha256": "ccf77026cc457e1daa22fed04c121c1befd34d19c2e104345681d7eacdd1e7dd"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/human-alignment.md",
+      "sha256": "de82e33f647037a9dcee454848024dcc2e8db657bd04e3c29305a95065fc0ca0"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/story-and-design.md",
+      "sha256": "5ca6f65207ab06246416192cc22a04e70befaad26a73c968f989c4dc6f17de90"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/story-principle.md",
+      "sha256": "bc450f47203e9a15cccc161f2572b231d2d3372a6206c43e82cc2031a7596d23"
+    },
+    {
+      "path": "99-原件/skills/workdsh-ppt-design/references/workdsh-execution.md",
+      "sha256": "45665522ec01960026e429a5d14420a36715c77fa523b9782a7702dbe6fed8d4"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/LICENSE.workbuddy.txt",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/NOTICE.md",
+      "sha256": "b7dedfe421d529da2479ec707982fad3d25e7ab31b51c73e1051dda64285a0ed"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/SKILL.md",
+      "sha256": "ae3fd4aabe2a0171d2807bff6ec655b0cb8791da94a098eecd8401faf7743a91"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/references/bundle-production.md",
+      "sha256": "0896a89bbdb93d79e872263ecbd3d50287ff45a07603c8235d7527da84ce7d1c"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/references/creation-methods.md",
+      "sha256": "7486ebed9eb4a0ab6a2d38bd5fe6f83f3f797e7f264da39bffe6c4209b6647eb"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/references/dsh-authoring.md",
+      "sha256": "f8d0be56f66c89bf5196fa6cba1cef28a80adeb01c5632657b261c4d9c690ce4"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/references/editing-and-delivery.md",
+      "sha256": "db9d7cb4b2a7c1ca2fc29b07f1d082986fa22b4d7e20bac980a17c34faba2ca5"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/scripts/init_skill.py",
+      "sha256": "e99480c6f6201de53b254817c4e27a30b38f8c52964765436adc7ce9dead8704"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/scripts/package_skill.py",
+      "sha256": "fb79d9990b5582c05e5c712c84ad4470257b84a1ccf94e20ffad961fd8483a17"
+    },
+    {
+      "path": "99-原件/skills/workdsh-skill-creator/scripts/quick_validate.py",
+      "sha256": "89edbed09daf153eb0f9f33418293b10a8c7992891ee5d2b1bf92ad6c12bc799"
+    },
+    {
+      "path": "99-原件/skills/workdsh-web-design/SKILL.md",
+      "sha256": "70869093ce6e648f2b170fa16a16e6f403377664e3499c4bc901385de6778ec2"
+    },
+    {
+      "path": "99-原件/skills/workdsh-web-design/references/brief-and-design.md",
+      "sha256": "1124854928d3b807bb3ff8ca209d9f5580e6d2b3a4a8a9d647497db43654a4aa"
+    },
+    {
+      "path": "99-原件/skills/workdsh-web-design/references/implementation-and-review.md",
+      "sha256": "a939289dc2c104a315b9415982c682c058842ea5e2c2100db0879dff42b73bb9"
+    },
+    {
+      "path": "99-原件/skills/workdsh-web-design/references/workflow-and-delivery.md",
+      "sha256": "a59c5c1d11138aeb2737dc3fe5502788ab86ab23d00bf7202d3112bcf9f4596c"
+    },
+    {
+      "path": "99-原件/skills/workdsh-word-design/SKILL.md",
+      "sha256": "97b723c32938a425ff90a496daa2765626f39edb28acef878b91fc78bbf171cc"
+    },
+    {
+      "path": "99-原件/skills/workdsh-word-design/references/genre-and-typesetting.md",
+      "sha256": "494f80a4daeaa6e6c2f176e77c4d6bc628d1c43302b690687f76298866a00915"
+    },
+    {
+      "path": "99-原件/skills/workdsh-word-design/references/review-and-delivery.md",
+      "sha256": "9a12c3b3ea696595f61ce29f62528702be6acf2a3aea973e39cc0a8b6ee58dcd"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/SKILL.md",
+      "sha256": "faf4bfd81985e1995e9deb5181caafe4838a0559284433aa6f6e1ca39902d26c"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/first-development.md",
+      "sha256": "cb340b0e76f3a0c3be9306bb7c59044d20715e4f8574f3c34c9635b3a02dda96"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/intake.md",
+      "sha256": "c59d7d29dae499e33fef710c85911204df8dfdadeda30e1c237b6a615bbd4352"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/iteration.md",
+      "sha256": "85fe6e9492b6648653ed3cd3dd70fe39fb34c59e108e6fa88a7acf4fd71d26b6"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/product-experience.md",
+      "sha256": "dbdde2b57f0423a2e792ad86fbb145bb508679c173b9fc487bf9e4d116d1a5e9"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/requirements.md",
+      "sha256": "9aab1038d741a3a455d5f23f490f420cf1539453c3afcd9b49bd53fce5c6e675"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/sdk-verification.md",
+      "sha256": "6c842a91a55ecf5bd762dbb4119234c8fec8033b3507c9493075234e8abacbf7"
+    },
+    {
+      "path": "99-原件/skills/workdsh-workbench-dev/references/startup-validation.md",
+      "sha256": "7ac555b5e944b19527e55950d0981e8c4b2db357f24ac139625e829994ac98fa"
+    },
+    {
+      "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/experts/expert-a54010bbb24e.json",
+      "sha256": "47fb9625ce2b773d3bdd721fa64ff588cd7130cfd5db7ae149bd093a77ef2554"
+    },
+    {
+      "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/revisions/expert-a54010bbb24e_rev-a87da68acd79.json",
+      "sha256": "e9ac008fef1a729893fa0bd27330165b756d1522dd130ef93b7974522f06849a"
+    },
+    {
+      "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/drafts/expert-a54010bbb24e.json",
+      "sha256": "50f856453bb4fe977284a30f8d8b6dbbd8f8fcc2f6d521c75d3ee85bdb3bc426"
+    },
+    {
+      "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/experts/expert-a0a771c8b0da.json",
+      "sha256": "10140f4b5e04ae8b4fddf21c8ee302183a1ecb7020388c8a885438c34cbb4ed8"
+    },
+    {
+      "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/revisions/expert-a0a771c8b0da_rev-2e252305df1c.json",
+      "sha256": "757d6498be8496ec8bb3f74054f23cb62a97d312e8af8854df5650cd423f864a"
+    },
+    {
+      "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/drafts/expert-a0a771c8b0da.json",
+      "sha256": "dc89dcf4caafcd107622b017d6e2eff8bcf11310bb2c6d596fb1ba8ec830d943"
+    },
+    {
+      "path": "99-原件/项目/local-personal_local-user.json",
+      "sha256": "46c19f8eed88934ca803fbbb94090263ace48ce464ee2779ec4ffb93f274c09c"
+    },
+    {
+      "path": "99-原件/MCP定义/filesystem.json",
+      "sha256": "6701aa0d0762c0bdf3b633aeedd18ac322cad0aadd2c792a62e0af969fa7721a"
+    },
+    {
+      "path": "99-原件/MCP定义/kp-assembly.json",
+      "sha256": "5bd2cd46ecbd633e5752901de88481ad97dd1a71a419fcd579bcd92f9449ccd8"
+    },
+    {
+      "path": "99-原件/MCP定义/kp-library.json",
+      "sha256": "6fd0a7b7c326503397f8ce681352fd10cdf1173e2de513ad88856fd0aee81c70"
+    },
+    {
+      "path": "99-原件/MCP定义/kp-processing.json",
+      "sha256": "ca2ed3b9caee701c75a71758b94f96fffd37b3ee221f070dc348e1b2400e931b"
+    },
+    {
+      "path": "99-原件/MCP定义/kp-reserved.json",
+      "sha256": "d6b51d2f5f9a190e78ba63ea08c84f448bf10b99ff8e5f1c93c6b297c5199e56"
+    },
+    {
+      "path": "99-原件/MCP定义/kp-semantic.json",
+      "sha256": "e93d3a28b262146c303c0be6070cb068e030d78cb62596c764a6e7e18acf29d2"
+    },
+    {
+      "path": "99-原件/MCP定义/playwright.json",
+      "sha256": "91d1e175c5dbda4b48cd79201db3eb4876cbefc3e36004da1aaef83b6fd7d341"
+    },
+    {
+      "path": "99-原件/MCP定义/semantica.json",
+      "sha256": "ceebe1e6af63a42541a51961ac5c60b788291767633d270c23cbf2ad8e59d05c"
+    },
+    {
+      "path": "99-原件/数据/runtime-snapshot.json",
+      "sha256": "fded8e73c7805a6a3e3d7a9ec7ecd5edb458cd1a8765438f521678c60fec153d"
+    }
+  ],
+  "excludes": [
+    "07-核对/03-构建清单.json"
+  ]
+}

@@ -5,6 +5,8 @@ node_modules/
 coverage/
 **/dist/
 **/lib/
+!tools/expert-report/lib/
+!tools/expert-report/lib/**
 *.tsbuildinfo
 .test-runtime/
 .artifacts/

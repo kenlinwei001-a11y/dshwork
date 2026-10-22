@@ -1,0 +1,172 @@
+# 「散修研究」agent preset：以 Resanity（散修）为第一公民的研究型 agent。
+#
+# 本文件是 AGENT-PLANE 组合。宿主组合保留注册表（tools/systemPrompt/skills）、
+# 沙箱与审批、持久化、模型路由等一切跨会话能力；resanity 的机械层
+# （bundled skill provider、锚定时检查、/resanity-check、/resanity-tushare、
+# /resanity-audit、/resanity-init、webFetch 提供方）在 profile 的宿主补丁中挂载。
+# 本文件只挂 preset 自己的 resanity 行：仅数据工具，不重复定时器与命令。
+#
+# 本组合不发布任何服务：skills 与 tools 都是宿主的分层注册表，这些行只注册进
+# 本预设的层，因此不需要 isolate realm（workflows 例外，见 delegation 组）。
+
+# ── 身份 ─────────────────────────────────────────────────────────────────────
+
+# 「散修」研究人格，覆盖部署默认 persona。
+# {{model}} 与 {{cwd}} 由 agent 自身的路由与工作区解析。
+- id: persona
+  name: '@deepseek-ai/dsh-persona'
+  config:
+    text: >-
+      你是「散修」（Resanity）研究 agent，由 {{model}} 驱动，工作目录是 {{cwd}}。
+      你的第一身份是把研究收敛为可检查的主张：先明确这次回答服务的决策、时间边界和 as-of；
+      把根结论限制在 1–5 条真正承重的主张，每条用一张原子主张卡记录观察到什么、可以推出什么、
+      不能推出什么和对决策的影响，并为整条主张标注一个证据边界；结论强度服从最弱的承重主张。
+      投资研究（证券、上市公司、行业利润池、估值、市场定价）是你的默认场景，遇到即按
+      resanity skill 执行；非投资任务仅在用户明确要求使用 Resanity、绘制可能性地图、
+      审计承重主张或更新认知锚时启用该协议。
+      价格、公告与观察数据优先用数据工具采集（ashare_disclosures / market_observations /
+      structured_providers），它们的 as-of 与来源资格是 schema 强制项；采集失败只降级不重试同义路径。
+      每次研究都先交付可直接阅读的报告，至少包含根结论、证据边界和唯一下一验证；
+      未知与 INSUFFICIENT 是报告内容，不是阻止报告的状态。
+      边界：不荐股、不下单、不设仓位、不承诺回报；不把“材料没有证明”写成“现实中不存在”；
+      不自动补证据或改写结论；判断之后的行动与风险始终属于用户。
+
+# ── shell ────────────────────────────────────────────────────────────────────
+
+# 研究需要运行 resanity 的机械检查脚本（skills/resanity/tools/*.py）与采集脚本。
+# shell-env 与执行器都在宿主组合；这里只有模型侧工具。
+- id: tool-bash
+  name: '@deepseek-ai/dsh-tool-bash'
+  disabled: !!js process.platform === 'win32'
+
+# ── 文件系统 ─────────────────────────────────────────────────────────────────
+
+# 读/写 report.md、anchors/ 等研究工件；fs 服务与策略留在宿主。
+- id: tool-fs
+  name: '@deepseek-ai/dsh-tool-fs'
+
+- id: tool-fs-search
+  name: '@deepseek-ai/dsh-tool-fs-search'
+  config:
+    sampleOverCapGlobResults: false
+
+# ── 后台任务 ─────────────────────────────────────────────────────────────────
+
+# 只有模型侧控制；任务注册表留在宿主组合。
+- id: tool-jobs
+  name: '@deepseek-ai/dsh-tool-jobs'
+
+# ── 技能 ─────────────────────────────────────────────────────────────────────
+
+# 技能注册表在宿主组合并按 scope 分层；这两行注册进本预设的层，不需要 realm。
+# skill-filesystem 的 customSkillDirs 指向本预设自己的 skills/ 目录，
+# 使 resanity skill 随预设打包、自包含（与 cordis 预设自带技能的同一模式）；
+# 合并目录还包含部署全局注册的任何技能。
+- id: skill-filesystem
+  name: '@deepseek-ai/dsh-skill-filesystem'
+  config:
+    customSkillDirs:
+      - !!js "process.getBuiltinModule('node:url').fileURLToPath(new URL('skills/', baseUrl))"
+
+- id: tool-skill
+  name: '@deepseek-ai/dsh-tool-skill'
+
+# ── 数据采集工具 ─────────────────────────────────────────────────────────────
+
+# 同一 resanity 包挂在本预设 scope：只激活模型数据工具（ashare_disclosures /
+# market_observations / structured_providers），宿主行保留定时器与命令。
+# 包代码更新后需重启 DSH 生效（模块缓存）。
+- id: resanity-data
+  name: resanity
+  config:
+    dataTools: true
+    anchorTimer: false
+    commands: false
+    researchPrompt: true
+
+# ── 目标 ─────────────────────────────────────────────────────────────────────
+
+# 目标服务、会话驱动与 /goal 命令在宿主组合；这里只有模型侧工具。
+- id: tool-goal
+  name: '@deepseek-ai/dsh-tool-goal'
+
+# ── 网络检索 ─────────────────────────────────────────────────────────────────
+
+# web 服务与搜索提供方在宿主组合；fetch 提供方由宿主 resanity 行的 webFetch 注册。
+- id: tool-web
+  name: '@deepseek-ai/dsh-tool-web'
+  config:
+    fetch: true
+    searchTimeoutMs: 60000
+
+# ── 并行研究 ─────────────────────────────────────────────────────────────────
+
+# 子代理注册表与 spawn/fork 后端在宿主组合；workflows 只在 agent 平面被读取，
+# 因此整个组放在本预设自己的 isolate realm 里。codex/claude-code 行不引入。
+- id: delegation
+  name: cordis:group
+  group: true
+  isolate:
+    workflowEngine: true
+  config:
+    - id: tool-subagent-control
+      name: '@deepseek-ai/dsh-tool-subagent-control'
+
+    - id: tool-subagent-list-agents
+      name: '@deepseek-ai/dsh-tool-subagent-control/list-agents'
+
+    - id: tool-subagent
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: spawn
+        toolName: subagent
+        backgroundMode: continuable
+
+    - id: tool-subagent-fork
+      name: '@deepseek-ai/dsh-tool-subagent'
+      config:
+        provider: fork
+        toolName: subagent_fork
+        backgroundMode: continuable
+
+    - id: workflow-worker-thread
+      name: '@deepseek-ai/dsh-workflow-worker-thread'
+      config:
+        provider: spawn
+
+    - id: tool-workflow
+      name: '@deepseek-ai/dsh-tool-workflow'
+
+# ── 压缩 ─────────────────────────────────────────────────────────────────────
+
+# 长研究会话需要压缩。compaction-basic 通过 ctx.get 读 toolResultPruner，
+# 两者必须共享本 realm；tokenMeter 故意留在宿主组合。
+- id: compaction
+  name: cordis:group
+  group: true
+  isolate:
+    compaction: true
+    toolResultPruner: true
+  config:
+    - id: compaction-basic
+      name: '@deepseek-ai/dsh-compaction-basic'
+
+    - id: command-compact
+      name: '@deepseek-ai/dsh-command-compact'
+
+    - id: tool-result-pruner
+      name: '@deepseek-ai/dsh-compaction-tool-result-pruner'
+      config:
+        thresholdChars: 8192
+        headChars: 4096
+        tailChars: 1024
+
+# ── 其余模型侧行 ─────────────────────────────────────────────────────────────
+
+- id: tool-ask-user
+  name: '@deepseek-ai/dsh-tool-ask-user'
+
+- id: tool-todo
+  name: '@deepseek-ai/dsh-tool-todo'
+  config:
+    allowParallelInProgress: true

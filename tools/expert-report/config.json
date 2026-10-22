@@ -1,0 +1,72 @@
+{
+  "scope": {
+    "experts": [
+      "expert-a54010bbb24e",
+      "expert-a0a771c8b0da"
+    ]
+  },
+  "runtimeSnapshot": "sources/runtime.json",
+  "output": {
+    "dir": "专家资料包-知识处理与推演写作",
+    "zipName": "知识处理与推演写作专家-完整资料包.zip",
+    "zipRoot": "专家资料包-知识处理与推演写作"
+  },
+  "pluginNotes": {
+    "workdsh-plugin-experts": {
+      "role": "专家与专家团资产：专家目录、草稿、校验、确认发布，并把发布结果编译为官方 Agent preset（persona + 技能快照 + 工具）。",
+      "relation": "本次范围内两个专家都由它管理；内置 workdsh-expert-manager 制作指南技能。"
+    },
+    "workdsh-plugin-skills": {
+      "role": "技能管理：技能页、SkillHub 入口、导入预检、启停、可恢复卸载；通过 ctx.workdshSkills 对外开放。",
+      "relation": "专家依赖的本地技能由它所在体系发现与展示；技能库当前没有不可变修订，版本冻结发生在专家发布时。"
+    },
+    "workdsh-plugin-connectors": {
+      "role": "WorkDSH MCP 连接管理：stdio / Streamable HTTP 实例、工具与资源发现、健康检查、凭据引用、按会话工具隔离。",
+      "relation": "storages/workdsh_connectors/definitions 下的 8 条连接定义由它管理；与第三方 dsh-mcp-connector 是两套独立管理面。"
+    },
+    "workdsh-plugin-projects": {
+      "role": "项目工作台：把指令、技能、专家、连接器、资料库资产、计划与原生任务组织在项目里，只保存引用与不可变配置修订。",
+      "relation": "项目能力快照里的 skill / expert / connector 三类引用是本资料包交叉校验的来源。"
+    },
+    "workdsh-plugin-office": {
+      "role": "Word / Excel / PPT / PDF 内容工具：content_* 系列，负责真实 DOCX/XLSX/PPTX/PDF 的写入与导出。",
+      "relation": "技能产出的报告最终通过它落盘；技能自身不绑定编辑器。"
+    },
+    "workdsh-plugin-plate": {
+      "role": "NexusAI 实时文档编辑器（plate_*），默认的 Word 风格长文写作面。",
+      "relation": "与 office 并存：长文在线编辑走 plate，正式交付走 office 导出。"
+    },
+    "@cocofhu/skillhub": {
+      "role": "第三方技能货架：SkillHub 搜索与安装通道。",
+      "relation": "本机技能库中的部分技能来自它；它只提供发现与安装，不拥有技能内容。"
+    },
+    "dsh-mcp-connector": {
+      "role": "第三方 MCP 治理工具面：mcp_connector_* 系列（状态、配置、凭据、作用域、策略、快照、会话工具可见性）。",
+      "relation": "维护自己的注册表 storages/mcp_connector.json，与 WorkDSH 连接器定义并不一致；本包并列呈现，不合并。"
+    },
+    "workdsh-bundle": {
+      "role": "工作台导航与 WorkDSH 体验总装配。",
+      "relation": "决定左侧/右侧导航中专家、技能、项目、连接器入口是否出现。"
+    },
+    "workdsh-provider-identity-local": {
+      "role": "本机个人身份提供者（local-personal / local-user）。",
+      "relation": "决定专家与项目的归属主体。"
+    },
+    "workdsh-provider-browser-session": {
+      "role": "浏览器会话提供者。",
+      "relation": "与专家/技能无直接关系。"
+    }
+  },
+  "plugins": {
+    "officialDetail": [
+      "@deepseek-ai/dsh-persona",
+      "@deepseek-ai/dsh-skill-filesystem",
+      "@deepseek-ai/dsh-tool-skill",
+      "@deepseek-ai/dsh-agent-preset-registry",
+      "@deepseek-ai/dsh-mcp-client",
+      "@deepseek-ai/dsh-experimental-agent-team",
+      "@deepseek-ai/dsh-experimental-tool-agent-team",
+      "@deepseek-ai/dsh-experimental-client-ui-agent-team"
+    ]
+  }
+}

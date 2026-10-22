@@ -1,14 +1,13 @@
 # 99-原件（逐字节副本）
 
-> 本文件由 WorkDSH 会话依据本机真实数据生成，采集时间（UTC）：2026-10-13T07:33:15Z。
-
-本目录存放**原样复制**的源文件，供离线核对与二次加工；正文未做任何改写或转写。
+本目录是源文件的**原样复制**，供离线核对与二次加工；正文未改写。
 
 | 目录 | 内容 | 来源 |
 |---|---|---|
-| skills/<name>/ | 22 个 Skill 的完整目录（SKILL.md、references、scripts、prompts、schema、tests、validators 等） | ~/.agents/skills/<name>/ |
-| 专家制作稿/知识处理专家/ | 3 个文件（.workdsh-expert/plugin.json、agents/knowledge-processing-expert.md、README.md） | workdsh_expert_get_documents(expert-a54010bbb24e) |
-| 专家制作稿/推演写作专家/ | 2 个文件（agents/expert.md、README.md） | workdsh_expert_get_documents(expert-a0a771c8b0da) |
-| 采集原始数据/_data.json | 本次采集的原始结构化数据（专家定义、项目记录、MCP 状态与工具清单、插件清单等） | 本会话工具调用结果的原样导出 |
+| skills/<name>/ | 43 个技能的完整目录（已排除 .bak / .DS_Store） | 用户根 / Profile 根 / 插件 resources/skills |
+| 专家定义/ | 范围内专家的记录 / 草稿 / 发布修订 JSON（保留源目录结构 experts\|drafts\|revisions） | storages/workdsh_experts |
+| 项目/ | 项目状态文件（含配置修订、任务、资产引用） | storages/workdsh_projects/states |
+| MCP定义/ | 各 MCP 连接的磁盘定义（源文件本身可能含 env 值，副本保持原样，请勿外发） | storages/workdsh_connectors/definitions |
+| 数据/runtime-snapshot.json | 本次构建使用的运行时快照 | tools/expert-report/sources/runtime.json |
 
-核对方法：把本目录 skills/<name>/ 与 ~/.agents/skills/<name>/ 对比即可确认未改写（例如 diff -r）。
+核对：`07-核对/04-源文件哈希.csv` 给出每个源文件的 SHA-256，可逐条复算。

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "kp-semantic",
+    "title": "语义对齐",
+    "description": "语义对齐+本体（6 工具）：resolve_concept/ossie/ontology",
+    "serverName": "kp-semantic",
+    "transport": "stdio",
+    "command": "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/.venv/bin/python",
+    "args": [
+      "/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/mcp/servers/kp_semantic_server.py"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-10T09:45:26.713053Z",
+    "updatedAt": "2026-10-10T09:45:26.713053Z"
+  }
+}
