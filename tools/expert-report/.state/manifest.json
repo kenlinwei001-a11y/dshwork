@@ -1,6 +1,6 @@
 {
   "builtAt": "2026-10-22T05:53:59Z",
-  "runAt": "2026-10-22T05:58:11Z",
+  "runAt": "2026-10-22T06:41:24Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -132,9 +132,9 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/knowledge-processing",
-      "bytes": 42960,
-      "sha256": "d63577cf81762ee0df28b3e6ac48c47d3f0a9cd21c8b2a4a769eb819bc31cf08",
-      "detail": "2 files"
+      "bytes": 34995,
+      "sha256": "552b1b71a33a5877fbad9ea7c0e1718d50fcc568eb5eed5a722b5d3b1ae96e8b",
+      "detail": "1 files"
     },
     {
       "kind": "skill:user",
@@ -854,7 +854,7 @@
     "expertsScoped": 2,
     "skills": 43,
     "docs": 104,
-    "copiedFiles": 641,
+    "copiedFiles": 640,
     "connectors": 8,
     "plugins": 59,
     "projects": 3

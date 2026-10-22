@@ -1,0 +1,59 @@
+{
+  "name": "audit-adjudicator",
+  "version": "1.0.0",
+  "description": "Merges report and process-record audit results, checks cross-document consistency, handles method mismatches and conflicts, reviews false passes, and produces the final audit summary and remediation.",
+  "agents": [
+    "./agents/audit-adjudicator.md"
+  ],
+  "expertType": "agent",
+  "agentName": "audit-adjudicator",
+  "displayName": {
+    "en": "Audit Adjudication Expert",
+    "zh": "审核裁定专家"
+  },
+  "profession": {
+    "en": "Compliance Audit Adjudication Expert",
+    "zh": "合规审核裁定专家"
+  },
+  "displayDescription": {
+    "en": "Merges report and process audit verdicts, checks cross-document consistency and method mismatches, reviews false passes and issues the final audit summary.",
+    "zh": "合并报告与过程文档判定，核对跨文档一致性、方法不一致与假通过，输出最终审核结论、问题清单与整改建议。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "把报告审核和过程文档审核的判定合并，按标准给出合格/不合格/待补证据/待审，并做假通过复核。",
+    "en": "Merge report and process-record verdicts, give a per-standard conclusion, and run a false-pass review."
+  },
+  "plugin": "audit-adjudicator",
+  "tags": [
+    {
+      "en": "Adjudication",
+      "zh": "审核裁定"
+    },
+    {
+      "en": "Consistency Check",
+      "zh": "一致性检查"
+    },
+    {
+      "en": "False-pass Review",
+      "zh": "假通过复核"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Merge report and process-record verdicts, give a per-standard conclusion, and run a false-pass review.",
+      "zh": "把报告审核和过程文档审核的判定合并，按标准给出合格/不合格/待补证据/待审，并做假通过复核。"
+    },
+    {
+      "en": "The report declares GB 11893 for total phosphorus but the library has HJ 671 - treat it as a method mismatch finding, not a pass/fail.",
+      "zh": "报告总磷声明 GB 11893 而库内是 HJ 671：按方法不一致单列，不参与合格判定。"
+    },
+    {
+      "en": "Check numbers, dates, instrument IDs and sample counts across report, raw records and task order, then list conflicts.",
+      "zh": "把报告、原始记录、任务单的数值、日期、仪器编号、样品数量对一遍，列冲突清单。"
+    }
+  ],
+  "skills": [
+    "./skills/adjudication-playbook"
+  ]
+}

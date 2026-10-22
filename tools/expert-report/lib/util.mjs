@@ -61,8 +61,9 @@ export function walk(dir, base, skip, acc) {
 export function skipNoise(rel, name) {
   if (name === '.DS_Store') return true;
   if (name.indexOf('SKILL.md.bak') === 0) return true;
-  if (name.endsWith('.bak') || name.endsWith('.bak~') || name.endsWith('~')) return true;
-  if (name === '.DS_Store') return true;
+  // covers .bak, .bak-xxxx, .bak.xxxx, .v2bak, .bak~
+  if (/\.(v\d+)?bak([.\-_]|$)/.test(name)) return true;
+  if (name.endsWith('~')) return true;
   return false;
 }
 /** Parse YAML-ish frontmatter without a YAML dependency (single-line scalars only). */

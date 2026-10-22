@@ -1,0 +1,59 @@
+{
+  "name": "process-audit-expert",
+  "version": "1.0.0",
+  "description": "Audits laboratory process records against matched standard C2-C5/C7 rules, returning verdicts with record-text spans and clause anchors.",
+  "agents": [
+    "./agents/process-audit-expert.md"
+  ],
+  "expertType": "agent",
+  "agentName": "process-audit-expert",
+  "displayName": {
+    "en": "Process Record Audit Expert",
+    "zh": "过程文档审核专家"
+  },
+  "profession": {
+    "en": "Laboratory Process Record Audit Expert",
+    "zh": "实验室过程文档审核专家"
+  },
+  "displayDescription": {
+    "en": "Checks sample handling, apparatus, reagents, procedure and QC records against C2-C5/C7 rules with record-text spans and clause anchors.",
+    "zh": "按 C2–C5/C7 规则审核样品流转、前处理、仪器、试剂、操作步骤与质控记录，给出带原文位置的逐条判定。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "按已匹配标准的 C2–C5/C7 规则审这包过程文档，逐条给判定、记录位置和条款回指。",
+    "en": "Audit this process record bundle against matched C2-C5/C7 rules with verdicts, record spans and clause anchors."
+  },
+  "plugin": "process-audit-expert",
+  "tags": [
+    {
+      "en": "Process Audit",
+      "zh": "过程审核"
+    },
+    {
+      "en": "QC Records",
+      "zh": "质控记录"
+    },
+    {
+      "en": "Instrument Records",
+      "zh": "仪器记录"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Audit this process record bundle against matched C2-C5/C7 rules with verdicts, record spans and clause anchors.",
+      "zh": "按已匹配标准的 C2–C5/C7 规则审这包过程文档，逐条给判定、记录位置和条款回指。"
+    },
+    {
+      "en": "Check sample preservation, calibration curve, blanks, duplicates and spikes in the raw records.",
+      "zh": "核对原始记录里的样品保存、校准曲线、空白、平行和加标，缺证列清单。"
+    },
+    {
+      "en": "Match instrument numbers and calibration validity against the report's annex and the test dates.",
+      "zh": "核对仪器编号、校准证书有效期与检测日期是否覆盖。"
+    }
+  ],
+  "skills": [
+    "./skills/process-audit-playbook"
+  ]
+}

@@ -22,13 +22,13 @@
     "expertsScoped": 2,
     "skills": 43,
     "docs": 104,
-    "copiedFiles": 641,
+    "copiedFiles": 640,
     "connectors": 8,
     "plugins": 59,
     "projects": 3
   },
   "sourceUnits": 120,
-  "sourceFiles": 745,
+  "sourceFiles": 744,
   "runtimeSnapshot": {
     "file": "sources/runtime.json",
     "sha256": "fded8e73c7805a6a3e3d7a9ec7ecd5edb458cd1a8765438f521678c60fec153d",
@@ -75,7 +75,7 @@
       {
         "name": "原件副本逐字节一致",
         "ok": true,
-        "detail": "641 个文件复算 SHA-256"
+        "detail": "640 个文件复算 SHA-256"
       },
       {
         "name": "产物无密钥特征",
@@ -98,11 +98,11 @@
       },
       {
         "name": "技能目录存在备份文件",
-        "detail": "21 个 .bak / SKILL.md.bak* 文件被排除在副本外（源码未被修改）。"
+        "detail": "22 个 .bak / SKILL.md.bak* 文件被排除在副本外（源码未被修改）。"
       }
     ]
   },
-  "docsSha256": "e5dc610960fa7743d2a38e275f282e74f692b389de3b865e4301edebea15997d",
+  "docsSha256": "ac63e3ed8f34bef3d45b8f56530a8d710ed10af56550c984103861c330f49f75",
   "sources": [
     {
       "kind": "skill:user",
@@ -233,9 +233,9 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/knowledge-processing",
-      "bytes": 42960,
-      "sha256": "d63577cf81762ee0df28b3e6ac48c47d3f0a9cd21c8b2a4a769eb819bc31cf08",
-      "detail": "2 files"
+      "bytes": 34995,
+      "sha256": "552b1b71a33a5877fbad9ea7c0e1718d50fcc568eb5eed5a722b5d3b1ae96e8b",
+      "detail": "1 files"
     },
     {
       "kind": "skill:user",
@@ -1621,10 +1621,6 @@
     {
       "path": "99-原件/skills/knowledge-processing/SKILL.md",
       "sha256": "98722b52b5121a82a8bb071bef3ca28ce9cd0b32b75ad3a5c4ffb66f677ccde5"
-    },
-    {
-      "path": "99-原件/skills/knowledge-processing/SKILL.md.v2bak",
-      "sha256": "c92c69a18bda2a5e05a7da00e9d53759dd12d370e06c4ffcae15f406160c782a"
     },
     {
       "path": "99-原件/skills/knowledge-processing-toolchain/SKILL.md",

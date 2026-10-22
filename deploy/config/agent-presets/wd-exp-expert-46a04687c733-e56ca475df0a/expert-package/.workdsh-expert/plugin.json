@@ -1,0 +1,59 @@
+{
+  "name": "lab-evidence-extractor",
+  "version": "1.0.0",
+  "description": "Extracts rule-agnostic evidence from test reports and laboratory process documents into a structured, span-located evidence pack with document inventory and missing-item flags for downstream audit experts.",
+  "agents": [
+    "./agents/lab-evidence-extractor.md"
+  ],
+  "expertType": "agent",
+  "agentName": "lab-evidence-extractor",
+  "displayName": {
+    "en": "Lab Evidence Extraction Expert",
+    "zh": "实验室证据抽取专家"
+  },
+  "profession": {
+    "en": "Laboratory Report and Process Evidence Extraction Expert",
+    "zh": "实验室报告与过程文档证据抽取专家"
+  },
+  "displayDescription": {
+    "en": "Turns a report bundle into rule-agnostic evidence with document inventory, field values, page/char spans, confidence and missing-item flags.",
+    "zh": "把检测报告与过程文档抽成规则无关的证据包：文档清单、字段值、页/字符定位、置信度与缺件清单。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "把这份报告包（报告 + 委托书 + 任务单 + 原始记录 + 环境/仪器/校准）抽成证据包，字段要能定位到页和原文。",
+    "en": "Turn this report bundle into an evidence pack with document inventory, field values and page/char locators."
+  },
+  "plugin": "lab-evidence-extractor",
+  "tags": [
+    {
+      "en": "Evidence Extraction",
+      "zh": "证据抽取"
+    },
+    {
+      "en": "Report Parsing",
+      "zh": "报告解析"
+    },
+    {
+      "en": "Process Records",
+      "zh": "过程记录"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Turn this report bundle into an evidence pack with document inventory, field values and page/char locators.",
+      "zh": "把这份报告包（报告 + 委托书 + 任务单 + 原始记录 + 环境/仪器/校准）抽成证据包，字段要能定位到页和原文。"
+    },
+    {
+      "en": "Extract every result cell, detection limit and method declaration from the report, keeping ND as ND.",
+      "zh": "把报告结果表逐格抽出来，保留检出限、单位和 ND，不改写方法声明。"
+    },
+    {
+      "en": "Check which required records are missing and flag method/date/sample-number inconsistencies without judging compliance.",
+      "zh": "检查缺哪些记录，并标出方法/日期/样品编号不一致；只登记事实，不判合规。"
+    }
+  ],
+  "skills": [
+    "./skills/lab-evidence-playbook"
+  ]
+}

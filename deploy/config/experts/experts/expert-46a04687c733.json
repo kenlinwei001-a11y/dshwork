@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "id": "expert-46a04687c733",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "personal",
+    "availability": "enabled",
+    "revision": "r-0d1c7907-fdfa-413f-8501-913afc59ca6e",
+    "draftRevision": "c0ac9a9ac354",
+    "createdAt": "2026-10-22T03:25:01.685Z",
+    "updatedAt": "2026-10-22T03:33:59.187Z",
+    "publishedRevisionRef": {
+      "expertId": "expert-46a04687c733",
+      "revisionId": "rev-d259d76027db"
+    }
+  }
+}

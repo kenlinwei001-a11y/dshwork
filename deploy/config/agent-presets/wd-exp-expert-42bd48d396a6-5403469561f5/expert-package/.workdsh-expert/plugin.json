@@ -1,0 +1,59 @@
+{
+  "name": "report-audit-expert",
+  "version": "1.0.0",
+  "description": "Audits the test report body and result pages against matched standard rules and a rule-agnostic evidence pack, returning per-rule verdicts with report-text spans and clause anchors.",
+  "agents": [
+    "./agents/report-audit-expert.md"
+  ],
+  "expertType": "agent",
+  "agentName": "report-audit-expert",
+  "displayName": {
+    "en": "Test Report Audit Expert",
+    "zh": "检测报告审核专家"
+  },
+  "profession": {
+    "en": "Test Report Compliance Audit Expert",
+    "zh": "检测报告合规审核专家"
+  },
+  "displayDescription": {
+    "en": "Checks test report results and calculations against C1/C6 rules, flags method mismatches and returns verdicts with report-text spans.",
+    "zh": "按 C1 方法适用性与 C6 数据计算规则审核检测报告，标出方法不一致，并给出带报告原文位置的逐条判定。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "按已匹配标准的 C1/C6 规则审这份检测报告，逐条给判定、报告原文位置和条款回指。",
+    "en": "Audit this test report against the matched standard C1/C6 rules, with verdicts, report-text spans and clause anchors."
+  },
+  "plugin": "report-audit-expert",
+  "tags": [
+    {
+      "en": "Report Audit",
+      "zh": "报告审核"
+    },
+    {
+      "en": "Method Applicability",
+      "zh": "方法适用性"
+    },
+    {
+      "en": "Result Calculation",
+      "zh": "结果计算"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Audit this test report against the matched standard C1/C6 rules, with verdicts, report-text spans and clause anchors.",
+      "zh": "按已匹配标准的 C1/C6 规则审这份检测报告，逐条给判定、报告原文位置和条款回指。"
+    },
+    {
+      "en": "The report declares GB 11893 for total phosphorus but the library has HJ 671 - flag the mismatch instead of applying HJ 671 rules.",
+      "zh": "报告总磷写的是 GB 11893，库里是 HJ 671：先标方法不一致，不要套 HJ 671 的规则。"
+    },
+    {
+      "en": "Recompute the 15 sample results and check calibration curve, dilution factor and result expression.",
+      "zh": "复算这 15 个样品的结果，核对校准曲线、稀释倍数和结果表示。"
+    }
+  ],
+  "skills": [
+    "./skills/report-audit-playbook"
+  ]
+}

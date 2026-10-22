@@ -41,6 +41,8 @@ rewrite() {
   [ "${DRY_RUN:-0}" = "1" ] && return 0
   [ -f "$f" ] || return 0
   local args=(
+    -e "s#${OLD_HOME}/.agents/.workdsh-state#${AGENTS_HOME}/.workdsh-state#g"
+    -e "s#${OLD_HOME}/.cache/workdsh-preview-packs#${HOME}/.cache/workdsh-preview-packs#g"
     -e "s#${OLD_HOME}/workdsh-mcp-servers#${MCP_SERVERS_ROOT}#g"
     -e "s#${OLD_HOME}/workdsh/.test-runtime/preview#${DSH_HOME}#g"
     -e "s#${OLD_HOME}/Desktop/workdsh#${REPO}#g"
@@ -81,6 +83,21 @@ for d in "$SRC/skills"/*/; do
 done
 echo "  装了 $n 个技能 -> $AGENTS_HOME/skills"
 
+# Profile 根技能（archive: skills-profile/）装到 DSH_HOME/skills，保持原有作用域
+if [ -d "$SRC/skills-profile" ]; then
+  run mkdir -p "$DSH_HOME/skills"
+  m=0
+  for d in "$SRC/skills-profile"/*/; do
+    [ -d "$d" ] || continue
+    name="$(basename "$d")"
+    run rm -rf "$DSH_HOME/skills/$name"
+    run cp -R "$d" "$DSH_HOME/skills/$name"
+    rewrite_tree "$DSH_HOME/skills/$name"
+    m=$((m+1))
+  done
+  echo "  装了 $m 个 Profile 技能 -> $DSH_HOME/skills"
+fi
+
 echo "== 2/4 MCP 连接器 =="
 DEST="$DSH_HOME/storages/workdsh_connectors/definitions"
 run mkdir -p "$DEST"
@@ -120,7 +137,8 @@ else
   if [ -d "$SRC/agent-presets" ]; then
     run mkdir -p "$DSH_HOME/.agent-presets"
     run cp -R "$SRC/agent-presets/." "$DSH_HOME/.agent-presets/"
-    echo "  已装到 $DSH_HOME/.agent-presets"
+    rewrite_tree "$DSH_HOME/.agent-presets"
+    echo "  已装到 $DSH_HOME/.agent-presets（已改写存档里的原机路径）"
   fi
 fi
 

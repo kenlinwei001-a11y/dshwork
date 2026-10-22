@@ -16,9 +16,9 @@
 | 来源类型 | 用户/共享技能根 |
 | 目录 | /Users/apple/.agents/skills/knowledge-processing |
 | 所属插件 | （非插件内置） |
-| 文件数 | 2 |
-| 体积 | 42.0 KB |
-| 被忽略文件 | SKILL.md.bak、SKILL.md.bak-cons-1854、SKILL.md.bak-deriv-1852、SKILL.md.bak-disamb-1953、SKILL.md.bak-eng-1909、SKILL.md.bak-tables-1820、SKILL.md.bak-tag-1946（编辑器备份/系统文件，不进入副本） |
+| 文件数 | 1 |
+| 体积 | 34.2 KB |
+| 被忽略文件 | SKILL.md.bak、SKILL.md.bak-cons-1854、SKILL.md.bak-deriv-1852、SKILL.md.bak-disamb-1953、SKILL.md.bak-eng-1909、SKILL.md.bak-tables-1820、SKILL.md.bak-tag-1946、SKILL.md.v2bak（编辑器备份/系统文件，不进入副本） |
 
 ## 3. 引用关系
 
@@ -747,7 +747,6 @@ review_status:
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
 | SKILL.md | 34995 | 98722b52b5121a82 |
-| SKILL.md.v2bak | 7965 | c92c69a18bda2a5e |
 
 ## 6. MCP 关联（文本取证）
 
