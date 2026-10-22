@@ -1,0 +1,35 @@
+# WorkDSH 反向代理示例（把 127.0.0.1:__PORT__ 暴露成一个域名）
+# 安装：
+#   sudo cp deploy/nginx/workdsh.conf.template /etc/nginx/conf.d/workdsh.conf
+#   sudo sed -i 's/__SERVER_NAME__/dsh.example.com/; s/__PORT__/18989/' /etc/nginx/conf.d/workdsh.conf
+#   sudo nginx -t && sudo systemctl reload nginx
+# 说明：
+#   - 应用只监听 127.0.0.1，外部访问一律经这里；
+#   - WebSocket 必须转发 Upgrade/Connection，否则界面能开、对话一直转圈；
+#   - 上传体积按需调 client_max_body_size。
+server {
+    listen 80;
+    server_name __SERVER_NAME__;
+
+    client_max_body_size 500m;
+
+    location / {
+        proxy_pass http://127.0.0.1:__PORT__;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        proxy_buffering off;
+    }
+}
+
+# 可选：再加一层 Basic Auth（应用自身已用 ?token= 登录，这层是运维兜底）
+#   sudo htpasswd -c /etc/nginx/.htpasswd workdsh
+# 然后在 location / 里加：
+#   auth_basic "WorkDSH";
+#   auth_basic_user_file /etc/nginx/.htpasswd;

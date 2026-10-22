@@ -42,7 +42,8 @@ if (bootFor('@deepseek-ai/dsh') !== bootFor('@deepseek-ai/dsh-config-editor')) {
 mkdirSync(previewHome, { recursive: true });
 // User-authorized local-preview outer frame only; exact version and byte guards.
 await ensureNativeWorkbenchFrame(profile);
-const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '--profile', 'preview', '--host', '127.0.0.1', '--port', port, '--no-open'], {
+const host = process.env.WORKDSH_PREVIEW_HOST ?? '127.0.0.1';
+const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '--profile', 'preview', '--host', host, '--port', port, '--no-open'], {
   cwd: root,
   env: { ...previewProcessEnvironment(root), DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
   stdio: 'inherit',

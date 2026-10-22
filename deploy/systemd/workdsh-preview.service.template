@@ -1,0 +1,26 @@
+[Unit]
+Description=WorkDSH preview (browser mode)
+Documentation=https://github.com/kenlinwei001-a11y/dshwork
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=__USER__
+Group=__GROUP__
+WorkingDirectory=__REPO__/apps/web
+Environment="WORKDSH_PREVIEW_HOME=__DSH_HOME__"
+Environment="DSH_AGENTS_HOME=__AGENTS_HOME__"
+Environment="WORKDSH_PREVIEW_PORT=__PORT__"
+Environment="WORKDSH_PREVIEW_HOST=__HOST__"
+Environment="WORKDSH_PREVIEW_HEAP_MB=__HEAP__"
+ExecStart=__NODE__ scripts/start-preview.mjs
+Restart=always
+RestartSec=3
+KillSignal=SIGTERM
+TimeoutStopSec=30
+LimitNOFILE=65535
+# 数据与日志都在 __DSH_HOME__，备份只需备份它
+
+[Install]
+WantedBy=multi-user.target
