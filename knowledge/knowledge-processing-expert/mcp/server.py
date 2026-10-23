@@ -95,7 +95,6 @@ TOOLS = [
          "mode": {"type": "string", "enum": ["现行", "目标"]},
          "table": {"type": "string", "description": "lpd: 表号 6.3.3/6.3.7/6.3.13"}},
          "required": ["kind"]}},
-         "required": ["gaps", "corpus_dir"]}},
     {"name": "normalize_name", "description": "命名归一化：去顿号/逗号/括号/空格后比较，并解析别名。用于「规则写通风空调工程 vs 原文写通风、空调工程」这类只差标点的误报。",
      "inputSchema": {"type": "object", "properties": {
          "name": {"type": "string"},
@@ -290,7 +289,7 @@ TOOLS = [
     {"name": "reemit_invariants", "description": "重发 graph/invariants.yaml（#16）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "reemit_evidence", "description": "重发 evidence.yaml + excerpts（#18/#19）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "reemit_reasoning", "description": "重发 derivation/decisions/trace（#20/#21/#22）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
-    {"name": "reemit_quality", "description": "重发 conflicts/gaps/gate_report（#23/#24/#25）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}}, "required": ["corpus_dir"]}},
+    {"name": "reemit_quality", "description": "重发 conflicts/gaps/gate_report（#23/#24/#25）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "reemit_index", "description": "重发 node_index/term_index/signature（#28/#29/#30）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "corpus_search", "description": "向量检索脱敏 chunk（只返回占位符骨架，永不返回字面数值）",
      "inputSchema": {"type": "object",
