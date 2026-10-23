@@ -30,3 +30,100 @@ SK-08
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+
+## 证据分级：新增 E0，31 条 E1 重分级（V2.8）
+
+### 原问题
+
+31 条标 `E1（客户给定）` 的证据，**全部缺 provider/provide_date/version**，
+且其中大部分根本不是「客户给定」。
+
+### 七级 + hypothesis
+
+| kind | 含义 | verifiable | 责任方 | 必填 |
+|---|---|---|---|---|
+| **E0** | **编制方踏勘/调查** | true | 编制方 | survey_date / surveyor / basis |
+| E1 | 客户给定 | false | 提供方 | provider / provide_date / version |
+| E2 | 规范条文 | true | 标准发布机构 | 标准号 + 条款号 |
+| E3 | 外部公开数据 | true | 发布机构 | 机构 / 日期 / URL |
+| E4 | 图内派生 | true | 系统 | leaf_refs |
+| E5 | 类比工程 | partial | 编制方 | 类比对象 + 可比性 |
+| E6 | 专家判断 | false | 专家 | 专家身份 + 依据 |
+| hypothesis | **预测性表述** | — | — | 不是证据 |
+
+### 重分配实测（31 条 E1）
+
+```
+E0           7 条   场地四至、现状描述、措施方案
+E1          15 条   校内决议、规划、财务数据
+E3          15 条   年度统计（发表论文 87 篇）
+E4           8 条   含算式的测算（1210㎡×0.55=2200㎡）
+hypothesis   5 条   「到2025年力争…」「预计…」
+```
+
+### 判定顺序（关键）
+
+```
+① 含「将/力争/到X年」→ hypothesis（不是证据）
+② 场地四至 / 现状描述 → E0
+③ 含算式/合计/换算 → E4
+④ 年度统计数 → E3
+⑤ 校内文件/批文/财务 → E1（真客户给定）
+```
+
+### E1 的硬条件（缺一不可）
+
+```python
+if kind == "E1":
+    assert provider and provide_date and version
+    # 缺任何一项 → 降级或标 unknown
+```
+
+**实测：31 条 E1 全部缺这三项 → 说明标 E1 是默认值，不是判断结果。**
+
+### 一条铁律
+
+> **等级由「可核验性 + 责任方」决定，不由内容像什么决定。**
+>
+> 场地四至能复查 → E0；财务数据只能甲方给 → E1；
+> 规范条文可查 → E2；算式可复算 → E4。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"evidence": {"required": ["id", "kind", "quote"],
+              "kind": {"enum": ["E0","E1","E2","E3","E4","E5","E6","hypothesis"]},
+              "quote": {"minLength": 1, "description": "不许是 'None' 字符串"}}}
+```
+
+**执行**
+
+```python
+def assign_kind(ev) -> str:
+    if has_future_word(ev):        return "hypothesis"   # ① 将/力争/预计
+    if is_site_survey(ev):         return "E0"           # ② 场地四至/现状
+    if has_formula(ev):            return "E4"           # ③ 含算式
+    if is_annual_stat(ev):         return "E3"           # ④ 年度统计
+    if is_internal_doc(ev):        return "E1"           # ⑤ 校内文件
+    return "E6"
+
+assert ev["kind"] in EVIDENCE_KINDS
+assert str(ev["quote"]) not in ("None", "none", ""), "quote 不许是 None 字符串"
+```
+
+**门禁 P10 · 证据分级**
+
+```
+kind 在七级内；quote 非空且不是 'None' 字符串；E1 必须带 provider/date/version
+```
+
+**代价（实测）**
+
+```
+343 个 ev- 节点 quote 是字符串 'None' → 空证据
+其中 317 个能在原文定位 → 补 quote 后 304 成功
+31 条 E1 全部缺三要素 → 重分为 E0×7/E1×15/E3×15/E4×8/hypothesis×5
+```

@@ -30,3 +30,37 @@ SK-02
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"sentence": {"required": ["id", "text", "chunk_id", "span"],
+              "id": {"description": "稳定 ID，同输入必同 ID"}}}
+```
+
+**执行**
+
+```python
+def segment(chunk) -> list[dict]:
+    sents = split_sentences(chunk.text)          # 按 。；！？ 且处理英文缩写
+    for i, s in enumerate(sents, 1):
+        sents[i-1] = {"id": f"{chunk.id}-S{i:03d}", "text": s,
+                      "chunk_id": chunk.id, "span": locate(s, chunk)}
+    assert sum(len(s["text"]) for s in sents) >= 0.98 * len(chunk.text), "分句丢失超过 2%"
+    return sents
+```
+
+**门禁 P2 · 分句闭环**
+
+```
+Σsentence 字符 ≈ Σchunk 字符（标点归并可解释）；ID 稳定可复现
+```
+
+**代价（实测）**
+
+```
+按句号硬切 → 「1.5m」「GB50016-2014」被切断
+→ 分句后长度对不上，S2 门禁报警
+```

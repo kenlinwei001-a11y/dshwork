@@ -81,3 +81,41 @@ anchor:
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"chain": {"required": ["object", "path"],
+           "path": {"description": "Decision→Claim→Reasoning→Fact→Evidence→Sentence→Chunk→Document"}}}
+```
+
+**执行**
+
+```python
+def build_chain(obj, graph) -> list:
+    path, cur = [obj], obj
+    while True:
+        up = graph.upstream(cur)        # 沿依赖关系向上
+        if not up: break
+        path.append(up)
+        cur = up
+        if len(path) > 20: raise RuntimeError("溯源链超过 20 层，可能有环")
+    return path
+
+assert all(p["id"] for p in chain), "链上每环必须可寻址"
+```
+
+**门禁 P14 · 溯源可追**
+
+```
+任意 Decision 可追到 Document；链上每环有 id；无环
+```
+
+**代价（实测）**
+
+```
+悬空关系 106 条 → 补 source 后降到 0
+但「有 source」不等于「指向存在的节点」→ 必须同时校验端点
+```

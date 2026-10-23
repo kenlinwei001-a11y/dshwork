@@ -29,68 +29,308 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 - 跨节点引用（relations.from/to、reasoning.inputs/output、claims.deps/evidence、
   conflicts.involved、validations.claim）必须指向存在的节点 id。
 
-## 核心工作流
+> **与 G0「图谱契约」段的区别**：
+> 本节管**图谱顶层结构**（有哪些集合、字段名怎么写），
+> G0 管**语义约束**（claim_type 必须四类之一、falsifiable_by 必须非空、range_known 三态）。
+> 本节答「结构对不对」，G0 答「语义站不站得住」。
 
-按顺序执行，阶段产出物作为下一阶段的输入。用 todo 工具跟踪阶段进度。
+## 核心工作流（四段式：契约 / 执行 / 门禁 / 代价）
 
-### 阶段 0：载入并校验图谱
+> **为什么不用自然语言写步骤**：实测「写作要按证据强度选句式」写在散文里，
+> 结果 hypothesis 被写成既成事实、`range_known=false` 的数值写成「符合规范」。
+> 写成 `validate_graph.py` 断言后，0 错 63 警立刻定位。
+> **纪律靠提醒，机制靠退出码。**
 
-- 定位图谱 JSON（用户显式给出，或在工作区检索 `*_semantic_graph.json`）。
-- 运行 `python3 scripts/validate_graph.py <graph.json>` 做确定性校验。
-- 发现悬空引用、缺失必填字段、重复 id 时，先报告并（在用户确认后）修复图谱，再继续。
-- 读取 `meta.title`、`meta.data_cutoff` 作为报告标题与数据截止口径。
+---
 
-### 阶段 1：建立推演计划
+### 阶段 0 · 载入并校验图谱
 
-- 依据 `references/deduction-patterns.md` 构建依赖图（facts 为叶子，reasoning 为中间，
-  claims 为高层），求拓扑序。
-- 登记所有带 `conflict` 字段的节点为「污染节点」。
-- 生成推演计划：要派生的结论、命中的冲突、要呈现的情景分支。
+**契约**
 
-### 阶段 2：前向推演（派生结论）
+```json
+{
+  "graph": {
+    "required": ["project_id", "version_id", "items"],
+    "items": {"required": ["entities", "relations", "facts", "reasoning",
+                            "claims", "evidence", "conflicts", "validations"]}
+  },
+  "claim": {"required": ["id", "text", "claim_type", "falsifiable_by"],
+            "claim_type": {"enum": ["conclusion", "recommendation", "hypothesis", "inference"]}},
+  "evidence": {"required": ["id", "kind"],
+               "kind": {"enum": ["E0","E1","E2","E3","E4","E5","E6","hypothesis","fact"]}},
+  "bounded_by": {"required": ["range_known"],
+                 "status": {"enum": ["", "部分可核"]}}
+}
+```
 
-- 沿拓扑序正向传播：facts 取值 → reasoning 按 formula 计算 → claims 聚合。
-- 口径与单位校验：流量与存量不可直接相减；换算须绑定换算证据。命中冲突的结论降级为「待审」。
-- 派生图谱未明示的新结论时，标注为「推演结论」，登记 `(结论文本, 依赖集合, 证据集合, 是否待审)`。
-- 冲突一律「待审」呈现，绝不擅自改数字或补口径消除冲突。
+**执行**
 
-### 阶段 3：校验与分层
+```python
+# scripts/validate_graph.py（已实现，234 行）
+def check_v28_semantics(items):
+    for c in items["claims"]:
+        assert c["claim_type"] in CLAIM_TYPES,  f"{c['id']} claim_type 越界"
+        if not c.get("falsifiable_by"):
+            warn(f"{c['id']} 缺 falsifiable_by → 视为口号，不应用")
+    for e in items["evidence"]:
+        assert e["kind"] in EVIDENCE_KINDS,     f"{e['id']} kind 越界"
+    for r in items["relations"]:
+        if r["type"] == "bounded_by" and r["payload"].get("range_known") is False:
+            if r["payload"].get("status") != "部分可核":
+                warn(f"{r['id']} range_known=false → 写作时禁止说「符合」")
+```
 
-- 用 `validations` 的 `status`（SUPPORT / PARTIAL_SUPPORT / CONTRADICT / CONTEXT /
-  INSUFFICIENT）与 evidence 的 `kind`，为每条结论确定表述姿态（陈述式 / 限定式 / 条件式 / 待审 / 祈使式）。
-- 必要时调用 `claim-validation-skill`、`conflict-detection-skill`、`claim-evidence-binding-skill`
-  对推演结论做二次校验。
+**门禁 G0 · 图谱契约**
 
-### 阶段 4：溯源写作（生成报告）
+```bash
+python scripts/validate_graph.py graph.json
+# 退出 0 = 可用；非 0 = 拒绝写作
+```
 
-- 用 `plate_open`（title 取 `meta.title`）在右侧 Plate 编辑器打开报告，作为**主编辑面**。
-- 写作前先做两次「右侧表单面板」交互（见下「交互层」）：
-  1. 若 `instantiate` 有 `undefined_notes`，用 `content_open(kind:"spreadsheet")` 打开「遗漏补录表」
-     （缺失字段 × 补充值），用户填后 `content_read` 读回，把补充事实追加进 `provided_facts` 重新装配。
-  2. 用 `content_open(kind:"spreadsheet")` 打开「章节字数表」（章节 × 字数预算），用户一次性填写，
-     读回后把字数注入写作提示词，作为 `plate_edit` 每章篇幅约束。
-- 按 `assets/report-outline.md` 骨架逐章写作，用 `plate_edit` 分小批提交（每次提交完整 Slate JSON：
-  标题 + 第一段 → 各章节，见 `references/provenance-writing.md`）。
-- 遵循 `references/provenance-writing.md`：事实单源、论断级溯源标记（`〔CL3｜R5｜E1,E3〕`）、
-  冲突显式「⚠ 待审」框、证据性质分层措辞。
-- 每节起草后，调用 MCP 工具 `check_number_consistency(draft_md, facts)` 做数字一致性核对
-  （`unbound` 数字、口径存疑一律「待审」，见 `references/provenance-writing.md` 第 6 节）。
-- 版式与体裁规范遵循 `workdsh-word-design` skill。
-- **定稿后**（用户在 Plate 编辑完成），用 `content_open` 生成 Word 并 `content_export` 导出真实 DOCX
-  —— plate 本身不导出 docx，「docx 交付」走 content_* 这条轨（编辑在 plate、交付在 content）。
+**代价（实测）**
 
-### 阶段 5：反向回读、二次判断与交付
+```
+不校验 claim_type → 把 hypothesis 写成「将影响师生出行」（应「若…则可能…」）
+不校验 range_known=false → 63 条无原文限值的约束被写成「符合规范」
+```
 
-- 用户在 Plate 编辑（删除/增加/前后调整）后，**手动触发**二次判断（用户说「检查一遍 / 核对 / 二次判断」时）：
-  1. `plate_read` 读回最新内容，与上一版 diff，定位改动段落。
-  2. `check_number_consistency(draft_md, facts)` 重新核对数字（改数字是否漂移 / 前后不一致）。
-  3. 按 `references/provenance-writing.md` 第 5 节逐句回读：判断改动类别（改数字/改结论/增删论述/改建议），
-     回写到对应图谱节点。
-  4. 重新做前向推演与冲突检查，标注被改动「传染」的下游结论。
-- 无法定位来源的改动显式标注「未溯源」，不得假装绑定。
-- 定稿后（用户说「导出 / 交付」），用 `content_open` 生成 Word + `content_export` 导出真实 DOCX 交付。
+---
 
+### 阶段 1 · 建推演计划
 
+**契约**
+
+```json
+{
+  "plan": {"required": ["sections", "why"],
+           "sections": {"items": {"required": ["no", "title", "facts", "rules", "conflicts"]}}}
+}
+```
+
+**执行**
+
+```python
+def build_plan(graph, outline):
+    for sec in outline:
+        yield {
+            "no": sec.no,
+            "facts": [f for f in graph.facts if f.section == sec.no],
+            "rules": [r for r in graph.reasoning if r.section == sec.no],
+            "conflicts": [c for c in graph.conflicts if sec.no in c.involved_sections],
+            "claims": [c for c in graph.claims if c.section == sec.no],
+            "norm_refs": [b for b in graph.bounded_by if b.section == sec.no],
+        }
+```
+
+**门禁 G1 · 计划完整性**
+
+```
+每节至少有一类内容（facts / rules / claims / conflicts 任一非空）
+空节必须标「本节无图谱内容，按体裁写」
+```
+
+**代价**
+
+```
+不建计划直接写 → 119 节里 49 节无内容可写，产出大量「待补充」
+```
+
+---
+
+### 阶段 2 · 前向推演（派生结论）
+
+**契约**
+
+```json
+{
+  "derived": {"required": ["rule", "result", "inputs", "expr"],
+              "inputs": {"items": {"required": ["node", "value"]}}}
+}
+```
+
+**执行**
+
+```python
+def forward(rule, graph):
+    """沿 computed_from 前向推演，禁止反算"""
+    inputs = {d.name: graph.value(d.node) for d in rule.deps if d.node}
+    if len(inputs) < len(rule.deps):
+        return None, [d.name for d in rule.deps if not d.node]   # 显式阻塞
+    result = eval_rule(rule.expr, inputs)
+    return Derived(rule=rule.id, result=result, inputs=inputs, expr=rule.expr), None
+
+assert not any(has_cycle(r) for r in rules), "推演链不得有环"
+assert not backward_computed(rule),          "不许反算（用结果倒推输入）"
+```
+
+**门禁 G2 · 派生闭环（继承 P11 + 写作增量）**
+
+```
+判据继承 P11：要么闭合、要么显式阻塞，不得静默跳过
+写作侧额外要求：阻塞的规则，正文必须写出「缺什么」，不许只写「待补」
+```
+
+**代价（实测）**
+
+```
+18 条规则因缺输入被静默跳过 → 读者以为算过，实际没算
+反算（用 95.04 倒推定额）→ 得到自洽但无依据的数
+```
+
+---
+
+### 阶段 3 · 校验与分层
+
+**契约**
+
+```json
+{
+  "validated_claim": {"required": ["id", "claim_type", "falsifiable_by", "evidence_strength"],
+                      "evidence_strength": {"enum": ["SUPPORT", "PARTIAL_SUPPORT",
+                                                     "CONTRADICT", "CONTEXT", "INSUFFICIENT"]}}
+}
+```
+
+**执行**
+
+```python
+def classify(claim, evidence):
+    if any(e in evidence for e in contradicting(claim)):  return "CONTRADICT"
+    if all_premises_supported(claim):                     return "SUPPORT"
+    if some_premises_supported(claim):                    return "PARTIAL_SUPPORT"
+    if evidence:                                          return "CONTEXT"
+    return "INSUFFICIENT"
+
+# 必要性推导实测：3/4 前提有依据 → PARTIAL_SUPPORT
+# 结论「综上所述…十分必要」只能写「其中第 X 条依据待补」
+```
+
+**门禁 G3 · 论断分级**
+
+```
+SUPPORT / PARTIAL_SUPPORT 可写成论断
+CONTRADICT / INSUFFICIENT 只能写成「待核」，不得写成结论
+```
+
+**代价（实测）**
+
+```
+CL-必要性-03 无依据，但结论仍写「综上所述…十分必要」
+→ 归纳有断点，评审一查即破
+```
+
+---
+
+### 阶段 4 · 溯源写作（生成报告）
+
+**契约**
+
+```json
+{
+  "section_out": {"required": ["no", "markdown", "node_mentions", "unresolved"],
+                  "node_mentions": {"description": "正文里 〔节点ID〕 的清单，用于反向回读"},
+                  "unresolved": {"items": {"required": ["kind", "what"]}}}
+}
+```
+
+**执行**
+
+```python
+def write_section(sec, plan, graph) -> dict:
+    prompt = render_prompt(sec, plan)        # 已产出 119 节提示词
+    md = llm(prompt)
+    # 数值必须带节点锚点
+    for num in numbers_in(md):
+        assert f"〔{num.node}〕" in md, f"{num.value} 缺节点锚点"
+    # 禁止句式的硬检查
+    for c in plan["claims"]:
+        if c["claim_type"] == "recommendation":
+            assert "建议" in md, "recommendation 未写成建议句"
+        if c["claim_type"] == "hypothesis":
+            assert ("预计" in md or "若" in md), "hypothesis 写成了既成事实"
+    # range_known=false 不许说符合
+    for b in plan["norm_refs"]:
+        if b["range_known"] is False and b["status"] != "部分可核":
+            assert "符合" not in md, "无原文限值却说「符合」"
+    return {"no": sec.no, "markdown": md, "node_mentions": extract_ids(md)}
+```
+
+**门禁 G4 · 溯源写作**
+
+```python
+{"stage": "G4", "gate": "正文可回读",
+ "check": "每个数值带〔节点ID〕；recommendation 用建议句；hypothesis 用条件句；"
+          "range_known=false 不说「符合」"}
+```
+
+**代价（实测）**
+
+```
+range_known=false 的 63 条约束 → 若都写「符合规范」，全部站不住
+hypothesis 写成既成事实 → 「施工将影响师生出行」应为「若施工组织不当可能影响」
+```
+
+---
+
+### 阶段 5 · 反向回读与交付
+
+**契约**
+
+```json
+{
+  "readback": {"required": ["section_no", "node_mentions", "new_claims", "unresolved"],
+               "new_claims": {"description": "正文里新出现的判断，需回写图谱或标待审"}}
+}
+```
+
+**执行**
+
+```python
+def readback(md, graph):
+    mentions = extract_ids(md)                       # 〔N-xxx〕
+    missing = [m for m in mentions if m not in graph.nodes]
+    new_claims = detect_new_judgements(md, graph.claims)
+    for c in new_claims:
+        assert c.get("source_doc"), "新论断必须标来源（第几稿/谁加）"
+    return {"node_mentions": mentions, "missing": missing, "new_claims": new_claims}
+```
+
+**门禁 G5 · 回读闭环**
+
+```
+正文提到的节点必须都存在（否则是臆造）
+新论断必须标来源并进待审，不得直接进正式图谱
+```
+
+**代价（实测）**
+
+```
+客户改稿新增论断不标来源 → 下一轮无法判断「这句是谁加的」
+正文引用了不存在的节点 ID → 反向回读失败，溯源链断
+```
+
+---
+
+## 五个阶段的依赖与门禁
+
+```
+G0 载入校验
+    ↓
+G1 建计划 → G2 前向推演 → G3 论断分级
+                              ↓
+                        G4 溯源写作
+                              ↓
+                        G5 反向回读
+```
+
+| 门禁 | 不通过的后果 |
+|---|---|
+| G0 图谱契约 | 分类错，全文句式错 |
+| G1 计划 | 空节大量出现 |
+| G2 派生 | 数值无来源，读者以为算过 |
+| G3 分级 | 无依据的论断写成结论 |
+| G4 写作 | 数值无锚点，不可回读 |
+| G5 回读 | 溯源链断，无法审计 |
 
 ## 写新项目：复用历史项目资产
 
@@ -456,3 +696,304 @@ M / N 就是这章的可审计度 —— 低于 50% 说明图谱关系没建全�
 ```
 
 同类项目对比时，用「同用途 + 同类型 + 同规模」筛出可比案例。
+
+
+## 论断强度：claim_type 与 falsifiable_by 决定怎么写
+
+V2.4 起 claim 必须带 `claim_type`（四类）与 `falsifiable_by`（什么能推翻它）。
+写作时按类型选句式，**不能所有论断都用「充分/合理」**。
+
+| claim_type | 含义 | 写作句式 | 禁用 |
+|---|---|---|---|
+| `conclusion` | 归纳结论 | 「综上，…（依据前 N 条）」 | 不许无前提的「显然」 |
+| `recommendation` | 建议 | 「建议…（条件：…）」 | 不许写成已定事项 |
+| `hypothesis` | 预测 | 「预计…（前提：…）」「若…则…」 | **不许写成既成事实** |
+| `inference` | 因果推理 | 「由于…，因此…」 | 不许因果倒置 |
+
+### falsifiable_by 是写作的「证据检查清单」
+
+```
+claim.falsifiable_by = "找到一条证据表明该判断不成立（如必要性不足的反证）"
+    → 写作时必须能说出「我查过了，没找到反证」或「有反证，见 X」
+    → 说不出的，这条论断要降级或删
+
+claim.falsifiable_by = "实际结果与预测不符"
+    → hypothesis 类，必须写清「前提假设」与「若前提变化会怎样」
+```
+
+### 本项目实例（19 条 claim）
+
+```
+CL-结论-01  [conclusion]     建设必要性充分：…
+             falsifiable_by: 找到一条证据表明该判断不成立
+             → 写作时要能列出 4 条必要性前提 + 各自依据（已有 3/4）
+
+CL-建议-01  [recommendation] 建议有关部门尽早批复
+             → 不能写成「本项目将获批复」
+
+CL-风险-02  [hypothesis]     施工车辆可能影响师生出行
+             → 必须写「若施工组织不当则…」，不能写「将影响」
+```
+
+## 证据等级：E0~E6 决定这条论断能不能写
+
+V2.6 起证据分七级（原 E1~E6，新增 E0）。写作时按等级判断可信度。
+
+| 等级 | 含义 | 可核验 | 写作要求 |
+|---|---|---|---|
+| **E0** | 编制方踏勘/调查 | ✔ | 注明「经现场踏勘」「经调查」 |
+| **E1** | 客户给定 | ✘ | **必须注明提供方与日期**；关键项要签认 |
+| **E2** | 规范条文 | ✔ | 必须带标准号 + 条款号 + 版本 |
+| E3 | 外部公开数据 | ✔ | 注明发布机构/日期/URL |
+| E4 | 图内派生 | ✔ | 注明算式与输入（可复算） |
+| E5 | 类比工程 | 部分 | 注明类比对象与可比性 |
+| E6 | 专家判断 | ✘ | 注明专家身份与依据 |
+
+### 写作时的三条硬规则
+
+```
+① E1 没写提供方的 → 不能写成「据甲方提供」，只能写「据项目资料」
+② E2 没给标准号的 → 不能写「符合规范」（见下节「模糊引用」）
+③ E5 没有可比性说明的 → 不能写「参照同类项目」当依据
+```
+
+### 本项目实例（470 条证据重分级后）
+
+```
+E0  7 条   场地四至、现状描述、措施方案（原误标 E1）
+E1 15 条   校内决议、规划、财务数据（原 31 条）
+E2 59 条   规范条文
+E3 15 条   统计年鉴、公开数据
+E4  8 条   面积汇总、造价合计（原误标 E1）
+E5 16 条   类比工程
+E6  2 条   专家判断
+hypothesis 5 条  预测性表述（原误标 E1）
+```
+
+**误标 E1 的 16 条，写作时必须改口径。**
+
+## 模糊引用：不能只写「符合规范」
+
+V2.6 新增扫描：只写「基于 GB」「符合规范」不给编号的，是真缺陷。
+
+### 判据
+
+```
+写了「符合规范/相关规范/规范要求」但没给标准号 + 条款号
+    → 不能作为合规依据
+    → 必须补编号，或改写为「依据某标准，限值待核」
+```
+
+### 本项目实测 4 条真缺陷
+
+```
+§7.3.3  「风量的选取满足相关规范的要求」          ← 哪个规范？
+§7.3.3  「风量耗功率Ws符合规范要求」              ← 哪条？
+§9.3.2  「风量的取值标准符合相关规范的规定」      ← 哪个？
+```
+
+**排除 44 处误报**（警示语 29 / 同句有编号 8 / 后接书名号 4 / 规范内部互引 3）。
+
+### 写作时的处理
+
+```
+遇到模糊引用：
+  ✗ 照抄「满足相关规范要求」
+  ✓ 「按《XX规范》GBxxxx-20xx 第 X.X 条（条款原文待核）」—— 若确实不知道是哪条，写「相关规范要求，具体条款待补充」
+```
+
+## 部分可核：比 range_known 二值更细的状态
+
+`range_known` 只有 true/false，但实际有第三种：**部分参数可核、部分不可核**。
+
+### 本项目实例（风荷载体型系数 1.3）
+
+```yaml
+payload:
+  range_known: false
+  status: 部分可核
+  verified_parts:
+    mu_z: "表8.2.1 B类 49m 插值 ≈1.61  ✅ 可核"
+    w0:   "表E.5 上海 R=50 = 0.55    ✅ 可核"
+    mu_s: "表8.3.1 为图片未转录；1.3 = 迎风0.8+背风0.5 属常规，⚠️ 无法逐项核对"
+```
+
+### 写作句式
+
+```
+✗ 「风荷载体型系数取 1.3，符合 GB50009 要求」
+✓ 「风荷载体型系数取 1.3（迎风 0.8 + 背风 0.5），属封闭式矩形平面建筑常规取值；
+   风压高度变化系数按表8.2.1 B类 49m 取 1.61、基本风压按表E.5 上海取 0.55；
+   **体型系数表8.3.1 原文为图示，逐项核对待补**」
+```
+
+**「部分可核」要拆开写清哪个核了、哪个没核。**
+
+## 因果链：一个根因三个表象，写作要按根因组织
+
+V2.7 起可用 `semantica_causal_chain` 追因果。
+
+### 本项目实测链条
+
+```
+建筑高度 60m vs 49m   ← 根因（可算出 49）
+    ├─CAUSED→ 耐火等级 二级 vs 一级
+    └─CAUSED→ 消防水箱 18 m³ vs 36 m³
+```
+
+### 写作时的组织方式
+
+```
+✗ 三个冲突并列写（读者看不出先解决哪个）：
+   「本项目存在三个待审：建筑高度、耐火等级、消防水箱」
+
+✓ 按根因组织：
+   「本项目建筑高度两处口径不一致：§6.2.2 写 60m，按 §6.2.4 的 12层/5m/4m 计算为 49m。
+    该差异连带影响两项判定：
+      · 若按 60m（>50m）→ 属一类高层公共建筑 → 耐火等级不应低于一级（现填二级）
+      · 若按 49m（≤50m）→ 属二类高层 → 耐火等级二级成立、消防水箱 18m³ 成立
+    建议先核定建筑高度，再定另两项。」
+```
+
+### 判定条件
+
+**只有存在 `CAUSED` / `INFLUENCED` 边时才这么写**，不能凭主题相似自己编因果。
+
+## 写作提示词：119 节已经生成，直接用
+
+V2.2 起产出 `写作输入/section-prompts.yaml`（119 节），每节提示词含六块：
+
+| 块 | 内容 |
+|---|---|
+| 项目标签 | 科研·建筑·中型·可研·高层·抗震·消防… |
+| 篇幅参考 | 原文 N 字符 / M 切片，据此控制详略 |
+| **事实清单** | N 条，每条带 `描述 + 变量标签 + 用途 + 约束 + 节点ID` |
+| **算式** | 规则的可执行表达式，要求写作时复算 |
+| **规范约束** | 带 `range_known`，明确「不得说符合」 |
+| **待审冲突** | 该章涉及的，明确「不得裁决、不得两值并存」 |
+
+### 用法
+
+```
+取 section-prompts.yaml 里对应章节的 prompt
+→ 投喂写作模型
+→ 返回 Markdown 正文（数值写〔节点ID〕引用）+ node_mentions + new_claims + unresolved
+```
+
+**提示词里的节点 ID 是锚点，正文里必须保留** —— 这是可反向回读的前提。
+
+## 五个 Semantica 工具在写作期的用法
+
+| 工具 | 写作期用途 |
+|---|---|
+| `semantica_query(mode=search)` | 模糊找「和这个话题相关的所有节点」，比 grep 全 |
+| `semantica_query(mode=neighbors, depth=2)` | 找「依赖这个数值的所有节点」，判断影响面 |
+| `semantica_query(relationship_types=[bounded_by])` | 只抽合规约束，写合规段落用 |
+| `semantica_causal_chain` | 找冲突根因，按根因组织段落 |
+| `semantica_precedents` | 找同类冲突以前怎么处理的，定写作口径 |
+| `semantica_analytics` | pagerank 找最被依赖的节点，决定详略 |
+
+### 三个坑（写作时容易踩）
+
+```
+① ID 必须完整 32 位（前缀匹配不上）
+② 因果边类型必须 CAUSED/INFLUENCED（小写 causes 无效）
+③ scenario 为 None 的 decision 只能用 UUID 定位
+```
+
+## 一条铁律
+
+> **写作不是「把图谱翻译成中文」，而是「按证据强度选择句式」。**
+>
+> claim_type 决定句式（结论/建议/预测/推理）
+> 证据等级决定可信度（E0~E6，E1 缺提供方要改口径）
+> range_known 决定能不能说「符合」（false 只能说「待核」）
+> 部分可核要拆开写（哪个核了、哪个没核）
+> 因果链决定段落组织（按根因，不按表象并列）
+
+
+## 写作前的三个自检（V2.9）
+
+这三个自检对应上游 77% 假缺率的教训 —— **如果上游报了假缺，写作时会照着假缺写。**
+
+### 自检一：引用的每个「缺」是否带 searched 证据
+
+```
+✗ 提示词说「本章缺 X 依据」→ 直接写「依据待补」
+✓ 先查缺的 why_real 字段：搜过节点表吗？搜过原文吗？查过量纲吗？
+```
+
+**实测**：上游报「关系缺证据 190 条」，实际只有 2 条真缺。
+如果照 190 条写，正文会有 188 处无谓的「待补」。
+
+### 自检二：数值是否复算过
+
+```
+✗ 照抄图谱里的 value
+✓ 用 expr 复算一遍，与图谱比对
+```
+
+**实测**：
+
+```
+R-总投资构成 = 11188+1171+618+55 = 13032 ✓
+若绑定错（10135 招标估算）= 11979 ✗ 差 1053
+```
+
+**写作时复算，能发现上游的绑定错误。**
+
+### 自检三：冲突是否已找到根因
+
+```
+✗ 「本项目存在三个待审：建筑高度、耐火等级、消防水箱」
+✓ 先跑 semantica_causal_chain，看有没有 CAUSED 边
+```
+
+**实测**：三条冲突共用一个根因（建筑高度 60 vs 49），
+按根因写能让读者知道**先解决哪个**。
+
+### 一条铁律
+
+> **上游报的缺，写作时要复核；上游报的数，写作时要复算。**
+>
+> 不全信上游 —— 因为上游也会假缺（实测 77%）。
+
+## 三份专家 skill 的分工边界
+
+本项目涉及三个 skill，容易混：
+
+| skill | 管什么 | 不管什么 |
+|---|---|---|
+| **knowledge-processing** | 从原始文档到语义图谱（七道工序） | 不管怎么写报告 |
+| **standard-regulation-extraction** | 外部规范文件到条款库 | 不管项目内稿件 |
+| **graph-deductive-writing-skill** | 图谱到 Word 报告（推演写作） | 不管建图 |
+| **feasibility-report-edu-research** | 高校科研用房可研的**体裁规范** | 不管建图与推演 |
+
+### 什么时候用哪个
+
+```
+拿到 docx → knowledge-processing（建图）
+要引标准 → standard-regulation-extraction（建条款库）
+有图谱要写报告 → graph-deductive-writing-skill（推演写作）
+写的是高校科研用房可研 → 追加 feasibility-report-edu-research（体裁与法定章节）
+```
+
+### 共享的判定标准（必须一致）
+
+| 标准 | 定义在 | 谁要用 |
+|---|---|---|
+| `claim_type` 四类 | claim-extraction | claim-validation / writing / feasibility |
+| 证据 E0~E6 | evidence-extraction | writing / feasibility |
+| `range_known` 三态 | provenance-binding | writing / feasibility |
+| 关系 14 类 | knowledge-processing 的 `relation_types.yaml` | 全部 |
+
+**改一处必须同步，否则口径不一致。**
+
+### 实测踩过的口径不一致
+
+```
+上游 claims.yaml 19 条（复判后）
+但某处还写着 68 条（复判前）→ 写作时按 68 条算，多写 49 条 fact 当论断
+```
+
+**共享判定标准必须有单一真理源，且改动时全链同步。**

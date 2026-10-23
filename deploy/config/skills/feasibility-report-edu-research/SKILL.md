@@ -297,103 +297,308 @@ python3 scripts/corpus.py retrieve corpus/ --section technical --vertical edu-re
 
 G1 之所以是硬闸门：章节 id 是全图的引用锚点，冻结后再改等于全图返工。
 
-## 执行流程
+### 两套门禁的关系（别混）
 
-### 第一步：分诊
+| 套 | 管什么 | 何时触发 | 编号 |
+|---|---|---|---|
+| **G1–G4 流程闸门** | **能不能进入下一步** | 骨架完成 / 关键事实确定 / 每章完成 / 全章完成 | G |
+| **F1–F6 工序门禁** | **这一步的产出合不合格** | 每道工序产出时 | F |
 
-先问清楚这几件事，其中**「由谁投资」无法从项目名称推断，必须客户明确**——它决定用哪本大纲、C7 查哪套覆盖、D11 盈利能力是否适用。
-
-**「项目具体在哪个省哪个市」同样必须客户明确，不得从单位名称推断**——多校区、多厂区的单位，注册地与项目所在地经常不是一个地方。答错这一问会把一整套管不着本项目的地方规定固化进报告。
-
-从项目名称可以初步推断建设性质、功能类型、主体类型，但推断结果一律须客户确认。
-
-完整问题清单见 `references/triage.yaml`。分诊之后、动笔之前，先跑一遍 `intake_scan.py` 把素材缺口摊开。
-
-### 第二步：生成骨架并请客户确认（G1）
-
-三层解耦，这是骨架生成的核心逻辑：
-
-| 层 | 管什么 | 可变性 |
-|---|---|---|
-| 法定大纲（`references/outline-*.yaml`） | 必须覆盖什么内容 | 不可裁剪 |
-| 垂类章节模版（`references/verticals/*/outline.yaml`） | 分几章、怎么排、叫什么名 | 由垂类决定 |
-| 本项目骨架 | 本项目实际目录 | 生成后经客户确认冻结 |
-
-**标题可变，覆盖不可少。** 三者通过 `covers` 字段映射。这就是「神似形不似」的机检定义：**神 = covers 全集 + D1–D11 合取分解 + 数据链拓扑，形 = 章节数、排序、命名、详略。**
-
-垂类模版若是一套写死的章节，报省里的和报部委的会长得一模一样，评审一眼看出是模板。所以骨架要按甲方基本情况**变形**——七个算子：合并 / 拆分 / 升级 / 降级 / 调序 / 追加子节 / 声明不适用。变形只搬动内容的容器，不增减内容本身，合法性只看一条：covers 全集是否不变（C7 守门）。
-
-决定「形」的那组变量里，两个必须问客户、agent 查不到：**报给谁审**（报部委和报市里的形态差别很大，问不到就按最高层级从严——从严的可以删，从简的补不回来），和**该审批口的章节惯例**（成文规范里查不到，但不遵守会被退回补正）。
-
-篇幅有上限时先合并容器，不删内容——**篇幅压力不构成删 covers 的理由**。算子、变形规则与不变量见 `references/outline-shaping.yaml`。
-
-呈给客户的骨架表要有四列：章号 / 章节标题 / 承载的法定内容 / 状态。并单独列出判定为"不适用"的章节及理由，请客户逐条确认。
-
-客户可以改标题、调顺序、增垂类子节、推翻"不适用"判定。客户**不能**删除任何法定 covers——遇到这种要求，说明这条来自哪本大纲哪一款、删了会在评审环节被打回，而不是简单拒绝。
-
-### 第三步：图驱动循环
-
-按上面的动作优先级循环推进。每次回写图后重跑检查。
-
-起草某章之前确认三件事：该章 requires 的节点全部满足、该章服务的维度其论证已填满 Toulmin 必填项、图上无未解决的 error。不满足就不写。
-
-三件事都满足了，起草这一章还差**查**和**借鉴**两步。一条命令合成：
-
-```bash
-python3 scripts/section_brief.py project.yaml --section technical --corpus corpus/
+```
+G1 骨架确认  ──→ 工序1 素材摄入 → F1
+                 工序2 来源路由 → F2
+G2 关键事实  ──→ 工序3 规模论证 → F3
+                 工序4 投资估算 → F4
+G3 逐章确认  ──→ 工序5 论断写作 → F5
+                 工序6 冲突呈现 → F6
+G4 出稿      ──→ （汇总 F1–F6 全绿 + C1–C7 全绿）
 ```
 
-简报固定四节，顺序是硬的：① 本章图谱切片与起草前置 ② 这一章的法定内容项触发了哪些检索 ③ 同类报告这一章的**形** ④ 逐段写作计划。**先把事实定下来，再考虑怎么表述**——反过来做（先照着同类报告起个稿再往里填数）是套模板的标准路径。
+**G4 出稿的条件就是「F1–F6 全绿」**，所以不再单设 F7。
 
-第四节按写作单元排表：每个单元多少段、目标多少字、承载哪几条必写项。**一段一交**：写完一段就核，核完再写下一段。整章写完再核，返工的是整章，而且成稿的外观会让客户只改句子不补事实。段数不必等于历史样本——图谱里还有没写到的必写项就加段，历史有而本项目没有对应事实的就删段，**不许为了凑段数注水**。挂不到具体单元的必写项单独列出逐条核销，剩下的就是这一章漏写的法定内容。
 
-**DRAFT 动作产出的是 `content.yaml` 里的章节条目，不是散落在对话里的文字。** 正文写进 `content.yaml`，数字写成 `{{节点名}}` 占位符，最后由 `render.py` 一次性渲染成 Word。照着 `templates/content-template.yaml` 的结构写。
+## 执行流程（四段式：契约 / 执行 / 门禁 / 代价）
 
-在对话里直接输出正文而不落到 `content.yaml`，等于放弃了 SSOT——那些数字就再也不跟着图走了。
+> **为什么不用自然语言写步骤**：实测把「写作要按证据强度选句式」写成散文，
+> 结果 hypothesis 写成既成事实、`range_known=false` 写成「符合规范」；
+> 写成断言后一跑就定位。**纪律靠提醒，机制靠退出码。**
 
-### 第四步：出稿（G4）
+---
 
-跑完整校验，然后**渲染出 Word 文档**，连同检查报告与审计包一起交付：
+### 工序 1 · 素材摄入
 
-```bash
-# ① 先校验。有 error 先解决，不要带着冲突渲染
-python3 scripts/validators.py project.yaml --json check.json
+> **本工序的方法在「素材摄入：客户交来一堆材料之后」一节**（intake_scan.py、
+> 四样输出、追料三档时钟、S1–S4 出口）。本节只加**可校验的契约**与**两条增量断言**，
+> 不重复那边的流程说明。
 
-# ② 渲染成 Word —— 这一步产出的 out/report.docx 才是交付物
-python3 scripts/render.py project.yaml content.yaml -o out/
+**契约**（新增：让「素材台账」可机器校验）
 
-# ③ 篇幅门禁 —— 分章未达标或全篇总量未达标都不放行
-python3 scripts/length_gate.py project.yaml content.yaml \
-    --corpus corpus/<垂类>/<条目>/ --count-mode nows
-
-# ④ 审计包
-python3 scripts/audit.py trace project.yaml -o audit/
+```json
+{
+  "intake": {"required": ["docs", "dedup_report"],
+             "docs": {"items": {"required": ["id", "m_class", "pages", "text_hash"],
+                                "m_class": {"description": "M1批复/M2规划用地/M3设计/M4造价财务/M5施工/M6基础资料/M7专项评估/M8规范"}}},
+             "dedup_report": {"required": ["kept", "dropped", "basis"]}}
+}
 ```
 
-`render.py` 输出这些东西：`out/report.docx`（成品）、`out/bindings.json`（锚点绑定表，客户改稿后回读要用）、`out/snapshot.json`（本次渲染的图快照）；同时报出每章字数与篇幅偏离，以及 `out/figures/*.svg`（生成的示意图源文件）。中间两个不交给客户，但**必须留着**——没有 bindings.json，第五步的回读就退化成文本匹配。
+**执行**
 
-用 `SendUserFile` 把 `report.docx` 交给客户。只贴一段正文或只给 `project.yaml` 都不算交付。
+```python
+# 主体流程走原有脚本
+#   python3 scripts/intake_scan.py project.yaml
+# 本节只加两条断言（原有流程没覆盖的）
+def assert_intake_quality(docs) -> None:
+    # ① 每份素材要有内容指纹 —— 否则同一份材料发三次会被当三份证据
+    assert all(d.get("text_hash") for d in docs), "有素材缺内容指纹，无法去重"
+    # ② 同指纹必须已去重并留痕
+    seen, dup = set(), []
+    for d in docs:
+        if d["text_hash"] in seen: dup.append(d["id"])
+        seen.add(d["text_hash"])
+    assert not dup, f"仍有未去重的重复素材：{dup}"
+```
 
-审计包含派生轨迹（每个数字用了哪条规则、上溯到哪些叶子输入、依据是什么）与防篡改指纹。可研要过评审、要备案，出了问题要能倒查——人写的报告只有结论没有过程，答不上来。
+**门禁 F1 · 素材台账可溯**（增量，原有四样输出仍照跑）
 
-设 `FSR_AUDIT_KEY` 环境变量可启用 HMAC 签名；不设则退化为 SHA256，只能验完整性、不能证明来源。
+```
+原有：台账 / 缺哪几类（含追料话术）/ 指不回具体页的取值 / ASK-SEARCH-COMPUTE-WITHHOLD 路由
+增量：① 每份有 m_class + text_hash ② 同指纹已去并留痕（防同一份材料被当多份证据）
+```
 
-每笔变更用 `audit.py log` 入账，链式哈希，改中间任何一条后面全部失配。
+**代价（实测）**
 
-### 第五步：客户改稿后的回读
+```
+同一份图纸被客户发了三次（pdf / 扫描 / pdf转图）
+→ 三份都当独立证据 → 证据量虚高 3 倍
+→ 加 text_hash 后去重，发现是同一份内容
+```
 
-客户一定会直接改 Word 文档。如果不回读，那份稿子就脱离了图谱，此后所有一致性保证失效。
+### 工序 2 · 来源路由
 
-回读要分类处置：改客户给定事实 → 接受并传播；改派生值 → 拒绝并问清楚是哪个上游变了；只改了复述处 → 拒绝并指出权威来源在哪一章；改行文不改事实 → 接受，记入文风偏好；删内容 → 检查是否导致法定覆盖失守。
+**契约**
 
-用 `scripts/reconcile.py` 执行。它支持两种模式：
+```json
+{
+  "routed_fact": {"required": ["subject", "value", "source_kind", "provider"],
+                  "source_kind": {"enum": ["E0", "E1", "E2", "E3", "E4", "E5", "E6"]},
+                  "provider": {"description": "E1 必填：谁给的、什么时候、哪一版"}}
+}
+```
 
-- **协同文档**（推荐）：平台给稳定块 ID + 变更事件，定位是确定的，还能实时批注影响
-- **docx 往返**：靠渲染时埋的书签定位，书签被破坏时退化为文本匹配，无主变更率更高
+**执行**
 
-拒绝时要给足裁决信息。改派生值时，脚本会列出该值的公式与全部上游取值，并说明「您想说的多半不是『这个数变成 21000』，而是某个上游变了」。
+```python
+def route(fact, docs) -> dict:
+    """每条信息必须说清「从哪来」，不许默认 E1"""
+    kind = classify_source(fact)
+    if kind == "E1":
+        assert fact.get("provider") and fact.get("provide_date") and fact.get("version"), \
+            f"{fact['subject']} 标 E1 但缺 provider/date/version"
+    return {**fact, "source_kind": kind}
 
-完整机制见 `references/reconcile.yaml`。
+assert all(f["source_kind"] for f in facts), "有事实没标来源等级"
+```
+
+**门禁 F2 · 来源等级**
+
+```
+每条事实有 E0~E6；E1 必须带 provider / provide_date / version；缺一即降级或标 unknown
+```
+
+> **与「来源路由」一节的区别**（两个维度，都要过）：
+> 路由（ASK/SEARCH/COMPUTE/WRITE/WITHHOLD）管**去哪拿**；
+> 等级（E0~E6）管**拿到后有多可信**。
+> 例：某数走了 ASK 路由拿到 → 等级是 E1，还必须带 provider/date/version；
+> 同一数若走 COMPUTE 算出 → 等级是 E4，必须带可复算算式。
+
+**代价（实测）**
+
+```
+31 条标 E1 的证据全部缺 provider/date/version
+→ 说明 E1 是「默认值」不是「判断结果」
+→ 重分为 E0×7 / E1×15 / E3×15 / E4×8 / hypothesis×5
+```
+
+---
+
+### 工序 3 · 建设规模论证
+
+**契约**
+
+```json
+{
+  "scale": {"required": ["recipe", "inputs", "result", "basis"],
+            "basis": {"description": "指标依据：建标191-2018 表/条 + 是否拿到原文"}}
+}
+```
+
+**执行**
+
+```python
+def compute_scale(recipe, inputs) -> dict:
+    need = sum(n * quota for n, quota in inputs["people_quota_pairs"])
+    need += inputs["support_area"]
+    assert all(i.get("basis") for i in inputs["quotas"]), "每个人均指标要有依据"
+    return {"result": need, "basis": inputs["quotas"],
+            "range_known": all(i.get("clause_verified") for i in inputs["quotas"])}
+```
+
+**门禁 F3 · 规模可复算**
+
+```
+规模算式可复算；每个人均指标带依据（标准号+条款号）；未拿到原文标 range_known=false
+```
+
+**代价（实测）**
+
+```
+人均面积指标 16㎡/人（科研）/8㎡/人（研究生）—— 建标191 原文未抓到
+→ 只能写「参考建标191 指标」，不能写「符合指标」
+→ 规划 18040㎡ vs 实际 18000㎡，差 40㎡，判「规模合理」需说明依据
+```
+
+---
+
+### 工序 4 · 投资估算
+
+**契约**
+
+```json
+{
+  "estimate": {"required": ["items", "total", "closing_check"],
+               "items": {"items": {"required": ["name", "area", "unit_price", "amount"]}},
+               "closing_check": {"required": ["subtotal_sum", "stated_total", "diff"]}}
+}
+```
+
+**执行**
+
+```python
+def estimate(items) -> dict:
+    for it in items:
+        if it.get("area") and it.get("unit_price"):
+            calc = it["area"] * it["unit_price"] / 10000
+            assert abs(calc - it["amount"]) < 2, \
+                f"{it['name']} 单价×面积={calc} ≠ 金额={it['amount']}"
+    total = sum(i["amount"] for i in items)
+    return {"total": total, "closing_check": {...}}
+
+assert abs(total - stated_total) < 1, "构成合计与报告总投资不符"
+```
+
+**门禁 F4 · 投资闭合**
+
+```
+① 每个分项：单价 × 面积 = 金额（±2 万元容差）
+② 构成合计 = 报告总投资
+③ 两套口径（投资估算 / 招标估算）不得混用
+```
+
+**代价（实测）**
+
+```
+建安工程费用绑了招标估算 10135，应绑投资估算 11188
+→ 10135+1171+618+55 = 11979 ≠ 13032（差 1053）
+→ 换 11188 后 = 13032 完全一致（11/11 分项单价×面积全部对平）
+```
+
+---
+
+### 工序 5 · 论断分级与写作
+
+**契约**
+
+```json
+{
+  "claim_out": {"required": ["id", "claim_type", "falsifiable_by", "evidence_strength"],
+                "claim_type": {"enum": ["conclusion", "recommendation", "hypothesis", "inference"]},
+                "evidence_strength": {"enum": ["SUPPORT", "PARTIAL_SUPPORT", "CONTRADICT",
+                                               "CONTEXT", "INSUFFICIENT"]}}
+}
+```
+
+**执行**
+
+```python
+def write(claim, evidence) -> str:
+    st = classify(claim, evidence)
+    if st in ("CONTRADICT", "INSUFFICIENT"):
+        return f"{claim['text']}（依据待补：{claim['falsifiable_by']}）"
+    if claim["claim_type"] == "recommendation":
+        return f"建议{claim['text']}"
+    if claim["claim_type"] == "hypothesis":
+        return f"若{claim['condition']}，则{claim['text']}"      # 不许写成既成事实
+    return claim["text"]
+
+# 硬检查（文本包含，不用 LLM 判定）
+for c in claims:
+    if c["claim_type"] == "hypothesis":
+        assert "若" in md or "预计" in md, "hypothesis 写成既成事实"
+    if c["claim_type"] == "recommendation":
+        assert "建议" in md, "recommendation 未写成建议句"
+```
+
+**门禁 F5 · 论断句式**
+
+```
+hypothesis 必须含「若」或「预计」；recommendation 必须含「建议」；
+INSUFFICIENT 只能写「依据待补」，不得写「综上所述」
+```
+
+**代价（实测）**
+
+```
+必要性 4 条前提，3 条有依据、1 条断点
+→ 仍写「综上所述，项目建设十分必要」
+→ 评审一查即破
+```
+
+---
+
+### 工序 6 · 冲突呈现
+
+**契约**
+
+```json
+{
+  "conflict_out": {"required": ["subject", "values", "root_cause", "action"],
+                   "root_cause": {"description": "若有因果链，写根因；无则写「无共同上游」"}}
+}
+```
+
+**执行**
+
+```python
+def present(conflicts) -> str:
+    """按根因分组，不并列罗列"""
+    groups = group_by_root_cause(conflicts)     # 读 CAUSED / INFLUENCED 边
+    out = []
+    for root, children in groups.items():
+        out.append(f"【根因】{root}")
+        for c in children:
+            out.append(f"  · {c['subject']}：{c['values'][0]} vs {c['values'][1]}")
+        out.append(f"【处置】{decide_action(children)}")
+    return "\n".join(out)
+```
+
+**门禁 F6 · 冲突按根因**
+
+```
+同一根因派生的冲突必须在同一节呈现，不许分散；每条冲突不得裁决，只标待审
+```
+
+**代价（实测）**
+
+```
+建筑高度 60 vs 49、耐火等级二级 vs 一级、消防水箱 18 vs 36
+→ 并列写三条「待审」，读者看不出「先解决高度，另两条自动消解」
+→ 建 CAUSED 边后可按根因组织
+```
+
+---
+
+**（F7 已合并进 G4 出稿：G4 的放行条件就是 F1–F6 全绿 + C1–C7 全绿 + 裁决留痕）**
 
 ## 脚本
 
@@ -596,3 +801,153 @@ sections:     章节切片 {id, title, serves, covers, provides, restates, conte
 要向客户讲清楚：本 skill **不对任何数值的准确性负责**。造价单价、人均指标、能耗基准由客户或造价方提供，我们保证的是——法定内容不遗漏、事实在全文传播中不矛盾、每条论断都能追溯到证据、变更影响可见。判断造价高不高、人数合不合理，不在保证范围内。
 
 同时也要讲清楚**我们保证不做什么**：不替客户估数、不拿同类项目的数填本项目的空、不代拟第三方结论、不自行采纳外部政策。材料缺到哪里，报告就空到哪里，并写明空的原因和找谁要。
+
+
+## 本轮实证补丁（V2.8）：写作前必须过的四道判定
+
+以下四条是 2019ZX054 项目（上财中山北一路校区大数据研究中心）实证出来的。
+**都发生在「已有图谱、准备写正文」阶段** —— 不看这四条，会写出看起来对但站不住的段落。
+
+### 判定一：claim_type 决定句式，不是所有论断都写「充分/合理」
+
+| claim_type | 写作句式 | 本项目实例 |
+|---|---|---|
+| `conclusion` | 「综上，…（依据前 N 条）」 | CL-结论-01 建设必要性充分 |
+| `recommendation` | 「建议…（条件：…）」 | CL-建议-01 建议尽早批复 |
+| `hypothesis` | 「预计…（前提：…）」「若…则…」 | CL-风险-02 施工车辆可能影响师生出行 |
+| `inference` | 「由于…，因此…」 | CL-节能-01 满足标准因此达到目标 |
+
+**硬规则**：
+
+```
+hypothesis 不许写成既成事实
+  ✗ 「施工将影响师生出行」
+  ✓ 「若施工组织不当，可能影响师生出行」
+
+每条 claim 必须带 falsifiable_by
+  说不清「什么能推翻它」的 → 不是判断，不写
+```
+
+**实测**：68 个原 judgment 节点复判后只剩 19 条真 claim，**49 条是 fact**（参数、规范转述、编号）。**写作前必须按 claim_type 核实数量，不能照抄旧统计。**
+
+### 判定二：证据等级 E0~E6 决定这条能不能写
+
+| 等级 | 含义 | 写作要求 |
+|---|---|---|
+| **E0** | 编制方踏勘/调查 | 注明「经现场踏勘」「经调查」 |
+| E1 | 客户给定 | **必须注明提供方与日期** |
+| E2 | 规范条文 | 必须带标准号 + 条款号 + 版本 |
+| E3 | 外部公开数据 | 注明发布机构/日期 |
+| E4 | 图内派生 | 注明算式（可复算） |
+| E5 | 类比工程 | 注明类比对象与可比性 |
+| E6 | 专家判断 | 注明专家身份 |
+
+**三条硬规则**：
+
+```
+① E1 没写提供方的 → 不能写「据甲方提供」，只能写「据项目资料」
+② E2 没给标准号的 → 不能写「符合规范」（见判定三）
+③ E5 没有可比性说明的 → 不能写「参照同类项目」当依据
+```
+
+**实测**：31 条原标 E1 的证据重分配为 E0×7 / E1×15 / E3×15 / E4×8 / hypothesis×5。
+**误标 E1 的 16 条，写作时必须改口径。**
+
+### 判定三：range_known 与「部分可核」决定能不能说「符合」
+
+```
+range_known == true 且取值在 [lower, upper] 内
+    → 可写「满足《XX规范》GBxxxx 第 X.X 条」
+
+range_known == false
+    → 只能写「依据 XX，限值待核」
+    → 禁止写「符合规范」
+
+range_known == false 且 status == 部分可核
+    → 逐个参数说明核没核
+```
+
+**部分可核实例（风荷载体型系数 1.3）**：
+
+```
+✗ 「风荷载体型系数取 1.3，符合 GB50009 要求」
+
+✓ 「风荷载体型系数取 1.3（迎风 0.8 + 背风 0.5），属封闭式矩形平面建筑常规；
+   风压高度变化系数按表8.2.1 B类 49m 取 1.61、基本风压按表E.5 上海取 0.55；
+   体型系数表8.3.1 原文为图示，逐项核对待补。」
+```
+
+**实测**：68 条 `bounded_by` 里只有 4 条 `range_known=true`（GB50009 的表5.1.1 与表E.5）。
+**其余 63 条全部禁止写「符合」。**
+
+### 判定四：模糊引用不能照抄
+
+```
+✗ 照抄原文「满足相关规范的要求」
+✓ 「按《XX规范》GBxxxx-20xx 第 X.X 条（条款原文待核）」
+✓ 若确实不知道是哪条 → 「相关规范要求，具体条款待补充」
+```
+
+**实测 4 条真缺陷**：
+
+```
+§7.3.3  「风量的选取满足相关规范的要求」      ← 哪个规范？
+§7.3.3  「风量耗功率Ws符合规范要求」          ← 哪条？
+§9.3.2  「风量的取值标准符合相关规范的规定」  ← 哪个？
+```
+
+**排除 44 处误报**（警示语 29 / 同句有编号 8 / 后接书名号 4 / 规范内部互引 3）。
+
+### 判定五（附加）：冲突按根因组织，不按表象并列
+
+```
+建筑高度 60m vs 49m   ← 根因
+    ├─CAUSED→ 耐火等级 二级 vs 一级
+    └─CAUSED→ 消防水箱 18 vs 36 m³
+```
+
+```
+✗ 「本项目存在三个待审：建筑高度、耐火等级、消防水箱」
+
+✓ 「本项目建筑高度两处口径不一致：§6.2.2 写 60m，
+   按 §6.2.4 的 12层/5m/4m 计算为 49m。
+   该差异连带影响两项判定：
+     · 若按 60m（>50m）→ 一类高层 → 耐火等级不应低于一级（现填二级）
+     · 若按 49m（≤50m）→ 二类高层 → 耐火等级二级成立、消防水箱 18m³ 成立
+   建议先核定建筑高度，再定另两项。」
+```
+
+**只有存在 `CAUSED`/`INFLUENCED` 边时才这么写**，不能凭主题相似自己编因果。
+
+### 判断标准
+
+**本项目 19 条 claim 的证据强度分布**：
+
+```
+有依据（SUPPORT）      12 条
+部分支撑（PARTIAL）     4 条
+无依据（INSUFFICIENT）  3 条  ← 必要性推导的断点在这里
+```
+
+**必要性推导 3/4 有依据**：
+
+```
+CL-必要性-01  引 十三五规划            ✓
+CL-必要性-02  引 大数据发展纲要        ✓
+CL-必要性-03  【无依据】              ✗ ← 断点
+CL-必要性-04  引 双一流支持通知        ✓
+      ↓
+CL-结论-02「综上所述…十分必要」
+```
+
+**判定：不完全成立。** 写作时不能写「综上所述」，要写「其中第 X 条依据待补」。
+
+### 一条铁律
+
+> **写作不是「把图谱翻译成中文」，而是「按证据强度选择句式」。**
+>
+> - `claim_type` 决定句式（结论/建议/预测/推理）
+> - 证据等级决定可信度（E0~E6，E1 缺提供方要改口径）
+> - `range_known` 决定能不能说「符合」（false 只能说「待核」）
+> - 部分可核要拆开写（哪个核了、哪个没核）
+> - 因果链决定段落组织（按根因，不按表象并列）

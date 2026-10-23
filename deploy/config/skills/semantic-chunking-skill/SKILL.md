@@ -30,3 +30,37 @@ SK-01
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"chunk": {"required": ["id", "text", "span", "section"],
+           "span": {"required": ["start", "end"]}}}
+```
+
+**执行**
+
+```python
+def chunk(doc) -> list[dict]:
+    out = []
+    for sec in doc.sections:
+        for seg in semantic_split(sec):            # 段落 / 表 / 图注 独立成块
+            out.append({"id": stable_id(seg), "text": seg.text,
+                        "span": seg.span, "section": sec.id})
+    assert sum(len(c["text"]) for c in out) >= 0.85 * len(doc.text), "切块丢失超过 15%"
+    return out
+```
+
+**门禁 P3 · 切块闭环**
+
+```
+Σchunk 去空白 ≈ 原稿（±15%）；每块 span 可回查；表格不按行切
+```
+
+**代价（实测）**
+
+```
+表格按行切块 → 每行独立成 chunk → 表头与数据永远分家
+```

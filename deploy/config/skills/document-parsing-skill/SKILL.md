@@ -30,3 +30,39 @@ SK-00
 
 ## Validation
 执行 `tests/golden.json` 与 `tests/expected.json` 中定义的基础验收。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"document_ir": {"required": ["blocks", "pages", "source_path"],
+                 "blocks": {"items": {"required": ["type", "span", "page"]}},
+                 "type": {"enum": ["paragraph", "table", "figure", "caption"]}}}
+```
+
+**执行**
+
+```python
+def parse(path) -> dict:
+    blocks = []
+    for b in iterate_blocks(path):
+        blocks.append({"type": b.type, "span": b.span, "page": b.page,
+                       "text": b.text, "grid": b.grid if b.type == "table" else None})
+    assert blocks, "解析为空"
+    assert all(b["span"] for b in blocks), "每个块必须有原文定位"
+    return {"blocks": blocks, "pages": count_pages(path), "source_path": str(path)}
+```
+
+**门禁 P1 · 解析闭环**
+
+```
+每个块有 span 可回原文；表格块必须带 grid（二维结构），不许拍平成文本
+```
+
+**代价（实测）**
+
+```
+表格拍平成 markdown → 表头与数据行分离 → 列名永远关联不上
+→ 40+ 财务节点 subject 退化成「2018」
+```

@@ -30,3 +30,44 @@ SK-14
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"asset": {"required": ["id", "kind", "source", "isolated_facts"],
+           "kind": {"enum": ["induced", "registered"],
+                    "description": "induced=从报告归纳的候选方法；registered=有代码/配置的真实能力"}},
+ "status": {"enum": ["draft", "validated", "published"]}}
+```
+
+**执行**
+
+```python
+def generalize(project) -> list[dict]:
+    assets = []
+    for pat in extract_patterns(project):       # 本体/推理模式/Claim 模式
+        assets.append({"id": pat.id, "kind": "induced",
+                       "source": project.id,
+                       "isolated_facts": separate_project_facts(pat)})
+    assert all(a["isolated_facts"] is not None for a in assets), "项目专属事实必须隔离"
+    return assets
+
+assert all(a["status"] != "published" or a["kind"] == "registered"
+           for a in assets), "仅报告只能归纳 induced，published 需 registered"
+```
+
+**门禁 P18 · 资产分级**
+
+```
+induced（归纳候选）与 registered（登记真实能力）必须分开；
+draft → validated → published 单向；未过质量关不得发布
+```
+
+**代价（实测）**
+
+```
+把某次任务的答案写成永久规则 → 下个项目套错
+仅凭报告就声明「具备某能力」→ 无代码/配置，无法复现
+```

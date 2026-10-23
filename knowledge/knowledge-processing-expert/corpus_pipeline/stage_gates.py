@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -49,6 +50,10 @@ STAGE_GATES: list[dict] = [
      "check": "占位符数 = 节点引用数；无嵌套；无残留字面数", "unit": "该骨架", "source": "nodes"},
     {"stage": "S8", "name": "依据层", "gate": "依据闭环",
      "check": "原稿引用 ⊆ 条款 ∪ 豁免；每条有 名称/编号/效力状态", "unit": "该批依据", "source": "ledger.citations"},
+    {"stage": "S8b", "name": "条款入库", "gate": "条款溯源闭环",
+     "check": "每条条款五项必填（code/standard/clause_no/clause_text/source）；"
+              "bounded_by 必须指向带标准号的条款节点；不合格标 pending_fetch，不编造",
+     "unit": "该条款", "source": "公共标准库 clauses.yaml + graph/relations.yaml"},
     {"stage": "S9", "name": "域发射", "gate": "域闭环",
      "check": "契约域齐全；依赖无环；每域有判定", "unit": "该域", "source": "DOMAIN_SPECS"},
     {"stage": "S10", "name": "装配", "gate": "装配闭环 ×3",
@@ -179,6 +184,60 @@ def run_stage_gates(corpus_dir, *, draft_path=None, source_md=None, source_docx=
     # S8 依据层
     g.append(_gate("S8", "依据闭环", len(cits), len(cits) - len(miss3), miss3,
                    "该批依据", "ledger.citations"))
+    # S8b 条款入库校验（五项必填 + 关系指向）
+    lib_dir = root.parent / "公共标准库"
+    if not lib_dir.exists():
+        lib_dir = root / "公共标准库"
+    clause_total = clause_ready = 0
+    miss8b = []
+    if lib_dir.exists():
+        try:
+            import sys as _s8b
+            import yaml as _y8b
+            _agents_home = Path(os.environ.get("DSH_AGENTS_HOME") or (Path.home() / ".agents"))
+            _sk = str(_agents_home / "skills" / "standard-regulation-extraction" / "scripts")
+            if _sk not in _s8b.path: _s8b.path.insert(0, _sk)
+            from extractors import validate_library as _vl8b, check_relation_targets as _crt8b
+            _all = []
+            for _d in sorted(lib_dir.iterdir()):
+                _cf = _d / "clauses.yaml"
+                if not _cf.exists(): continue
+                _data = _y8b.safe_load(_cf.read_text(encoding="utf-8")) or {}
+                _code = _name = None
+                _sf = _d / "standard.yaml"
+                if _sf.exists():
+                    _m = _y8b.safe_load(_sf.read_text(encoding="utf-8")) or {}
+                    _code, _name = _m.get("code"), _m.get("name")
+                for _c in _data.get("clauses", []):
+                    _all.append({"code": _c.get("code") or _code,
+                                 "standard": _c.get("standard") or _name,
+                                 "clause": _c.get("clause") or _c.get("clause_no"),
+                                 "text": _c.get("text") or _c.get("clause_text"),
+                                 "table": _c.get("table"),
+                                 "source_url": _c.get("source_url"),
+                                 "doc_id": _c.get("id"), "_std": _d.name})
+            _r8b = _vl8b(_all)
+            clause_total, clause_ready = _r8b["total"], _r8b["ready"]
+            miss8b = [f"{x['clause']} 缺 {'/'.join(x['missing'])}" for x in _r8b["items"][:8]]
+            # 关系指向
+            _rel_p = root / "graph" / "relations.yaml"
+            _nd_p = root / "graph" / "nodes.yaml"
+            if _rel_p.exists() and _nd_p.exists():
+                _rels = json.loads(_rel_p.read_text(encoding="utf-8"))
+                _nds = {n["id"]: n for n in json.loads(_nd_p.read_text(encoding="utf-8"))}
+                _q8b = _crt8b(_rels, _nds)
+                if _q8b["bad"]:
+                    miss8b += [f"bounded_by {b['relation']} 指向的条款缺 {'/'.join(b['missing'])}"
+                               for b in _q8b["bad"][:5]]
+                clause_total = max(clause_total, 1)
+                clause_ready = max(clause_ready - len(_q8b["bad"]), 0)
+        except Exception as _e8b:
+            miss8b = [f"条款校验未执行: {type(_e8b).__name__}: {_e8b}"]
+    else:
+        miss8b = ["未找到公共标准库目录，条款入库门禁未执行"]
+    g.append(_gate("S8b", "条款溯源闭环", clause_total or 1, clause_ready, miss8b,
+                   "该条款", "公共标准库+relations", valid=bool(clause_total)))
+
 
     # S9 域
     dom = sorted((root / "reuse" / "domains").glob("*.yaml")) if (root / "reuse" / "domains").exists() else []

@@ -57,3 +57,100 @@ SK-05
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+
+
+## 因果误判：删 6 条、改型 5 条（V2.8）
+
+### 实测问题
+
+一个可研项目 313 条关系里发现 12 条类型错误：
+
+| 问题 | 条数 | 例子 |
+|---|---|---|
+| **因果不成立** | **6** | `CL-节能-01（满足节能标准）causes→ CL-风险-03（农民工风险）` |
+| **方向反了** | 3 | `CL-结论-01 depends_on → CL-建议-01`（实际是结论支撑建议） |
+| **并列误判为依赖** | 2 | `科研用房用电面积 depends_on 公共配套用电面积` |
+
+### 判据：因果需要「机制」
+
+```
+✓ 建筑高度 >50m → 属一类高层 → 耐火等级要求变
+    （有明确判定规则）
+
+✗ 满足节能标准 → 农民工风险
+    （毫无机制，只是同段共现）
+```
+
+**同段共现 ≠ 因果。** 抽取时把「同一段落里出现」当成了因果关系。
+
+### 方向判据
+
+```
+A depends_on B  →  B 是 A 的前提（B 不成立，A 就不成立）
+A supports B    →  A 支撑 B 的结论（A 成立，B 更有把握）
+```
+
+```
+✗ 结论 depends_on 建议     （建议不成立不影响结论）
+✓ 结论 supports 建议       （结论支撑建议的合理性）
+```
+
+### 改型要留痕
+
+```python
+r["relation_was"] = r["type"]
+r["type"] = "supports"
+r["payload"]["retyped_from"] = {
+    "was": "depends_on", "now": "supports",
+    "why": "结论支撑建议，不是建议依赖结论"
+}
+```
+
+### 因果链的价值
+
+补对因果边后，能用 `semantica_causal_chain` 追出：
+
+```
+建筑高度 60vs49 → 耐火等级 / 消防水箱
+```
+
+**一个根因三个表象，不建因果边看不出来。**
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"relation": {"required": ["id", "from", "to", "type"],
+              "type": {"enum": "读 reuse/relation_types.yaml，不硬编码"},
+              "payload": {"description": "因果类必须带 why"}}
+```
+
+**执行**
+
+```python
+def extract(entities) -> list[dict]:
+    rels = []
+    for pair in candidates:
+        t = classify_relation(pair)
+        if t == "causes":
+            assert has_mechanism(pair), f"{pair} 无因果机制，不得判 causes"
+        rels.append({"from": pair.a, "to": pair.b, "type": t,
+                     "source": {"quote": pair.evidence}})
+    return rels
+
+assert all(r["type"] in REL_TYPES for r in rels), "关系类型越界"
+```
+
+**门禁 P8 · 关系合法**
+
+```
+类型在枚举内；causes 必须有机制（不是同段共现）；端点必须可寻址
+```
+
+**代价（实测）**
+
+```
+「满足节能标准 → 农民工风险」判成 causes → 毫无机制，只是同段共现
+删 6 条误判因果、改型 5 条（结论 depends_on 建议 → 应为 supports）
+```

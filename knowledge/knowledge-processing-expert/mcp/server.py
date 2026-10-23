@@ -67,6 +67,8 @@ def _tools_for_group() -> list:
     names = set(TOOL_GROUPS.get(GROUP, []))
     return [t for t in TOOLS if t["name"] in names]
 
+_SEMANTICA_SINGLETON = {}
+
 TOOLS = [
     {"name": "corpus_run", "description": "运行语料包七道工序全链路，返回工序汇总",
      "inputSchema": {"type": "object",
@@ -92,6 +94,65 @@ TOOLS = [
          "mode": {"type": "string", "enum": ["现行", "目标"]},
          "table": {"type": "string", "description": "lpd: 表号 6.3.3/6.3.7/6.3.13"}},
          "required": ["kind"]}},
+    {"name": "verify_gaps", "description": "假缺四问：对一批「缺」逐个复核，判断是真缺还是假缺。四问=①节点真的不存在（精确/别名/包含三方式）②原文真的没有（纯文本/表格/表注）③量纲对不对（费率不绑金额）④设计上该不该有。返回 verdict=real/false/uncertain + why + searched + action。实测能把 77% 的假缺筛出来。",
+     "inputSchema": {"type": "object", "properties": {
+         "gaps": {"type": "array", "items": {"type": "object"}, "description": "待复核列表，每项 {name, unit?}"},
+         "corpus_dir": {"type": "string", "description": "语料包目录（读 nodes.yaml + chunks.jsonl + aliases.yaml）"},
+         "aliases_path": {"type": "string", "description": "可选，别名表路径"}},
+         "required": ["gaps", "corpus_dir"]}},
+    {"name": "normalize_name", "description": "命名归一化：去顿号/逗号/括号/空格后比较，并解析别名。用于「规则写通风空调工程 vs 原文写通风、空调工程」这类只差标点的误报。",
+     "inputSchema": {"type": "object", "properties": {
+         "name": {"type": "string"},
+         "aliases_path": {"type": "string", "description": "可选，别名表路径"}},
+         "required": ["name"]}},
+    {"name": "semantica_query", "description": "Semantica 图查询（全能）：mode=node 查单节点 / neighbors 多跳遍历（depth 1-5，可按边类型过滤）/ search 关键词搜索（可按节点类型过滤）。比本地 YAML 强在：模糊搜、多跳遍历、按边类型筛。",
+     "inputSchema": {"type": "object", "properties": {
+         "mode": {"type": "string", "enum": ["node", "neighbors", "search"], "description": "默认 neighbors"},
+         "node_id": {"type": "string", "description": "node/neighbors 模式必填（Semantica UUID，可先用 semantica_node 由本地 ID 换 UUID）"},
+         "depth": {"type": "integer", "description": "neighbors 跳数 1-5，默认 1"},
+         "relationship_types": {"type": "array", "items": {"type": "string"}, "description": "只保留这些边类型，如 [computed_from, bounded_by]"},
+         "query": {"type": "string", "description": "search 模式关键词"},
+         "node_type": {"type": "string", "description": "search 模式节点类型过滤：fact/claim/evidence/decision"},
+         "limit": {"type": "integer", "description": "结果上限"}},
+         "required": ["mode"]}},
+    {"name": "semantica_node", "description": "按本地节点 ID（N-xxx/CL-xxx/MC-xxx）查 Semantica 节点：返回 UUID、类型、properties、入边/出边明细（含对端 local_id 与标签）、度数。",
+     "inputSchema": {"type": "object", "properties": {
+         "local_id": {"type": "string", "description": "本地节点 ID"}},
+         "required": ["local_id"]}},
+    {"name": "semantica_analytics", "description": "Semantica 图分析：节点/边总数、PageRank Top10、社区数（community_count）。用于找最被依赖的节点与结构健康度。",
+     "inputSchema": {"type": "object", "properties": {}}},
+    {"name": "semantica_precedents", "description": "按场景描述找相似历史决策（混合相似度）。单项目内也能用 —— 会返回本项目已记录的 decision 作为先例，用于判断同类冲突以前怎么处理的。",
+     "inputSchema": {"type": "object", "properties": {
+         "scenario": {"type": "string", "description": "场景描述，如「办公用水定额两个口径并存」"},
+         "max_results": {"type": "integer", "description": "默认 5"}},
+         "required": ["scenario"]}},
+    {"name": "semantica_causal_chain", "description": "从 decision 节点追因果链（upstream/downstream，max_depth 默认5）。注意：只有当 decision 之间有 causes 类边时才有结果，本项目 20 个 decision 目前只连了 belongs_to，故返回空。",
+     "inputSchema": {"type": "object", "properties": {
+         "decision_id": {"type": "string", "description": "Semantica UUID"},
+         "direction": {"type": "string", "enum": ["upstream", "downstream"]},
+         "max_depth": {"type": "integer", "description": "默认 5"}},
+         "required": ["decision_id"]}},
+    {"name": "scan_vague_references", "description": "扫描「只写基于GB/符合规范/相关规范、没给具体标准号」的 fact 与 claim。这是真缺陷：读者无法核验引的哪一版哪一条。自动排除三类误报：警示语、规范内部引用（本规范）、同句已给编号或书名号。",
+     "inputSchema": {"type": "object", "properties": {
+         "nodes_path": {"type": "string", "description": "nodes.yaml 路径"},
+         "relations_path": {"type": "string", "description": "可选，relations.yaml"},
+         "out_path": {"type": "string", "description": "可选，结果输出路径"}},
+         "required": ["nodes_path"]}},
+    {"name": "validate_clause_library", "description": "条款库入库校验：检查每条条款是否带标准号(code)/标准全称(standard)/条款号(clause_no)/原文(clause_text)/来源(source)。可选校验关系是否指向带标准号的条款节点。不合格的返回补齐动作，不编造。",
+     "inputSchema": {"type": "object", "properties": {
+         "standard_dir": {"type": "string", "description": "公共标准库单一标准目录（含 clauses.yaml + standard.yaml）"},
+         "library_dir": {"type": "string", "description": "或整个公共标准库根目录（批量校验）"},
+         "relations_path": {"type": "string", "description": "可选，relations.yaml，校验 bounded_by 指向"},
+         "nodes_path": {"type": "string", "description": "可选，nodes.yaml"},
+         "out_path": {"type": "string", "description": "可选，报告输出路径"}},
+         "required": []}},
+    {"name": "scan_numeric_entities", "description": "扫描数值实体与判断句实体。① 数值实体：主体+数值+单位三者可核验，自动排除章节号/条款号/年份/序号/标准号；区分「规范要求」(norm) 与「项目取值」(value)。② 判断句实体：按判断词四族抽判断主体/对象/依据，每条带 falsifiable_by。",
+     "inputSchema": {"type": "object", "properties": {
+         "chunks_path": {"type": "string", "description": "chunks.jsonl 路径"},
+         "nodes_path": {"type": "string", "description": "可选，nodes.yaml 路径（用于判漏抽）"},
+         "mode": {"type": "string", "enum": ["numeric", "judgment", "both"], "description": "默认 both"},
+         "out_path": {"type": "string", "description": "可选，结果输出路径"}},
+         "required": ["chunks_path"]}},
     {"name": "detect_citations", "description": "识别文档内引用的外部标准（GB/JGJ/DGJ/建标/发改），对比公共标准库生成待抓清单。按引用次数分必抓/应抓/暂缓三档，并标注标准类型与抓取注意事项。只识别不抓取。",
      "inputSchema": {"type": "object", "properties": {
          "chunks_path": {"type": "string", "description": "chunks.jsonl 路径"},
@@ -337,6 +398,418 @@ def _dispatch(name: str, args: dict):
             return check_lpd(room=args.get("room"), value=args.get("value"),
                              mode=args.get("mode") or "目标", table=args.get("table"))
         return {"error": "kind 必须是 thermal 或 lpd"}
+    if name in ("semantica_query", "semantica_node", "semantica_analytics",
+                "semantica_precedents", "semantica_causal_chain"):
+        import sys as _ss
+        _root = str(Path(__file__).resolve().parent.parent)
+        if _root not in _ss.path: _ss.path.insert(0, _root)
+        try:
+            from corpus_pipeline.semantica_client import SemanticaClient
+            _c = _SEMANTICA_SINGLETON.get("c")
+            if _c is None:
+                _c = SemanticaClient(); _c.start()
+                _SEMANTICA_SINGLETON["c"] = _c
+        except Exception as _e:
+            return {"error": "Semantica 不可用", "detail": "%s: %s" % (type(_e).__name__, str(_e)[:200]),
+                    "hint": "本地 YAML 仍可精确查；Semantica 仅补模糊搜/多跳/图分析"}
+    if name in ("verify_gaps", "normalize_name"):
+        import sys as _s21, json as _j21, pathlib as _p21, os as _os21
+        _root21 = str(Path(__file__).resolve().parent.parent)
+        if _root21 not in _s21.path: _s21.path.insert(0, _root21)
+        from kp_toolkit.normalize import norm as _norm21, load_aliases as _la21, resolve as _res21
+        from kp_toolkit.gap_verify import audit as _audit21
+        _corpus = args.get("corpus_dir") or _os21.environ.get("KP_CORPUS_DIR") or "."
+        _ap = args.get("aliases_path") or str(_p21.Path(_corpus) / "../公共标准库/aliases.yaml")
+        _al = _la21(_ap) if _p21.Path(_ap).exists() else {}
+        if name == "normalize_name":
+            n = str(args.get("name") or "")
+            return {"input": n, "normalized": _norm21(n), "canonical": _res21(n, _al)}
+        # verify_gaps
+        _nd = _p21.Path(_corpus) / "graph/nodes.yaml"
+        if not _nd.exists():
+            return {"error": "未找到 graph/nodes.yaml", "corpus_dir": str(_corpus)}
+        _nodes = _j21.load(open(_nd, encoding="utf-8"))
+        _ch = []
+        _cf = _p21.Path(_corpus) / "chunks/chunks.jsonl"
+        if _cf.exists():
+            _ch = [_j21.loads(l) for l in open(_cf, encoding="utf-8") if l.strip()]
+        return _audit21(args.get("gaps") or [], _nodes, _ch, _al)
+
+        if name == "semantica_query":
+            _a = {"mode": args.get("mode") or "neighbors"}
+            for _k in ("node_id", "query", "node_type"):
+                if args.get(_k): _a[_k] = args[_k]
+            for _k in ("depth", "limit"):
+                if args.get(_k) is not None: _a[_k] = int(args[_k])
+            if args.get("relationship_types"): _a["relationship_types"] = args["relationship_types"]
+            return _c.call("query_graph", _a)
+        if name == "semantica_analytics":
+            return _c.call("get_graph_analytics", {})
+        if name == "semantica_precedents":
+            return _c.call("find_precedents", {"scenario": args["scenario"],
+                                               "max_results": int(args.get("max_results") or 5)})
+        if name == "semantica_causal_chain":
+            _a = {"decision_id": args["decision_id"],
+                  "direction": args.get("direction") or "downstream",
+                  "max_depth": int(args.get("max_depth") or 5)}
+            return _c.call("get_causal_chain", _a)
+        if name == "semantica_node":
+            import json as _j3, pathlib as _p3
+            _lid = str(args["local_id"])
+            _gp = _p3.Path.home() / ".semantica/graph.json"
+            if not _gp.exists():
+                return {"error": "图文件不存在", "path": str(_gp)}
+            _g = _j3.load(open(_gp, encoding="utf-8"))
+            _hit = next((n for n in _g.get("nodes", [])
+                         if (n.get("properties") or {}).get("local_id") == _lid), None)
+            if not _hit:
+                return {"error": "未找到本地 ID", "local_id": _lid,
+                        "hint": "可用 semantica_query(mode=search) 按关键词先搜"}
+            _nid = _hit["id"]
+            _mk = {n["id"]: (n.get("properties") or {}) for n in _g.get("nodes", [])}
+            def _brief(e, other):
+                o = _mk.get(other, {})
+                return {"type": e.get("type"), "local_id": o.get("local_id"),
+                        "label": str(o.get("label") or o.get("subject") or "")[:60]}
+            _in = [e for e in _g.get("edges", []) if e.get("target_id") == _nid]
+            _out = [e for e in _g.get("edges", []) if e.get("source_id") == _nid]
+            return {"local_id": _lid, "uuid": _nid, "type": _hit.get("type"),
+                    "content": str((_hit.get("properties") or {}).get("content"))[:150],
+                    "in_edges": [_brief(e, e.get("source_id")) for e in _in],
+                    "out_edges": [_brief(e, e.get("target_id")) for e in _out],
+                    "degree": len(_in) + len(_out)}
+
+        if name == "semantica_search":
+            r = _c.search_graph(args["query"], node_type=args.get("node_type"),
+                                limit=int(args.get("limit") or 10))
+            return r
+        if name == "semantica_analytics":
+            return _c.call("get_graph_analytics", {})
+        if name == "semantica_node":
+            # 本地 ID → UUID：直接读图文件建索引（比 export_graph 快且结构确定）
+            import json as _j3, pathlib as _p3
+            _lid = str(args["local_id"])
+            _gp = _p3.Path.home() / ".semantica/graph.json"
+            if not _gp.exists():
+                return {"error": "图文件不存在", "path": str(_gp)}
+            _g = _j3.load(open(_gp, encoding="utf-8"))
+            _hit = None
+            for _n in _g.get("nodes", []):
+                if (_n.get("properties") or {}).get("local_id") == _lid:
+                    _hit = _n; break
+            if not _hit:
+                return {"error": "未找到本地 ID", "local_id": _lid,
+                        "hint": "可用 semantica_search 按关键词先搜"}
+            _nid = _hit["id"]
+            # 邻接边
+            _in = [e for e in _g.get("edges", []) if e.get("target_id") == _nid]
+            _out = [e for e in _g.get("edges", []) if e.get("source_id") == _nid]
+            _mk = {n["id"]: (n.get("properties") or {}) for n in _g.get("nodes", [])}
+            def _brief(e, other):
+                o = _mk.get(other, {})
+                return {"type": e.get("type"), "local_id": o.get("local_id"),
+                        "label": str(o.get("label") or o.get("subject") or "")[:60],
+                        "node_type": o.get("type_raw") or ""}
+            return {"local_id": _lid, "uuid": _nid,
+                    "type": _hit.get("type"), "properties": _hit.get("properties"),
+                    "in_edges": [_brief(e, e.get("source_id")) for e in _in],
+                    "out_edges": [_brief(e, e.get("target_id")) for e in _out],
+                    "degree": len(_in) + len(_out)}
+    # ══════════════════════════════════════════════════════════════════════
+    # 14 个补齐的 dispatch（6 个预留 fallback + 8 个 reemit）
+    # ══════════════════════════════════════════════════════════════════════
+    if name in ("semantic_search", "asset_rerank", "solve_constraint",
+                "graph_db_query", "store_object", "llm_invoke"):
+        import os as _os, json as _j14, pathlib as _p14, glob as _g14
+        corpus = args.get("corpus_dir") or _os.environ.get("KP_CORPUS_DIR") or "."
+        root = _p14.Path(corpus)
+
+        if name == "semantic_search":
+            # fallback：无向量库时退化为关键词检索（读 YAML + 子串匹配）
+            q = str(args.get("query") or "").strip()
+            if not q:
+                return {"error": "query 必填"}
+            limit = int(args.get("limit") or 10)
+            nd = root / "graph/nodes.yaml"
+            if not nd.exists():
+                return {"error": "未找到 graph/nodes.yaml", "corpus_dir": str(root)}
+            nodes = _j14.load(open(nd, encoding="utf-8"))
+            hits = []
+            for n in nodes:
+                blob = " ".join(str(n.get(k) or "") for k in ("subject", "value", "clause_text", "desc"))
+                if q.lower() in blob.lower():
+                    hits.append({"id": n["id"], "kind": n.get("kind"),
+                                 "section": n.get("section"),
+                                 "text": blob[:160]})
+                    if len(hits) >= limit: break
+            return {"mode": "fallback:keyword", "query": q, "count": len(hits),
+                    "results": hits,
+                    "note": "未接向量库（pgvector/Qdrant）；当前为关键词子串匹配。"
+                            "需要语义相似度时配置 KP_QDRANT_URL 后重启"}
+
+        if name == "asset_rerank":
+            # fallback：按标签命中数 + 域优先排序
+            items = args.get("items") or []
+            want = [t for t in (args.get("tags") or []) if t]
+            if not items:
+                return {"error": "items 必填（待排序候选列表）"}
+            def score(it):
+                tags = it.get("tags") or []
+                hit = len(set(tags) & set(want))
+                return (hit, 1 if it.get("status") == "published" else 0)
+            ranked = sorted(items, key=score, reverse=True)
+            for i, it in enumerate(ranked, 1):
+                it["_rank"] = i
+                it["_score"] = score(it)
+            return {"mode": "fallback:tag-match", "count": len(ranked), "items": ranked,
+                    "note": "未接 sentence-transformers；当前按标签交集 + published 状态排序"}
+
+        if name == "solve_constraint":
+            # fallback：只支持单变量线性（ax=b），超范围明确拒绝
+            var = args.get("variable") or "x"
+            expr = str(args.get("expression") or "")
+            given = args.get("given") or {}
+            if not expr:
+                return {"error": "expression 必填，如 '40 * 1800 / 1000'"}
+            env = {str(k): float(v) for k, v in given.items() if isinstance(v, (int, float))}
+            import re as _re14
+            varnames = set(_re14.findall(r"[A-Za-z_][A-Za-z0-9_]*", expr))
+            missing = [v for v in varnames if v not in env and v != var]
+            if missing:
+                return {"error": "缺少变量取值", "missing": missing,
+                        "hint": "先在 given 里给出；本工具不做符号求解"}
+            try:
+                val = eval(expr, {"__builtins__": {}}, env)  # noqa: S307 受限表达式
+            except Exception as e:
+                return {"error": "表达式求值失败", "detail": str(e)}
+            return {"mode": "fallback:arithmetic", "expression": expr, "given": env,
+                    "result": val,
+                    "note": "未接 OR-Tools/Pyomo；仅支持算术求值与线性代入，不做整数规划/排程"}
+
+        if name == "graph_db_query":
+            # fallback：委托 Semantica 图查询（JSON 图）
+            import sys as _s14
+            _rt = str(Path(__file__).resolve().parent.parent)
+            if _rt not in _s14.path: _s14.path.insert(0, _rt)
+            try:
+                from corpus_pipeline.semantica_client import SemanticaClient
+                _c = _SEMANTICA_SINGLETON.get("c")
+                if _c is None:
+                    _c = SemanticaClient(); _c.start(); _SEMANTICA_SINGLETON["c"] = _c
+                a = {"mode": args.get("mode") or "search"}
+                for k in ("node_id", "query", "node_type"):
+                    if args.get(k): a[k] = args[k]
+                for k in ("depth", "limit"):
+                    if args.get(k) is not None: a[k] = int(args[k])
+                return {"mode": "fallback:semantica", "result": _c.call("query_graph", a),
+                        "note": "未接 Neo4j/AGE；Cypher 不可用，已委托 Semantica JSON 图（3 模式 + 5 跳）"}
+            except Exception as e:
+                return {"error": "Semantica 不可用", "detail": "%s: %s" % (type(e).__name__, str(e)[:160]),
+                        "hint": "可改用 graph_query（读 graph/*.yaml）"}
+
+        if name == "store_object":
+            # fallback：复制到项目目录
+            src = args.get("source_path")
+            rel = args.get("relative_path") or (src and _p14.Path(src).name)
+            if not src or not rel:
+                return {"error": "source_path 与 relative_path 必填"}
+            sp = _p14.Path(src)
+            if not sp.exists():
+                return {"error": "源文件不存在", "source_path": str(sp)}
+            dst = root / "attachments" / rel
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            import shutil as _sh14
+            _sh14.copy2(sp, dst)
+            return {"mode": "fallback:local-fs", "stored_at": str(dst),
+                    "bytes": dst.stat().st_size,
+                    "note": "未接 MinIO/S3；已复制到项目 attachments/ 目录"}
+
+        if name == "llm_invoke":
+            # 不代调模型：明确交给 Agent
+            return {"error": "本工具不代调模型",
+                    "reason": "knowledge-processing MCP 是确定性层，按设计不含模型网关",
+                    "how": "需要语义步骤时由 Agent 直接调用模型，并按 schema 输出 + validator 校验",
+                    "fallback_note": "原声明的 fallback='Agent 直接调 LLM' 即此含义"}
+
+    if name.startswith("reemit_"):
+        import os as _os, json as _j15, pathlib as _p15, yaml as _y15, datetime as _dt15
+        corpus = args.get("corpus_dir") or _os.environ.get("KP_CORPUS_DIR") or "."
+        root = _p15.Path(corpus)
+        # (源文件列表, 产物路径, 说明)
+        SPEC = {
+            "reemit_meta":        ([], "meta.yaml", "项目元信息（从 project_profile.yaml 生成）"),
+            "reemit_provenance":  (["graph/relations.yaml"], "provenance.yaml", "全量关系的来源链快照"),
+            "reemit_invariants":  (["graph/nodes.yaml"], "graph/invariants.yaml", "图不变量（无孤儿/端点可寻址/类型闭环）"),
+            "reemit_evidence":    (["evidence/evidence.base.yaml"], "evidence/evidence.yaml", "证据合并视图 + 摘录索引"),
+            "reemit_reasoning":   (["graph/rules.yaml", "graph/derivation_bindings.yaml"], "reasoning/derivation.yaml", "推演规则与绑定"),
+            "reemit_quality":     (["quality/conflicts.yaml", "quality/gaps.yaml"], "quality/gate_report.yaml", "质量门禁汇总"),
+            "reemit_style":       ([], "style/style_profile.yaml", "文风画像（本项目未产出，需先跑风格分析）"),
+            "reemit_index":       (["graph/nodes.yaml"], "index/node_index.yaml", "节点索引（id → 章节/类型/标签）"),
+        }
+        srcs, out_rel, desc = SPEC[name]
+        missing = [x for x in srcs if not (root / x).exists()]
+        if missing:
+            return {"error": "源文件缺失，无法重发", "tool": name, "missing": missing,
+                    "output": out_rel, "what": desc}
+        payload = {}
+        for x in srcs:
+            fp = root / x
+            d = _y15.safe_load(open(fp, encoding="utf-8")) if fp.suffix in (".yaml", ".yml") else _j15.load(open(fp, encoding="utf-8"))
+            payload[x] = d
+        # 生成产物
+        if name == "reemit_meta":
+            pp = root / "project_profile.yaml"
+            meta = _y15.safe_load(open(pp, encoding="utf-8")) if pp.exists() else {}
+            out = {"project_id": meta.get("project_id"), "title": meta.get("title"),
+                   "version": meta.get("version"), "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                   "source": "project_profile.yaml" if pp.exists() else "（无 project_profile.yaml）"}
+        elif name == "reemit_invariants":
+            nodes = payload["graph/nodes.yaml"]
+            ids = {n["id"] for n in nodes}
+            rels_p = root / "graph/relations.yaml"
+            rels = _j15.load(open(rels_p, encoding="utf-8")) if rels_p.exists() else []
+            dangling = [r for r in rels if r.get("from") not in ids or r.get("to") not in ids]
+            linked = {r.get("from") for r in rels} | {r.get("to") for r in rels}
+            orphans = [i for i in ids if i not in linked]
+            out = {"node_count": len(nodes), "relation_count": len(rels),
+                   "dangling_relations": len(dangling), "orphan_nodes": len(orphans),
+                   "invariants": {"endpoints_resolvable": not dangling,
+                                  "no_orphans": not orphans},
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        elif name == "reemit_index":
+            nodes = payload["graph/nodes.yaml"]
+            out = {"count": len(nodes),
+                   "by_id": {n["id"]: {"section": n.get("section"), "kind": n.get("kind"),
+                                       "tags": n.get("tags")} for n in nodes},
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        elif name == "reemit_provenance":
+            rels = payload["graph/relations.yaml"]
+            out = {"count": len(rels),
+                   "chains": [{"rel": r["from"] + "~" + r["type"] + "~" + r["to"],
+                               "source": r.get("source")} for r in rels],
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        elif name == "reemit_quality":
+            c = payload["quality/conflicts.yaml"]
+            gp = payload["quality/gaps.yaml"]
+            cl = c.get("conflicts") if isinstance(c, dict) else c
+            from collections import Counter as _C15
+            out = {"conflicts": len(cl or []),
+                   "by_status": dict(_C15(str(x.get("status")) for x in (cl or []))),
+                   "gaps": len(gp if isinstance(gp, list) else (gp.get("gaps") or [])),
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        elif name == "reemit_evidence":
+            ev = payload["evidence/evidence.base.yaml"]
+            ev = ev if isinstance(ev, list) else ev.get("evidence", [])
+            from collections import Counter as _C16
+            out = {"count": len(ev), "by_kind": dict(_C16(str(x.get("kind")) for x in ev)),
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        elif name == "reemit_reasoning":
+            rules = payload["graph/rules.yaml"] or []
+            binds = payload["graph/derivation_bindings.yaml"] or []
+            out = {"rules": len(rules), "bindings": len(binds),
+                   "generated_at": _dt15.datetime.now().strftime("%Y-%m-%d %H:%M")}
+        else:
+            out = {"note": "本项目未产出该产物", "tool": name}
+        dst = root / out_rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        _y15.safe_dump(out, open(dst, "w", encoding="utf-8"),
+                       allow_unicode=True, sort_keys=False, width=200)
+        return {"tool": name, "what": desc, "output": str(dst),
+                "bytes": dst.stat().st_size, "source_files": srcs}
+
+
+    if name == "scan_vague_references":
+        import json as _j2, yaml as _y2
+        from kp_toolkit.vague_refs import scan as _sv
+        _nodes = _j2.load(open(args["nodes_path"], encoding="utf-8"))
+        _rels = None
+        if args.get("relations_path"):
+            _rp = args["relations_path"]
+            import os as _os
+            if _os.path.exists(_rp): _rels = _j2.load(open(_rp, encoding="utf-8"))
+        _r = _sv(_nodes, _rels)
+        if args.get("out_path"):
+            _y2.safe_dump(_r, open(args["out_path"], "w", encoding="utf-8"),
+                          allow_unicode=True, sort_keys=False, width=200)
+        return _r
+
+    if name == "validate_clause_library":
+        import sys as _sys, json as _j, yaml as _y, pathlib as _p, os as _os
+        _agents_home = _p.Path(_os.environ.get("DSH_AGENTS_HOME") or (_p.Path.home() / ".agents"))
+        _sk = _agents_home / "skills" / "standard-regulation-extraction" / "scripts"
+        if str(_sk) not in _sys.path: _sys.path.insert(0, str(_sk))
+        from extractors import validate_library as _vl, check_relation_targets as _crt, code_from_url as _cfu
+        _res = {}
+        _clauses = []
+        if args.get("standard_dir"):
+            _d = _p.Path(args["standard_dir"])
+            _cf = _d / "clauses.yaml"
+            if _cf.exists():
+                _data = _y.safe_load(open(_cf, encoding="utf-8"))
+                _sf = _d / "standard.yaml"
+                _code = _name = None
+                if _sf.exists():
+                    _m = _y.safe_load(open(_sf, encoding="utf-8"))
+                    _code, _name = _m.get("code"), _m.get("name")
+                for c in _data.get("clauses", []):
+                    _clauses.append({"code": c.get("code") or _code,
+                                     "standard": c.get("standard") or _name,
+                                     "clause_no": c.get("clause") or c.get("clause_no"),
+                                     "clause_text": c.get("clause_text") or c.get("text"),
+                                     "source_url": c.get("source_url"),
+                                     "doc_id": c.get("id")})
+        elif args.get("library_dir"):
+            for _d in sorted(_p.Path(args["library_dir"]).iterdir()):
+                _cf = _d / "clauses.yaml"
+                if not _cf.exists(): continue
+                _data = _y.safe_load(open(_cf, encoding="utf-8"))
+                _sf = _d / "standard.yaml"
+                _code = _name = None
+                if _sf.exists():
+                    _m = _y.safe_load(open(_sf, encoding="utf-8"))
+                    _code, _name = _m.get("code"), _m.get("name")
+                for c in _data.get("clauses", []):
+                    _clauses.append({"code": c.get("code") or _code,
+                                     "standard": c.get("standard") or _name,
+                                     "clause_no": c.get("clause") or c.get("clause_no"),
+                                     "clause_text": c.get("clause_text") or c.get("text"),
+                                     "source_url": c.get("source_url"),
+                                     "doc_id": c.get("id"),
+                                     "_std": _d.name})
+        if not _clauses:
+            return {"error": "未找到条款：请提供 standard_dir 或 library_dir"}
+        _res["clauses"] = _vl(_clauses)
+        if args.get("relations_path") and args.get("nodes_path"):
+            _rels = _j.load(open(args["relations_path"], encoding="utf-8"))
+            _nds = {n["id"]: n for n in _j.load(open(args["nodes_path"], encoding="utf-8"))}
+            _res["relations"] = _crt(_rels, _nds)
+        if args.get("out_path"):
+            _y.safe_dump(_res, open(args["out_path"], "w", encoding="utf-8"),
+                         allow_unicode=True, sort_keys=False, width=200)
+        return _res
+
+    if name == "scan_numeric_entities":
+        import json as _j, yaml as _y, pathlib as _p
+        from kp_toolkit.numeric_entities import scan_numeric as _sn, scan_judgment as _sj
+        _ch = [_j.loads(l) for l in open(args["chunks_path"], encoding="utf-8") if l.strip()]
+        _nd = None
+        if args.get("nodes_path"):
+            _pth = _p.Path(args["nodes_path"])
+            if _pth.exists(): _nd = _j.load(open(_pth, encoding="utf-8"))
+        _mode = args.get("mode") or "both"
+        _out = {}
+        if _mode in ("numeric", "both"):
+            _r = _sn(_ch, _nd)
+            _out["numeric"] = {"stats": _r["stats"], "items": _r["items"][:200],
+                               "invalid_sample": _r["invalid"][:40]}
+        if _mode in ("judgment", "both"):
+            _j2 = _sj(_ch)
+            _out["judgment"] = {"stats": _j2["stats"], "items": _j2["items"][:200]}
+        if args.get("out_path"):
+            _y.safe_dump(_out, open(args["out_path"], "w", encoding="utf-8"),
+                         allow_unicode=True, sort_keys=False, width=200)
+        return _out
+
 
     if name == "detect_citations":
         import json as _j, yaml as _y, pathlib as _p

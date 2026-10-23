@@ -22,17 +22,446 @@ description: 把文档/语料（docx/pdf/md）经七道工序处理为结构化�
 
 代码工程：`/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/`（kp_toolkit、corpus_pipeline、mcp/server.py）。
 
-## 七道工序
+## 七道工序（四段式：契约 / 执行 / 门禁 / 代价）
 
-| 工序 | 做什么 | 产出 |
-|------|--------|------|
-| 1 归一化 | 去页眉页脚、公式转 LaTeX、表格结构化、保留字符偏移 | source/normalized.md, offset_map.json, assets/, original.<ext> |
-| 2 骨架抽取 | 识别章节层级、映射法定大纲、覆盖校验 | outline.yaml, meta.yaml |
-| 3 切块 | 语义边界切 chunk（表格/图注独立成块）、记录 span | chunks/chunks.jsonl, embeddings.parquet |
-| 4 本体抽取 | 抽事实/规则/论断/证据 + 十类关系（语义，接 LLM） | graph/nodes\|rules\|relations\|claims.yaml, evidence/*, provenance.yaml |
-| 5 推演回放 | 按规则重算、比对原值、检矛盾 | reasoning/derivation\|decisions\|trace |
-| 6 质量登记 | 登记冲突/缺口、跑不变式、出闸门 | quality/conflicts\|gaps\|gate_report, graph/invariants.yaml |
-| 7 脱敏索引 | 数值→{{node:Nxx}}、节点倒排、术语归一、签名 | chunks/skeletons.jsonl, index/*, style/* |
+> **为什么不用自然语言写步骤**：实测写了 3 遍「假缺四问」纪律，假缺率仍 77%；
+> 写了 1 次 `gap_verify.py` 立刻生效。**纪律靠提醒，机制靠退出码。**
+>
+> 每道工序四段：① 契约（schema，机器校验）② 执行（真代码+断言）③ 门禁（不通过阻断）
+> ④ 代价（为什么必须这么做，只写实测过的坑）。
+
+---
+
+### 工序 1 · 归一化
+
+**契约**
+
+```json
+{
+  "source": {
+    "required": ["normalized_md", "offset_map", "original_ext"],
+    "offset_map": {"type": "array", "items": {"required": ["norm_pos", "orig_pos"]}}
+  }
+}
+```
+
+**执行**
+
+```python
+def normalize(original) -> dict:
+    md = strip_header_footer(original)      # 去页眉页脚
+    md = formula_to_latex(md)               # 公式转 LaTeX
+    md, offsets = record_offsets(md, original)   # 每个字符的原始位置
+    assert len(md) > 0.8 * len(original), "归一化丢失超过 20% 内容"
+    assert offsets, "必须有 offset_map，否则无法回原文"
+    return {"normalized_md": md, "offset_map": offsets}
+```
+
+**门禁 S1 · 归一化闭环**
+
+```python
+{"stage": "S1", "gate": "归一化闭环",
+ "check": "去空白字符数 ≈ 原稿（±15%）；offset_map 长度 = 归一化后长度"}
+```
+
+**代价（实测）**
+
+- 表格拍平成 markdown → 表头与数据行分离 → 40+ 财务节点 subject 退化成「2018」
+- 公式不转 LaTeX → 推演算式抽不出来，`computed_from` 关系断了
+
+---
+
+### 工序 1b · 表格解析（**新增，独立于切片**）
+
+> **表格不是文本，是二维结构对象。绝对不许拍平后按行切片。**
+
+**契约**
+
+```json
+{
+  "table": {
+    "required": ["id", "section", "grid", "column_paths", "header_rows"],
+    "column_paths": {"type": "array", "minItems": 1,
+                     "description": "多级表头合并后的完整路径，如 '资产 / 小计'"},
+    "cells": {"items": {"required": ["row", "col", "value", "row_header", "col_path", "subject"]}}
+  }
+}
+```
+
+**执行**
+
+```python
+# build/parse_docx_tables.py（已实现并跑通 31 个表）
+def parse_tables(docx_path) -> list[Table]:
+    for tbl in docx.iter_tables():                    # 读 <w:tbl>，不用 OCR
+        grid = []
+        for tr in tbl.rows():
+            row = []
+            for tc in tr.cells():
+                span = tc.gridSpan()                  # 跨列
+                vmerge = tc.vMerge()                  # 跨行（继承上格）
+                row.append(Cell(text=tc.text(), span=span, vmerge=vmerge))
+            grid.append(row)
+        header_rows = detect_multi_level_header(grid)  # ① 首列空 ② 与首行重复文本
+        column_paths = merge_header_paths(grid, header_rows)  # 多级合并 + 去重复
+        yield Table(grid=grid, header_rows=header_rows, column_paths=column_paths)
+
+def cell_subject(row_header, col_path):
+    """行头 × 列路径 → subject。行头必须跳过序号列。"""
+    main, qual = split_qualifier(col_path)     # '技术经济指标 / 合价' → ('', '合价')
+    if is_year(row_header):  return f"{row_header}年{main}{qual}"   # 2018年资产总额
+    if qual:                 return f"{row_header}（{qual}）"        # 通风空调工程（合价）
+    return f"{row_header}{main}"
+```
+
+**断言（三条，缺一即失败）**
+
+```python
+assert len(tables) == xml_count("<w:tbl>"),        "表格数与 XML 不符"
+assert all(t.column_paths for t in tables),        "有表无列路径"
+assert all(len(t.column_paths) == t.cols for t in tables), "列路径数与列数不符"
+```
+
+**门禁 S1b · 表格结构闭环**
+
+```python
+{"stage": "S1b", "gate": "表格结构闭环",
+ "check": "每表有 column_paths 且与列数一致；多级表头已合并（含 ' / '）；"
+          "每个数值格有 row_header + col_path"}
+```
+
+**代价（实测，三次踩坑）**
+
+| 错误做法 | 后果 |
+|---|---|
+| 拍平成 markdown 后按行切片 | 表头独立成 chunk，列名永远关联不上 → subject 全是「2018」 |
+| 取第 0 列当行头 | 表5「序号\|级别\|规划人数」取到「1」→ subject =「1规划人数」 |
+| 按列数套表头模板 | 表13-2（5列）被套表13-3 的列名 → `373711.34` 标成「财政补助收入」 |
+| 按值反查列名 | `156278.08` 在同一表出现两次（小计/总支出）→ 二义，错配 |
+
+**正确做法**：**用列位 + 行头双坐标**，不猜、不反查。
+
+**载体选择（不是所有表格都要 OCR）**
+
+| 载体 | 方案 | 理由 |
+|---|---|---|
+| DOCX/XLSX/PPTX | **读原生结构**（`<w:tbl>` / openpyxl） | 行列完整，含 rowspan/colspan |
+| PDF 文字层完好 | pdfplumber / Camelot | 有坐标，可还原 grid |
+| PDF 扫描件 | 表格识别模型（最后手段） | 只有像素 |
+
+---
+
+### 工序 2 · 骨架抽取
+
+**契约**
+
+```json
+{"outline": {"required": ["sections", "mapping", "coverage"],
+             "sections": {"items": {"required": ["id", "title", "level", "span"]}},
+             "mapping": {"description": "章节 → 法定大纲条款（如 304 号文）"},
+             "coverage": {"description": "法定章节全覆盖情况"}}}
+```
+
+**执行**
+
+```python
+def extract_outline(md, outline_spec) -> dict:
+    secs = parse_headings(md)
+    mapping = map_to_legal_outline(secs, outline_spec)
+    missing = [x for x in outline_spec if x not in mapping]
+    return {"sections": secs, "mapping": mapping,
+            "coverage": {"missing": missing, "rate": 1 - len(missing)/len(outline_spec)}}
+```
+
+**门禁 S2 · 大纲覆盖**
+
+```python
+{"stage": "S2", "gate": "大纲覆盖",
+ "check": "法定章节 must_cover 全覆盖；每节有 span 可回原文"}
+```
+
+**代价**
+
+- 章节号靠正则抓 → 附录「表13-2」被当成「§13.2」，章节树错位
+- 无 span → 后续 claim 的 evidence 无法定位到原文
+
+---
+
+### 工序 3 · 切块
+
+**契约**
+
+```json
+{"chunk": {"required": ["id", "text", "span", "section"],
+           "text": {"minLength": 1},
+           "span": {"required": ["start", "end"], "description": "在 normalized_md 中的字符偏移"}}}
+```
+
+**执行**
+
+```python
+def chunk(md, secs) -> list[Chunk]:
+    out = []
+    for sec in secs:
+        for seg in semantic_split(md[sec.span]):   # 按段落/表/图注切
+            out.append(Chunk(text=seg, span=seg_span, section=sec.id))
+    assert sum(len(c.text) for c in out) >= 0.85 * len(md), "切块丢失超过 15%"
+    return out
+```
+
+**门禁 S3 · 切块闭环（引用 P3）**
+
+```python
+{"stage": "S3", "gate": "切块闭环",
+ "check": "见 semantic-chunking-skill P3：Σchunk 去空白 ≈ 原稿（±15%）；span 可回查"}
+```
+
+> **为什么引用而不重写**：同一判据写两遍，改一处必漏另一处（本轮踩过：前端 REL_SCHEMA 与后端 relation_types.yaml 各写一份，96 条误报）。
+
+**代价**
+
+- **表格按行切块** → 见工序 1b，这是最容易犯的错
+- 切块丢 span → 溯源链断，正文无法回读成节点
+
+---
+
+### 工序 4 · 本体抽取
+
+**契约**
+
+```json
+{
+  "node": {
+    "required": ["id", "kind", "subject", "section"],
+    "kind": {"enum": ["quantity", "text", "fact", "claim", "evidence", "reference"]}
+  },
+  "relation": {
+    "required": ["id", "from", "to", "type"],
+    "type": {"enum": "读 reuse/relation_types.yaml，不硬编码"}
+  },
+  "claim": {"required": ["id", "text", "claim_type", "falsifiable_by"],
+            "claim_type": {"enum": ["conclusion", "recommendation", "hypothesis", "inference"]}},
+  "evidence": {"required": ["id", "kind"],
+               "kind": {"enum": ["E0","E1","E2","E3","E4","E5","E6","hypothesis","fact"]}}
+}
+```
+
+**执行**
+
+```python
+# 确定性部分（零 LLM）
+def classify_claim(text, has_value, has_triple) -> dict:
+    """四步判定，顺序不可换（kp_toolkit/claim_classify.py）"""
+    if is_norm_restatement(text):     return {"kind": "fact"}     # ① 规范转述
+    if has_triple and not has_judge(text): return {"kind": "fact"} # ①b 三元组完整
+    ct = classify_judge_words(text)    # ② 判断词四族
+    if ct: return {"kind": "claim", "claim_type": ct}
+    if has_value: return {"kind": "fact"}   # ③ 有值无判断词
+    return None                              # ④ 都不是
+
+assert claim["claim_type"] in CLAIM_TYPES,     "claim_type 越界"
+assert claim.get("falsifiable_by"),            "claim 缺 falsifiable_by = 口号"
+assert evidence["kind"] in EVIDENCE_KINDS,     "证据等级越界"
+```
+
+**语义部分（LLM + schema + validator + 重试）**
+
+```python
+for attempt in range(3):
+    out = llm_extract(chunk, schema)
+    if validator(out): break
+```
+
+**门禁 S4 · 抽取闭环 ×3**
+
+```python
+{"stage": "S4", "gate": "抽取闭环 ×3",
+ "check": "① 引用闭环（原稿引用 ⊆ 条款∪豁免） ② 数值闭环 ③ 论层闭环（有论断义务的章必须产 claim）"}
+```
+
+**代价**
+
+- 按章节倾向给 kind → 68 个 judgment 里 49 条实为 fact（误差 74%）
+- claim 无 `falsifiable_by` → 写作时把 hypothesis 写成既成事实
+- 证据标 E1 但无 provider → 31 条全部缺三要素，说明 E1 是默认值不是判断结果
+
+---
+
+### 工序 5 · 推演回放
+
+**契约**
+
+```json
+{
+  "binding": {"required": ["target", "expr", "deps"],
+              "deps": {"items": {"required": ["node", "value"], "description": "node 必填，null 即未绑定"}}},
+  "rule": {"required": ["id", "expr", "kind"],
+           "kind": {"enum": ["compute", "condition"], "description": "condition 是 A=>B；否则=>C 判定式"}}
+}
+```
+
+**执行**
+
+```python
+def replay(bindings, nodes) -> dict:
+    ok, missing, mismatch = [], [], []
+    for rid, b in bindings.items():
+        deps = {k: v for k, v in b["deps"].items() if v.get("node")}
+        if len(deps) < len(b["deps"]):
+            missing.append((rid, [k for k in b["deps"] if k not in deps])); continue
+        res = eval_rule(b["expr"], deps)          # 支持 compute 与 condition 两型
+        original = find_original(nodes, b["target"])
+        (ok if match(res, original) else mismatch).append((rid, res, original))
+        # 关键：算出结果必须落成节点，否则下游查不到
+        ensure_output_node(b["target"], res, b["expr"])
+    assert not missing or all(has_reason(m) for m in missing), "缺依赖必须带 searched 证据"
+```
+
+**门禁 S5 · 派生闭环（引用 P11）**
+
+```python
+{"stage": "S5", "gate": "派生闭环",
+ "check": "见 reasoning-extraction-skill P11：要么闭合要么显式阻塞；可算规则必须产出 output 节点"}
+```
+
+**代价（实测最重的一处）**
+
+| 错误 | 后果 |
+|---|---|
+| 绑定表填了 node，不建 relations 边 | 输入节点成孤儿，图查询查不出「这值被哪条规则用」 |
+| 规则算出了结果，不建输出节点 | 输入节点永远悬空；`49m` 只存在于表达式里 |
+| 「主体包含」匹配不校验量纲 | `基本预备费费率` 绑到 `基本预备费=618万元` → 算出 76378（应为 618） |
+| 判定式用 `eval` 硬算 | `A<=B => 合理；否则 => 待审` 必然 SyntaxError |
+| 两个依赖绑到同一节点 | `建安工程费用` 与 `招标估算` 都绑 10135 → 判定恒为「一致」，掩盖 1053 万差异 |
+
+---
+
+### 工序 6 · 质量登记
+
+**契约**
+
+```json
+{
+  "gap": {"required": ["what", "why_real", "searched"],
+          "searched": {"minItems": 1, "description": "没有 searched 的缺不许进台账"}},
+  "conflict": {"required": ["id", "subject", "values", "evidence_strength", "status"],
+               "evidence_strength": {"enum": ["strong", "weak", "none"]},
+               "status": {"enum": ["resolved", "report_fix", "open"]}}
+}
+```
+
+**执行**
+
+```python
+# 假缺四问（kp_toolkit/gap_verify.py，已实现）
+def verify_gap(gap, nodes, chunks, aliases):
+    n, way, cands = search_node(gap, nodes, aliases)   # ① 精确/别名/包含
+    if n: return {"verdict": "false", "action": "补绑定"}
+    found, carrier, _ = search_text(gap, chunks)       # ② 文本/表格/表注
+    if found: return {"verdict": "false", "action": "补抽取（在%s里）" % carrier}
+    if not dimension_ok(gap): return {"verdict": "false", "action": "量纲不符，检查绑定"}
+    if should_not_exist(gap): return {"verdict": "false", "action": "设计上不需要"}
+    return {"verdict": "real", "searched": [...]}
+
+assert gap["searched"], "无 searched = 未验证 = 不许报缺"
+```
+
+**门禁 S6 · 冲突/缺口闭环**
+
+```python
+{"stage": "S6", "gate": "冲突/缺口闭环",
+ "check": "每个 (主体,属性) 多值必须登记待审；每条缺必须带 searched 三问证据"}
+```
+
+**代价（最贵的一课）**
+
+```
+累计报「缺」1496 个 → 复核后真缺 345 个 → 假缺率 77%
+
+关系缺证据  190 → 2（三级判定缺失）
+模糊引用     48 → 4（缺四层过滤）
+条款必填    131 → 0（字段别名不认）
+推演必填     75 → 0（False 被当缺失）
+孤儿节点   1010 → 327（'None' 字符串 + 描述性无关系）
+```
+
+**公信力 = 1 / (1 + 假缺率)。77% 假缺率下，编制方查 4 条有 3 条是假的。**
+
+---
+
+### 工序 7 · 脱敏索引
+
+**契约**
+
+```json
+{
+  "skeleton": {"required": ["id", "text", "node_refs"],
+               "text": {"description": "值已被 {{node:N-xxx}} 替换"}},
+  "desensitize_levels": {"enum": ["node", "time", "entity"],
+                         "description": "三层：节点引用 / 时间 / 主体名"}
+}
+```
+
+**执行**
+
+```python
+def desensitize(chunks, nodes) -> list[Skeleton]:
+    for c in chunks:
+        t = replace_values(c.text, nodes)     # 值 → {{node:ID}}
+        t = replace_times(t)                  # 时间 → {{time:2020-07}}
+        t = replace_entities(t)               # 主体 → {{ent:owner}}
+        assert count_placeholders(t) == count_refs(c), "占位符数 ≠ 节点引用数"
+        assert not has_nested_placeholder(t),        "不允许嵌套占位符"
+        assert not has_residual_number(t, nodes),    "不许残留可反推的字面数"
+```
+
+**门禁 S7 · 脱敏闭环**
+
+```python
+{"stage": "S7", "gate": "脱敏闭环",
+ "check": "占位符数 = 节点引用数；无嵌套；无残留字面数"}
+```
+
+**形 vs 值判据**（决定脱不脱敏）
+
+```
+删掉它，文档结构还完整吗？
+  完整 → 形（章节号/页码/序号）→ 保留
+  不完整 → 值（测量值/时间/实体）→ 脱敏
+```
+
+**代价**
+
+- 数值不脱敏 → 骨架泄露真实项目数据，跨项目复用失去意义
+- 脱敏后不回填值表 → 骨架里的占位符还原不了
+
+---
+
+## 工序依赖与门禁总表
+
+```
+S1 归一化 ──┬─→ S1b 表格解析 ──┐
+            └─→ S2 骨架 ──→ S3 切块 ──┴─→ S4 本体抽取
+                                              ↓
+                                        S5 推演回放
+                                              ↓
+                                        S6 质量登记
+                                              ↓
+                                        S7 脱敏索引
+```
+
+| 门禁 | 不通过的后果 |
+|---|---|
+| S1 归一化 | 回不到原文，溯源链断 |
+| **S1b 表格** | **列名丢失，subject 退化** |
+| S2 大纲 | 法定章节漏写 |
+| S3 切块 | 切块丢失内容 |
+| S4 抽取 | 论断/证据分类错，写作口径错 |
+| S5 派生 | 规则静默跳过，数值无来源 |
+| S6 质量 | 假缺泛滥，公信力崩塌 |
+| S7 脱敏 | 跨项目复用失效 |
+
+**任何一项 covered < total → 装配侧拒绝发布。**
 
 ## 运行方式
 
@@ -59,6 +488,11 @@ python3 -m corpus_pipeline.test_llm_extraction
 - **主存列是权威副本**，副本列是冗余拷贝，以主存为准。
 - **Agent 访问形式**：① 注入（constraints/meta/outline/gate/style/terms）· ② 工具调用（corpus_get_chunk 等 10 个）· ③ 内嵌（conflicts/gaps）· ✕ 不对外（原文/整包/事件流）。
 - **安全边界**：写作 Agent 只拿 `chunks/skeletons.jsonl`（数值已替换为 {{node:Nxx}}），永远不拿 `chunks/chunks.jsonl`（原文）。
+
+> **与七道工序「契约」段的区别**：
+> 本节管**产物清单与管理规则**（有哪些文件、谁是权威副本、谁能访问），
+> 工序里的「契约」段管**每道工序的输入输出字段结构**（如 table 必须有哪些键）。
+> 两者不重复：本节答「交付什么」，工序契约答「每步产出长什么样」。
 
 ## 确定性 vs 语义（tool+LLM 分层）
 
@@ -710,3 +1144,554 @@ review_status:
 > 消歧能做的事，不要让甲方做；
 > 但**原文自相矛盾**（两个值都有出处、都无计算支撑）必须交给甲方——
 > 系统替甲方选一个，等于伪造事实。
+
+
+## 识别引用 → 生成待抓清单（自动触发检索的第一步）
+
+### 为什么单独一步
+
+报告里会引用几十个外部标准，但抓取时往往只抓了正文用到的少数几个。
+实测某可研报告：**正文出现 56 个标准编号，公共库只有 12 个，缺 44 个**——
+手工只发现了 6 个，正则扫出 44 个，漏了 38 个。
+
+### 只做识别与分级，不擅自抓取
+
+这是整条链路里**唯一可以完全自动化且无风险**的一步：
+
+```
+① 识别引用（本步）      ✅ 确定性正则，零风险
+② 生成待抓清单（本步）  ✅ 按引用次数分档
+③ 执行检索              ⚠️ 需要人确认源
+④ 校验版本/来源/完整性   ⚠️ 必须人工把关
+⑤ 抽条款                ✅ 有抽取器
+⑥ 纳入公共库            ⚠️ 一旦错全项目跟着错
+```
+
+**为什么 ③④⑥ 不能全自动**：把二手转载或旧版当权威条款写进公共库，
+所有引用它的项目都会跟着错。
+
+### 识别模式
+
+```python
+PAT = re.compile(
+    r"(?:GB\s*/?\s*T?\s*\d{4,5}(?:[-—]\d{4})?|JGJ\s*\d+(?:[-—]\d{4})?|"
+    r"DGJ\s*[\dA-Z]+(?:[-—]\d{4})?|CJJ\s*\d+|"
+    r"建标\s*[﹝〔\[]?\d{4}[﹞〕\]]?\s*\d+|"
+    r"发改投资规〔\d{4}〕\d+号|发改委令第\s*\d+\s*号)")
+NAME = re.compile(r"《[^》]{4,40}(?:规范|标准|指标|规定|办法|大纲|通则|规程)》")
+```
+
+**同时抽两种**：有编号的（GB50016-2014）+ 只有名称的（《建筑设计防火规范》）。
+只有名称的也重要——说明作者知道该标准但没写编号，抓取时要靠名称反查。
+
+### 三档分级（按引用次数）
+
+| 档 | 判据 | 动作 | 实测 |
+|---|---|---|---|
+| **必抓** | ≥ 3 次 | 人工确认官方源后抓 | 3 个（DGJ08 13次 / GB50034 6次 / GB50189 4次） |
+| **应抓** | = 2 次 | 批量抓取并抽查 | 8 个 |
+| **暂缓** | = 1 次 | 只登记引用，标注未抓原文 | 33 个 |
+
+**为什么按次数分档**：44 个全抓等于把工作量翻 3 倍，
+但引用 1 次的标准对报告结论影响很小，可以先标缺口。
+
+### 标准类型决定去哪抓（关键）
+
+| 类型 | 编号特征 | 权威源 |
+|---|---|---|
+| **地方标准** | `DGJ` 开头 | **仅地方住建委官网**（其他都是转载） |
+| 行业标准 | `JGJ` / `CJJ` | 住建部发布页 |
+| 国家强制性 | `GB` | 标准全文库 / 官方发布页 |
+| 国家推荐性 | `GB/T` | 同上 |
+| 建设标准 | `建标` | 住建部 + 发改委联合发布 |
+| 政策文件 | 发改投资规 / 发改委令 | 发改委公告 |
+
+**实测踩过的坑**：DGJ08 引用 13 次（最高），但它是上海地方标准，
+网上能找到大量转载，**只有上海市住建委官网发布的那份才是准的**。
+
+### MCP 工具
+
+```
+detect_citations(chunks_path, library_path?, out_path?)
+  → {summary: {cited, in_library, missing, named_only, tiers},
+     tasks: [{standard, tier, type, mentions, action, caution}]}
+```
+
+### 输出示例（实测）
+
+```yaml
+summary:
+  cited_standards: 56
+  in_library: 12
+  missing: 44
+  named_only: 92
+  tiers: {必抓: 3, 应抓: 8, 暂缓: 33}
+
+tasks:
+  - standard: DGJ08
+    tier: 必抓
+    type: 地方标准（仅地方住建委官网权威）
+    mentions: 13
+    sections: ["6.3", "6.4", "6.5"]
+    action: 人工确认官方源后抓取
+    caution: 地方标准仅地方住建委官网权威
+```
+
+### 一条铁律
+
+> **「自动」只到「生成待抓清单」是安全的。**
+> 再往后（认定权威源、判定版本、纳入公共库）必须有人确认——
+> 公共库是所有项目的共同依据，错一条，所有项目跟着错。
+
+
+## 表格转录 → 可判定函数：让 range_known 真正变成 true
+
+### 为什么
+
+条款正文拿到了，但**限值在表格里，而表格是图片**。
+没有限值就只能 `range_known: false`，只能写「依据某条款，限值待核」。
+
+实测某个标准 8 条条款正文全拿到，但 6 张表格全是图片——
+真正能用的是表格里的 22 行数值，不是正文。
+
+### 转录 → 判定函数的三步
+
+```
+① 读图转录   read_image 读表格图片 → 结构化行（不是 OCR）
+② 落库       clauses.yaml 的 table 字段 + limits_extracted: true + 原图 URL
+③ 写成函数   standards_check.py → check_thermal() / check_lpd()
+```
+
+**必须保留 `table_source` 与原图 URL**，让人能回查转录是否准确。
+
+### 转录前的判断：报告有没有可比的数值
+
+**这一步比转录更重要。** 实测踩过：
+
+| 标准 | 表格转录 | 报告里有数值吗 | 能否判合规 |
+|---|---|---|---|
+| GB50189 围护结构 | ✅ 14 行传热系数限值 | ❌ 传热系数 **0 处**、窗墙比 0 处 | **不能** |
+| GB50034 照明 | ✅ 4 张表 | ⚠️ 只写「按目标值设计」，无 LPD 数值 | **不能** |
+
+**报告没给数值，转录了也只能存进公共库供未来项目用，当前项目建不了 `bounded_by`。**
+
+所以转录前先查：报告里有没有这个参数的值？
+没有 → 只记「章节级引用」，别硬造关系。
+
+### 判定函数的三态返回
+
+```python
+check_thermal(part="屋面", k=0.35, d=2.0)
+  → {"result": "PASS", "limit": 0.40, "basis": "GB50189-2015 表3.3.1-4（夏热冬冷）"}
+
+check_thermal(part="屋面", k=0.40)          # 缺热惰性指标 D
+  → {"result": "UNKNOWN", "reason": "缺少热惰性指标 D，无法判断 D≤2.5 还是 D>2.5"}
+
+check_lpd(room="不存在房间", value=5)
+  → {"result": "UNKNOWN", "reason": "GB50034 表6.3 无「不存在房间」条目"}
+```
+
+**UNKNOWN 不是失败，是缺参数或未匹配。** 不允许用近似限值凑一个 PASS/FAIL。
+
+### 判定表怎么建
+
+按「部位 + 条件」做键，不按「表格行号」：
+
+```python
+THERMAL_K = {
+    ("屋面", "D≤2.5"): 0.40,
+    ("外墙", "D≤2.5"): 0.60,
+    ("外窗", "0.30<窗墙比≤0.40"): 2.6,
+    ...
+}
+
+LPD = {
+    ("普通办公室", "6.3.3"): (9.0, 8.0),   # (现行值, 目标值)
+    ("走廊-一般", "6.3.13"): (2.5, 2.0),
+    ...
+}
+```
+
+**为什么用「部位 + 条件」而不是行号**：调用方知道的是「屋面 K=0.35、D=2.0」，
+不知道「这是第 1 行」。键要贴近调用方的语言。
+
+### MCP 工具
+
+```
+check_standard_limit(kind="thermal", part="屋面", k=0.35, d=2.0)
+check_standard_limit(kind="lpd", room="普通办公室", value=7.5, mode="目标")
+```
+
+### 一个判断
+
+**转录表格的价值往往不在当前项目，而在公共库。**
+
+本次 22 行限值，当前项目一个都用不上（报告没给传热系数和 LPD），
+但下次任何项目只要有传热系数，立刻能判合规——
+这就是把标准提升为跨项目公共库的意义。
+
+
+## 图查询：YAML 精确 vs Semantica 模糊+多跳+因果
+
+### 两者不是替代关系
+
+| 场景 | 用什么 | 理由 |
+|---|---|---|
+| 精确查「N-xxx 的 value」 | **读 YAML** | 快（~50ms），精确 |
+| 模糊搜「和用水定额相关的」 | **`semantica_query(mode=search)`** | YAML 做不到 |
+| 多跳遍历「依赖这条值的所有节点」 | **`semantica_query(mode=neighbors, depth=2)`** | 一条命令 |
+| 按边类型筛「只要 computed_from」 | **`semantica_query(relationship_types=[...])`** | 一条命令 |
+| 找「最被依赖的节点」 | **`semantica_analytics`** | pagerank |
+| 追「一个冲突是不是另一个冲突的根因」 | **`semantica_causal_chain`** | BFS 因果链 |
+| 全量遍历/统计 | **读 YAML** | 无启动开销 |
+
+### 五个工具的实测边界（都是实测出来的，不是文档说的）
+
+#### ① `semantica_query` —— 全能查询（3 模式）
+
+```json
+{
+  "mode": "node | neighbors | search",
+  "node_id": "完整 UUID（32位）",
+  "depth": "1-5",
+  "relationship_types": ["computed_from"],
+  "query": "必要性",
+  "node_type": "fact",
+  "limit": 5
+}
+```
+
+**实测**：
+
+| 调用 | 结果 |
+|---|---|
+| `mode=node` | `本项目 = 95.04 m³/d` |
+| `mode=neighbors depth=1` | 7 个邻居 |
+| `mode=neighbors depth=3` | 8 个邻居 |
+| `neighbors + relationship_types=[computed_from]` | 6 个（过滤生效） |
+| `mode=search "必要性"` | 3 条 |
+| `search + node_type=fact` | 1 条（过滤生效） |
+| `search + node_type=claim` | 2 条 |
+
+#### ② `semantica_node` —— 本地 ID → UUID + 邻接
+
+```
+输入 N-c67295c8a345
+→ uuid / type / content / in_edges / out_edges / degree
+→ in=1, out=6, degree=7
+```
+
+#### ③ `semantica_analytics` —— 含社区检测
+
+```json
+{
+  "node_count": 1310,
+  "edge_count": 334,
+  "top_nodes_by_pagerank": [...10条],
+  "community_count": 1037
+}
+```
+
+**`community_count` 是个诊断指标**：社区数 ≈ 节点数说明图极稀疏（本例 0.25 边/节点，大部分节点孤立）。
+
+#### ④ `semantica_precedents` —— 按场景找先例
+
+```json
+{"scenario": "建筑高度 49m 与 60m 两个口径", "max_results": 2}
+→ 返回本项目已记录的相似 decision
+```
+
+**单项目内也能用** —— 不要求跨项目先例库。
+
+#### ⑤ `semantica_causal_chain` —— 因果链
+
+```json
+{"decision_id": "完整 32 位 UUID", "direction": "upstream|downstream", "max_depth": 5}
+```
+
+**实测（补 4 条因果边后）**：
+
+```
+建筑高度 60vs49 → downstream
+   [dist=1] 耐火等级 二级 ／ 一类高层不应低于一级
+   [dist=1] 消防水箱 18 m³ ／ 不应小于 36 m³
+```
+
+### 三个必须知道的坑
+
+#### 坑 1：ID 必须完整
+
+```
+✗ f6c1337ea1c517f2              （16 位前缀）
+✓ f6c1337ea1c517f29f14fd6a3629accf  （32 位完整）
+```
+
+BFS 用 `current_id in self.nodes` 判断，**前缀匹配不上**。
+
+#### 坑 2：因果边类型必须命中枚举
+
+```python
+_CAUSAL_TRAVERSAL_TYPES = {
+    "CAUSES", "CAUSED", "INFLUENCES", "INFLUENCED",
+    "PRECEDES", "PRECEDENT_FOR", "LEADS_TO", "LEAD_TO", "SUPPORTS", "SUPPORT"
+}
+```
+
+**我一开始用 `causes`（小写）→ 不匹配 → chain 为空。改用 `CAUSED` 才行。**
+
+#### 坑 3：`scenario` 为 None 的 decision 不能用关键词找
+
+有些 decision 的 `scenario` 是 `None`，内容在 `reasoning` 里 —— 必须用 UUID 定位。
+
+### 推入存储 ≠ 可检索（本轮最大的坑）
+
+**1301 个节点推入 Semantica 后，`search_graph("GB50016")` 返回 0 条。**
+
+原因：推送时缺 `content` 字段。
+
+```python
+# 错：只有 subject/value/section
+props = {"subject": ..., "value": ..., "section": ...}
+
+# 对：必须有 content（Semantica 的 search 只索引这个字段）
+props = {..., "content": "本项目 = 95.04 m³/d", "label": "本项目"}
+```
+
+**修前 `GB50016` → 0 条，修后 → 2 条。**
+
+**验证必须用真实查询，不能只数节点条数。**
+
+同类错误还有：`content_export` 返回 `presented` 但文件没落盘。**把「接口返回成功」当成「结果正确」是反复出现的缺陷模式。**
+
+### 因果链的价值：一个根因，三个表象
+
+本项目实测出一条链：
+
+```
+建筑高度 60m vs 49m   ← 根因
+    ├─CAUSED→ 耐火等级 二级 vs 一级
+    └─CAUSED→ 消防水箱 18 m³ vs 36 m³
+```
+
+**如果高度按 49m（算得出）→ 二类高层 → 二级耐火等级成立、18m³ 水箱成立**
+**如果高度按 60m（原文写）→ 一类高层 → 耐火等级应一级、水箱应 36m³**
+
+**三个冲突共用一个根因 —— 不建因果边就看不出来。**
+
+### 建因果边的判据
+
+不是所有 decision 之间都有因果。能建的条件：
+
+| 判据 | 例子 |
+|---|---|
+| **A 的取值决定 B 的判据** | 建筑高度 >50m → 属一类高层 → 耐火等级要求变 |
+| **A 和 B 共同决定同一输出** | 定额 × 人数 → 日用水量 |
+| **A 是 B 的计算输入** | 总建筑面积 → 建安工程费 |
+
+**不能建**：两条独立的冲突、只是同一章节、同一主题。
+
+边要带 `why` 说明理由，**不能凭主题相似就建**。
+
+### 一条铁律
+
+> **推入不等于可检索，检索到不等于可推理。**
+>
+> 三步都要验证：① 节点数对上 ② 搜得到 ③ 能跑出因果链。
+> 只验证第 ① 步，等于没验证。
+
+
+## 报「缺」之前：假缺四问（V2.9 核心纪律）
+
+### 实测数据
+
+一个项目累计报「缺」1496 个，复核后**真缺只有 345 个 —— 假缺率 77%**。
+
+| 报的问题 | 报的数量 | 真缺 | 根因 |
+|---|---|---|---|
+| 关系缺证据 | 190 | **2** | 只查 `relation.source`，没查 `cites`/`supports`/`computed_from`/`anchor` |
+| 模糊引用 | 48 | **4** | 缺四层过滤（警示语 29 / 同句有编号 8 / 后接书名号 4 / 规范内部互引 3）|
+| 条款必填缺失 | 131 | **0** | 字段别名不认（`clause`↔`clause_no`）+ 表格条款视为无原文 |
+| 推演必填缺失 | 75 | **0** | `not payload.get(k)` 把 `range_known=False` 当缺失 |
+| 缺依赖规则 | 42 | **12** | 绑定漏 11 + 值没抽 8 + 表格没解析 6 + 顿号 3 + 绑错 2 |
+| 孤儿节点 | 1010 | **327** | `'None'` 字符串 343 + 描述性无关系 + 实体值没抽 + 证据没建边 |
+
+**假缺的代价**：编制方看到 190 条「缺证据」，会认为系统在乱报，整份缺陷册失去可信度。
+
+### 四问（每一问都要留证据）
+
+报任何「缺」之前，按顺序过四问：
+
+#### 第一问：节点真的不存在？
+
+```
+✗ 只看 subject 精确匹配就判缺
+✓ 三种方式都搜过才算：
+   ① 精确匹配 subject
+   ② 包含匹配（注意：包含匹配会误中相邻节点，见第三问）
+   ③ 去掉顿号/逗号/括号后匹配
+      （实测：规则写「通风空调工程」，原文表写「通风、空调工程」）
+```
+
+**本项目实测**：11 条「缺依赖」的节点早就在 `nodes.yaml` 里，`node` 字段是 `null` 而已。
+
+#### 第二问：原文真的没有？
+
+```
+✗ 只搜 chunks 的纯文本
+✓ 四种载体都要搜：
+   ① 纯文本段落
+   ② markdown 表格（表头是列名，值在表体）
+   ③ 表格注（「（一+二）×5%」这种在注释里）
+   ④ 跨节引用（本节没有，但他节定义）
+```
+
+**本项目实测**：
+- 6 条依赖的值在**表格**里（`单位面积冷负荷指标 135 W/m²`）
+- 1 条费率在**表注**里（`基本预备费 = (一+二)×5%`）
+- 3 条变量名与表内行名**差个顿号**
+
+#### 第三问：绑对了节点吗？
+
+```
+✗ 主体包含匹配（「基本预备费费率」包含「基本预备费」→ 绑到 618 万元）
+✓ 三道校验：
+   ① 量纲校验：费率/系数/指标/比例 结尾的依赖，单位不能是万元/元
+   ② 章节校验：同章节优先
+   ③ 主体长度：取最长匹配（最具体）
+```
+
+**本项目实测**：`基本预备费费率` 绑到 `基本预备费 = 618 万元`，
+表达式算出 **76378.62**（应为 618）—— 差 123 倍。
+
+#### 第四问：设计上就不该有？
+
+```
+有些「孤儿」是正常的：
+  · 报告编号、编者、单位名 → 描述性事实，不需要关系
+  · META 章节的元信息 → 无正文原文
+  · 判定项（规定性指标）→ 不是数值依赖
+```
+
+**本项目实测**：1010 个孤儿里 327 个才需处理，
+其余是描述性事实（`本报告 = 2019ZX054`、`本项目 = 上海财经大学`）。
+
+### 报缺的输出格式（强制）
+
+```yaml
+- missing: 增容后变压器容量
+  why_real: ① 节点表搜过（精确/包含/归一三方式）无 ② 原文 §6.5.2 搜「增容」「变压器」只有原容量 2×1000kVA ③ 非表格值 ④ 是数值依赖不是判定项
+  searched: ["nodes.yaml: subject 精确+包含+归一", "chunks: 增容|变压器|kVA", "tables: §6.5.2 全部表"]
+  conclusion: 真缺，报告未给，需甲方补充或按规范估算
+```
+
+**没有 `searched` 字段的「缺」，不许进台账。**
+
+### 一条铁律
+
+> **宁可少报一个真缺，不要多报十个假缺。**
+>
+> 假缺会让整份审计失去可信度 —— 编制方发现第一个假缺后，
+> 就不再相信后面 189 条。
+
+## 改动影响面：改前必列（V2.9）
+
+### 实测教训
+
+改了一个判定标准，只改了「用户问到的那一个 skill」，**受影响的整条链没动**。
+
+| 事件 | 上游改了 | 下游没跟上 |
+|---|---|---|
+| claim 判据变（68→19） | claim-extraction | fact-extraction / claim-validation / claim-evidence-binding |
+| 证据分级变（E1→E0~E6） | evidence-extraction | claim-evidence-binding / graph-deductive-writing |
+| `content_export` 返回 presented | — | **文件没落盘** |
+| Semantica 推了 1301 节点 | — | **缺 `content` 字段，全搜不到** |
+| skill SKILL.md 改了 | — | **7 个 references + 1 个 script 没改** |
+| skill 改了 | — | **119 节提示词生成器没改** |
+
+### 改前必列的三张表
+
+#### 表一：谁依赖这个判定标准
+
+```
+改 claim 判据
+  → claim-extraction（判据来源）
+  → fact-extraction（改判的 49 条去哪）
+  → claim-validation（falsifiable_by）
+  → claim-evidence-binding（证据级别）
+  → graph-deductive-writing（句式选择）
+  → feasibility-report-edu-research（写作口径）
+```
+
+#### 表二：改 schema 后谁要跟着改
+
+```
+改 nodes.yaml 字段
+  → relations.yaml 的引用
+  → 前端 console.*.js 的读取
+  → MCP 工具的 inputSchema
+  → validate_*.py 的校验
+  → 写作提示词的模板
+```
+
+#### 表三：改生成器后要重新生成什么
+
+```
+改 build_writing_prompts.py
+  → 重跑生成 119 节
+  → 抽查 3 节确认新字段进去
+  → 对比新旧差异
+```
+
+### 改动后的自检清单
+
+```
+□ skill 改了 → references/ + scripts/ + assets/ 是否同步？
+□ 生成器改了 → 产物重新生成了吗？抽查了吗？
+□ schema 改了 → 所有 consumer 改了吗？
+□ 数据改了 → 校验脚本跑了吗？0 错吗？
+□ 声明改了 → 有 dispatch 吗？实测过吗？
+```
+
+### 一条铁律
+
+> **改动不是「改一个文件」，是「改一条链」。**
+>
+> 改完必须回答：哪些东西依赖它？它们都改了吗？改完验证过吗？
+
+## 命名归一化：差一个顿号就判缺
+
+### 实测
+
+| 规则变量名 | 原文表写法 | 匹配结果 |
+|---|---|---|
+| `通风空调工程` | **`通风、空调工程`** | ❌ 纯字符串匹配失败 |
+| `道路广场硬地铺装` | **`道路、广场、硬地、铺装`** | ❌ |
+| `绿化景观` | **`绿化、景观`** | ❌ |
+
+**三条「缺依赖」全是顿号导致的。**
+
+### 归一化函数
+
+```python
+def norm(s):
+    return re.sub(r"[、,，\s（）()]", "", str(s))
+# 比较前两边都归一
+```
+
+### 但归一后要防误中
+
+```
+归一后「空调」会匹配到「通风、空调工程」
+→ 必须配「取最长匹配」+「同章节优先」
+```
+
+### 别名表（跨项目复用）
+
+```yaml
+aliases:
+  通风空调工程: [通风、空调工程, 通风空调, 空调通风]
+  道路广场硬地铺装: [道路、广场、硬地、铺装, 道路广场, 室外道路]
+  绿化景观: [绿化、景观, 绿化, 景观绿化]
+```
+
+**别名表是资产，跨项目复用。** 每次遇到新写法就补进去。

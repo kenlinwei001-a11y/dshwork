@@ -113,3 +113,126 @@ depends_on / supports / contradicts / temporal / located_in）覆盖的是**事�
 后果是：①改一处漏三处无法被机检；②「结论章不得出现新数」无法机检。
 因此编译时须保证总论/结论章**成层**（有 claim 节点），而不只是补边。
 
+
+
+## 图库落地：推入后的三步验证
+
+编译出的图谱最终要落到图库（本项目用 Semantica）。**推入成功不等于可用。**
+
+### 三步验证（缺一不可）
+
+| 步 | 验证什么 | 怎么验 | 不验的后果 |
+|---|---|---|---|
+| **① 节点数** | 节点/边数是否对上 | `get_graph_summary()` | 漏推不知道 |
+| **② 可检索** | 关键词能否搜到节点 | `query_graph(mode=search, query="GB50016")` | **1301 节点推了但全搜不到** |
+| **③ 可推理** | 因果/多跳能否跑通 | `get_causal_chain(...)` | 有边但追不出链 |
+
+**实测踩过**：只验了第 ① 步（`node_count: 1310` 对上了），结果 `search_graph("GB50016")` 返回 **0 条** —— 推入时缺 `content` 字段。
+
+### 节点必须有 content 字段
+
+```python
+# 错：只有业务字段
+{"id": nid, "type": "fact",
+ "properties": {"subject": "本项目", "value": "95.04", "unit": "m³/d"}}
+
+# 对：加 content（图库的 search 只索引这个）
+{"id": nid, "type": "fact",
+ "properties": {"subject": "本项目", "value": "95.04", "unit": "m³/d",
+                "content": "本项目 = 95.04 m³/d",
+                "label": "本项目"}}
+```
+
+**不同图库的索引字段不同**，推送前必须查清：
+- Semantica → `content`
+- Neo4j → 需要显式建 `CREATE INDEX ON :Node(content)`
+
+### 边的类型必须用图库的枚举
+
+因果边不是随便写个 `causes` 就行：
+
+```python
+# Semantica 的 _CAUSAL_TRAVERSAL_TYPES（大小写敏感）
+{"CAUSES", "CAUSED", "INFLUENCES", "INFLUENCED",
+ "PRECEDES", "PRECEDENT_FOR", "LEADS_TO", "LEAD_TO", "SUPPORTS", "SUPPORT"}
+
+# 我一开始用 "causes"（小写）→ chain 为空
+```
+
+### 建因果边的判据
+
+不是所有节点之间都有因果。能建的条件：
+
+| 判据 | 例子 |
+|---|---|
+| A 的取值决定 B 的判据 | 建筑高度 >50m → 一类高层 → 耐火等级要求变 |
+| A 和 B 共同决定同一输出 | 定额 × 人数 → 日用水量 |
+| A 是 B 的计算输入 | 总建筑面积 → 建安工程费 |
+
+**不能建**：两条独立冲突、同章节、同主题。**边要带 `why` 说明理由。**
+
+### 一个根因三个表象
+
+```
+建筑高度 60 vs 49   ← 根因（可算出 49）
+    ├─CAUSED→ 耐火等级 二级 vs 一级
+    └─CAUSED→ 消防水箱 18 vs 36 m³
+```
+
+**不建因果边，这三个冲突在清单里是并列的，看不出谁先解决。**
+
+### 稀疏度诊断
+
+```
+community_count / node_count ≈ 1  → 图极稀疏，大部分节点孤立
+```
+
+本项目实测 `1037 / 1310 = 0.79` —— 说明 314 条边只覆盖了不到 300 个节点。
+
+**这不是 bug，是抽取深度的真实反映**：值抽出得多，关系建得少。
+
+### 一条铁律
+
+> **推入 ≠ 可检索，检索到 ≠ 可推理。**
+>
+> 三步都要验证，只验节点数等于没验。
+
+## 工序（四段式）
+
+**契约**
+
+```json
+{"graph": {"required": ["project_id", "items"],
+           "items": {"required": ["entities", "relations", "facts", "reasoning",
+                                   "claims", "evidence", "conflicts", "validations"]}}
+}
+```
+
+**执行**
+
+```python
+def compile_graph(parts) -> dict:
+    g = {"project_id": parts.project_id, "items": {}}
+    for col in ITEM_TYPES:
+        g["items"][col] = parts.get(col, [])
+    # 端点可寻址
+    ids = {n["id"] for n in g["items"]["entities"]}
+    dangling = [r for r in g["items"]["relations"]
+                if r["from"] not in ids or r["to"] not in ids]
+    assert not dangling, f"{len(dangling)} 条关系端点不存在"
+    return g
+```
+
+**门禁 P15 · 编译闭环**
+
+```
+端点可寻址 + 无孤儿（或孤儿已分类合理）+ 关系类型闭环
+```
+
+**代价（实测）**
+
+```
+不校验端点 → 悬空关系 106 条，图查询走不通
+新建泛化节点架空真实节点（NX-条款-GB50016 vs NX-条款-006）→ 合并 21 条、删 5 个
+图库推入后缺 content 字段 → 1301 节点全搜不到
+```

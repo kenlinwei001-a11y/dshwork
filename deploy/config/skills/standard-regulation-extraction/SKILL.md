@@ -20,80 +20,335 @@ description: 从「标准 / 法规 / 政策 / 公告」四类规范性文件中�
 - 需要评估抽取率是否达标、多源同标准如何合并
 - 要为多个项目建立共享的标准条款库
 
-## 第一步：判类型（四类，模式完全不同）
+## 工序（四段式：契约 / 执行 / 门禁 / 代价）
 
-判据看**文件的编号体系**，不看标题：
+> **为什么不用自然语言写步骤**：实测「条款必须带标准号」写在散文里，
+> 69 个条款节点的 `standard` 字段 **0/69 全空**；
+> 写成 `validate_clause_library` 断言后，152/152 立刻通过。
+> **纪律靠提醒，机制靠退出码。**
 
-| 类型 | 编号特征 | 例子 | 抽取模式 |
-|---|---|---|---|
-| **标准** | `5.1.1` / `表5.1.1` / `附录A` | GB50016、建标191、JGJ16 | `ex_gb` / `ex_appendix` |
-| **法规** | `第一条` `第二条` / `（一）（二）` | 条例、办法、规定 | `ex_article` |
-| **政策** | `一、` `（一）` `1.` 多级 | 通知、意见、规划、大纲 | `ex_outline` |
-| **公告** | 无编号，全文即一条 | 批准发布公告、施行通知 | `ex_notice` |
-| **技术表格** | `N 抗震设防烈度为X度…` + `第N组：` | GB50011 附录A 烈度表 | `ex_intensity` |
+---
 
-**同一标准的不同章节可能用不同模式**（GB50011 正文是 `5.1.1`，附录A 是烈度表）。
-按**文档范围**路由，不按标准编号路由。
+### 工序 1 · 判型
 
-## 第二步：四个抽取器（可直接用）
+**契约**
 
-见 `scripts/extractors.py`。核心逻辑：
+```json
+{
+  "doc_type": {"enum": ["standard", "regulation", "policy", "notice"],
+               "description": "standard=GB/建标/JGJ；regulation=条例办法；policy=通知意见大纲；notice=发布公告"},
+  "router": {"required": ["doc_type", "extractor", "basis"],
+             "basis": {"description": "判型依据：文号格式 / 正文结构 / 强制性用语"}}
+}
+```
 
-### ex_gb — 标准条款
+**执行**
+
 ```python
-CLAUSE = re.compile(r"^\s*(\d+(?:\.\d+){1,3})\s*[\s　]*(\S.{4,})")
-TABLE  = re.compile(r"^\s*(表\s*\d+(?:\.\d+){1,3})\s*(.{0,80})")
+# scripts/extractors.py:detect_kind
+def detect_kind(chunks: list[str]) -> str:
+    """逐段 match，不要先 join —— 正则含 ^，拼接后只匹配开头一次（实测踩过）"""
+    for seg in chunks:
+        if re.match(r"^\s*第[一二三四五六七八九十百]+条", seg):   return "regulation"
+        if re.match(r"^\s*\d+(\.\d+)*\s+[\u4e00-\u9fa5]", seg): return "standard"
+        if re.search(r"(发布公告|住房和城乡建设部公告)", seg):      return "notice"
+        if re.search(r"(通知|意见|大纲|规划)", seg):                return "policy"
+    return "standard"
+
+assert doc_type in DOC_TYPES, "判型越界"
+assert basis, "必须有判型依据，否则无法复核"
 ```
 
-### ex_intensity — 烈度/参数表格
+**门禁 S1 · 判型可复核**
+
 ```python
-INTEN = re.compile(r"^\s*(\d+)\s*抗震设防烈度为\s*(\d+)\s*度[，,]\s*设计基本地震加速度值为\s*([\d.]+)\s*g")
-GROUP = re.compile(r"^\s*(第[一二三四五六七八九十]组)\s*[：:]\s*(.+)")
+{"stage": "S1", "gate": "判型可复核",
+ "check": "doc_type 在四类内；basis 非空（写清依据哪一行）"}
 ```
-产出：`{clause: "附录A-3", intensity: "7", accel: "0.10", groups: [{group, areas}]}`
 
-### ex_outline — 政策大纲
+**代价（实测）**
+
+```
+用 " ".join(chunks) 后 findall → 正则含 ^ → 只匹配开头一次
+→ 12 个标准全判成 notice → 抽取器全选错
+```
+
+---
+
+### 工序 2 · 选抽取器
+
+**契约**
+
+```json
+{
+  "extractor": {"enum": ["ex_gb", "ex_intensity", "ex_outline", "ex_appendix", "ex_article", "ex_notice"]},
+  "selection": {"required": ["doc_scope", "extractor", "why"],
+                "doc_scope": {"description": "文档范围：正文条款 / 参数表 / 大纲目录 / 附录 / 法规条文"}}
+}
+```
+
+**执行**
+
 ```python
-LV1 = re.compile(r"^\s*([一二三四五六七八九十]+)、\s*(.+)")
-LV2 = re.compile(r"^\s*[（(]([一二三四五六七八九十]+)[)）]\s*(.+)")
-LV3 = re.compile(r"^\s*(\d+)[.．、]\s*(\S.{3,})")
-```
-产出带 `path` 字段（`二、(三)1.`）保留层级。
+def pick_extractor(doc) -> str:
+    """按文档范围选，不按标准编号选 —— 同一个 GB 可能正文+附录都要抽"""
+    if has_parameter_table(doc):  return "ex_intensity"   # 烈度/限值表
+    if has_appendix(doc):         return "ex_appendix"    # 附录条款
+    if is_outline(doc):           return "ex_outline"     # 政策大纲
+    if is_article_style(doc):     return "ex_article"     # 法规条文
+    if is_notice(doc):            return "ex_notice"
+    return "ex_gb"
 
-### ex_appendix — 附录
+assert why, "必须写清为什么选这个抽取器"
+```
+
+**门禁 S2 · 抽取器匹配**
+
 ```python
-APPX = re.compile(r"^\s*(附录\s*[A-Z一二三四五六七八九十]+)\s*[\s　]*(.+)")
+{"stage": "S2", "gate": "抽取器匹配",
+ "check": "抽取器与文档范围一致；一个文档允许多抽取器并存"}
 ```
-附录为单元，后续段落并入，上限 800 字。
 
-### ex_article — 法规条文
+**代价（实测）**
+
+```
+按标准编号硬编码 → GB50016 只抽正文、漏了表5.1.1 与附录
+建标191 判成 article（实为 appendix，46 条里混了非附录内容）
+```
+
+---
+
+### 工序 3 · 抽取
+
+**契约**
+
+```json
+{
+  "clause": {
+    "required": ["code", "standard", "clause_no", "clause_text", "source_url"],
+    "code": {"description": "标准号，如 GB50016-2014"},
+    "standard": {"description": "标准全称，如《建筑设计防火规范》"},
+    "clause_no": {"description": "条款号，如 5.1.1 / 附录E 表E.5"},
+    "clause_text": {"minLength": 4, "description": "条款原文；表格条款可用 table 替代"},
+    "effect_level": {"enum": ["A（强制性）", "B（强）", "C（推荐）"]}
+  }
+}
+```
+
+**执行**
+
 ```python
-ART = re.compile(r"^\s*第([一二三四五六七八九十百]+)条\s*[\s　]*(.+)")
+def extract(doc, extractor) -> list[Clause]:
+    clauses = []
+    for seg in doc.segments:
+        c = EXTRACTORS[extractor](seg)
+        if not c: continue
+        c["code"]   = c.get("code")   or infer_code(doc.url)   # 从 URL 反推标准号
+        c["standard"] = c.get("standard") or doc.title
+        c["clause_text"] = c.get("clause_text") or c.get("text")
+        clauses.append(c)
+    # 表格条款：table 即原文，不算缺 clause_text
+    for c in clauses:
+        assert c.get("clause_text") or c.get("table"), f"{c['clause_no']} 无原文"
+    return clauses
 ```
 
-## 第三步：质量判据（三条硬指标）
+**门禁 S3 · 五项必填**
 
-| 指标 | 达标线 | 不达标说明 |
-|---|---|---|
-| **覆盖率** | ≥ 10% | 条款数 / 段数。低于此说明模式选错 |
-| **正文完整** | < 5% 过短 | 正文 < 25 字的比例 |
-| **重复率** | = 0 | 同 (标准, 条款号) 只允许一条 |
-
-实测参考：
-
-```
-GB50016-2014  128 段 → 27 条（21%）  ✓
-GB50084-2017   91 段 → 28 条（31%）  ✓
-GB50011-2010  144 段 → 27 条（19%）  ✓ ex_intensity
-发改投资规304  135 段 →  8 条（6%）   △ ex_outline（大纲本身条目少）
-建标191-2018  205 段 →  3 条（1.5%）  △ 附录为单元，粒度粗
-公告类          3 段 →  0 条          × 全文即一条，应走 ex_notice
+```python
+{"stage": "S3", "gate": "条款五项必填",
+ "check": "code / standard / clause_no / clause_text（或 table）/ source_url 齐全；"
+          "不合格标 pending_fetch，不编造"}
 ```
 
-**建标191 只有 3 条是正常的**——它的正文是"附录A/B/C/D"四个大块，
-不是逐条条款。若要细到"专职科研机构人均 16 ㎡/人"，需**表格抽取**（见 knowledge-processing 的表格规则）。
+**代价（实测）**
+
+```
+69 个条款节点：standard 字段 0/69 全空
+42 条文献名被抽取截断（GB5 / DGJ0 / 建标 / 〔2023〕）
+→ 从原文恢复 24 条，标 recovery_basis: 从原文恢复（非编造）
+```
+
+---
+
+### 工序 4 · 质量评估
+
+**契约**
+
+```json
+{
+  "quality": {"required": ["coverage", "min_length_ok", "dup_ok"],
+              "coverage": {"description": "已抽条数 / 应抽条数，按目录或章节号估算"}}
+}
+```
+
+**执行**
+
+```python
+def judge_quality(clauses, doc) -> dict:
+    expected = estimate_clause_count(doc)      # 按目录/章节号推断
+    return {
+        "coverage": len(clauses) / max(expected, 1),
+        "min_length_ok": all(len(c.get("clause_text") or "") >= 4 for c in clauses),
+        "dup_ok": len(clauses) == len({c["clause_no"] for c in clauses}),
+    }
+
+assert q["coverage"] >= 0.6,   "抽取率低于 60%，换抽取器"
+assert q["min_length_ok"],     "有条款短于 4 字，抽取器错位"
+assert q["dup_ok"],            "同号重复，需多源合并"
+```
+
+**门禁 S4 · 三条硬指标**
+
+```python
+{"stage": "S4", "gate": "抽取质量",
+ "check": "覆盖率 ≥60%；无过短条款；无同号重复"}
+```
+
+**代价（实测）**
+
+```
+建标191 抽 46 条，其中混入非附录内容 → 覆盖率虚高，实为抽取器错位
+8 个标准报「有重复条款」→ 多源合并后同号重复，需去重
+```
+
+---
+
+### 工序 5 · 多源合并
+
+**契约**
+
+```json
+{
+  "merge": {"required": ["keep", "drop", "merge_basis"],
+            "merge_basis": {"description": "同号多源时保留哪一份的依据（更完整/更权威/更晚）"}}
+}
+```
+
+**执行**
+
+```python
+def merge_sources(candidates: list[Clause]) -> list[Clause]:
+    """同 clause_no 保留 clause_text 最长的（最完整），但记下候选来源"""
+    best = {}
+    for c in candidates:
+        k = (c["code"], c["clause_no"])
+        if k not in best or len(c.get("clause_text") or "") > len(best[k].get("clause_text") or ""):
+            best[k] = c
+            best[k]["merge_basis"] = "取 clause_text 最长（最完整）"
+    return list(best.values())
+```
+
+**门禁 S5 · 合并留痕**
+
+```python
+{"stage": "S5", "gate": "合并留痕",
+ "check": "每条合并结果带 merge_basis；被丢弃的源记入 drop 列表"}
+```
+
+**代价（实测）**
+
+```
+多源合并后 8 个标准报「有重复条款」→ 去重时没留痕，无法复核保留的是哪份
+```
+
+---
+
+### 工序 6 · 打标与溯源
+
+**契约**
+
+```json
+{
+  "tags": {"required": ["primary_tag", "tags"],
+           "tags": {"items": {"required": ["domain", "topic", "code"]}}},
+  "trace": {"required": ["source_url", "trace_status"],
+            "trace_status": {"enum": ["full", "pending_fetch"]}}
+}
+```
+
+**执行**
+
+```python
+def tag_clause(c) -> dict:
+    """两级标签：先判 10 域，再判 42 主题，顺序不可换"""
+    domain = pick_domain(c["clause_text"])
+    topic  = pick_topic(c["clause_text"], domain)
+    return {"primary_tag": f"{domain}.{topic}",
+            "tags": [{"domain": domain, "topic": topic, "code": DOMAIN_CODE[domain]}]}
+
+assert c["tags"],         "条款必须有标签，否则无法精准匹配"
+assert c["source_url"],   "必须有抓取来源"
+assert c["trace_status"] in ("full", "pending_fetch"), "溯源状态越界"
+```
+
+**门禁 S6 · 标签与溯源**
+
+```python
+{"stage": "S6", "gate": "标签溯源闭环",
+ "check": "每条有 primary_tag + tags；source_url 非空；trace_status 在枚举内"}
+```
+
+**代价（实测）**
+
+```
+无标签 → 42 个主题无法精准匹配，只能用关键词 grep（准确率低）
+无 source_url → 抓取失败的标准无法区分「没抓」与「抓了但空」
+```
+
+---
+
+### 工序 7 · 入库校验与发布
+
+**契约**
+
+```json
+{
+  "library": {"required": ["standards", "totals"],
+              "standard": {"required": ["code", "name", "version", "clauses", "status"],
+                           "status": {"enum": ["draft", "validated", "published"]}}}
+}
+```
+
+**执行**
+
+```python
+# scripts/extractors.py:validate_library（已实现）
+def validate_library(all_clauses) -> dict:
+    items = []
+    for c in all_clauses:
+        missing = [k for k in ("code", "standard", "clause") if not c.get(k)]
+        if not (c.get("text") or c.get("table")): missing.append("clause_text")
+        items.append({"clause": c.get("clause"), "missing": missing})
+    return {"total": len(items),
+            "ready": sum(1 for x in items if not x["missing"]),
+            "items": items}
+
+# scripts/extractors.py:check_relation_targets
+def check_relation_targets(rels, nodes) -> dict:
+    """bounded_by 必须指向带 code + clause_no 的条款"""
+```
+
+**门禁 S7 · 条款溯源闭环**
+
+```python
+{"stage": "S7", "gate": "条款溯源闭环",
+ "check": "五项必填全齐（152/152）；bounded_by 指向的条款必须有标准号与条款号"}
+```
+
+**代价（实测）**
+
+```
+入库前不校验 → 69 个条款 standard 全空也能进库 → 下游 bound 上去查不到是哪条标准
+不校验关系指向 → bounded_by 指向泛化条款节点（NX-条款-GB50016），架空真实节点
+```
 
 ## 第四步：公共标准库结构
+
+> **与工序 S3「契约」段的区别**：
+> 本节管**库的目录组织**（每个标准一个目录，含 standard.yaml + clauses.yaml + chunks.jsonl），
+> S3 管**单条条款的字段必填**（code/standard/clause_no/text/url 五项）。
+> 本节答「库怎么摆」，S3 答「每条条款长什么样」。
 
 ```
 公共标准库/
@@ -214,3 +469,366 @@ tag_query(library_path, domain="结构", topic="地震参数")   → 11 条
 tag_query(library_path, code="GB50016")                  → 27 条
 tag_query(library_path, q="耐火等级")                     → 15 条
 ```
+
+
+## 待抓清单：本 skill 的输入来源
+
+上游用 `detect_citations` 扫出「报告引用了哪些标准、缺哪些」，
+按三档分级后交给本 skill 抓取与抽取。
+
+### 清单结构
+
+```yaml
+tasks:
+  - standard: GB50736
+    tier: 应抓            # 必抓 / 应抓 / 暂缓
+    type: 国家强制性标准    # 决定去哪抓
+    mentions: 2
+    sections: ["6.7", "7.1"]
+    action: 批量抓取并抽查
+    caution: 以标准全文库或官方发布页为准
+```
+
+### 按 type 选抓取源
+
+| type | 去哪抓 | 不能用的源 |
+|---|---|---|
+| 地方标准（DGJ） | **地方住建委官网** | 各类标准转载站 |
+| 行业标准（JGJ/CJJ） | 住建部发布页 | 同上 |
+| 国家强制性（GB） | 标准全文库 / 官方发布页 | 二手解读文章 |
+| 国家推荐性（GB/T） | 同上 | 同上 |
+| 建设标准（建标） | 住建部 + 发改委联合公告 | — |
+| 政策文件 | 发改委公告 | — |
+
+### 抓完必做三道校验
+
+1. **版本**：报告写的是哪版？抓到的能不能替代？
+   `resolve_version()` 判定；旧版只能作历史对照，不能当现行依据
+2. **来源**：官方 / 标准库 / 二手
+   二手只能当线索，不能进公共库
+3. **完整性**：拿到的是完整条款还是 PDF 某页片段？
+   片段不能当条款
+
+### 抽取
+
+抓到的原文按 `ex_gb` / `ex_intensity` / `ex_outline` / `ex_appendix` / `ex_article` 五类抽取器处理，
+再做质量判据（覆盖率 ≥10%、过短 <5%、重复 =0）。
+
+### 一个提醒
+
+**「暂缓」不等于「不需要」**——只是引用次数少、对当前结论影响小。
+清单要留档，下次有需要可直接捡起来。
+
+
+## 时间标签与版本选择：默认用最新，除非语义要求特定版本
+
+### 三个日期字段（缺一不可）
+
+```yaml
+code: GB50034-2013
+issue_date: "2013-XX-XX"          # 发布日期
+effective_date: "2014-06-01"      # 生效日期 ← 决定「是不是现行」
+status: superseded                # current / superseded / abolished / pending_fetch
+superseded_by: GB/T50034-2024     # 被谁替代
+superseded_date: "2024-XX-XX"     # 何时被替代
+date_basis: "已被 GB/T50034-2024 替代"
+```
+
+**`effective_date` 是最关键的字段**——它决定「这条条款现在还有效吗」。
+
+### 日期从哪来（不许推测）
+
+| 来源 | 可靠性 | 例子 |
+|---|---|---|
+| **发布公告原文** | 最高 | 「现批准…自2019年8月1日起实施」→ `effective_date: 2019-08-01` |
+| 标准封面/前言 | 高 | 「2015-10-01 实施」 |
+| 标准正文条款 | 中 | 少数标准在条文里写施行日期 |
+| 第三方网站 | **低，必须回原文核对** | 只能当线索 |
+
+**取不到就写 `unknown`，并在 `date_gaps` 里登记。绝不推测。**
+
+实测：14 个标准里只有 8 个能取到生效日期，其余 6 个的发布公告不在抓取范围内 → 全部标 unknown。
+
+### 版本选择策略（写进 standards.yaml）
+
+```yaml
+version_policy:
+  principle: 默认使用最新现行版本；仅当语义判断需要特定版本时，才使用指定标准号
+  rules:
+    - when: 无特别说明
+      use: 现行版本（effective_date 最新且 status=current）
+    - when: 报告编制时点早于替代日期
+      use: 编制时点的现行版本，标注「编制时有效，现已被 X 替代」
+    - when: 合同/招标文件指定标准号
+      use: 指定标准号，标注「按合同约定」
+    - when: 引用历史数据或对标
+      use: 产生该数据时的版本，标注「历史数据，口径对应 X 版」
+  status_values:
+    current: 现行有效
+    superseded: 已被替代
+    abolished: 已废止
+    pending_fetch: 未获取原文
+  unknown_policy: 未取到日期一律写 unknown，不得推测
+```
+
+### 实测：版本校验救了两次
+
+**案例一：GB50034-2013 已废止**
+
+```
+报告 2019 年编制时引用：GB50034-2013  ← 当时现行，引用正确
+2026 年复核：页面标题明确标注【已废止】，已被 GB/T50034-2024 替代
+处理：status=superseded，superseded_by=GB/T50034-2024
+      引用时写「编制时有效，现已被 GB/T50034-2024 替代」
+```
+
+**如果没做版本校验，会直接把废止标准的限值当现行依据用。**
+
+**案例二：旧版被合并**
+
+```
+GB50019-2003 采暖通风与空气调节设计规范
+  → 暖通部分已并入 GB50736-2012
+  → 报告若还引 GB50019-2003，应改为 GB50736-2012
+```
+
+### 什么时候「故意用旧版」是合法的
+
+| 场景 | 写法 |
+|---|---|
+| 报告编制时点早于替代日期 | 「按编制时点（2019）现行版本 GB50034-2013」 |
+| 合同/招标文件指定 | 「按合同约定采用 GB50034-2013」 |
+| 对标历史项目 | 「对标项目采用 GB50034-2013，口径对应」 |
+| 新旧对比分析 | 明确列出两版差异，不混用 |
+
+**关键：说明为什么用旧版，而不是悄悄用。**
+
+### 前端展示
+
+标准库里每个标准标签带生效年月：
+
+```
+GB50016-2014 · 2019-XX   ← 绿色，现行
+GB50034-2013 · 已替代     ← 红色，被 GB/T50034-2024 替代
+```
+
+hover 显示完整名称 + 生效日期 + 替代关系。
+
+
+## 入库校验：条款必须带标准号与原文
+
+### 为什么单独设关
+
+实测一个可研项目的 69 个条款节点，**入库时 `standard`（标准全称）字段 0/69 全部为空**，
+7 条缺 `code`（标准号），4 条缺 `clause_no`（条款号）。
+
+后果：下游 `bounded_by` 关系指向条款，但条款不知道自己属于哪份标准 —— 无法判现行有效性。
+
+### 五项必填（缺一不可）
+
+| 字段 | 含义 | 缺失后果 |
+|---|---|---|
+| `code` | 标准号（如 GB50016-2014） | 无法查版本、无法判是否已被替代 |
+| `standard` | 标准全称（如《建筑设计防火规范》） | 人读不可理解，跨项目无法检索 |
+| `clause_no` | 条款号（如 5.1.1 / 附录B） | 引用时无法定位 |
+| `clause_text` | 条款原文 | 无法核验、无法判合规 |
+| `source_url` 或 `doc_id` | 来源定位 | 无法回查 |
+
+**只有 4 项以上齐全，才允许 `trace_status = full`。**
+
+### 入库校验流程
+
+```python
+def check_clause_ready(clause):
+    missing = [f for f in ("code","standard","clause_no","clause_text")
+               if not clause.get(f)]
+    if not (clause.get("source_url") or clause.get("doc_id")):
+        missing.append("source")
+    if missing:
+        return {"ready": False, "missing": missing,
+                "action": "补齐后方可入库；确实取不到标 pending_fetch，不编造"}
+    return {"ready": True, "trace_status": "full"}
+```
+
+### 不合格怎么办（三条铁律）
+
+| 情况 | 处理 |
+|---|---|
+| **有原文，缺标准号** | 从 `source_url` 反推（URL 含 GB50016 → 补 GB50016-2014） |
+| **有标准号，缺原文** | 标 `trace_status: pending_fetch`，**不编造 clause_text** |
+| **两者都缺** | **不入库**。宁可缺，不可假 |
+
+**实测处理**：
+
+```
+69 条中 62 条有 code → 从 URL 反推补 7 条 → 69/69
+69 条中 0 条有 standard → 从标准号映射全称 → 69/69
+68 条 trace_status=full
+1 条 pending_fetch（GB50009-2012 未抓原文，如实标注）
+```
+
+### 下游必须能回溯到条款
+
+条款入库后，所有引用它的关系必须指向**带标准号的条款节点**，不是指向标准本身。
+
+```yaml
+# 错误：只指向「标准」
+bounded_by:
+  to: "GB50016-2014"           # 哪一条？
+  payload: {clause: 5.1.1}     # 条款号写在关系里，重复且易漂移
+
+# 正确：指向「条款节点」
+bounded_by:
+  to: "MC-004"                 # 条款节点
+  # 该节点自带 code=GB50016-2014, clause_no=5.1.1, clause_text=...
+```
+
+**校验**：
+
+```python
+for r in bounded_by_relations:
+    t = nodes[r["to"]]
+    assert t.get("code") and t.get("clause_no"), f"{r['to']} 条款缺标准号/条款号"
+```
+
+实测：68 条 `bounded_by` 全部指向合规条款，合规率 68/68。
+
+### 函数也要标依据
+
+从标准里抽的**函数/规则**（如"火灾延续时间 2h"、"用水定额 40 L/生·日"）必须标依据，
+纯算术（加减乘除/汇总）不需要。
+
+```yaml
+# 有规范依据
+computed_from:
+  payload:
+    rule_id: R-消防一次灭火用水量
+    standard_basis:
+      code: GB50974-2014
+      why: 火灾延续时间取值（2h/1h）依规范
+      name: 《消防给水及消火栓系统技术规范》
+
+# 纯算术
+computed_from:
+  payload:
+    rule_id: R-总投资构成
+    standard_basis:
+      code: null
+      why: 纯算术合成（加减乘除/汇总），不涉规范取值
+```
+
+实测：71 条 `computed_from` 中 20 条有规范依据、51 条纯算术。
+
+**关键区分**：
+
+> **从标准抽的函数，必须能说出「依据哪条」；说不出的，就不是从标准抽的，是自己的算法。**
+
+### 一条铁律
+
+> **条款没有标准号，就不是条款，是断章取义的引文。**
+>
+> 入库前五项必填：code / standard / clause_no / clause_text / source。
+> 缺任何一项，要么补齐，要么标 pending_fetch，**绝不编造**。
+
+
+## 标准效力层级：项目建设地决定抓哪一级
+
+### 一句话原则
+
+> **项目在哪建设，就优先抓哪里的地方标准。地方标准通常严于国标，国标只是底线。**
+
+实测踩过的坑：一个上海项目，公共库收了 GB50189-2015（8 条，含夏热冬冷限值），
+但**一处 DGJ08-107 都没收**（引用 13 次，最高频）。
+
+这等于**把「底线」当成了「标准」**——上海项目的围护结构、节能指标，
+DGJ08-107 的要求通常严于 GB50189，按国标判合规会得出「符合」的错误结论。
+
+### 编号体系与效力
+
+| 前缀 | 层级 | 适用范围 | 与其他标准的关系 |
+|---|---|---|---|
+| `GB` | 国家强制性 | 全国 | 底线，地方可严于此 |
+| `GB/T` | 国家推荐性 | 全国 | 推荐，可被地方引用为强制 |
+| `JGJ` / `CJJ` | 行业标准 | 全国该行业 | 底线 |
+| **`DGJ` + 地区码** | **地方标准** | **该地区** | **通常严于国标，优先适用** |
+| `建标` | 建设标准 | 全国 | 投资/规模控制 |
+| 发改文件 | 政策 | 全国 | 程序性要求 |
+
+**地区码示例**：
+
+```
+DGJ08   上海      DGJ32   江苏      DGJ01   北京
+DGJ13   河北      DGJ03   山西      DGJ14   内蒙古
+```
+
+### 抓取优先级（按项目所在地定）
+
+```
+① 项目所在地地方标准   ← 第一优先，最严
+② 国家强制性标准（GB）  ← 底线
+③ 行业标准（JGJ/CJJ）   ← 补充
+④ 国家推荐性（GB/T）    ← 参考
+⑤ 政策文件（发改）      ← 程序
+```
+
+**判定规则**：
+
+```python
+def fetch_priority(project_city, std_code):
+    loc = REGION_CODE.get(project_city)   # 上海 → 08
+    if std_code.startswith("DGJ"):
+        return 1 if std_code[3:5] == loc else 0   # 本地 1，外地 0（不抓）
+    if std_code.startswith("GB/") : return 4
+    if std_code.startswith("GB"):   return 2
+    if std_code.startswith(("JGJ","CJJ")): return 3
+    return 5
+```
+
+### 地方标准的抓取难点（必须知道）
+
+| 难点 | 表现 | 应对 |
+|---|---|---|
+| **只有官网权威** | 转载站版本可能与官方有差异 | **只认地方住建委官网**，转载站不进公共库 |
+| **PDF 字体编码损坏** | 下载成功但提取为乱码 | 找 HTML 版 / 文字层完好的 PDF / 索取原文本 |
+| **无 OCR 工具时** | 图片型 PDF 无法转文字 | **标 `pending_fetch`，不编造** |
+| **版本更新快** | 同一标准 3~5 年换版 | 必须记 `effective_date` + `superseded_by` |
+
+实测：DGJ08-107-2015 从上海市住建委官网下载成功（5.1 MB / 108 页），
+但 PyMuPDF 提取为乱码 —— **标 `pending_fetch`，13 处引用只能写「依据该标准，限值待核」**。
+
+### 同一份报告引同一标准的两个版本
+
+实测：一个上海项目的抗震设计规程
+
+```
+§6.3    引 DGJ08-9-2013   ← 新版
+§9.2.1  引 DGJ08-9-2003   ← 旧版（同一份报告）
+```
+
+节能标准同样：
+
+```
+§6.4    引 DGJ08-107-2015
+§7.1    引 DGJ08-107-2012
+§7.3.1  引 DGJ08-107-2012
+```
+
+**这不是「引用旧版」，是「同一份报告内部判据不一致」** —— 必须登记为 `report_fix`。
+
+### 入库后的判据优先级
+
+```yaml
+约束判定顺序：
+  ① 有地方标准条款 → 按地方标准判
+  ② 无地方标准 → 按国标判，但注明「未核地方标准，按国标底线」
+  ③ 都无 → 待核，不得判「符合」
+```
+
+**绝对不能**：只有国标就判「符合规范」—— 地方可能更严，国标合格不等于项目合格。
+
+### 一条铁律
+
+> **国标是底线，地标是标准。**
+>
+> 上海项目按 GB50189 判「符合」，可能实际不满足 DGJ08-107。
+> **抓不到地标，就只能说「待核」，不能说「符合」。**
