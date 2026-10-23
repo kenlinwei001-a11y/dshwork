@@ -20,7 +20,8 @@ import sys
 from pathlib import Path
 
 # 使项目根可被 import（kp_toolkit / corpus_pipeline 为兄弟包）
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
 from kp_toolkit import (
     segment_sentences, segment_chunks, validate_graph,
@@ -94,11 +95,6 @@ TOOLS = [
          "mode": {"type": "string", "enum": ["现行", "目标"]},
          "table": {"type": "string", "description": "lpd: 表号 6.3.3/6.3.7/6.3.13"}},
          "required": ["kind"]}},
-    {"name": "verify_gaps", "description": "假缺四问：对一批「缺」逐个复核，判断是真缺还是假缺。四问=①节点真的不存在（精确/别名/包含三方式）②原文真的没有（纯文本/表格/表注）③量纲对不对（费率不绑金额）④设计上该不该有。返回 verdict=real/false/uncertain + why + searched + action。实测能把 77% 的假缺筛出来。",
-     "inputSchema": {"type": "object", "properties": {
-         "gaps": {"type": "array", "items": {"type": "object"}, "description": "待复核列表，每项 {name, unit?}"},
-         "corpus_dir": {"type": "string", "description": "语料包目录（读 nodes.yaml + chunks.jsonl + aliases.yaml）"},
-         "aliases_path": {"type": "string", "description": "可选，别名表路径"}},
          "required": ["gaps", "corpus_dir"]}},
     {"name": "normalize_name", "description": "命名归一化：去顿号/逗号/括号/空格后比较，并解析别名。用于「规则写通风空调工程 vs 原文写通风、空调工程」这类只差标点的误报。",
      "inputSchema": {"type": "object", "properties": {
@@ -294,8 +290,7 @@ TOOLS = [
     {"name": "reemit_invariants", "description": "重发 graph/invariants.yaml（#16）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "reemit_evidence", "description": "重发 evidence.yaml + excerpts（#18/#19）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "reemit_reasoning", "description": "重发 derivation/decisions/trace（#20/#21/#22）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
-    {"name": "reemit_quality", "description": "重发 conflicts/gaps/gate_report（#23/#24/#25）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
-    {"name": "reemit_style", "description": "重发 style_profile + section_templates（#26/#27）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
+    {"name": "reemit_quality", "description": "重发 conflicts/gaps/gate_report（#23/#24/#25）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}}, "required": ["corpus_dir"]}},
     {"name": "reemit_index", "description": "重发 node_index/term_index/signature（#28/#29/#30）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}}, "required": ["corpus_dir"]}},
     {"name": "corpus_search", "description": "向量检索脱敏 chunk（只返回占位符骨架，永不返回字面数值）",
      "inputSchema": {"type": "object",
@@ -377,11 +372,112 @@ TOOLS = [
     {"name": "apply_claim_relations", "description": "按规则推导应有 claim 关系并合并入图（幂等；dry_run 支持）。", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "dry_run": {"type": "boolean"}}, "required": ["corpus_dir"]}},
     {"name": "verify_all", "description": "一次跑完三族门禁（闭环/分步/客观判据），落盘 quality/*.yaml，并按状态机写 manifest（FAIL 则停在 draft，不自动 publish）", "inputSchema": {"type": "object", "properties": {"corpus_dir": {"type": "string"}, "draft_path": {"type": "string"}, "source_md": {"type": "string"}, "source_docx": {"type": "string"}, "compile_point": {"type": "string"}, "declared_sha256": {"type": "string"}}, "required": ["corpus_dir"]}},
 
-    {"name": "provider_status", "description": "可替换环节（entity/relation/reasoning/graph）的 provider 与能力表；供门禁判断判据可用性（缺能力 ⇒ invalid，不得 pass）。", "inputSchema": {"type": "object", "properties": {}}}
+    {"name": "provider_status", "description": "可替换环节（entity/relation/reasoning/graph）的 provider 与能力表；供门禁判断判据可用性（缺能力 ⇒ invalid，不得 pass）。", "inputSchema": {"type": "object", "properties": {}}},
+  {"name": "recognize_number_forms",
+   "description": "数值形态统一识别（八形态：quantity/tolerance/grade/material/spec/standard/count/表格行）。输入一句话，返回所有识别出的实体。",
+   "inputSchema": {"type": "object", "properties": {
+       "text": {"type": "string", "description": "待识别的句子"},
+       "forms": {"type": "array", "items": {"type": "string"},
+                 "description": "限定只识别某几类形态，省略则全识别"}},
+       "required": ["text"]}},
+  {"name": "extract_standard_forms",
+   "description": "标准/规范引用抽取（含笔误纠正：JGJI00-1998→JGJ100-1998；全角破折号归一；无编号书名单独登记）。",
+   "inputSchema": {"type": "object", "properties": {
+       "text": {"type": "string"},
+       "own_standard_codes": {"type": "array", "items": {"type": "string"},
+                              "description": "排除已知标准号（避免把自身当引用）"}},
+       "required": ["text"]}},
+  {"name": "extract_two_pass",
+   "description": "两级筛 + 二次判断：先判句子有无数字，排噪后识别，再对有数字但零产出的句子逐句报原因（防漏网）。",
+   "inputSchema": {"type": "object", "properties": {
+       "corpus_root": {"type": "string", "description": "语料包根目录"},
+       "dry_run": {"type": "boolean", "description": "只报统计不落盘"}},
+       "required": ["corpus_root"]}},
+  {"name": "link_strict",
+   "description": "严格建关系（名实相符判据）：has_attribute 要求名含、bounded_by 要求主题词交集≥2、part_of 要求子串、supports 要求同句。",
+   "inputSchema": {"type": "object", "properties": {
+       "corpus_root": {"type": "string"},
+       "types": {"type": "array", "items": {"type": "string"},
+                 "description": "限定建哪几类关系"}},
+       "required": ["corpus_root"]}},
+  {"name": "detect_universal_parent",
+   "description": "检测万能父节点：单节点度数>40 且无 link_basis 占比>50%，按父节点主题词判不合格子节点。",
+   "inputSchema": {"type": "object", "properties": {
+       "corpus_root": {"type": "string"},
+       "threshold": {"type": "integer", "description": "度数阈值，默认 40"}},
+       "required": ["corpus_root"]}},
+  {"name": "semantica_search",
+   "description": "在 Semantica 图库中按关键词检索节点（区别于 graph_query 的本地图查询）。",
+   "inputSchema": {"type": "object", "properties": {
+       "query": {"type": "string"}, "limit": {"type": "integer"}},
+       "required": ["query"]}}
 ]
 
 
 def _dispatch(name: str, args: dict):
+    if name == "recognize_number_forms":
+        import sys as _s
+        _s.path.insert(0, str(ROOT / "kp_toolkit"))
+        from number_forms import recognize
+        hs = recognize(args["text"])
+        forms = args.get("forms")
+        if forms:
+            hs = [h for h in hs if h["form"] in forms]
+        return {"count": len(hs), "hits": [
+            {"form": h["form"], "subject": h["subject"], "value": h["value"],
+             "unit": h["unit"], "extra": h["extra"], "span": list(h["span"])} for h in hs]}
+    if name == "extract_standard_forms":
+        import sys as _s
+        _s.path.insert(0, str(ROOT / "kp_toolkit"))
+        from standard_forms import extract_standards
+        hs = extract_standards(args["text"], set(args.get("own_standard_codes") or []))
+        return {"count": len(hs), "hits": [
+            {"title": h["title"], "code": h["code"], "code_was": h["code_was"],
+             "code_suspect": h["code_suspect"], "edition": h["edition"],
+             "no_code": h.get("no_code", False)} for h in hs]}
+    if name == "extract_two_pass":
+        import subprocess as _sp, sys as _s
+        cr = Path(args["corpus_root"])
+        script = cr / "build" / "extract_two_pass.py"
+        if not script.exists():
+            return {"error": "缺少项目脚本", "path": str(script),
+                    "hint": "在语料包工作区准备 build/extract_two_pass.py 后再调用"}
+        cmd = [_s.executable, str(script)]
+        if args.get("dry_run"):
+            return {"note": "dry_run 需在项目工作区执行 build/extract_two_pass.py", "cmd": cmd}
+        r = _sp.run(cmd, cwd=str(cr), capture_output=True, text=True, timeout=300)
+        return {"exit": r.returncode, "stdout": r.stdout[-3000:], "stderr": r.stderr[-1000:]}
+    if name == "link_strict":
+        import subprocess as _sp, sys as _s
+        cr = Path(args["corpus_root"])
+        script = cr / "build" / "link_strict.py"
+        if not script.exists():
+            return {"error": "缺少项目脚本", "path": str(script),
+                    "hint": "在语料包工作区准备 build/link_strict.py 后再调用"}
+        r = _sp.run([_s.executable, str(script)], cwd=str(cr),
+                    capture_output=True, text=True, timeout=300)
+        return {"exit": r.returncode, "stdout": r.stdout[-3000:], "stderr": r.stderr[-1000:]}
+    if name == "detect_universal_parent":
+        import json as _j, pathlib as _p
+        from collections import Counter as _C
+        cr = _p.Path(args["corpus_root"])
+        rels = _j.load(open(cr / "graph/relations.yaml", encoding="utf-8"))
+        nodes = {n["id"]: n for n in _j.load(open(cr / "graph/nodes.yaml", encoding="utf-8"))}
+        th = int(args.get("threshold") or 40)
+        deg = _C()
+        for r in rels:
+            deg[r["from"]] += 1; deg[r["to"]] += 1
+        EX = {"本项目", "本工程", "累计", "合计", "总计"}
+        out = []
+        for nid, d in deg.most_common():
+            subj = str((nodes.get(nid) or {}).get("subject") or "")
+            if d <= th or subj in EX:
+                continue
+            rf = [r for r in rels if r["from"] == nid or r["to"] == nid]
+            nb = [r for r in rf if not (r.get("payload") or {}).get("link_basis")]
+            out.append({"id": nid, "subject": subj[:30], "degree": d,
+                        "no_basis": len(nb), "no_basis_pct": round(len(nb) / len(rf) * 100)})
+        return {"threshold": th, "count": len(out), "suspects": out[:20]}
     if name == "corpus_run":
         return run_pipeline(args["raw_text"], Path(args["out_dir"]), args.get("legal_outline"), doc_type=args.get("doc_type"))
     if name == "segment_sentences":
