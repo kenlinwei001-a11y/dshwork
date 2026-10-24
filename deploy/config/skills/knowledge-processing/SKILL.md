@@ -122,6 +122,29 @@ assert all(t.column_paths for t in tables),        "有表无列路径"
 assert all(len(t.column_paths) == t.cols for t in tables), "列路径数与列数不符"
 ```
 
+**表格识别的三级判定（不许跳级）**
+
+```
+① 原生结构（首选）
+   docx  → <w:tbl> grid（完整二维数组）+ column_paths（多级表头合并）
+   xlsx  → openpyxl cells
+   PDF   → 文字层 pdfplumber / Camelot
+② 视觉模型（仅当 ① 不存在）
+   扫描件、图片型 PDF、纯图像表格
+   有 OCR 误差，结果必须人工抽检
+③ 禁止：markdown 拍平后猜行列
+   markdown 表格是「拍平后」的文本，
+   列名与数据的对应关系已丢失：
+     · 多级表头被压平 → 不知道 18319 属「资产/小计」还是「负债/小计」
+     · 合并单元格被复制或省略 → 行头错位
+     · 表注与表体混在一起
+```
+
+**实测代价**：曾用 markdown 正则 `\| 主体 \| 值 \| 单位 \|` 猜表格行，
+抽出的 `总建筑面积=18319` 看似正确，但同一格式的
+`| 资产 | 小计 | 373711.34 |` 会被拆成 3 个互不关联的片段，
+**列路径永久丢失**。
+
 **门禁 S1b · 表格结构闭环**
 
 ```python
@@ -246,22 +269,92 @@ def chunk(md, secs) -> list[Chunk]:
 }
 ```
 
-**执行**
+**执行 · 数值抽取统一入口（`kp_toolkit/number_forms.py`）**
+
+**为什么要统一**：逐案抽查暴露了 6 类漏抽，每类都是「我的正则先没想到」。
+六类都指向同一件事：**先判「这句话在说什么类型的信息」，再选抽取器**。
+
+| # | form | 实例 | 最初为什么漏 |
+|---|---|---|---|
+| ① | `quantity` | 科研用房 2.5KN/m2 | 单位表只有 `kN/m²`（小写+上标） |
+| ② | `tolerance` | 系统输出口电平为64±4dB | 规则不认 `±` |
+| ③ | `grade` | 建筑耐火等级为二级 | 只认「数字+单位」，不认等级词 |
+| ④ | `material` | 钢筋：HPB300，HRB400 | 同上；且合并值未拆 |
+| ⑤ | `spec` | 管径DN＜100双卡压连接 | DN 不是普通单位；且条件是规则不是实体 |
+| ⑥ | `standard` | GB50034—2013 | 全角破折号；书名号回溯错 |
 
 ```python
-# 确定性部分（零 LLM）
-def classify_claim(text, has_value, has_triple) -> dict:
-    """四步判定，顺序不可换（kp_toolkit/claim_classify.py）"""
-    if is_norm_restatement(text):     return {"kind": "fact"}     # ① 规范转述
-    if has_triple and not has_judge(text): return {"kind": "fact"} # ①b 三元组完整
-    ct = classify_judge_words(text)    # ② 判断词四族
-    if ct: return {"kind": "claim", "claim_type": ct}
-    if has_value: return {"kind": "fact"}   # ③ 有值无判断词
-    return None                              # ④ 都不是
+from number_forms import recognize            # 本地库
+# 或 MCP：recognize_number_forms({text, forms?})
 
-assert claim["claim_type"] in CLAIM_TYPES,     "claim_type 越界"
-assert claim.get("falsifiable_by"),            "claim 缺 falsifiable_by = 口号"
-assert evidence["kind"] in EVIDENCE_KINDS,     "证据等级越界"
+for h in recognize(sentence):
+    # h = {"form","subject","value","unit","extra","span","raw"}
+    upsert_node(h)
+```
+
+**输出契约**
+
+```json
+{"form": {"enum": ["quantity","tolerance","grade","material","spec","standard"]},
+ "subject": {"minLength": 2},
+ "value": {},
+ "unit": {},
+ "extra": {"description": "tolerance 存 nominal/tolerance/lower/upper；spec 存 tag/op/limit；standard 存 code"},
+ "span": {"description": "[start, end)，用于原文标绿"},
+ "raw": {}}
+```
+
+**识别优先级（位置冲突时取最具体）**
+
+```
+允差 > 规格 > 材料 > 等级 > 普通数值
+```
+
+**调用顺序（不许颠倒）**
+
+```python
+# ① 切句（复用 chunk 的句子边界，不新建）
+# ② 整句排噪 —— 一次排除整句所有数字，不是逐数字排除
+NOISE = [交叉引用句(见/见图/见表) · 纯序号句 · 章节标题句 · 标准清单句]
+# ③ recognize() 逐句识别
+# ④ upsert 节点（同 subject+value+section 去重）
+```
+
+**两条实测坑（写在这里防止重犯）**
+
+```
+坑一（严重）：为支持「管径DN＜100」和「管径＜DN100」两种词序，
+              把 tag 改成可选 → 任意数字都被当成 DN
+              HPB300→DN300 · GB50034—2013→DN50034/DN2013 · 18319平方米→DN18319
+              修法：alternation 必须匹配，不许带 ?。
+              ※ 这正是「放宽必填消除告警」的错误，已在本 skill 另处列为铁律。
+
+坑二：数值的主体正则允许含 （）()，会跨标准号的右括号，
+      主体变成「GB50223-2008)，本工程抗震设防烈度按」。
+      修法：主体不许含括号 + 去尾助词（按/为/是/取/约/即/达/共/计）。
+
+坑三：`最小/最大` 不在比较符表里，会被当成主体的一部分：
+      「踏步最小宽度0.28m，最大高度0.15m」
+      → 主体「踏步最小宽度」（op 丢失）· 主体「最大高度」（不知什么的高度）
+      修法：① _CMP 加 最小/最大/最低/最高/最少/最多，转 ≥／≤
+            ② 加专用 P_MINMAX：主体 + 限值词 + 属性 + 值 + 单位
+            ③ 第二句 pre 为空时继承第一句前缀（踏步）
+            ④ pre 加名词性过滤，丢弃动词（易于区分/用于/进行）
+      结果：踏步宽度=0.28m(≥) · 踏步高度=0.15m(≤)，可与 GB50352 表6.7.10 校验
+```
+
+**校验**
+
+```python
+KIND = {"quantity":"quantity", "tolerance":"quantity_tolerance",
+        "grade":"grade", "material":"material",
+        "spec":"spec", "standard":"reference"}
+assert all(n["kind"] in KIND.values() for n in new_nodes), "kind 越界"
+assert all(n.get("anchor", {}).get("quote") for n in new_nodes), "节点必须有原文锚点"
+# 允差必须拆三字段，不许只存 "64±4" 字符串（否则无法与规范限值比较）
+for n in new_nodes:
+    if n["kind"] == "quantity_tolerance":
+        assert {"nominal", "tolerance", "lower", "upper"} <= set(n), "允差未拆"
 ```
 
 **语义部分（LLM + schema + validator + 重试）**
@@ -272,11 +365,52 @@ for attempt in range(3):
     if validator(out): break
 ```
 
+**二次判断（抽取后必跑，不依赖预先想到哪几类形态）**
+
+```python
+# 客观信号：有数字但零产出 → 一定漏了某类形态
+second_pass = [s for s in sentences if HAS_DIGIT(s) and not recognize(s)]
+rate = len(second_pass) / len([s for s in sentences if HAS_DIGIT(s)])
+assert rate < 0.30, f"零产出率 {rate:.0%} 过高，排查遗漏形态"
+
+# 逐句报原因，分类而不是笼统说「漏」
+for x in second_pass:
+    reason = classify_zero_output(x)   # 目录/序号/年份/真漏网
+```
+
+**为什么必须有这一步**：八类形态（单位变体/允差/等级/材料/规格/标准/表格行/计数）
+都是逐案指出来才补的。**形态枚举永远不全，但「有数字却零产出」这个信号是客观的。**
+
+**门禁实现现状（2026-10-23）**
+
+`build/gate_checks.py` 可执行 24 条（S/R/P/F/G/L 六组），当前 **24/24 通过**，用时 **1.07 秒**。
+
+```bash
+python build/gate_checks.py SHUFE-BDC-2019-001
+# 结果: 24/24 通过
+```
+
+**判据原则（9 条失败门禁的教训）**：
+
+```
+数据缺失但已显式标注（如「条款原文待核」）  → 合规
+数据缺失且未标注                            → 不合规
+```
+
+第一版判据把「已经老实标注待核」也算失败（如 R7 要求目标节点必有 clause_no，
+但 payload.clause='条款原文待核' 已经说清了）→ **这会导致「为了过门禁而造假」**。
+
+**5 条是判据错、4 条是数据错** —— 门禁本身也需要被审计。
+
 **门禁 S4 · 抽取闭环 ×3**
 
 ```python
 {"stage": "S4", "gate": "抽取闭环 ×3",
  "check": "① 引用闭环（原稿引用 ⊆ 条款∪豁免） ② 数值闭环 ③ 论层闭环（有论断义务的章必须产 claim）"}
+
+# ④ 数值形态覆盖（number_forms 六类都要有产出，缺一类说明识别器漏了形态）
+{"stage": "S4", "gate": "六形态覆盖",
+ "check": "每类 form 至少 1 个节点；某类为 0 时必须能解释（如全文无允差型）"}
 ```
 
 **代价**
@@ -284,6 +418,20 @@ for attempt in range(3):
 - 按章节倾向给 kind → 68 个 judgment 里 49 条实为 fact（误差 74%）
 - claim 无 `falsifiable_by` → 写作时把 hypothesis 写成既成事实
 - 证据标 E1 但无 provider → 31 条全部缺三要素，说明 E1 是默认值不是判断结果
+
+**六形态覆盖的实测代价（逐案抽查暴露，每次都是「正则先没想到」）**
+
+```
+漏 2.5KN/m2       → 单位表只有 kN/m²（小写+上标），原文是大写 KN/m2
+漏 建筑耐火等级二级 → 只认「数字+单位」，不认等级词
+漏 HPB300/HRB400  → 同上；且「HPB300，HRB400」被合并成一条无法单独查询
+漏 DN＜100双卡压   → DN 不是普通单位；且这是「条件→措施」的规则不是实体
+漏 64±4dB         → 规则不认 ±
+漏 GB50034—2013   → 全角破折号；书名号回溯把前一标准名吞进来
+```
+
+**统一后效果**：节点 1761 → 2076（+312），句子覆盖 32.9% → 35.9%。
+若不统一，每发现一类就要写一个专项脚本，而且**永远不知道还漏了哪几类**。
 
 ---
 
@@ -371,6 +519,20 @@ assert gap["searched"], "无 searched = 未验证 = 不许报缺"
 ```python
 {"stage": "S6", "gate": "冲突/缺口闭环",
  "check": "每个 (主体,属性) 多值必须登记待审；每条缺必须带 searched 三问证据"}
+```
+
+**可用 MCP 工具**：`detect_universal_parent`（万能父检测）· `link_strict`（严格建关系）
+· `extract_two_pass`（两级筛+二次判断）· `extract_standard_forms`（标准引用+笔误纠正）
+
+**产出两个独立台账（不许合并）**
+
+| 台账 | 记什么 | 判据 |
+|---|---|---|
+| `quality/gaps.yaml` | **数据缺失**（该有但没有） | 过完假缺四问仍无 → 缺 |
+| `quality/orphans.yaml` | **结构孤儿**（没有边） | 按 ok_structural / needs_relation / needs_value 三分类 |
+
+**本项目实测**：孤儿 140 个里 **136 个是 ok_structural（正常）**。
+若把孤儿算进「缺」，会得出「1010 个缺」的荒谬结论（实际真缺 12 条）。
 ```
 
 **代价（最贵的一课）**

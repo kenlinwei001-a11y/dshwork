@@ -4,6 +4,9 @@
 
 > Windows 用户用 Web 浏览模式时，推荐走 [WINDOWS-WSL.md](WINDOWS-WSL.md) 的 WSL2 方案：
 > 应用、技能、MCP、semantica 都跑在 WSL 里，Windows 浏览器访问 `127.0.0.1:18989`。
+>
+> 专家预设不要手工编辑；发布、迁移、恢复后请跑 `node deploy/scripts/check-expert-presets.mjs`，
+> 具体规则见 [EXPERT-PRESET-INTEGRITY.md](EXPERT-PRESET-INTEGRITY.md)。
 
 
 ## 一键部署入口（按平台选一个）
@@ -27,6 +30,7 @@
 | `scripts/install-semantica-mcp.sh` | 建 venv + 装 semantica + 打补丁 + 生成连接器定义 | 新机器 / 升级 semantica |
 | `scripts/install-local-config.sh` | 把 `config/` 装进部署（技能/专家/MCP/预设），并改写写死的路径 | 新机器、配置有更新后 |
 | `scripts/export-session.sh` / `import-session.sh` | 会话（含产出文档）的导出与导入 | 交接会话时 |
+| `scripts/check-expert-presets.mjs` | 巡检专家预设与冻结修订是否逐字符/逐字节一致（防 `experts/package-drift`） | 发布/迁移/恢复专家后 |
 | `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
 | `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
 | `mcp-servers/` | MCP 服务端程序包的 `package.json` + `package-lock.json` | 由 `install-mcp-servers.sh` 使用 |

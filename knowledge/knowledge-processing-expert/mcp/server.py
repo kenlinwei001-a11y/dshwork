@@ -409,11 +409,73 @@ TOOLS = [
    "description": "在 Semantica 图库中按关键词检索节点（区别于 graph_query 的本地图查询）。",
    "inputSchema": {"type": "object", "properties": {
        "query": {"type": "string"}, "limit": {"type": "integer"}},
-       "required": ["query"]}}
+       "required": ["query"]}},
+  {"name": "run_all_gates",
+   "description": "跑全部 24 条质量门禁（S/R/P/F/G/L 六组），返回逐条通过情况。含判据：已显式标注的数据缺失视为合规。",
+   "inputSchema": {"type": "object", "properties": {
+       "corpus_root": {"type": "string", "description": "语料包根目录"},
+       "only": {"type": "array", "items": {"type": "string"},
+                "description": "只跑指定门禁，如 [\"R7\",\"G1\"]"}},
+       "required": ["corpus_root"]}},
+  {"name": "check_node_kinds",
+   "description": "校验所有节点 kind 都在 reuse/node_kinds.yaml 定义内（单一真理源防回流）。",
+   "inputSchema": {"type": "object", "properties": {
+       "corpus_root": {"type": "string"}},
+       "required": ["corpus_root"]}},
+  {"name": "write_cache_json",
+   "description": "为大 YAML 生成 .cache.json（实测 nodes.yaml: yaml 解析 624s vs json 0.04s）。",
+   "inputSchema": {"type": "object", "properties": {
+       "paths": {"type": "array", "items": {"type": "string"},
+                 "description": "要缓存的 yaml 路径（相对 corpus_root）"},
+       "corpus_root": {"type": "string"},
+       "force": {"type": "boolean", "description": "强制重建，忽略 mtime"}}}}
 ]
 
 
 def _dispatch(name: str, args: dict):
+    if name == "run_all_gates":
+        import sys as _s, pathlib as _p
+        cr = _p.Path(args["corpus_root"]).resolve()
+        # gate_checks.py 在「语料包的上级目录 / build」
+        cand = [cr.parent / "build", cr / "build", _p.Path.cwd() / "build"]
+        bdir = next((c for c in cand if (c / "gate_checks.py").exists()), None)
+        if not bdir:
+            return {"error": "未找到 build/gate_checks.py",
+                    "searched": [str(c) for c in cand]}
+        _s.path.insert(0, str(bdir))
+        import gate_checks as _g
+        res = _g.run_all(cr, args.get("only"))
+        ok = sum(1 for r in res if r["pass"])
+        return {"total": len(res), "passed": ok, "failed": len(res) - ok,
+                "gates": res}
+    if name == "check_node_kinds":
+        import json as _j, pathlib as _p
+        cr = _p.Path(args["corpus_root"])
+        kn = _j.loads((cr / "reuse/node_kinds.yaml").read_text()) if (cr / "reuse/node_kinds.yaml").suffix == ".json" else __import__("yaml").safe_load((cr / "reuse/node_kinds.yaml").read_text(encoding="utf-8"))
+        valid = set(kn["kinds"].keys())
+        nodes = __import__("yaml").safe_load((cr / "graph/nodes.yaml").read_text(encoding="utf-8"))
+        bad = sorted({str(n.get("kind")) for n in nodes
+                      if n.get("kind") and str(n.get("kind")) not in valid})
+        return {"defined": sorted(valid), "undefined_used": bad,
+                "pass": not bad}
+    if name == "write_cache_json":
+        import json as _j, pathlib as _p, os as _os
+        y = __import__("yaml")
+        cr = _p.Path(args.get("corpus_root") or ".")
+        done = []
+        for rel in (args.get("paths") or []):
+            p = cr / rel
+            if not p.exists():
+                done.append({"path": rel, "status": "missing"}); continue
+            cache = p.with_suffix(".cache.json")
+            if (not args.get("force") and cache.exists()
+                    and cache.stat().st_mtime >= p.stat().st_mtime):
+                done.append({"path": rel, "status": "cached"}); continue
+            data = y.safe_load(p.read_text(encoding="utf-8"))
+            cache.write_text(_j.dumps(data, ensure_ascii=False, separators=(",", ":")),
+                             encoding="utf-8")
+            done.append({"path": rel, "status": "built", "bytes": cache.stat().st_size})
+        return {"results": done}
     if name == "recognize_number_forms":
         import sys as _s
         _s.path.insert(0, str(ROOT / "kp_toolkit"))

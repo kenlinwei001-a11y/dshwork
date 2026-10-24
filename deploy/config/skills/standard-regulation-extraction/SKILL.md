@@ -59,10 +59,10 @@ assert doc_type in DOC_TYPES, "判型越界"
 assert basis, "必须有判型依据，否则无法复核"
 ```
 
-**门禁 S1 · 判型可复核**
+**门禁 R1 · 判型可复核**
 
 ```python
-{"stage": "S1", "gate": "判型可复核",
+{"stage": "R1", "gate": "判型可复核",
  "check": "doc_type 在四类内；basis 非空（写清依据哪一行）"}
 ```
 
@@ -102,10 +102,10 @@ def pick_extractor(doc) -> str:
 assert why, "必须写清为什么选这个抽取器"
 ```
 
-**门禁 S2 · 抽取器匹配**
+**门禁 R2 · 抽取器匹配**
 
 ```python
-{"stage": "S2", "gate": "抽取器匹配",
+{"stage": "R2", "gate": "抽取器匹配",
  "check": "抽取器与文档范围一致；一个文档允许多抽取器并存"}
 ```
 
@@ -153,10 +153,10 @@ def extract(doc, extractor) -> list[Clause]:
     return clauses
 ```
 
-**门禁 S3 · 五项必填**
+**门禁 R3 · 五项必填**
 
 ```python
-{"stage": "S3", "gate": "条款五项必填",
+{"stage": "R3", "gate": "条款五项必填",
  "check": "code / standard / clause_no / clause_text（或 table）/ source_url 齐全；"
           "不合格标 pending_fetch，不编造"}
 ```
@@ -198,10 +198,10 @@ assert q["min_length_ok"],     "有条款短于 4 字，抽取器错位"
 assert q["dup_ok"],            "同号重复，需多源合并"
 ```
 
-**门禁 S4 · 三条硬指标**
+**门禁 R4 · 三条硬指标**
 
 ```python
-{"stage": "S4", "gate": "抽取质量",
+{"stage": "R4", "gate": "抽取质量",
  "check": "覆盖率 ≥60%；无过短条款；无同号重复"}
 ```
 
@@ -239,10 +239,10 @@ def merge_sources(candidates: list[Clause]) -> list[Clause]:
     return list(best.values())
 ```
 
-**门禁 S5 · 合并留痕**
+**门禁 R5 · 合并留痕**
 
 ```python
-{"stage": "S5", "gate": "合并留痕",
+{"stage": "R5", "gate": "合并留痕",
  "check": "每条合并结果带 merge_basis；被丢弃的源记入 drop 列表"}
 ```
 
@@ -282,10 +282,10 @@ assert c["source_url"],   "必须有抓取来源"
 assert c["trace_status"] in ("full", "pending_fetch"), "溯源状态越界"
 ```
 
-**门禁 S6 · 标签与溯源**
+**门禁 R6 · 标签与溯源**
 
 ```python
-{"stage": "S6", "gate": "标签溯源闭环",
+{"stage": "R6", "gate": "标签溯源闭环",
  "check": "每条有 primary_tag + tags；source_url 非空；trace_status 在枚举内"}
 ```
 
@@ -329,10 +329,10 @@ def check_relation_targets(rels, nodes) -> dict:
     """bounded_by 必须指向带 code + clause_no 的条款"""
 ```
 
-**门禁 S7 · 条款溯源闭环**
+**门禁 R7 · 条款溯源闭环**
 
 ```python
-{"stage": "S7", "gate": "条款溯源闭环",
+{"stage": "R7", "gate": "条款溯源闭环",
  "check": "五项必填全齐（152/152）；bounded_by 指向的条款必须有标准号与条款号"}
 ```
 
@@ -345,7 +345,7 @@ def check_relation_targets(rels, nodes) -> dict:
 
 ## 第四步：公共标准库结构
 
-> **与工序 S3「契约」段的区别**：
+> **与工序 R3「契约」段的区别**：
 > 本节管**库的目录组织**（每个标准一个目录，含 standard.yaml + clauses.yaml + chunks.jsonl），
 > S3 管**单条条款的字段必填**（code/standard/clause_no/text/url 五项）。
 > 本节答「库怎么摆」，S3 答「每条条款长什么样」。

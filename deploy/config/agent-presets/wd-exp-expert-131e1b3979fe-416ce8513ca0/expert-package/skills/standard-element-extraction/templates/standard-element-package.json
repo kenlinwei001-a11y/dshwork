@@ -1,0 +1,738 @@
+{
+  "standard_id": "HJ 671-2013",
+  "title": "水质 总磷的测定 流动注射-钼酸铵分光光度法",
+  "source_fingerprint": {
+    "sha256_12": "0e343ed5c506",
+    "pages": 12
+  },
+  "status": {
+    "published": "2013-10-25",
+    "effective": "2014-01-01",
+    "superseded_by": null
+  },
+  "extraction": {
+    "scope": "full",
+    "date": "2026-10-20",
+    "schema_version": "1.0.0"
+  },
+  "clause_registry": [
+    {
+      "clause": "1",
+      "page": 6,
+      "printed_page": 1,
+      "heading": "适用范围",
+      "modality": "INFO",
+      "type": "normative",
+      "quote": "本标准适用于地表水、地下水、生活污水和工业废水中总磷的测定"
+    },
+    {
+      "clause": "11.2",
+      "page": 11,
+      "printed_page": 6,
+      "heading": "校准有效性检查",
+      "modality": "MUST",
+      "type": "normative",
+      "quote": "校准曲线的相关系数γ≥0.995"
+    },
+    {
+      "clause": "9.1",
+      "page": 10,
+      "printed_page": 5,
+      "heading": "结果计算",
+      "modality": "INFO",
+      "type": "normative",
+      "quote": "样品中总磷的质量浓度（以 P 计，mg/L）按照式（1）进行计算"
+    }
+  ],
+  "reference_register": [
+    {
+      "ref_id": "REF-01",
+      "standard_no": "GB 11893",
+      "title": "水质 总磷的测定 钼酸铵分光光度法",
+      "referenced_by": [
+        "4.1"
+      ],
+      "scope": "砷、铬、硫干扰的消除方法",
+      "status": "PENDING_UPLOAD",
+      "affected_clauses": [
+        "4.1"
+      ],
+      "affected_rules": [
+        "ARC-C1-04.1-01"
+      ],
+      "depth": 1,
+      "request": "请上传 GB 11893 全文（含干扰消除条款）"
+    },
+    {
+      "ref_id": "REF-02",
+      "standard_no": "HJ/T 91",
+      "title": "地表水和污水监测技术规范",
+      "referenced_by": [
+        "7"
+      ],
+      "scope": "地表水和污水样品采集与保存",
+      "status": "PENDING_UPLOAD",
+      "affected_clauses": [
+        "7"
+      ],
+      "affected_rules": [
+        "ARC-C2-07-01",
+        "ARC-C2-07-02",
+        "ARC-C2-07-03"
+      ],
+      "depth": 1,
+      "request": "请上传 HJ/T 91"
+    },
+    {
+      "ref_id": "REF-03",
+      "standard_no": "HJ/T 164",
+      "title": "地下水环境监测技术规范",
+      "referenced_by": [
+        "7"
+      ],
+      "scope": "地下水样品采集与保存",
+      "status": "PENDING_UPLOAD",
+      "affected_clauses": [
+        "7"
+      ],
+      "affected_rules": [
+        "ARC-C2-07-01"
+      ],
+      "depth": 1,
+      "request": "请上传 HJ/T 164"
+    }
+  ],
+  "elements": [
+    {
+      "element_id": "SE-SCOPE-01-01",
+      "family": "SCOPE",
+      "statement": "本标准适用于地表水、地下水、生活污水和工业废水中总磷的测定",
+      "parameters": [],
+      "obligation": "MUST",
+      "applicability": "四类水样",
+      "evidence": [
+        "报告样品类型"
+      ],
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6,
+        "quote": "本标准适用于地表水、地下水、生活污水和工业废水中总磷的测定"
+      },
+      "origin": "verbatim"
+    },
+    {
+      "element_id": "SE-SCOPE-01-02",
+      "family": "SCOPE",
+      "statement": "检出限 0.005 mg/L，测定范围 0.020-1.00 mg/L（10 mm 光程）",
+      "parameters": [
+        {
+          "name": "检出限",
+          "value": 0.005,
+          "unit": "mg/L"
+        },
+        {
+          "name": "范围下限",
+          "value": 0.02,
+          "unit": "mg/L"
+        },
+        {
+          "name": "范围上限",
+          "value": 1,
+          "unit": "mg/L"
+        }
+      ],
+      "obligation": "INFO",
+      "applicability": "检测池光程 10 mm",
+      "evidence": [
+        "报告检出限",
+        "结果浓度"
+      ],
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6,
+        "quote": "当检测池光程为 10 mm 时，本方法的检出限为 0.005 mg/L"
+      },
+      "origin": "verbatim"
+    },
+    {
+      "element_id": "SE-QC-11.1-01",
+      "family": "QC",
+      "statement": "每批样品须至少测定 2 个空白样品，空白值不得超出方法检出限",
+      "parameters": [
+        {
+          "name": "空白数",
+          "value": 2,
+          "unit": "个/批",
+          "op": ">="
+        },
+        {
+          "name": "空白值上限",
+          "value": 0.005,
+          "unit": "mg/L",
+          "op": "<="
+        }
+      ],
+      "obligation": "MUST",
+      "applicability": "每批",
+      "evidence": [
+        "质控记录",
+        "原始记录"
+      ],
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.1",
+        "page": 11,
+        "quote": "每批样品须至少测定 2 个空白样品，空白值不得超出方法检出限"
+      },
+      "origin": "verbatim"
+    },
+    {
+      "element_id": "SE-RISK-12.1-01",
+      "family": "RISK",
+      "statement": "因流路管径较细，不适用于测定含悬浮物颗粒物较多或颗粒粒径大于 250 μm 的样品",
+      "parameters": [
+        {
+          "name": "粒径上限",
+          "value": 250,
+          "unit": "μm",
+          "op": "<="
+        }
+      ],
+      "obligation": "MUST_NOT",
+      "applicability": "样品性状",
+      "evidence": [
+        "报告样品性状",
+        "前处理记录"
+      ],
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.1",
+        "page": 11,
+        "quote": "不适用于测定含悬浮物颗粒物较多或颗粒粒径大于 250 μm 的样品"
+      },
+      "origin": "verbatim"
+    },
+    {
+      "element_id": "SE-CALC-09.1-01",
+      "family": "CALC",
+      "statement": "样品中总磷的质量浓度按式（1）计算：ρ=(y-a)/b×f",
+      "parameters": [
+        {
+          "name": "ρ",
+          "value": null,
+          "unit": "mg/L"
+        },
+        {
+          "name": "f",
+          "value": null,
+          "unit": "1"
+        }
+      ],
+      "obligation": "MUST",
+      "applicability": "同批校准曲线",
+      "evidence": [
+        "原始记录",
+        "校准曲线记录"
+      ],
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10,
+        "quote": "样品中总磷的质量浓度（以 P 计，mg/L）按照式（1）进行计算"
+      },
+      "origin": "verbatim"
+    }
+  ],
+  "formula_cards": [
+    {
+      "formula_id": "F-1",
+      "clause": "9.1",
+      "expression": "rho=(y-a)/b*f",
+      "latex": "\\\\rho=\\\\frac{y-a}{b}\\\\times f",
+      "symbols": [
+        {
+          "symbol": "rho",
+          "meaning": "样品总磷质量浓度",
+          "unit": "mg/L",
+          "dimension": "M L^-3"
+        },
+        {
+          "symbol": "y",
+          "meaning": "测定信号值（峰面积）",
+          "unit": "signal",
+          "dimension": "S"
+        },
+        {
+          "symbol": "a",
+          "meaning": "校准曲线截距",
+          "unit": "signal",
+          "dimension": "S"
+        },
+        {
+          "symbol": "b",
+          "meaning": "校准曲线斜率",
+          "unit": "signal/(mg/L)",
+          "dimension": "S L^3 M^-1"
+        },
+        {
+          "symbol": "f",
+          "meaning": "稀释倍数",
+          "unit": "1",
+          "dimension": ""
+        }
+      ],
+      "applicability": "同批校准曲线；结果以 P 计",
+      "rounding": "结果表示见 9.2",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10,
+        "quote": "式（1）"
+      }
+    },
+    {
+      "formula_id": "F-2",
+      "clause": "11.5",
+      "expression": "R=rho1/rho2*100%",
+      "latex": "R=\\\\frac{\\\\rho_1}{\\\\rho_2}\\\\times 100\\\\%",
+      "symbols": [
+        {
+          "symbol": "R",
+          "meaning": "水解或消解效率",
+          "unit": "%",
+          "dimension": ""
+        },
+        {
+          "symbol": "rho1",
+          "meaning": "焦磷酸钠或 5-磷酸吡哆醛标准使用液测定结果",
+          "unit": "mg/L",
+          "dimension": "M L^-3"
+        },
+        {
+          "symbol": "rho2",
+          "meaning": "磷酸二氢钾标准使用液测定结果",
+          "unit": "mg/L",
+          "dimension": "M L^-3"
+        }
+      ],
+      "applicability": "系统性能检查",
+      "rounding": "R 应大于 90%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11,
+        "quote": "按式（2）计算水解或消解效率 R，R 应大于 90%"
+      }
+    }
+  ],
+  "procedure_graph": {
+    "nodes": [
+      {
+        "id": "P1",
+        "type": "step",
+        "label": "仪器调试与基线稳定",
+        "clause": "8.1",
+        "evidence": [
+          "仪器使用记录"
+        ]
+      },
+      {
+        "id": "P2",
+        "type": "step",
+        "label": "校准系列与曲线",
+        "clause": "8.2",
+        "evidence": [
+          "校准曲线记录"
+        ]
+      },
+      {
+        "id": "P3",
+        "type": "step",
+        "label": "试样测定",
+        "clause": "8.3",
+        "evidence": [
+          "原始记录"
+        ]
+      },
+      {
+        "id": "P4",
+        "type": "step",
+        "label": "空白试验",
+        "clause": "8.4",
+        "evidence": [
+          "质控记录"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "P1",
+        "to": "P2",
+        "operator": "precedes",
+        "clause": "8.1",
+        "payload": {
+          "order": 1
+        }
+      },
+      {
+        "from": "P2",
+        "to": "P3",
+        "operator": "requires",
+        "clause": "8.3",
+        "payload": {
+          "condition": "曲线已建立"
+        }
+      }
+    ]
+  },
+  "dependency_graph": {
+    "nodes": [
+      {
+        "id": "RHO",
+        "type": "result",
+        "label": "报告结果 rho",
+        "clause": "9.1"
+      },
+      {
+        "id": "F1",
+        "type": "formula",
+        "label": "式(1)",
+        "clause": "9.1"
+      },
+      {
+        "id": "CAL",
+        "type": "record",
+        "label": "校准曲线",
+        "clause": "8.2"
+      },
+      {
+        "id": "QC1",
+        "type": "gate",
+        "label": "空白与校准质控门",
+        "clause": "11.1/11.2"
+      }
+    ],
+    "edges": [
+      {
+        "from": "RHO",
+        "to": "F1",
+        "operator": "computes",
+        "clause": "9.1",
+        "payload": {
+          "requires": [
+            "y",
+            "a",
+            "b",
+            "f"
+          ]
+        }
+      },
+      {
+        "from": "F1",
+        "to": "CAL",
+        "operator": "traces",
+        "clause": "8.2",
+        "payload": {
+          "evidence": "校准曲线记录"
+        }
+      },
+      {
+        "from": "QC1",
+        "to": "CAL",
+        "operator": "gates",
+        "clause": "11.1",
+        "payload": {
+          "threshold": "空白<=0.005 mg/L; gamma>=0.995"
+        }
+      }
+    ]
+  },
+  "lab_alignment": [
+    {
+      "alignment_id": "LA-001",
+      "requirement": "ARC-C3-08.1-01",
+      "requirement_text": "按仪器说明书设定工作参数并稳定基线",
+      "lab_doc": "流动注射分析仪 SOP",
+      "lab_doc_type": "SOP",
+      "lab_clause": null,
+      "status": "PENDING_DOC",
+      "difference": "未上传",
+      "decision": "暂按标准判"
+    },
+    {
+      "alignment_id": "LA-002",
+      "requirement": "ARC-C7-11.3-01",
+      "requirement_text": "平行双样比例与相对偏差",
+      "lab_doc": "质控规程",
+      "lab_doc_type": "QC_PROCEDURE",
+      "lab_clause": null,
+      "status": "PENDING_DOC",
+      "difference": "未上传",
+      "decision": "暂按标准判"
+    }
+  ],
+  "method_family": [
+    {
+      "standard": "HJ 671-2013",
+      "method": "流动注射-钼酸铵分光光度法",
+      "status": "PROVIDED",
+      "rule_set_id": "RS-HJ671-2013",
+      "analyte": "总磷",
+      "dl": "0.005 mg/L",
+      "range": "0.020-1.00 mg/L"
+    },
+    {
+      "standard": "HJ 670-2013",
+      "method": "连续流动-钼酸铵分光光度法",
+      "status": "PENDING_UPLOAD",
+      "rule_set_id": null,
+      "analyte": "总磷",
+      "dl": null,
+      "range": null
+    },
+    {
+      "standard": "GB 11893",
+      "method": "钼酸铵分光光度法",
+      "status": "PENDING_UPLOAD",
+      "rule_set_id": null,
+      "analyte": "总磷",
+      "dl": null,
+      "range": null
+    }
+  ],
+  "audit_rule_cards": [
+    {
+      "rule_id": "ARC-C7-11.1-01",
+      "title": "每批空白不少于 2 个且不超检出限",
+      "category": "C7",
+      "clause": "11.1",
+      "modality": "MUST",
+      "requirement": "每批样品须至少测定 2 个空白样品，空白值不得超出方法检出限",
+      "predicate": {
+        "field": "空白值",
+        "op": "<=",
+        "value": 0.005,
+        "unit": "mg/L",
+        "window": "每批"
+      },
+      "applicability": "每批样品",
+      "evidence_required": [
+        "质控记录",
+        "原始记录"
+      ],
+      "check_targets": [
+        {
+          "target_type": "process_record",
+          "doc_type": "质控记录",
+          "field": "空白值",
+          "match_hints": [
+            "空白",
+            "检出限"
+          ],
+          "locator_strategy": "table_header"
+        }
+      ],
+      "on_missing": "FAIL",
+      "on_fail": "查明原因，重新分析至合格后再测样品",
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.1",
+        "page": 11,
+        "quote": "空白值不得超出方法检出限"
+      }
+    },
+    {
+      "rule_id": "ARC-C7-11.2-01",
+      "title": "校准曲线相关系数不低于 0.995",
+      "category": "C7",
+      "clause": "11.2",
+      "modality": "MUST",
+      "requirement": "每批样品分析均须绘制校准曲线，相关系数γ≥0.995",
+      "predicate": {
+        "field": "校准曲线相关系数",
+        "op": ">=",
+        "value": 0.995,
+        "unit": "1"
+      },
+      "applicability": "每批",
+      "evidence_required": [
+        "校准曲线记录",
+        "原始记录"
+      ],
+      "check_targets": [
+        {
+          "target_type": "report_field",
+          "doc_type": "原始记录",
+          "field": "校准曲线相关系数",
+          "match_hints": [
+            "相关系数",
+            "γ",
+            "r="
+          ],
+          "locator_strategy": "field_label"
+        }
+      ],
+      "on_missing": "FAIL",
+      "on_fail": "重新绘制校准曲线并重测该批样品",
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11,
+        "quote": "校准曲线的相关系数γ≥0.995"
+      }
+    },
+    {
+      "rule_id": "ARC-C7-11.3-01",
+      "title": "平行双样比例与相对偏差分档",
+      "category": "C7",
+      "clause": "11.3",
+      "modality": "MUST",
+      "requirement": "每批至少 10% 平行双样；总磷<=0.02 mg/L 时相对偏差<=25%，>0.02 mg/L 时<=10%",
+      "predicate": {
+        "field": "平行样相对偏差",
+        "op": "custom",
+        "value": {
+          "le_0_02": 25,
+          "gt_0_02": 10
+        },
+        "unit": "%"
+      },
+      "applicability": "按样品总磷浓度分档",
+      "evidence_required": [
+        "质控记录",
+        "原始记录"
+      ],
+      "check_targets": [
+        {
+          "target_type": "process_record",
+          "doc_type": "质控记录",
+          "field": "平行样相对偏差",
+          "match_hints": [
+            "平行",
+            "相对偏差",
+            "双样"
+          ],
+          "locator_strategy": "table_header"
+        }
+      ],
+      "on_missing": "FAIL",
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.3",
+        "page": 11,
+        "quote": "平行样的相对偏差≤25%；当总磷质量浓度＞0.02 mg/L，平行样的相对偏差≤10%"
+      }
+    },
+    {
+      "rule_id": "ARC-C2-04.3-01",
+      "title": "强酸或强碱样品分析前调中性",
+      "category": "C2",
+      "clause": "4.3",
+      "modality": "MUST",
+      "requirement": "样品 pH<2 或 >10 时，分析前将试样 pH 调至中性",
+      "predicate": {
+        "field": "分析前 pH 调节记录",
+        "op": "exists",
+        "value": true,
+        "unit": "1"
+      },
+      "applicability": "样品 pH<2 或 >10",
+      "evidence_required": [
+        "前处理记录"
+      ],
+      "check_targets": [
+        {
+          "target_type": "process_record",
+          "doc_type": "前处理记录",
+          "field": "pH 调节",
+          "match_hints": [
+            "中和",
+            "pH",
+            "调节"
+          ],
+          "locator_strategy": "keyword"
+        }
+      ],
+      "on_missing": "FAIL",
+      "source_layer": "STANDARD",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.3",
+        "page": 7,
+        "quote": "当样品 pH＜2 或＞10 时，应在分析前将试样的 pH 调至中性"
+      }
+    }
+  ],
+  "coverage_matrix": [
+    {
+      "clause": "1",
+      "elements": 2,
+      "rules": 3,
+      "checkable": true,
+      "gaps": []
+    },
+    {
+      "clause": "4.1",
+      "elements": 1,
+      "rules": 1,
+      "checkable": false,
+      "gaps": [
+        "GAP-REF-01"
+      ]
+    },
+    {
+      "clause": "11.2",
+      "elements": 1,
+      "rules": 2,
+      "checkable": true,
+      "gaps": []
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "GAP-REF-01",
+      "type": "GAP-REF",
+      "description": "GB 11893 未上传，砷/铬/硫干扰消除方法无法细化",
+      "affected_clauses": [
+        "4.1"
+      ],
+      "affected_rules": [
+        "ARC-C1-04.1-01"
+      ],
+      "request": "请上传 GB 11893",
+      "owner": "用户"
+    },
+    {
+      "gap_id": "GAP-CONFLICT-01",
+      "type": "GAP-CONFLICT",
+      "description": "前言批准日期 2014-10-25 与封面发布 2013-10-25 不一致",
+      "affected_clauses": [
+        "前言"
+      ],
+      "affected_rules": [],
+      "request": "以封面与实施日期为准，标注待核",
+      "owner": "标准归口"
+    },
+    {
+      "gap_id": "GAP-AMB-01",
+      "type": "GAP-AMB",
+      "description": "精密度验证浓度 1.58 mg/L 高于声明测定上限 1.00 mg/L，未说明光程或稀释",
+      "affected_clauses": [
+        "10.1"
+      ],
+      "affected_rules": [],
+      "request": "待标准归口说明，不据此扩量程",
+      "owner": "标准归口"
+    }
+  ]
+}

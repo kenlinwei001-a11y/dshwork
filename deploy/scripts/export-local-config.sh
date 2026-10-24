@@ -41,7 +41,7 @@ step "1/4 专家（experts / preferences / revisions）"
 mkdir -p "$SRC/experts"
 for sub in experts preferences revisions; do
   src_dir="$DSH_HOME/storages/workdsh_experts/$sub"
-  if [ ! -d "$src_dir" ]; then say "跳过 $sub（不存在）"; continue; fi
+  if [ ! -d "$src_dir" ]; then say "跳过 ${sub}（不存在）"; continue; fi
   if [ "$MODE" = "check" ]; then
     new_n=$(ls -1 "$src_dir" | wc -l | tr -d ' ')
     old_n=0
@@ -85,7 +85,7 @@ else
   if [ "$MODE" = "export" ]; then rm -rf "$SRC/agent-presets"; fi
   mkdir -p "$SRC/agent-presets"
   n=0; miss=0
-  printf '%s\n' "$map_out" | while IFS= read -r line; do
+  while IFS= read -r line; do
     [ -n "$line" ] || continue
     eid=$(printf '%s' "$line" | cut -d'|' -f1)
     pid=$(printf '%s' "$line" | cut -d'|' -f2)
@@ -96,21 +96,21 @@ else
     fi
     if [ -n "$src_dir" ]; then
       if [ "$MODE" = "check" ]; then
-        if [ ! -d "$SRC/agent-presets/$pid" ]; then say "缺预设：$pid（专家 $eid）"; CHANGED=1; fi
+        if [ ! -d "$SRC/agent-presets/$pid" ]; then say "缺预设：${pid}（专家 ${eid}）"; CHANGED=1; fi
       else
         do_cp "$src_dir" "$SRC/agent-presets/$pid"
       fi
     elif [ -n "$pid" ]; then
-      say "预设目录不存在，跳过：$pid（专家 $eid）"
+      say "预设目录不存在，跳过：${pid}（专家 ${eid}）"
     fi
-  done
+  done < <(printf '%s\n' "$map_out")
   say "预设处理完成（目录：$SRC/agent-presets）"
 fi
 
 step "3/4 技能（用户根 -> skills，Profile 根 -> skills-profile）"
 copy_skills() {
   from_dir="$1"; to_dir="$2"; label="$3"
-  if [ ! -d "$from_dir" ]; then say "跳过 $label（不存在）"; return 0; fi
+  if [ ! -d "$from_dir" ]; then say "跳过 ${label}（不存在）"; return 0; fi
   if [ "$MODE" = "check" ]; then
     new_n=$(ls -1 "$from_dir" | wc -l | tr -d ' ')
     old_n=0
@@ -131,7 +131,7 @@ copy_skills() {
       find "$to_dir/$name" -maxdepth 1 -type f -name '*bak*' -delete 2>/dev/null || true
     fi
   done
-  say "$label：$(ls -1 "$to_dir" | wc -l | tr -d ' ') 个技能"
+  say "${label}：$(ls -1 "$to_dir" | wc -l | tr -d ' ') 个技能"
 }
 copy_skills "$AGENTS_HOME/skills" "$SRC/skills" "用户根技能"
 copy_skills "$DSH_HOME/skills" "$SRC/skills-profile" "Profile 根技能"

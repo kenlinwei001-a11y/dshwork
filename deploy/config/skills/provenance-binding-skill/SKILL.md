@@ -119,3 +119,59 @@ assert all(p["id"] for p in chain), "链上每环必须可寻址"
 悬空关系 106 条 → 补 source 后降到 0
 但「有 source」不等于「指向存在的节点」→ 必须同时校验端点
 ```
+
+
+## 镜像证据：不需要判定强度（V3.0 实测）
+
+### 什么是镜像证据
+
+```
+ev-N-xxx  →  N-xxx
+同一个 id，前缀 ev- 表示「该事实的原文摘录节点」
+```
+
+**它不是「另一条证据」，是这个事实自己的原文锚点。**
+
+### 之前报「410 条 supports 缺 strength」，其中 338 条是假的
+
+| 构成 | 数量 | 该不该要 strength |
+|---|---|---|
+| `ev-N-xxx → N-xxx` | **338** | ❌ **恒为 strong，判定无意义** |
+| `EV-规范-* → claim` | 49 | ❌ 错挂（见 claim-evidence-binding）|
+| `EV-主体-* → claim` | 23 | ✅ 需要判定 |
+| `CL-* → CL-*` | 8 | ✅ 需要判定 |
+
+**「必填」定义过严，产生了 338 条形式主义告警。**
+
+### 修法：relation_types.yaml 加豁免
+
+```yaml
+supports:
+  payload: [strength]
+  payload_exempt:
+    mirror: 镜像证据（ev-N-xxx → N-xxx）强度恒为 strong，不需判定
+```
+
+**校验时先查 exempt 再查 required**：
+
+```python
+if (exempt.get(r["type"]) or {}) and p.get("mirror"):
+    continue                    # 豁免，不算缺
+if any(p.get(k) in (None, "") for k in required):
+    bad += 1
+```
+
+### 判据：哪些必填是真必填
+
+| 必填字段 | 是真必填吗 | 理由 |
+|---|---|---|
+| `cites.ref_title` | ✅ | 说不出引用哪份文件就是空引用 |
+| `bounded_by.clause` | ✅ | 说不出哪条就无法判合规 |
+| `supports.strength` | ⚠️ **分情况** | 镜像证据恒 strong，判定无意义 |
+| `computed_from.rule_id` | ✅ | 说不出算式就是黑箱 |
+
+### 一条铁律
+
+> **「必填」的定义本身要能通过假缺四问的第④问：设计上真的该有吗？**
+>
+> 338 条告警如果全填 `strong`，等于没判定 —— 形式主义的必填字段是有害的。

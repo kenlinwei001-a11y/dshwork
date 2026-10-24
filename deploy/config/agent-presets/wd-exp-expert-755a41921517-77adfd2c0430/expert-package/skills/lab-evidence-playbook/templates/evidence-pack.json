@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "report_id": "202203001",
+  "generated_at": "2026-10-22",
+  "report": {
+    "report_no": "202203001-1",
+    "lab": "中国环境科学研究院环境检测与实验中心",
+    "client": "中国环境科学研究院污控中心",
+    "sample_type": "废水",
+    "sample_count": 15,
+    "sample_dates": "2022-03-15~2022-03-17",
+    "receive_dates": "2022-03-15~2022-03-17",
+    "test_dates": "2022-03-16~2022-03-22",
+    "report_date": "2022-03-25",
+    "conclusion": null
+  },
+  "documents": [
+    {
+      "doc_id": "D10",
+      "doc_type": "report",
+      "title": "检测报告",
+      "file_name": "6-检测报告.pdf",
+      "sha256": "TBD",
+      "pages": 5,
+      "ocr": true,
+      "status": "PARSED",
+      "parse_note": null
+    }
+  ],
+  "methods": [
+    {
+      "analyte": "总氮",
+      "declared": "HJ 636-2012",
+      "standard_id": "HJ 636-2012",
+      "method_match": "match",
+      "doc_id": "D10",
+      "page": 5,
+      "quote": "水质 总氮的测定 碱性过硫酸钾消解紫外分光光度法 HJ 636-2012"
+    },
+    {
+      "analyte": "总磷",
+      "declared": "GB 11893-89",
+      "standard_id": null,
+      "method_match": "mismatch",
+      "doc_id": "D10",
+      "page": 5,
+      "quote": "水质 总磷的测定 钼酸铵分光光度法 GB 11893-89"
+    },
+    {
+      "analyte": "氨氮",
+      "declared": "HJ 535-2009",
+      "standard_id": "HJ 535-2009",
+      "method_match": "match",
+      "doc_id": "D10",
+      "page": 5,
+      "quote": "水质 氨氮的测定 纳氏试剂分光光度法 HJ 535-2009"
+    },
+    {
+      "analyte": "无机阴离子",
+      "declared": "HJ 84-2016",
+      "standard_id": "HJ 84-2016",
+      "method_match": "match",
+      "doc_id": "D10",
+      "page": 5,
+      "quote": "水质 无机阴离子的测定 离子色谱法 HJ 84-2016"
+    }
+  ],
+  "instruments": [
+    {
+      "name": "紫外可见分光光度计",
+      "model": "UH5300",
+      "code": "N-187",
+      "doc_id": "D10",
+      "page": 5
+    },
+    {
+      "name": "离子色谱仪",
+      "model": "ICS5000+",
+      "code": "N-210",
+      "doc_id": "D10",
+      "page": 5
+    }
+  ],
+  "fields": [],
+  "records": {
+    "calibration": [],
+    "blank": [],
+    "duplicate": [],
+    "spike": [],
+    "qc_sample": [],
+    "reagent": [],
+    "environment": [],
+    "instrument_run": [],
+    "sample_chain": []
+  },
+  "missing": [],
+  "consistency_flags": [],
+  "stats": {
+    "documents": 16,
+    "fields": 0,
+    "located_ratio": 0,
+    "ocr_pages": 0,
+    "missing": 0,
+    "flags": 0
+  }
+}

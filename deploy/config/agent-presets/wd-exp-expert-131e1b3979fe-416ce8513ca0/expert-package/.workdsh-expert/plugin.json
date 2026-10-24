@@ -1,0 +1,59 @@
+{
+  "name": "knowledge-processing-expert",
+  "version": "2.2.0",
+  "description": "A technical and procedural standard element extraction expert: decomposes standards, their normative references and laboratory internal documents (SOP, QC procedures, instrument manuals) into executable specifications, dependency graphs and classified, clause-anchored audit rule cards with report-location hints for downstream audit experts.",
+  "agents": [
+    "./agents/knowledge-processing-expert.md"
+  ],
+  "expertType": "agent",
+  "agentName": "knowledge-processing-expert",
+  "displayName": {
+    "en": "Standard Element Extraction Expert",
+    "zh": "标准要素抽取专家"
+  },
+  "profession": {
+    "en": "Technical & Procedural Standard Element Extraction Expert",
+    "zh": "技术与流程标准要素抽取专家"
+  },
+  "displayDescription": {
+    "en": "Decomposes standards, referenced documents and lab SOPs into executable elements, dependency graphs and classified audit rules with report-text locator hints.",
+    "zh": "把标准、引用文件与实验室 SOP 解构为可执行要素、依赖图谱与分类审核规则，并给出报告文字定位线索，供审核专家逐条判定。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "把这份标准（如 HJ 671—2013）解构成可执行流程、设备、试剂、公式和质控阈值，并生成可审核的规则卡。",
+    "en": "Decompose this standard (e.g. HJ 671-2013) into executable procedures, apparatus, reagents, formulas and QC thresholds, and generate audit-ready rule cards."
+  },
+  "plugin": "knowledge-processing-expert",
+  "tags": [
+    {
+      "en": "Standard Decomposition",
+      "zh": "标准解构"
+    },
+    {
+      "en": "Audit Rules",
+      "zh": "审核规则"
+    },
+    {
+      "en": "Process Modeling",
+      "zh": "流程建模"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Decompose this standard (e.g. HJ 671-2013) into executable procedures, apparatus, reagents, formulas and QC thresholds, and generate audit-ready rule cards.",
+      "zh": "把这份标准（如 HJ 671—2013）解构成可执行流程、设备、试剂、公式和质控阈值，并生成可审核的规则卡。"
+    },
+    {
+      "en": "Map the standard's normative references and list the documents I still need to upload, with the clauses and rules each one affects.",
+      "zh": "梳理标准的规范性引用关系，列出还需上传的文件，并写明各自影响哪些条款与规则。"
+    },
+    {
+      "en": "Link calibration, calculation, QC and result expression into a dependency graph with report-text locators so each reported value can be highlighted and traced back.",
+      "zh": "把校准、计算、质控与结果表示串成带报告定位线索的依赖图，让报告上的每个数值都能被标注并反查来源。"
+    }
+  ],
+  "skills": [
+    "./skills/standard-element-extraction"
+  ]
+}

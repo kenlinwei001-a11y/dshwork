@@ -1,0 +1,138 @@
+{
+  "name": "water-routine-qc-team",
+  "version": "1.0.0",
+  "description": "A four-member quality-control team for water routine-element test reports: evidence extraction, report audit, process-record audit, and adjudication. Standard extraction stays with a separate expert.",
+  "agents": [
+    "./agents/water-routine-qc-team-lead.md",
+    "./agents/lab-evidence-extractor.md",
+    "./agents/report-audit-expert.md",
+    "./agents/process-audit-expert.md",
+    "./agents/audit-adjudicator.md"
+  ],
+  "skills": [
+    "./skills/water-routine-qc-playbook",
+    "./skills/lab-evidence-playbook",
+    "./skills/report-audit-playbook",
+    "./skills/process-audit-playbook",
+    "./skills/adjudication-playbook"
+  ],
+  "expertType": "team",
+  "agentName": "water-routine-qc-team-lead",
+  "teamInfo": {
+    "leadAgent": "water-routine-qc-team-lead",
+    "memberAgents": [
+      "lab-evidence-extractor",
+      "report-audit-expert",
+      "process-audit-expert",
+      "audit-adjudicator"
+    ]
+  },
+  "displayName": {
+    "en": "Water Routine Element Report QC Team",
+    "zh": "水常规元素检测报告质控专家团"
+  },
+  "profession": {
+    "en": "Water Routine Element Report QC Team",
+    "zh": "水常规元素检测报告质控专家团"
+  },
+  "displayDescription": {
+    "en": "Coordinates evidence extraction, report audit, process-record audit and adjudication for water routine-element test reports, with span-level traceability.",
+    "zh": "面向水常规元素检测报告，聚合证据抽取、报告审核、过程记录审核与裁定，输出可回溯到原文的质控结论。"
+  },
+  "categoryId": "04-DataAI",
+  "defaultInitPrompt": {
+    "zh": "按项目组织一次水常规元素检测报告质控：先抽证据，再并行审报告和过程记录，最后裁定并输出可高亮原文的审核报告。",
+    "en": "Run quality control for a water routine-element report batch: extract evidence, audit report and process records in parallel, then adjudicate with span-level traceability."
+  },
+  "plugin": "water-routine-qc-team",
+  "tags": [
+    {
+      "en": "Water QC",
+      "zh": "水质质控"
+    },
+    {
+      "en": "Report Audit",
+      "zh": "报告审核"
+    },
+    {
+      "en": "Evidence Traceability",
+      "zh": "证据追溯"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "按项目组织一次水常规元素检测报告质控：先抽证据，再并行审报告和过程记录，最后裁定并输出可高亮原文的审核报告。",
+      "en": "Run quality control for a water routine-element report batch: extract evidence, audit report and process records in parallel, then adjudicate with span-level traceability."
+    },
+    {
+      "zh": "这份报告包缺采样方案/现场记录/交接记录，先列缺件，再决定哪些能判、哪些只能待补。",
+      "en": "This bundle lacks the sampling plan, field records and handover records. List missing items first, then decide what can be judged and what must wait."
+    },
+    {
+      "zh": "标准库里 GB 11893、HJ 535、HJ 636、HJ 84 的规则是否齐？缺哪个先告诉我，不要自己抽标准。",
+      "en": "Check whether GB 11893, HJ 535, HJ 636 and HJ 84 rule sets are ready in the global library; do not extract standards yourself."
+    }
+  ],
+  "members": [
+    {
+      "id": "water-routine-qc-team-lead",
+      "displayName": {
+        "en": "Ke Shouzhen",
+        "zh": "柯守真"
+      },
+      "profession": {
+        "en": "Water Report Quality Control Director",
+        "zh": "水常规元素检测报告质控总监"
+      },
+      "role": "lead"
+    },
+    {
+      "id": "lab-evidence-extractor",
+      "displayName": {
+        "en": "Shen Zhengyuan",
+        "zh": "沈证源"
+      },
+      "profession": {
+        "en": "Laboratory Evidence Extraction Expert",
+        "zh": "实验室报告与过程文档证据抽取专家"
+      },
+      "role": "member"
+    },
+    {
+      "id": "report-audit-expert",
+      "displayName": {
+        "en": "Gu Hegui",
+        "zh": "顾合规"
+      },
+      "profession": {
+        "en": "Test Report Compliance Audit Expert",
+        "zh": "检测报告合规审核专家"
+      },
+      "role": "member"
+    },
+    {
+      "id": "process-audit-expert",
+      "displayName": {
+        "en": "Yan Lihen",
+        "zh": "严留痕"
+      },
+      "profession": {
+        "en": "Laboratory Process Record Audit Expert",
+        "zh": "实验室过程文档审核专家"
+      },
+      "role": "member"
+    },
+    {
+      "id": "audit-adjudicator",
+      "displayName": {
+        "en": "Zhen Dinglun",
+        "zh": "甄定论"
+      },
+      "profession": {
+        "en": "Compliance Audit Adjudication Expert",
+        "zh": "合规审核裁定专家"
+      },
+      "role": "member"
+    }
+  ]
+}

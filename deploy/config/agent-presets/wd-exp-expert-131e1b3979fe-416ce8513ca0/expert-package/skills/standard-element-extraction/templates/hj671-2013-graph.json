@@ -1,0 +1,5327 @@
+{
+  "schema_version": "1.1.0",
+  "graph_id": "G-HJ671-2013",
+  "standard_id": "HJ 671-2013",
+  "title": "水质 总磷的测定 流动注射-钼酸铵分光光度法",
+  "source_fingerprint": {
+    "sha256_12": "0e343ed5c506",
+    "pages": 12
+  },
+  "layers": [
+    {
+      "layer": "L0",
+      "name": "标准、方法族与引用",
+      "node_types": [
+        "method",
+        "ruleset",
+        "reference"
+      ]
+    },
+    {
+      "layer": "L1",
+      "name": "条款与注",
+      "node_types": [
+        "clause",
+        "note"
+      ]
+    },
+    {
+      "layer": "L2",
+      "name": "要素",
+      "node_types": [
+        "element"
+      ]
+    },
+    {
+      "layer": "L3",
+      "name": "规则卡",
+      "node_types": [
+        "rule"
+      ]
+    },
+    {
+      "layer": "L4",
+      "name": "报告/过程文档字段",
+      "node_types": [
+        "doc_field"
+      ]
+    },
+    {
+      "layer": "L5",
+      "name": "公式、结果与缺口",
+      "node_types": [
+        "formula",
+        "result",
+        "gap"
+      ]
+    }
+  ],
+  "stats": {
+    "nodes": 240,
+    "edges": 260,
+    "by_type": {
+      "clause": 67,
+      "note": 3,
+      "element": 73,
+      "rule": 39,
+      "doc_field": 38,
+      "reference": 3,
+      "method": 3,
+      "ruleset": 1,
+      "result": 2,
+      "gap": 9,
+      "formula": 2
+    },
+    "by_operator": {
+      "specifies": 114,
+      "checks": 39,
+      "gates": 10,
+      "bounds": 3,
+      "cites": 6,
+      "affects": 19,
+      "annotates": 3,
+      "applies": 1,
+      "contains": 39,
+      "requires": 19,
+      "precedes": 5,
+      "computes": 2
+    },
+    "numbered_clauses": 62,
+    "clauses_with_edges": 62,
+    "uncovered_clauses": [],
+    "rules": 39,
+    "doc_fields": 38,
+    "gaps": 9
+  },
+  "nodes": [
+    {
+      "id": "CL-COVER",
+      "type": "clause",
+      "clause": "COVER",
+      "page": 1,
+      "title": "封面：标准号、名称、发布与实施",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "COVER",
+        "page": 1
+      }
+    },
+    {
+      "id": "CL-FORE",
+      "type": "clause",
+      "clause": "FORE",
+      "page": 5,
+      "title": "前言：首次发布、起草与验证单位",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "FORE",
+        "page": 5
+      }
+    },
+    {
+      "id": "CL-ANN",
+      "type": "clause",
+      "clause": "ANN",
+      "page": 2,
+      "title": "公告：同批 7 项标准名单（背景）",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "ANN",
+        "page": 2
+      }
+    },
+    {
+      "id": "CL-1",
+      "type": "clause",
+      "clause": "1",
+      "page": 6,
+      "title": "适用范围",
+      "clause_type": "normative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      }
+    },
+    {
+      "id": "CL-2",
+      "type": "clause",
+      "clause": "2",
+      "page": 6,
+      "title": "规范性引用文件",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "2",
+        "page": 6
+      }
+    },
+    {
+      "id": "CL-3.1",
+      "type": "clause",
+      "clause": "3.1",
+      "page": 6,
+      "title": "流动注射分析仪工作原理",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "3.1",
+        "page": 6
+      }
+    },
+    {
+      "id": "CL-3.2",
+      "type": "clause",
+      "clause": "3.2",
+      "page": 6,
+      "title": "化学反应原理",
+      "clause_type": "normative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "3.2",
+        "page": 6
+      }
+    },
+    {
+      "id": "CL-4.1",
+      "type": "clause",
+      "clause": "4.1",
+      "page": 7,
+      "title": "砷、铬、硫干扰",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.1",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-4.2",
+      "type": "clause",
+      "clause": "4.2",
+      "page": 7,
+      "title": "浊度、色度补偿",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.2",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-4.3",
+      "type": "clause",
+      "clause": "4.3",
+      "page": 7,
+      "title": "pH 干扰与中和",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.3",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.1",
+      "type": "clause",
+      "clause": "5.1",
+      "page": 7,
+      "title": "硫酸",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.1",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.2",
+      "type": "clause",
+      "clause": "5.2",
+      "page": 7,
+      "title": "过硫酸钾",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.2",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.3",
+      "type": "clause",
+      "clause": "5.3",
+      "page": 7,
+      "title": "钼酸铵",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.3",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.4",
+      "type": "clause",
+      "clause": "5.4",
+      "page": 7,
+      "title": "酒石酸锑钾",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.4",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.5",
+      "type": "clause",
+      "clause": "5.5",
+      "page": 7,
+      "title": "氢氧化钠",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.5",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.6",
+      "type": "clause",
+      "clause": "5.6",
+      "page": 7,
+      "title": "抗坏血酸",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.6",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.7",
+      "type": "clause",
+      "clause": "5.7",
+      "page": 7,
+      "title": "十二烷基硫酸钠",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.7",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.8",
+      "type": "clause",
+      "clause": "5.8",
+      "page": 7,
+      "title": "氯化钠",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.8",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.9",
+      "type": "clause",
+      "clause": "5.9",
+      "page": 7,
+      "title": "磷酸二氢钾",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.9",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.10",
+      "type": "clause",
+      "clause": "5.10",
+      "page": 7,
+      "title": "焦磷酸钠",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.10",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.11",
+      "type": "clause",
+      "clause": "5.11",
+      "page": 7,
+      "title": "5-磷酸吡哆醛",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.11",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.12",
+      "type": "clause",
+      "clause": "5.12",
+      "page": 7,
+      "title": "乙二胺四乙酸四钠",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.12",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-5.13",
+      "type": "clause",
+      "clause": "5.13",
+      "page": 8,
+      "title": "硫酸溶液Ⅰ",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.13",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.14",
+      "type": "clause",
+      "clause": "5.14",
+      "page": 8,
+      "title": "硫酸溶液Ⅱ",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.14",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.15",
+      "type": "clause",
+      "clause": "5.15",
+      "page": 8,
+      "title": "过硫酸钾消解溶液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.15",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.16",
+      "type": "clause",
+      "clause": "5.16",
+      "page": 8,
+      "title": "钼酸铵溶液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.16",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.17",
+      "type": "clause",
+      "clause": "5.17",
+      "page": 8,
+      "title": "酒石酸锑钾贮备液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.17",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.18",
+      "type": "clause",
+      "clause": "5.18",
+      "page": 8,
+      "title": "显色剂",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.18",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.19",
+      "type": "clause",
+      "clause": "5.19",
+      "page": 8,
+      "title": "还原剂",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.19",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.20",
+      "type": "clause",
+      "clause": "5.20",
+      "page": 8,
+      "title": "硫酸载液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.20",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.21",
+      "type": "clause",
+      "clause": "5.21",
+      "page": 8,
+      "title": "磷酸二氢钾标准贮备液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.21",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.22",
+      "type": "clause",
+      "clause": "5.22",
+      "page": 8,
+      "title": "磷酸二氢钾标准使用溶液Ⅰ",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.22",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.23",
+      "type": "clause",
+      "clause": "5.23",
+      "page": 8,
+      "title": "磷酸二氢钾标准使用溶液Ⅱ",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.23",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.24",
+      "type": "clause",
+      "clause": "5.24",
+      "page": 8,
+      "title": "焦磷酸钠标准贮备液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.24",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.25",
+      "type": "clause",
+      "clause": "5.25",
+      "page": 8,
+      "title": "焦磷酸钠标准使用溶液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.25",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.26",
+      "type": "clause",
+      "clause": "5.26",
+      "page": 8,
+      "title": "5-磷酸吡哆醛标准贮备液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.26",
+        "page": 8
+      }
+    },
+    {
+      "id": "CL-5.27",
+      "type": "clause",
+      "clause": "5.27",
+      "page": 9,
+      "title": "5-磷酸吡哆醛标准使用溶液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.27",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-5.28",
+      "type": "clause",
+      "clause": "5.28",
+      "page": 9,
+      "title": "色度-浊度补偿液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.28",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-5.29",
+      "type": "clause",
+      "clause": "5.29",
+      "page": 9,
+      "title": "NaOH-EDTA 清洗液",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.29",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-5.30",
+      "type": "clause",
+      "clause": "5.30",
+      "page": 9,
+      "title": "氦气",
+      "clause_type": "MUST",
+      "obligation": "normative",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.30",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-6.1",
+      "type": "clause",
+      "clause": "6.1",
+      "page": 9,
+      "title": "流动注射分析仪",
+      "clause_type": "normative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-6.2",
+      "type": "clause",
+      "clause": "6.2",
+      "page": 9,
+      "title": "天平",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.2",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-6.3",
+      "type": "clause",
+      "clause": "6.3",
+      "page": 9,
+      "title": "超声波机",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.3",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-6.4",
+      "type": "clause",
+      "clause": "6.4",
+      "page": 9,
+      "title": "一般实验室常用仪器设备",
+      "clause_type": "normative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.4",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-7",
+      "type": "clause",
+      "clause": "7",
+      "page": 9,
+      "title": "样品",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-8.1",
+      "type": "clause",
+      "clause": "8.1",
+      "page": 9,
+      "title": "仪器的调试",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-8.2.1",
+      "type": "clause",
+      "clause": "8.2.1",
+      "page": 9,
+      "title": "标准系列的制备",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-8.2.2",
+      "type": "clause",
+      "clause": "8.2.2",
+      "page": 9,
+      "title": "校准曲线的绘制",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.2",
+        "page": 9
+      }
+    },
+    {
+      "id": "CL-8.3",
+      "type": "clause",
+      "clause": "8.3",
+      "page": 10,
+      "title": "测定",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.3",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-8.4",
+      "type": "clause",
+      "clause": "8.4",
+      "page": 10,
+      "title": "空白试验",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.4",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-9.1",
+      "type": "clause",
+      "clause": "9.1",
+      "page": 10,
+      "title": "结果计算",
+      "clause_type": "normative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-9.2",
+      "type": "clause",
+      "clause": "9.2",
+      "page": 10,
+      "title": "结果表示",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.2",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-10.1",
+      "type": "clause",
+      "clause": "10.1",
+      "page": 10,
+      "title": "精密度",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "10.1",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-10.2",
+      "type": "clause",
+      "clause": "10.2",
+      "page": 10,
+      "title": "准确度",
+      "clause_type": "informative",
+      "obligation": "INFO",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "10.2",
+        "page": 10
+      }
+    },
+    {
+      "id": "CL-11.1",
+      "type": "clause",
+      "clause": "11.1",
+      "page": 11,
+      "title": "空白试验",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.1",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-11.2",
+      "type": "clause",
+      "clause": "11.2",
+      "page": 11,
+      "title": "校准有效性检查",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-11.3",
+      "type": "clause",
+      "clause": "11.3",
+      "page": 11,
+      "title": "精密度控制",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.3",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-11.4",
+      "type": "clause",
+      "clause": "11.4",
+      "page": 11,
+      "title": "准确度控制",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.4",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-11.5",
+      "type": "clause",
+      "clause": "11.5",
+      "page": 11,
+      "title": "系统性能检查",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-12.1",
+      "type": "clause",
+      "clause": "12.1",
+      "page": 11,
+      "title": "注意事项：悬浮物与粒径",
+      "clause_type": "normative",
+      "obligation": "MUST_NOT",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.1",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-12.2",
+      "type": "clause",
+      "clause": "12.2",
+      "page": 11,
+      "title": "注意事项：温度",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.2",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-12.3",
+      "type": "clause",
+      "clause": "12.3",
+      "page": 11,
+      "title": "注意事项：除气与澄清",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.3",
+        "page": 11
+      }
+    },
+    {
+      "id": "CL-12.4",
+      "type": "clause",
+      "clause": "12.4",
+      "page": 12,
+      "title": "注意事项：清洗与滤光片",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.4",
+        "page": 12
+      }
+    },
+    {
+      "id": "CL-12.5",
+      "type": "clause",
+      "clause": "12.5",
+      "page": 12,
+      "title": "注意事项：加热器液体流动",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.5",
+        "page": 12
+      }
+    },
+    {
+      "id": "CL-12.6",
+      "type": "clause",
+      "clause": "12.6",
+      "page": 12,
+      "title": "注意事项：不同型号仪器",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.6",
+        "page": 12
+      }
+    },
+    {
+      "id": "CL-5",
+      "type": "clause",
+      "clause": "5",
+      "page": 7,
+      "title": "第 5 章 试剂和材料（总则）",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "section_heading": true,
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5",
+        "page": 7
+      }
+    },
+    {
+      "id": "CL-9",
+      "type": "clause",
+      "clause": "9",
+      "page": 10,
+      "title": "第 9 章 结果计算与表示（总则）",
+      "clause_type": "normative",
+      "obligation": "MUST",
+      "section_heading": true,
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9",
+        "page": 10
+      }
+    },
+    {
+      "id": "NOTE-5.23",
+      "type": "note",
+      "clause": "5.23",
+      "page": 8,
+      "label": "酸化样品用硫酸溶液Ⅱ配制标准溶液",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.23",
+        "page": 8
+      }
+    },
+    {
+      "id": "NOTE-7",
+      "type": "note",
+      "clause": "7",
+      "page": 9,
+      "label": "≤0.1 mg/L 不宜聚乙烯瓶（冷冻除外）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "NOTE-8.3",
+      "type": "note",
+      "clause": "8.3",
+      "page": 10,
+      "label": "超校准曲线范围应稀释后测定",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.3",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-META-COVER-01",
+      "type": "element",
+      "family": "META",
+      "clause": "COVER",
+      "label": "标准号、名称、发布与实施日期",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "COVER",
+        "page": 1
+      }
+    },
+    {
+      "id": "SE-META-FORE-01",
+      "type": "element",
+      "family": "META",
+      "clause": "FORE",
+      "label": "首次发布、起草与验证单位",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "FORE",
+        "page": 5
+      }
+    },
+    {
+      "id": "SE-META-ANN-01",
+      "type": "element",
+      "family": "META",
+      "clause": "ANN",
+      "label": "公告同批 7 项标准（背景，不构成要求）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "ANN",
+        "page": 2
+      }
+    },
+    {
+      "id": "SE-SCOPE-01-01",
+      "type": "element",
+      "family": "SCOPE",
+      "clause": "1",
+      "label": "适用基质：地表水、地下水、生活污水、工业废水",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      }
+    },
+    {
+      "id": "SE-SCOPE-01-02",
+      "type": "element",
+      "family": "SCOPE",
+      "clause": "1",
+      "label": "检出限 0.005 mg/L，测定范围 0.020–1.00 mg/L（10 mm）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      }
+    },
+    {
+      "id": "SE-PRIN-03.1-01",
+      "type": "element",
+      "family": "PRIN",
+      "clause": "3.1",
+      "label": "流动注射分析原理",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "3.1",
+        "page": 6
+      }
+    },
+    {
+      "id": "SE-PRIN-03.2-01",
+      "type": "element",
+      "family": "PRIN",
+      "clause": "3.2",
+      "label": "125℃ 水解 + UV254 消解 + 钼酸铵显色 + 880 nm 检测",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "3.2",
+        "page": 6
+      }
+    },
+    {
+      "id": "SE-PRIN-03.2-02",
+      "type": "element",
+      "family": "PRIN",
+      "clause": "3.2",
+      "label": "图 1 流路拓扑（7 部件 + 6 通道）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "3.2",
+        "page": 6
+      }
+    },
+    {
+      "id": "SE-INTR-04.1-01",
+      "type": "element",
+      "family": "INTR",
+      "clause": "4.1",
+      "label": "砷、铬、硫干扰按 GB 11893 消除（引用待补）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.1",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-INTR-04.2-01",
+      "type": "element",
+      "family": "INTR",
+      "clause": "4.2",
+      "label": "浊度/色度补偿液测校正值并扣除",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.2",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-INTR-04.3-01",
+      "type": "element",
+      "family": "INTR",
+      "clause": "4.3",
+      "label": "pH<2 折射/双峰、pH>10 正干扰，分析前调中性",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.3",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.1-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.1",
+      "label": "硫酸 ρ=1.84 g/mL",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.1",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.2-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.2",
+      "label": "过硫酸钾 K2S2O8",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.2",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.3-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.3",
+      "label": "钼酸铵 (NH4)6Mo7O24·4H2O",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.3",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.4-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.4",
+      "label": "酒石酸锑钾 K(SbO)C4H4O6·½H2O",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.4",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.5-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.5",
+      "label": "氢氧化钠 NaOH",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.5",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.6-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.6",
+      "label": "抗坏血酸 C6H8O6",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.6",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.7-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.7",
+      "label": "十二烷基硫酸钠 NaC12H25SO4",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.7",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.8-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.8",
+      "label": "氯化钠 NaCl",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.8",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.9-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.9",
+      "label": "磷酸二氢钾 优级纯，105℃±5℃ 干燥恒重",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.9",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.10-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.10",
+      "label": "焦磷酸钠 密闭保存",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.10",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.11-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.11",
+      "label": "5-磷酸吡哆醛 纯度>95%，2–8℃ 密闭",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.11",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.12-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.12",
+      "label": "乙二胺四乙酸四钠 Na4EDTA",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.12",
+        "page": 7
+      }
+    },
+    {
+      "id": "SE-MATL-5.13-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.13",
+      "label": "硫酸溶液Ⅰ 2 mol/L：106.5 mL→1000 mL",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.13",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.14-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.14",
+      "label": "硫酸溶液Ⅱ 0.028 mol/L：1.5 mL→1000 mL",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.14",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.15-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.15",
+      "label": "过硫酸钾消解溶液 26 g/L，室温避光 1 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.15",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.16-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.16",
+      "label": "钼酸铵溶液 40.0 g/L，4℃ 2 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.16",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.17-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.17",
+      "label": "酒石酸锑钾贮备液 3.0 g/L，4℃ 2 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.17",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.18-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.18",
+      "label": "显色剂 213/72/22.8，4℃ 1 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.18",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.19-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.19",
+      "label": "还原剂 70.0 g + 1.0 g SDS，4℃ 2 周",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.19",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.20-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.20",
+      "label": "硫酸载液 40 mL + 5 g NaCl + 1.0 g SDS，1 周",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.20",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.21-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.21",
+      "label": "磷酸二氢钾标准贮备液 1000 mg/L，4℃ 6 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.21",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.22-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.22",
+      "label": "标准使用溶液Ⅰ 10.00 mg/L，4℃ 1 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.22",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.23-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.23",
+      "label": "标准使用溶液Ⅱ 0.50 mg/L，临用现配",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.23",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.24-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.24",
+      "label": "焦磷酸钠标准贮备液 500 mg/L，4℃ 3 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.24",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.25-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.25",
+      "label": "焦磷酸钠标准使用液 0.50 mg/L，4℃ 1 周",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.25",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.26-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.26",
+      "label": "5-磷酸吡哆醛标准贮备液 500 mg/L，4℃ 3 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.26",
+        "page": 8
+      }
+    },
+    {
+      "id": "SE-MATL-5.27-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.27",
+      "label": "5-磷酸吡哆醛标准使用液 0.50 mg/L，临用现配",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.27",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-MATL-5.28-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.28",
+      "label": "色度-浊度补偿液 72 mL + 22.8 g，1 周",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.28",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-MATL-5.29-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.29",
+      "label": "NaOH-EDTA 清洗液 65 g + 6 g→1000 mL",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.29",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-MATL-5.30-01",
+      "type": "element",
+      "family": "MATL",
+      "clause": "5.30",
+      "label": "氦气 纯度≥99.99%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.30",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-APPA-06.1-01",
+      "type": "element",
+      "family": "APPA",
+      "clause": "6.1",
+      "label": "流动注射分析仪：自动进样、化学分析、检测 880 nm、数据处理",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-APPA-06.2-01",
+      "type": "element",
+      "family": "APPA",
+      "clause": "6.2",
+      "label": "天平精度 0.0001 g",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.2",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-APPA-06.3-01",
+      "type": "element",
+      "family": "APPA",
+      "clause": "6.3",
+      "label": "超声波机 40 kHz",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.3",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-APPA-06.4-01",
+      "type": "element",
+      "family": "APPA",
+      "clause": "6.4",
+      "label": "一般实验室常用仪器设备",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.4",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-SAMP-07-01",
+      "type": "element",
+      "family": "SAMP",
+      "clause": "7",
+      "label": "聚乙烯/玻璃容器，采样前冲洗器皿",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-SAMP-07-02",
+      "type": "element",
+      "family": "SAMP",
+      "clause": "7",
+      "label": "加硫酸至 pH≤2",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-SAMP-07-03",
+      "type": "element",
+      "family": "SAMP",
+      "clause": "7",
+      "label": "常温 24 h 或 -20℃ 1 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-SAMP-07-04",
+      "type": "element",
+      "family": "SAMP",
+      "clause": "NOTE-7",
+      "label": "≤0.1 mg/L 不宜聚乙烯瓶（冷冻除外）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-PROC-08.1-01",
+      "type": "element",
+      "family": "PROC",
+      "clause": "8.1",
+      "label": "安装调试、纯水查流路、基线稳定约 20 min",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-PROC-08.2.1-01",
+      "type": "element",
+      "family": "PROC",
+      "clause": "8.2.1",
+      "label": "6 点标准系列 0.000–1.00 mg/L",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.1",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-PROC-08.2.2-01",
+      "type": "element",
+      "family": "PROC",
+      "clause": "8.2.2",
+      "label": "低到高进样，峰面积-浓度作曲线",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.2",
+        "page": 9
+      }
+    },
+    {
+      "id": "SE-PROC-08.3-01",
+      "type": "element",
+      "family": "PROC",
+      "clause": "8.3",
+      "label": "同条件测定，超范围稀释（注）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.3",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-PROC-08.4-01",
+      "type": "element",
+      "family": "PROC",
+      "clause": "8.4",
+      "label": "实验用水代试样做空白",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.4",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-CALC-09.1-01",
+      "type": "element",
+      "family": "CALC",
+      "clause": "9.1",
+      "label": "ρ=(y−a)/b×f",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-CALC-09.2-01",
+      "type": "element",
+      "family": "CALC",
+      "clause": "9.2",
+      "label": "结果表示：<1.00 三位小数，≥1.00 三位有效数字",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.2",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-PERF-10.1-01",
+      "type": "element",
+      "family": "PERF",
+      "clause": "10.1",
+      "label": "精密度：3 档 RSD、重复性限、再现性限",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "10.1",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-PERF-10.2-01",
+      "type": "element",
+      "family": "PERF",
+      "clause": "10.2",
+      "label": "准确度：CRM 相对误差、加标回收",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "10.2",
+        "page": 10
+      }
+    },
+    {
+      "id": "SE-QC-11.1-01",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.1",
+      "label": "空白≥2/批，空白值≤检出限",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.1",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.2-01",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.2",
+      "label": "校准曲线 γ≥0.995",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.2-02",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.2",
+      "label": "每 10 样中间浓度核查，相对偏差≤5%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.3-01",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.3",
+      "label": "平行双样≥10%，25%/10% 分档",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.3",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.4-01",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.4",
+      "label": "加标≥10%，回收 80%–120%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.4",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.4-02",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.4",
+      "label": "质控样在不确定度范围内",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.4",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.5-01",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.5",
+      "label": "系统性能 2 周 1 次，R>90%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-QC-11.5-02",
+      "type": "element",
+      "family": "QC",
+      "clause": "11.5",
+      "label": "CRM 低于不确定度下限触发 11.5",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-RISK-12.1-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.1",
+      "label": "悬浮物多或粒径>250 μm 不适用",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.1",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-RISK-12.2-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.2",
+      "label": "试剂回温 20±5℃，室温波动≤±2℃",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.2",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-RISK-12.3-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.3",
+      "label": "试剂澄清、除气（He 1 min/超声 30 min）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.3",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-RISK-12.4-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.4",
+      "label": "分析后清洗管路、滤光片干燥",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.4",
+        "page": 12
+      }
+    },
+    {
+      "id": "SE-RISK-12.5-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.5",
+      "label": "加热器近 80℃ 须有液体流动",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.5",
+        "page": 12
+      }
+    },
+    {
+      "id": "SE-RISK-12.6-01",
+      "type": "element",
+      "family": "RISK",
+      "clause": "12.6",
+      "label": "不同型号仪器条件可参考本标准",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.6",
+        "page": 12
+      }
+    },
+    {
+      "id": "ARC-C1-01-01",
+      "type": "rule",
+      "category": "C1",
+      "clause": "1",
+      "title": "样品类型属于适用基质",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      },
+      "check_target": "DF-检测报告-样品类型"
+    },
+    {
+      "id": "ARC-C1-01-02",
+      "type": "rule",
+      "category": "C1",
+      "clause": "1",
+      "title": "结果在测定范围内或已稀释",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      },
+      "check_target": "DF-检测报告-总磷结果"
+    },
+    {
+      "id": "ARC-C1-01-03",
+      "type": "rule",
+      "category": "C1",
+      "clause": "1",
+      "title": "检出限 0.005 mg/L",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "1",
+        "page": 6
+      },
+      "check_target": "DF-检测报告-检出限"
+    },
+    {
+      "id": "ARC-C1-04.1-01",
+      "type": "rule",
+      "category": "C1",
+      "clause": "4.1",
+      "title": "砷、铬、硫干扰按 GB 11893 消除",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.1",
+        "page": 7
+      },
+      "check_target": "DF-前处理记录-干扰消除方式"
+    },
+    {
+      "id": "ARC-C1-12.1-01",
+      "type": "rule",
+      "category": "C1",
+      "clause": "12.1",
+      "title": "悬浮物/粒径越界不适用",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.1",
+        "page": 11
+      },
+      "check_target": "DF-检测报告-样品性状"
+    },
+    {
+      "id": "ARC-C2-07-01",
+      "type": "rule",
+      "category": "C2",
+      "clause": "7",
+      "title": "容器材质与清洗",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      },
+      "check_target": "DF-样品流转单-容器"
+    },
+    {
+      "id": "ARC-C2-07-02",
+      "type": "rule",
+      "category": "C2",
+      "clause": "7",
+      "title": "加硫酸至 pH≤2",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      },
+      "check_target": "DF-采样记录-固定后 pH"
+    },
+    {
+      "id": "ARC-C2-07-03",
+      "type": "rule",
+      "category": "C2",
+      "clause": "7",
+      "title": "常温 24 h 或 -20℃ 1 个月",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      },
+      "check_target": "DF-样品流转单-采样时间/保存温度"
+    },
+    {
+      "id": "ARC-C2-07-04",
+      "type": "rule",
+      "category": "C2",
+      "clause": "7",
+      "title": "低浓度不宜聚乙烯瓶",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      },
+      "check_target": "DF-检测报告-浓度与容器"
+    },
+    {
+      "id": "ARC-C2-04.3-01",
+      "type": "rule",
+      "category": "C2",
+      "clause": "4.3",
+      "title": "pH<2 或>10 调中性",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "4.3",
+        "page": 7
+      },
+      "check_target": "DF-前处理记录-pH 调节"
+    },
+    {
+      "id": "ARC-C3-06.1-01",
+      "type": "rule",
+      "category": "C3",
+      "clause": "6.1",
+      "title": "仪器配置与 880 nm",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.1",
+        "page": 9
+      },
+      "check_target": "DF-仪器使用记录-仪器型号"
+    },
+    {
+      "id": "ARC-C3-06.2-01",
+      "type": "rule",
+      "category": "C3",
+      "clause": "6.2",
+      "title": "天平 0.0001 g",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.2",
+        "page": 9
+      },
+      "check_target": "DF-仪器记录-天平精度"
+    },
+    {
+      "id": "ARC-C3-06.3-01",
+      "type": "rule",
+      "category": "C3",
+      "clause": "6.3",
+      "title": "超声 40 kHz",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "6.3",
+        "page": 9
+      },
+      "check_target": "DF-仪器记录-超声频率"
+    },
+    {
+      "id": "ARC-C3-08.1-01",
+      "type": "rule",
+      "category": "C3",
+      "clause": "8.1",
+      "title": "基线稳定约 20 min",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.1",
+        "page": 9
+      },
+      "check_target": "DF-原始记录-基线"
+    },
+    {
+      "id": "ARC-C4-05-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "5",
+      "title": "试剂等级与水电导率",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5",
+        "page": 7
+      },
+      "check_target": "DF-试剂配制记录-试剂等级/电导率"
+    },
+    {
+      "id": "ARC-C4-05.13-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "5.13",
+      "title": "硫酸Ⅰ 2 mol/L",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.13",
+        "page": 8
+      },
+      "check_target": "DF-试剂配制记录-浓度/用量"
+    },
+    {
+      "id": "ARC-C4-05.15-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "5.15",
+      "title": "过硫酸钾 26 g/L",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.15",
+        "page": 8
+      },
+      "check_target": "DF-试剂配制记录-浓度/有效期"
+    },
+    {
+      "id": "ARC-C4-05.18-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "5.18",
+      "title": "显色剂配比",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.18",
+        "page": 8
+      },
+      "check_target": "DF-试剂配制记录-配比/有效期"
+    },
+    {
+      "id": "ARC-C4-05.19-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "5.19",
+      "title": "还原剂配比",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5.19",
+        "page": 8
+      },
+      "check_target": "DF-试剂配制记录-用量/有效期"
+    },
+    {
+      "id": "ARC-C4-12.3-01",
+      "type": "rule",
+      "category": "C4",
+      "clause": "12.3",
+      "title": "除气方式",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.3",
+        "page": 11
+      },
+      "check_target": "DF-前处理记录-除气方式"
+    },
+    {
+      "id": "ARC-C5-08.2.1-01",
+      "type": "rule",
+      "category": "C5",
+      "clause": "8.2.1",
+      "title": "6 点标准系列",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.1",
+        "page": 9
+      },
+      "check_target": "DF-校准记录-浓度点"
+    },
+    {
+      "id": "ARC-C5-08.2.2-01",
+      "type": "rule",
+      "category": "C5",
+      "clause": "8.2.2",
+      "title": "低到高进样与坐标",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.2.2",
+        "page": 9
+      },
+      "check_target": "DF-校准记录-进样顺序/坐标"
+    },
+    {
+      "id": "ARC-C5-08.3-01",
+      "type": "rule",
+      "category": "C5",
+      "clause": "8.3",
+      "title": "同条件测定与稀释",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.3",
+        "page": 10
+      },
+      "check_target": "DF-原始记录-条件/稀释"
+    },
+    {
+      "id": "ARC-C5-08.4-01",
+      "type": "rule",
+      "category": "C5",
+      "clause": "8.4",
+      "title": "空白试验",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.4",
+        "page": 10
+      },
+      "check_target": "DF-空白记录-介质"
+    },
+    {
+      "id": "ARC-C5-12.2-01",
+      "type": "rule",
+      "category": "C5",
+      "clause": "12.2",
+      "title": "室温 20±5℃、波动±2℃",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "12.2",
+        "page": 11
+      },
+      "check_target": "DF-环境记录-室温"
+    },
+    {
+      "id": "ARC-C6-09.1-01",
+      "type": "rule",
+      "category": "C6",
+      "clause": "9.1",
+      "title": "公式复算",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10
+      },
+      "check_target": "DF-原始记录-信号/方程"
+    },
+    {
+      "id": "ARC-C6-09.2-01",
+      "type": "rule",
+      "category": "C6",
+      "clause": "9.2",
+      "title": "结果表示",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.2",
+        "page": 10
+      },
+      "check_target": "DF-检测报告-结果位数"
+    },
+    {
+      "id": "ARC-C7-11.1-01",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.1",
+      "title": "空白≥2/批且≤0.005",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.1",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-空白值"
+    },
+    {
+      "id": "ARC-C7-11.2-01",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.2",
+      "title": "γ≥0.995",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11
+      },
+      "check_target": "DF-校准记录-相关系数"
+    },
+    {
+      "id": "ARC-C7-11.2-02",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.2",
+      "title": "10 样核查≤5%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.2",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-核查偏差"
+    },
+    {
+      "id": "ARC-C7-11.3-01",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.3",
+      "title": "平行 10% 与偏差分档",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.3",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-平行样偏差"
+    },
+    {
+      "id": "ARC-C7-11.4-01",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.4",
+      "title": "加标 10% 与 80–120%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.4",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-加标回收率"
+    },
+    {
+      "id": "ARC-C7-11.4-02",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.4",
+      "title": "质控样在不确定度内",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.4",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-质控样结果"
+    },
+    {
+      "id": "ARC-C7-11.5-01",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.5",
+      "title": "R>90%，2 周 1 次",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      },
+      "check_target": "DF-性能验证记录-效率 R"
+    },
+    {
+      "id": "ARC-C7-11.5-02",
+      "type": "rule",
+      "category": "C7",
+      "clause": "11.5",
+      "title": "CRM 低于下限触发",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      },
+      "check_target": "DF-质控记录-质控样结果"
+    },
+    {
+      "id": "ARC-C8-07-01",
+      "type": "rule",
+      "category": "C8",
+      "clause": "7",
+      "title": "流转记录完整",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "7",
+        "page": 9
+      },
+      "check_target": "DF-样品流转单-容器/pH/时间"
+    },
+    {
+      "id": "ARC-C8-05-01",
+      "type": "rule",
+      "category": "C8",
+      "clause": "5",
+      "title": "试剂配制记录完整",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "5",
+        "page": 7
+      },
+      "check_target": "DF-试剂配制记录-批号/日期/有效期"
+    },
+    {
+      "id": "ARC-C8-08.1-01",
+      "type": "rule",
+      "category": "C8",
+      "clause": "8.1",
+      "title": "仪器参数与基线记录",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "8.1",
+        "page": 9
+      },
+      "check_target": "DF-仪器使用记录-参数/基线"
+    },
+    {
+      "id": "ARC-C8-09-01",
+      "type": "rule",
+      "category": "C8",
+      "clause": "9",
+      "title": "报告字段完整",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9",
+        "page": 10
+      },
+      "check_target": "DF-检测报告-依据/结果/单位"
+    },
+    {
+      "id": "DF-检测报告-样品类型",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "样品类型",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "样品类型"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-总磷结果",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "总磷结果",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "总磷结果"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-检出限",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "检出限",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "检出限"
+        ]
+      }
+    },
+    {
+      "id": "DF-前处理记录-干扰消除方式",
+      "type": "doc_field",
+      "doc_type": "前处理记录",
+      "field": "干扰消除方式",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "干扰消除方式"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-样品性状",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "样品性状",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "样品性状"
+        ]
+      }
+    },
+    {
+      "id": "DF-样品流转单-容器",
+      "type": "doc_field",
+      "doc_type": "样品流转单",
+      "field": "容器",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "容器"
+        ]
+      }
+    },
+    {
+      "id": "DF-采样记录-固定后 pH",
+      "type": "doc_field",
+      "doc_type": "采样记录",
+      "field": "固定后 pH",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "固定后 pH"
+        ]
+      }
+    },
+    {
+      "id": "DF-样品流转单-采样时间/保存温度",
+      "type": "doc_field",
+      "doc_type": "样品流转单",
+      "field": "采样时间/保存温度",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "采样时间/保存温度"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-浓度与容器",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "浓度与容器",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度与容器"
+        ]
+      }
+    },
+    {
+      "id": "DF-前处理记录-pH 调节",
+      "type": "doc_field",
+      "doc_type": "前处理记录",
+      "field": "pH 调节",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "pH 调节"
+        ]
+      }
+    },
+    {
+      "id": "DF-仪器使用记录-仪器型号",
+      "type": "doc_field",
+      "doc_type": "仪器使用记录",
+      "field": "仪器型号",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "仪器型号"
+        ]
+      }
+    },
+    {
+      "id": "DF-仪器记录-天平精度",
+      "type": "doc_field",
+      "doc_type": "仪器记录",
+      "field": "天平精度",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "天平精度"
+        ]
+      }
+    },
+    {
+      "id": "DF-仪器记录-超声频率",
+      "type": "doc_field",
+      "doc_type": "仪器记录",
+      "field": "超声频率",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "超声频率"
+        ]
+      }
+    },
+    {
+      "id": "DF-原始记录-基线",
+      "type": "doc_field",
+      "doc_type": "原始记录",
+      "field": "基线",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "基线"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-试剂等级/电导率",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "试剂等级/电导率",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "试剂等级/电导率"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-浓度/用量",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "浓度/用量",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度/用量"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-浓度/有效期",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "浓度/有效期",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度/有效期"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-配比/有效期",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "配比/有效期",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "配比/有效期"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-用量/有效期",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "用量/有效期",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "用量/有效期"
+        ]
+      }
+    },
+    {
+      "id": "DF-前处理记录-除气方式",
+      "type": "doc_field",
+      "doc_type": "前处理记录",
+      "field": "除气方式",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "除气方式"
+        ]
+      }
+    },
+    {
+      "id": "DF-校准记录-浓度点",
+      "type": "doc_field",
+      "doc_type": "校准记录",
+      "field": "浓度点",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度点"
+        ]
+      }
+    },
+    {
+      "id": "DF-校准记录-进样顺序/坐标",
+      "type": "doc_field",
+      "doc_type": "校准记录",
+      "field": "进样顺序/坐标",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "进样顺序/坐标"
+        ]
+      }
+    },
+    {
+      "id": "DF-原始记录-条件/稀释",
+      "type": "doc_field",
+      "doc_type": "原始记录",
+      "field": "条件/稀释",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "条件/稀释"
+        ]
+      }
+    },
+    {
+      "id": "DF-空白记录-介质",
+      "type": "doc_field",
+      "doc_type": "空白记录",
+      "field": "介质",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "介质"
+        ]
+      }
+    },
+    {
+      "id": "DF-环境记录-室温",
+      "type": "doc_field",
+      "doc_type": "环境记录",
+      "field": "室温",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "室温"
+        ]
+      }
+    },
+    {
+      "id": "DF-原始记录-信号/方程",
+      "type": "doc_field",
+      "doc_type": "原始记录",
+      "field": "信号/方程",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "信号/方程"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-结果位数",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "结果位数",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "结果位数"
+        ]
+      }
+    },
+    {
+      "id": "DF-质控记录-空白值",
+      "type": "doc_field",
+      "doc_type": "质控记录",
+      "field": "空白值",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "空白值"
+        ]
+      }
+    },
+    {
+      "id": "DF-校准记录-相关系数",
+      "type": "doc_field",
+      "doc_type": "校准记录",
+      "field": "相关系数",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "相关系数"
+        ]
+      }
+    },
+    {
+      "id": "DF-质控记录-核查偏差",
+      "type": "doc_field",
+      "doc_type": "质控记录",
+      "field": "核查偏差",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "核查偏差"
+        ]
+      }
+    },
+    {
+      "id": "DF-质控记录-平行样偏差",
+      "type": "doc_field",
+      "doc_type": "质控记录",
+      "field": "平行样偏差",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "平行样偏差"
+        ]
+      }
+    },
+    {
+      "id": "DF-质控记录-加标回收率",
+      "type": "doc_field",
+      "doc_type": "质控记录",
+      "field": "加标回收率",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "加标回收率"
+        ]
+      }
+    },
+    {
+      "id": "DF-质控记录-质控样结果",
+      "type": "doc_field",
+      "doc_type": "质控记录",
+      "field": "质控样结果",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "质控样结果"
+        ]
+      }
+    },
+    {
+      "id": "DF-性能验证记录-效率 R",
+      "type": "doc_field",
+      "doc_type": "性能验证记录",
+      "field": "效率 R",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "效率 R"
+        ]
+      }
+    },
+    {
+      "id": "DF-样品流转单-容器/pH/时间",
+      "type": "doc_field",
+      "doc_type": "样品流转单",
+      "field": "容器/pH/时间",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "容器/pH/时间"
+        ]
+      }
+    },
+    {
+      "id": "DF-试剂配制记录-批号/日期/有效期",
+      "type": "doc_field",
+      "doc_type": "试剂配制记录",
+      "field": "批号/日期/有效期",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "批号/日期/有效期"
+        ]
+      }
+    },
+    {
+      "id": "DF-仪器使用记录-参数/基线",
+      "type": "doc_field",
+      "doc_type": "仪器使用记录",
+      "field": "参数/基线",
+      "target_type": "process_record",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "参数/基线"
+        ]
+      }
+    },
+    {
+      "id": "DF-检测报告-依据/结果/单位",
+      "type": "doc_field",
+      "doc_type": "检测报告",
+      "field": "依据/结果/单位",
+      "target_type": "report_field",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "依据/结果/单位"
+        ]
+      }
+    },
+    {
+      "id": "REF-01",
+      "type": "reference",
+      "standard_no": "GB 11893",
+      "title": "水质 总磷的测定 钼酸铵分光光度法",
+      "status": "PENDING_UPLOAD",
+      "clause": "4.1"
+    },
+    {
+      "id": "REF-02",
+      "type": "reference",
+      "standard_no": "HJ/T 91",
+      "title": "地表水和污水监测技术规范",
+      "status": "PENDING_UPLOAD",
+      "clause": "7"
+    },
+    {
+      "id": "REF-03",
+      "type": "reference",
+      "standard_no": "HJ/T 164",
+      "title": "地下水环境监测技术规范",
+      "status": "PENDING_UPLOAD",
+      "clause": "7"
+    },
+    {
+      "id": "M-HJ671-2013",
+      "type": "method",
+      "standard": "HJ 671-2013",
+      "status": "PROVIDED",
+      "rule_set_id": "RS-HJ671-2013"
+    },
+    {
+      "id": "M-HJ670-2013",
+      "type": "method",
+      "standard": "HJ 670-2013",
+      "status": "PENDING_UPLOAD",
+      "rule_set_id": null
+    },
+    {
+      "id": "M-GB11893",
+      "type": "method",
+      "standard": "GB 11893",
+      "status": "PENDING_UPLOAD",
+      "rule_set_id": null
+    },
+    {
+      "id": "RS-HJ671-2013",
+      "type": "ruleset",
+      "standard": "HJ 671-2013",
+      "rule_count": 39
+    },
+    {
+      "id": "RESULT-RHO",
+      "type": "result",
+      "label": "总磷结果 ρ（mg/L）",
+      "clause": "9.1"
+    },
+    {
+      "id": "RESULT-R",
+      "type": "result",
+      "label": "水解/消解效率 R（%）",
+      "clause": "11.5"
+    },
+    {
+      "id": "GAP-REF-01",
+      "type": "gap",
+      "gap_type": "GAP-REF",
+      "description": "GB 11893 未上传，4.1 干扰消除无法细化",
+      "clause": "4.1",
+      "rule": "ARC-C1-04.1-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-REF-02",
+      "type": "gap",
+      "gap_type": "GAP-REF",
+      "description": "HJ/T 91 未上传，地表水/污水采样细则待补",
+      "clause": "7",
+      "rule": "ARC-C2-07-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-REF-03",
+      "type": "gap",
+      "gap_type": "GAP-REF",
+      "description": "HJ/T 164 未上传，地下水采样细则待补",
+      "clause": "7",
+      "rule": "ARC-C2-07-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-CONFLICT-01",
+      "type": "gap",
+      "gap_type": "GAP-CONFLICT",
+      "description": "前言批准日期 2014-10-25 与封面 2013-10-25 不一致",
+      "clause": "FORE",
+      "rule": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-AMB-01",
+      "type": "gap",
+      "gap_type": "GAP-AMB",
+      "description": "精密度验证浓度 1.58 mg/L 高于声明上限 1.00 mg/L",
+      "clause": "10.1",
+      "rule": null,
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-AMB-02",
+      "type": "gap",
+      "gap_type": "GAP-AMB",
+      "description": "中和后标准溶液基体是否仍按 5.23 注执行未明确",
+      "clause": "4.3",
+      "rule": "ARC-C2-04.3-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-EXTERNAL-01",
+      "type": "gap",
+      "gap_type": "GAP-EXTERNAL",
+      "description": "8.1 按仪器说明书设定参数，说明书未上传",
+      "clause": "8.1",
+      "rule": "ARC-C3-08.1-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-PERF-01",
+      "type": "gap",
+      "gap_type": "GAP-PERF",
+      "description": "标准未给平行样相对偏差/加标回收率计算式",
+      "clause": "11.3",
+      "rule": "ARC-C7-11.3-01",
+      "status": "OPEN"
+    },
+    {
+      "id": "GAP-PERF-02",
+      "type": "gap",
+      "gap_type": "GAP-PERF",
+      "description": "质控样不确定度判定细则未给",
+      "clause": "11.4",
+      "rule": "ARC-C7-11.4-02",
+      "status": "OPEN"
+    },
+    {
+      "id": "F-1",
+      "type": "formula",
+      "clause": "9.1",
+      "label": "ρ=(y−a)/b×f",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "9.1",
+        "page": 10
+      }
+    },
+    {
+      "id": "F-2",
+      "type": "formula",
+      "clause": "11.5",
+      "label": "R=ρ1/ρ2×100%",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "11.5",
+        "page": 11
+      }
+    },
+    {
+      "id": "SE-META-02-01",
+      "type": "element",
+      "family": "META",
+      "clause": "2",
+      "label": "规范性引用文件 3 项：GB 11893、HJ/T 91、HJ/T 164（未注明日期→最新版本适用）",
+      "anchor": {
+        "standard": "HJ 671-2013",
+        "clause": "2",
+        "page": 6
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "E-0001",
+      "from": "CL-COVER",
+      "to": "SE-META-COVER-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0002",
+      "from": "CL-FORE",
+      "to": "SE-META-FORE-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0003",
+      "from": "CL-ANN",
+      "to": "SE-META-ANN-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0004",
+      "from": "CL-1",
+      "to": "SE-SCOPE-01-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0005",
+      "from": "CL-1",
+      "to": "SE-SCOPE-01-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0006",
+      "from": "CL-3.1",
+      "to": "SE-PRIN-03.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0007",
+      "from": "CL-3.2",
+      "to": "SE-PRIN-03.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0008",
+      "from": "CL-3.2",
+      "to": "SE-PRIN-03.2-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0009",
+      "from": "CL-4.1",
+      "to": "SE-INTR-04.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0010",
+      "from": "CL-4.2",
+      "to": "SE-INTR-04.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0011",
+      "from": "CL-4.3",
+      "to": "SE-INTR-04.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0012",
+      "from": "CL-5.1",
+      "to": "SE-MATL-5.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0013",
+      "from": "CL-5.2",
+      "to": "SE-MATL-5.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0014",
+      "from": "CL-5.3",
+      "to": "SE-MATL-5.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0015",
+      "from": "CL-5.4",
+      "to": "SE-MATL-5.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0016",
+      "from": "CL-5.5",
+      "to": "SE-MATL-5.5-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0017",
+      "from": "CL-5.6",
+      "to": "SE-MATL-5.6-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0018",
+      "from": "CL-5.7",
+      "to": "SE-MATL-5.7-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0019",
+      "from": "CL-5.8",
+      "to": "SE-MATL-5.8-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0020",
+      "from": "CL-5.9",
+      "to": "SE-MATL-5.9-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0021",
+      "from": "CL-5.10",
+      "to": "SE-MATL-5.10-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0022",
+      "from": "CL-5.11",
+      "to": "SE-MATL-5.11-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0023",
+      "from": "CL-5.12",
+      "to": "SE-MATL-5.12-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0024",
+      "from": "CL-5.13",
+      "to": "SE-MATL-5.13-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0025",
+      "from": "CL-5.14",
+      "to": "SE-MATL-5.14-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0026",
+      "from": "CL-5.15",
+      "to": "SE-MATL-5.15-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0027",
+      "from": "CL-5.16",
+      "to": "SE-MATL-5.16-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0028",
+      "from": "CL-5.17",
+      "to": "SE-MATL-5.17-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0029",
+      "from": "CL-5.18",
+      "to": "SE-MATL-5.18-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0030",
+      "from": "CL-5.19",
+      "to": "SE-MATL-5.19-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0031",
+      "from": "CL-5.20",
+      "to": "SE-MATL-5.20-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0032",
+      "from": "CL-5.21",
+      "to": "SE-MATL-5.21-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0033",
+      "from": "CL-5.22",
+      "to": "SE-MATL-5.22-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0034",
+      "from": "CL-5.23",
+      "to": "SE-MATL-5.23-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0035",
+      "from": "CL-5.24",
+      "to": "SE-MATL-5.24-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0036",
+      "from": "CL-5.25",
+      "to": "SE-MATL-5.25-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0037",
+      "from": "CL-5.26",
+      "to": "SE-MATL-5.26-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0038",
+      "from": "CL-5.27",
+      "to": "SE-MATL-5.27-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0039",
+      "from": "CL-5.28",
+      "to": "SE-MATL-5.28-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0040",
+      "from": "CL-5.29",
+      "to": "SE-MATL-5.29-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0041",
+      "from": "CL-5.30",
+      "to": "SE-MATL-5.30-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0042",
+      "from": "CL-6.1",
+      "to": "SE-APPA-06.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0043",
+      "from": "CL-6.2",
+      "to": "SE-APPA-06.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0044",
+      "from": "CL-6.3",
+      "to": "SE-APPA-06.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0045",
+      "from": "CL-6.4",
+      "to": "SE-APPA-06.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0046",
+      "from": "CL-7",
+      "to": "SE-SAMP-07-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0047",
+      "from": "CL-7",
+      "to": "SE-SAMP-07-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0048",
+      "from": "CL-7",
+      "to": "SE-SAMP-07-03",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0049",
+      "from": "NOTE-7",
+      "to": "SE-SAMP-07-04",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0050",
+      "from": "CL-8.1",
+      "to": "SE-PROC-08.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0051",
+      "from": "CL-8.2.1",
+      "to": "SE-PROC-08.2.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0052",
+      "from": "CL-8.2.2",
+      "to": "SE-PROC-08.2.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0053",
+      "from": "CL-8.3",
+      "to": "SE-PROC-08.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0054",
+      "from": "CL-8.4",
+      "to": "SE-PROC-08.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0055",
+      "from": "CL-9.1",
+      "to": "SE-CALC-09.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0056",
+      "from": "CL-9.2",
+      "to": "SE-CALC-09.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0057",
+      "from": "CL-10.1",
+      "to": "SE-PERF-10.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0058",
+      "from": "CL-10.2",
+      "to": "SE-PERF-10.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0059",
+      "from": "CL-11.1",
+      "to": "SE-QC-11.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0060",
+      "from": "CL-11.2",
+      "to": "SE-QC-11.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0061",
+      "from": "CL-11.2",
+      "to": "SE-QC-11.2-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0062",
+      "from": "CL-11.3",
+      "to": "SE-QC-11.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0063",
+      "from": "CL-11.4",
+      "to": "SE-QC-11.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0064",
+      "from": "CL-11.4",
+      "to": "SE-QC-11.4-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0065",
+      "from": "CL-11.5",
+      "to": "SE-QC-11.5-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0066",
+      "from": "CL-11.5",
+      "to": "SE-QC-11.5-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0067",
+      "from": "CL-12.1",
+      "to": "SE-RISK-12.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0068",
+      "from": "CL-12.2",
+      "to": "SE-RISK-12.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0069",
+      "from": "CL-12.3",
+      "to": "SE-RISK-12.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0070",
+      "from": "CL-12.4",
+      "to": "SE-RISK-12.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0071",
+      "from": "CL-12.5",
+      "to": "SE-RISK-12.5-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0072",
+      "from": "CL-12.6",
+      "to": "SE-RISK-12.6-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0073",
+      "from": "CL-1",
+      "to": "ARC-C1-01-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0074",
+      "from": "CL-1",
+      "to": "ARC-C1-01-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0075",
+      "from": "CL-1",
+      "to": "ARC-C1-01-03",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0076",
+      "from": "CL-4.1",
+      "to": "ARC-C1-04.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0077",
+      "from": "CL-12.1",
+      "to": "ARC-C1-12.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0078",
+      "from": "CL-7",
+      "to": "ARC-C2-07-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0079",
+      "from": "CL-7",
+      "to": "ARC-C2-07-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0080",
+      "from": "CL-7",
+      "to": "ARC-C2-07-03",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0081",
+      "from": "CL-7",
+      "to": "ARC-C2-07-04",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0082",
+      "from": "CL-4.3",
+      "to": "ARC-C2-04.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0083",
+      "from": "CL-6.1",
+      "to": "ARC-C3-06.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0084",
+      "from": "CL-6.2",
+      "to": "ARC-C3-06.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0085",
+      "from": "CL-6.3",
+      "to": "ARC-C3-06.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0086",
+      "from": "CL-8.1",
+      "to": "ARC-C3-08.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0087",
+      "from": "CL-5",
+      "to": "ARC-C4-05-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0088",
+      "from": "CL-5.13",
+      "to": "ARC-C4-05.13-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0089",
+      "from": "CL-5.15",
+      "to": "ARC-C4-05.15-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0090",
+      "from": "CL-5.18",
+      "to": "ARC-C4-05.18-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0091",
+      "from": "CL-5.19",
+      "to": "ARC-C4-05.19-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0092",
+      "from": "CL-12.3",
+      "to": "ARC-C4-12.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0093",
+      "from": "CL-8.2.1",
+      "to": "ARC-C5-08.2.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0094",
+      "from": "CL-8.2.2",
+      "to": "ARC-C5-08.2.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0095",
+      "from": "CL-8.3",
+      "to": "ARC-C5-08.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0096",
+      "from": "CL-8.4",
+      "to": "ARC-C5-08.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0097",
+      "from": "CL-12.2",
+      "to": "ARC-C5-12.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0098",
+      "from": "CL-9.1",
+      "to": "ARC-C6-09.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0099",
+      "from": "CL-9.2",
+      "to": "ARC-C6-09.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0100",
+      "from": "CL-11.1",
+      "to": "ARC-C7-11.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0101",
+      "from": "CL-11.2",
+      "to": "ARC-C7-11.2-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0102",
+      "from": "CL-11.2",
+      "to": "ARC-C7-11.2-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0103",
+      "from": "CL-11.3",
+      "to": "ARC-C7-11.3-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0104",
+      "from": "CL-11.4",
+      "to": "ARC-C7-11.4-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0105",
+      "from": "CL-11.4",
+      "to": "ARC-C7-11.4-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0106",
+      "from": "CL-11.5",
+      "to": "ARC-C7-11.5-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0107",
+      "from": "CL-11.5",
+      "to": "ARC-C7-11.5-02",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0108",
+      "from": "CL-7",
+      "to": "ARC-C8-07-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0109",
+      "from": "CL-5",
+      "to": "ARC-C8-05-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0110",
+      "from": "CL-8.1",
+      "to": "ARC-C8-08.1-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0111",
+      "from": "CL-9",
+      "to": "ARC-C8-09-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0112",
+      "from": "ARC-C1-01-01",
+      "to": "DF-检测报告-样品类型",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "样品类型"
+        ]
+      }
+    },
+    {
+      "id": "E-0113",
+      "from": "ARC-C1-01-02",
+      "to": "DF-检测报告-总磷结果",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "总磷结果"
+        ]
+      }
+    },
+    {
+      "id": "E-0114",
+      "from": "ARC-C1-01-03",
+      "to": "DF-检测报告-检出限",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "检出限"
+        ]
+      }
+    },
+    {
+      "id": "E-0115",
+      "from": "ARC-C1-04.1-01",
+      "to": "DF-前处理记录-干扰消除方式",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "干扰消除方式"
+        ]
+      }
+    },
+    {
+      "id": "E-0116",
+      "from": "ARC-C1-12.1-01",
+      "to": "DF-检测报告-样品性状",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "样品性状"
+        ]
+      }
+    },
+    {
+      "id": "E-0117",
+      "from": "ARC-C2-07-01",
+      "to": "DF-样品流转单-容器",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "容器"
+        ]
+      }
+    },
+    {
+      "id": "E-0118",
+      "from": "ARC-C2-07-02",
+      "to": "DF-采样记录-固定后 pH",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "固定后 pH"
+        ]
+      }
+    },
+    {
+      "id": "E-0119",
+      "from": "ARC-C2-07-03",
+      "to": "DF-样品流转单-采样时间/保存温度",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "采样时间/保存温度"
+        ]
+      }
+    },
+    {
+      "id": "E-0120",
+      "from": "ARC-C2-07-04",
+      "to": "DF-检测报告-浓度与容器",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度与容器"
+        ]
+      }
+    },
+    {
+      "id": "E-0121",
+      "from": "ARC-C2-04.3-01",
+      "to": "DF-前处理记录-pH 调节",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "pH 调节"
+        ]
+      }
+    },
+    {
+      "id": "E-0122",
+      "from": "ARC-C3-06.1-01",
+      "to": "DF-仪器使用记录-仪器型号",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "仪器型号"
+        ]
+      }
+    },
+    {
+      "id": "E-0123",
+      "from": "ARC-C3-06.2-01",
+      "to": "DF-仪器记录-天平精度",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "天平精度"
+        ]
+      }
+    },
+    {
+      "id": "E-0124",
+      "from": "ARC-C3-06.3-01",
+      "to": "DF-仪器记录-超声频率",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "超声频率"
+        ]
+      }
+    },
+    {
+      "id": "E-0125",
+      "from": "ARC-C3-08.1-01",
+      "to": "DF-原始记录-基线",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "基线"
+        ]
+      }
+    },
+    {
+      "id": "E-0126",
+      "from": "ARC-C4-05-01",
+      "to": "DF-试剂配制记录-试剂等级/电导率",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "试剂等级/电导率"
+        ]
+      }
+    },
+    {
+      "id": "E-0127",
+      "from": "ARC-C4-05.13-01",
+      "to": "DF-试剂配制记录-浓度/用量",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度/用量"
+        ]
+      }
+    },
+    {
+      "id": "E-0128",
+      "from": "ARC-C4-05.15-01",
+      "to": "DF-试剂配制记录-浓度/有效期",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度/有效期"
+        ]
+      }
+    },
+    {
+      "id": "E-0129",
+      "from": "ARC-C4-05.18-01",
+      "to": "DF-试剂配制记录-配比/有效期",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "配比/有效期"
+        ]
+      }
+    },
+    {
+      "id": "E-0130",
+      "from": "ARC-C4-05.19-01",
+      "to": "DF-试剂配制记录-用量/有效期",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "用量/有效期"
+        ]
+      }
+    },
+    {
+      "id": "E-0131",
+      "from": "ARC-C4-12.3-01",
+      "to": "DF-前处理记录-除气方式",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "除气方式"
+        ]
+      }
+    },
+    {
+      "id": "E-0132",
+      "from": "ARC-C5-08.2.1-01",
+      "to": "DF-校准记录-浓度点",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "浓度点"
+        ]
+      }
+    },
+    {
+      "id": "E-0133",
+      "from": "ARC-C5-08.2.2-01",
+      "to": "DF-校准记录-进样顺序/坐标",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "进样顺序/坐标"
+        ]
+      }
+    },
+    {
+      "id": "E-0134",
+      "from": "ARC-C5-08.3-01",
+      "to": "DF-原始记录-条件/稀释",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "条件/稀释"
+        ]
+      }
+    },
+    {
+      "id": "E-0135",
+      "from": "ARC-C5-08.4-01",
+      "to": "DF-空白记录-介质",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "介质"
+        ]
+      }
+    },
+    {
+      "id": "E-0136",
+      "from": "ARC-C5-12.2-01",
+      "to": "DF-环境记录-室温",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "室温"
+        ]
+      }
+    },
+    {
+      "id": "E-0137",
+      "from": "ARC-C6-09.1-01",
+      "to": "DF-原始记录-信号/方程",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "信号/方程"
+        ]
+      }
+    },
+    {
+      "id": "E-0138",
+      "from": "ARC-C6-09.2-01",
+      "to": "DF-检测报告-结果位数",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "结果位数"
+        ]
+      }
+    },
+    {
+      "id": "E-0139",
+      "from": "ARC-C7-11.1-01",
+      "to": "DF-质控记录-空白值",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "空白值"
+        ]
+      }
+    },
+    {
+      "id": "E-0140",
+      "from": "ARC-C7-11.2-01",
+      "to": "DF-校准记录-相关系数",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "相关系数"
+        ]
+      }
+    },
+    {
+      "id": "E-0141",
+      "from": "ARC-C7-11.2-02",
+      "to": "DF-质控记录-核查偏差",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "核查偏差"
+        ]
+      }
+    },
+    {
+      "id": "E-0142",
+      "from": "ARC-C7-11.3-01",
+      "to": "DF-质控记录-平行样偏差",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "平行样偏差"
+        ]
+      }
+    },
+    {
+      "id": "E-0143",
+      "from": "ARC-C7-11.4-01",
+      "to": "DF-质控记录-加标回收率",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "加标回收率"
+        ]
+      }
+    },
+    {
+      "id": "E-0144",
+      "from": "ARC-C7-11.4-02",
+      "to": "DF-质控记录-质控样结果",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "质控样结果"
+        ]
+      }
+    },
+    {
+      "id": "E-0145",
+      "from": "ARC-C7-11.5-01",
+      "to": "DF-性能验证记录-效率 R",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "效率 R"
+        ]
+      }
+    },
+    {
+      "id": "E-0146",
+      "from": "ARC-C7-11.5-02",
+      "to": "DF-质控记录-质控样结果",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "质控样结果"
+        ]
+      }
+    },
+    {
+      "id": "E-0147",
+      "from": "ARC-C8-07-01",
+      "to": "DF-样品流转单-容器/pH/时间",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "容器/pH/时间"
+        ]
+      }
+    },
+    {
+      "id": "E-0148",
+      "from": "ARC-C8-05-01",
+      "to": "DF-试剂配制记录-批号/日期/有效期",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "批号/日期/有效期"
+        ]
+      }
+    },
+    {
+      "id": "E-0149",
+      "from": "ARC-C8-08.1-01",
+      "to": "DF-仪器使用记录-参数/基线",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "参数/基线"
+        ]
+      }
+    },
+    {
+      "id": "E-0150",
+      "from": "ARC-C8-09-01",
+      "to": "DF-检测报告-依据/结果/单位",
+      "operator": "checks",
+      "locator": {
+        "strategy": [
+          "field_label",
+          "table_header",
+          "keyword"
+        ],
+        "match_hints": [
+          "依据/结果/单位"
+        ]
+      }
+    },
+    {
+      "id": "E-0151",
+      "from": "ARC-C6-09.1-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0152",
+      "from": "ARC-C6-09.2-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0153",
+      "from": "ARC-C7-11.1-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0154",
+      "from": "ARC-C7-11.2-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0155",
+      "from": "ARC-C7-11.2-02",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0156",
+      "from": "ARC-C7-11.3-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0157",
+      "from": "ARC-C7-11.4-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0158",
+      "from": "ARC-C7-11.4-02",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0159",
+      "from": "ARC-C7-11.5-01",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0160",
+      "from": "ARC-C7-11.5-02",
+      "to": "RESULT-RHO",
+      "operator": "gates"
+    },
+    {
+      "id": "E-0161",
+      "from": "ARC-C1-01-02",
+      "to": "RESULT-RHO",
+      "operator": "bounds"
+    },
+    {
+      "id": "E-0162",
+      "from": "ARC-C1-01-03",
+      "to": "RESULT-RHO",
+      "operator": "bounds"
+    },
+    {
+      "id": "E-0163",
+      "from": "ARC-C1-12.1-01",
+      "to": "RESULT-RHO",
+      "operator": "bounds"
+    },
+    {
+      "id": "E-0164",
+      "from": "CL-4.1",
+      "to": "REF-01",
+      "operator": "cites"
+    },
+    {
+      "id": "E-0165",
+      "from": "CL-7",
+      "to": "REF-02",
+      "operator": "cites"
+    },
+    {
+      "id": "E-0166",
+      "from": "CL-7",
+      "to": "REF-03",
+      "operator": "cites"
+    },
+    {
+      "id": "E-0167",
+      "from": "REF-01",
+      "to": "ARC-C1-04.1-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0168",
+      "from": "REF-02",
+      "to": "ARC-C2-07-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0169",
+      "from": "REF-03",
+      "to": "ARC-C2-07-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0170",
+      "from": "NOTE-5.23",
+      "to": "CL-5.23",
+      "operator": "annotates"
+    },
+    {
+      "id": "E-0171",
+      "from": "NOTE-7",
+      "to": "CL-7",
+      "operator": "annotates"
+    },
+    {
+      "id": "E-0172",
+      "from": "NOTE-8.3",
+      "to": "CL-8.3",
+      "operator": "annotates"
+    },
+    {
+      "id": "E-0173",
+      "from": "M-HJ671-2013",
+      "to": "RS-HJ671-2013",
+      "operator": "applies"
+    },
+    {
+      "id": "E-0174",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C1-01-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0175",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C1-01-02",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0176",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C1-01-03",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0177",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C1-04.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0178",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C1-12.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0179",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C2-07-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0180",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C2-07-02",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0181",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C2-07-03",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0182",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C2-07-04",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0183",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C2-04.3-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0184",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C3-06.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0185",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C3-06.2-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0186",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C3-06.3-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0187",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C3-08.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0188",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-05-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0189",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-05.13-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0190",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-05.15-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0191",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-05.18-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0192",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-05.19-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0193",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C4-12.3-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0194",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C5-08.2.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0195",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C5-08.2.2-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0196",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C5-08.3-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0197",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C5-08.4-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0198",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C5-12.2-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0199",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C6-09.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0200",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C6-09.2-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0201",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0202",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.2-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0203",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.2-02",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0204",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.3-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0205",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.4-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0206",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.4-02",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0207",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.5-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0208",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C7-11.5-02",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0209",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C8-07-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0210",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C8-05-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0211",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C8-08.1-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0212",
+      "from": "RS-HJ671-2013",
+      "to": "ARC-C8-09-01",
+      "operator": "contains"
+    },
+    {
+      "id": "E-0213",
+      "from": "GAP-REF-01",
+      "to": "CL-4.1",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0214",
+      "from": "GAP-REF-01",
+      "to": "ARC-C1-04.1-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0215",
+      "from": "GAP-REF-02",
+      "to": "CL-7",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0216",
+      "from": "GAP-REF-02",
+      "to": "ARC-C2-07-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0217",
+      "from": "GAP-REF-03",
+      "to": "CL-7",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0218",
+      "from": "GAP-REF-03",
+      "to": "ARC-C2-07-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0219",
+      "from": "GAP-CONFLICT-01",
+      "to": "CL-FORE",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0220",
+      "from": "GAP-AMB-01",
+      "to": "CL-10.1",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0221",
+      "from": "GAP-AMB-02",
+      "to": "CL-4.3",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0222",
+      "from": "GAP-AMB-02",
+      "to": "ARC-C2-04.3-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0223",
+      "from": "GAP-EXTERNAL-01",
+      "to": "CL-8.1",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0224",
+      "from": "GAP-EXTERNAL-01",
+      "to": "ARC-C3-08.1-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0225",
+      "from": "GAP-PERF-01",
+      "to": "CL-11.3",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0226",
+      "from": "GAP-PERF-01",
+      "to": "ARC-C7-11.3-01",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0227",
+      "from": "GAP-PERF-02",
+      "to": "CL-11.4",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0228",
+      "from": "GAP-PERF-02",
+      "to": "ARC-C7-11.4-02",
+      "operator": "affects",
+      "pending": true
+    },
+    {
+      "id": "E-0229",
+      "from": "CL-8.1",
+      "to": "SE-APPA-06.1-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0230",
+      "from": "CL-8.2.1",
+      "to": "SE-MATL-5.21-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0231",
+      "from": "CL-8.2.1",
+      "to": "SE-MATL-5.22-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0232",
+      "from": "CL-8.2.1",
+      "to": "SE-APPA-06.2-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0233",
+      "from": "CL-8.2.2",
+      "to": "SE-APPA-06.1-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0234",
+      "from": "CL-8.3",
+      "to": "SE-PROC-08.2.2-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0235",
+      "from": "CL-8.3",
+      "to": "SE-APPA-06.1-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0236",
+      "from": "CL-8.4",
+      "to": "SE-PROC-08.3-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0237",
+      "from": "CL-11.1",
+      "to": "SE-PROC-08.4-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0238",
+      "from": "CL-11.2",
+      "to": "SE-PROC-08.2.2-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0239",
+      "from": "CL-11.3",
+      "to": "SE-PROC-08.3-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0240",
+      "from": "CL-11.4",
+      "to": "SE-PROC-08.3-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0241",
+      "from": "CL-11.5",
+      "to": "SE-PROC-08.2.2-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0242",
+      "from": "CL-11.5",
+      "to": "SE-MATL-5.23-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0243",
+      "from": "CL-11.5",
+      "to": "SE-MATL-5.25-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0244",
+      "from": "CL-11.5",
+      "to": "SE-MATL-5.27-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0245",
+      "from": "CL-9.1",
+      "to": "SE-PROC-08.2.2-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0246",
+      "from": "CL-9.1",
+      "to": "SE-PROC-08.3-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0247",
+      "from": "CL-9.2",
+      "to": "SE-CALC-09.1-01",
+      "operator": "requires"
+    },
+    {
+      "id": "E-0248",
+      "from": "CL-7",
+      "to": "CL-8.1",
+      "operator": "precedes"
+    },
+    {
+      "id": "E-0249",
+      "from": "CL-8.1",
+      "to": "CL-8.2.1",
+      "operator": "precedes"
+    },
+    {
+      "id": "E-0250",
+      "from": "CL-8.2.1",
+      "to": "CL-8.2.2",
+      "operator": "precedes"
+    },
+    {
+      "id": "E-0251",
+      "from": "CL-8.2.2",
+      "to": "CL-8.3",
+      "operator": "precedes"
+    },
+    {
+      "id": "E-0252",
+      "from": "CL-8.3",
+      "to": "CL-8.4",
+      "operator": "precedes"
+    },
+    {
+      "id": "E-0253",
+      "from": "F-1",
+      "to": "RESULT-RHO",
+      "operator": "computes"
+    },
+    {
+      "id": "E-0254",
+      "from": "F-2",
+      "to": "RESULT-R",
+      "operator": "computes"
+    },
+    {
+      "id": "E-0255",
+      "from": "CL-9.1",
+      "to": "F-1",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0256",
+      "from": "CL-11.5",
+      "to": "F-2",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0257",
+      "from": "CL-2",
+      "to": "SE-META-02-01",
+      "operator": "specifies"
+    },
+    {
+      "id": "E-0258",
+      "from": "CL-2",
+      "to": "REF-01",
+      "operator": "cites"
+    },
+    {
+      "id": "E-0259",
+      "from": "CL-2",
+      "to": "REF-02",
+      "operator": "cites"
+    },
+    {
+      "id": "E-0260",
+      "from": "CL-2",
+      "to": "REF-03",
+      "operator": "cites"
+    }
+  ],
+  "views": [
+    {
+      "view_id": "overview",
+      "title": "章节总览",
+      "node_ids": [
+        "CL-1",
+        "CL-2",
+        "CL-3.1",
+        "CL-4.1",
+        "CL-5",
+        "CL-6.1",
+        "CL-7",
+        "CL-8.1",
+        "CL-9",
+        "CL-10.1",
+        "CL-11.1",
+        "CL-12.1"
+      ]
+    },
+    {
+      "view_id": "procedure",
+      "title": "流程执行",
+      "node_ids": [
+        "CL-7",
+        "CL-8.1",
+        "CL-8.2.1",
+        "CL-8.2.2",
+        "CL-8.3",
+        "CL-8.4",
+        "SE-PROC-08.1-01",
+        "SE-PROC-08.2.1-01",
+        "SE-PROC-08.2.2-01",
+        "SE-PROC-08.3-01",
+        "SE-PROC-08.4-01",
+        "SE-APPA-06.1-01",
+        "SE-APPA-06.2-01",
+        "SE-MATL-5.21-01",
+        "SE-MATL-5.22-01"
+      ]
+    },
+    {
+      "view_id": "dependency",
+      "title": "结果依赖与质控门",
+      "node_ids": [
+        "RESULT-RHO",
+        "F-1",
+        "CL-9.1",
+        "CL-8.2.2",
+        "SE-PROC-08.2.2-01",
+        "CL-11.1",
+        "CL-11.2",
+        "CL-11.3",
+        "CL-11.4",
+        "CL-11.5",
+        "ARC-C7-11.1-01",
+        "ARC-C7-11.2-01",
+        "ARC-C7-11.2-02",
+        "ARC-C7-11.3-01",
+        "ARC-C7-11.4-01",
+        "ARC-C7-11.5-01"
+      ]
+    },
+    {
+      "view_id": "coverage_11_2",
+      "title": "审核覆盖示例（11.2）",
+      "node_ids": [
+        "CL-11.2",
+        "ARC-C7-11.2-01",
+        "ARC-C7-11.2-02",
+        "DF-校准记录-相关系数",
+        "DF-质控记录-核查偏差"
+      ]
+    },
+    {
+      "view_id": "pending_refs",
+      "title": "待上传引用",
+      "node_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "ARC-C1-04.1-01",
+        "ARC-C2-07-01",
+        "CL-4.1",
+        "CL-7"
+      ]
+    }
+  ]
+}

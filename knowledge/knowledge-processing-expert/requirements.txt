@@ -1,15 +1,32 @@
-# 核心依赖（推演写作 + 历史资产装配引擎）
-# 推演写作专家 + 装配引擎（corpus_pipeline schema_diff/semantic_model/ontology_schema/instantiate/library + kp_toolkit + kp-mcp）
+# 知识处理系统 · 依赖清单
+# 生成时间：2026-10-23
+# 用法：
+#   最小可用（七道工序 + 门禁）：pip install -r requirements.txt
+#   含 PDF 支持：                  pip install -r requirements.txt pymupdf
+#   含数据库支持（需服务已启动）：   pip install -r requirements.txt psycopg2-binary neo4j qdrant-client fastembed
+
+# ═══ 必需（七道工序 + 24 条门禁 + 11 项一致性）═══
 PyYAML==6.0.3
 
-# ---- 以下为「知识处理七道工序」的可选依赖，按需安装 ----
-# 文档解析（PDF/Word）
-# pymupdf==1.24.10        # import fitz
-# python-docx==1.1.2      # import docx
-# 图数据库 / 向量检索
-# neo4j==5.20.0
-# qdrant-client==1.9.0
-# fastembed==0.3.6
-# 关系数据库
-# psycopg2-binary==2.9.9
-# pyarrow==17.0.0
+# ═══ 文档解析扩展 ═══
+# PyMuPDF 已装（PDF 文字层读取），但表格结构提取仍需 pdfplumber
+PyMuPDF==1.26.5
+# openpyxl        # xlsx 解析（未装，装了才能处理 Excel）
+# pdfplumber      # PDF 表格结构（未装）
+
+# ═══ 后端服务（当前均未启动，代码有 lazy fallback）═══
+# psycopg2-binary==2.9.12
+# neo4j==5.28.6
+# qdrant-client==1.16.1
+# fastembed==0.7.4
+
+# ═══ 传递依赖（不由本文件直接管理）═══
+# 共 57 个包，完整清单：pip freeze > requirements.lock
+# 主要：Pygments, annotated-doc, annotated-types, anyio, certifi, charset-normalizer, click, coloredlogs, exceptiongroup, filelock, flatbuffers, fsspec
+
+# ═══ 明确未装（装了才能解锁对应功能）═══
+# torch / transformers      → 视觉模型（表格图片识别）
+# paddleocr / tesseract     → OCR（扫描件）
+# sentence-transformers     → 语义向量化
+# openpyxl / pdfplumber     → xlsx / PDF 表格结构
+# networkx / rdflib / pandas → 图算法 / RDF / 数据分析
