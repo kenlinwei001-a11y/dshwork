@@ -1,5 +1,6 @@
 import { ShellAppearance } from '../components/ShellAppearance.js';
 import { installFreshSessionNavigation } from './fresh-session.js';
+import { installSettingsScope } from './settings-scope.js';
 import { communityMarketView, type MarketHost } from '../components/CommunityMarket.js';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
@@ -25,7 +26,7 @@ declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
 }
 
 export const name = 'workdsh-client';
-export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory', 'sessions', 'sidebarRight', 'sidebarRightTabs'];
+export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory', 'remote.settings', 'sessions', 'sidebarRight', 'sidebarRightTabs'];
 
 const productViews: Readonly<Record<string, string>> = {
   experts: 'workdsh-experts', skills: 'workdsh-skills', assistant: 'workdsh-assistant', projects: 'workdsh-projects', 'project-detail': 'workdsh-project-detail',
@@ -33,6 +34,8 @@ const productViews: Readonly<Record<string, string>> = {
 };
 
 export function apply(ctx: Context): void {
+  // Bridge the removed 0.2 `settingsScope` client service for third-party plugins.
+  installSettingsScope(ctx);
   // The official shell serves the tab title from its own HTML; pin it to the product name.
   const pinTitle = () => { if (document.title !== 'NexusOne') document.title = 'NexusOne'; };
   pinTitle();

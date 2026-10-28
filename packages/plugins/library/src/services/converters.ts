@@ -123,6 +123,28 @@ async function pdf(bytes: Uint8Array, signal?: AbortSignal): Promise<ConversionR
   } finally { await document.destroy(); }
 }
 
+async function zipArchive(bytes: Uint8Array, signal?: AbortSignal): Promise<ConversionResult> {
+  checkSignal(signal);
+  if (bytes[0] !== 0x50 || bytes[1] !== 0x4b) throw new Error('library/invalid-zip');
+  let zip: JSZip;
+  try { zip = await JSZip.loadAsync(bytes); }
+  catch { throw new Error('library/invalid-zip'); }
+  checkSignal(signal);
+  // Generic ZIPs are not extracted, so entry names only; no decompression and
+  // no Office archive limits. The original bytes remain downloadable.
+  const names = Object.values(zip.files)
+    .filter((entry) => !entry.dir)
+    .map((entry) => entry.name.replace(/[\r\n]+/g, ' ').replace(/\|/g, '\\|'))
+    .sort((left, right) => left.localeCompare(right));
+  const shown = names.slice(0, 300);
+  const markdown = `# ZIP 压缩包\n\n包含 ${names.length} 个文件。\n\n${shown.map((name) => `- ${name}`).join('\n')}${names.length > shown.length ? `\n- … 其余 ${names.length - shown.length} 个文件未列出` : ''}\n`;
+  return {
+    markdown,
+    locations: [],
+    warnings: ['ZIP 内容未展开，仅按文件名建立检索文本；原件可在资料库下载。'],
+  };
+}
+
 export async function convertToMarkdown(kind: LibraryAssetKind, bytes: Uint8Array, signal?: AbortSignal): Promise<ConversionResult> {
   checkSignal(signal);
   if (kind === 'markdown' || kind === 'text') {
@@ -137,5 +159,6 @@ export async function convertToMarkdown(kind: LibraryAssetKind, bytes: Uint8Arra
   if (kind === 'docx') return docx(bytes, signal);
   if (kind === 'pptx') return pptx(bytes, signal);
   if (kind === 'html') return html(bytes);
+  if (kind === 'zip') return zipArchive(bytes, signal);
   return pdf(bytes, signal);
 }

@@ -7,6 +7,8 @@
 >
 > 专家预设不要手工编辑；发布、迁移、恢复后请跑 `node deploy/scripts/check-expert-presets.mjs`，
 > 具体规则见 [EXPERT-PRESET-INTEGRITY.md](EXPERT-PRESET-INTEGRITY.md)。
+>
+> 审计事件按时间归档：默认保留 30 天，旧事件按月归档；见 [AUDIT-RETENTION.md](AUDIT-RETENTION.md)。
 
 
 ## 一键部署入口（按平台选一个）
@@ -31,6 +33,9 @@
 | `scripts/install-local-config.sh` | 把 `config/` 装进部署（技能/专家/MCP/预设），并改写写死的路径 | 新机器、配置有更新后 |
 | `scripts/export-session.sh` / `import-session.sh` | 会话（含产出文档）的导出与导入 | 交接会话时 |
 | `scripts/check-expert-presets.mjs` | 巡检专家预设与冻结修订是否逐字符/逐字节一致（防 `experts/package-drift`） | 发布/迁移/恢复专家后 |
+| `scripts/archive-audit-events.py` | 按时间归档审计事件（默认保留 30 天，旧事件按月打包） | 审计文件数增长时 / 每日自动 |
+| `scripts/restart-preview.sh` | 稳妥重启预览，等待端口并打印本次启动的访问 URL | 更新、重建或重启后 |
+| `scripts/doctor.sh` | 一键巡检服务、文件句柄、数据量、专家预设和最近启动错误 | 启动前 / 定期 / 异常时 |
 | `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
 | `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
 | `mcp-servers/` | MCP 服务端程序包的 `package.json` + `package-lock.json` | 由 `install-mcp-servers.sh` 使用 |

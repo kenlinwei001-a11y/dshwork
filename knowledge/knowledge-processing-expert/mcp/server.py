@@ -309,6 +309,28 @@ TOOLS = [
                                     "provided_facts": {"type": "array", "items": {"type": "object"}},
                                     "meta": {"type": "object"}},
                      "required": ["corpus_dir", "project_dir", "provided_facts"]}},
+    {"name": "parse_document_facts", "description": "把客户材料（docx/xlsx/pdf/md/csv）解析为 provided_facts：原生表格读取 + 固定句式抽取 + 别名归一 + 单位换算。输出 {provided_facts, conflicts, warnings, stats}",
+     "inputSchema": {"type": "object",
+                     "properties": {"path": {"type": "string", "description": "材料文件路径"},
+                                    "as_of": {"type": "string", "description": "数据截止日 YYYY-MM-DD"},
+                                    "default_caliber": {"type": "string"}},
+                     "required": ["path"]}},
+    {"name": "build_graph_from_project", "description": "把 instantiate_project 产出的项目图库转成推演写作专家要的语义图谱 graph.json（八类节点：entities/relations/facts/reasoning/claims/evidence/conflicts/validations）",
+     "inputSchema": {"type": "object",
+                     "properties": {"project_dir": {"type": "string"}, "meta": {"type": "object"}},
+                     "required": ["project_dir"]}},
+    {"name": "build_slots", "description": "填槽模式：把 instantiate 的 undefined_notes 展开成槽位列表（FILLABLE 用户填 / RETRIEVABLE 系统取 / UPSTREAM 等上游 / PSEUDO 丢弃），并生成「硬约束请客户提供」清单",
+     "inputSchema": {"type": "object",
+                     "properties": {"project_dir": {"type": "string", "description": "项目图库目录（读 gate_report）"},
+                                    "rules_path": {"type": "string", "description": "语料包 rules.yaml 路径"},
+                                    "fact_source_map": {"type": "string", "description": "形包 fact_source_map.yaml 路径"},
+                                    "include_ask_list": {"type": "boolean", "description": "是否同时返回硬约束清单 Markdown"}},
+                     "required": ["project_dir"]}},
+    {"name": "enrich_labels", "description": "第八道工序：给节点补新规范标签（role / constraint_type / source_type / standard_id / solve_direction），按结构性判据确定性判定，零 LLM",
+     "inputSchema": {"type": "object",
+                     "properties": {"project_dir": {"type": "string", "description": "项目图库或语料包目录（读 graph/nodes.yaml + rules.yaml + relations.yaml）"},
+                                    "dry_run": {"type": "boolean", "description": "只统计不写盘"}},
+                     "required": ["project_dir"]}},
     {"name": "build_work_package", "description": "编排器组装章节工作包（outline/facts≤30/claims/conflicts/undefined/返回契约，落盘 project/work_packages/<section>.json）",
      "inputSchema": {"type": "object",
                      "properties": {"project_dir": {"type": "string"}, "section_id": {"type": "string"},
@@ -1204,6 +1226,34 @@ def _dispatch(name: str, args: dict):
     if name == "instantiate_project":
         from corpus_pipeline import instantiate as _ins
         return _ins.instantiate_project(args["corpus_dir"], args["project_dir"], args.get("provided_facts", []), args.get("meta"))
+    if name == "parse_document_facts":
+        from corpus_pipeline import doc_facts as _df
+        return _df.to_provided_facts(args["path"], as_of=args.get("as_of", ""),
+                                     default_caliber=args.get("default_caliber", "客户提供"))
+    if name == "build_graph_from_project":
+        from corpus_pipeline import graph_from_project as _gfp
+        return _gfp.build_graph(args["project_dir"], meta=args.get("meta"))
+    if name == "build_slots":
+        import yaml as _yaml, pathlib as _pl
+        from corpus_pipeline import slot_filling as _sf
+        g = _yaml.safe_load((_pl.Path(args["project_dir"]) / "quality" / "gate_report.yaml")
+                            .read_text(encoding="utf-8")) or {}
+        rules = []
+        if args.get("rules_path"):
+            rules = _yaml.safe_load(_pl.Path(args["rules_path"]).read_text(encoding="utf-8")) or []
+        fsm = {}
+        if args.get("fact_source_map"):
+            _d = _yaml.safe_load(_pl.Path(args["fact_source_map"]).read_text(encoding="utf-8")) or {}
+            fsm = {f["fact"]: f for f in (_d.get("facts") or [])}
+        slots = _sf.build_slots(g.get("undefined") or [], rules, fsm)
+        out = {"slots": slots, "slots_table": _sf.slots_to_table(slots)}
+        if args.get("include_ask_list", True):
+            out["hard_constraints"] = _sf.hard_constraints(slots, fsm)
+            out["ask_list_md"] = _sf.render_ask_list(out["hard_constraints"])
+        return out
+    if name == "enrich_labels":
+        from corpus_pipeline import label_enrichment as _le
+        return _le.enrich(args["project_dir"], dry_run=bool(args.get("dry_run")))
     if name == "build_work_package":
         from corpus_pipeline import orchestrator as _orc
         return _orc.build_work_package(args["project_dir"], args["section_id"], corpus_dir=args.get("corpus_dir"),

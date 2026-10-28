@@ -1,0 +1,57 @@
+document: corpus-library 顶层索引
+version: v1.0
+generated_at: '2026-10-28T11:12:59'
+storage_form: 按「包」组织的文件系统（一项目一包）；非数据库
+indexing_rule: 只索引 manifest.status=published 的包；draft/validated 不出现（防草稿被误用）
+package_count: 1
+packages:
+- id: PX-2026-001
+  dir: PX-2026-001-feasibility
+  version: V1.0
+  status: published
+  title: 某新材料生产基地扩产项目可行性研究报告
+  doc_type: 可研报告
+  industry: 新材料
+  data_cutoff: '2026-06-30'
+  source_fingerprint: demo-feasibility-sha
+  files: 31
+  has_dirs:
+  - chunks
+  - evidence
+  - graph
+  - index
+  - quality
+  - reasoning
+  - reuse
+  - source
+  - style
+  aliases:
+  - 可研
+  - 可研报告
+  - 可行性研究
+  - 新材料
+  - 某新材料生产基地
+  constraints:
+  - 借形不借值：数值/单位/实体名/结论一律不继承，仅继承结构/规则/句式/术语
+  - 缺值守卫：依赖缺失的节点 status=undefined，正文写「待…后测算」并挂 gap
+  - 冲突待审：回放检出的数字不一致一律待审，不自动裁决
+  - 不许反算：不得由结论倒推中间量
+stats:
+  published: 1
+  validated: 0
+  draft: 0
+  total_files: 31
+how_to_search:
+- ① library_list_packages  → 列全部已发布包（读本索引）
+- ② library_search(query)  → 字面子串匹配（标题/术语/章节）；不做同义词扩展
+- '   所以搜「可研」找不到「可行性研究报告」—— 用本索引的 aliases 字段做别名映射'
+- ③ library_get_asset(package, asset) → 取包内单个资产
+- ④ library_find_analog(doc_type, query) → 找同类项目
+known_limitations:
+- search_packages 只做字面子串匹配，中文简称（可研/环评/稳评）需经 aliases 扩展
+- 无向量检索（Qdrant 未启用）—— 只能精确词匹配
+- 无跨包图查询（Semantica 存全局图，但不按包切分）
+pending:
+- item: 形-可复用知识资产-v1.0 尚未发布进本库
+  how: library_publish 或手工放入本目录 + 写 manifest
+  why: 当前以 ZIP 分发，未走 library 流程

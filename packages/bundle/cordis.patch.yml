@@ -9,7 +9,9 @@
       name: '@deepseek-ai/dsh-browser-use'
     - id: browser-use-playwright-mcp
       name: '@deepseek-ai/dsh-experimental-browser-use-playwright-mcp'
-      disabled: !!js "!!process.env.DSH_ELECTRON_EXECUTABLE"
+      # Web 侧不再默认给每个会话拉起 Playwright MCP：空会话会累积子进程，
+      # 工具表随之膨胀，新会话创建从秒级退化到分钟级。Desktop(Electron) 保持原行为。
+      disabled: !!js "!process.env.DSH_ELECTRON_EXECUTABLE"
       config:
         mode: launch
         headless: true

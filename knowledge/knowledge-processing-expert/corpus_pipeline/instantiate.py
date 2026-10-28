@@ -27,6 +27,11 @@ import ast
 import hashlib
 import json
 import math
+
+try:
+    import yaml
+except ImportError:
+    yaml = None
 from pathlib import Path
 
 # 领域规则库（单一事实源）：计算规格 + 展示规则从知识处理侧 import，不再此处硬编码
@@ -79,7 +84,16 @@ def new_id(label: str, value) -> str:
 
 
 def _jf(p: Path):
-    return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+    """读 JSON 或 YAML（按内容探测）。语料包的 .yaml 可能是真 YAML，也可能是 JSON 内容。"""
+    if not p.exists():
+        return None
+    raw = p.read_text(encoding="utf-8")
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        if yaml is None:
+            raise
+        return yaml.safe_load(raw)
 
 
 def _jl(p: Path):
@@ -167,11 +181,15 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
             if n is None:
                 return None
             env[vl] = n
-        # {主语} → 主语名（中文标识符，Python 合法 Name），再进 ast 白名单求值
+        # {主语} → 安全标识符（v0/v1/...），再进 ast 白名单求值。
+        # 不能直接用中文标识符：以数字开头的变量名（如「30HP机组单台制冷量」）不是合法 Python Name。
         expr = tpl
-        for vl in var_labels:
-            expr = expr.replace("{" + vl + "}", vl)
-        return float(safe_eval(expr, env))
+        safe_env = {}
+        for _i, _vl in enumerate(var_labels):
+            _safe = "v%d" % _i
+            expr = expr.replace("{" + _vl + "}", _safe)
+            safe_env[_safe] = env[_vl]
+        return float(safe_eval(expr, safe_env))
 
     # 判定式/展示规则直通（不参与重算）；计算规则进不动点队列
     compute_queue = []
@@ -220,6 +238,10 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
 
     def process_rule(r):
         """处理一条计算规则；依赖齐备时执行并返回 True，否则返回 False。"""
+        # 旧格式容错：kind 不在 compute/select 且没有 label 的规则（如遗留 formula 行）
+        # 不是可执行规则，跳过而不产生 UNDEFINED 噪声。
+        if str(r.get("kind")) not in ("compute", "select") and not str(r.get("label") or "").strip():
+            return True
         old_dep_ids = r.get("deps", [])
         dep_labels = [label_of.get(d, d) for d in old_dep_ids]
         target_label = target_label_of(r)
@@ -458,6 +480,10 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
         "computed": sum(1 for n in nodes if n.get("status") == "computed"),
         "undefined_notes": len(undefined_notes),
         "replay_conflicts": len(replay_conflicts),
+        # 详情列表（供遗漏补录表/待审清单直接渲染；计数字段保留向后兼容）
+        "undefined_list": undefined_notes,
+        "replay_conflict_list": replay_conflicts,
+        "gate_report": f"{pdir}/quality/gate_report.yaml",
         "rebound_rules": len(rebound_rules),
         "bindings": len(bindings),
         "gate": gate["gate"],
