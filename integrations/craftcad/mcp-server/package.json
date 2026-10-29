@@ -1,0 +1,10 @@
+{
+  "name": "craftcad-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server exposing headless CraftCAD drawing tools (create/edit drawings, read/write DXF)",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
