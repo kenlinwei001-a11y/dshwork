@@ -1,6 +1,7 @@
 import { ShellAppearance } from '../components/ShellAppearance.js';
 import { installFreshSessionNavigation } from './fresh-session.js';
 import { installSettingsScope } from './settings-scope.js';
+import { installCraftCadDxfPreview } from './craftcad-dxf-preview.js';
 import { communityMarketView, type MarketHost } from '../components/CommunityMarket.js';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
@@ -45,6 +46,17 @@ export function apply(ctx: Context): void {
   ctx.effect(() => () => titleObserver?.disconnect());
 
   installFreshSessionNavigation(ctx);
+  // Keep the CraftCAD ".dxf" preview in the shell, out of the panel package's
+  // rebuilt dist. Only register when the panel is actually installed.
+  ctx.effect(() => {
+    let disposed = false;
+    void ctx.remote.pluginInventory.list().then(response => {
+      if (disposed || !response.ok) return;
+      const panel = response.value.entries.find(row => row.moduleName === 'workdsh-plugin-craftcad-panel');
+      if (panel !== undefined && panel.enabled !== false) installCraftCadDxfPreview(ctx);
+    }).catch(() => { /* missing inventory is not a failure */ });
+    return () => { disposed = true; };
+  }, 'workdsh.craftcad-dxf-preview.inventory');
   ctx.inject(['market'], scope => {
     if (scope.market.version !== 1) return;
     scope.market.setSettingsVisible(false);
