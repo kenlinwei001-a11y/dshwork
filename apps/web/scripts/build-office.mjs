@@ -52,6 +52,26 @@ await writeFile(new URL("dist/client.office-editor.js", root), `export default $
 // The raw document is superseded by the lazy chunk; a stale copy would only
 // bloat the package archive.
 await rm(new URL("dist/editor.html", root), { force: true });
+const pdfWorkerPlugin = {
+  name: "pdf-worker-source",
+  setup(builder) { builder.onLoad({ filter: /pdf\.worker\.min\.mjs$/ }, async args => ({ contents: await readFile(args.path, "utf8"), loader: "text" })); },
+};
+const runtimeChunk = async (entry, name, plugins = []) => {
+  const result = await build({
+    entryPoints: [fileURLToPath(new URL(entry, root))],
+    bundle: true, write: false, format: "esm", platform: "browser", target: "es2022",
+    loader: { ".css": "text" },
+    define: { "process.env.NODE_ENV": '"production"', __WORKDSH_WORD_ONLY__: String(wordOnly) },
+    plugins,
+    logLevel: "silent",
+  });
+  await writeFile(new URL(`dist/client.${name}.js`, root), result.outputFiles[0]?.text ?? "");
+};
+await runtimeChunk("src/presentation/pptx-runtime.ts", "office-pptx", [nativePptPlugin()]);
+await runtimeChunk("src/spreadsheet/runtime.ts", "office-sheet");
+await runtimeChunk("src/pdf/runtime.ts", "office-pdf", [pdfWorkerPlugin]);
+await runtimeChunk("src/docx-runtime.ts", "office-docx");
+await runtimeChunk("src/excel-runtime.ts", "office-excel");
 const client = await build({
   metafile: true,
   entryPoints: [fileURLToPath(new URL("src/client.tsx", root))],

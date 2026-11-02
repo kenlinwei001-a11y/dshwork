@@ -1,8 +1,10 @@
-import ExcelJS from "exceljs";
+import type ExcelJSType from "exceljs";
+import {loadClientChunk} from "../client-chunk.js";
 import type {OfficeSpreadsheetSnapshot} from "workdsh-contracts/office";
 import {spreadsheetStateSchema} from "./model.js";
 import {parse} from "../content/model.js";
 export async function spreadsheetXlsx(snapshot:OfficeSpreadsheetSnapshot){
+ const {ExcelJS}=await loadClientChunk<{ExcelJS:typeof ExcelJSType}>('office-excel');
  const state=parse(spreadsheetStateSchema,snapshot.state),workbook=new ExcelJS.Workbook();
  workbook.creator="NexusOne";workbook.created=new Date("2000-01-01T00:00:00Z");workbook.modified=new Date("2000-01-01T00:00:00Z");
  workbook.calcProperties.fullCalcOnLoad=true;

@@ -1,5 +1,6 @@
 import JSZip from "jszip";
-import ExcelJS from "exceljs";
+import type ExcelJSType from "exceljs";
+import {loadClientChunk} from "../client-chunk.js";
 import type { OfficeSnapshot, OfficeBlockInput, OfficeChart } from "workdsh-contracts/office";
 const xml = (text: string) =>
   text
@@ -139,6 +140,7 @@ export async function documentDocx(snapshot: OfficeSnapshot): Promise<Blob> {
   }
   const body = snapshot.state.blockIds.map(id=>blockXml(snapshot.state.blocks[id]!)).join("");
   for(const image of images) zip.file(`word/media/${image.id}.${image.extension}`,image.data,{base64:true});
+  const {ExcelJS}=await loadClientChunk<{ExcelJS:typeof ExcelJSType}>('office-excel');
   for(let index=0;index<charts.length;index++){
     const {id,chart}=charts[index]!,workbook=new ExcelJS.Workbook(),sheet=workbook.addWorksheet("Sheet1");
     sheet.addRow(["分类",...chart.series.map(series=>series.name)]);
