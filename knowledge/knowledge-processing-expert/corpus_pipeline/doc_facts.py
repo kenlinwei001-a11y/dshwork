@@ -222,7 +222,10 @@ def _line_sections(text):
     for i, line in enumerate((text or "").splitlines(), start=1):
         s = line.strip()
         if s.startswith("#"):
-            cur = _clean(s.lstrip("#").strip())
+            head = s.lstrip("#").strip()
+            # 剥掉章节映射标注（如「一、项目基本信息　→ 骨架 **§1.1 项目概况**」）
+            head = re.split(r"\s*→\s*骨架", head)[0]
+            cur = _clean(head.strip())
         m[i] = cur
     return m
 
@@ -231,7 +234,8 @@ def _section_spans(text):
     """返回 [(start_offset, section_name)]，用于把 fact 归到所在章节。"""
     spans = []
     for m in re.finditer(r"^#{1,4}\s+(.+)$", text or "", re.M):
-        spans.append((m.start(), _clean(m.group(1))))
+        head = re.split(r"\s*→\s*骨架", m.group(1))[0]
+        spans.append((m.start(), _clean(head.strip())))
     return spans
 
 
