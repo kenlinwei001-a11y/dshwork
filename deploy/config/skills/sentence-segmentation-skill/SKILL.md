@@ -13,7 +13,7 @@ SK-02
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Chunk（含 chunk_id、所属文档与章节）。
 - 典型请求：给每句话编号｜分句以便引用定位｜准备 Claim 追踪的句子粒度
 - 不要在此调用：语义分块（semantic-chunking）、摘要改写
 ## 边界与不适用

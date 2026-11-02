@@ -1,6 +1,6 @@
 # 技能：semantic-chunking-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -17,7 +17,7 @@
 | 目录 | /Users/apple/.agents/skills/semantic-chunking-skill |
 | 所属插件 | （非插件内置） |
 | 文件数 | 6 |
-| 体积 | 1.7 KB |
+| 体积 | 1.8 KB |
 | 被忽略文件 | 无 |
 
 ## 3. 引用关系
@@ -43,7 +43,7 @@ SK-01
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 document-parsing-skill 产出的 Document IR（含页码、段落与原文定位）。
 - 典型请求：把文档切成块｜按章节分段｜为抽取准备输入
 - 不要在此调用：分句与编号（sentence-segmentation）、改写润色
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-01
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 894 | d5dbb6384040a608 |
+| SKILL.md | 925 | 3caf3ccb6301cea0 |
 | prompts/system.md | 157 | 7acd6bac8421e101 |
 | schema/output.json | 380 | dbb32986ee9968fb |
 | tests/expected.json | 45 | c768c657d9ae90ac |

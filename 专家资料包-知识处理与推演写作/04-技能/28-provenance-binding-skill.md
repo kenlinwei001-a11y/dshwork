@@ -1,6 +1,6 @@
 # 技能：provenance-binding-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-16
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有上下游对象及其定位信息。
 - 典型请求：给结论挂溯源链｜检查引用是否悬空｜决策能不能倒查到原文
 - 不要在此调用：判断内容真假、补造来源
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-16
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 936 | 1745ef2909324e2a |
+| SKILL.md | 916 | f8ff3a69fcb2100b |
 | prompts/system.md | 159 | b1f310ee1ae36f3b |
 | schema/output.json | 381 | 81916098068b2d5f |
 | tests/expected.json | 45 | e00fd84a1c59c5b0 |

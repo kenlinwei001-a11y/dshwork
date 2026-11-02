@@ -13,7 +13,7 @@ SK-09
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Claim 与候选证据列表。
 - 典型请求：这条结论有没有证据支持｜证据和说法是否矛盾｜标出证据支持强度
 - 不要在此调用：最终裁决冲突（conflict-detection 只输出待审）、改写 Claim
 ## 边界与不适用

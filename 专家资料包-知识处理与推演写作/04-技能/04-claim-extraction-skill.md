@@ -1,6 +1,6 @@
 # 技能：claim-extraction-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-07
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Sentence 或 Chunk 文本。
 - 典型请求：挑出结论和风险｜区分事实与观点｜整理因果链与中间结论
 - 不要在此调用：判定真伪（claim-validation）、定位原文出处（evidence-extraction）
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-07
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 961 | a00878f86d2cbba6 |
+| SKILL.md | 934 | acc8a53495f3ca9b |
 | prompts/system.md | 155 | ffcdfc228a26ad5c |
 | schema/output.json | 379 | 9b8af7c0020d2b15 |
 | tests/expected.json | 45 | a7bc3cc95962b0d7 |

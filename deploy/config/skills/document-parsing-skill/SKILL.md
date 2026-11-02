@@ -13,7 +13,7 @@ SK-00
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已拿到原始文件（PDF/DOCX/XLSX/PPTX/扫描件）；没有文件先索取，不凭描述生成“解析结果”。
 - 典型请求：解析这份 PDF/Word｜把扫描件转成可检索文本｜批量导入文档建库
 - 不要在此调用：抽取实体或事实（走 entity-extraction / fact-extraction）
 ## 边界与不适用

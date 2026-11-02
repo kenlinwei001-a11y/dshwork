@@ -13,7 +13,7 @@ SK-15
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有各类抽取产物（Entity/Fact/Claim/Evidence/Reasoning/Scenario/Decision）。
 - 典型请求：合成语义图谱｜把抽取结果连成图｜生成 semantic graph JSON
 - 不要在此调用：新增事实或判断、图数据库运维
 ## 边界与不适用

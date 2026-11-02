@@ -1,6 +1,6 @@
 # 技能：knowledge-generalization-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-14
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有已完成项目资产与复用边界说明。
 - 典型请求：沉淀方法论｜把经验抽成可复用规则｜做成模板给下个项目用
 - 不要在此调用：搬运项目数值与专有事实
 ## 边界与不适用
@@ -58,7 +58,7 @@ SK-14
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 1038 | d3a3e6b8d38d6176 |
+| SKILL.md | 1027 | 33ebb82e697b5eab |
 | prompts/system.md | 171 | 95a778660ab66036 |
 | schema/output.json | 387 | fdd35a6d27f7ba63 |
 | tests/expected.json | 45 | 2c1ce3b7ed8b667a |

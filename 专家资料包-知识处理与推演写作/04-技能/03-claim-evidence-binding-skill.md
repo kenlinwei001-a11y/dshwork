@@ -1,6 +1,6 @@
 # 技能：claim-evidence-binding-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -17,7 +17,7 @@
 | 目录 | /Users/apple/.agents/skills/claim-evidence-binding-skill |
 | 所属插件 | （非插件内置） |
 | 文件数 | 6 |
-| 体积 | 1.9 KB |
+| 体积 | 1.8 KB |
 | 被忽略文件 | 无 |
 
 ## 3. 引用关系
@@ -43,7 +43,7 @@ SK-09
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Claim 与候选证据列表。
 - 典型请求：这条结论有没有证据支持｜证据和说法是否矛盾｜标出证据支持强度
 - 不要在此调用：最终裁决冲突（conflict-detection 只输出待审）、改写 Claim
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-09
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 1009 | e0186a60a329399e |
+| SKILL.md | 984 | 260f69296ff24072 |
 | prompts/system.md | 167 | 3c7ef331f57425ca |
 | schema/output.json | 385 | 49a21f7072d1ab92 |
 | tests/expected.json | 45 | a1dacbe5e304b77c |

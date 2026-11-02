@@ -1,6 +1,6 @@
 # 技能：semantic-graph-compilation-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-15
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有各类抽取产物（Entity/Fact/Claim/Evidence/Reasoning/Scenario/Decision）。
 - 典型请求：合成语义图谱｜把抽取结果连成图｜生成 semantic graph JSON
 - 不要在此调用：新增事实或判断、图数据库运维
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-15
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 918 | c11b93748efd23b6 |
+| SKILL.md | 943 | c25a8ebb67f91aaf |
 | prompts/system.md | 175 | 0aacb19b78c35a48 |
 | schema/output.json | 389 | 2811cb6282535b1d |
 | tests/expected.json | 45 | 7309ac8cfaa021db |

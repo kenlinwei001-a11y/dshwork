@@ -1,6 +1,6 @@
 # 技能：entity-extraction-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-03
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Sentence 或 Chunk 文本及其定位。
 - 典型请求：把文中出现的公司和供应商列出来｜有哪些产线与材料｜抽取所有实体
 - 不要在此调用：同名消歧（entity-resolution）、本体类型归属（ontology-resolution）
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-03
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 996 | a7f6393c1088cd7e |
+| SKILL.md | 981 | 6ff24920c11c100a |
 | prompts/system.md | 2882 | 08d7a1f139e121ba |
 | schema/output.json | 380 | 35d307b1ceba39be |
 | tests/expected.json | 45 | ef9690da48c2d6a6 |

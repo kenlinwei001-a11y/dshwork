@@ -1,6 +1,6 @@
 # 技能：sentence-segmentation-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-02
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Chunk（含 chunk_id、所属文档与章节）。
 - 典型请求：给每句话编号｜分句以便引用定位｜准备 Claim 追踪的句子粒度
 - 不要在此调用：语义分块（semantic-chunking）、摘要改写
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-02
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 870 | 264c353f558992d0 |
+| SKILL.md | 865 | ab12f33f64cfbc84 |
 | prompts/system.md | 165 | e722e80b4310eb74 |
 | schema/output.json | 384 | 9aa89972c75cd9ef |
 | tests/expected.json | 45 | 7888fce2fc51a4bc |

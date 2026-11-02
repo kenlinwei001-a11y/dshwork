@@ -13,7 +13,7 @@ SK-06
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Sentence/Chunk 或 Document IR。
 - 典型请求：抽取事实｜把数字和条件结构化｜建立事实表
 - 不要在此调用：抽取观点、预测与建议（claim-extraction）、判定真伪（claim-validation）
 ## 边界与不适用

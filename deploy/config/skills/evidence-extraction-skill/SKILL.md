@@ -13,7 +13,7 @@ SK-08
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Fact/Claim 与原文 IR（可定位到页码/段落）。
 - 典型请求：找出处和页码｜给结论配原文｜定位到具体段落
 - 不要在此调用：评价证据强弱与关系类别（claim-evidence-binding）
 ## 边界与不适用

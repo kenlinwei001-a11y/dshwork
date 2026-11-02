@@ -13,7 +13,7 @@ SK-07
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Sentence 或 Chunk 文本。
 - 典型请求：挑出结论和风险｜区分事实与观点｜整理因果链与中间结论
 - 不要在此调用：判定真伪（claim-validation）、定位原文出处（evidence-extraction）
 ## 边界与不适用

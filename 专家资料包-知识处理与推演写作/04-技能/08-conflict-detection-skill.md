@@ -1,6 +1,6 @@
 # 技能：conflict-detection-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-13
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有可比数据（同一指标的多来源或多版本）。
 - 典型请求：前后数字对不上｜不同版本之间有矛盾｜列出所有待审冲突
 - 不要在此调用：拍板选一个值（交人工或评审）
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-13
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 909 | 50e2429e27a7d101 |
+| SKILL.md | 910 | e27dd96df946a87f |
 | prompts/system.md | 159 | 963fe75f7b42a8ea |
 | schema/output.json | 381 | dcf1d4f558af6060 |
 | tests/expected.json | 45 | c84c8a4f6dddf3f7 |

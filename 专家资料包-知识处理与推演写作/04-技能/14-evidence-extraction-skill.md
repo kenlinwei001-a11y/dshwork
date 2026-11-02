@@ -1,6 +1,6 @@
 # 技能：evidence-extraction-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-08
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Fact/Claim 与原文 IR（可定位到页码/段落）。
 - 典型请求：找出处和页码｜给结论配原文｜定位到具体段落
 - 不要在此调用：评价证据强弱与关系类别（claim-evidence-binding）
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-08
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 924 | d2eca340fba4fed7 |
+| SKILL.md | 926 | 5ec0d99c960b49c1 |
 | prompts/system.md | 161 | 2ebe5a6fb7225d9f |
 | schema/output.json | 382 | 2af549c6c7a53189 |
 | tests/expected.json | 45 | 33c34269b70b8dfe |

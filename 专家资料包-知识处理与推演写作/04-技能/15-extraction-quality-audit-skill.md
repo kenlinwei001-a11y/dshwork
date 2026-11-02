@@ -1,6 +1,6 @@
 # 技能：extraction-quality-audit-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-17
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有抽取结果与图谱（可全量遍历）。
 - 典型请求：检查抽取质量｜有没有漏证据或悬空关系｜有没有跨项目串数据
 - 不要在此调用：修复数据（本 skill 只出问题清单）
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-17
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 932 | c9c954f32f1a09f0 |
+| SKILL.md | 921 | 1c580e5469882cdb |
 | prompts/system.md | 171 | cc43f45d5671d64a |
 | references/门禁与案例.md | 10938 | ab77fe0cb4476819 |
 | schema/output.json | 387 | ced80bb9082b37bc |

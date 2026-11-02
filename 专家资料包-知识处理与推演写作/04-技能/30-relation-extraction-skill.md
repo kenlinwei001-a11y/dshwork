@@ -1,6 +1,6 @@
 # 技能：relation-extraction-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -17,7 +17,7 @@
 | 目录 | /Users/apple/.agents/skills/relation-extraction-skill |
 | 所属插件 | （非插件内置） |
 | 文件数 | 6 |
-| 体积 | 1.8 KB |
+| 体积 | 1.7 KB |
 | 被忽略文件 | 无 |
 
 ## 3. 引用关系
@@ -43,7 +43,7 @@ SK-05
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有实体与承载关系的证据句。
 - 典型请求：谁供应谁｜产线和产品是什么关系｜建立关系图谱
 - 不要在此调用：抽取属性事实（fact-extraction）、判定关系真假
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-05
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 905 | 71bc8e1c1bda6be8 |
+| SKILL.md | 885 | 1832f3c4bc6b7fbe |
 | prompts/system.md | 161 | 490c15099aea4f05 |
 | schema/output.json | 382 | 6509f816896870f8 |
 | tests/expected.json | 45 | 668a592b56879bad |

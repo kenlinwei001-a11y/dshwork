@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-02T13:31:19Z",
-  "runAt": "2026-11-02T13:42:28Z",
+  "builtAt": "2026-11-02T13:44:08Z",
+  "runAt": "2026-11-02T13:51:52Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -20,22 +20,22 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/claim-evidence-binding-skill",
-      "bytes": 1914,
-      "sha256": "f9894412516f94938b14a836c513d0223e7ec47ac3e38fc358d318984afc6d4f",
+      "bytes": 1889,
+      "sha256": "41b533713a251d01e3a9c8bbce799d6fa98fd33a34b9135938d0c775d842fad3",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/claim-extraction-skill",
-      "bytes": 1848,
-      "sha256": "d4c50ef31255763bad39836f5662ebca5d0b24037b374dcf0b19a697df4581d6",
+      "bytes": 1821,
+      "sha256": "7f1c0e5a9f5e612642d55557fdf0cbbe65621003f84dd336dcbb2ff7f399ac1f",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/claim-validation-skill",
-      "bytes": 1811,
-      "sha256": "e5ea6142f015057426f0c31d7aff0457a9bbbeec4892091c5e2442ab0cebd6c6",
+      "bytes": 1821,
+      "sha256": "a2fed7d15e00e479feb171932374f74082743aad01f5201b3dd4a2e8fd6dba15",
       "detail": "6 files"
     },
     {
@@ -55,8 +55,8 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/conflict-detection-skill",
-      "bytes": 1802,
-      "sha256": "a5cc321e49cef7408504bd49ecb01703a262d954a72e910ef4e36571f5a8eb05",
+      "bytes": 1803,
+      "sha256": "afe9b2e25bb2da5d24313cc10ae9febc6c1b4433369a4d696e22eb0f02bf062b",
       "detail": "6 files"
     },
     {
@@ -69,8 +69,8 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/document-parsing-skill",
-      "bytes": 1978,
-      "sha256": "a151aae877611fa10530b3643b82d5adf4702d379489b1c549d3cee68693a717",
+      "bytes": 2037,
+      "sha256": "bb1660d96ed52a9365e6b4612a5cc36434fb5c7fc3b0b0a3de94e32156f756a5",
       "detail": "6 files"
     },
     {
@@ -83,36 +83,36 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/entity-extraction-skill",
-      "bytes": 4611,
-      "sha256": "238409e251961cbcf8ec18f961c0fd5643dccc2ca37233f66330ec9b54be87c6",
+      "bytes": 4596,
+      "sha256": "206a6f079aadffdeec1ac5d3981a653154ef935cf12540903e3bac17013d3a89",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/entity-resolution-skill",
-      "bytes": 1773,
-      "sha256": "976bfb317a2fa6245f1198919f215321bcaf96d723012d11b545f74880a946e3",
+      "bytes": 1769,
+      "sha256": "3180ebeff09dab5928312d6a8f06cc0c844c9cdc23a91ed95f8fa1388ea91598",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/evidence-extraction-skill",
-      "bytes": 1820,
-      "sha256": "80815c28844821d21f89cdce30eef17b1bdc5ab322f318e53ef9764b53d042b8",
+      "bytes": 1822,
+      "sha256": "1d14a4fae1c2ff3b73b0b69b1b4a5ad2c19c55f416b725d356e0c3a268ddf790",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/extraction-quality-audit-skill",
-      "bytes": 12781,
-      "sha256": "d8add2992c282505655ef02b4cd9881ed89b57ec69222fc324dc8479103d1045",
+      "bytes": 12770,
+      "sha256": "f0e870d517d71331eedae1b56ee4860d3c0d135c6d053b43f83b702adfad155b",
       "detail": "7 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/fact-extraction-skill",
-      "bytes": 5399,
-      "sha256": "211a6ab3d68452cb32c88d291986bb8e91f14529db62c5671d52b8860c5a82bd",
+      "bytes": 5377,
+      "sha256": "038c1d488c8ee41314bac66b34677ae9616fde1f73fb737286cdb86d1b702ed5",
       "detail": "6 files"
     },
     {
@@ -139,8 +139,8 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/knowledge-generalization-skill",
-      "bytes": 1949,
-      "sha256": "be9f4161b5fec597cf054f58b191181d457ad000f2feb538ef5c1740415bb388",
+      "bytes": 1938,
+      "sha256": "01a2c8aabd6af72bc6bfba10d127ce63dc761378c47207d649e5b10afb8dc702",
       "detail": "6 files"
     },
     {
@@ -153,8 +153,8 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/knowledge-processing-toolchain",
-      "bytes": 37751,
-      "sha256": "7a81b637222bae937517fc662f4ccc077baa716c46a4b56c1dd7956c77320ece",
+      "bytes": 37777,
+      "sha256": "7e5c70119b88e42f9839898ded42ac41f140ad170bf3b5fac23a59bde6eb0b85",
       "detail": "5 files"
     },
     {
@@ -174,8 +174,8 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/ontology-resolution-skill",
-      "bytes": 1781,
-      "sha256": "55c6dcdc1f0ddaf9b2be2dd69ee38e7568f61683e6131020468d020139e4570e",
+      "bytes": 1796,
+      "sha256": "63bdb7cd19996feb959df8ff546b55c41e313428470167279fb443d41ae25bc2",
       "detail": "6 files"
     },
     {
@@ -195,22 +195,22 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/provenance-binding-skill",
-      "bytes": 1829,
-      "sha256": "8e10c8a384d484304396f02ccb1d03b913564ce0ed822e549b6ce9f90d6aaf53",
+      "bytes": 1809,
+      "sha256": "9e7c86bb809ffe80e0ca7fcc7381f4e95f5a33ea5be99cfd3ecc180fbb206fd4",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/reasoning-extraction-skill",
-      "bytes": 1790,
-      "sha256": "1d00063753899fbfb52be9fca114cfa58ce5470279fbd1d7c3cf026324236c72",
+      "bytes": 1779,
+      "sha256": "e256471e8866c1b5035f4bafcc1ecf97c9ac902590cf0d857b7b0e6848d433bb",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/relation-extraction-skill",
-      "bytes": 1801,
-      "sha256": "f1a47bcdce15443cddb59d869b889c64aed4f50b6a0802fa6b7958307acee2b6",
+      "bytes": 1781,
+      "sha256": "94c9215ee90c4384b665dfa17316a7d2b31e39de7d691f01a25d6c3b2e0bfb12",
       "detail": "6 files"
     },
     {
@@ -223,22 +223,22 @@
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/semantic-chunking-skill",
-      "bytes": 1784,
-      "sha256": "bc857fca2214d5f8ca4a17cfe74a59f81a2a66d10cdc02de427a391c6a51ecfc",
+      "bytes": 1815,
+      "sha256": "9ccf511529caf5f58ac952c4339b912122255c1015c69a45e9cfa4d2ff6491c4",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/semantic-graph-compilation-skill",
-      "bytes": 1835,
-      "sha256": "ddf996a78afefadbab3a752bdb751e7348d0c7893dbc17632ae988033e2410da",
+      "bytes": 1860,
+      "sha256": "aec3a1be7ea100f8a0811d53a36804196dec5fd5685d1373ec49aedc25e18f77",
       "detail": "6 files"
     },
     {
       "kind": "skill:user",
       "path": "/Users/apple/.agents/skills/sentence-segmentation-skill",
-      "bytes": 1772,
-      "sha256": "28de0219de3f5b7c49ed9ab4d85faef34e2ea9cc6a4d857a9cee6a0c52af4723",
+      "bytes": 1767,
+      "sha256": "41e16adcac4949230183f0a2aaeffe211d022b62b696e7c3bf55b14c2990865a",
       "detail": "6 files"
     },
     {
@@ -441,7 +441,7 @@
       "kind": "profile",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json",
       "bytes": 5539,
-      "sha256": "b9c6a1ec1cddf805c27fb3e31d311e638436a786d4e44e8d0a8ce0e3bdff1a5c",
+      "sha256": "72f7394f9abc6e641bd87db444d080704f8b9a84c165a22d10b510fe19263ebd",
       "detail": "profile composition"
     },
     {

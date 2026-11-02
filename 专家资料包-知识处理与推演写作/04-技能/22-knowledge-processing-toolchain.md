@@ -1,6 +1,6 @@
 # 技能：knowledge-processing-toolchain
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -228,7 +228,7 @@ for s in steps:
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已明确工序清单与每步输入产物（用于判定该步走工具还是 LLM）。
 - 典型请求：这一步该用工具还是模型｜把流水线分层｜要求确定性可复现
 - 不要在此调用：替代具体工序执行（解析、分句、建图等由对应 skill 或 kp 工具完成）
 ## 边界与不适用
@@ -242,7 +242,7 @@ for s in steps:
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 10820 | 07283ac950bd2b77 |
+| SKILL.md | 10846 | 64a0af65f946184a |
 | references/三条工程纪律.md | 3136 | c6694b0fbf71e1bc |
 | references/性能与确定性.md | 3230 | 05d4bd3deea9e8cb |
 | references/改skill的三问.md | 4597 | a7b96747cf9fe686 |

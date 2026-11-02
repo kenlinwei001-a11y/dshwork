@@ -1,6 +1,6 @@
 # 技能：claim-validation-skill
 
-> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:31:19Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
+> 本文件由 `tools/expert-report/build.mjs` 从本机权威数据源自动构建，内容基准时间（UTC）：2026-11-02T13:44:08Z（= 源文件最新 mtime；构建器实际运行时间见 .state/manifest.json）。所有内容可凭 07-核对/ 下的清单与哈希复算；手工修改会在下次构建被覆盖。
 
 ## 1. 元数据
 
@@ -43,7 +43,7 @@ SK-12
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Claim、支撑它的证据与相关事实（含时间口径）。
 - 典型请求：这条结论站不站得住｜检查时间口径与依赖是否自洽｜找出语义过宽或越界
 - 不要在此调用：修改 Claim 文本、替冲突下结论
 ## 边界与不适用
@@ -57,7 +57,7 @@ SK-12
 
 | 文件 | 字节 | SHA-256（前 16） |
 |---|---|---|
-| SKILL.md | 924 | e95b3dfede0a74a9 |
+| SKILL.md | 934 | 210189c2795250e7 |
 | prompts/system.md | 155 | 413d8db0196bb8fe |
 | schema/output.json | 379 | 1a57719dfc9bce77 |
 | tests/expected.json | 45 | 4c48005e38236594 |

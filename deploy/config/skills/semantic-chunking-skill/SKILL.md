@@ -13,7 +13,7 @@ SK-01
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 document-parsing-skill 产出的 Document IR（含页码、段落与原文定位）。
 - 典型请求：把文档切成块｜按章节分段｜为抽取准备输入
 - 不要在此调用：分句与编号（sentence-segmentation）、改写润色
 ## 边界与不适用

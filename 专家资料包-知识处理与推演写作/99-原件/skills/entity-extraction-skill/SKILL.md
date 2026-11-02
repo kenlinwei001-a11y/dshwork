@@ -13,7 +13,7 @@ SK-03
 
 ## 何时使用
 
-- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+调用条件：已有 Sentence 或 Chunk 文本及其定位。
 - 典型请求：把文中出现的公司和供应商列出来｜有哪些产线与材料｜抽取所有实体
 - 不要在此调用：同名消歧（entity-resolution）、本体类型归属（ontology-resolution）
 ## 边界与不适用
