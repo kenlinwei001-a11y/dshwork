@@ -84,9 +84,15 @@ def new_id(label: str, value) -> str:
 
 
 def _jf(p: Path):
+    try:
+        from corpus_pipeline.fastload import load as _fl
+    except Exception:
+        _fl = None
     """读 JSON 或 YAML（按内容探测）。语料包的 .yaml 可能是真 YAML，也可能是 JSON 内容。"""
     if not p.exists():
         return None
+    if _fl is not None:
+        return _fl(p)
     raw = p.read_text(encoding="utf-8")
     try:
         return json.loads(raw)

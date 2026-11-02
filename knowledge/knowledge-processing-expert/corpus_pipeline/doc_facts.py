@@ -183,8 +183,11 @@ def read_any(path: str | Path):
 
 
 # ---------------------------------------------------------------- 表格 → 事实
-def facts_from_rows(rows):
-    """从原生表格行提 (label, value, unit)。支持三列式与多列扫描式。"""
+def facts_from_rows(rows, section_map=None):
+    """从原生表格行提 (label, value, unit)。支持三列式与多列扫描式。
+
+    section_map: {row 号: 章节名}，给每条 fact 记章节归属（分片索引用）。
+    """
     out = []
     for r in rows:
         # 不依赖上游是否清洗：这里再过一次 _clean（幂等）
@@ -206,14 +209,46 @@ def facts_from_rows(rows):
             elif re.fullmatch(_UNIT_RE, cells[i] or "") and i > 1:
                 unit = cells[i]
             out.append({"label": label, "value": v, "unit": unit,
-                        "form": "table", "where": r.get("raw", "")[:120]})
+                        "form": "table", "where": r.get("raw", "")[:120],
+                        "section": (section_map or {}).get(r.get("row"))})
             break
     return out
 
 
-def facts_from_text(text):
+def _line_sections(text):
+    """返回 {line_no(1-based): section_name}，用 MD 标题行切分。"""
+    m = {}
+    cur = None
+    for i, line in enumerate((text or "").splitlines(), start=1):
+        s = line.strip()
+        if s.startswith("#"):
+            cur = _clean(s.lstrip("#").strip())
+        m[i] = cur
+    return m
+
+
+def _section_spans(text):
+    """返回 [(start_offset, section_name)]，用于把 fact 归到所在章节。"""
+    spans = []
+    for m in re.finditer(r"^#{1,4}\s+(.+)$", text or "", re.M):
+        spans.append((m.start(), _clean(m.group(1))))
+    return spans
+
+
+def _section_at(spans, pos):
+    cur = None
+    for st, name in spans:
+        if st <= pos:
+            cur = name
+        else:
+            break
+    return cur
+
+
+def facts_from_text(text, want_section=True):
     """从叙述文本提「X 为/=/： Y 单位」（中文）+「X: Y unit」（英文/PDF 常见）。"""
     out = []
+    spans = _section_spans(text) if want_section else []
     # 英文/混合：Label: 1234 unit  /  Label 1234 unit
     en = re.compile(
         r"([A-Za-z][A-Za-z0-9 /_\-]{2,40}?)\s*(?::|\bis\b|\bof\b)?\s*(" + _NUM + r")\s*"
@@ -224,7 +259,8 @@ def facts_from_text(text):
             continue
         out.append({"label": label, "value": _num(m.group(2)),
                     "unit": (m.group(3) or "").strip(), "form": "inline_en",
-                    "where": text[max(0, m.start() - 15):m.end() + 10].replace("\n", " ")})
+                    "where": text[max(0, m.start() - 15):m.end() + 10].replace("\n", " "),
+                    "section": _section_at(spans, m.start()) if want_section else None})
     pat = re.compile(
         r"([\u4e00-\u9fa5A-Za-z0-9·\-（）()/]{2,28}?)\s*(?:为|=|：|:)\s*\**(" + _NUM + r")\**\s*(" + _UNIT_RE + r")?"
     )
@@ -234,7 +270,8 @@ def facts_from_text(text):
             continue
         out.append({"label": label, "value": _num(m.group(2)),
                     "unit": (m.group(3) or "").strip(), "form": "inline",
-                    "where": (text[max(0, m.start() - 20):m.end() + 10]).replace("\n", " ")})
+                    "where": (text[max(0, m.start() - 20):m.end() + 10]).replace("\n", " "),
+                    "section": _section_at(spans, m.start()) if want_section else None})
     return out
 
 
@@ -242,7 +279,10 @@ def facts_from_text(text):
 def to_provided_facts(path: str | Path, *, as_of: str = "",
                       default_caliber: str = "客户提供") -> dict:
     text, rows, meta, kind = read_any(path)
-    tf = facts_from_rows(rows)
+    # 表格行 → 章节归属（MD/CSV 的 row 是文件行号；docx/xlsx/pdf 的 row 是表内行号，映射不到章节）
+    _ls = _line_sections(text) if kind in ("md", "text", "txt", "markdown") else {}
+    _sec_map = {r.get("row"): _ls.get(r.get("row")) for r in rows} if _ls else {}
+    tf = facts_from_rows(rows, section_map=_sec_map)
     inf = facts_from_text(text)
     allf = tf + inf
 
@@ -263,7 +303,8 @@ def to_provided_facts(path: str | Path, *, as_of: str = "",
         if not u2:
             warnings.append({"label": lab, "issue": "单位缺失", "where": it.get("where", "")[:80]})
         rec = {"label": lab, "value": v2, "unit": u2, "caliber": default_caliber,
-               "as_of": as_of, "kind": "provided"}
+               "as_of": as_of, "kind": "provided",
+               "section": it.get("section")}
         if note:
             rec["unit_conversion"] = note
         provided.append(rec)

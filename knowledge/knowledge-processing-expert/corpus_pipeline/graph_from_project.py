@@ -34,8 +34,14 @@ except ImportError:
 
 
 def _load(p: Path):
+    try:
+        from corpus_pipeline.fastload import load as _fl
+    except Exception:
+        _fl = None
     if not p.exists():
         return None
+    if _fl is not None:
+        return _fl(p)
     raw = p.read_text(encoding="utf-8")
     try:
         return json.loads(raw)
@@ -77,6 +83,8 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
             "source": n.get("source") or n.get("evidence") or "E1",
             "section": "§" + str(n.get("section") or pmeta.get("section") or "?").lstrip("§"),
             "status": st,
+            "lifecycle_state": "active",
+            "mapping": None,          # 口径锚定（由 fsm 回填，见下）
         }
         if n.get("rule"):
             f["rule"] = n["rule"]
@@ -109,17 +117,45 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
             "formula": str(r.get("expr") or ""),
             "result": node["value"] if node else None,
             "desc": "%s → %s" % (rid, tgt),
-            "inputs": [fact_id[d] for d in deps if d in fact_id],
+            # deps 可能是「P-xxxx」节点 id（instantiate 已解析），也可能是事实名
+            "inputs": [d if str(d).startswith("P-") else fact_id.get(d)
+                       for d in deps
+                       if (str(d).startswith("P-") or d in fact_id)],
             "deps_labels": deps,
             "output": node["id"] if node else None,
             "section": node["section"] if node else "§?",
         })
 
+    # ---------------- 口径锚定回填（借 EvoOntology 的 Mapping 思想）----------------
+    _fsm = None
+    try:
+        _fsm_path = Path(__file__).resolve().parent.parent / "corpus-library" / "fact_source_map.yaml"
+        for cand in (pd / "fact_source_map.yaml", pd.parent / "形-可复用知识资产-v1.0" / "ontology" / "fact_source_map.yaml"):
+            if cand.exists():
+                _fsm = _load(cand); break
+    except Exception:
+        _fsm = None
+    if _fsm:
+        _map = {f["fact"]: (f.get("mapping") or {}) for f in (_fsm.get("facts") or [])}
+        for f in facts:
+            m = _map.get(f["subject"])
+            if m and m.get("canonical"):
+                f["mapping"] = {k: m.get(k) for k in ("calibers", "default", "semantic_filter", "grain")}
+                f["caliber"] = m.get("default")
+
     # ---------------- conflicts ----------------
     conflicts = []
+    try:
+        from corpus_pipeline.caliber_check import classify_conflict as _cc
+    except Exception:
+        _cc = None
     for i, c in enumerate(gate.get("replay_conflicts") or [], start=1):
+        _cj = _cc(str(c.get("subject")), c.get("provided"), c.get("recomputed"), _fsm) if _cc else {}
         conflicts.append({
-            "id": "CF%d" % i, "type": "数字一致性",
+            "id": "CF%d" % i,
+            "type": "口径差异" if (_cj.get("kind") == "caliber_difference") else "数字一致性",
+            "caliber_verdict": _cj.get("kind"),
+            "caliber_reason": _cj.get("reason"),
             "severity": "高" if abs(float(c.get("recomputed") or 0) - float(c.get("provided") or 0)) > 100 else "中",
             "status": "待审",
             "description": "%s：客户提供 %s，规则重算 %s，差 %s。%s" % (
@@ -146,13 +182,55 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
     }]
 
     # ---------------- entities / relations ----------------
-    entities = [{"id": "PRJ", "name": meta.get("title") or pmeta.get("title") or "项目",
-                 "type": "Project", "source": "§1.1"}]
+    # 实体从领域词典推导（不用正则抠碎片，见 entity_derivation.py）
+    _ent_rels = []
+    rels = _load(pd / "graph" / "relations.yaml") or []     # 可能不存在（轻量路径不建关系）
+
+    # 分片能力探测（一次，写进图元信息，写作侧不必再探）
+    _shard_status = {"available": False}
+    try:
+        from corpus_pipeline.shard_index import assert_shardable, NotShardable
+        _r = assert_shardable(pd)
+        _shard_status = {"available": True, "mode": "shard",
+                         "sections": _r["sections"],
+                         "unassigned_ratio": _r["unassigned_ratio"]}
+    except Exception as _e:
+        _shard_status = {"available": False, "mode": "full_fallback",
+                         "reason": str(_e)[:160]}
+    from corpus_pipeline.entity_derivation import derive as _derive_ent
+    _m = {"title": meta.get("title") or pmeta.get("title") or "项目"}
+    entities, _ent_rels = _derive_ent(facts, rules, rels, _m)
+
+    # ---------------- relations（函数关系 = inputs → output）----------------
+    relations = list(_ent_rels or [])   # 先并入实体关系（has_part / measured_by / bounded_by）
+    for i, r in enumerate(reasoning, start=1):
+        out = r.get("output")
+        if not out:
+            continue
+        for src in (r.get("inputs") or []):
+            relations.append({
+                "id": "RL%03d" % (len(relations) + 1),
+                "from": src, "to": out, "type": "computed_from",
+                "subject": r.get("rule_id"),
+                "payload": {"rule_id": r.get("rule_id"), "formula": r.get("formula"),
+                            "result": r.get("result")},
+                "source": {"kind": "derivation"},
+            })
+        # 同一规则多输入时补一条聚合边，便于图查询
+        if len(r.get("inputs") or []) > 1:
+            relations.append({
+                "id": "RL%03d" % (len(relations) + 1),
+                "from": "PRJ",
+                "to": out, "type": "produces",
+                "subject": r.get("rule_id"),
+                "payload": {"rule_id": r.get("rule_id"), "input_count": len(r["inputs"])},
+                "source": {"kind": "derivation"},
+            })
 
     # ---------------- claims / validations ----------------
     claims, validations = [], []
     computed = [f for f in facts if f.get("status") == "computed"]
-    for i, f in enumerate(computed[:5], start=1):
+    for i, f in enumerate(computed, start=1):   # A4：全量产出 claim，不再只取前 5 个
         cid = "CL%d" % i
         rid = rule_of_target.get(f["subject"], "")
         st = "contradicted" if any(f["subject"] in c["description"] for c in conflicts) else "unverified"
@@ -186,9 +264,11 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
             "compiled_at": meta.get("compiled_at") or "",
             "compiled_by": "corpus_pipeline.graph_from_project",
             "based_on": pmeta.get("based_on") or {},
+            # 分片能力在编译时就记录下来，写作侧不用再探一次
+            "shard": _shard_status,
         },
         "items": {
-            "entities": entities, "relations": [],
+            "entities": entities, "relations": relations,
             "facts": facts, "reasoning": reasoning,
             "claims": claims, "evidence": evidence,
             "conflicts": conflicts, "validations": validations,

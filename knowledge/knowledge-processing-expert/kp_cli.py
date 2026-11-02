@@ -96,6 +96,215 @@ def cmd_enrich(a):
     return 0
 
 
+def cmd_release_check(a):
+    """发版检查清单（全绿才许打包）。失败退出码 1。"""
+    import hashlib, json, subprocess
+    import yaml
+    from pathlib import Path
+    root = Path(a.dir)
+    fails, notes = [], []
+
+    # ① manifest 存在且 status=validated
+    #    无 manifest = 项目工作目录（轻量产物），不是待发布资产 → 不适用，非失败
+    mp = root / "manifest.yaml"
+    if not mp.exists():
+        print("  ⊘ 不适用：%s 无 manifest.yaml" % root)
+        print("    这是项目工作目录（轻量产物），不是待发布的资产包。")
+        print("    发版检查只对「形包」与「语料包」有意义。")
+        return 0
+    m = yaml.safe_load(mp.read_text(encoding="utf-8")) or {}
+    if m.get("status") not in ("validated", "published"):
+        fails.append("manifest.status=%r（需 validated 或 published）" % m.get("status"))
+    notes.append("版本 v%s / 状态 %s" % (m.get("version"), m.get("status")))
+
+    # ② changelog 首条版本 == manifest.version
+    cl = m.get("changelog") or []
+    if cl and str(cl[-1].get("version")) != str(m.get("version")):
+        fails.append("changelog 末条 v%s ≠ manifest v%s" % (cl[-1].get("version"), m.get("version")))
+    elif not cl:
+        fails.append("changelog 为空")
+
+    # ③ 项目数值终检 —— **只对形包生效**
+    #    判据：manifest.declaration 含 "shape_only"（形包），或显式 --shape-only
+    decl = str(m.get("declaration") or "")
+    is_shape = ("shape_only" in decl) or a.shape_only
+    if is_shape:
+        BAD = ["13032", "18319", "11188", "18000", "2019ZX054", "上海财经", "中山北一路", "同济工程"]
+        hits = {}
+        for f in root.rglob("*.yaml"):
+            txt = f.read_text(encoding="utf-8")
+            h = [b for b in BAD if b in txt]
+            if h:
+                hits[str(f.relative_to(root))] = h
+        if hits:
+            fails.append("形包含项目专名/数值: %s" % list(hits)[:3])
+        else:
+            notes.append("形包项目数值 0 处")
+    else:
+        notes.append("语料包（含项目数据属正常，跳过数值终检）")
+
+    # ④ 引用闭合（FILE-INDEX 的 to.file 必须存在）
+    fi = root / "FILE-INDEX.yaml"
+    if fi.exists():
+        d = yaml.safe_load(fi.read_text(encoding="utf-8")) or {}
+        files = set((d.get("files") or {}).keys())
+        bad = [r["no"] for r in (d.get("reference_graph") or [])
+               if r.get("to", {}).get("file") not in ("(无)", "(全部文件)", None)
+               and r["to"]["file"] not in files]
+        if bad:
+            fails.append("FILE-INDEX 悬空引用: %s" % bad)
+        else:
+            notes.append("引用闭合 0 悬空")
+
+    # ⑤ doc_facts 自检
+    try:
+        from corpus_pipeline.doc_facts import self_test
+        self_test()
+        notes.append("doc_facts 自检通过")
+    except AssertionError as e:
+        fails.append("doc_facts 自检失败")
+
+    # ⑥ 分片索引新鲜度（索引 mtime 必须 >= 源文件）
+    shard_idx = root / "shards" / "index.json"
+    nodes_yaml = root / "graph" / "nodes.yaml"
+    if shard_idx.exists() and nodes_yaml.exists():
+        if shard_idx.stat().st_mtime < nodes_yaml.stat().st_mtime:
+            fails.append("shards/index.json 比 graph/nodes.yaml 旧（需重跑 shard build）")
+        else:
+            notes.append("分片索引新鲜（>= nodes.yaml）")
+    elif nodes_yaml.exists() and not shard_idx.exists():
+        notes.append("分片索引未建（可选；建了写作侧快 800 倍）")
+
+    # ⑦ skill 渐进式披露
+    try:
+        from corpus_pipeline.check_skill_disclosure import check_one
+        for s in a.skills or []:
+            r = check_one(s)
+            if not r.get("pass") and not r.get("error"):
+                fails.append("skill %s 超披露阈值" % s)
+    except Exception:
+        pass
+
+    print("  发版检查: %s" % root)
+    for n in notes:
+        print("    ✓ %s" % n)
+    if fails:
+        for f in fails:
+            print("    ✗ %s" % f, file=sys.stderr)
+        return 1
+    print("  ✓ 全部通过，可打包")
+    return 0
+
+
+def cmd_shard(a):
+    """建分片索引（browse/resolve 两段式取数）。"""
+    from corpus_pipeline.shard_index import build, browse, resolve
+    if a.action == "build":
+        r = build(a.dir)
+        print("  分片: %d 节 / %d 域 / %d 类 / 共写 %d 个分片"
+              % (r["sections"], r["domains"], r["kinds"], r["shards_written"]))
+        print("  索引大小: %d B（browse 只读这个）" % r["index_size"])
+    elif a.action == "browse":
+        idx = browse(a.dir)
+        if idx.get("error"):
+            print("  ✗", idx["error"], "→", idx.get("hint")); return 1
+        print("  节点 %d / 关系 %d / 规则 %d"
+              % (idx["counts"]["nodes"], idx["counts"]["relations"], idx["counts"]["rules"]))
+        for dim in ("by-section", "by-domain", "by-kind"):
+            items = (idx.get(dim) or {})
+            print("  %-12s %d 项" % (dim, len(items)))
+        for name, e in sorted((idx.get("by-section") or {}).items(),
+                              key=lambda x: -(x[1].get("count") or 0))[:10]:
+            print("     %-12s %4d 节点 / %d 关系" % (name, e["count"],
+                  (e.get("relations") or {}).get("count", 0)))
+    elif a.action == "inverted":
+        from corpus_pipeline.shard_index import build_inverted, browse_inverted
+        st = build_inverted(a.dir)
+        print("  倒排索引已建（不依赖章节）:")
+        for k, v in st.items():
+            print("    %-14s %d 个键" % (k, v))
+        return 0
+    elif a.action == "query":
+        from corpus_pipeline.shard_index import query as _q
+        r = _q(a.dir, unit=a.unit, label_prefix=a.label_prefix, kind=a.kind, rule=a.rule)
+        print("  命中 %d 条：" % len(r))
+        for x in r[:20]:
+            print("    %-26s %-10s %s" % (str(x.get("label"))[:26], x.get("value"), x.get("unit") or ""))
+        return 0
+    elif a.action == "closure":
+        from corpus_pipeline.shard_index import resolve_closure
+        if not a.rule:
+            print("  需要 --rule R-xxx", file=sys.stderr); return 2
+        r = resolve_closure(a.dir, a.rule)
+        print("  %s → 节点 %d / 边 %d / 深度 %d"
+              % (a.rule, len(r["nodes"]), len(r["edges"]), r["depth"]))
+        for x in r["nodes"][:20]:
+            print("    %-26s %-10s %s" % (str(x.get("label"))[:26], x.get("value"), x.get("unit") or ""))
+        return 0
+    elif a.action == "resolve":
+        r = resolve(a.dir, section=a.section, domain=a.domain, kind=a.kind,
+                    with_relations=a.with_relations, with_rules=a.with_rules)
+        if isinstance(r, dict):
+            print("  节点 %d / 关系 %d / 规则 %d"
+                  % (len(r["nodes"]), len(r.get("relations") or []), len(r.get("rules") or [])))
+        else:
+            print("  取到 %d 条" % len(r))
+    return 0
+
+
+def cmd_warm(a):
+    """预热 YAML→JSON 缓存。首次慢，之后快 500+ 倍。"""
+    from corpus_pipeline.fastload import load, clear
+    from pathlib import Path
+    root = Path(a.dir)
+    if a.clear:
+        n = clear(root)
+        print("  已清除 %d 个缓存文件" % n)
+        return 0
+    files = sorted(root.rglob("*.yaml"))
+    if a.only:
+        files = [f for f in files if a.only in str(f)]
+    print("  预热 %d 个 yaml 文件..." % len(files))
+    import time
+    tot = 0.0
+    for f in files:
+        t0 = time.time(); load(f); d = time.time() - t0
+        tot += d
+        if d > 0.5 or a.verbose:
+            print("    %-46s %7.2f s" % (str(f.relative_to(root))[:46], d))
+    print("  总耗时 %.1f s（之后重读约 0.1 s）" % tot)
+    return 0
+
+
+def cmd_verify(a):
+    """跑 13 条闭环门禁 S0–S11（stage_gate）。"""
+    from corpus_pipeline.stage_gates import run_stage_gates, save_stage_gates
+    r = run_stage_gates(a.project_dir,
+                        draft_path=a.draft, source_md=a.source,
+                        source_docx=a.docx)
+    gates = r.get("gates") or r.get("stages") or []
+    # _gate 返回的判定字段是 verdict: invalid / pass / FAIL
+    def _v(g):
+        return str(g.get("verdict") or g.get("status") or "").lower()
+    npass = sum(1 for g in gates if _v(g) == "pass")
+    ninv = sum(1 for g in gates if _v(g) == "invalid")
+    nfail = len(gates) - npass - ninv
+    print("  闭环门禁: %d 条  pass %d / FAIL %d / invalid %d"
+          % (len(gates), npass, nfail, ninv))
+    for g in gates:
+        v = _v(g)
+        mark = {"pass": "✓", "fail": "✗", "invalid": "⊘"}.get(v, "?")
+        miss = g.get("missing") or []
+        why = ("缺 %d 项: %s" % (len(miss), ", ".join(str(x) for x in miss[:3]))
+               if miss else (g.get("note") or ""))
+        print("  %s %-4s %-24s %5.1f%%  %s"
+              % (mark, g.get("stage") or "?", g.get("gate") or "", g.get("recall_pct") or 0, why[:60]))
+    if not a.dry_run:
+        save_stage_gates(a.project_dir, r)
+        print("  → 已落盘 quality/stage_gates.yaml")
+    return 1 if (nfail or ninv) else 0
+
+
 def cmd_selftest(a):
     """正则回归自检：反例优先，失败即退出码非 0（不阻断建图，但能挡住代码回归）。"""
     from corpus_pipeline.doc_facts import self_test
@@ -167,6 +376,39 @@ def main(argv=None):
     en.add_argument("project_dir")
     en.add_argument("--dry-run", action="store_true", help="只统计不写盘")
     en.set_defaults(fn=cmd_enrich)
+
+    rc = sub.add_parser("release-check", help="发版检查（全绿才许打包）")
+    rc.add_argument("dir")
+    rc.add_argument("--skills", nargs="*", help="顺带检查这些 skill 的披露阈值")
+    rc.add_argument("--shape-only", action="store_true", help="强制按形包检查（项目数值必须为 0）")
+    rc.set_defaults(fn=cmd_release_check)
+
+    sh = sub.add_parser("shard", help="分片索引：build 建 / browse 看目录 / resolve 按需取")
+    sh.add_argument("action", choices=["build", "browse", "resolve", "inverted", "query", "closure"])
+    sh.add_argument("dir")
+    sh.add_argument("--section")
+    sh.add_argument("--domain")
+    sh.add_argument("--kind")
+    sh.add_argument("--with-relations", action="store_true")
+    sh.add_argument("--with-rules", action="store_true")
+    sh.add_argument("--unit"); sh.add_argument("--label-prefix")
+    sh.add_argument("--rule")
+    sh.set_defaults(fn=cmd_shard)
+
+    wm = sub.add_parser("warm", help="预热 YAML→JSON 缓存（首次慢，之后快 500+ 倍）")
+    wm.add_argument("dir")
+    wm.add_argument("--only", help="只预热路径含此子串的文件")
+    wm.add_argument("--clear", action="store_true", help="清除缓存")
+    wm.add_argument("--verbose", action="store_true")
+    wm.set_defaults(fn=cmd_warm)
+
+    vf = sub.add_parser("verify", help="跑 13 条闭环门禁 S0–S11（stage_gate）")
+    vf.add_argument("project_dir")
+    vf.add_argument("--draft", help="草稿 md 路径（用于 S11 题注检查）")
+    vf.add_argument("--source", help="原稿 md 路径（用于 S0/S1 对账）")
+    vf.add_argument("--docx", help="原稿 docx 路径（用于 S0 表数对账）")
+    vf.add_argument("--dry-run", action="store_true")
+    vf.set_defaults(fn=cmd_verify)
 
     st = sub.add_parser("selftest", help="正则与分类回归自检（失败退出码非 0）")
     st.set_defaults(fn=cmd_selftest)

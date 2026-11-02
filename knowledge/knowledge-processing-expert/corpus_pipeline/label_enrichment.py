@@ -30,8 +30,14 @@ _COEF = ("率", "系数", "指标")
 
 
 def _load(p: Path):
+    try:
+        from corpus_pipeline.fastload import load as _fl
+    except Exception:
+        _fl = None
     if not p.exists():
         return None
+    if _fl is not None:
+        return _fl(p)
     raw = p.read_text(encoding="utf-8")
     try:
         return json.loads(raw)
