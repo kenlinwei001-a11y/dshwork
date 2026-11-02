@@ -240,8 +240,11 @@ export class SkillManager extends Service implements SkillManagementService {
         try { if (!await this.isSafeManagedFile(path)) continue; registeredFiles.add(await realpath(path)); }
         catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT' || (error as Error).message === 'skill/path-symlink') continue; throw error; }
       }
+      const base = skill.resourceBase;
+      const frozen = !manageable && base?.kind === 'directory' && inside(this.retainedRoot(), join(base.path, 'SKILL.md'));
       rows.push({ name: skill.name, description: skill.description, whenToUse: skill.whenToUse,
-        modelInvocable: skill.invocation.modelInvocable, state: manageable ? 'enabled' : 'readonly', manageable });
+        modelInvocable: skill.invocation.modelInvocable, state: manageable ? 'enabled' : 'readonly', manageable,
+        ...(frozen ? { frozen: true } : {}) });
     }
     for (const root of this.activeRoots) {
       await mkdir(root, { recursive: true });
@@ -694,6 +697,7 @@ export class SkillManager extends Service implements SkillManagementService {
     const readonlyDetail: ManagedSkillDetail = {
       name: definition.name, description: definition.description, whenToUse: definition.whenToUse,
       modelInvocable: definition.invocation.modelInvocable, state: 'readonly', manageable: false, resources: [],
+      ...(definition.path && inside(this.retainedRoot(), definition.path) ? { frozen: true } : {}),
     };
     if (!definition.path) return readonlyDetail;
     const active = await this.managedEntryForPath(definition.path);

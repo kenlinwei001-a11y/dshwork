@@ -52,7 +52,7 @@ import type {
   ResourceOwner,
   SkillRevisionRef,
 } from 'workdsh-contracts';
-import type { SkillManagementService } from 'workdsh-contracts/skills';
+import type { SkillDependency, SkillManagementService } from 'workdsh-contracts/skills';
 import { expertsDomainSpec, keys } from '../storage/domain.js';
 import { COMPILER_VERSION, compileExpertPreset, presetIdFor, verifyPackageFiles } from '../runtime/preset-compiler.js';
 import { ConfirmationStore } from '../runtime/confirmation.js';
@@ -254,6 +254,10 @@ export class ExpertsManager extends Service implements ExpertsService {
     this.bindings = domain.table('bindings');
     this.preferences = domain.table('preferences');
     this.operations = domain.table('operations');
+    this.ctx.effect(
+      () => this.ctx.workdshSkills.registerDependencyInspector(async name => this.skillDependents(name)),
+      'workdshExperts.skillDependents',
+    );
     for (const [, revision] of this.revisions.entries()) {
       if (revision.compilerVersion !== COMPILER_VERSION) continue;
       try {
@@ -723,6 +727,27 @@ export class ExpertsManager extends Service implements ExpertsService {
     return requirements.map(req => catalog.find(skill => skill.skillId === (req.skillId ?? req.name)) ?? {
       skillId: req.skillId ?? req.name, name: req.name, description: '该技能当前不在已安装目录中。', state: 'missing', selectable: false,
     });
+  }
+
+  /**
+   * Published experts that freeze this skill. The skills page reads this through
+   * the shared dependency-inspector seam so editing a source skill can warn that
+   * a republish — not the edit itself — is what updates expert tasks.
+   */
+  async skillDependents(skillId: string): Promise<SkillDependency[]> {
+    const rows = new Map<string, SkillDependency>();
+    for (const [, expert] of this.expertsTable().entries()) {
+      if (expert.teamParentId) continue;
+      const ref = expert.publishedRevisionRef;
+      if (!ref) continue;
+      let revision: ExpertRevision;
+      try { revision = this.loadRevision(ref.expertId, ref.revisionId); }
+      catch { continue; }
+      if (!revision.dependencyLock.some(item => item.skillId === skillId || item.name === skillId)) continue;
+      const draft = this.draftsTable().get(keys.draft(expert.id));
+      rows.set(expert.id, { kind: 'expert', id: expert.id, label: draft?.definition.name ?? expert.id, blocking: true });
+    }
+    return [...rows.values()].sort((a, b) => a.label.localeCompare(b.label));
   }
 
   async list(actor: ActorContext, query: ExpertListQuery, signal?: AbortSignal): Promise<ExpertListResult> {
