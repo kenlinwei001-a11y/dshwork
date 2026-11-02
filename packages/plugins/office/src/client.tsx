@@ -1,7 +1,7 @@
 import {createOfficeOriginalSaveChannel} from './original-save-channel.js';
 import React from "react";
 import { createRoot } from "react-dom/client";
-import editorHtml from "./editor.html";
+import { loadEditorHtml } from './editor-html.js';
 import {downloadPdf} from "./pdf/download.js";
 import {downloadHtml} from "./html/preview.js";
 import {createPresentationModel} from "./presentation/client-model.js";
@@ -63,7 +63,10 @@ export function apply(ctx: Context): void {
         if(event.data?.type==='workdsh-office-ready')frame.contentWindow?.postMessage({type:'workdsh-office-open',extension:'xlsx',bytes:input.bytes.slice(),saveToOwner:!!channel},'*');
         void channel?.handle(event.source,event.data);
       };
-      window.addEventListener("message", ready); frame.srcdoc = editorHtml; target.append(frame);
+      target.append(frame); window.addEventListener("message", ready);
+      void loadEditorHtml().then(html => { if (active) frame.srcdoc = html; }).catch(() => {
+        if (active) frame.srcdoc = '<!doctype html><meta charset="utf-8"><p style="font:14px sans-serif;padding:24px">Office 编辑器加载失败，请重试。</p>';
+      });
       return () => { active=false;channel?.dispose();window.removeEventListener("message", ready); frame.remove(); };
     }
     if (input.kind === "docx") {
