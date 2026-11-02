@@ -1,6 +1,6 @@
 ---
 name: graph-deductive-writing-skill
-description: "基于语义图谱的推演式分析写作：输入图谱 JSON（entities/relations/facts/reasoning/claims/evidence/conflicts/validations），沿推理链前向推演派生结论，每条论断绑定证据与溯源链，输出可反向回读的 Word 报告（.docx）。事实单源存储、跨章节自动传播、冲突一律「待审」、客户改稿可反向回读。触发：基于图谱的推演写作/图谱驱动写报告/推演式写作、把语义图谱写成分析报告、或改稿回读与数字矛盾核查时。上游建图由 document-parsing / fact-extraction / semantic-graph-compilation 等 skill 完成。"
+description: "基于语义图谱的推演式分析写作：输入图谱 JSON（entities/relations/facts/reasoning/claims/evidence/conflicts/validations），沿推理链前向推演派生结论，每条论断绑定证据与溯源链，输出可反向回读的 Word 报告（.docx）。事实单源存储、跨章节自动传播、冲突一律「待审」、客户改稿可反向回读。触发：基于图谱的推演写作/图谱驱动写报告/推演式写作、把语义图谱写成分析报告、或改稿回读与数字矛盾核查时。上游建图由 document-parsing / fact-extraction / semantic-graph-compilation 等 skill 完成。不适用：没有语义图谱、或只需单篇摘要/普通润色时。"
 ---
 
 # 基于图谱的推演写作（Graph Deductive Writing）
@@ -13,15 +13,9 @@ description: "基于语义图谱的推演式分析写作：输入图谱 JSON（e
 
 ## 何时使用
 
-- 输入是 `semantic-graph-compilation-skill` 的编译产物（语义图谱 JSON，含八类节点）。
-- 用户要求「基于图谱的推演写作」「图谱驱动写报告」「把语义图谱写成分析报告」。
-- **用户直接给出 Word / Excel / PDF / Markdown 的项目材料**（尚未编译成图谱）——
-  先执行「阶段 -1：从原始材料建图」，产出 graph.json 后进入阶段 0。
-- 用户提供一份语义图谱 / 本体图谱，要求撰写、修改、审校、核查数字前后矛盾或反向回读。
-- 需要一份「结论先行、每句可溯源、冲突待审」的 Word 分析报告。
-
-不适用：图谱尚未构建（先走建图 pipeline）；非推演性的自由写作（用 workdsh-word-design 即可）。
-
+- 调用条件：已有 semantic-graph-compilation-skill 产出的语义图谱 JSON（八类节点）；或用户直接给出项目材料（先走阶段 -1 建图）。
+- 典型请求：基于图谱的推演写作｜图谱驱动写报告｜把语义图谱写成分析报告｜改稿回读与数字矛盾核查。
+- 不要在此调用：图谱尚未构建（先建图）；非推演性自由写作（用 workdsh-word-design）。
 ## 输入契约
 
 输入语义图谱的完整字段定义见 `references/semantic-graph-schema.md`。要点：
@@ -205,27 +199,43 @@ hypothesis 写成既成事实 → 「施工将影响师生出行」应为「若�
 见 `references/五阶段依赖与门禁.md`。摘要：阶段 0→5 单向依赖，
 **后一阶段不许回改前一阶段的输出**；每阶段有独立门禁，不过不进下一阶段。
 
-## 与既有 skill 的组合
+## 拿到「形」包后的读取顺序（3 步，照做）
 
-- **上游**（建图，不在本 skill 内）：document-parsing-skill → sentence-segmentation-skill →
-  entity/fact/relation/claim/reasoning/evidence-extraction-skill → ontology-resolution-skill →
-  semantic-graph-compilation-skill。
-- **本 skill 编排**：claim-validation-skill、conflict-detection-skill、claim-evidence-binding-skill、
-  provenance-binding-skill 用于推演校验与溯源。
-- **下游**：workdsh-word-design（版式与体裁）、plate_*（实时编辑）、content_*（DOCX 导出）。
-- **领域引擎**：feasibility-report-edu-research 等特定领域报告是本 skill 的领域化实例；本 skill 是通用引擎。
+**按这个顺序读，不要先读 42 个文件。**
 
-## 边界与禁忌
+```
+第 1 步  00-START-HERE.md        4.8 KB   3 分钟
+         读它 → 知道包是什么、按什么顺序读、三条铁律
 
-- **建图边界（已更新）**：本 skill 负责「原始材料 → 结构化事实 → 图谱」这一段的
-  **工程化转换**（`doc_facts` / `instantiate_project` / `graph_from_project`），
-  见「阶段 -1」。但**不做深度语义抽取**：长段落里的隐性事实、跨段推理、
-  专名消歧仍应由 `document-parsing-skill` / `fact-extraction-skill` /
-  `entity-resolution-skill` 完成，本 skill 不越界代劳。
-- 不自动裁决冲突：conflicts 一律以「待审」呈现，不补数字、不改口径来「凑平」。
-- 不捏造事实：只能重组/计算已有事实；派生结论必须能由 formula 反推并绑定证据。
-- 不丢弃溯源：回读改稿时不得丢失溯源链，未溯源改动须显式标注。
+第 2 步  TOOLS.yaml              4.2 KB   5 分钟
+         **形包不含代码**；8 个外部工具的调用契约与降级方案
+         写作侧只用 4 个：section_prompt_builder / shard_index / fastload / caliber_check
 
+第 3 步  FILE-INDEX.yaml        16.5 KB   查的时候读
+         每个文件有什么、主键、谁引用谁（15 条）；用 grep 查，不通读
+```
+
+### 三步之后的取数方式（已下沉）
+
+**三个最常用调用见 `references/取数三件套.md`**（可直接复制）：
+`build_prompt` 生成章节提示词 / `resolve` 按需取数 / `classify_conflict` 判口径。
+### 三个工具不可用时怎么办（已下沉）
+
+完整降级方案见 `references/工具降级方案.md`。**每个工具都要有 fallback，静默降级最危险。**
+### 形包里有什么（已下沉）
+
+42 个文件的分布见 `references/形包结构速查.md`。**0 处项目数值 · 0 行代码（工具在运行环境）。**
+## 与既有 skill 的组合（已下沉）
+
+见 `references/与既有skill的组合.md`。**一句话**：建图（knowledge-processing）→
+读包（knowledge-asset-consumption）→ 写作（本 skill），三者不重叠。
+## 边界与不适用
+
+- 不做：不越界做深度语义抽取（隐性事实、跨段推理、专名消歧交 document-parsing / fact-extraction / entity-resolution）。
+- 不做：不自动裁决冲突，conflicts 一律「待审」，不补数字、不改口径凑平。
+- 不做：不捏造事实，派生结论必须能由 formula 反推并绑定证据。
+- 不做：不丢弃溯源，未溯源改动必须显式标注。
+- 缺输入：没有 graph.json 且用户未给材料时，先要材料或先建图，不臆造节点。
 ## 资源清单
 
 - `scripts/validate_graph.py` — 图谱确定性校验（结构 + 悬空引用），写作前必跑。

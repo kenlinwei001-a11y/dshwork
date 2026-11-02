@@ -1,6 +1,6 @@
 ---
 name: entity-extraction-skill
-description: "从文本中抽取企业、基地、车间、产线、客户、材料、供应商等实体及其 mention。"
+description: "抽取企业、基地、车间、产线、客户、材料、供应商等实体及其 mention。触发：把文中出现的公司和供应商列出来、有哪些产线与材料、抽取所有实体。不适用：同名消歧（entity-resolution）、本体类型归属（ontology-resolution）。"
 ---
 
 # Entity Extraction Skill
@@ -11,22 +11,13 @@ SK-03
 ## Purpose
 从文本中抽取企业、基地、车间、产线、客户、材料、供应商等实体及其 mention。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：把文中出现的公司和供应商列出来｜有哪些产线与材料｜抽取所有实体
+- 不要在此调用：同名消歧（entity-resolution）、本体类型归属（ontology-resolution）
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：不推断文中未出现的实体
+- 不做：不合并别名，保留 mention 原文与位置
+- 缺输入：先有 Sentence 或 Chunk

@@ -1,0 +1,30 @@
+{
+  "run_id": "AR-202203001-01",
+  "report_id": "202203001",
+  "standard_id": "HJ 636-2012",
+  "rule_id": "ARC-C1-01-02",
+  "category": "C1",
+  "verdict": "PASS",
+  "target": {
+    "doc_id": "D06",
+    "page": 2,
+    "block_id": "tbl-02-r3-c4",
+    "char_start": 180,
+    "char_end": 184,
+    "quote": "0.9992",
+    "method": "table_cell",
+    "status": "LOCATED"
+  },
+  "clause_anchor": {
+    "clause": "11.2",
+    "page": 11,
+    "quote": "校准曲线的相关系数γ≥0.995"
+  },
+  "observed": {
+    "field": "校准曲线相关系数",
+    "value": 0.9992,
+    "unit": "1"
+  },
+  "message": "原始记录 r=0.9992 ≥ 0.995",
+  "suggestion": null
+}

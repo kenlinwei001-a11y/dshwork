@@ -1,6 +1,6 @@
 ---
 name: document-parsing-skill
-description: "将 PDF/DOCX/XLSX/PPTX/扫描件解析为统一 Document IR，并保留页码、段落、表格和原文定位信息。"
+description: "把 PDF/DOCX/XLSX/PPTX/扫描件解析为统一 Document IR，保留页码、段落、表格与原文定位。触发：解析这份 PDF/Word、把扫描件转成可检索文本、批量导入文档建库。不适用：抽取实体或事实（走 entity-extraction / fact-extraction）。"
 ---
 
 # Document Parsing Skill
@@ -11,22 +11,13 @@ SK-00
 ## Purpose
 将 PDF/DOCX/XLSX/PPTX/扫描件解析为统一 Document IR，并保留页码、段落、表格和原文定位信息。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-输出必须包含稳定 ID、来源定位（provenance）以及与上下游对象的关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：解析这份 PDF/Word｜把扫描件转成可检索文本｜批量导入文档建库
+- 不要在此调用：抽取实体或事实（走 entity-extraction / fact-extraction）
+## 边界与不适用
 
-## Execution Rules
-1. 不编造输入中不存在的事实。
-2. 所有抽取结果必须尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. 涉及事实、Claim、Evidence、Reasoning 时必须保留来源链。
-4. 发现冲突时标记冲突，不擅自选择一个版本作为真值。
-5. 项目专属数据不得在没有明确复用策略时跨项目复制。
-
-## Validation
-执行 `tests/golden.json` 与 `tests/expected.json` 中定义的基础验收。
+- 不做：只产出 IR，不做切片、抽取或改写
+- 不做：扫描件识别不清时标注置信度与页码，不猜字
+- 缺输入：没有原始文件时先索取文件；不能凭描述生成"解析结果"

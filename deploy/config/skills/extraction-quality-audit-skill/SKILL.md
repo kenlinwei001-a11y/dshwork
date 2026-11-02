@@ -1,6 +1,6 @@
 ---
 name: extraction-quality-audit-skill
-description: "对抽取结果执行结构完整性、证据覆盖、关系合法性、跨项目污染和孤立节点等质量审计。"
+description: "对抽取结果执行结构完整性、证据覆盖、关系合法性、跨项目污染与孤立节点审计。触发：检查抽取质量、有没有漏证据或悬空关系、有没有跨项目串数据。不适用：修复数据（本 skill 只出问题清单）。"
 ---
 
 # Extraction Quality Audit Skill
@@ -11,101 +11,13 @@ SK-17
 ## Purpose
 对抽取结果执行结构完整性、证据覆盖、关系合法性、跨项目污染和孤立节点等质量审计。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：检查抽取质量｜有没有漏证据或悬空关系｜有没有跨项目串数据
+- 不要在此调用：修复数据（本 skill 只出问题清单）
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
-
-<!-- kp-patch:v1 -->
-
-## 闭环审计（对「完整性」的审计，而非仅「自洽性」）
-
-本 skill 原有的审计维度（结构完整性、证据覆盖、关系合法性、跨项目污染、孤立节点）
-检查的是**产物内部的自洽性**。它们**无法发现遗漏**——因为遗漏的东西不在被遍历的集合里。
-
-补一层**闭环审计**：以源侧索引为基准做集合差。
-
-| 闭环 | 判据 | 阈值 | 失败含义 |
-|------|------|------|----------|
-| C1 依据 | `原稿《》 − evidence − 豁免 = ∅` | 依据类缺口 = 0 | 报告引用的规范未登记，时效无法核查 |
-| C2 关键取值 | `原稿「数字+单位」 − 节点值 − 量纲等价 = ∅` | 缺口 = 0 | 原稿有该数、图谱没建模 |
-| C3 章节 | `原稿标题 − outline = ∅` | ≥ 98% | 抽取漏章 |
-| C4 设备参数 | `原稿设备参数语句 − 设备节点 ≈ ∅` | ≥ 80% | 明细表无法重建 |
-| C5 题注 | `原稿表/图题注 − 成稿 = ∅` | ≥ 60% | 表图未重出 |
-| C6 装配 | `defined 且非明细节点 ∩ 成稿引用` | ≥ 95% | 抽到了没写进去 |
-| C7 关系 | `应有 claim 关系 − 已有边 = ∅` | 各 100% | 关系词表缺类型 |
-
-**两个必须遵守的细节**：
-
-- **量纲归一**：不归一，「5000 万元」与「50000000 元」会被判成两个不同的数，产生**假缺口**；
-  假缺口会磨损门禁可信度（报得太多，人就学会忽略）。
-- **探针自证**：未过标定的探针，其判据输出 `invalid`，不得输出「无误」。
-
-**输出契约**：`{id, name, total, covered, exempt, missing[], recall_pct, threshold, verdict}`
-，`verdict ∈ {pass, FAIL, invalid}`。**不接受「看起来没问题」这类输出。**
-
-## 工序（四段式）
-
-> **「假缺四问」的判据、四问清单、报缺输出格式都在上一节**（156–219 行，已详述）。
-> 本节只加**契约**与**量化门禁**，不重复那边的四问内容。
-
-**契约**
-
-```json
-{"audit": {"required": ["checks", "failures"],
-           "failure": {"required": ["gate", "what", "searched"],
-                       "searched": {"description": "没有 searched 的不许进台账"}}}
-}
-```
-
-**执行**（四问的实现在 `kp_toolkit/gap_verify.py`；本节只加可量化断言）
-
-```python
-def audit(graph, gates) -> dict:
-    failures = []
-    for g in gates:
-        covered, total, missing = g["fn"](graph)
-        if covered < total:
-            failures.append({"gate": g["id"], "what": missing,
-                             "searched": g["searched_evidence"]})
-    return {"checks": len(gates), "failures": failures}
-
-# 三条量化断言（原文只说「要留 searched」，这里给出可执行阈值）
-assert all(f["searched"] for f in failures),        "无 searched = 未验证 = 不许报缺"
-assert all(f["what"] for f in failures),            "报缺必须说清缺什么，不许只报「不通过」"
-assert false_rate(failures, graph) < 0.20,          "假缺率 ≥20% 说明判据有问题，先修判据再报数"
-```
-
-**门禁 P17 · 审计可信**
-
-```
-① 每条失败带 searched 三问证据
-② 每条失败说清「缺什么」，不许只报「不通过」
-③ 假缺率 < 20%（超了先修判据，不交付）
-```
-
-**代价（量化汇总，明细见上一节的六行表）**
-
-```
-累计报「缺」1496 → 真缺 345 → 假缺率 77%
-六类问题的更正过程见「假缺四问」一节的表格。
-```
-
-## 资源导航（门禁明细、假缺四问、审计案例已下沉 references/）
-
-- `references/门禁与案例.md` — 5 节
+- 不做：只审计不改数据
+- 不做：问题按严重度分级并附样例 ID
+- 缺输入：先有抽取结果与图谱

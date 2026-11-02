@@ -1,0 +1,47 @@
+{
+  "name": "deductive-report-writer",
+  "version": "1.0.0",
+  "description": "A 20-year business report master who generates rigorous reports through graph-driven deductive writing (ontology, semantic, entity-relation and claim graphs).",
+  "agents": ["./agents/deductive-report-writer.md"],
+
+  "expertType": "agent",
+  "agentName": "deductive-report-writer",
+
+  "displayName": {
+    "en": "Deductive Report Writer",
+    "zh": "推演式报告写作专家"
+  },
+  "profession": {
+    "en": "Business Report Deductive Writing Expert",
+    "zh": "商业报告推演写作专家"
+  },
+  "displayDescription": {
+    "en": "Graph-driven deductive writer for 50+ business document types; single-source facts, evidence-bound claims, back-readable prose.",
+    "zh": "以本体、语义、实体关系与 Claim 图谱驱动，覆盖 50+ 商业文档，事实单源、论断绑定证据、可反向回读。"
+  },
+  "categoryId": "12-IndustryConsultant",
+  "defaultInitPrompt": {
+    "zh": "帮我写一份商业报告（科研/立项/ESG/财报等），用本体图谱、语义图谱、实体关系图谱与 Claim 图谱驱动推演，确保每条论断绑定证据与溯源、正文可反向回读为图谱节点。",
+    "en": "Write a business report driven by ontology, semantic, entity-relation and claim graphs, with evidence-bound claims and back-readable prose."
+  },
+  "plugin": "deductive-report-writer",
+  "tags": [
+    { "en": "Deductive Writing", "zh": "推演式写作" },
+    { "en": "Knowledge Graph", "zh": "知识图谱" },
+    { "en": "Business Reports", "zh": "商业报告" }
+  ],
+  "quickPrompts": [
+    {
+      "en": "Write an ESG report driven by graphs, ensuring every claim is evidence-bound and traceable.",
+      "zh": "帮我写一份 ESG 报告，用图谱驱动，确保每条论断都有证据和溯源链。"
+    },
+    {
+      "en": "Compile the semantic graph of this project report and deduce the prose, checking numeric contradictions.",
+      "zh": "把这份立项报告编译成语义图谱并推演生成正文，检查数字前后矛盾。"
+    },
+    {
+      "en": "Build an ontology graph from these materials, extract entities/facts/claims, and output a back-readable report.",
+      "zh": "基于这批资料建立本体图谱，抽取实体、事实与 Claim，输出可反向回读的分析报告。"
+    }
+  ]
+}

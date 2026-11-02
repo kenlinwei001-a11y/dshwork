@@ -43,9 +43,23 @@
           "scope": "personal"
         },
         "status": "active",
-        "configRevisionId": "9d503eb7-e485-4f2b-92e0-57804f1eef83",
+        "configRevisionId": "10b9336c-35e6-468d-b776-80ad4b1340d2",
         "createdAt": "2026-09-25T06:20:45.151Z",
-        "updatedAt": "2026-09-25T06:21:38.651Z"
+        "updatedAt": "2026-10-26T09:40:44.622Z"
+      },
+      "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd": {
+        "id": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "name": "可研报告推演写作",
+        "description": "",
+        "owner": {
+          "organizationId": "local-personal",
+          "ownerPrincipalId": "local-user",
+          "scope": "personal"
+        },
+        "status": "active",
+        "configRevisionId": "1afdff33-090d-4b3f-9c2f-a0a7698f33c4",
+        "createdAt": "2026-10-26T09:44:22.192Z",
+        "updatedAt": "2026-10-26T09:45:59.792Z"
       }
     },
     "configs": {
@@ -560,6 +574,249 @@
         ],
         "createdBy": "local-user",
         "createdAt": "2026-10-13T12:11:19.590Z"
+      },
+      "10b9336c-35e6-468d-b776-80ad4b1340d2": {
+        "id": "10b9336c-35e6-468d-b776-80ad4b1340d2",
+        "projectId": "0ab9b0d0-1166-45b4-87d4-daf561f3fad7",
+        "number": 4,
+        "instruction": "本项目目标：把已建成的语料包（30 文件契约）与语义图谱经推演式写作流程，\n产出可溯源、冲突待审的 DOCX 分析报告，并把客户改稿反向回读为图谱节点。\n\n不可协商纪律：\n1. 借形不借值：只经注入/工具/内嵌三通道访问语料包；corpus_get_chunk 只给\n   node:Nxx 占位骨架，永不使用历史项目原值。\n2. 缺值守卫：UNDEFINED 节点不得填 0、不得估值，按 instruction 写\n   「待……后测算」并挂 gap。\n3. 不许反算：每个数值必须由 rules/derivation 正向推出。\n4. 引用即绑定：正文数值一律写 node 引用；闸门由编排器调 gate_check，不自我判分。\n5. 冲突待审：800kW/650kW 配电冲突以「⚠ 待审」呈现，不裁决；现行决议为\n   「待联合复测」（规则 R-配电联合复测，决策 d1）。\n\n每节工作流：corpus_get_skeleton → graph_query → graph_explain（narrative_zh\n直用）→ evidence_get → corpus_get_chunk → 起草 → 返回 draft_md +\nnode_mentions + new_claims + unresolved。\n\n交付：结论先行、论断句带溯源标记（CL｜R｜E）的 Word 报告（DOCX 经内容工具\n导出），交付前做全文数字一致性核对。",
+        "capabilities": [
+          {
+            "kind": "expert",
+            "id": "expert-a0a771c8b0da",
+            "label": "推演写作专家",
+            "scope": "personal",
+            "revision": "rev-9322a459199d"
+          },
+          {
+            "kind": "skill",
+            "id": "conflict-detection-skill",
+            "label": "冲突检测",
+            "scope": "personal",
+            "revision": "f0c93cfca579d5d7773b902984882f7543ab0dbb920e7c56c8ff8b0f7da0a25f"
+          },
+          {
+            "kind": "skill",
+            "id": "graph-deductive-writing-skill",
+            "label": "图谱推演写作",
+            "scope": "personal",
+            "revision": "59b69bdc71d2d2ad337c51d867d3c6d16cc9c6d79f0f91a263dc034806c713b2"
+          },
+          {
+            "kind": "skill",
+            "id": "workdsh-word-design",
+            "label": "Word 文档设计",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-semantic",
+            "label": "语义对齐",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-processing",
+            "label": "知识处理工序",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-assembly",
+            "label": "装配验证",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-library",
+            "label": "资产库",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "semantica",
+            "label": "Semantica",
+            "scope": "personal"
+          }
+        ],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:40:44.622Z"
+      },
+      "543fca5f-df08-430c-9e79-0e3b1cf3fd5a": {
+        "id": "543fca5f-df08-430c-9e79-0e3b1cf3fd5a",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "number": 1,
+        "instruction": "",
+        "capabilities": [],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:44:22.192Z"
+      },
+      "8ff153f8-8441-46d6-8faa-0ccda9da2926": {
+        "id": "8ff153f8-8441-46d6-8faa-0ccda9da2926",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "number": 2,
+        "instruction": "科研报告",
+        "capabilities": [],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:44:22.208Z"
+      },
+      "68fa8b8e-ef7d-42a4-866f-66b0bbbf92dc": {
+        "id": "68fa8b8e-ef7d-42a4-866f-66b0bbbf92dc",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "number": 3,
+        "instruction": "科研报告",
+        "capabilities": [
+          {
+            "kind": "expert",
+            "id": "expert-a0a771c8b0da",
+            "label": "推演写作专家",
+            "scope": "personal",
+            "revision": "rev-2e252305df1c"
+          }
+        ],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:44:51.325Z"
+      },
+      "3e49961f-6e6e-4939-ae9a-31a55da6b881": {
+        "id": "3e49961f-6e6e-4939-ae9a-31a55da6b881",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "number": 4,
+        "instruction": "科研报告",
+        "capabilities": [
+          {
+            "kind": "expert",
+            "id": "expert-a0a771c8b0da",
+            "label": "推演写作专家",
+            "scope": "personal",
+            "revision": "rev-2e252305df1c"
+          },
+          {
+            "kind": "connector",
+            "id": "filesystem",
+            "label": "文件系统",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-semantic",
+            "label": "语义对齐",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-processing",
+            "label": "知识处理工序",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-assembly",
+            "label": "装配验证",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-library",
+            "label": "资产库",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "semantica",
+            "label": "Semantica",
+            "scope": "personal"
+          }
+        ],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:45:15.708Z"
+      },
+      "1afdff33-090d-4b3f-9c2f-a0a7698f33c4": {
+        "id": "1afdff33-090d-4b3f-9c2f-a0a7698f33c4",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "number": 5,
+        "instruction": "科研报告",
+        "capabilities": [
+          {
+            "kind": "expert",
+            "id": "expert-a0a771c8b0da",
+            "label": "推演写作专家",
+            "scope": "personal",
+            "revision": "rev-2e252305df1c"
+          },
+          {
+            "kind": "connector",
+            "id": "filesystem",
+            "label": "文件系统",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-semantic",
+            "label": "语义对齐",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-processing",
+            "label": "知识处理工序",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-assembly",
+            "label": "装配验证",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "kp-library",
+            "label": "资产库",
+            "scope": "personal"
+          },
+          {
+            "kind": "connector",
+            "id": "semantica",
+            "label": "Semantica",
+            "scope": "personal"
+          },
+          {
+            "kind": "skill",
+            "id": "claim-evidence-binding-skill",
+            "label": "论断证据绑定",
+            "scope": "personal",
+            "revision": "ade025faa163b4e12f6ac49354db2406343101f20ff52b21bca06f32b7cee25a"
+          },
+          {
+            "kind": "skill",
+            "id": "claim-extraction-skill",
+            "label": "事实信息抽取",
+            "scope": "personal",
+            "revision": "36cb47cda48ed6151474a2b39cc4a340f8ed6d07fd93599c8e458720d43a3ad2"
+          },
+          {
+            "kind": "skill",
+            "id": "claim-validation-skill",
+            "label": "论断校验",
+            "scope": "personal",
+            "revision": "3006bb35e47dbc54073a6dacc822165a96e8eb553f780ec8d5041efebef89395"
+          },
+          {
+            "kind": "skill",
+            "id": "feasibility-report-edu-research",
+            "label": "高校科研用房可研报告",
+            "scope": "personal",
+            "revision": "36410909674a42b15f780a6a66f929cd7a496e14942416164c5b789c7a073db6"
+          },
+          {
+            "kind": "skill",
+            "id": "graph-deductive-writing-skill",
+            "label": "图谱推演写作",
+            "scope": "personal",
+            "revision": "8c78ee7ac51717802d9b2049cd967c8344c961d7c63680fadb9c60099cdc2718"
+          }
+        ],
+        "createdBy": "local-user",
+        "createdAt": "2026-10-26T09:45:59.792Z"
       }
     },
     "workItems": {
@@ -576,6 +833,40 @@
         "createdAt": "2026-09-20T03:17:17.902Z",
         "updatedAt": "2026-09-20T03:17:45.309Z",
         "assignee": "A"
+      },
+      "af43cb3e-9743-4355-a8c3-12b2033536c3": {
+        "id": "af43cb3e-9743-4355-a8c3-12b2033536c3",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "title": "新待办",
+        "status": "todo",
+        "priority": "none",
+        "tags": [],
+        "revision": "ddf37c77-db4a-4a28-b312-02eb160da08d",
+        "createdAt": "2026-10-26T06:24:10.329Z",
+        "updatedAt": "2026-10-26T06:24:10.329Z"
+      },
+      "d1d6476f-f5e3-4e6a-8c18-1c3cf03a2928": {
+        "id": "d1d6476f-f5e3-4e6a-8c18-1c3cf03a2928",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "title": "新待办",
+        "status": "todo",
+        "priority": "none",
+        "tags": [],
+        "revision": "8476251f-08bc-4829-a09b-715439dc5c56",
+        "createdAt": "2026-10-26T06:24:31.989Z",
+        "updatedAt": "2026-10-26T06:24:31.989Z"
+      },
+      "c4270689-9ea9-4994-84ad-9806cd68b3c2": {
+        "id": "c4270689-9ea9-4994-84ad-9806cd68b3c2",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "title": "立项书",
+        "status": "todo",
+        "priority": "low",
+        "tags": [],
+        "revision": "846160d4-879b-4205-8d87-93ea9c4c0500",
+        "createdAt": "2026-10-27T02:27:42.176Z",
+        "updatedAt": "2026-10-27T02:28:10.679Z",
+        "assignee": "ken"
       }
     },
     "assets": {
@@ -648,16 +939,6 @@
         "id": "e15a6e54-b381-4190-bda8-50c454117bad",
         "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
         "createdAt": "2026-09-25T05:15:30.447Z"
-      },
-      "8eb01e21-683a-4647-ab29-e2866a910402": {
-        "nodeId": "4807e7a9-ad59-4bfe-8521-9008c4beef74",
-        "assetId": "9c36ae46-3cf6-4d19-b249-1c3da2be618f",
-        "revisionId": "b7127ff7-b5a8-4f01-bccf-463dfb306232",
-        "name": "澄岳精密技改项目语料处理报告.md",
-        "kind": "markdown",
-        "id": "8eb01e21-683a-4647-ab29-e2866a910402",
-        "projectId": "0ab9b0d0-1166-45b4-87d4-daf561f3fad7",
-        "createdAt": "2026-09-25T06:23:06.779Z"
       },
       "760ee696-34fa-41dc-91ff-b6a16b30bc63": {
         "nodeId": "3ecbe95c-9c1d-4493-8c29-88695878674e",
@@ -858,6 +1139,26 @@
         "id": "0d4466e1-64ab-4f1a-8776-ee148e533bad",
         "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
         "createdAt": "2026-10-13T14:59:03.019Z"
+      },
+      "75948ea4-af56-403b-b68a-65c5ba11c8a9": {
+        "nodeId": "a4686789-5e05-4b80-a2b9-400fdaa40fa8",
+        "assetId": "8228a532-5f0a-4d9a-85f8-d785d593c96c",
+        "revisionId": "f9ab0ddd-e52f-4fbe-907d-227d9b2a0e9e",
+        "name": "引用审查-四清单.md",
+        "kind": "markdown",
+        "id": "75948ea4-af56-403b-b68a-65c5ba11c8a9",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "createdAt": "2026-10-22T09:53:13.076Z"
+      },
+      "1a34f72c-8b48-4c47-a175-6e2e2578746a": {
+        "nodeId": "88dc011c-9a00-4f21-99a1-a5ed7552d8b7",
+        "assetId": "4b06dc33-45b4-4fee-b5ab-c025ab08d45d",
+        "revisionId": "aed2787e-0d72-47d6-9a30-62d9e641c636",
+        "name": "引用审查-四清单 (2).md",
+        "kind": "markdown",
+        "id": "1a34f72c-8b48-4c47-a175-6e2e2578746a",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "createdAt": "2026-10-22T09:53:43.446Z"
       }
     },
     "tasks": {
@@ -1734,6 +2035,142 @@
         "text": "关联资产「SEMANTICA-INTEGRATION (2).md」",
         "actorId": "local-user",
         "createdAt": "2026-10-13T14:59:03.019Z"
+      },
+      "95dc5939-37de-4928-874d-84fc4e05aa31": {
+        "id": "95dc5939-37de-4928-874d-84fc4e05aa31",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "asset",
+        "text": "关联资产「引用审查-四清单.md」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-22T09:53:13.076Z"
+      },
+      "27ee4be2-8649-4b7a-bb4c-e5c6e2df03dd": {
+        "id": "27ee4be2-8649-4b7a-bb4c-e5c6e2df03dd",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "asset",
+        "text": "交付未归属：citation-inventory.yaml（library/unsupported-format）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-22T09:53:13.347Z"
+      },
+      "ee6a8b6b-fd14-4884-8699-d47bea9845ed": {
+        "id": "ee6a8b6b-fd14-4884-8699-d47bea9845ed",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "asset",
+        "text": "关联资产「引用审查-四清单 (2).md」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-22T09:53:43.446Z"
+      },
+      "ee04638b-c4db-4352-a4c9-4f1938a688d4": {
+        "id": "ee04638b-c4db-4352-a4c9-4f1938a688d4",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "asset",
+        "text": "交付未归属：citation-inventory.yaml（library/unsupported-format）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-22T09:53:43.677Z"
+      },
+      "3cc51cb5-5fda-4dfe-b7eb-cb01d5e42cc6": {
+        "id": "3cc51cb5-5fda-4dfe-b7eb-cb01d5e42cc6",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "work-item",
+        "text": "新增计划「新待办」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T06:24:10.329Z"
+      },
+      "59c7ca11-0bcb-41a1-958c-5bc4e4c8ca95": {
+        "id": "59c7ca11-0bcb-41a1-958c-5bc4e4c8ca95",
+        "projectId": "e45d230e-f7cd-45c0-a62e-735c25ff1c0e",
+        "kind": "work-item",
+        "text": "新增计划「新待办」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T06:24:31.989Z"
+      },
+      "c6469660-36c6-4dc3-b7b5-a4171cf95968": {
+        "id": "c6469660-36c6-4dc3-b7b5-a4171cf95968",
+        "projectId": "0ab9b0d0-1166-45b4-87d4-daf561f3fad7",
+        "kind": "project",
+        "text": "更新了项目配置（修订 4）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:40:44.622Z"
+      },
+      "76400d55-5199-4372-8c30-8bb00faab877": {
+        "id": "76400d55-5199-4372-8c30-8bb00faab877",
+        "projectId": "0ab9b0d0-1166-45b4-87d4-daf561f3fad7",
+        "kind": "asset",
+        "text": "移除资产引用「澄岳精密技改项目语料处理报告.md」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:42:01.413Z"
+      },
+      "278fae49-1c88-4aee-a7b8-2184015dcf29": {
+        "id": "278fae49-1c88-4aee-a7b8-2184015dcf29",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "project",
+        "text": "创建了项目「可研报告推演写作」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:44:22.192Z"
+      },
+      "9425c42b-e664-4498-9c44-7eab342c98db": {
+        "id": "9425c42b-e664-4498-9c44-7eab342c98db",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "project",
+        "text": "更新了项目配置（修订 2）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:44:22.208Z"
+      },
+      "7b6a36f5-d017-4364-8655-9645fdcd1055": {
+        "id": "7b6a36f5-d017-4364-8655-9645fdcd1055",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "project",
+        "text": "更新了项目配置（修订 3）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:44:51.325Z"
+      },
+      "b427b766-ceb6-41d3-9668-349b7d1ae3e5": {
+        "id": "b427b766-ceb6-41d3-9668-349b7d1ae3e5",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "project",
+        "text": "更新了项目配置（修订 4）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:45:15.708Z"
+      },
+      "daa888e9-9911-449c-88a5-ae461f15b47a": {
+        "id": "daa888e9-9911-449c-88a5-ae461f15b47a",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "project",
+        "text": "更新了项目配置（修订 5）",
+        "actorId": "local-user",
+        "createdAt": "2026-10-26T09:45:59.792Z"
+      },
+      "56da4a69-1da3-40b5-a495-3374181d40a3": {
+        "id": "56da4a69-1da3-40b5-a495-3374181d40a3",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "asset",
+        "text": "关联资产「00-移交说明-给推演写作专家 (3).md」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-27T02:27:34.403Z"
+      },
+      "dfbb79dd-d36a-401e-b840-e90409d8b542": {
+        "id": "dfbb79dd-d36a-401e-b840-e90409d8b542",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "work-item",
+        "text": "新增计划「新待办」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-27T02:27:42.176Z"
+      },
+      "f5c61085-0dfb-4ce2-a8b8-e85ad49411a5": {
+        "id": "f5c61085-0dfb-4ce2-a8b8-e85ad49411a5",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "work-item",
+        "text": "更新计划「立项书」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-27T02:28:10.679Z"
+      },
+      "c36f3da9-8d25-4f92-9245-2bbe5316d046": {
+        "id": "c36f3da9-8d25-4f92-9245-2bbe5316d046",
+        "projectId": "fed6b12f-cf7b-4dcf-8706-bd47fdd1a8fd",
+        "kind": "asset",
+        "text": "移除资产引用「00-移交说明-给推演写作专家 (3).md」",
+        "actorId": "local-user",
+        "createdAt": "2026-10-27T02:29:11.349Z"
       }
     }
   }

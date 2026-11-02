@@ -1,6 +1,6 @@
 ---
 name: reasoning-extraction-skill
-description: "识别公式、规则、多步推导和中间结论，形成 Reasoning 节点及输入输出依赖。"
+description: "识别公式、规则、多步推导与中间结论，形成 Reasoning 节点及输入输出依赖。触发：把推导过程抽出来、整理公式与规则、还原推理链。不适用：抽取结论 Claim、生成新的推导。"
 ---
 
 # Reasoning Extraction Skill
@@ -11,22 +11,13 @@ SK-10
 ## Purpose
 识别公式、规则、多步推导和中间结论，形成 Reasoning 节点及输入输出依赖。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：把推导过程抽出来｜整理公式与规则｜还原推理链
+- 不要在此调用：抽取结论 Claim、生成新的推导
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：不补写缺失步骤、不替作者合理化跳跃
+- 不做：无法复原的环节标 GAP，不虚构
+- 缺输入：先有包含公式或规则步骤的原文

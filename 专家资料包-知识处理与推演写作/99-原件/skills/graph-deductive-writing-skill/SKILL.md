@@ -1,6 +1,6 @@
 ---
 name: graph-deductive-writing-skill
-description: 基于语义图谱的推演式分析写作。输入 semantic-graph-compilation-skill 编译产出的语义图谱 JSON（含 entities / relations / facts / reasoning / claims / evidence / conflicts / validations），沿推理链前向推演派生新结论，并把每条论断写成绑定证据与溯源链的 Word 分析报告（.docx）。事实单源存储、跨章节自动传播、冲突以「待审」显式呈现、正文可反向回读为图谱节点。当用户要求「基于图谱的推演写作」「图谱驱动写报告」「把语义图谱写成分析报告」「推演式写作」「graph-based deductive writing」，或提供一份语义图谱 JSON / 本体图谱要求撰写、修改、审校、核查数字前后矛盾或反向回读时，应使用本 skill。上游建图（文档解析、实体/事实/关系抽取、图谱编译）由 document-parsing-skill、fact-extraction-skill、entity-extraction-skill、semantic-graph-compilation-skill 等负责，不在本 skill 范围内；本 skill 是 feasibility-report-edu-research 等特定领域报告的通用引擎。
+description: "基于语义图谱的推演式分析写作：输入图谱 JSON（entities/relations/facts/reasoning/claims/evidence/conflicts/validations），沿推理链前向推演派生结论，每条论断绑定证据与溯源链，输出可反向回读的 Word 报告（.docx）。事实单源存储、跨章节自动传播、冲突一律「待审」、客户改稿可反向回读。触发：基于图谱的推演写作/图谱驱动写报告/推演式写作、把语义图谱写成分析报告、或改稿回读与数字矛盾核查时。上游建图由 document-parsing / fact-extraction / semantic-graph-compilation 等 skill 完成。不适用：没有语义图谱、或只需单篇摘要/普通润色时。"
 ---
 
 # 基于图谱的推演写作（Graph Deductive Writing）
@@ -13,13 +13,9 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 
 ## 何时使用
 
-- 输入是 `semantic-graph-compilation-skill` 的编译产物（语义图谱 JSON，含八类节点）。
-- 用户要求「基于图谱的推演写作」「图谱驱动写报告」「把语义图谱写成分析报告」。
-- 用户提供一份语义图谱 / 本体图谱，要求撰写、修改、审校、核查数字前后矛盾或反向回读。
-- 需要一份「结论先行、每句可溯源、冲突待审」的 Word 分析报告。
-
-不适用：图谱尚未构建（先走建图 pipeline）；非推演性的自由写作（用 workdsh-word-design 即可）。
-
+- 调用条件：已有 semantic-graph-compilation-skill 产出的语义图谱 JSON（八类节点）；或用户直接给出项目材料（先走阶段 -1 建图）。
+- 典型请求：基于图谱的推演写作｜图谱驱动写报告｜把语义图谱写成分析报告｜改稿回读与数字矛盾核查。
+- 不要在此调用：图谱尚未构建（先建图）；非推演性自由写作（用 workdsh-word-design）。
 ## 输入契约
 
 输入语义图谱的完整字段定义见 `references/semantic-graph-schema.md`。要点：
@@ -29,168 +25,217 @@ description: 基于语义图谱的推演式分析写作。输入 semantic-graph-
 - 跨节点引用（relations.from/to、reasoning.inputs/output、claims.deps/evidence、
   conflicts.involved、validations.claim）必须指向存在的节点 id。
 
-## 核心工作流
+> **与 G0「图谱契约」段的区别**：
+> 本节管**图谱顶层结构**（有哪些集合、字段名怎么写），
+> G0 管**语义约束**（claim_type 必须四类之一、falsifiable_by 必须非空、range_known 三态）。
+> 本节答「结构对不对」，G0 答「语义站不站得住」。
 
-按顺序执行，阶段产出物作为下一阶段的输入。用 todo 工具跟踪阶段进度。
+## 核心工作流（四段式：契约 / 执行 / 门禁 / 代价）
 
-### 阶段 0：载入并校验图谱
+> **为什么不用自然语言写步骤**：实测「写作要按证据强度选句式」写在散文里，
+> 结果 hypothesis 被写成既成事实、`range_known=false` 的数值写成「符合规范」。
+> 写成 `validate_graph.py` 断言后，0 错 63 警立刻定位。
+> **纪律靠提醒，机制靠退出码。**
 
-- 定位图谱 JSON（用户显式给出，或在工作区检索 `*_semantic_graph.json`）。
-- 运行 `python3 scripts/validate_graph.py <graph.json>` 做确定性校验。
-- 发现悬空引用、缺失必填字段、重复 id 时，先报告并（在用户确认后）修复图谱，再继续。
-- 读取 `meta.title`、`meta.data_cutoff` 作为报告标题与数据截止口径。
+---
 
-### 阶段 1：建立推演计划
+### 阶段 0 · 载入并校验图谱（已下沉）
 
-- 依据 `references/deduction-patterns.md` 构建依赖图（facts 为叶子，reasoning 为中间，
-  claims 为高层），求拓扑序。
-- 登记所有带 `conflict` 字段的节点为「污染节点」。
-- 生成推演计划：要派生的结论、命中的冲突、要呈现的情景分支。
+**完整步骤见 `references/阶段0-载入并校验图谱.md`（52 行）。**
 
-### 阶段 2：前向推演（派生结论）
+摘要：读 graph.json → `validate_graph` 查悬空引用/重复 id →
+确认八类节点齐全 → 不通过就停，不许边写边补。
 
-- 沿拓扑序正向传播：facts 取值 → reasoning 按 formula 计算 → claims 聚合。
-- 口径与单位校验：流量与存量不可直接相减；换算须绑定换算证据。命中冲突的结论降级为「待审」。
-- 派生图谱未明示的新结论时，标注为「推演结论」，登记 `(结论文本, 依赖集合, 证据集合, 是否待审)`。
-- 冲突一律「待审」呈现，绝不擅自改数字或补口径消除冲突。
+### 阶段 1 · 建推演计划（已下沉）
 
-### 阶段 3：校验与分层
+见 `references/阶段1-建推演计划.md`。摘要：列出要推演的命题 → 标注依赖的
+reasoning 链 → 确认每条链的 inputs 都有值（缺值先标 UNDEFINED，不许推）。
 
-- 用 `validations` 的 `status`（SUPPORT / PARTIAL_SUPPORT / CONTRADICT / CONTEXT /
-  INSUFFICIENT）与 evidence 的 `kind`，为每条结论确定表述姿态（陈述式 / 限定式 / 条件式 / 待审 / 祈使式）。
-- 必要时调用 `claim-validation-skill`、`conflict-detection-skill`、`claim-evidence-binding-skill`
-  对推演结论做二次校验。
+### 阶段 2 · 前向推演（派生结论）
 
-### 阶段 4：溯源写作（生成报告）
+**契约**
 
-- 用 `plate_open`（title 取 `meta.title`）在右侧 Plate 编辑器打开报告，作为**主编辑面**。
-- 写作前先做两次「右侧表单面板」交互（见下「交互层」）：
-  1. 若 `instantiate` 有 `undefined_notes`，用 `content_open(kind:"spreadsheet")` 打开「遗漏补录表」
-     （缺失字段 × 补充值），用户填后 `content_read` 读回，把补充事实追加进 `provided_facts` 重新装配。
-  2. 用 `content_open(kind:"spreadsheet")` 打开「章节字数表」（章节 × 字数预算），用户一次性填写，
-     读回后把字数注入写作提示词，作为 `plate_edit` 每章篇幅约束。
-- 按 `assets/report-outline.md` 骨架逐章写作，用 `plate_edit` 分小批提交（每次提交完整 Slate JSON：
-  标题 + 第一段 → 各章节，见 `references/provenance-writing.md`）。
-- 遵循 `references/provenance-writing.md`：事实单源、论断级溯源标记（`〔CL3｜R5｜E1,E3〕`）、
-  冲突显式「⚠ 待审」框、证据性质分层措辞。
-- 每节起草后，调用 MCP 工具 `check_number_consistency(draft_md, facts)` 做数字一致性核对
-  （`unbound` 数字、口径存疑一律「待审」，见 `references/provenance-writing.md` 第 6 节）。
-- 版式与体裁规范遵循 `workdsh-word-design` skill。
-- **定稿后**（用户在 Plate 编辑完成），用 `content_open` 生成 Word 并 `content_export` 导出真实 DOCX
-  —— plate 本身不导出 docx，「docx 交付」走 content_* 这条轨（编辑在 plate、交付在 content）。
-
-### 阶段 5：反向回读、二次判断与交付
-
-- 用户在 Plate 编辑（删除/增加/前后调整）后，**手动触发**二次判断（用户说「检查一遍 / 核对 / 二次判断」时）：
-  1. `plate_read` 读回最新内容，与上一版 diff，定位改动段落。
-  2. `check_number_consistency(draft_md, facts)` 重新核对数字（改数字是否漂移 / 前后不一致）。
-  3. 按 `references/provenance-writing.md` 第 5 节逐句回读：判断改动类别（改数字/改结论/增删论述/改建议），
-     回写到对应图谱节点。
-  4. 重新做前向推演与冲突检查，标注被改动「传染」的下游结论。
-- 无法定位来源的改动显式标注「未溯源」，不得假装绑定。
-- 定稿后（用户说「导出 / 交付」），用 `content_open` 生成 Word + `content_export` 导出真实 DOCX 交付。
-
-
-
-## 写新项目：复用历史项目资产
-
-当任务是**写一个新项目**（而非沿用已编译图谱）时，先借历史资产再建图，然后才进入上面的
-推演写作工作流。完整工具用法与「借形不借值」硬约束见 `references/historical-asset-reuse.md`。要点：
-
-1. `library_find_analog(doc_type, query)` → 找最相似历史语料包。
-2. `library_get_asset(package, asset)` → 借形：outline / templates / style / terms / claims / rules / skeleton。
-3. `instantiate_project(corpus_dir=best, project_dir, provided_facts, meta)` → 建新项目图库。
-4. 进入推演写作（阶段 0–5）。
-
-这四个 `library_*` 工具由 `kp-library` MCP server 提供（知识处理专家的工具层，按域拆分的 5 个 MCP 之一）；前置条件是
-`kp-library` 已连接且历史语料资产库已就绪。**借形不借值**：可继承结构与规则，绝不继承数值/单位/
-实体/结论；新项目事实只来自用户提供的 `provided_facts`。
-
-## MCP 工具分布（5 组，取代旧单一 kp-mcp）
-
-本 skill 用到的 MCP 工具按权限域分布在 5 个 MCP：
-
-- **kp-processing**（写作期取骨架/节点/证据）：graph_get_node / graph_query / graph_explain / graph_why / graph_impact / corpus_search / corpus_get_chunk / corpus_get_skeleton / corpus_where_used / evidence_get
-- **kp-assembly**（建图/组包/闸门/查数/验证）：schema_diff / decide_reuse / instantiate_project / build_work_package / gate_check_draft / check_number_consistency / check_requirements / sensitivity_analysis / validate_shacl / project_where_written / wp_get_facts
-- **kp-library**（历史资产复用）：library_list_packages / library_search / library_find_analog / library_get_asset / library_status / library_promote / library_publish
-- **kp-semantic**（语义对齐，可选）：resolve_concept / ossie_import / ossie_export / semantic_classify / ontology_export / ontology_import
-- **kp-reserved**（预留，一般不调用）：semantic_search / asset_rerank / solve_constraint / graph_db_query / store_object / llm_invoke
-
-## 交互层：右侧表单面板（补录 + 字数）
-
-写作期需要用户交互的两处，用右侧 `content_open(kind:"spreadsheet")` 打开独立表单面板（Excel 表格），
-用户填写后 `content_read` 读回：
-
-**① 遗漏补录表**（`instantiate` 返回 `undefined_notes` 非空时）：
-
-| 缺失字段 | 含义 / instruction | 补充值 | 单位 |
-|---------|-------------------|-------|------|
-| （每个 undefined 节点一行） | 缺值守卫的 instruction | （用户填） | （用户填） |
-
-用户填完补充值后，把「缺失字段 → 补充值」追加进 `provided_facts`，**重新跑 `instantiate_project`**
-（缺值守卫消除，原本 UNDEFINED 的派生节点变为可计算）。
-
-**② 章节字数表**（每次写作前）—— **按章节调整目标字数（用户可自定义）**
-
-**表的 7 列**（由后端生成，界面原样展示；`默认字数(实测)` 是事实列**不得改**）：
-`#` · `章节路径` · `默认字数(实测)` · **`目标字数(可改)`** · **`角色(可改)`** · `提示词摘要` · `来源`
-
-| # | 章节路径 | 默认字数(实测) | 目标字数(可改) | 角色(可改) | 提示词摘要 | 来源 |
-|---|---|---|---|---|---|---|
-| 1 | 总论 / 项目概况 | 392 | 392 | 科研建筑可行性研究编制工程师（可行性研究） | 先给依据再推导 | default(实测) |
-| 6 | 学校简介 / 学科体系 | 978 | 1500 | … | … | user |
-| … | …（共 N 行，覆盖章/节/子节三级） | | | | | |
-
-**两段式后端动作**（确定性，零 LLM）：
-```bash
-# 生成表（供 content_open 打开为界面表单）
-python build/s24_set_section_budget.py --emit-table <表文件>
-# 回读用户编辑后的表（content_read 的结果）⇒ 写 section_budget.user.yaml
-python build/s24_set_section_budget.py --ingest <表文件>
+```json
+{
+  "derived": {"required": ["rule", "result", "inputs", "expr"],
+              "inputs": {"items": {"required": ["node", "value"]}}}
+}
 ```
 
-**数据与优先级**：
-```
-style/section_budget.user.yaml   ★ 用户自定义（**优先**；留空/删除即回默认）
-style/section_budget.yaml        默认 target_chars = **知识抽取阶段实测值**
-                                  （target_source: default(抽取阶段实测)）
-```
-**⇒ 用户未调整 ⇒ 沿用抽取阶段实测值 ⇒ 无需扩写**（产出 = 抽取内容的重组，确定性）。
+**执行**
 
-**调整后的生效链（必须按序）**：
-```
-① s24 --emit-table → 界面编辑 → content_read → s24 --ingest    ⇒ 写 section_budget.user.yaml
-② build/s22_inject_section_contract.py                         ⇒ 注入提示词
-   （注入 target_chars(汉字) + expand_by + role(已填充) + operator + 不变量）
-③ build/s23_evidence_expand.py                                 ⇒ 按新目标执行
-   · 目标 > 实测 ⇒ **受预算约束的证据驱动扩写**：
-       每个新增句子须可追溯到给定证据（〔E编号〕标注）；
-       追溯不到的句子**剔除**并在 unbound_removed 留因；含禁用词 ⇒ validator 失败
-   · 目标 < 实测 ⇒ 压缩（只保留有证据支撑的内容）
-④ 阶段 4 其余步骤（plate_edit 逐章写作 / check_number_consistency / content_export）
+```python
+def forward(rule, graph):
+    """沿 computed_from 前向推演，禁止反算"""
+    inputs = {d.name: graph.value(d.node) for d in rule.deps if d.node}
+    if len(inputs) < len(rule.deps):
+        return None, [d.name for d in rule.deps if not d.node]   # 显式阻塞
+    result = eval_rule(rule.expr, inputs)
+    return Derived(rule=rule.id, result=result, inputs=inputs, expr=rule.expr), None
+
+assert not any(has_cycle(r) for r in rules), "推演链不得有环"
+assert not backward_computed(rule),          "不许反算（用结果倒推输入）"
 ```
 
-**纪律**：字数口径 = **汉字数**（与"去空白字符数"不同）· 扩写来源仅限「缺口检索台账」与
-「原文已有依据的论证展开」，**不得引入新事实** · 无证据不写（不静默、不编造）。
-字数只是**提示词参数**，不是业务事实，不进入图谱。
+**门禁 G2 · 派生闭环（继承 P11 + 写作增量）**
 
-## 与既有 skill 的组合
+```
+判据继承 P11：要么闭合、要么显式阻塞，不得静默跳过
+写作侧额外要求：阻塞的规则，正文必须写出「缺什么」，不许只写「待补」
+```
 
-- **上游**（建图，不在本 skill 内）：document-parsing-skill → sentence-segmentation-skill →
-  entity/fact/relation/claim/reasoning/evidence-extraction-skill → ontology-resolution-skill →
-  semantic-graph-compilation-skill。
-- **本 skill 编排**：claim-validation-skill、conflict-detection-skill、claim-evidence-binding-skill、
-  provenance-binding-skill 用于推演校验与溯源。
-- **下游**：workdsh-word-design（版式与体裁）、plate_*（实时编辑）、content_*（DOCX 导出）。
-- **领域引擎**：feasibility-report-edu-research 等特定领域报告是本 skill 的领域化实例；本 skill 是通用引擎。
+**代价（实测）**
 
-## 边界与禁忌
+```
+18 条规则因缺输入被静默跳过 → 读者以为算过，实际没算
+反算（用 95.04 倒推定额）→ 得到自洽但无依据的数
+```
 
-- 不负责建图/抽取：输入必须是已编译的语义图谱；图谱缺失时告知用户先走建图 pipeline。
-- 不自动裁决冲突：conflicts 一律以「待审」呈现，不补数字、不改口径来「凑平」。
-- 不捏造事实：只能重组/计算已有事实；派生结论必须能由 formula 反推并绑定证据。
-- 不丢弃溯源：回读改稿时不得丢失溯源链，未溯源改动须显式标注。
+---
 
+### 阶段 3 · 校验与分层
+
+**契约**
+
+```json
+{
+  "validated_claim": {"required": ["id", "claim_type", "falsifiable_by", "evidence_strength"],
+                      "evidence_strength": {"enum": ["SUPPORT", "PARTIAL_SUPPORT",
+                                                     "CONTRADICT", "CONTEXT", "INSUFFICIENT"]}}
+}
+```
+
+**执行**
+
+```python
+def classify(claim, evidence):
+    if any(e in evidence for e in contradicting(claim)):  return "CONTRADICT"
+    if all_premises_supported(claim):                     return "SUPPORT"
+    if some_premises_supported(claim):                    return "PARTIAL_SUPPORT"
+    if evidence:                                          return "CONTEXT"
+    return "INSUFFICIENT"
+
+# 必要性推导实测：3/4 前提有依据 → PARTIAL_SUPPORT
+# 结论「综上所述…十分必要」只能写「其中第 X 条依据待补」
+```
+
+**门禁 G3 · 论断分级**
+
+```
+SUPPORT / PARTIAL_SUPPORT 可写成论断
+CONTRADICT / INSUFFICIENT 只能写成「待核」，不得写成结论
+```
+
+**代价（实测）**
+
+```
+CL-必要性-03 无依据，但结论仍写「综上所述…十分必要」
+→ 归纳有断点，评审一查即破
+```
+
+---
+
+### 阶段 4 · 溯源写作（生成报告）
+
+**契约**
+
+```json
+{
+  "section_out": {"required": ["no", "markdown", "node_mentions", "unresolved"],
+                  "node_mentions": {"description": "正文里 〔节点ID〕 的清单，用于反向回读"},
+                  "unresolved": {"items": {"required": ["kind", "what"]}}}
+}
+```
+
+**执行**
+
+```python
+def write_section(sec, plan, graph) -> dict:
+    prompt = render_prompt(sec, plan)        # 已产出 119 节提示词
+    md = llm(prompt)
+    # 数值必须带节点锚点
+    for num in numbers_in(md):
+        assert f"〔{num.node}〕" in md, f"{num.value} 缺节点锚点"
+    # 禁止句式的硬检查
+    for c in plan["claims"]:
+        if c["claim_type"] == "recommendation":
+            assert "建议" in md, "recommendation 未写成建议句"
+        if c["claim_type"] == "hypothesis":
+            assert ("预计" in md or "若" in md), "hypothesis 写成了既成事实"
+    # range_known=false 不许说符合
+    for b in plan["norm_refs"]:
+        if b["range_known"] is False and b["status"] != "部分可核":
+            assert "符合" not in md, "无原文限值却说「符合」"
+    return {"no": sec.no, "markdown": md, "node_mentions": extract_ids(md)}
+```
+
+**门禁 G4 · 溯源写作**
+
+```python
+{"stage": "G4", "gate": "正文可回读",
+ "check": "每个数值带〔节点ID〕；recommendation 用建议句；hypothesis 用条件句；"
+          "range_known=false 不说「符合」"}
+```
+
+**代价（实测）**
+
+```
+range_known=false 的 63 条约束 → 若都写「符合规范」，全部站不住
+hypothesis 写成既成事实 → 「施工将影响师生出行」应为「若施工组织不当可能影响」
+```
+
+---
+
+### 阶段 5 · 反向回读与交付（已下沉）
+
+**完整步骤见 `references/阶段5-反向回读与交付.md`（92 行）。**
+
+摘要：把正文逐段反查回图谱节点 → 检查每条论断是否绑证据 →
+产出「正文 ↔ 节点 ↔ 证据 ↔ 原文」四层可追溯清单 → 交付。
+**反查不到的内容必须删或标「无依据」**，不许留。
+
+## 五个阶段的依赖与门禁（已下沉）
+
+见 `references/五阶段依赖与门禁.md`。摘要：阶段 0→5 单向依赖，
+**后一阶段不许回改前一阶段的输出**；每阶段有独立门禁，不过不进下一阶段。
+
+## 拿到「形」包后的读取顺序（3 步，照做）
+
+**按这个顺序读，不要先读 42 个文件。**
+
+```
+第 1 步  00-START-HERE.md        4.8 KB   3 分钟
+         读它 → 知道包是什么、按什么顺序读、三条铁律
+
+第 2 步  TOOLS.yaml              4.2 KB   5 分钟
+         **形包不含代码**；8 个外部工具的调用契约与降级方案
+         写作侧只用 4 个：section_prompt_builder / shard_index / fastload / caliber_check
+
+第 3 步  FILE-INDEX.yaml        16.5 KB   查的时候读
+         每个文件有什么、主键、谁引用谁（15 条）；用 grep 查，不通读
+```
+
+### 三步之后的取数方式（已下沉）
+
+**三个最常用调用见 `references/取数三件套.md`**（可直接复制）：
+`build_prompt` 生成章节提示词 / `resolve` 按需取数 / `classify_conflict` 判口径。
+### 三个工具不可用时怎么办（已下沉）
+
+完整降级方案见 `references/工具降级方案.md`。**每个工具都要有 fallback，静默降级最危险。**
+### 形包里有什么（已下沉）
+
+42 个文件的分布见 `references/形包结构速查.md`。**0 处项目数值 · 0 行代码（工具在运行环境）。**
+## 与既有 skill 的组合（已下沉）
+
+见 `references/与既有skill的组合.md`。**一句话**：建图（knowledge-processing）→
+读包（knowledge-asset-consumption）→ 写作（本 skill），三者不重叠。
+## 边界与不适用
+
+- 不做：不越界做深度语义抽取（隐性事实、跨段推理、专名消歧交 document-parsing / fact-extraction / entity-resolution）。
+- 不做：不自动裁决冲突，conflicts 一律「待审」，不补数字、不改口径凑平。
+- 不做：不捏造事实，派生结论必须能由 formula 反推并绑定证据。
+- 不做：不丢弃溯源，未溯源改动必须显式标注。
+- 缺输入：没有 graph.json 且用户未给材料时，先要材料或先建图，不臆造节点。
 ## 资源清单
 
 - `scripts/validate_graph.py` — 图谱确定性校验（结构 + 悬空引用），写作前必跑。
@@ -226,233 +271,21 @@ style/section_budget.yaml        默认 target_chars = **知识抽取阶段实�
 没有这张表，机器无法区分「有意省略」与「漏了」——
 本项目的实测是 12 个未引用节点中有 3 个是**真漏引**（表格里的数字被散文概括掉了）。
 
+## 一条铁律（已下沉）
 
-## 客户改稿：diff → 分类 → action（写作期回读协议）
+见 `references/一条铁律.md`。**核心：正文里每个数都要能反查回图谱节点，反查不到就不许写。**
+## 写作前的三个自检（已下沉）
 
-**核心**：`ID 是身份，锚是位置`。**位置变了不改 ID；文本变了才动语义对象。**
-分类**零 LLM、可复现**（工具承载：`change_classify.py`，输出 `changes[{action,id,anchor_before,anchor_after,…}]`）。
+完整自检清单见 `references/写作前的三个自检.md`。**开始写正文前必读**，它列了三个「写完才发现错了」的典型错误。
+## 三份专家 skill 的分工边界（已下沉）
 
-| diff 形态 | 锚映射 | **action** | **ID 处理** |
-|---|---|---|---|
-| 位置变了、内容相同 | 同一锚 | **move** | ★ **不分配新 ID，只改 anchor** |
-| 内容新增、旧稿中不存在 | 无 | **add** | 分配**新** ID（状态 draft/candidate） |
-| 内容消失、新稿中不出现（且非被搬走） | 锚失效 | **delete** | 标 deprecated，**ID 不回收** |
-| 数值变 | 同一锚 | **edit_number** | ID 不变；更新 fact 并**重算依赖** |
-| 文本变、数值未变（相似度低） | 同一锚 | **edit_claim** | ID 不变；复查 `premise_refs`/`derived_from`/证据 |
-| 归一化后相同（相似度高） | 同一锚 | **edit_wording** | 不动图谱 |
-| 无法配对 | 无锚可依 | **untraced** | **显式标注「未溯源」，不得默认归因** |
+完整边界见 `references/三份专家分工边界.md`。一句话：
 
-**每条 change 的后续**：
-- `move` / `edit_number` / `edit_claim` ⇒ `need_replay: true` ⇒ **重放受影响的推演链与叙述顺序**，并把传染到的下游结论标注出来
-- `delete` ⇒ 其 `premise_refs`/`derived_from` 的下游**同步降级**（依赖它的结论转为待审）
-- `add` ⇒ 新对象只入 draft/candidate，**过校验后才进正式图谱**；须绑证据
-- `untraced` ⇒ 列进 `unresolved`，向客户**明确列出**，不得静默吸收
+**建图（knowledge-processing）→ 读包（knowledge-asset-consumption）→ 写作（本 skill）**，
+三者不重叠；本文只负责「已编译图谱 → 正文」。
 
-**diff 的确定性判据**：用**结构 diff（difflib）**判"多了/少了/变了"，用**锚**判"是同一对象的移动还是新对象"——
-**不是**按位置比对（位置本身最不可靠）。
+## 资源导航（阶段-1 建图、复用交互、写作深度规则已下沉 references/）
 
-## 两层分离：物理从属 vs 逻辑引用
-
-```
-┌─ 物理层（**从属** / containment）────────────────────────────┐
-│  章节ID → 子章节ID → 切片ID → 句子ID                          │
-│  · ID 编码**路径/位置**；**随切分策略而变是它的职责**（可重建）    │
-└─────────────────────────────────────────────────────────────┘
-                    ▲  锚（anchor）＝**引用，不是从属**
-                    │  可重绑 · 可多值 · 可空 · 失效须待审
-┌─ 逻辑层（**引用** / reference）──────────────────────────────┐
-│  claim · evidence · node · rule · relation · reasoning        │
-│  · ID 由**语义/内容**决定，**永不因重切块/重分句而变**            │
-│  · **扁平注册表**，不得嵌在物理对象里                            │
-└─────────────────────────────────────────────────────────────┘
-```
-
-**三条判据（可当检查项）**：
-1. **扁平性**：逻辑对象不得作为物理对象的子节点存储
-2. **无物化**：逻辑对象不得缓存物理路径（`_chapter`/`_path`/`section`）
-3. **锚可重绑**：锚目标必须**可重建**
-
-**锚的选层（关键）**：锚**不选切片 ID**（那是"策略产物"），而选**文档固有坐标**：
-```
-主锚  doc_span + quote   文档绝对字符偏移 + 逐字引文 —— **与切块/分句都无关**
-索引  sentence_id        覆盖该坐标的句子（可重建）
-代指  slice_id           当前这一代切片的索引（**不是身份**，可重算）
-```
-**精度分级**（不得混淆）：`exact`（逐字定位）· `slice`（仅知所在切片）· `UNLOCATED`（天生无逐字引文）· `DANGLING`（**仅表示重绑失败**）。
-
-
-
-## 数值推演：沿 computed_from 反查计算链
-
-### 输入里必须有的
-
-语义图谱的 relations 里要有 `computed_from` 边（知识处理侧产出）。没有的话：
-
-```
-图谱只有「最高日用水量 = 95.04」
-→ 写作时无法说明这个数怎么来的
-→ 审稿问「95.04 依据是什么」时只能回指原文，无法展示计算
-```
-
-### 怎么用
-
-**① 正文写数值时，附计算依据**
-
-```
-本项目最高日用水量为 95.04 m³/d〔N-c67295c8a345〕，
-由科研学生用水 1800 人×40 L/生·日、办公用水 288 人×50 L/人·日，
-按未预见系数 10% 计取（规则 R-最高日用水量）。
-```
-
-**② 复算校验**：沿 computed_from 拿到全部输入值，代入 expr 重算，与原文值比对
-
-```python
-# 输入：N-d33295e7e784 = 1800, N-3f1810ee3a33 = 40, ...
-# expr: round(({人数}*{定额}+...)/1000*(1+{系数}/100), 2)
-# 算出 95.04 == 原文 95.04  → 链条可信
-# 算出 ≠ 原文 → 标为待审，不得直接引用
-```
-
-**③ 冲突归因**：两个章节的同一个数不一致时，沿链看是**输入不同**还是**公式不同**
-
-```
-6.4.2 的 95.04 vs 7.2.2 的 1.74万m³/年
-  → 沿 computed_from 查：是不同口径（日 vs 年），不是错误
-```
-
-**④ 换项目重算**：只替换 computed_from 指向的输入节点，输出值全部重算，不要手改结果
-
-### 三条铁律
-
-| 铁律 | 说明 |
-|---|---|
-| 不许绕过链 | 正文里的数值必须能沿 computed_from 找到 rule_id 与全部输入 |
-| 不许反算 | 从结论倒推中间量（如已知 95.04 反推 1800 人）视为无效 |
-| 缺链即标注 | computed_from 缺失的值，正文写「计算依据待补」并挂缺口，不得写成算出来的 |
-
-### 和 derives_from 的分工
-
-- `computed_from` → 数值怎么算的（可复算、有公式）
-- `derives_from` → 论断怎么推的（有推理规则、无公式）
-
-混用会导致：写作时拿不到公式（把数值计算记成论断推导），或审计时找不到推理依据。
-
-
-## 合规表述：bounded_by 的 range_known 决定能不能说「符合」
-
-### 判据
-
-写「符合规范」「满足要求」之前，先沿 `bounded_by` 检查：
-
-```
-range_known == true  且  取值落在 [lower, upper] 内
-    → 可以写「满足 XX 规范 X.X 条要求」
-
-range_known == false
-    → 只能写「取值 16㎡/人，依据 建标191-2018 相关指标，限值待核」
-    → 禁止写「符合规范」
-```
-
-### 反例（本项目真实情况）
-
-```
-图谱里：N-7c3d781cf6f1(18040㎡) --bounded_by--> 建标191-2018 人均面积指标
-        payload.range_known = false
-        payload.note = "本次未取到条款限值原文，不得据此判定符合规范"
-
-❌ 错误写法：本项目科研人员用房人均 16㎡/人，符合建标191-2018 要求。
-✅ 正确写法：本项目科研人员用房人均 16㎡/人，取值参考建标191-2018 相关指标；
-             该条款限值原文尚未取到，合规性待核。
-```
-
-### 三类别混
-
-| 关系 | 给写作提供什么 |
-|---|---|
-| `computed_from` | 数值的计算过程（可复算） |
-| `bounded_by` | 数值的合规边界（能否说符合） |
-| `cites` | 论述的文件依据（不判数值） |
-
-缺 `bounded_by` 时：不知道边界 → 一律不写「符合」。
-
-
-## 工程章节写作：每个数都要能说出"怎么来的/合不合规"
-
-### 三类数值的写法
-
-| 数值来源 | 写法 | 例子 |
-|---|---|---|
-| 推演得出（有 computed_from） | 数值 + 计算式 + 规则号 | "冷负荷 2473 kW（建筑面积 18319 ㎡ × 135 W/㎡）" |
-| 受约束（有 bounded_by） | 数值 + 条款 + 状态 | "室外计算干球温度 34.4℃（依 GB50736 附录A，现行版本待核）" |
-| 两者都无 | 明写"设计给定"+ 缺口 | "总计算负荷 952 kW 为设计给定值，计算过程原文未列" |
-
-### 禁止
-
-- ❌ 只写结果不写算式："冷负荷 2473 kW"（读者无法验证）
-- ❌ 把推导值当原文引用：`{{node:N-ch6-xxx}}` 是推导来的，不是原文写的
-- ❌ 设计参数不挂规范："夏季空调 34.4℃"（没说依据哪版规范）
-
-### 覆盖率自查
-
-写完一章，数一下：
-
-```
-本章出现的数值 N 个
-其中能给出"计算式或条款依据"的 M 个
-M / N 就是这章的可审计度 —— 低于 50% 说明图谱关系没建全，
-不要用文字去补（那样更不可信），回上游补 relation。
-```
-
-### 第六章实测（可作为对照基线）
-
-```
-118 个数值节点
-  15 个有推演输出（2473 kW 冷负荷 / 288 m³ 消防水量 / 1980 kW 设备产能 …）
-  23 个被用作输入（18319 ㎡ / 135 W/㎡ / 40 L/s …）
-  40 个受规范约束（气象参数 / 荷载 / 耐火等级 …）
-  44 个孤立（设备铭牌 / 建筑尺寸 / 缺明细 / 只给结果）
-覆盖率 63%
-```
-
-
-## 找依据：先按标签筛条款，别按章节猜
-
-### 顺序
-
-```
-① 看数值节点的 primary_tag（专业域.主题）
-② 沿 bounded_by 找它挂的条款
-③ 若没挂上，用 tag_query 按同标签检索公共库
-④ 同标签但主题不同 → 不是同一件事，不要硬挂
-```
-
-### 例子：写抗震段落
-
-```
-节点 N-25ae699e50ec   设计基本地震加速度 = 0.1g
-     primary_tag = 结构.地震参数
-
-查 tag_query(domain="结构", topic="地震参数")
-     → GB50011-2010 附录A-3「烈度 7 度 / 加速度 0.10g / 第一组：上海(…)」
-
-正文写：本项目设计基本地震加速度 0.10g，抗震设防烈度 7 度，
-       设计地震第一组（GB50011-2010 附录A）。
-```
-
-### 反例
-
-```
-❌ 因为节点在 §6.3.2「主要荷载取值」，就把全章 8 个值都挂到「抗震设防分类」
-   —— 那一章里还有风荷载、雪荷载，不是一回事
-✅ 逐值看 primary_tag：风荷载体型系数→结构.荷载；0.1g→结构.地震参数
-```
-
-### 报表里呈现项目标签
-
-写报告时把项目标签写在文首，读者才知道这是什么类型的项目：
-
-```
-项目标签：科研 · 建筑 · 中型 · 可研 · 高层 · 抗震 · 消防
-```
-
-同类项目对比时，用「同用途 + 同类型 + 同规模」筛出可比案例。
+- `references/阶段-1建图.md` — 1 节
+- `references/复用与交互.md` — 3 节
+- `references/写作深度规则.md` — 13 节

@@ -34,7 +34,7 @@ REQUIRED_KEYS = {
     "relations":   ("id", "from", "to", "type", "source"),
     "facts":       ("id", "subject", "predicate", "value", "source"),
     "reasoning":   ("id", "formula", "result", "desc", "inputs", "output", "section"),
-    "claims":      ("id", "text"),
+    "claims":      ("id", "text"),   # claim_type / falsifiable_by 由 NEW_CHECKS 单独处理
     "evidence":    ("id", "name", "date", "kind"),
     "conflicts":   ("id", "type", "severity", "status", "description", "involved"),
     "validations": ("claim", "status", "reason"),
@@ -43,7 +43,8 @@ REQUIRED_KEYS = {
 # References whose value must point at a known id (dangling refs are errors).
 # Each tuple is (field, tuple_of_valid_collections).
 ID_REF_FIELDS = {
-    "relations":   (("from", ("entities",)), ("to", ("entities",))),
+    "relations":   (("from", ("entities", "claims", "evidence", "facts", "reasoning")),
+                    ("to",   ("entities", "claims", "evidence", "facts", "reasoning"))),
     "reasoning":   (("inputs", ("facts", "reasoning")), ("output", ("facts",))),
     "claims":      (("deps", ("facts", "reasoning", "claims")),
                     ("evidence_refs", ("evidence",)),
@@ -74,6 +75,56 @@ def _check_ref(ref, owner, col, field, target_cols, id_sets, errors):
     if any(ref in id_sets[t] for t in target_cols):
         return
     errors.append(f"{col} '{owner}'.{field} references unknown id '{ref}'")
+
+
+CLAIM_TYPES = ("conclusion", "recommendation", "hypothesis", "inference")
+# fact 是合法的「事实级证据」（一条 fact 自带原文摘录时即为其证据）
+EVIDENCE_KINDS = ("E0", "E1", "E2", "E3", "E4", "E5", "E6", "hypothesis", "fact")
+# 与 Semantica context_graph._CAUSAL_TRAVERSAL_TYPES 保持一致
+# 实际匹配逻辑：edge.edge_type.upper() in 这个集合（大小写不敏感）
+CAUSAL_EDGE_TYPES = frozenset({
+    "CAUSES", "CAUSED", "INFLUENCES", "INFLUENCED",
+    "PRECEDES", "PRECEDENT_FOR", "LEADS_TO", "LEAD_TO",
+    "SUPPORTS", "SUPPORT",
+})
+
+
+def check_v28_semantics(items):
+    """V2.8 新增语义校验。返回 (errors, warnings)。
+
+    · claim_type 必须在四类枚举内（错 → error）
+    · falsifiable_by 缺失 → warning（视为口号，不阻断）
+    · evidence.kind 必须在 E0~E6/hypothesis 内（错 → error）
+    · 因果边类型必须命中枚举，小写 causes 会静默失效（错 → error）
+    · bounded_by.range_known=false 且未标「部分可核」→ warning（写作时禁止说符合）
+    """
+    errs, warns = [], []
+    for c in items.get("claims") or []:
+        ct = c.get("claim_type")
+        if ct and ct not in CLAIM_TYPES:
+            errs.append("claims[%s].claim_type=%r 不在 %s 内" % (c.get("id"), ct, CLAIM_TYPES))
+        if not c.get("falsifiable_by"):
+            warns.append("claims[%s] 缺 falsifiable_by → 视为口号，写作时不应用" % c.get("id"))
+    for e in items.get("evidence") or []:
+        k = str(e.get("kind") or "")
+        if k and k not in EVIDENCE_KINDS:
+            errs.append("evidence[%s].kind=%r 不在 %s 内" % (e.get("id"), k, EVIDENCE_KINDS))
+    for r in items.get("relations") or []:
+        t = str(r.get("type") or "")
+        # Semantica 内部是 edge.edge_type.upper() in _CAUSAL_TRAVERSAL_TYPES
+        # → 大小写不敏感，小写 causes/supports 同样有效。只有不在枚举内才失效。
+        if t and t.upper() not in CAUSAL_EDGE_TYPES and t.upper() in (
+                "CAUSE", "CAUSES", "CAUSED", "INFLUENCE", "INFLUENCES", "INFLUENCED",
+                "PRECEDE", "PRECEDES", "PRECEDENT_FOR", "LEAD_TO", "LEADS_TO",
+                "SUPPORT", "SUPPORTS"):
+            errs.append("relations[%s].type=%r 在因果语义族内但不在 Semantica 枚举"
+                        "→ 因果链遍历会失效" % (r.get("id"), t))
+        p = r.get("payload") or {}
+        if r.get("type") == "bounded_by" and p.get("range_known") is False:
+            if p.get("status") != "部分可核":
+                warns.append("relations[%s] range_known=false 且未标「部分可核」"
+                             "→ 写作时禁止说「符合」" % r.get("id"))
+    return errs, warns
 
 
 def main(argv):
@@ -158,6 +209,11 @@ def main(argv):
     print(f"graph: {data.get('project_id')} @ {data.get('version_id')}")
     for col in ITEM_TYPES:
         print(f"  {col:<12} {len(items.get(col, []))}")
+
+    # V2.8 语义校验（必须在打印之前，否则结果不生效）
+    _e28, _w28 = check_v28_semantics(items)
+    errors.extend(_e28)
+    warnings.extend(_w28)
 
     for w in warnings:
         print(f"[WARN] {w}")

@@ -138,10 +138,13 @@ function verify(sources) {
     const diskNames = skills.skills.map(x => x.name).sort(cmp);
     const missingOnDisk = libNames.filter(n => diskNames.indexOf(n) < 0);
     const missingInLib = diskNames.filter(n => libNames.indexOf(n) < 0);
-    add('技能库（运行时）与磁盘一致', missingOnDisk.length === 0 && missingInLib.length === 0,
+    // 硬检查只要求「磁盘上的技能都能被库看到」；库里另有外部/市场技能属于正常
+    // 硬检查：磁盘上的技能必须都能被库识别；库中额外的外部/市场技能只作提示
+    add('磁盘技能全部可被库识别', missingInLib.length === 0,
       '库 ' + libNames.length + ' / 磁盘 ' + diskNames.length +
-      (missingOnDisk.length ? '；库有磁盘无：' + missingOnDisk.join('、') : '') +
-      (missingInLib.length ? '；磁盘有库无：' + missingInLib.join('、') : ''));
+      (missingInLib.length ? '；磁盘有库无：' + missingInLib.join('、') : '') +
+      (missingOnDisk.length ? '；库有磁盘无（外部/市场，正常）：' + missingOnDisk.join('、') : ''));
+    if (missingOnDisk.length) warnings.push({ name: '技能库含扫描根之外的技能', detail: missingOnDisk.join('、') + '（来自市场/远端，未包含在资料包副本中）' });
   } else {
     add('技能库一致性', false, '未提供运行时快照，无法比对（磁盘事实不受影响）');
   }

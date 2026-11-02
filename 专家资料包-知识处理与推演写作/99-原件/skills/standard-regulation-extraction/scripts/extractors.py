@@ -175,3 +175,108 @@ def judge_quality(chunks, clauses):
         "verdict": ("达标" if cov >= 10 and dup == 0 else
                     ("覆盖率偏低（<10%），检查抽取模式" if cov < 10 else "有重复条款")),
     }
+
+
+# ══ 入库校验：条款必须带标准号与原文 ══
+REQUIRED_CLAUSE_FIELDS = ("code", "standard", "clause_no", "clause_text")
+
+# 字段别名：条款库里常用 clause/text，校验时两种都认
+ALIAS = {"clause_no": ("clause_no", "clause", "clause_id"),
+         "clause_text": ("clause_text", "text", "content"),
+         "code": ("code", "standard_code"), "standard": ("standard", "standard_name")}
+
+def _get(clause, field):
+    for k in ALIAS.get(field, (field,)):
+        v = clause.get(k)
+        if v is not None and str(v).strip():
+            return v
+    # 表格条款：有 table 即视为有原文（表格就是条文内容）
+    if field == "clause_text" and clause.get("table"):
+        return "[表格 %d 行]" % len(clause["table"])
+    return None
+
+def check_clause_ready(clause):
+    """单条条款入库就绪检查。
+
+    五项必填：code / standard / clause_no / clause_text / (source_url|doc_id)
+    字段别名：clause_no↔clause，clause_text↔text
+    缺任何一项 → ready=False，action 说明怎么补。
+    """
+    missing = [f for f in REQUIRED_CLAUSE_FIELDS if not _get(clause, f)]
+    if not (clause.get("source_url") or clause.get("doc_id")):
+        missing.append("source")
+    if missing:
+        return {"ready": False, "missing": missing,
+                "clause": clause.get("clause_no") or clause.get("clause"),
+                "action": "补齐后方可入库；确实取不到标 pending_fetch，不编造"}
+    return {"ready": True, "trace_status": "full",
+            "clause": clause.get("clause_no") or clause.get("clause")}
+
+
+def validate_library(clauses, standard_code=None, standard_name=None):
+    """整库入库校验。
+
+    clauses: [{code, standard, clause_no, clause_text, source_url|doc_id}]
+    返回 {total, ready, pending, by_missing, items}
+    """
+    # 允许调用方传入标准级默认值（单标准文件内不必每条重复）
+    if standard_code or standard_name:
+        for c in clauses:
+            if standard_code and not c.get("code"):
+                c["code"] = standard_code
+            if standard_name and not c.get("standard"):
+                c["standard"] = standard_name
+    results = [check_clause_ready(c) for c in clauses]
+    by_missing = {}
+    for r in results:
+        if r["ready"]: continue
+        k = "、".join(r["missing"])
+        by_missing[k] = by_missing.get(k, 0) + 1
+    return {
+        "total": len(clauses),
+        "ready": sum(1 for r in results if r["ready"]),
+        "pending": sum(1 for r in results if not r["ready"]),
+        "by_missing": by_missing,
+        "items": [r for r in results if not r["ready"]],
+    }
+
+
+# URL 片段 → 标准号（有些站点用拼音/缩写做文件名）
+URL_HINTS = [
+    ("jd191", "建标191-2018"), ("jianbiao", "建标191-2018"),
+    ("gb50016", "GB50016-2014"), ("gb50084", "GB50084-2017"),
+    ("gb50974", "GB50974-2014"), ("gb50011", "GB50011-2010"),
+    ("gb50223", "GB50223-2008"), ("gb50352", "GB50352-2005"),
+    ("gb50378", "GB/T50378-2019"), ("gb50009", "GB50009-2012"),
+    ("gb50736", "GB50736-2012"), ("gb50555", "GB50555-2010"),
+]
+
+def code_from_url(url, text=""):
+    """从 source_url 或正文反推标准号（补 code 缺失时用）。"""
+    import re
+    s = str(url or "") + " " + str(text or "")
+    m = re.search(r"(GB\s*/?\s*T?\s*\d{4,5}(?:[-—]\d{4})?|JGJ\s*\d+(?:[-—]\d{4})?|"
+                  r"DGJ\s*[\dA-Z]+(?:[-—]\d{4})?|建标\s*\d+(?:[-—]\d{4})?)", s)
+    if m:
+        return re.sub(r"\s", "", m.group(1))
+    low = s.lower()
+    for k, v in URL_HINTS:
+        if k in low: return v
+    return ""
+
+
+def check_relation_targets(relations, nodes):
+    """校验 bounded_by / cites 是否指向带标准号的条款节点。
+
+    条款没有标准号，就不是条款，是断章取义的引文。
+    """
+    bad = []
+    for r in relations:
+        if r.get("type") not in ("bounded_by",): continue
+        t = nodes.get(r.get("to")) or {}
+        if not (t.get("code") and t.get("clause_no")):
+            bad.append({"relation": r.get("from", "") + " → " + r.get("to", ""),
+                        "missing": [f for f in ("code", "clause_no") if not t.get(f)]})
+    return {"total": sum(1 for r in relations if r.get("type") == "bounded_by"),
+            "compliant": sum(1 for r in relations if r.get("type") == "bounded_by") - len(bad),
+            "bad": bad}

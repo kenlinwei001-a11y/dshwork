@@ -1,6 +1,6 @@
 ---
 name: knowledge-generalization-skill
-description: "从历史项目中提取可复用 Ontology、Reasoning Pattern、Claim Pattern、分析框架和规则，同时隔离项目专属事实。"
+description: "从历史项目提炼可复用 Ontology、推理模式、Claim 模式、分析框架与规则，同时隔离项目专属事实。触发：沉淀方法论、把经验抽成可复用规则、做成模板给下个项目用。不适用：搬运项目数值与专有事实。"
 ---
 
 # Knowledge Generalization Skill
@@ -11,22 +11,14 @@ SK-14
 ## Purpose
 从历史项目中提取可复用 Ontology、Reasoning Pattern、Claim Pattern、分析框架和规则，同时隔离项目专属事实。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：沉淀方法论｜把经验抽成可复用规则｜做成模板给下个项目用
+- 不要在此调用：搬运项目数值与专有事实
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：绝不跨项目复制项目专属事实与数值
+- 不做：区分形与值：只复用结构与规则
+- 不做：没有明确复用策略时不落地
+- 缺输入：先有已完成的项目资产与复用边界说明

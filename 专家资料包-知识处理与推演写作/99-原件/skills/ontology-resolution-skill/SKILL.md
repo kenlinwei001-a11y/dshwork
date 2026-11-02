@@ -1,6 +1,6 @@
 ---
 name: ontology-resolution-skill
-description: "将候选 Entity 映射到项目 Ontology Registry 中的标准类型、属性和约束。"
+description: "把候选 Entity 映射到项目 Ontology Registry 的标准类型、属性与约束。触发：按本体归类、映射到标准类型、检查属性是否符合约束。不适用：创建或扩写本体（需人工评审）。"
 ---
 
 # Ontology Resolution Skill
@@ -11,22 +11,13 @@ SK-04
 ## Purpose
 将候选 Entity 映射到项目 Ontology Registry 中的标准类型、属性和约束。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：按本体归类｜映射到标准类型｜检查属性是否符合约束
+- 不要在此调用：创建或扩写本体（需人工评审）
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：不擅自新增类型或修改约束
+- 不做：找不到合适类型时输出待评审候选，不硬塞
+- 缺输入：先有 Ontology Registry 与待映射实体

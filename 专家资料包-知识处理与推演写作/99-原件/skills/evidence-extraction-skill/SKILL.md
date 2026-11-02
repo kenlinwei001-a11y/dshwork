@@ -1,6 +1,6 @@
 ---
 name: evidence-extraction-skill
-description: "定位支持 Fact 或 Claim 的原始证据，包括文档、页码、章节、Chunk、Sentence 和文本范围。"
+description: "定位支撑 Fact 或 Claim 的原始证据（文档、页码、章节、Chunk、Sentence、文本范围）。触发：找出处和页码、给结论配原文、定位到具体段落。不适用：评价证据强弱与关系类别（claim-evidence-binding）。"
 ---
 
 # Evidence Extraction Skill
@@ -11,22 +11,13 @@ SK-08
 ## Purpose
 定位支持 Fact 或 Claim 的原始证据，包括文档、页码、章节、Chunk、Sentence 和文本范围。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：找出处和页码｜给结论配原文｜定位到具体段落
+- 不要在此调用：评价证据强弱与关系类别（claim-evidence-binding）
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：不生成不存在的引用
+- 不做：找不到时输出缺失，不用相近段落冒充
+- 缺输入：先有 Fact/Claim 与原文 IR

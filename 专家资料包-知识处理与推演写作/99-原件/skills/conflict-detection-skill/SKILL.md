@@ -1,6 +1,6 @@
 ---
 name: conflict-detection-skill
-description: "检测数字、时间、实体、Claim 和版本之间的冲突，并输出待审状态而非自动裁决。"
+description: "检测数字、时间、实体、Claim 与版本之间的冲突，并输出待审状态。触发：前后数字对不上、不同版本之间有矛盾、列出所有待审冲突。不适用：拍板选一个值（交人工或评审）。"
 ---
 
 # Conflict Detection Skill
@@ -11,22 +11,13 @@ SK-13
 ## Purpose
 检测数字、时间、实体、Claim 和版本之间的冲突，并输出待审状态而非自动裁决。
 
-## Input
-- `project_id`
-- `document_id`
-- `version_id`
-- 上游 Skill 输出
-- 原文或结构化中间结果
+## 何时使用
 
-## Output
-必须输出稳定 ID、结构化结果以及 provenance/来源关联字段。
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：前后数字对不上｜不同版本之间有矛盾｜列出所有待审冲突
+- 不要在此调用：拍板选一个值（交人工或评审）
+## 边界与不适用
 
-## Execution Rules
-1. 只使用输入中存在或可由明确规则推导的信息，不编造事实。
-2. 所有结果尽可能绑定 `project_id`、`document_id`、`version_id`。
-3. Fact、Claim、Evidence、Reasoning 必须保留来源链。
-4. 发现冲突时输出冲突状态，不擅自裁决。
-5. 不得在没有复用策略的情况下跨项目复制项目专属事实。
-
-## Validation
-使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
+- 不做：绝不自动裁决或静默选值
+- 不做：每条冲突给出双方出处与差异点
+- 缺输入：先有可比数据（同指标多来源或多版本）

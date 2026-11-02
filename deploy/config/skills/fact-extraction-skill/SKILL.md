@@ -1,6 +1,6 @@
 ---
 name: fact-extraction-skill
-description: "将文本中的可验证信息抽取为 Subject-Predicate-Value-Time-Source 结构化事实。"
+description: "把可验证信息抽取为 Subject-Predicate-Value-Time-Source 结构化事实。触发：抽取事实、把数字和条件结构化、建立事实表。不适用：抽取观点、预测与建议（claim-extraction）、判定真伪（claim-validation）。"
 ---
 
 # Fact Extraction Skill
@@ -11,6 +11,16 @@ SK-06
 ## Purpose
 将文本中的可验证信息抽取为 Subject-Predicate-Value-Time-Source 结构化事实。
 
+## 何时使用
+
+- 调用条件：上游产物与 project_id / document_id / version_id 齐备
+- 典型请求：抽取事实｜把数字和条件结构化｜建立事实表
+- 不要在此调用：抽取观点、预测与建议（claim-extraction）、判定真伪（claim-validation）
+## 边界与不适用
+
+- 不做：不把判断或预测写成事实
+- 不做：同一指标不同时点的数值不合并；无来源标记缺失
+- 缺输入：先有 Sentence/Chunk 或 IR
 ## Input
 - `project_id`
 - `document_id`
@@ -30,7 +40,6 @@ SK-06
 
 ## Validation
 使用 `tests/golden.json` 和 `tests/expected.json` 执行基础验收。
-
 
 ## 与 claim 的边界：49 条 judgment 实为 fact（V2.8）
 

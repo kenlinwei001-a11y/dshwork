@@ -1,0 +1,30 @@
+{
+  "run_id": "AR-202203001-01",
+  "report_id": "202203001",
+  "standard_id": "HJ 636-2012",
+  "rule_id": "ARC-C1-01-02",
+  "category": "C1",
+  "verdict": "PASS",
+  "target": {
+    "doc_id": "D10",
+    "page": 4,
+    "block_id": "tbl-01-r2-c4",
+    "char_start": 210,
+    "char_end": 214,
+    "quote": "3.36",
+    "method": "table_cell",
+    "status": "LOCATED"
+  },
+  "clause_anchor": {
+    "clause": "1",
+    "page": 4,
+    "quote": "测定范围为 0.20～7.00 mg/L"
+  },
+  "observed": {
+    "field": "总氮结果",
+    "value": 3.36,
+    "unit": "mg/L"
+  },
+  "message": "3.36 在 0.20–7.00 mg/L 范围内",
+  "suggestion": null
+}

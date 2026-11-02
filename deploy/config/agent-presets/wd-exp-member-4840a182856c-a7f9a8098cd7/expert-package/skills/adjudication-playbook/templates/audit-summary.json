@@ -1,0 +1,39 @@
+{
+  "run_id": "AR-202203001-01",
+  "report_id": "202203001",
+  "project_id": "PRJ-2026-001",
+  "standards": [
+    {
+      "standard_id": "HJ 636-2012",
+      "method_match": "match",
+      "verdict": "PASS_WITH_GAPS",
+      "counts": {
+        "PASS": 12,
+        "FAIL": 0,
+        "UNVERIFIABLE": 2,
+        "NOT_APPLICABLE": 0,
+        "CONFLICT_PENDING": 0
+      }
+    }
+  ],
+  "overall": "待补证据",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "type": "method_mismatch",
+      "standard_id": "HJ 671-2013",
+      "declared": "GB 11893-89",
+      "severity": "high",
+      "message": "报告总磷方法与库内标准不一致，不参与合格判定",
+      "suggestion": "补 GB 11893 规则集或改用 HJ 671 重测"
+    }
+  ],
+  "missing": [],
+  "conflicts": [],
+  "false_pass_review": {
+    "checked": 0,
+    "downgraded": 0
+  },
+  "conclusion": "三套匹配标准中无 FAIL，但存在缺证项，判待补证据；总磷方法 mismatch 单列。",
+  "remediation": []
+}

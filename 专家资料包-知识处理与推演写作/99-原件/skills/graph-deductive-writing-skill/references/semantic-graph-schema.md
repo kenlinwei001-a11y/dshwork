@@ -165,3 +165,135 @@
 所有跨节点引用（relations.from/to、reasoning.inputs/output、claims.deps/evidence_refs/premise_refs/derived_from、
 conflicts.involved、validations.claim）都必须指向存在的节点 id。`scripts/validate_graph.py`
 在写作前对此做确定性检查，发现悬空引用或缺失必填字段即报错，应先修复图谱再写作。
+
+
+## V2.8 新增字段（本轮实证）
+
+以下字段是 2019ZX054 项目实证后加入契约的。**写作前必须检查，缺了就不能按老口径写。**
+
+### claims 新增 `falsifiable_by`
+
+```json
+{
+  "id": "CL-结论-01",
+  "text": "建设必要性充分：…",
+  "claim_type": "conclusion",
+  "falsifiable_by": "找到一条证据表明该判断不成立（如必要性不足的反证）",
+  "status": "unverified",
+  "evidence_refs": ["REF:《中共中央关于制定...》"]
+}
+```
+
+| 字段 | 必填 | 含义 | 缺了怎么办 |
+|---|---|---|---|
+| `claim_type` | ✓ | `conclusion` / `recommendation` / `hypothesis` / `inference` | 不能写（无法选句式） |
+| `falsifiable_by` | ✓ | 什么能推翻它 | **视为「不是论断，是口号」，不写** |
+
+**实测**：68 个原 judgment 节点复判后只剩 19 条真 claim —— 49 条是 fact（参数、规范转述、编号）。**写作时必须按 claim_type 核实数量，不能照抄旧的 68 条。**
+
+### evidence 新增 `kind`（E0~E6 + hypothesis）
+
+```json
+{
+  "id": "EV-选址-01",
+  "kind": "E0",
+  "quote": "西侧为校园绿地，东侧临近现有建筑教育中心…",
+  "verifiable": true,
+  "survey_date": "unknown",
+  "surveyor": "unknown",
+  "classify_basis": "场地四至属编制方可复查的现场情况，不是甲方给定值"
+}
+```
+
+| kind | 含义 | verifiable | 必填附加字段 |
+|---|---|---|---|
+| `E0` | **编制方踏勘/调查** | true | `survey_date` `surveyor` `basis` |
+| `E1` | 客户给定 | false | `provider` `provide_date` `version` |
+| `E2` | 规范条文 | true | 标准号 `code` + 条款号 `clause_no` |
+| `E3` | 外部公开数据 | true | 发布机构 / 日期 / URL |
+| `E4` | 图内派生 | true | `leaf_refs`（可追溯输入） |
+| `E5` | 类比工程 | partial | 类比对象 + 可比性 |
+| `E6` | 专家判断 | false | 专家身份 + 依据 |
+| `hypothesis` | **预测性表述** | — | 不是证据，是 claim 的子类 |
+
+**实测重分配**：31 条原标 E1 的证据，实际是 E0×7 / E1×15 / E3×15 / E4×8 / hypothesis×5。
+
+### bounded_by 新增 `status: 部分可核`
+
+```json
+{
+  "type": "bounded_by",
+  "from": "N-1b1549fc44f9",
+  "to": "MC-X-GB50009",
+  "payload": {
+    "clause": "GB50009-2012 8.3.1 表8.3.1（体型系数）",
+    "range_known": false,
+    "status": "部分可核",
+    "verified_parts": {
+      "mu_z": "表8.2.1 B类 49m 插值 ≈1.61 ✅ 可核",
+      "w0":   "表E.5 上海 R=50 = 0.55 ✅ 可核",
+      "mu_s": "表8.3.1 为图片未转录；1.3 = 迎风0.8+背风0.5 属常规，⚠️ 无法逐项核对"
+    }
+  }
+}
+```
+
+**三种状态**：
+
+| `range_known` | `status` | 写作要求 |
+|---|---|---|
+| `true` | — | 可写「满足 XX 规范 X.X 条」 |
+| `false` | 为空 | 只能写「依据 XX，限值待核」 |
+| `false` | **`部分可核`** | **拆开写：哪个参数核了、哪个没核** |
+
+### relations 新增因果边类型
+
+```json
+{
+  "type": "CAUSED",
+  "from": "f6c1337ea1c517f29f14fd6a3629accf",
+  "to": "6d5791f8-ef5c-4b1d-8a38-006dc7483557",
+  "properties": {
+    "why": "建筑高度 >50m 属一类高层公共建筑，耐火等级不应低于一级",
+    "basis": "项目内实测因果（不是推断）"
+  }
+}
+```
+
+**允许的因果边类型（大小写敏感）**：
+
+```
+CAUSES / CAUSED / INFLUENCES / INFLUENCED
+PRECEDES / PRECEDENT_FOR / LEADS_TO / LEAD_TO / SUPPORTS / SUPPORT
+```
+
+**小写 `causes` 不生效** —— 实测踩过。
+
+### 章节级写作输入（可选）
+
+```json
+{
+  "section_no": "6.4.2",
+  "prompt": "依据脱敏骨架撰写《室外给水排水工程》一节…",
+  "project_tags": ["科研","建筑","中型","可研","高层"],
+  "facts_count": 23,
+  "rules": ["R-最高日用水量","R-排水量"],
+  "norm_refs": [{"standard":"GB50555-2010","clause":"表3.1.7","range_known":false}],
+  "conflicts": [{"subject":"办公（教师）用水定额","values":["50","35"],"strength":"strong"}],
+  "return_contract": "正文 Markdown + node_mentions + new_claims + unresolved"
+}
+```
+
+**本项目已产出 119 节**（`写作输入/section-prompts.yaml`），可直接投喂。
+
+## 校验
+
+```bash
+python scripts/validate_graph.py <graph.json>
+```
+
+V2.8 起校验项增加：
+- `claim_type` 必须在四类枚举内
+- `falsifiable_by` 缺失 → warn（视为口号）
+- `evidence.kind` 必须在 E0~E6/hypothesis 内
+- `bounded_by.range_known == false` 且 `status != 部分可核` → 写作时禁止说「符合」
