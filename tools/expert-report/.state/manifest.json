@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-02T11:27:23Z",
-  "runAt": "2026-11-02T11:28:48Z",
+  "builtAt": "2026-11-02T13:05:37Z",
+  "runAt": "2026-11-02T13:09:17Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -329,15 +329,15 @@
       "kind": "expert",
       "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a54010bbb24e.json",
       "bytes": 559,
-      "sha256": "ffaf7bbd2c60c614e8c2707f66655ad83ea21b96d9956054765c663ae012ae8d",
+      "sha256": "670c177b1af707a6a59d22aea5b13f28866b2d28362c23662e30f703c035ba7f",
       "detail": "expert-a54010bbb24e.json"
     },
     {
       "kind": "expert",
-      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-13dc44ab1db8.json",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-c813fec36e9e.json",
       "bytes": 39699,
-      "sha256": "b71fe57b2e4335b9170563e02197a7869055543e379e74f9cf5485245aaf235e",
-      "detail": "expert-a54010bbb24e_rev-13dc44ab1db8.json"
+      "sha256": "34e6310f71f8dd82e9ae34e7d09210b7526c39721f72f9555523fef95b18eb85",
+      "detail": "expert-a54010bbb24e_rev-c813fec36e9e.json"
     },
     {
       "kind": "expert",
@@ -350,21 +350,21 @@
       "kind": "expert",
       "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a0a771c8b0da.json",
       "bytes": 559,
-      "sha256": "f3dac96442d3877a29ecd4e7c7e95b2a649cb06587b6e65da22a605b292cf093",
+      "sha256": "5ef4299ac60d728aae0575130afdd130620f68e643c4381355bd786a54f894e6",
       "detail": "expert-a0a771c8b0da.json"
     },
     {
       "kind": "expert",
-      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-9b09ea281bf3.json",
-      "bytes": 54718,
-      "sha256": "4e431414ba7bbfbd9d09e393abc8667e97320c9d3e6ca6cf761dc2265ba670eb",
-      "detail": "expert-a0a771c8b0da_rev-9b09ea281bf3.json"
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-94ac6b5f2785.json",
+      "bytes": 49782,
+      "sha256": "2c9ee6193f6620651d4bd91b4eb8731488bc4c0fbe837576aeda9fd7e4fa38bd",
+      "detail": "expert-a0a771c8b0da_rev-94ac6b5f2785.json"
     },
     {
       "kind": "expert",
       "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/drafts/expert-a0a771c8b0da.json",
-      "bytes": 48797,
-      "sha256": "718baaa82bfcb367d2a9cfb4b6293fdc9042271aa5e9b3e3e67ea28fcb7a5d5b",
+      "bytes": 47435,
+      "sha256": "46f11ffab4304bfe431f4bc3dfa4fcdaedea328b58e0c0d589a5eec3d28ee790",
       "detail": "expert-a0a771c8b0da.json"
     },
     {
@@ -441,7 +441,7 @@
       "kind": "profile",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json",
       "bytes": 5638,
-      "sha256": "cd10c97ee8502e8a2bbd024f198f366f59a4431f6b76e72e9f27c240f21aea03",
+      "sha256": "be9b605de915d791b1630bdaeac6e0aad3621a8ef79507f8292bfd900bbf04fc",
       "detail": "profile composition"
     },
     {
@@ -840,21 +840,21 @@
       "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-experts/package.json",
       "bytes": 4085,
-      "sha256": "378acbbf1b68951779a62ccbc5a5af205bead54c485e5b1127afff0bdec1f8ff",
+      "sha256": "504dc0887232db3c31e433d7a65314676ec07bc34ac949366ee78d8aeb6c06b2",
       "detail": "workdsh-plugin-experts"
     },
     {
       "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-library/package.json",
       "bytes": 4516,
-      "sha256": "68cde2325187b79644f3297b70b69b219e23e1b93bb32810e79eb7b090904b05",
+      "sha256": "e7db1649ed7143490cc6a438e6b3b8515a69a5c7e52d5eccfb43e107e7f6fb8e",
       "detail": "workdsh-plugin-library"
     },
     {
       "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office/package.json",
       "bytes": 3856,
-      "sha256": "334d3c187ff89d0932a61e1d0e349f455864fa3a3dfa5ecc25c24b8f0437d561",
+      "sha256": "f7cf3881042196c3e7a33b0e65c5f2e281bbd8d5752fa2d098e58c0bb95c19d7",
       "detail": "workdsh-plugin-office"
     },
     {
@@ -875,7 +875,7 @@
       "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-quality-analysis/package.json",
       "bytes": 2900,
-      "sha256": "86aac936a56ca19932d58a29d81655d1d58f41a234aada90f224934e2aa271bc",
+      "sha256": "6abdb2d20af58c68fe5b751720632630e8c7415340db6b509bf98b06aa3e9330",
       "detail": "workdsh-plugin-quality-analysis"
     },
     {
