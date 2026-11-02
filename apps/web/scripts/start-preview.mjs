@@ -43,11 +43,9 @@ mkdirSync(previewHome, { recursive: true });
 // User-authorized local-preview outer frame only; exact version and byte guards.
 await ensureNativeWorkbenchFrame(profile);
 const host = process.env.WORKDSH_PREVIEW_HOST ?? '127.0.0.1';
-// 工作区知识库插件需要工作区根目录；这里默认取仓库根（apps/web/../..），可用 DSH_KB_ROOT 覆盖。
-const workspaceRoot = process.env.DSH_KB_ROOT ?? resolve(root, '..', '..');
 const child = spawn(process.execPath, [`--max-old-space-size=${heapMb}`, dsh, '--profile', 'preview', '--host', host, '--port', port, '--no-open'], {
   cwd: root,
-  env: { ...previewProcessEnvironment(root), DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome, DSH_KB_ROOT: workspaceRoot },
+  env: { ...previewProcessEnvironment(root), DSH_HOME: previewHome, DSH_AGENTS_HOME: agentsHome },
   stdio: 'inherit',
 });
 

@@ -85,6 +85,3 @@ deploy/connectors/*.generated.json
 
 # Local package archives are build outputs.
 /packages/plugins/*/*.tgz
-
-# 工作区知识库（dsh-workspace-kb）的本地索引数据
-.knowledge-base/
