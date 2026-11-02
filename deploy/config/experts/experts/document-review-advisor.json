@@ -8,14 +8,14 @@
       "scope": "personal"
     },
     "origin": "default",
-    "availability": "enabled",
-    "revision": "r-c923f442-cfec-416c-ad89-19f697c4ecb9",
+    "availability": "disabled",
+    "revision": "r-347a872b-556b-437d-b5b9-4c3a6d4db4f4",
     "draftRevision": "1a083831c24b",
     "publishedRevisionRef": {
       "expertId": "document-review-advisor",
       "revisionId": "rev-1a2e71fa52e4"
     },
     "createdAt": "2026-09-16T06:37:22.587Z",
-    "updatedAt": "2026-09-16T06:37:22.587Z"
+    "updatedAt": "2026-10-27T04:23:39.478Z"
   }
 }

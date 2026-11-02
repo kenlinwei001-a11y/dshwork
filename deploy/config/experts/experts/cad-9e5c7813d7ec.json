@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "id": "cad-9e5c7813d7ec",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "personal",
+    "availability": "enabled",
+    "revision": "r-1e37e650-14fb-46d4-9382-aee8ce2ec998",
+    "draftRevision": "6f04b6f282ea",
+    "publishedRevisionRef": {
+      "expertId": "cad-9e5c7813d7ec",
+      "revisionId": "rev-57c875e25da8"
+    },
+    "createdAt": "2026-10-29T06:28:03.047Z",
+    "updatedAt": "2026-10-29T12:32:03.389Z"
+  }
+}

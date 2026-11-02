@@ -29,3 +29,15 @@
   config:
     default: standard
     selectedDefault: ptc
+# 每个会话都拉起一个 Playwright MCP 进程；空会话累积后工具表膨胀，
+# “新会话”从 1 秒退化到 80 秒。Web 侧关闭该实验特性，保留手动选择的
+# playwright 连接器；Desktop 仍由 workdsh-browser-session 提供。
+- id: browser-use-playwright-mcp
+  name: '@deepseek-ai/dsh-experimental-browser-use-playwright-mcp'
+  disabled: true
+- id: workdsh-activity
+  disabled: true
+
+- insert:
+    - id: workdsh-cad-expert-gate
+      name: "workdsh-cad-expert-gate"

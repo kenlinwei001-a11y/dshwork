@@ -1,0 +1,74 @@
+{
+  "name": "cad-preliminary-design-drafter",
+  "version": "1.2.0",
+  "description": "Turns engineering and architectural preliminary-design schemes into standards-compliant CAD drawing sets and print-ready PDF through CADCraft.",
+  "author": {
+    "name": "WorkDSH Expert Studio",
+    "email": "experts@workdsh.local"
+  },
+  "license": "MIT",
+  "keywords": [
+    "preliminary design",
+    "CAD",
+    "drafting",
+    "CADCraft",
+    "architecture",
+    "DXF",
+    "PDF"
+  ],
+  "agents": [
+    "./agents/cad-preliminary-design-drafter.md"
+  ],
+  "skills": [
+    "./skills/cadcraft-preliminary-drawing"
+  ],
+  "expertType": "agent",
+  "agentName": "cad-preliminary-design-drafter",
+  "displayName": {
+    "en": "Preliminary Design CAD Drafter",
+    "zh": "初步设计CAD出图专家"
+  },
+  "profession": {
+    "en": "Architectural & Engineering Preliminary-Design CAD Specialist",
+    "zh": "工程建筑设计·初步设计CAD出图专家"
+  },
+  "displayDescription": {
+    "en": "Turns a preliminary design scheme into a standards-compliant CAD drawing set (site plan, plans, elevations, sections, details, schedules) and delivers print-ready PDF through CADCraft.",
+    "zh": "面向工程建筑初步设计阶段：解读方案、策划图纸目录、按制图标准绘制总平平面立剖详图，经 CADCraft 输出可交付 PDF 图纸集。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "02-Engineering",
+  "plugin": "cad-preliminary-design-drafter",
+  "defaultInitPrompt": {
+    "zh": "这是我的初设方案（平面、层高与房间表见附件），请帮我出 A1 建筑初设图纸：总平面、各层平面、两个立面、一个剖面，按初设深度标注，最后输出 PDF。",
+    "en": "Here is my preliminary design scheme (plans, floor-to-floor heights and room schedule attached). Produce an A1 preliminary-design set: site plan, floor plans, two elevations and one section, annotated to preliminary-design depth, then export a PDF."
+  },
+  "tags": [
+    {
+      "en": "Preliminary Design",
+      "zh": "初步设计"
+    },
+    {
+      "en": "CAD Drafting",
+      "zh": "CAD出图"
+    },
+    {
+      "en": "Engineering & Architecture",
+      "zh": "工程建筑"
+    }
+  ],
+  "quickPrompts": [
+    {
+      "zh": "这是我的初设方案（平面、层高与房间表见附件），请帮我出 A1 建筑初设图纸：总平面、各层平面、两个立面、一个剖面，按初设深度标注，最后输出 PDF。",
+      "en": "Here is my preliminary design scheme (plans, floor-to-floor heights and room schedule attached). Produce an A1 preliminary-design set: site plan, floor plans, two elevations and one section, annotated to preliminary-design depth, then export a PDF."
+    },
+    {
+      "zh": "这份初设平面图只有轴网和轮廓，请补全墙体、门窗、楼梯、三道尺寸、房间名称与面积，按 A1 图幅加图框标题栏，整理成图纸目录并导出 PDF。",
+      "en": "This preliminary plan only has the grid and outline. Complete walls, doors and windows, stairs, three-tier dimensions, room names and areas, add an A1 sheet frame with title block, assemble a sheet index and export a PDF."
+    },
+    {
+      "zh": "请按初步设计文件的图纸深度要求审查我这份图纸 PDF，列出缺项和制图问题，给出整改清单，并在我确认后重新出图。",
+      "en": "Review this drawing PDF against preliminary-design drawing-depth requirements, list missing items and drafting problems, propose a rectification list, and re-issue the drawings after I confirm."
+    }
+  ]
+}

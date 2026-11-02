@@ -8,14 +8,14 @@
       "scope": "personal"
     },
     "origin": "default",
-    "availability": "enabled",
-    "revision": "r-07afe59a-59ac-4b80-9474-a6d4fe7022e1",
+    "availability": "disabled",
+    "revision": "r-c57d852e-e6d3-448b-a840-1b5a33d1234d",
     "draftRevision": "7fba1973c3ce",
     "publishedRevisionRef": {
       "expertId": "work-retrospective-advisor",
       "revisionId": "rev-7433dcf389db"
     },
     "createdAt": "2026-09-16T06:37:25.135Z",
-    "updatedAt": "2026-09-16T06:37:25.135Z"
+    "updatedAt": "2026-10-27T04:23:34.744Z"
   }
 }

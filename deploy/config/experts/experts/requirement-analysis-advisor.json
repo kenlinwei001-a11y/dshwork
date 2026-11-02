@@ -8,14 +8,14 @@
       "scope": "personal"
     },
     "origin": "default",
-    "availability": "enabled",
-    "revision": "r-a25f6e1a-a67c-4845-8bbf-8f5c717ce1db",
+    "availability": "disabled",
+    "revision": "r-18928261-bb74-4fc8-a131-055a86b2f100",
     "draftRevision": "43005c7143d8",
     "publishedRevisionRef": {
       "expertId": "requirement-analysis-advisor",
       "revisionId": "rev-6e251194b230"
     },
     "createdAt": "2026-09-16T06:37:21.039Z",
-    "updatedAt": "2026-09-16T06:37:21.039Z"
+    "updatedAt": "2026-10-27T04:23:45.801Z"
   }
 }

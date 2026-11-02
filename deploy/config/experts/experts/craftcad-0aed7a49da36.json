@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "id": "craftcad-0aed7a49da36",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "personal",
+    "availability": "enabled",
+    "revision": "r-7b8535ee-9723-46eb-8556-9bc62341cf0f",
+    "draftRevision": "fef47f35eed6",
+    "publishedRevisionRef": {
+      "expertId": "craftcad-0aed7a49da36",
+      "revisionId": "rev-9cd822a6457a"
+    },
+    "createdAt": "2026-10-29T07:16:51.385Z",
+    "updatedAt": "2026-10-29T12:21:54.474Z"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "craftcad",
+    "title": "CraftCAD",
+    "description": "CraftCAD 二维出图 MCP 桥（DXF 建图 / 校验 / 导出）；随 CAD 专家会话自动启用，普通会话不注入。",
+    "serverName": "craftcad",
+    "transport": "stdio",
+    "command": "/usr/local/bin/node",
+    "args": [
+      "/Users/apple/Desktop/craftcad-mcp/server.mjs"
+    ],
+    "enabled": true,
+    "createdAt": "2026-10-29T12:18:51.030Z",
+    "updatedAt": "2026-10-29T12:18:51.030Z"
+  }
+}
