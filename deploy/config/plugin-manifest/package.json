@@ -41,7 +41,6 @@
     "dsh-mcp-connector": "^0.2.83",
     "dsh-open-dream-rsi": "0.3.15",
     "dsh-plugin-ssh": "file:/Users/apple/workdsh/.test-runtime/vendor/dsh-plugin-ssh.tgz",
-    "dsh-workspace-kb": "github:sd0426301x-dotcom/dsh-knowledge-base",
     "dshmarket": "1.73.3",
     "treg-dsh": "github:superdesigndev/treg",
     "workdsh-bundle": "file:/Users/apple/.cache/workdsh-preview-packs/0b1f535d26c65156/workdsh-bundle-0.1.0-alpha.53.tgz",
@@ -88,7 +87,6 @@
         "dsh-cad",
         "dsh-artcraft-plugin-cadcraft",
         "workdsh-plugin-craftcad-panel",
-        "dsh-workspace-kb",
         "@wxg-prc-cpg/dsh-weknora",
         "treg-dsh",
         "dsh-open-dream-rsi"

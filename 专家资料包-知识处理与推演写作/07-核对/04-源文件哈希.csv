@@ -61,7 +61,7 @@ connector,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors
 connector,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/kp-semantic.json,587,e93d3a28b262146c303c0be6070cb068e030d78cb62596c764a6e7e18acf29d2
 connector,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/playwright.json,535,91d1e175c5dbda4b48cd79201db3eb4876cbefc3e36004da1aaef83b6fd7d341
 connector,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/semantica.json,757,ceebe1e6af63a42541a51961ac5c60b788291767633d270c23cbf2ad8e59d05c
-profile,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json,5638,be9b605de915d791b1630bdaeac6e0aad3621a8ef79507f8292bfd900bbf04fc
+profile,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json,5539,b9c6a1ec1cddf805c27fb3e31d311e638436a786d4e44e8d0a8ce0e3bdff1a5c
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@cocofhu/skillhub/package.json,2778,a736efd874d6e91f252ee58d01cb2dd3599231c25664c683d5a4f91af8dc636d
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/cordis-plugin-group/package.json,861,050a441daa0457c11fd2ec434b8cdf547e536cafd24a0c554e38e290cb87cc3d
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/@deepseek-ai/dsh/package.json,7989,bea4288aa88eb54efe829686553100a75fdf09d11c5e3bf6b329badb9a0368dd
@@ -109,7 +109,6 @@ plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-mcp-connector/package.json,7307,c6e8f49ec644cb31b15a383e9aa1f472a725a8fce6ae6315ba3dbaa1074d588a
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-open-dream-rsi/package.json,1203,65378e52a878fe69470424d190d689502a64df5f6ec32e031392c93db4747743
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-plugin-ssh/package.json,3793,4b704258a581359452363fe7baaa2d95f8cf17d65a3d8ae6bd4c3f7f60a0b7ca
-plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-workspace-kb/package.json,985,1a98f16017c78173d579573332a99d9a173367d482792ddb70816a7ef1674b58
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dshmarket/package.json,3786,3a156a8bc16ad8234e6d26f053db8cbf58796f4f543d36fc6730362a984df0f0
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/treg-dsh/package.json,746,2018575c497991ccb416e0a3f417ecdfdaa0efd61808710cbc231a6eee7a6d24
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-bundle/package.json,3661,690ac1ea055a40a321220a4bfc6389feaacd5cb7c43161a10715113c443f447a
@@ -120,7 +119,7 @@ plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-craftcad-panel/package.json,727,b3c09599fa0ba15fbe75139aa6eef988cd10ffdd35d44817081567bdfccf6098
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-experts/package.json,4085,504dc0887232db3c31e433d7a65314676ec07bc34ac949366ee78d8aeb6c06b2
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-library/package.json,4516,e7db1649ed7143490cc6a438e6b3b8515a69a5c7e52d5eccfb43e107e7f6fb8e
-plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office/package.json,3856,f7cf3881042196c3e7a33b0e65c5f2e281bbd8d5752fa2d098e58c0bb95c19d7
+plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office/package.json,3856,334d3c187ff89d0932a61e1d0e349f455864fa3a3dfa5ecc25c24b8f0437d561
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-plate/package.json,3459,fdb87cc2b7c3d3a747f07675079751e29480cecc1abaa2849fe090200efb82f1
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-projects/package.json,4315,71ae18b82f78a10c526a2c14a454fef700eb0c5fac9dc6f42f63889a2c32160f
 plugin,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-quality-analysis/package.json,2900,6abdb2d20af58c68fe5b751720632630e8c7415340db6b509bf98b06aa3e9330
