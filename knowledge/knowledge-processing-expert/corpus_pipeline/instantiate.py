@@ -161,6 +161,7 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
             "status": "provided",
             "rule": None,
             "inherited_from": None,
+            "section": f.get("section"),      # 章节归属（供分片索引与章节提示词）
         }
         provided[label] = node
 
@@ -238,6 +239,8 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
             "rule": rule_id,
             "instruction": instruction,
             "inherited_from": old_target if isinstance(old_target, str) else None,
+            "section": (r.get("section") or r.get("section_basis")
+                        if isinstance(r, dict) else None),
         }
         nodes.append(node)
         node_by_label[label] = node["id"]

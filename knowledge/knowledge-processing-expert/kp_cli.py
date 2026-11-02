@@ -96,6 +96,37 @@ def cmd_enrich(a):
     return 0
 
 
+def cmd_prompt(a):
+    """生成章节写作提示词（从 graph 注入值到 templates/section-prompt-template.yaml）。"""
+    import json
+    from pathlib import Path
+    from corpus_pipeline.section_prompt_builder import build_prompt, build_all
+    gp = Path(a.graph)
+    if not gp.exists():
+        print("  ✗ graph 不存在: %s" % gp, file=sys.stderr); return 2
+    g = json.loads(gp.read_text(encoding="utf-8"))
+    tags = a.tags.split(",") if a.tags else None
+    if a.section:
+        r = build_prompt(g, section=a.section, title=a.title or "",
+                         path=a.path or "", level=a.level or 2, tags=tags)
+        print(r["prompt"])
+        print("\n--- 统计: 事实 %d / 规则 %d / 冲突 %d / 字符 %d ---"
+              % (r["stats"]["facts"], r["stats"]["rules"],
+                 r["stats"]["conflicts"], r["stats"]["chars"]))
+    else:
+        rs = build_all(g, tags=tags)
+        print("  生成 %d 节提示词：" % len(rs))
+        for r in rs:
+            print("    %-28s 事实 %2d / 规则 %d / %d 字符"
+                  % (r["section"][:28], r["stats"]["facts"], r["stats"]["rules"], r["stats"]["chars"]))
+        if a.out:
+            Path(a.out).write_text(
+                json.dumps([{k: r[k] for k in ("section", "title", "tags", "prompt", "stats")}
+                            for r in rs], ensure_ascii=False, indent=1), encoding="utf-8")
+            print("  → %s" % a.out)
+    return 0
+
+
 def cmd_release_check(a):
     """发版检查清单（全绿才许打包）。失败退出码 1。"""
     import hashlib, json, subprocess
@@ -376,6 +407,15 @@ def main(argv=None):
     en.add_argument("project_dir")
     en.add_argument("--dry-run", action="store_true", help="只统计不写盘")
     en.set_defaults(fn=cmd_enrich)
+
+    pm = sub.add_parser("prompt", help="生成章节写作提示词（从 graph 注入值）")
+    pm.add_argument("graph", help="graph.json 路径")
+    pm.add_argument("--section", help="只生成该节；省略则全部")
+    pm.add_argument("--title"); pm.add_argument("--path")
+    pm.add_argument("--level", type=int, default=2)
+    pm.add_argument("--tags", help="逗号分隔，如 科研,可研,中型")
+    pm.add_argument("-o", "--out")
+    pm.set_defaults(fn=cmd_prompt)
 
     rc = sub.add_parser("release-check", help="发版检查（全绿才许打包）")
     rc.add_argument("dir")
