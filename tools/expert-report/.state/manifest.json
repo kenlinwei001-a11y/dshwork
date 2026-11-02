@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-11-02T13:05:37Z",
-  "runAt": "2026-11-02T13:09:17Z",
+  "builtAt": "2026-11-02T13:31:19Z",
+  "runAt": "2026-11-02T13:42:28Z",
   "schemaVersion": 2,
   "sources": [
     {
@@ -440,8 +440,8 @@
     {
       "kind": "profile",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/package.json",
-      "bytes": 5638,
-      "sha256": "be9b605de915d791b1630bdaeac6e0aad3621a8ef79507f8292bfd900bbf04fc",
+      "bytes": 5539,
+      "sha256": "b9c6a1ec1cddf805c27fb3e31d311e638436a786d4e44e8d0a8ce0e3bdff1a5c",
       "detail": "profile composition"
     },
     {
@@ -775,13 +775,6 @@
     },
     {
       "kind": "plugin",
-      "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dsh-workspace-kb/package.json",
-      "bytes": 985,
-      "sha256": "1a98f16017c78173d579573332a99d9a173367d482792ddb70816a7ef1674b58",
-      "detail": "dsh-workspace-kb"
-    },
-    {
-      "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/dshmarket/package.json",
       "bytes": 3786,
       "sha256": "3a156a8bc16ad8234e6d26f053db8cbf58796f4f543d36fc6730362a984df0f0",
@@ -854,7 +847,7 @@
       "kind": "plugin",
       "path": "/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office/package.json",
       "bytes": 3856,
-      "sha256": "f7cf3881042196c3e7a33b0e65c5f2e281bbd8d5752fa2d098e58c0bb95c19d7",
+      "sha256": "334d3c187ff89d0932a61e1d0e349f455864fa3a3dfa5ecc25c24b8f0437d561",
       "detail": "workdsh-plugin-office"
     },
     {
@@ -937,10 +930,10 @@
     "expertsTotal": 22,
     "expertsScoped": 2,
     "skills": 46,
-    "docs": 117,
+    "docs": 116,
     "copiedFiles": 789,
     "connectors": 9,
-    "plugins": 67,
+    "plugins": 66,
     "projects": 4
   }
 }
