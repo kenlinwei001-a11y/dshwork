@@ -1,0 +1,49 @@
+--- a/src/tools.js
++++ b/src/tools.js
+@@ -1272,6 +1272,34 @@
+  * @param {object} ctx host context (needs `tools`)
+  * @param {{store: object}} options
+  */
++/** DSH 0.2.1-rc.2 rejects JSON Schema type arrays; express ['X','null'] as oneOf. */
++const RC2_MOVED_KEYS = new Set(['type', 'oneOf', 'properties', 'required', 'additionalProperties', 'items', 'enum', 'const'])
++function normalizeToolSchema(node) {
++  if (Array.isArray(node)) return node.map(normalizeToolSchema)
++  if (node === null || typeof node !== 'object') return node
++  const copy = {}
++  for (const [key, value] of Object.entries(node)) copy[key] = normalizeToolSchema(value)
++  const type = copy.type
++  if (!Array.isArray(type)) return copy
++  const types = [...new Set(type)]
++  const nonNull = types.filter(value => value !== 'null')
++  const nullable = types.includes('null')
++  if (nonNull.length === 0) return nullable ? { ...copy, type: 'null' } : copy
++  const outer = {}
++  for (const [key, value] of Object.entries(copy)) if (!RC2_MOVED_KEYS.has(key)) outer[key] = value
++  if (nonNull.length === 1) {
++    const branch = { ...copy, type: nonNull[0] }
++    delete branch.oneOf
++    if (!nullable) return branch
++    outer.oneOf = [branch, { type: 'null' }]
++    return outer
++  }
++  const branches = nonNull.map(value => { const branch = { ...copy, type: value }; delete branch.oneOf; return branch })
++  if (nullable) branches.push({ type: 'null' })
++  outer.oneOf = branches
++  return outer
++}
++
+ export function registerTools(ctx, options = {}) {
+   const store = options?.store
+   if (store === null || typeof store !== 'object' || typeof store.read !== 'function') {
+@@ -1287,7 +1315,10 @@
+   const disposers = []
+   try {
+     for (const definition of buildToolDefinitions(ctx, store)) {
+-      const registration = tools.register(definition)
++      const prepared = { ...definition }
++      if (prepared.parameters !== undefined) prepared.parameters = normalizeToolSchema(prepared.parameters)
++      if (prepared.output && prepared.output.schema !== undefined) prepared.output = { ...prepared.output, schema: normalizeToolSchema(prepared.output.schema) }
++      const registration = tools.register(prepared)
+       if (typeof registration === 'function') {
+         disposers.push(registration)
+       } else if (registration !== null && typeof registration === 'object'

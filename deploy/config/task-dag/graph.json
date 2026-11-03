@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": 2,
+  "workspaceId": "ba4adf2e-0277-4fb4-9180-760f4f6087f7",
+  "workspacePath": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0",
+  "title": "团队知识库",
+  "revision": 187,
+  "updatedAt": "2026-11-03T11:38:55.703Z",
+  "milestoneNodeId": null,
+  "nodes": [
+    {
+      "id": "n_82626d80",
+      "title": "知识处理专家 · 入口：任务识别与文档判定",
+      "status": "todo",
+      "notes": "【入口】工程根 /Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert\n程序\n- python -m corpus_pipeline.cli run <稿件.docx|pdf|md> --out <语料包> --legal <outline.yaml>\n- python kp_cli.py facts|build|graph|slots|enrich|prompt|shard|warm|verify|release-check\n- corpus_pipeline/readers.py 选解析器（md/txt/docx/PDF 需 PyMuPDF）· doc_facts.py 轻量路径\nSkill\n- knowledge-processing（判定「完整建图」还是「轻量建图」）\n- knowledge-processing-toolchain（哪步交工具、哪步交 LLM）\n- document-parsing-skill\nMCP\n- kp-processing.manifest（30 文件清单与能力自述）\n⚠ 工具可达性（实测 mcp/server.py，107 个工具）\n- 5 组只暴露 80 个；35 个未分组，仅 --group all 可达：\n  parse_table_grid · extract_table_values · disambiguate · build_derivation ·\n  verify_derivation · scan_numeric_entities · recognize_number_forms · semantica_*\n产出\n- 任务卡：doc_type / 目标（建图·抽取·审计·推演）/ 路径判定 / 领域本体\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- knowledge-processing\n- knowledge-processing-toolchain\n- document-parsing-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_5725c8d5",
+          "title": "多文件已导入（raw + normalized + manifest）",
+          "createdAt": "2026-11-03T05:55:31.413Z"
+        }
+      ],
+      "sessions": [
+        {
+          "sessionId": "session-8627839f-9fe3-4773-89c0-334cdd394cc5",
+          "slot": 1,
+          "titleSnapshot": "知识处理专家 · 入口：任务识别与文档判定",
+          "attachedAt": "2026-11-03T06:06:29.323Z",
+          "retiredAt": null,
+          "handoff": {
+            "from": null,
+            "mode": "brief"
+          }
+        }
+      ],
+      "position": {
+        "x": 96,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:04.867Z",
+      "updatedAt": "2026-11-03T07:12:17.578Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_3f0daa86",
+      "title": "S1 归一化（normalized_md + offset_map）",
+      "status": "todo",
+      "notes": "【S1 · 确定性】\n程序\n- corpus_pipeline/cli.py run（stage S1）· kp_toolkit/normalize.py · readers.py\nSkill\n- document-parsing-skill\nMCP\n- kp-processing.corpus_run · kp-processing.build_source_ledger\n门禁 S1（归一化闭环）\n- 去空白字符数 ≈ 原稿（±15%）\n- offset_map 长度 = 归一化后长度，否则回不到原文、溯源链直接断\n产物\n- source/normalized.md · source/offset_map.json · source/original.<ext>\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- document-parsing-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_3b3a476a",
+          "title": "知识处理专家 · 入口：任务识别与文档判定 完成",
+          "createdAt": "2026-11-03T04:04:05.479Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 416,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:05.479Z",
+      "updatedAt": "2026-11-03T07:12:19.711Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_dd41f1c0",
+      "title": "S1b 表格解析（原生网格 + column_paths）",
+      "status": "todo",
+      "notes": "【S1b · 确定性】表格是二维结构对象，不是文本\n程序\n- kp_toolkit/tables.py · 项目 build/parse_docx_tables.py（31 表实测）\n- 断言：表格数 = XML <w:tbl> 数；每表 column_paths 且与列数一致\nSkill\n- document-parsing-skill\nMCP\n- kp-processing.parse_table_grid · extract_table_values\n  （未并入 5 组，仅 --group all 时可达）\n门禁 S1b（表格结构闭环）\n- 多级表头已合并（含 \" / \"）；每个数值格有 row_header + col_path\n铁律\n- 禁止 markdown 拍平后猜行列：列路径丢失 → subject 退化成「2018」\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- document-parsing-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_2915ac8a",
+          "title": "S1 归一化（normalized_md + offset_map） 完成",
+          "createdAt": "2026-11-03T04:04:05.776Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 416,
+        "y": -101
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:05.776Z",
+      "updatedAt": "2026-11-03T07:12:20.861Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_70fbafad",
+      "title": "S2 骨架抽取（章节树 + 法定大纲覆盖）",
+      "status": "todo",
+      "notes": "【S2 · 确定性】\n程序\n- python -m corpus_pipeline.cli run <稿件> --out <语料包> --legal <outline.yaml>\n  （--legal 读 JSON 内容，不是大纲路径）\n- parse_headings + map_to_legal_outline + coverage 计算\nSkill\n- document-parsing-skill\n- feasibility-report-edu-research（发改 304 号文法定章节模板）\nMCP\n- kp-processing.corpus_run\n门禁 S2（大纲覆盖）\n- 法定章节 must_cover 全覆盖；每节带 span 可回原文\n产物\n- corpus/outline.yaml（sections / mapping / coverage）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- document-parsing-skill\n- feasibility-report-edu-research\n- standard-regulation-extraction\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_460e5b22",
+          "title": "S1 归一化（normalized_md + offset_map） 完成",
+          "createdAt": "2026-11-03T04:04:05.907Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 736,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:05.907Z",
+      "updatedAt": "2026-11-03T07:12:22.723Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_cdcdf0d4",
+      "title": "S3 切块与分句（chunks / sentences 稳定 ID）",
+      "status": "todo",
+      "notes": "【S3 · 确定性】\n程序\n- kp_toolkit/segmentation.py · corpus_pipeline/chunking.py\n- 断言：Σchunk 去空白 ≈ 原稿（±15%）\nSkill\n- semantic-chunking-skill · sentence-segmentation-skill\nMCP\n- kp-processing.segment_chunks · segment_sentences · embed_chunks\n门禁 S3（切块闭环，引用 semantic-chunking-skill P3）\n- span 可回查；表格整块切、不按行切\n产物\n- chunks/chunks.jsonl · chunks/sentences.jsonl · chunks/embeddings.parquet\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- semantic-chunking-skill\n- sentence-segmentation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_02216520",
+          "title": "S2 骨架抽取（章节树 + 法定大纲覆盖） 完成",
+          "createdAt": "2026-11-03T04:04:06.449Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 736,
+        "y": -101
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "off",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.449Z",
+      "updatedAt": "2026-11-03T07:12:25.458Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_6d9fe342",
+      "title": "S4 本体抽取（实体·事实·关系·Claim·证据·推理）",
+      "status": "todo",
+      "notes": "【S4 · LLM 结构化 + 确定性校验】\n程序\n- kp_toolkit/number_forms.py（quantity/tolerance/grade/material/spec/standard 六类）\n- numeric_entities.py · claim_classify.py · citations.py · standard_forms.py · taxonomy.py\n- kp_toolkit/validate.py 跑 schema validator，不通过则重试\nSkill\n- entity-extraction · fact-extraction · relation-extraction · claim-extraction\n- evidence-extraction · claim-evidence-binding · reasoning-extraction\n- entity-resolution · ontology-resolution · semantic-graph-compilation\nMCP\n- kp-processing.validate_schema · scan_numeric_entities · disambiguate · normalize_name\n  （后三个未分组，仅 --group all 可达）\n- kp-semantic.resolve_concept · semantic_classify\n门禁 S4\n- node 必填 id/kind/subject/section；relation.type 读 reuse/relation_types.yaml，不硬编码\n- claim_type 四类（conclusion/recommendation/hypothesis/inference）；evidence E0~E6\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- entity-extraction-skill\n- fact-extraction-skill\n- relation-extraction-skill\n- claim-extraction-skill\n- evidence-extraction-skill\n- claim-evidence-binding-skill\n- reasoning-extraction-skill\n- entity-resolution-skill\n- ontology-resolution-skill\n- semantic-graph-compilation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_e2046b6a",
+          "title": "S3 切块与分句（chunks / sentences 稳定 ID） 完成",
+          "createdAt": "2026-11-03T04:04:06.507Z"
+        },
+        {
+          "id": "c_d8683396",
+          "title": "S1b 表格解析（原生网格 + column_paths） 完成",
+          "createdAt": "2026-11-03T04:04:06.507Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1056,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "max",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.507Z",
+      "updatedAt": "2026-11-03T07:12:27.530Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_e779594d",
+      "title": "S4' 消歧与外部核验（Semantica）",
+      "status": "todo",
+      "notes": "【S4' · 可选加强】抽取后、冲突检测前必做\n程序\n- corpus_pipeline/semantica_client.py · providers_semantica.py · entity_registry.py\n- 构建脚本/semantica_*.py（规则判官 + DeepSeek 判官双路合并）\nSkill\n- entity-resolution-skill · ontology-resolution-skill · claim-validation-skill\nMCP\n- semantica 连接器（15 工具：semantica_node / query / analytics / precedents / causal_chain）\n- kp-processing.disambiguate · resolve_version（仅 --group all 时可达）\n铁律\n- 归一只产候选，合并不执行、须人工确认（LLM 判 SAME 精度仅 58%）\n- 禁用 ConflictResolver；中文抽取必须 method=\"llm\"\n产物\n- 实体归一-人工判断清单.md（A/B/C 三档）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- entity-resolution-skill\n- ontology-resolution-skill\n- claim-validation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_8efd51f8",
+          "title": "S4 本体抽取（实体·事实·关系·Claim·证据·推理） 完成",
+          "createdAt": "2026-11-03T04:04:06.595Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1376,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.595Z",
+      "updatedAt": "2026-11-03T07:12:29.363Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_e5b40de3",
+      "title": "S5 推演回放（规则绑定 → 计算 → 输出节点）",
+      "status": "todo",
+      "notes": "【S5 · 确定性】\n程序\n- kp_toolkit/derivation.py · corpus_pipeline/replay.py · entity_derivation.py · dependencies.py\n- 算出结果必须落成 output 节点，否则输入节点永远悬空\nSkill\n- reasoning-extraction-skill（P11：要么闭合要么显式阻塞）\n- graph-deductive-writing-skill（下游推演写作的输入）\nMCP\n- kp-processing.build_derivation · verify_derivation（仅 --group all 时可达）\n- kp-processing.graph_query · graph_why · kp-assembly.sensitivity_analysis\n门禁 S5（派生闭环）\n- 缺依赖须带 searched 证据；可算规则必须产出 output 节点\n- 绑定不建 relations 边 → 孤儿节点，查不出「这值被哪条规则用」\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- reasoning-extraction-skill\n- semantic-graph-compilation-skill\n- graph-deductive-writing-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_c1f59718",
+          "title": "S4 本体抽取（实体·事实·关系·Claim·证据·推理） 完成",
+          "createdAt": "2026-11-03T04:04:06.742Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1376,
+        "y": -101
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.742Z",
+      "updatedAt": "2026-11-03T07:12:31.535Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_8a257a5a",
+      "title": "S6 质量登记（冲突待审 + 缺口四问）",
+      "status": "todo",
+      "notes": "【S6 · 门禁】门禁由编排器调用，不由抽取/写作 Agent 自判\n程序\n- python kp_cli.py verify（13 条闭环门禁 S0–S11，stage_gate）\n- kp_toolkit/conflict.py · gap_verify.py（假缺四问）· vague_refs.py · validate.py\n- corpus_pipeline/quality_gates.py · review.py · source_ledger.py · closure_verify.py · stage_gates.py\nSkill\n- conflict-detection-skill · extraction-quality-audit-skill · provenance-binding-skill · claim-validation-skill\nMCP\n- kp-processing.detect_numeric_conflicts · detect_time_conflicts · validate_graph · build_provenance · gate_check\n- kp-processing.build_source_ledger · verify_closure · stage_gate · kp-assembly.run_quality_gates\n门禁 S6（冲突/缺口闭环）\n- 每个 (主体,属性) 多值必须登记待审；每条缺必须带 searched 三问证据\n- gaps.yaml 与 orphans.yaml 分账；孤儿按 ok_structural / needs_relation / needs_value 三分类\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- conflict-detection-skill\n- extraction-quality-audit-skill\n- provenance-binding-skill\n- claim-validation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_cdf2267b",
+          "title": "S5 推演回放（规则绑定 → 计算 → 输出节点） 完成",
+          "createdAt": "2026-11-03T04:04:06.819Z"
+        },
+        {
+          "id": "c_48dd3c43",
+          "title": "S4' 消歧与外部核验（Semantica） 完成",
+          "createdAt": "2026-11-03T04:04:06.819Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1696,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "max",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.819Z",
+      "updatedAt": "2026-11-03T07:12:36.408Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_81691b25",
+      "title": "S7 脱敏索引（skeletons + 30 文件语料包）",
+      "status": "todo",
+      "notes": "【S7 · 确定性 + 工程基线】\n程序\n- python kp_cli.py warm（必做 A：YAML→JSON 缓存，36 s → 0.08 s）\n- python kp_cli.py shard build（必做 B：分片索引，browse 0.001 s）\n- python -m corpus_pipeline.bench_perf <语料包>（必做 C：退出码非 0 = 性能回归）\n- 脱敏：值/时间/主体 → {{node:ID}} / {{time:}} / {{ent:}}，断言占位符数 = 引用数\nSkill\n- knowledge-generalization-skill · knowledge-processing-toolchain\nMCP\n- kp-processing.reemit_evidence · reemit_index · reemit_quality · corpus_search · embed\n门禁 S7（脱敏闭环）\n- 占位符数 = 节点引用数；无嵌套占位符；无残留可反推字面数\n产物\n- chunks/skeletons.jsonl + 值表（骨架可还原）· 30 文件契约 · shards/\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- knowledge-generalization-skill\n- knowledge-processing-toolchain\n- knowledge-asset-consumption\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_529c39f1",
+          "title": "S6 质量登记（冲突待审 + 缺口四问） 完成",
+          "createdAt": "2026-11-03T04:04:06.893Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 2016,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:06.893Z",
+      "updatedAt": "2026-11-03T07:12:40.694Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_03cee7ea",
+      "title": "装配与写作（借形不借值 → 报告正文）",
+      "status": "todo",
+      "notes": "【装配 · 写作 Agent 只拿脱敏骨架】本节点由「知识处理专家」自己完成，不跨到推演式报告写作专家\n程序\n- corpus_pipeline/instantiate.py · schema_diff.py · build_work_package · bench_perf\n- 安全边界：写作 Agent 只拿 chunks/skeletons.jsonl，永远不拿 chunks/chunks.jsonl\nSkill（均属知识处理专家自带）\n- graph-deductive-writing-skill（图谱 → 绑定证据与溯源链的正文）\n- feasibility-report-edu-research（可研交付模板）\n- knowledge-asset-consumption（拿到资产包后的取数协议）\nMCP\n- kp-assembly.schema_diff · decide_reuse · instantiate_project · build_work_package\n- kp-assembly.gate_check_draft · wp_get_facts · check_number_consistency · objective_verify\n边界\n- 推演式报告写作专家是另一条独立工作流，不在本图内；本图只交付语料包与已绑定证据的正文\n门禁\n- gate_check_draft / objective_verify 通过才允许交付；正文可反向回读为图谱节点\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- graph-deductive-writing-skill\n- feasibility-report-edu-research\n- knowledge-asset-consumption\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_14d4e1fd",
+          "title": "S7 脱敏索引（skeletons + 30 文件语料包） 完成",
+          "createdAt": "2026-11-03T04:04:07.073Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 2016,
+        "y": -101
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:07.073Z",
+      "updatedAt": "2026-11-03T07:12:42.870Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_3169a551",
+      "title": "资产库检索与发布（QG1/QG2/QG3 三关口）",
+      "status": "todo",
+      "notes": "【资产库 · 跨项目复用】\n程序\n- corpus_pipeline/library.py · library_index.py · make_demo_library.py\nSkill\n- knowledge-generalization-skill（沉淀本体/推理模式/Claim 模式，隔离项目专属事实）\n- knowledge-asset-consumption（借形不借值）\nMCP\n- kp-library.library_search · library_get_asset · library_find_analog\n- kp-library.library_status · library_promote · library_publish\n门禁（未过不得发布）\n- QG1 来源可信度：需 meta.source_fingerprint + 文档版本号\n- QG2 语义完整性\n- QG3 资产可复用性：reuse/domains.yaml 16 域 + constraints\n- 轻量产物只过 QG2 → 只能自用写作，不得 library_publish\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- knowledge-generalization-skill\n- knowledge-asset-consumption\n- knowledge-processing\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_1d39c221",
+          "title": "装配与写作（借形不借值 → 报告正文） 完成",
+          "createdAt": "2026-11-03T04:04:07.203Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 2336,
+        "y": 97
+      },
+      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:04:07.203Z",
+      "updatedAt": "2026-11-03T07:12:46.214Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_79a5e166",
+      "title": "维护 · 刷新专家预设（点此执行）",
+      "status": "done",
+      "notes": "【维护节点 · 不属于七道工序，随时可点】专家重新发布后，点「开始」跑一次即可。\n\n做什么\n- 运行 python3 scripts/repoint-expert-presets.py\n- 按「专家族」取最新发布的 preset id，把本图节点的 agentPreset 重指向\n- 只改 agentPreset：模型、推理强度、状态、依赖、会话都不动；幂等，没有旧值时什么都不写\n\n为什么绑 standard 预设\n- 刷新节点自己不能依赖专家预设：旧专家预设被回收时，用它反而起不来\n- 所以这一步固定用原生 standard + 系统模型，永远可执行\n\n等价命令（不想开节点会话时）\n- python3 scripts/repoint-expert-presets.py --dry-run  # 先看差异\n- python3 scripts/repoint-expert-presets.py            # 实际重指向\n\n边界\n- 只认 wd-exp- 开头的专家预设；standard/ptc/minimal 不动\n- 自动重指向已取消（改为本节点手动触发），模型仍按小时与系统配置同步\n\n最近执行（2026-11-03 15:57）\n- dry-run 与实际运行均为「✓ 无需重指向（22 个节点，19 个专家族）」，退出码 0\n- 图内 wd-exp 节点已全部指向各族最新：expert-a54010bbb24e → 8dffdc6a1eea，expert-97703554b311 → 77617e2a77c4\n- 19 个专家族的 preset.json 均完整（id 与目录名一致），无半成品、无失效族",
+      "conditions": [],
+      "sessions": [
+        {
+          "sessionId": "session-78c38d1b-0b4b-4034-a174-10565f977ffc",
+          "slot": 1,
+          "titleSnapshot": "维护 · 刷新专家预设（点此执行）",
+          "attachedAt": "2026-11-03T06:10:02.464Z",
+          "retiredAt": "2026-11-03T07:50:19.821Z",
+          "handoff": {
+            "from": null,
+            "mode": "brief"
+          }
+        },
+        {
+          "sessionId": "session-15f2a37e-f8e2-4f12-948d-86bc68778343",
+          "slot": 2,
+          "titleSnapshot": "维护 · 刷新专家预设（点此执行）",
+          "attachedAt": "2026-11-03T07:50:19.821Z",
+          "retiredAt": "2026-11-03T07:56:25.423Z",
+          "handoff": {
+            "from": "session-78c38d1b-0b4b-4034-a174-10565f977ffc",
+            "mode": "scheduled"
+          }
+        },
+        {
+          "sessionId": "session-68be6344-bb8d-47a4-b59e-d3974619ee09",
+          "slot": 3,
+          "titleSnapshot": "维护 · 刷新专家预设（点此执行）",
+          "attachedAt": "2026-11-03T07:56:25.423Z",
+          "retiredAt": null,
+          "handoff": {
+            "from": "session-15f2a37e-f8e2-4f12-948d-86bc68778343",
+            "mode": "scheduled"
+          }
+        }
+      ],
+      "position": {
+        "x": 96,
+        "y": 493
+      },
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": {
+        "enabled": false,
+        "cron": "* * * * *",
+        "nextRunAt": null,
+        "lastTriggeredAt": "2026-11-03T07:56:25.423Z",
+        "lastFinishedAt": null,
+        "lastResult": null,
+        "lastError": null,
+        "lastSkippedReason": null,
+        "lastSessionId": "session-68be6344-bb8d-47a4-b59e-d3974619ee09"
+      },
+      "createdAt": "2026-11-03T04:40:54.941Z",
+      "updatedAt": "2026-11-03T07:57:08.405Z",
+      "completedAt": "2026-11-03T07:56:55.705Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_9e5613ed",
+      "title": "导入文件 · 点我起上传窗口",
+      "status": "done",
+      "notes": "【本节点被执行 = 立刻起上传窗口：不要只复述，不要等确认】\n\n## 第一步（唯一必做动作）\n1. 先看窗口是否已在跑 —— 必须看 /health，别拿页面 200 当依据：\n   curl -s -m 2 http://127.0.0.1:8899/health\n   返回 {\"ok\":true,\"app\":\"inbox\",...} 即已在跑，跳到第 3 步。\n2. 没在跑就后台启动（会自动开浏览器）：\n   python3 scripts/inbox-server.py --open\n   等 1 秒再查 /health 确认，然后回给用户 http://127.0.0.1:8899/ （若脚本打印了别的端口，以打印为准，别自己猜）。\n3. 告诉用户：窗口已开，可「选择文件…」「选择文件夹…」，或直接把文件/文件夹拖进虚线框，再点「上传并导入」。\n\n## 用户上传完之后\n4. 核对 inbox/batches/<最新批次>/manifest.json 的 counts（sources / normalized / failed），把失败项原因说清。\n5. 确认无误把本节点改为 done —— 它完成后才解锁「知识处理专家 · 入口」。\n\n## 兜底\n- 你所在会话结束后后台服务可能停止：让用户双击工作区里的「打开导入窗口.command」重开，不必再找你。\n\n## 能力与边界\n- 支持 docx / xlsx / pdf / zip / md / txt；多文件、整目录（含子目录）\n- 只监听 127.0.0.1，每次启动随机令牌，路径拒绝 .. 穿越，单文件 200MB\n- 归一化优先用工程 venv 的 python（含 PyMuPDF），PDF 可正常解析\n- 产物：原件 inbox/drop/upload-<时间>/，归一化 inbox/batches/<批次>/{raw,normalized,manifest.json}",
+      "conditions": [],
+      "sessions": [],
+      "position": {
+        "x": 96,
+        "y": -299
+      },
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:41.509Z",
+      "updatedAt": "2026-11-03T06:05:40.807Z",
+      "completedAt": "2026-11-03T06:05:40.807Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_55407b3e",
+      "title": "推演写作 · 需求与文体识别",
+      "status": "todo",
+      "notes": "【工作流 B · 第 1 步】先定文体，再定图谱粒度\n程序\n- 读 inbox/batches/<批次>/manifest.json 确认输入\n- 无专门脚本：这是判断步骤，产出文体卡后再进入下一步\nSkill\n- graph-deductive-writing-skill（文体先行）\n- feasibility-report-edu-research（可研/科研用房类法定章节）\nMCP\n- kp-assembly.assess_capability · check_requirements\n- kp-library.library_find_analog（找同类历史语料包）\n产出\n- 文体卡：报告类型 / 受众 / 交付格式（Word·PDF·Excel）/ 法定章节骨架 / 严谨度要求\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- graph-deductive-writing-skill\n- feasibility-report-edu-research\n<!-- /skills:v1 -->",
+      "conditions": [],
+      "sessions": [],
+      "position": {
+        "x": 96,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:41.749Z",
+      "updatedAt": "2026-11-03T07:12:48.657Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_a1266159",
+      "title": "推演写作 · 资料解析与本体建模",
+      "status": "todo",
+      "notes": "【工作流 B · 第 2 步】把材料变成本体，而不是直接变文字\n程序\n- corpus_pipeline/readers.py · ontology_schema.py · instantiate.py\n- 输入用「导入 · 多文件入口」归一化出的 normalized/*.md\nSkill\n- document-parsing-skill · ontology-resolution-skill · semantic-graph-compilation-skill\nMCP\n- kp-assembly.bootstrap_ontology · kp-semantic.ontology_export / ontology_import\n- kp-processing.corpus_run（需要完整七道工序时改走工作流 A）\n产出\n- Ontology Registry：概念类型 / 属性 / 约束 / 章节映射（同一事实只存一份）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- document-parsing-skill\n- ontology-resolution-skill\n- semantic-graph-compilation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_bd9052c6",
+          "title": "推演写作 · 需求与文体识别 完成",
+          "createdAt": "2026-11-03T04:50:41.896Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 416,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:41.896Z",
+      "updatedAt": "2026-11-03T07:12:51.246Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_3e3a6f48",
+      "title": "推演写作 · 抽取与建图",
+      "status": "todo",
+      "notes": "【工作流 B · 第 3 步】语义抽取 + 实体消解 + 图谱编译\n程序\n- kp_toolkit/segmentation.py · number_forms.py · claim_classify.py · validate.py\n- LLM 结构化输出 + schema 校验重试，不裸奔自由文本\nSkill\n- semantic-chunking · sentence-segmentation · entity/fact/relation/claim/evidence/reasoning-extraction\n- entity-resolution · semantic-graph-compilation\nMCP\n- kp-processing.segment_chunks · segment_sentences · validate_schema\n- kp-semantic.resolve_concept · semantic_classify · semantica 连接器（多跳核验）\n产出\n- graph.json：entities / relations / facts / claims / evidence / reasoning（稳定 ID）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- semantic-chunking-skill\n- sentence-segmentation-skill\n- entity-extraction-skill\n- fact-extraction-skill\n- relation-extraction-skill\n- claim-extraction-skill\n- evidence-extraction-skill\n- reasoning-extraction-skill\n- entity-resolution-skill\n- semantic-graph-compilation-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_f8f38eaf",
+          "title": "推演写作 · 资料解析与本体建模 完成",
+          "createdAt": "2026-11-03T04:50:42.215Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 736,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "max",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:42.215Z",
+      "updatedAt": "2026-11-03T07:12:52.845Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_3eb67db5",
+      "title": "推演写作 · 推演生成",
+      "status": "todo",
+      "notes": "【工作流 B · 第 4 步】沿推理链前向推演，不是复述原文\n程序\n- kp_toolkit/derivation.py · corpus_pipeline/replay.py\n- 算出的结果必须落成 output 节点，否则下游查不到\nSkill\n- reasoning-extraction-skill（P11：要么闭合要么显式阻塞）\n- graph-deductive-writing-skill（按文体结构组稿）\nMCP\n- kp-processing.build_derivation · verify_derivation · graph_query / graph_why\n- kp-assembly.sensitivity_analysis\n产出\n- 章节草稿 + computed_from 推演链；正文引用图谱节点，不复制原文\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- reasoning-extraction-skill\n- graph-deductive-writing-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_089a4c78",
+          "title": "推演写作 · 抽取与建图 完成",
+          "createdAt": "2026-11-03T04:50:42.263Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1056,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "max",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:42.263Z",
+      "updatedAt": "2026-11-03T07:12:54.470Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_b9b8e81b",
+      "title": "推演写作 · 证据绑定与质检",
+      "status": "todo",
+      "notes": "【工作流 B · 第 5 步】每条论断都要有出处，冲突一律待审\n程序\n- kp_toolkit/provenance.py · conflict.py · gap_verify.py（假缺四问）· validate.py\n- python kp_cli.py verify（S0–S11 闭环门禁）\nSkill\n- claim-evidence-binding · evidence-extraction · provenance-binding\n- conflict-detection · claim-validation · extraction-quality-audit\nMCP\n- kp-processing.detect_numeric_conflicts · detect_time_conflicts · build_provenance\n- kp-processing.verify_closure · stage_gate · kp-assembly.run_quality_gates · check_number_consistency\n产出\n- 待审清单（不裁决）+ 证据覆盖率 + 反向回读映射\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- claim-evidence-binding-skill\n- evidence-extraction-skill\n- provenance-binding-skill\n- conflict-detection-skill\n- claim-validation-skill\n- extraction-quality-audit-skill\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_f8ccad05",
+          "title": "推演写作 · 推演生成 完成",
+          "createdAt": "2026-11-03T04:50:42.351Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1376,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "max",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:42.351Z",
+      "updatedAt": "2026-11-03T07:12:56.028Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_23e7fe3e",
+      "title": "推演写作 · 交付与反向回读",
+      "status": "todo",
+      "notes": "【工作流 B · 第 6 步】交付真实文件，正文可回读成节点\n程序\n- corpus_pipeline/instantiate.py · build_work_package · gate_check_draft\n- 导出 Word/PDF；客户改稿可反向回读为图谱节点\nSkill\n- graph-deductive-writing-skill · knowledge-generalization-skill（沉淀可复用形）\nMCP\n- kp-assembly.gate_check_draft · objective_verify · project_where_written · wp_get_facts\n- kp-library.library_publish（要进资产库才需要，需过 QG1/QG2/QG3）\n产出\n- 报告文件 + 回读映射（正文 ↔ Claim ↔ Evidence ↔ 原文定位）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- graph-deductive-writing-skill\n- knowledge-generalization-skill\n- workdsh-word-design  ⚠（未在本机 skills 目录找到，确认是否由插件提供）\n<!-- /skills:v1 -->",
+      "conditions": [
+        {
+          "id": "c_ea996fd4",
+          "title": "推演写作 · 证据绑定与质检 完成",
+          "createdAt": "2026-11-03T04:50:42.637Z"
+        }
+      ],
+      "sessions": [],
+      "position": {
+        "x": 1696,
+        "y": 295
+      },
+      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "high",
+      "schedule": null,
+      "createdAt": "2026-11-03T04:50:42.637Z",
+      "updatedAt": "2026-11-03T07:12:57.664Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_110e597b",
+      "title": "新任务",
+      "status": "todo",
+      "notes": "",
+      "conditions": [],
+      "sessions": [],
+      "position": {
+        "x": 1376,
+        "y": -299
+      },
+      "agentPreset": null,
+      "model": null,
+      "reasoningEffort": null,
+      "schedule": null,
+      "createdAt": "2026-11-03T05:52:45.848Z",
+      "updatedAt": "2026-11-03T05:53:02.956Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_7dd18cb7",
+      "title": "新任务",
+      "status": "todo",
+      "notes": "",
+      "conditions": [],
+      "sessions": [],
+      "position": {
+        "x": 736,
+        "y": 493
+      },
+      "agentPreset": null,
+      "model": null,
+      "reasoningEffort": null,
+      "schedule": null,
+      "createdAt": "2026-11-03T05:55:31.666Z",
+      "updatedAt": "2026-11-03T05:55:31.666Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_931159ae",
+      "title": "G-S0 · 解析闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S0】判据：docx 表数 = md 表块数；内嵌图数 ≤ 图注数\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S0\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_0dbd3ce7",
+          "title": "知识处理专家 · 入口：任务识别与文档判定 完成",
+          "createdAt": "2026-11-03T11:28:37.378Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:37.378Z",
+      "updatedAt": "2026-11-03T11:29:01.675Z",
+      "completedAt": "2026-11-03T11:29:01.675Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_4fe1bffd",
+      "title": "G-S1 · 切块闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S1】判据：Σchunk 去空白 ≈ 原稿 ±15%\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S1\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_a583a8de",
+          "title": "S1 归一化（normalized_md + offset_map） 完成",
+          "createdAt": "2026-11-03T11:28:38.814Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:38.814Z",
+      "updatedAt": "2026-11-03T11:29:09.112Z",
+      "completedAt": "2026-11-03T11:29:09.112Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_19b80edd",
+      "title": "G-S2 · 分句闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S2】判据：Σsentence ≈ Σchunk（±1% 或 ±50 字符）\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S2\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_735685e4",
+          "title": "S3 切块与分句（chunks / sentences 稳定 ID） 完成",
+          "createdAt": "2026-11-03T11:28:38.885Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:38.885Z",
+      "updatedAt": "2026-11-03T11:36:11.489Z",
+      "completedAt": "2026-11-03T11:36:11.489Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_95959ea0",
+      "title": "G-S3 · 抽取闭环·引用",
+      "status": "done",
+      "notes": "【环节门禁 · S3】判据：正文引用 ⊆ evidence 库（依据类才判，文献/图集豁免）\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S3\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_b451a259",
+          "title": "S4 本体抽取（实体·事实·关系·Claim·证据·推理） 完成",
+          "createdAt": "2026-11-03T11:28:39.317Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:39.317Z",
+      "updatedAt": "2026-11-03T11:29:17.802Z",
+      "completedAt": "2026-11-03T11:29:17.802Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_ec1e23b3",
+      "title": "G-S4 · 编译闭环·端点可寻址",
+      "status": "done",
+      "notes": "【环节门禁 · S4】判据：relation 的 from/to 必须指向存在的 node/claim/evidence id\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S4\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_5acccc16",
+          "title": "S4 本体抽取（实体·事实·关系·Claim·证据·推理） 完成",
+          "createdAt": "2026-11-03T11:28:39.546Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:39.546Z",
+      "updatedAt": "2026-11-03T11:36:22.399Z",
+      "completedAt": "2026-11-03T11:36:22.399Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_b7a76b8f",
+      "title": "G-S5 · 派生闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S5】判据：可算规则必须产出 output；要么闭合要么显式阻塞\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S5\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_b751974e",
+          "title": "S5 推演回放（规则绑定 → 计算 → 输出节点） 完成",
+          "createdAt": "2026-11-03T11:28:39.942Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:39.942Z",
+      "updatedAt": "2026-11-03T11:29:31.977Z",
+      "completedAt": "2026-11-03T11:29:31.977Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_c076b2b2",
+      "title": "G-S6 · 冲突/缺口闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S6】判据：每个 (主体,属性) 多值登记待审；每条缺带 searched 三问\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S6\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_06c5a14b",
+          "title": "S6 质量登记（冲突待审 + 缺口四问） 完成",
+          "createdAt": "2026-11-03T11:28:40.046Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:40.046Z",
+      "updatedAt": "2026-11-03T11:29:35.398Z",
+      "completedAt": "2026-11-03T11:29:35.398Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_8fb0471c",
+      "title": "G-S7 · 脱敏闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S7】判据：占位符数 = 节点引用数；无嵌套；无残留字面数\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S7\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_37d321ea",
+          "title": "S7 脱敏索引（skeletons + 30 文件语料包） 完成",
+          "createdAt": "2026-11-03T11:28:41.025Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:41.025Z",
+      "updatedAt": "2026-11-03T11:38:38.154Z",
+      "completedAt": "2026-11-03T11:38:38.154Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_b804715f",
+      "title": "G-S8 · 依据闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S8】判据：bounded_by 的 clause 可外键到标准库（带版本年）\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S8\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_e890b599",
+          "title": "S6 质量登记（冲突待审 + 缺口四问） 完成",
+          "createdAt": "2026-11-03T11:28:41.177Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:41.177Z",
+      "updatedAt": "2026-11-03T11:29:46.684Z",
+      "completedAt": "2026-11-03T11:29:46.684Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_812e1cbd",
+      "title": "G-S8b · 条款溯源闭环",
+      "status": "todo",
+      "notes": "【环节门禁 · S8b】判据：条款号 + 条款原文 + 标准号三件套齐备\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S8b\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_d20c7a89",
+          "title": "S6 质量登记（冲突待审 + 缺口四问） 完成",
+          "createdAt": "2026-11-03T11:28:41.279Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:41.279Z",
+      "updatedAt": "2026-11-03T11:31:46.717Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_cea55a0d",
+      "title": "G-S9 · 域闭环",
+      "status": "done",
+      "notes": "【环节门禁 · S9】判据：16 域资产的装配方法与不一致处理齐全\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S9\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_62443ffa",
+          "title": "S7 脱敏索引（skeletons + 30 文件语料包） 完成",
+          "createdAt": "2026-11-03T11:28:41.791Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:41.791Z",
+      "updatedAt": "2026-11-03T11:37:08.022Z",
+      "completedAt": "2026-11-03T11:37:08.022Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_01989c81",
+      "title": "G-S10 · 装配闭环",
+      "status": "todo",
+      "notes": "【环节门禁 · S10】判据：装配产物引用的资产全部存在（悬空=0）\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S10\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_07facd3b",
+          "title": "装配与写作（借形不借值 → 报告正文） 完成",
+          "createdAt": "2026-11-03T11:28:42.021Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:42.021Z",
+      "updatedAt": "2026-11-03T11:31:54.905Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_10c53164",
+      "title": "G-S11 · 全书闭环·题注",
+      "status": "todo",
+      "notes": "【环节门禁 · S11】判据：图表题注齐全；正文引用与图表一一对应\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S11\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "conditions": [
+        {
+          "id": "c_8f5054b0",
+          "title": "装配与写作（借形不借值 → 报告正文） 完成",
+          "createdAt": "2026-11-03T11:28:42.278Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-03T11:28:42.278Z",
+      "updatedAt": "2026-11-03T11:32:00.852Z",
+      "completedAt": null,
+      "failedAt": null
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_6c54c025",
+      "from": "n_82626d80",
+      "to": "n_3f0daa86",
+      "conditionId": "c_3b3a476a"
+    },
+    {
+      "id": "e_9986facd",
+      "from": "n_3f0daa86",
+      "to": "n_dd41f1c0",
+      "conditionId": "c_2915ac8a"
+    },
+    {
+      "id": "e_13bd6b23",
+      "from": "n_3f0daa86",
+      "to": "n_70fbafad",
+      "conditionId": "c_460e5b22"
+    },
+    {
+      "id": "e_4fe467df",
+      "from": "n_70fbafad",
+      "to": "n_cdcdf0d4",
+      "conditionId": "c_02216520"
+    },
+    {
+      "id": "e_f383e2c6",
+      "from": "n_cdcdf0d4",
+      "to": "n_6d9fe342",
+      "conditionId": "c_e2046b6a"
+    },
+    {
+      "id": "e_c8d03b3e",
+      "from": "n_dd41f1c0",
+      "to": "n_6d9fe342",
+      "conditionId": "c_d8683396"
+    },
+    {
+      "id": "e_17b33eec",
+      "from": "n_6d9fe342",
+      "to": "n_e779594d",
+      "conditionId": "c_8efd51f8"
+    },
+    {
+      "id": "e_a3cc741b",
+      "from": "n_6d9fe342",
+      "to": "n_e5b40de3",
+      "conditionId": "c_c1f59718"
+    },
+    {
+      "id": "e_29549f0c",
+      "from": "n_e5b40de3",
+      "to": "n_8a257a5a",
+      "conditionId": "c_cdf2267b"
+    },
+    {
+      "id": "e_ba57d0c7",
+      "from": "n_e779594d",
+      "to": "n_8a257a5a",
+      "conditionId": "c_48dd3c43"
+    },
+    {
+      "id": "e_4f946f7f",
+      "from": "n_8a257a5a",
+      "to": "n_81691b25",
+      "conditionId": "c_529c39f1"
+    },
+    {
+      "id": "e_8555d325",
+      "from": "n_81691b25",
+      "to": "n_03cee7ea",
+      "conditionId": "c_14d4e1fd"
+    },
+    {
+      "id": "e_7ad8506f",
+      "from": "n_03cee7ea",
+      "to": "n_3169a551",
+      "conditionId": "c_1d39c221"
+    },
+    {
+      "id": "e_e452dbbe",
+      "from": "n_55407b3e",
+      "to": "n_a1266159",
+      "conditionId": "c_bd9052c6"
+    },
+    {
+      "id": "e_012e9569",
+      "from": "n_a1266159",
+      "to": "n_3e3a6f48",
+      "conditionId": "c_f8f38eaf"
+    },
+    {
+      "id": "e_086d527d",
+      "from": "n_3e3a6f48",
+      "to": "n_3eb67db5",
+      "conditionId": "c_089a4c78"
+    },
+    {
+      "id": "e_0e73435c",
+      "from": "n_3eb67db5",
+      "to": "n_b9b8e81b",
+      "conditionId": "c_f8ccad05"
+    },
+    {
+      "id": "e_d3d04ac8",
+      "from": "n_b9b8e81b",
+      "to": "n_23e7fe3e",
+      "conditionId": "c_ea996fd4"
+    },
+    {
+      "id": "e_41a8e73a",
+      "from": "n_9e5613ed",
+      "to": "n_82626d80",
+      "conditionId": "c_5725c8d5"
+    },
+    {
+      "id": "e_453a59f2",
+      "from": "n_82626d80",
+      "to": "n_931159ae",
+      "conditionId": "c_0dbd3ce7"
+    },
+    {
+      "id": "e_de05ce7f",
+      "from": "n_3f0daa86",
+      "to": "n_4fe1bffd",
+      "conditionId": "c_a583a8de"
+    },
+    {
+      "id": "e_5f58fe2e",
+      "from": "n_cdcdf0d4",
+      "to": "n_19b80edd",
+      "conditionId": "c_735685e4"
+    },
+    {
+      "id": "e_5c1dd93f",
+      "from": "n_6d9fe342",
+      "to": "n_95959ea0",
+      "conditionId": "c_b451a259"
+    },
+    {
+      "id": "e_8818ab1c",
+      "from": "n_6d9fe342",
+      "to": "n_ec1e23b3",
+      "conditionId": "c_5acccc16"
+    },
+    {
+      "id": "e_aeb04cc4",
+      "from": "n_e5b40de3",
+      "to": "n_b7a76b8f",
+      "conditionId": "c_b751974e"
+    },
+    {
+      "id": "e_2c3a9bde",
+      "from": "n_8a257a5a",
+      "to": "n_c076b2b2",
+      "conditionId": "c_06c5a14b"
+    },
+    {
+      "id": "e_23400db6",
+      "from": "n_81691b25",
+      "to": "n_8fb0471c",
+      "conditionId": "c_37d321ea"
+    },
+    {
+      "id": "e_be6656a7",
+      "from": "n_8a257a5a",
+      "to": "n_b804715f",
+      "conditionId": "c_e890b599"
+    },
+    {
+      "id": "e_d0581386",
+      "from": "n_8a257a5a",
+      "to": "n_812e1cbd",
+      "conditionId": "c_d20c7a89"
+    },
+    {
+      "id": "e_5c57d1f7",
+      "from": "n_81691b25",
+      "to": "n_cea55a0d",
+      "conditionId": "c_62443ffa"
+    },
+    {
+      "id": "e_9fefe074",
+      "from": "n_03cee7ea",
+      "to": "n_01989c81",
+      "conditionId": "c_07facd3b"
+    },
+    {
+      "id": "e_6b587039",
+      "from": "n_03cee7ea",
+      "to": "n_10c53164",
+      "conditionId": "c_8f5054b0"
+    }
+  ]
+}
