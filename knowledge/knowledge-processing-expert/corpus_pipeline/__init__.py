@@ -221,9 +221,17 @@ def stage_7_desensitize(chunks: list[dict], graph: dict, out: Path) -> dict:
     skeletons = []
     for c in chunks:
         text = c["text"]
-        for num in sorted(set(_NUM.findall(text)), key=len, reverse=True):
-            nid = fact_map.get((c["id"], num)) or stable_id(f"{c['id']}:{num}", "N")
-            text = text.replace(num, f"{{{{node:{nid}}}}}")
+        # 单遍替换：一次性匹配同一 chunk 的所有数值再替换。
+        # 原实现逐条 replace，替换出的占位符 {{node:N-xxxx}} 自身含十六进制数字，
+        # 会被后续规则二次替换，产出 {{node:N-{{node:N-79f8}}...}} 这种嵌套垃圾。
+        nums = sorted(set(_NUM.findall(text)), key=len, reverse=True)
+        if nums:
+            pattern = re.compile("|".join(re.escape(n) for n in nums))
+            def _replace(match):
+                num = match.group(0)
+                nid = fact_map.get((c["id"], num)) or stable_id(f"{c['id']}:{num}", "N")
+                return "{{node:%s}}" % nid
+            text = pattern.sub(_replace, text)
         skeletons.append({**{k: v for k, v in c.items() if k != "text"}, "text": text})
 
     with open(out / "chunks" / "skeletons.jsonl", "w", encoding="utf-8") as f:
