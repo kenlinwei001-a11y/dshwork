@@ -45,11 +45,11 @@ skill:bundled,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_m
 skill:bundled,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-web-design,14890,59af5d31a15e72439bf6afeb8a84942a614bb735e8114c3e84cfd9a7cc375f55
 skill:bundled,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-word-design,4514,74de9eb56125ba4a00d0389b0562b39ed396ca179b112f368d8c37c40510d0d5
 skill:bundled,/Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-skills/resources/skills/workdsh-workbench-dev,48026,a1c4c619955e286e4aa32873d7b345573fc287e917acd5b8c0d70abad739b94c
-expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a54010bbb24e.json,559,670c177b1af707a6a59d22aea5b13f28866b2d28362c23662e30f703c035ba7f
-expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-c813fec36e9e.json,39699,34e6310f71f8dd82e9ae34e7d09210b7526c39721f72f9555523fef95b18eb85
+expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a54010bbb24e.json,559,87ac2d8742ed2054d06bc2e25cc90577d37f75702ffd14f1f4efb9f27998da20
+expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-505d665ae178.json,39699,c50df53708c8c75cecd56e561c29c06b645caabe09ad9159374168502a43a19c
 expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/drafts/expert-a54010bbb24e.json,33778,e7e7de36e9489d7082ce916eb1169e23c6550a6b1e6cee8d0b90364d26b509dd
-expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a0a771c8b0da.json,559,5ef4299ac60d728aae0575130afdd130620f68e643c4381355bd786a54f894e6
-expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-94ac6b5f2785.json,49782,2c9ee6193f6620651d4bd91b4eb8731488bc4c0fbe837576aeda9fd7e4fa38bd
+expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a0a771c8b0da.json,559,7910090cab7152e27ecd61ec90111851625490234605d1f3844149437e8b1a77
+expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-698a4f2c2911.json,49782,c77c21581c92f1661da73dacf4e89e0169e24be307889fed9e047904b6d9e6fb
 expert,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/drafts/expert-a0a771c8b0da.json,47435,46f11ffab4304bfe431f4bc3dfa4fcdaedea328b58e0c0d589a5eec3d28ee790
 project,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_projects/states/local-personal_local-user.json,93566,cf2fd442bbc242e295cb10b2ffbbba1893eb07b9c04d591f1a4bb2dcd43e8823
 connector,/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_connectors/definitions/craftcad.json,511,bcd4c0c1621e59bb345e3065dc460beeb691e9a1e6bb615155432455e7fe9d82

@@ -1,19 +1,19 @@
 {
   "builder": "tools/expert-report/build.mjs",
   "schemaVersion": 2,
-  "builtAt": "2026-11-02T13:44:08Z",
-  "sourceEpoch": "2026-11-02T13:44:08Z",
+  "builtAt": "2026-11-03T02:37:14Z",
+  "sourceEpoch": "2026-11-03T02:37:14Z",
   "scope": {
     "experts": [
       {
         "id": "expert-a54010bbb24e",
         "name": "知识处理专家",
-        "publishedRevisionId": "rev-c813fec36e9e"
+        "publishedRevisionId": "rev-505d665ae178"
       },
       {
         "id": "expert-a0a771c8b0da",
         "name": "推演写作专家",
-        "publishedRevisionId": "rev-94ac6b5f2785"
+        "publishedRevisionId": "rev-698a4f2c2911"
       }
     ]
   },
@@ -55,7 +55,7 @@
       {
         "name": "范围内专家均已发布",
         "ok": true,
-        "detail": "知识处理专家=rev-c813fec36e9e；推演写作专家=rev-94ac6b5f2785"
+        "detail": "知识处理专家=rev-505d665ae178；推演写作专家=rev-698a4f2c2911"
       },
       {
         "name": "专家技能依赖全部可解析",
@@ -102,7 +102,7 @@
       }
     ]
   },
-  "docsSha256": "858becfb1891199111aee5ace16e76f300efffa8c6bbcdbdfb5a3b14dc6b695d",
+  "docsSha256": "3729ca600585f8d0cfdb13b74b042a3d20ec7ad7bba2b8ecc90080a5e01b9c05",
   "sources": [
     {
       "kind": "skill:user",
@@ -430,15 +430,15 @@
       "kind": "expert",
       "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a54010bbb24e.json",
       "bytes": 559,
-      "sha256": "670c177b1af707a6a59d22aea5b13f28866b2d28362c23662e30f703c035ba7f",
+      "sha256": "87ac2d8742ed2054d06bc2e25cc90577d37f75702ffd14f1f4efb9f27998da20",
       "detail": "expert-a54010bbb24e.json"
     },
     {
       "kind": "expert",
-      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-c813fec36e9e.json",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a54010bbb24e_rev-505d665ae178.json",
       "bytes": 39699,
-      "sha256": "34e6310f71f8dd82e9ae34e7d09210b7526c39721f72f9555523fef95b18eb85",
-      "detail": "expert-a54010bbb24e_rev-c813fec36e9e.json"
+      "sha256": "c50df53708c8c75cecd56e561c29c06b645caabe09ad9159374168502a43a19c",
+      "detail": "expert-a54010bbb24e_rev-505d665ae178.json"
     },
     {
       "kind": "expert",
@@ -451,15 +451,15 @@
       "kind": "expert",
       "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/experts/expert-a0a771c8b0da.json",
       "bytes": 559,
-      "sha256": "5ef4299ac60d728aae0575130afdd130620f68e643c4381355bd786a54f894e6",
+      "sha256": "7910090cab7152e27ecd61ec90111851625490234605d1f3844149437e8b1a77",
       "detail": "expert-a0a771c8b0da.json"
     },
     {
       "kind": "expert",
-      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-94ac6b5f2785.json",
+      "path": "/Users/apple/workdsh/.test-runtime/preview/storages/workdsh_experts/revisions/expert-a0a771c8b0da_rev-698a4f2c2911.json",
       "bytes": 49782,
-      "sha256": "2c9ee6193f6620651d4bd91b4eb8731488bc4c0fbe837576aeda9fd7e4fa38bd",
-      "detail": "expert-a0a771c8b0da_rev-94ac6b5f2785.json"
+      "sha256": "c77c21581c92f1661da73dacf4e89e0169e24be307889fed9e047904b6d9e6fb",
+      "detail": "expert-a0a771c8b0da_rev-698a4f2c2911.json"
     },
     {
       "kind": "expert",
@@ -4113,11 +4113,11 @@
     },
     {
       "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/experts/expert-a54010bbb24e.json",
-      "sha256": "670c177b1af707a6a59d22aea5b13f28866b2d28362c23662e30f703c035ba7f"
+      "sha256": "87ac2d8742ed2054d06bc2e25cc90577d37f75702ffd14f1f4efb9f27998da20"
     },
     {
-      "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/revisions/expert-a54010bbb24e_rev-c813fec36e9e.json",
-      "sha256": "34e6310f71f8dd82e9ae34e7d09210b7526c39721f72f9555523fef95b18eb85"
+      "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/revisions/expert-a54010bbb24e_rev-505d665ae178.json",
+      "sha256": "c50df53708c8c75cecd56e561c29c06b645caabe09ad9159374168502a43a19c"
     },
     {
       "path": "99-原件/专家定义/知识处理专家（expert-a54010bbb24e）/drafts/expert-a54010bbb24e.json",
@@ -4125,11 +4125,11 @@
     },
     {
       "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/experts/expert-a0a771c8b0da.json",
-      "sha256": "5ef4299ac60d728aae0575130afdd130620f68e643c4381355bd786a54f894e6"
+      "sha256": "7910090cab7152e27ecd61ec90111851625490234605d1f3844149437e8b1a77"
     },
     {
-      "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/revisions/expert-a0a771c8b0da_rev-94ac6b5f2785.json",
-      "sha256": "2c9ee6193f6620651d4bd91b4eb8731488bc4c0fbe837576aeda9fd7e4fa38bd"
+      "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/revisions/expert-a0a771c8b0da_rev-698a4f2c2911.json",
+      "sha256": "c77c21581c92f1661da73dacf4e89e0169e24be307889fed9e047904b6d9e6fb"
     },
     {
       "path": "99-原件/专家定义/推演写作专家（expert-a0a771c8b0da）/drafts/expert-a0a771c8b0da.json",
