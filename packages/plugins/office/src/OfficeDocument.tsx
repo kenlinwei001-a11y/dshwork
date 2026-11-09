@@ -2,12 +2,13 @@ import { CsvDocument } from './csv/CsvDocument.js';
 import {ImportedPptx} from './presentation/ImportedPptx.js';
 import React, { useEffect, useRef, useState } from 'react';
 import type { DocumentPreviewProps } from '@deepseek-ai/dsh-client-ui-sidebar-documentpreview/client';
-import editorHtml from './editor.html';
+import { loadEditorHtml } from './editor-html.js';
 
 function LegacyOfficeDocument({ content, resourceAddress }: DocumentPreviewProps) {
   const frame = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
     if (content.kind !== 'bytes') return;
+    let disposed = false;
     const onMessage = (event: MessageEvent) => {
       if (event.source !== frame.current?.contentWindow || event.data?.type !== 'workdsh-office-ready') return;
       const address = decodeURIComponent(resourceAddress);
@@ -16,8 +17,10 @@ function LegacyOfficeDocument({ content, resourceAddress }: DocumentPreviewProps
     };
     window.addEventListener('message', onMessage);
     // Owner changes replace the document. The editor stays isolated from the app's DOM/credentials.
-    if (frame.current) frame.current.srcdoc = editorHtml;
-    return () => window.removeEventListener('message', onMessage);
+    void loadEditorHtml().then(html => { if (!disposed && frame.current) frame.current.srcdoc = html; }).catch(() => {
+      if (!disposed && frame.current) frame.current.srcdoc = '<!doctype html><meta charset="utf-8"><p style="font:14px sans-serif;padding:24px">Office 编辑器加载失败，请重试。</p>';
+    });
+    return () => { disposed = true; window.removeEventListener('message', onMessage); };
   }, [content, resourceAddress]);
   return <iframe ref={frame} title="Office 文档编辑" sandbox="allow-scripts allow-downloads" style={{ width: '100%', height: '100%', minHeight: 480, border: 0 }} />;
 }

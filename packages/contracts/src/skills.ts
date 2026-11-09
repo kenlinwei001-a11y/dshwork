@@ -30,6 +30,12 @@ export interface ManagedSkillSummary {
   readonly modelInvocable: boolean;
   readonly state: ManagedSkillState;
   readonly manageable: boolean;
+  /**
+   * True when this row is an expert's frozen revision copy rather than an
+   * editable source skill. Frozen copies are read-only and must never be edited
+   * in place; changes belong to the source skill followed by a republish.
+   */
+  readonly frozen?: boolean;
   readonly diagnostics?: readonly SkillDiagnostic[];
   /** Present only when the local catalog owns richer metadata for this skill. */
   readonly title?: string;

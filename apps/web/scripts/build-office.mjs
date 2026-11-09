@@ -2,7 +2,7 @@ import './scope-pptx-native.mjs';
 import {nativePptPlugin} from './build-pptx-native.mjs';
 import { build } from "esbuild";
 import {createHash} from "node:crypto";
-import { mkdir, writeFile, readFile, readdir } from "node:fs/promises";
+import { mkdir, writeFile, readFile, readdir, rm } from "node:fs/promises";
 import { dirname, resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = new URL("../../../packages/plugins/office/", import.meta.url);
@@ -45,7 +45,33 @@ const js = child.outputFiles
   .text.replace(/<\/script/gi, "<\\/script");
 const css = child.outputFiles.find((f) => f.path.endsWith(".css"))?.text ?? "";
 const html = `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval'; style-src 'unsafe-inline'; img-src data: blob:; font-src data: blob:; connect-src 'none'; worker-src blob:"><style>${css}</style></head><body><header><span id="status" role="status">正在打开 Office 文件…</span><button id="info" aria-label="查看文件说明" aria-expanded="false" title="查看文件说明">ⓘ</button><button id="edit" hidden aria-expanded="false">编辑文字</button><button id="update" hidden>更新预览</button><button id="save" disabled>导出副本</button></header><main><div id="preview"></div><aside id="fields" hidden></aside></main><script>${js}</script></body></html>`;
-await writeFile(new URL("dist/editor.html", root), html);
+// Keep the 20 MB editor document out of the boot bundle. The client-modules
+// on-demand route serves package-local `client.*.js` chunks; the client fetches
+// this one only when an Office preview opens.
+await writeFile(new URL("dist/client.office-editor.js", root), `export default ${JSON.stringify(html)};\n`);
+// The raw document is superseded by the lazy chunk; a stale copy would only
+// bloat the package archive.
+await rm(new URL("dist/editor.html", root), { force: true });
+const pdfWorkerPlugin = {
+  name: "pdf-worker-source",
+  setup(builder) { builder.onLoad({ filter: /pdf\.worker\.min\.mjs$/ }, async args => ({ contents: await readFile(args.path, "utf8"), loader: "text" })); },
+};
+const runtimeChunk = async (entry, name, plugins = []) => {
+  const result = await build({
+    entryPoints: [fileURLToPath(new URL(entry, root))],
+    bundle: true, write: false, format: "esm", platform: "browser", target: "es2022",
+    loader: { ".css": "text" },
+    define: { "process.env.NODE_ENV": '"production"', __WORKDSH_WORD_ONLY__: String(wordOnly) },
+    plugins,
+    logLevel: "silent",
+  });
+  await writeFile(new URL(`dist/client.${name}.js`, root), result.outputFiles[0]?.text ?? "");
+};
+await runtimeChunk("src/presentation/pptx-runtime.ts", "office-pptx", [nativePptPlugin()]);
+await runtimeChunk("src/spreadsheet/runtime.ts", "office-sheet");
+await runtimeChunk("src/pdf/runtime.ts", "office-pdf", [pdfWorkerPlugin]);
+await runtimeChunk("src/docx-runtime.ts", "office-docx");
+await runtimeChunk("src/excel-runtime.ts", "office-excel");
 const client = await build({
   metafile: true,
   entryPoints: [fileURLToPath(new URL("src/client.tsx", root))],
@@ -60,19 +86,6 @@ const client = await build({
     {name:"pdf-worker-source",setup(builder){builder.onLoad({filter:/pdf\.worker\.min\.mjs$/},async args=>({contents:await readFile(args.path,"utf8"),loader:"text"}));}},
     nativePptPlugin(),
     spreadsheetScope,
-    {
-      name: "editor-html",
-      setup(builder) {
-        builder.onResolve({ filter: /editor\.html$/ }, () => ({
-          path: "editor",
-          namespace: "editor",
-        }));
-        builder.onLoad({ filter: /.*/, namespace: "editor" }, () => ({
-          contents: html,
-          loader: "text",
-        }));
-      },
-    },
   ],
 });
 await writeFile(

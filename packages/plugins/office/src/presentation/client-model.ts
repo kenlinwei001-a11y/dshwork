@@ -1,12 +1,16 @@
 import type {OfficeContentSnapshot,OfficePresentationSnapshot,OfficeReceipt} from 'workdsh-contracts/office';
 import type {DocumentOptions,Rpc} from '../live/model.js';
-import {mountNativePpt} from './frame.js';
+import type {mountNativePpt as MountNativePpt} from './frame.js';
+import {loadClientChunk} from '../client-chunk.js';
+type PptxRuntime={mountNativePpt:typeof MountNativePpt};
+let pptxRuntime:Promise<PptxRuntime>|undefined;
+const loadPptxRuntime=()=>(pptxRuntime??=loadClientChunk<PptxRuntime>('office-pptx'));
 /** Read mirror and local edit transaction; all durable writes use the Office service. */
 export function createPresentationModel(options:DocumentOptions,rpc:Rpc){
  const {sessionId,documentId,signal}=options,clientId=crypto.randomUUID();
  let visible=options.visible,requestId=options.requestId,acked:string|undefined,closed=false;
  let base:OfficePresentationSnapshot|undefined,container:HTMLElement|undefined;
- let frame:ReturnType<typeof mountNativePpt>|undefined,timer:ReturnType<typeof setTimeout>|undefined;
+ let frame:ReturnType<typeof MountNativePpt>|undefined,timer:ReturnType<typeof setTimeout>|undefined,renderGeneration=0;
  let saving:Promise<unknown>=Promise.resolve(),busy=false,failed=false,dirty=false;
  let view={title:'PPT',status:'正在打开…',editing:false,ready:false,problem:''};
  const listeners=new Set<()=>void>();
@@ -21,6 +25,13 @@ export function createPresentationModel(options:DocumentOptions,rpc:Rpc){
   }
  }
  function render(snapshot:OfficePresentationSnapshot,editable:boolean){
+  const generation=++renderGeneration;
+  void loadPptxRuntime().then(({mountNativePpt})=>{
+   if(closed||generation!==renderGeneration)return;
+   paint(mountNativePpt,snapshot,editable);
+  }).catch(error=>{if(!closed&&generation===renderGeneration)update({problem:error instanceof Error?error.message:String(error),status:'PPT 编辑器加载失败'});});
+ }
+ function paint(mountNativePpt:typeof MountNativePpt,snapshot:OfficePresentationSnapshot,editable:boolean){
   const previous=base?.state.deck as {slides:{id:string}[]}|undefined;
   const next=snapshot.state.deck as {slides:{id:string}[]};
   const changed=previous?next.slides.findIndex(slide=>JSON.stringify(slide)!==JSON.stringify(previous.slides.find(old=>old.id===slide.id))):-1;
@@ -69,7 +80,7 @@ export function createPresentationModel(options:DocumentOptions,rpc:Rpc){
   subscribe(listener:()=>void){listeners.add(listener);return()=>listeners.delete(listener);},getSnapshot:()=>view,
   setVisible(value:boolean){visible=value;},setRequest(value:string|undefined){requestId=value;},
   attach(element:HTMLElement){container=element;void poll();return()=>{
-   closed=true;clearTimeout(timer);frame?.dispose();listeners.clear();
+   closed=true;renderGeneration++;clearTimeout(timer);frame?.dispose();listeners.clear();
   };},
   async download(){if(!frame||!view.ready)throw new Error('PPT 尚未就绪。');await frame.flush();await saving;await frame.download();},
  };

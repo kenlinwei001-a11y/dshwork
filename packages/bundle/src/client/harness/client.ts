@@ -1,5 +1,7 @@
 import { ShellAppearance } from '../components/ShellAppearance.js';
 import { installFreshSessionNavigation } from './fresh-session.js';
+import { installSettingsScope } from './settings-scope.js';
+import { installCraftCadDxfPreview } from './craftcad-dxf-preview.js';
 import { communityMarketView, type MarketHost } from '../components/CommunityMarket.js';
 import type { Context } from '@deepseek-ai/cordis';
 import type {} from '@deepseek-ai/dsh-api-remotes/client';
@@ -25,7 +27,7 @@ declare module '@deepseek-ai/dsh-client-ui-sidebar-right/client' {
 }
 
 export const name = 'workdsh-client';
-export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory', 'sessions', 'sidebarRight', 'sidebarRightTabs'];
+export const inject = ['slots', 'layout', 'remote', 'remote.pluginInventory', 'remote.settings', 'sessions', 'sidebarRight', 'sidebarRightTabs'];
 
 const productViews: Readonly<Record<string, string>> = {
   experts: 'workdsh-experts', skills: 'workdsh-skills', assistant: 'workdsh-assistant', projects: 'workdsh-projects', 'project-detail': 'workdsh-project-detail',
@@ -33,6 +35,8 @@ const productViews: Readonly<Record<string, string>> = {
 };
 
 export function apply(ctx: Context): void {
+  // Bridge the removed 0.2 `settingsScope` client service for third-party plugins.
+  installSettingsScope(ctx);
   // The official shell serves the tab title from its own HTML; pin it to the product name.
   const pinTitle = () => { if (document.title !== 'NexusOne') document.title = 'NexusOne'; };
   pinTitle();
@@ -42,6 +46,17 @@ export function apply(ctx: Context): void {
   ctx.effect(() => () => titleObserver?.disconnect());
 
   installFreshSessionNavigation(ctx);
+  // Keep the CraftCAD ".dxf" preview in the shell, out of the panel package's
+  // rebuilt dist. Only register when the panel is actually installed.
+  ctx.effect(() => {
+    let disposed = false;
+    void ctx.remote.pluginInventory.list().then(response => {
+      if (disposed || !response.ok) return;
+      const panel = response.value.entries.find(row => row.moduleName === 'workdsh-plugin-craftcad-panel');
+      if (panel !== undefined && panel.enabled !== false) installCraftCadDxfPreview(ctx);
+    }).catch(() => { /* missing inventory is not a failure */ });
+    return () => { disposed = true; };
+  }, 'workdsh.craftcad-dxf-preview.inventory');
   ctx.inject(['market'], scope => {
     if (scope.market.version !== 1) return;
     scope.market.setSettingsVisible(false);

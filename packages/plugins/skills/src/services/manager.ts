@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { copyFile, lstat, mkdir, open, readFile, readdir, realpath, rename, rm, stat, unlink, writeFile } from 'node:fs/promises';
+import { chmod, copyFile, lstat, mkdir, open, readFile, readdir, realpath, rename, rm, stat, unlink, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path';
 import { Context, Service } from '@deepseek-ai/cordis';
@@ -52,6 +52,37 @@ async function snapshotFiles(directory: string, signal?: AbortSignal): Promise<{
     hash.update(path); hash.update('\0'); hash.update(bytes); hash.update('\0');
   }
   return { files, contentDigest: hash.digest('hex') };
+}
+
+/** Walk a tree without following symlinks; returns every directory and regular file. */
+async function treeEntries(root: string): Promise<{ dirs: string[]; files: string[] }> {
+  const dirs = [root];
+  const files: string[] = [];
+  const visit = async (directory: string): Promise<void> => {
+    const rows = await readdir(directory, { withFileTypes: true });
+    for (const row of rows) {
+      if (row.isSymbolicLink()) continue;
+      const path = join(directory, row.name);
+      if (row.isDirectory()) { dirs.push(path); await visit(path); }
+      else if (row.isFile()) files.push(path);
+    }
+  };
+  await visit(root);
+  return { dirs, files };
+}
+
+/**
+ * Set modes across a tree. Sealing uses files 0444 + directories 0555 so an
+ * accidental editor save or copy into a frozen archive fails loudly instead of
+ * silently rewriting it; unsealing only has to make directories writable again
+ * (unlink needs parent write, not file write).
+ */
+async function setTreeMode(root: string, fileMode: number, dirMode: number): Promise<void> {
+  let entries: { dirs: string[]; files: string[] };
+  try { entries = await treeEntries(root); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return; throw error; }
+  for (const file of entries.files) await chmod(file, fileMode);
+  for (const directory of [...entries.dirs].reverse()) await chmod(directory, dirMode);
 }
 
 function inside(root: string, target: string): boolean {
@@ -209,8 +240,11 @@ export class SkillManager extends Service implements SkillManagementService {
         try { if (!await this.isSafeManagedFile(path)) continue; registeredFiles.add(await realpath(path)); }
         catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT' || (error as Error).message === 'skill/path-symlink') continue; throw error; }
       }
+      const base = skill.resourceBase;
+      const frozen = !manageable && base?.kind === 'directory' && inside(this.retainedRoot(), join(base.path, 'SKILL.md'));
       rows.push({ name: skill.name, description: skill.description, whenToUse: skill.whenToUse,
-        modelInvocable: skill.invocation.modelInvocable, state: manageable ? 'enabled' : 'readonly', manageable });
+        modelInvocable: skill.invocation.modelInvocable, state: manageable ? 'enabled' : 'readonly', manageable,
+        ...(frozen ? { frozen: true } : {}) });
     }
     for (const root of this.activeRoots) {
       await mkdir(root, { recursive: true });
@@ -663,6 +697,7 @@ export class SkillManager extends Service implements SkillManagementService {
     const readonlyDetail: ManagedSkillDetail = {
       name: definition.name, description: definition.description, whenToUse: definition.whenToUse,
       modelInvocable: definition.invocation.modelInvocable, state: 'readonly', manageable: false, resources: [],
+      ...(definition.path && inside(this.retainedRoot(), definition.path) ? { frozen: true } : {}),
     };
     if (!definition.path) return readonlyDetail;
     const active = await this.managedEntryForPath(definition.path);
@@ -867,6 +902,57 @@ export class SkillManager extends Service implements SkillManagementService {
   private retainedRoot(): string { return join(this.stateRoot, 'retained-revisions'); }
   private retentionManifestPath(revisionId: string): string { return join(this.retainedRoot(), `${revisionId}.manifest.json`); }
   private snapshotDirFor(revisionId: string): string { return join(this.retainedRoot(), revisionId); }
+  private archiveRoot(): string { return join(this.retainedRoot(), '.archives'); }
+  private archiveDirFor(revisionId: string): string { return join(this.archiveRoot(), revisionId); }
+  private archivePathFor(ref: SkillRevisionRef): string { return join(this.archiveDirFor(ref.revisionId), ref.name); }
+
+  /** Remove a tree that may be sealed; ENOENT is not an error. */
+  private async removeTree(path: string): Promise<void> {
+    await setTreeMode(path, 0o644, 0o755);
+    await rm(path, { recursive: true, force: true });
+  }
+
+  /**
+   * Keep a second, sealed copy of the frozen content. The mounted snapshot is
+   * what the Harness reads, but it lives in the user's home and can be rewritten
+   * by any process; the archive is the recovery source when that happens.
+   */
+  private async writeArchive(ref: SkillRevisionRef, sourceDir: string, signal?: AbortSignal): Promise<void> {
+    const target = this.archivePathFor(ref);
+    try {
+      const existing = await snapshotFiles(target, signal);
+      if (existing.contentDigest === ref.contentDigest) return;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
+    await this.removeTree(target);
+    await mkdir(target, { recursive: true });
+    const source = await snapshotFiles(sourceDir, signal);
+    for (const file of source.files) {
+      const to = join(target, file.path);
+      await mkdir(dirname(to), { recursive: true });
+      await copyFile(join(sourceDir, file.path), to);
+    }
+    if ((await snapshotFiles(target, signal)).contentDigest !== ref.contentDigest) throw new Error('skill/revision-archive-mismatch');
+    await setTreeMode(target, 0o444, 0o555);
+  }
+
+  /** Re-materialize a drifted or missing mounted snapshot from its sealed archive. */
+  private async restoreFromArchive(ref: SkillRevisionRef, target: string, signal?: AbortSignal): Promise<boolean> {
+    const archive = this.archivePathFor(ref);
+    let snapshot: { files: { path: string }[]; contentDigest: string };
+    try { snapshot = await snapshotFiles(archive, signal); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw error; }
+    if (snapshot.contentDigest !== ref.contentDigest) return false;
+    await this.removeTree(target);
+    await mkdir(target, { recursive: true });
+    for (const file of snapshot.files) {
+      const to = join(target, file.path);
+      await mkdir(dirname(to), { recursive: true });
+      await copyFile(join(archive, file.path), to);
+    }
+    return (await snapshotFiles(target, signal)).contentDigest === ref.contentDigest;
+  }
 
   private async readRetentionManifest(path: string): Promise<RetentionManifest | undefined> {
     try { return JSON.parse(await readFile(path, 'utf8')) as RetentionManifest; }
@@ -892,8 +978,14 @@ export class SkillManager extends Service implements SkillManagementService {
       const target = join(snapshotDir, ref.name);
       const existing = await this.readRetentionManifest(manifestPath);
       if (existing && existing.contentDigest === ref.contentDigest) {
-        const current = await snapshotFiles(target, signal);
-        if (current.contentDigest !== ref.contentDigest) throw new Error('skill/revision-snapshot-drift');
+        let current: { files: { path: string; byteLength: number; sha256: string }[]; contentDigest: string } | undefined;
+        try { current = await snapshotFiles(target, signal); }
+        catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+        if (!current || current.contentDigest !== ref.contentDigest) {
+          if (!await this.restoreFromArchive(ref, target, signal)) throw new Error('skill/revision-snapshot-drift');
+          console.warn(`[workdsh-skills] restored retained revision ${ref.revisionId}/${ref.name} from archive`);
+          current = await snapshotFiles(target, signal);
+        }
         const retainedBy = addConsumer(existing.retainedBy, consumer);
         await this.writeJson(manifestPath, { ...existing, retainedBy });
         return { ref, snapshotDir, files: current.files, retainedBy };
@@ -911,6 +1003,7 @@ export class SkillManager extends Service implements SkillManagementService {
       }
       const retainedBy = addConsumer(existing?.retainedBy ?? [], consumer);
       const manifest: RetentionManifest = { ref, contentDigest: ref.contentDigest, files: source.files, retainedBy, createdAt: new Date().toISOString() };
+      await this.writeArchive(ref, target, signal);
       await this.writeJson(manifestPath, manifest);
       return { ref, snapshotDir, files: source.files, retainedBy };
     });
@@ -922,13 +1015,20 @@ export class SkillManager extends Service implements SkillManagementService {
     const target = join(snapshotDir, ref.name);
     let retained = false;
     let status: SkillRevisionStatus;
+    const repair = async (): Promise<boolean> => {
+      if (!await this.restoreFromArchive(ref, target, signal)) return false;
+      retained = true;
+      console.warn(`[workdsh-skills] restored retained revision ${ref.revisionId}/${ref.name} from archive`);
+      return true;
+    };
     try {
       const snapshot = await snapshotFiles(target, signal);
       retained = true;
-      status = snapshot.contentDigest === ref.contentDigest ? 'intact' : 'drifted';
+      if (snapshot.contentDigest === ref.contentDigest) status = 'intact';
+      else status = await repair() ? 'intact' : 'drifted';
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-      status = 'missing';
+      status = await repair() ? 'intact' : 'missing';
     }
     if (status === 'intact') {
       const detail = await this.detail(ref.skillId, signal);
@@ -946,7 +1046,8 @@ export class SkillManager extends Service implements SkillManagementService {
       if (!manifest) return;
       const retainedBy = manifest.retainedBy.filter((entry) => !(entry.domain === consumer.domain && entry.id === consumer.id));
       if (retainedBy.length === 0) {
-        await rm(this.snapshotDirFor(ref.revisionId), { recursive: true, force: true });
+        await this.removeTree(this.snapshotDirFor(ref.revisionId));
+        await this.removeTree(this.archiveDirFor(ref.revisionId));
         await this.removeJson(manifestPath);
         return;
       }
