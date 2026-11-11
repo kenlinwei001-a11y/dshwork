@@ -3,8 +3,8 @@
   "workspaceId": "ba4adf2e-0277-4fb4-9180-760f4f6087f7",
   "workspacePath": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0",
   "title": "团队知识库",
-  "revision": 318,
-  "updatedAt": "2026-11-05T10:32:39.245Z",
+  "revision": 319,
+  "updatedAt": "2026-11-11T10:41:41.192Z",
   "milestoneNodeId": null,
   "nodes": [
     {
@@ -893,7 +893,10 @@
       "notes": "【写作工作流入口 · 与知识处理产线无关】把客户材料收进 projects/<slug>/\n怎么开（任选）\n- 点本节点「交接新会话」，让 agent 起上传页：\n  python3 scripts/inbox-server.py --project <slug> --open\n- 或自己双击工作区里的「打开导入窗口.command」（默认团队知识库；写作项目用上面命令带 --project）\n- 端口默认 8899，被占用会自动换端口，以脚本打印的 http://127.0.0.1:<port>/ 为准\n页面能力\n- 点选文件 / 点选文件夹 / 拖拽文件或文件夹（多级子目录），支持 docx/xlsx/pdf/zip/md/txt\n- 上传后自动归一化，页面显示 源 / 已归一化 / 失败 与批次目录\n产物\n- 原件：projects/<slug>/inbox/<批次>/<原相对路径>\n- 归一化：projects/<slug>/batches/<批次>/{raw, normalized, manifest.json}\n下一步\n- 本节点完成后解锁「推演写作 · 需求与文体识别」；后续按写作工作流六步走\n边界\n- 只负责收集与归一化项目材料；不建知识图谱、不跑七道工序（那是知识处理产线）\n- 同一项目重复上传：新批次独立存放，按 manifest 的 sha256 去重",
       "conditions": [],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 96,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -916,7 +919,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 416,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -939,7 +945,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 736,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -962,7 +971,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1056,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -985,7 +997,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1376,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -1008,7 +1023,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1696,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -1031,7 +1049,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2016,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -1048,7 +1069,10 @@
       "notes": "【写作前置 · 必须先有形，再写文】\n作用\n- 把知识处理产线产出的形包（42 文件：ontology 12 / skeleton 3 / templates 6 / gates 2 / lineage 8 / functions 2 / 根 9）导入写作项目\n- 写作只「借形」：继承结构、规则、模板、门禁、术语；不继承任何数值与实体名\n命令\n- 从语料包导入：python3 scripts/import-shape.py --project <slug> --from-package chain/<run>/<doc>\n- 直接给形包目录：python3 scripts/import-shape.py --project <slug> --shape <形包目录>\n产物\n- projects/<slug>/shape/（原样复制）+ shape/PROVENANCE.json（来源、文件数、分层计数、借形不借值声明）\n校验\n- python3 scripts/writing-gate.py --project <slug> --gate WG2  # 没导入形包时 WG2 判 invalid\n边界\n- 只导形不导值；形包版本变化时用 --force 重新导入并记录 PROVENANCE",
       "conditions": [],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": -224,
+        "y": 691
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -1065,7 +1089,10 @@
       "notes": "【执行入口】python3 scripts/audit-numbers2.py --project <slug>\n【判据】实质数字中 ≥95% 能追溯到 fact/derived/claim 节点；无源数字 = 0\n【产物】quality/audit-numbers.json（unique/chain/ambiguous/computed 四态）",
       "conditions": [],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 96,
+        "y": 889
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -1088,7 +1115,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1376,
+        "y": 889
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",

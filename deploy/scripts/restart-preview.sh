@@ -8,6 +8,18 @@ PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
 LOG="$HOME/Library/Logs/$LABEL.log"
 PORT="${WORKDSH_PREVIEW_PORT:-18989}"
 [ -f "$PLIST" ] || { echo "找不到 $PLIST" >&2; exit 2; }
+
+# 启动前巡检专家预设。漂移不阻止启动，但绑定相关修订的会话会每轮报 experts/package-drift。
+CHECK="$(cd "$(dirname "$0")/.." && pwd)/scripts/check-expert-presets.mjs"
+if [ -f "$CHECK" ] && command -v node >/dev/null 2>&1; then
+  if ! OUT=$(node "$CHECK" \
+      --home "${WORKDSH_PREVIEW_HOME:-${DSH_HOME:-$HOME/workdsh/.test-runtime/preview}}" \
+      --agents "${DSH_AGENTS_HOME:-$HOME/.agents}" 2>&1); then
+    echo "$OUT" | grep -E '^DRIFT|^checked=' >&2 || true
+    echo "⚠ 专家预设存在漂移（experts/package-drift），绑定相关修订的会话会每轮失败。" >&2
+    echo "  详情：node $CHECK --home <DSH_HOME> --agents <AGENTS_HOME>" >&2
+  fi
+fi
 STAMP=$(stat -f '%z' "$LOG" 2>/dev/null || echo 0)
 echo "== 停 =="
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true

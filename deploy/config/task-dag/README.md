@@ -1,11 +1,11 @@
 # 任务图谱数据存档
 
-来源：WorkDSH preview 运行时（2026-11-05，2026-11-11 同步）
+来源：WorkDSH preview 运行时（2026-11-11 同步）
 
 - 工作区：`团队知识库`
 - workspaceId：`ba4adf2e-0277-4fb4-9180-760f4f6087f7`
 - 原路径：`<DSH_HOME>/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0`
-- 快照：revision 318，updatedAt 2026-11-05T10:32:39.245Z，42 个节点 / 38 条边
+- 快照：revision 319，updatedAt 2026-11-11T10:41:41.192Z，42 个节点 / 38 条边
 
 ## 文件
 

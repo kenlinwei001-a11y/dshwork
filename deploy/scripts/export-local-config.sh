@@ -26,6 +26,19 @@ if [ $# -ge 2 ]; then AGENTS_HOME="$2"; else AGENTS_HOME="$HOME/.agents"; fi
 [ -d "$DSH_HOME" ] || { echo "找不到 DSH_HOME：$DSH_HOME"; exit 2; }
 [ -d "$AGENTS_HOME" ] || { echo "找不到 DSH_AGENTS_HOME：$AGENTS_HOME"; exit 2; }
 
+# 导出前强制巡检：漂移状态绝不写进存档（存档经常被当作恢复源）。
+if [ "$MODE" = "export" ]; then
+  CHECK="$HERE/scripts/check-expert-presets.mjs"
+  if [ -f "$CHECK" ] && command -v node >/dev/null 2>&1; then
+    if ! node "$CHECK" --home "$DSH_HOME" --agents "$AGENTS_HOME"; then
+      echo >&2
+      echo "✗ 检测到专家预设漂移（experts/package-drift），已中止导出。" >&2
+      echo "  先按 deploy/EXPERT-PRESET-INTEGRITY.md 处置，再重新导出。" >&2
+      exit 2
+    fi
+  fi
+fi
+
 say() { echo "  $*"; }
 step() { echo; echo "── $* ──"; }
 do_cp() { if [ "$MODE" = "export" ]; then cp -R "$1" "$2"; else echo "  [dry] cp -R $1 $2"; fi; }

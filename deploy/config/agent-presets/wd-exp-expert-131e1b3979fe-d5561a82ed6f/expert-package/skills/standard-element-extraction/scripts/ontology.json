@@ -1,0 +1,237 @@
+{
+  "version": "1.0",
+  "purpose": "轻本体：只做可执行的类型与约束，不做推理。用于拒绝不合规的抽取产物。",
+  "classes": {
+    "Standard": {
+      "collection": "standard",
+      "required": [
+        "standard_id"
+      ]
+    },
+    "Clause": {
+      "collection": "clause_registry",
+      "key": "clause",
+      "required": [
+        "page",
+        "quote",
+        "modality",
+        "type"
+      ],
+      "enums": {
+        "modality": [
+          "MUST",
+          "SHOULD",
+          "MAY",
+          "MUST_NOT",
+          "INFO"
+        ],
+        "type": [
+          "normative",
+          "informative-reference",
+          "informative",
+          "normative-table",
+          "informative-table",
+          "normative-note"
+        ]
+      }
+    },
+    "Element": {
+      "collection": "elements",
+      "key": "element_id",
+      "required": [
+        "family",
+        "statement",
+        "evidence",
+        "anchor",
+        "origin"
+      ],
+      "enums": {
+        "family": [
+          "META",
+          "SCOPE",
+          "PRIN",
+          "SAMP",
+          "PROC",
+          "APPA",
+          "MATL",
+          "INTR",
+          "CALC",
+          "QC",
+          "PERF",
+          "RISK"
+        ],
+        "origin": [
+          "verbatim",
+          "derived",
+          "convention"
+        ],
+        "obligation": [
+          "MUST",
+          "SHOULD",
+          "MAY",
+          "MUST_NOT"
+        ]
+      }
+    },
+    "Rule": {
+      "collection": "audit_rule_cards",
+      "key": "rule_id",
+      "required": [
+        "category",
+        "clause",
+        "title",
+        "requirement",
+        "predicate",
+        "evidence_required",
+        "check_targets",
+        "on_missing",
+        "anchor"
+      ],
+      "enums": {
+        "category": [
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C5",
+          "C6",
+          "C7",
+          "C8"
+        ],
+        "on_missing": [
+          "FAIL",
+          "UNVERIFIABLE"
+        ]
+      },
+      "cardinality": {
+        "anchor": 1,
+        "check_targets": "1..*"
+      }
+    },
+    "Parameter": {
+      "collection": "parameters",
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    "Gap": {
+      "collection": "gaps",
+      "key": "gap_id",
+      "required": [
+        "type",
+        "desc",
+        "affects",
+        "min_request"
+      ]
+    }
+  },
+  "relations": {
+    "contains": {
+      "from": "Standard",
+      "to": [
+        "Clause",
+        "Rule",
+        "Gap"
+      ]
+    },
+    "specifies": {
+      "from": "Clause",
+      "to": "Element"
+    },
+    "implements": {
+      "from": "Rule",
+      "to": "Element"
+    },
+    "anchors": {
+      "from": [
+        "Rule",
+        "Parameter",
+        "Element"
+      ],
+      "to": "Clause"
+    },
+    "constrains": {
+      "from": "Rule",
+      "to": "Parameter"
+    },
+    "checks": {
+      "from": "Rule",
+      "to": "DocField"
+    },
+    "requires": {
+      "from": "Rule",
+      "to": "EvidenceType"
+    },
+    "evidenced_by": {
+      "from": "Element",
+      "to": "EvidenceType"
+    },
+    "gates": {
+      "from": "Rule",
+      "to": "Object"
+    },
+    "invalidates": {
+      "from": "Rule",
+      "to": "Object"
+    },
+    "has_gap": {
+      "from": "Standard",
+      "to": "Gap"
+    },
+    "has_rule_set": {
+      "from": "Standard",
+      "to": "RuleSet"
+    },
+    "cites": {
+      "from": "Standard",
+      "to": "Reference"
+    },
+    "has_method": {
+      "from": "Standard",
+      "to": "Method"
+    },
+    "instantiates": {
+      "from": "Rule",
+      "to": "RuleInstance"
+    },
+    "precedes": {
+      "from": "Process",
+      "to": "Process"
+    },
+    "binds_to": {
+      "from": "RuleInstance",
+      "to": "Parameter"
+    },
+    "computes": {
+      "from": "DependencyNode",
+      "to": "DependencyNode"
+    },
+    "rounds": {
+      "from": "DependencyNode",
+      "to": "DependencyNode"
+    },
+    "gated_by": {
+      "from": "DependencyNode",
+      "to": "DependencyNode"
+    },
+    "weakens": {
+      "from": "Rule",
+      "to": "Object"
+    },
+    "has_view": {
+      "from": "RuleSet",
+      "to": "GraphView"
+    }
+  },
+  "invariants": [
+    "Rule.anchor 必须含 clause/page/quote 三要素",
+    "Rule.check_targets 至少 1 条，且每条含 target_type/field/match_hints/locator_strategy",
+    "Rule.category 与 rule_id 的第二段一致（ARC-C7-… ⇒ C7）",
+    "Gap.affects 非空",
+    "Element.origin=derived 时必须有 derive_from",
+    "Parameter 为数值时必须有 unit（无量纲写 1）",
+    "图内每条边的两端节点必须存在，且 operator 在 relations 中",
+    "Element.obligation 为空 ⇒ 其锚定条款必须为 informative；非空 ⇒ 必须为四种模态之一"
+  ]
+}
