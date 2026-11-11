@@ -317,3 +317,18 @@ assert c["trace_status"] in ("full", "pending_fetch"), "溯源状态越界"
 ## 资源导航（工序细节、库结构、坑与细则已下沉 references/）
 
 - `references/细则.md` — 7 节
+## 产出扩展：limit 表（v2 增补）
+
+除条款原文外，必须产出可直接被规则消费的限值表：
+
+```yaml
+standards:
+  "GB50189-2015":
+    clauses:
+      "4.2.1": {title: 外墙传热系数限值, value: 0.45, unit: "W/(㎡·K)", status: 已录入}
+      "4.2.2": {title: 外窗传热系数限值, value: null, unit: "W/(㎡·K)", status: 待抽取, source: 需规范原件}
+```
+
+规则通过 {limit@标准号#条款} 引用；value 为 null 时规则必须输出 undefined 并注明「标准条款待抽取」，**不得用行业惯例补值**。
+
+验收：形包/规则里出现的每个 limit 引用，在 limit 表中都有条目（已录入或待抽取）。

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-f13c743e7c4b",
+    "revisionId": "rev-a8e940a18306",
+    "definition": {
+      "agentDocument": "# 独立审核\n\n只出判定与退回原因，不改稿。",
+      "name": "独立审核",
+      "description": "复核证据、逻辑、口径、冲突与抽取质量",
+      "role": "独立审核人",
+      "methodology": "逐条核对引用、推理链、口径与抽取完整性",
+      "boundaries": "不改稿；不重算数值。",
+      "deliverables": "pass/reject、问题清单、退回原因",
+      "tags": [
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "claim-validation-skill"
+        },
+        {
+          "name": "claim-evidence-binding-skill"
+        },
+        {
+          "name": "conflict-detection-skill"
+        },
+        {
+          "name": "provenance-binding-skill"
+        },
+        {
+          "name": "extraction-quality-audit-skill"
+        }
+      ],
+      "futureRequirements": []
+    },
+    "definitionDigest": "423087660acb16b9baec3882a034e692bdfa43455a03c4d2142438968ace1db9",
+    "dependencyLock": [
+      {
+        "skillId": "claim-validation-skill",
+        "revisionId": "rev-f51659ae61d2bd2e9906a32d",
+        "name": "claim-validation-skill",
+        "contentDigest": "f51659ae61d2bd2e9906a32d309b39513321281f4da67917f002b715d6e3ad88"
+      },
+      {
+        "skillId": "claim-evidence-binding-skill",
+        "revisionId": "rev-3b0402a1a2331d6da96cd41a",
+        "name": "claim-evidence-binding-skill",
+        "contentDigest": "3b0402a1a2331d6da96cd41a57663f6d71640d3f55f8219b37b0012c91557c78"
+      },
+      {
+        "skillId": "conflict-detection-skill",
+        "revisionId": "rev-234319836cf52f931e2f2972",
+        "name": "conflict-detection-skill",
+        "contentDigest": "234319836cf52f931e2f2972892f584a7b1898a9b7cae8a591663241e6268701"
+      },
+      {
+        "skillId": "provenance-binding-skill",
+        "revisionId": "rev-5bf519520487272e30a69851",
+        "name": "provenance-binding-skill",
+        "contentDigest": "5bf519520487272e30a69851d87fb508e6ac36f7a7c5a5c4fcf4a7c46bbf5769"
+      },
+      {
+        "skillId": "extraction-quality-audit-skill",
+        "revisionId": "rev-400ad69be03867b42133d3eb",
+        "name": "extraction-quality-audit-skill",
+        "contentDigest": "400ad69be03867b42133d3eb24abf7769bc9e863f597f8441d95cab9b67b1927"
+      }
+    ],
+    "dependencyLockDigest": "093d69a0ef9ba769ad8ee9639ee84954e9709be343200ff80b2608f1d074d713",
+    "presetRevisionRef": "wd-exp-member-f13c743e7c4b-bb52f8750a06",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "de3a078921b1d228ff8a4cdbe038bcf634cbeda3f4ec558244ac62dfa08f8a8a",
+    "publishedAt": "2026-11-05T10:31:59.889Z",
+    "publishedBy": "local-user"
+  }
+}

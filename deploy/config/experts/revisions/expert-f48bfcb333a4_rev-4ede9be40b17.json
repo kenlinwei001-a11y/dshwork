@@ -1,0 +1,252 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "expert-f48bfcb333a4",
+    "revisionId": "rev-4ede9be40b17",
+    "definition": {
+      "name": "推演写作专家团",
+      "description": "负责可研写作全流程（解析→推演→逐项展开→审核→统稿）；内容充实由成员按展开协议完成。",
+      "role": "可研报告写作专家团主理人",
+      "methodology": "解析问题与材料 → 沿图谱推演 → 撰稿人按展开协议逐项写透 → 审核核对覆盖与深度 → 主笔统稿。",
+      "boundaries": "不跑七道工序、不发布语料包；不以重复或形容词充篇幅。",
+      "deliverables": "41 节正文（每节按 must 项 ×150 字下限）、citations、self_check、审核意见、统稿交付稿。",
+      "tags": [
+        "可研",
+        "推演写作",
+        "专家团"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "graph-deductive-writing-skill"
+        },
+        {
+          "name": "knowledge-asset-consumption"
+        },
+        {
+          "name": "document-parsing-skill"
+        },
+        {
+          "name": "semantic-graph-compilation-skill"
+        },
+        {
+          "name": "reasoning-extraction-skill"
+        }
+      ],
+      "futureRequirements": [],
+      "team": {
+        "members": [
+          {
+            "key": "engineering-writer",
+            "definition": {
+              "agentDocument": "# 工程撰稿\n\n执笔 3.x-5.x；具备解析材料、抽取事实、沿图谱推演的最小知识处理能力。",
+              "name": "工程撰稿",
+              "description": "执笔建设规模、工程方案、结构、机电与节能章节",
+              "role": "工程章节撰稿人",
+              "methodology": "① 逐项展开 must_cover，每项按「现状与需求→依据与口径→推导与判断→校核与边界→措施与影响」五步写透（每项 150-300 字）；② 计算量调用规则；③ 每段至少一个引用；④ 写完后自检每项是否有对应段落。",
+              "boundaries": "不写投资财务结论；不做完整七道工序。；不得以拉长句式充篇幅",
+              "deliverables": "章节正文、citations、self_check",
+              "tags": [
+                "可研",
+                "写作"
+              ],
+              "examples": [],
+              "skillRequirements": [
+                {
+                  "name": "graph-deductive-writing-skill"
+                },
+                {
+                  "name": "knowledge-asset-consumption"
+                },
+                {
+                  "name": "feasibility-report-edu-research"
+                },
+                {
+                  "name": "document-parsing-skill"
+                },
+                {
+                  "name": "fact-extraction-skill"
+                }
+              ],
+              "futureRequirements": []
+            }
+          },
+          {
+            "key": "investment-writer",
+            "definition": {
+              "agentDocument": "# 投资与综合撰稿\n\n执笔 1.x-2.x、6.x-10.x 与附录；具备解析、抽取、推演能力。",
+              "name": "投资与综合撰稿",
+              "description": "执笔投资估算、财务、政策、运营、风险与社会评价章节",
+              "role": "投资与综合章节撰稿人",
+              "methodology": "① 逐项展开 must_cover，每项按五步展开（现状→依据→推导→校核→影响措施），每项 150-300 字；② 投资财务量调用规则，保留两位小数与单位；③ 冲突并列待确认；④ 自检覆盖度与篇幅。",
+              "boundaries": "不写工程方案；不发布语料包。；不得以拉长句式充篇幅",
+              "deliverables": "章节正文、规则使用清单、待确认事项",
+              "tags": [
+                "可研",
+                "写作"
+              ],
+              "examples": [],
+              "skillRequirements": [
+                {
+                  "name": "graph-deductive-writing-skill"
+                },
+                {
+                  "name": "knowledge-asset-consumption"
+                },
+                {
+                  "name": "feasibility-report-edu-research"
+                },
+                {
+                  "name": "document-parsing-skill"
+                },
+                {
+                  "name": "fact-extraction-skill"
+                }
+              ],
+              "futureRequirements": []
+            }
+          },
+          {
+            "key": "reviewer",
+            "definition": {
+              "agentDocument": "# 独立审核\n\n只出判定与退回原因，不改稿。",
+              "name": "独立审核",
+              "description": "复核证据、逻辑、口径、冲突与抽取质量",
+              "role": "独立审核人",
+              "methodology": "① 覆盖完整性：每个 must_cover 项是否有对应段落；② 深度：每项是否走完五步，是否以形容词堆砌代替推理；③ 篇幅是否达到 must 项数 ×150；④ 结论是否可复算。",
+              "boundaries": "不改稿；不重算数值。；不得以拉长句式充篇幅",
+              "deliverables": "pass/reject、问题清单、退回原因",
+              "tags": [
+                "可研",
+                "写作"
+              ],
+              "examples": [],
+              "skillRequirements": [
+                {
+                  "name": "claim-validation-skill"
+                },
+                {
+                  "name": "claim-evidence-binding-skill"
+                },
+                {
+                  "name": "conflict-detection-skill"
+                },
+                {
+                  "name": "provenance-binding-skill"
+                },
+                {
+                  "name": "extraction-quality-audit-skill"
+                }
+              ],
+              "futureRequirements": []
+            }
+          }
+        ],
+        "workflows": [
+          {
+            "id": "wf-section",
+            "title": "章节写作与审核",
+            "trigger": "收到某节写作任务",
+            "deliverable": "该节正文+citations+self_check+审核判定",
+            "stages": []
+          }
+        ]
+      }
+    },
+    "definitionDigest": "9bbe26e7db0322de0d973cc8197147a37dfa2f9e68a048a253f68e8807a08646",
+    "dependencyLock": [
+      {
+        "skillId": "graph-deductive-writing-skill",
+        "revisionId": "rev-e95cd56f798493d6aaf59cff",
+        "name": "graph-deductive-writing-skill",
+        "contentDigest": "e95cd56f798493d6aaf59cff00b23c010efcc495d5effc591ddd0ec7f2622f31"
+      },
+      {
+        "skillId": "knowledge-asset-consumption",
+        "revisionId": "rev-4ed6deb982b4e15c990377dc",
+        "name": "knowledge-asset-consumption",
+        "contentDigest": "4ed6deb982b4e15c990377dceb37679d4c9630fe219e07d7d774ab592ddf0e33"
+      },
+      {
+        "skillId": "document-parsing-skill",
+        "revisionId": "rev-b3cb732ed6cac43d422a92ee",
+        "name": "document-parsing-skill",
+        "contentDigest": "b3cb732ed6cac43d422a92ee633ec6694fe11207d3b41ecad194f47c8676ceee"
+      },
+      {
+        "skillId": "semantic-graph-compilation-skill",
+        "revisionId": "rev-a3bdd7a7a82aeb503f37126b",
+        "name": "semantic-graph-compilation-skill",
+        "contentDigest": "a3bdd7a7a82aeb503f37126bfed6415397d2f2170cf61eb8a64c4047b829257e"
+      },
+      {
+        "skillId": "reasoning-extraction-skill",
+        "revisionId": "rev-760189bcf725e718c86bd94b",
+        "name": "reasoning-extraction-skill",
+        "contentDigest": "760189bcf725e718c86bd94bc9d2071bb9eec318935659a715c46fec103093a2"
+      },
+      {
+        "skillId": "feasibility-report-edu-research",
+        "revisionId": "rev-2d2f549a5adb1dbeba70fbac",
+        "name": "feasibility-report-edu-research",
+        "contentDigest": "2d2f549a5adb1dbeba70fbace4b0b5bd61bd3866de892869572a5ceb10625447"
+      },
+      {
+        "skillId": "fact-extraction-skill",
+        "revisionId": "rev-7fe8c23ad89a328841592eb1",
+        "name": "fact-extraction-skill",
+        "contentDigest": "7fe8c23ad89a328841592eb177cec895038e6239fbde88d88216252ebd6cac7c"
+      },
+      {
+        "skillId": "claim-validation-skill",
+        "revisionId": "rev-f51659ae61d2bd2e9906a32d",
+        "name": "claim-validation-skill",
+        "contentDigest": "f51659ae61d2bd2e9906a32d309b39513321281f4da67917f002b715d6e3ad88"
+      },
+      {
+        "skillId": "claim-evidence-binding-skill",
+        "revisionId": "rev-3b0402a1a2331d6da96cd41a",
+        "name": "claim-evidence-binding-skill",
+        "contentDigest": "3b0402a1a2331d6da96cd41a57663f6d71640d3f55f8219b37b0012c91557c78"
+      },
+      {
+        "skillId": "conflict-detection-skill",
+        "revisionId": "rev-234319836cf52f931e2f2972",
+        "name": "conflict-detection-skill",
+        "contentDigest": "234319836cf52f931e2f2972892f584a7b1898a9b7cae8a591663241e6268701"
+      },
+      {
+        "skillId": "provenance-binding-skill",
+        "revisionId": "rev-5bf519520487272e30a69851",
+        "name": "provenance-binding-skill",
+        "contentDigest": "5bf519520487272e30a69851d87fb508e6ac36f7a7c5a5c4fcf4a7c46bbf5769"
+      },
+      {
+        "skillId": "extraction-quality-audit-skill",
+        "revisionId": "rev-400ad69be03867b42133d3eb",
+        "name": "extraction-quality-audit-skill",
+        "contentDigest": "400ad69be03867b42133d3eb24abf7769bc9e863f597f8441d95cab9b67b1927"
+      }
+    ],
+    "dependencyLockDigest": "dc7a5d5a18bb045e01e9392edc47b28dc77804eed39cbcc843759fa605e50ddf",
+    "teamMembers": {
+      "engineering-writer": {
+        "expertId": "member-594ae63f15ea",
+        "revisionId": "rev-5c1c3bc28b82"
+      },
+      "investment-writer": {
+        "expertId": "member-8556448a9d1c",
+        "revisionId": "rev-6b2ebd45d720"
+      },
+      "reviewer": {
+        "expertId": "member-20ae759842f3",
+        "revisionId": "rev-8406d36fc58f"
+      }
+    },
+    "presetRevisionRef": "wd-exp-expert-f48bfcb333a4-f9a5c9521991",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "cd2f70f08d68819680b676e4a7894b9d0d4759c2884b1d58b03d7cb4f764bb33",
+    "publishedAt": "2026-11-05T11:04:31.354Z",
+    "publishedBy": "local-user"
+  }
+}

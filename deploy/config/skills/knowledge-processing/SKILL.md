@@ -270,3 +270,46 @@ r = to_provided_facts("客户材料.md")
 
 **A/B 不做 → 下游全读变慢 500 倍；C 不做 → 性能回归无人发现。**
 
+
+## 第八道工序：规则与闭包（v2 增补）
+
+> 七道工序产出「结构化语料」，第八道工序产出「可执行规则 + 标准值 + 闭包报告」。
+> 缺这一道，换项目即出现「该算的量没有规则」。
+
+### 8.1 输入
+- 项目事实（facts）与推演链（reasoning / derivation）
+- 被引用的标准条款（limit@标准号#条款）
+- 304 大纲 must_cover（判据来源）
+
+### 8.2 产出（30 文件契约扩展为 33）
+
+| 新增文件 | 内容 | 验收 |
+|---|---|---|
+| rules/quantity-catalog.yaml | L0 量位目录：该算哪些量、每项的实现路径 | 量位覆盖 must_cover ≥90% |
+| rules/registry.yaml | 规则注册表：id/target/deps/operator/unit/section304/source/status | 每条规则可回答来源 |
+| rules/operators.yaml | L1 算子与换算：SUM/DIFF/SCALE/CAPACITY/CONVERT/CHECK + 单位换算表 | 规则可拆成算子组合 |
+| standards/index.yaml | L2 标准条款：标准号#条款 → value/unit/status | 每个 limit 可解析或标待抽取 |
+
+> 只产出 L3（项目算式）而没有 L0/L1/L2，视为**未完成**——那是项目快照，不是可复用形包。
+
+### 8.3 闭包校验（必须）
+
+```
+for 每个量位:
+    status = rule | fact | standard | missing
+闭包率 = (rule + fact + standard) / 总量位
+门禁：闭包率 ≥ 90%（建议 100%）；missing > 0 必须逐项说明
+```
+
+### 8.4 数字纪律与事后核实
+
+- 推演执行器（derive）负责算；缺依赖输出 undefined，不得猜值；
+- 生成正文后必须做「数字-节点核实」：unique / chain / ambiguous / computed 四态，computed 必须清零；
+- 多义（同一数值多主体）按单位 + 上下文消歧。
+
+### 8.5 验收指标
+
+- 量位闭包率 ≥90%（目标 100%）
+- limit 解析率 100%（待抽取项须列出所需原件）
+- 推演 undefined 仅限「真缺事实 / 标准待抽取」，不得为表达式错误
+- 跨项目回归 ≥2 个项目，无源数字 = 0

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-371b997b4fef",
+    "revisionId": "rev-8b31008b2197",
+    "definition": {
+      "agentDocument": "# 工程撰稿\n\n执笔 3.x-5.x；具备解析材料、抽取事实、沿图谱推演的最小知识处理能力。",
+      "name": "工程撰稿",
+      "description": "执笔建设规模、工程方案、结构、机电与节能章节",
+      "role": "工程章节撰稿人",
+      "methodology": "解析材料→抽取事实→图谱推演→按 must_cover 撰写",
+      "boundaries": "不写投资财务结论；不做完整七道工序。",
+      "deliverables": "章节正文、citations、self_check",
+      "tags": [
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "graph-deductive-writing-skill"
+        },
+        {
+          "name": "knowledge-asset-consumption"
+        },
+        {
+          "name": "feasibility-report-edu-research"
+        },
+        {
+          "name": "document-parsing-skill"
+        },
+        {
+          "name": "fact-extraction-skill"
+        }
+      ],
+      "futureRequirements": []
+    },
+    "definitionDigest": "18d3908e9a623c41428e99d13f87ed9b41d00e4eedb401422e371038f8fd0307",
+    "dependencyLock": [
+      {
+        "skillId": "graph-deductive-writing-skill",
+        "revisionId": "rev-e95cd56f798493d6aaf59cff",
+        "name": "graph-deductive-writing-skill",
+        "contentDigest": "e95cd56f798493d6aaf59cff00b23c010efcc495d5effc591ddd0ec7f2622f31"
+      },
+      {
+        "skillId": "knowledge-asset-consumption",
+        "revisionId": "rev-4ed6deb982b4e15c990377dc",
+        "name": "knowledge-asset-consumption",
+        "contentDigest": "4ed6deb982b4e15c990377dceb37679d4c9630fe219e07d7d774ab592ddf0e33"
+      },
+      {
+        "skillId": "feasibility-report-edu-research",
+        "revisionId": "rev-2d2f549a5adb1dbeba70fbac",
+        "name": "feasibility-report-edu-research",
+        "contentDigest": "2d2f549a5adb1dbeba70fbace4b0b5bd61bd3866de892869572a5ceb10625447"
+      },
+      {
+        "skillId": "document-parsing-skill",
+        "revisionId": "rev-b3cb732ed6cac43d422a92ee",
+        "name": "document-parsing-skill",
+        "contentDigest": "b3cb732ed6cac43d422a92ee633ec6694fe11207d3b41ecad194f47c8676ceee"
+      },
+      {
+        "skillId": "fact-extraction-skill",
+        "revisionId": "rev-7fe8c23ad89a328841592eb1",
+        "name": "fact-extraction-skill",
+        "contentDigest": "7fe8c23ad89a328841592eb177cec895038e6239fbde88d88216252ebd6cac7c"
+      }
+    ],
+    "dependencyLockDigest": "d50e5c1554b4e269259894e5bdd1d8cea9809cfe5208e8e3774bc9c67744de52",
+    "presetRevisionRef": "wd-exp-member-371b997b4fef-1a1065e46106",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "fc2443bf28c48a4194f6ac9c6a085483fd5cb8ca5c4d09932720765e3ddffbd8",
+    "publishedAt": "2026-11-05T10:31:58.551Z",
+    "publishedBy": "local-user"
+  }
+}
