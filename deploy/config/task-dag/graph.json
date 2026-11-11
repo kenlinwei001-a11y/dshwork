@@ -3,8 +3,8 @@
   "workspaceId": "ba4adf2e-0277-4fb4-9180-760f4f6087f7",
   "workspacePath": "/Users/apple/workdsh/.test-runtime/preview/workdsh-projects/1667349c74609b4500654ac978662087a947e3f197112fe62706d819b8d081f0",
   "title": "团队知识库",
-  "revision": 187,
-  "updatedAt": "2026-11-03T11:38:55.703Z",
+  "revision": 318,
+  "updatedAt": "2026-11-05T10:32:39.245Z",
   "milestoneNodeId": null,
   "nodes": [
     {
@@ -36,12 +36,12 @@
         "x": 96,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:04.867Z",
-      "updatedAt": "2026-11-03T07:12:17.578Z",
+      "updatedAt": "2026-11-05T08:23:18.092Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -62,12 +62,12 @@
         "x": 416,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:05.479Z",
-      "updatedAt": "2026-11-03T07:12:19.711Z",
+      "updatedAt": "2026-11-05T08:23:18.775Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -88,12 +88,12 @@
         "x": 416,
         "y": -101
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:05.776Z",
-      "updatedAt": "2026-11-03T07:12:20.861Z",
+      "updatedAt": "2026-11-05T08:23:19.991Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -114,12 +114,12 @@
         "x": 736,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:05.907Z",
-      "updatedAt": "2026-11-03T07:12:22.723Z",
+      "updatedAt": "2026-11-05T08:23:21.251Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -140,12 +140,12 @@
         "x": 736,
         "y": -101
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "off",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.449Z",
-      "updatedAt": "2026-11-03T07:12:25.458Z",
+      "updatedAt": "2026-11-05T08:23:21.902Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -171,12 +171,12 @@
         "x": 1056,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "max",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.507Z",
-      "updatedAt": "2026-11-03T07:12:27.530Z",
+      "updatedAt": "2026-11-05T08:23:22.637Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -197,12 +197,12 @@
         "x": 1376,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.595Z",
-      "updatedAt": "2026-11-03T07:12:29.363Z",
+      "updatedAt": "2026-11-05T08:23:23.472Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -223,12 +223,12 @@
         "x": 1376,
         "y": -101
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.742Z",
-      "updatedAt": "2026-11-03T07:12:31.535Z",
+      "updatedAt": "2026-11-05T08:23:24.657Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -254,12 +254,12 @@
         "x": 1696,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "max",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.819Z",
-      "updatedAt": "2026-11-03T07:12:36.408Z",
+      "updatedAt": "2026-11-05T08:23:25.683Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -280,12 +280,12 @@
         "x": 2016,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:06.893Z",
-      "updatedAt": "2026-11-03T07:12:40.694Z",
+      "updatedAt": "2026-11-05T08:23:26.374Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -306,12 +306,12 @@
         "x": 2016,
         "y": -101
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:07.073Z",
-      "updatedAt": "2026-11-03T07:12:42.870Z",
+      "updatedAt": "2026-11-05T08:23:27.149Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -332,12 +332,12 @@
         "x": 2336,
         "y": 97
       },
-      "agentPreset": "wd-exp-expert-a54010bbb24e-8dffdc6a1eea",
+      "agentPreset": "wd-exp-expert-a54010bbb24e-845528774a1d",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:04:07.203Z",
-      "updatedAt": "2026-11-03T07:12:46.214Z",
+      "updatedAt": "2026-11-05T08:23:27.900Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -429,19 +429,30 @@
       "id": "n_55407b3e",
       "title": "推演写作 · 需求与文体识别",
       "status": "todo",
-      "notes": "【工作流 B · 第 1 步】先定文体，再定图谱粒度\n程序\n- 读 inbox/batches/<批次>/manifest.json 确认输入\n- 无专门脚本：这是判断步骤，产出文体卡后再进入下一步\nSkill\n- graph-deductive-writing-skill（文体先行）\n- feasibility-report-edu-research（可研/科研用房类法定章节）\nMCP\n- kp-assembly.assess_capability · check_requirements\n- kp-library.library_find_analog（找同类历史语料包）\n产出\n- 文体卡：报告类型 / 受众 / 交付格式（Word·PDF·Excel）/ 法定章节骨架 / 严谨度要求\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- graph-deductive-writing-skill\n- feasibility-report-edu-research\n<!-- /skills:v1 -->",
-      "conditions": [],
+      "notes": "推演写作 · 需求与文体识别\n\n【执行入口 · v2】python3 scripts/writing-pipeline.py --project <slug> --stage parse\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
+      "conditions": [
+        {
+          "id": "c_eb85cd3a",
+          "title": "新项目材料已导入（normalized + manifest）",
+          "createdAt": "2026-11-04T05:01:25.945Z"
+        },
+        {
+          "id": "c_084fafdd",
+          "title": "形包已导入（42 文件 + PROVENANCE）",
+          "createdAt": "2026-11-04T06:50:08.585Z"
+        }
+      ],
       "sessions": [],
       "position": {
         "x": 96,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:41.749Z",
-      "updatedAt": "2026-11-03T07:12:48.657Z",
+      "updatedAt": "2026-11-05T10:32:20.278Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -449,7 +460,7 @@
       "id": "n_a1266159",
       "title": "推演写作 · 资料解析与本体建模",
       "status": "todo",
-      "notes": "【工作流 B · 第 2 步】把材料变成本体，而不是直接变文字\n程序\n- corpus_pipeline/readers.py · ontology_schema.py · instantiate.py\n- 输入用「导入 · 多文件入口」归一化出的 normalized/*.md\nSkill\n- document-parsing-skill · ontology-resolution-skill · semantic-graph-compilation-skill\nMCP\n- kp-assembly.bootstrap_ontology · kp-semantic.ontology_export / ontology_import\n- kp-processing.corpus_run（需要完整七道工序时改走工作流 A）\n产出\n- Ontology Registry：概念类型 / 属性 / 约束 / 章节映射（同一事实只存一份）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- document-parsing-skill\n- ontology-resolution-skill\n- semantic-graph-compilation-skill\n<!-- /skills:v1 -->",
+      "notes": "推演写作 · 资料解析与本体建模\n\n【执行入口 · v2】python3 scripts/generalize-ontology.py --project <slug>  &&  python3 scripts/type-facts.py --project <slug>\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
       "conditions": [
         {
           "id": "c_bd9052c6",
@@ -462,12 +473,12 @@
         "x": 416,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:41.896Z",
-      "updatedAt": "2026-11-03T07:12:51.246Z",
+      "updatedAt": "2026-11-05T10:32:22.567Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -475,7 +486,7 @@
       "id": "n_3e3a6f48",
       "title": "推演写作 · 抽取与建图",
       "status": "todo",
-      "notes": "【工作流 B · 第 3 步】语义抽取 + 实体消解 + 图谱编译\n程序\n- kp_toolkit/segmentation.py · number_forms.py · claim_classify.py · validate.py\n- LLM 结构化输出 + schema 校验重试，不裸奔自由文本\nSkill\n- semantic-chunking · sentence-segmentation · entity/fact/relation/claim/evidence/reasoning-extraction\n- entity-resolution · semantic-graph-compilation\nMCP\n- kp-processing.segment_chunks · segment_sentences · validate_schema\n- kp-semantic.resolve_concept · semantic_classify · semantica 连接器（多跳核验）\n产出\n- graph.json：entities / relations / facts / claims / evidence / reasoning（稳定 ID）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- semantic-chunking-skill\n- sentence-segmentation-skill\n- entity-extraction-skill\n- fact-extraction-skill\n- relation-extraction-skill\n- claim-extraction-skill\n- evidence-extraction-skill\n- reasoning-extraction-skill\n- entity-resolution-skill\n- semantic-graph-compilation-skill\n<!-- /skills:v1 -->",
+      "notes": "推演写作 · 抽取与建图\n\n【执行入口 · v2】python3 scripts/writing-pipeline.py --project <slug> --stage skeleton && python3 scripts/derive.py --project <slug>\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
       "conditions": [
         {
           "id": "c_f8f38eaf",
@@ -488,12 +499,12 @@
         "x": 736,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "max",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:42.215Z",
-      "updatedAt": "2026-11-03T07:12:52.845Z",
+      "updatedAt": "2026-11-05T10:32:26.217Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -501,7 +512,7 @@
       "id": "n_3eb67db5",
       "title": "推演写作 · 推演生成",
       "status": "todo",
-      "notes": "【工作流 B · 第 4 步】沿推理链前向推演，不是复述原文\n程序\n- kp_toolkit/derivation.py · corpus_pipeline/replay.py\n- 算出的结果必须落成 output 节点，否则下游查不到\nSkill\n- reasoning-extraction-skill（P11：要么闭合要么显式阻塞）\n- graph-deductive-writing-skill（按文体结构组稿）\nMCP\n- kp-processing.build_derivation · verify_derivation · graph_query / graph_why\n- kp-assembly.sensitivity_analysis\n产出\n- 章节草稿 + computed_from 推演链；正文引用图谱节点，不复制原文\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- reasoning-extraction-skill\n- graph-deductive-writing-skill\n<!-- /skills:v1 -->",
+      "notes": "推演写作 · 推演生成\n\n【执行入口 · v2】python3 scripts/writing-pipeline.py --project <slug> --stage prompt && python3 scripts/writing-pipeline.py --project <slug> --stage draft --llm\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
       "conditions": [
         {
           "id": "c_089a4c78",
@@ -514,12 +525,12 @@
         "x": 1056,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "max",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:42.263Z",
-      "updatedAt": "2026-11-03T07:12:54.470Z",
+      "updatedAt": "2026-11-05T10:32:30.748Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -527,7 +538,7 @@
       "id": "n_b9b8e81b",
       "title": "推演写作 · 证据绑定与质检",
       "status": "todo",
-      "notes": "【工作流 B · 第 5 步】每条论断都要有出处，冲突一律待审\n程序\n- kp_toolkit/provenance.py · conflict.py · gap_verify.py（假缺四问）· validate.py\n- python kp_cli.py verify（S0–S11 闭环门禁）\nSkill\n- claim-evidence-binding · evidence-extraction · provenance-binding\n- conflict-detection · claim-validation · extraction-quality-audit\nMCP\n- kp-processing.detect_numeric_conflicts · detect_time_conflicts · build_provenance\n- kp-processing.verify_closure · stage_gate · kp-assembly.run_quality_gates · check_number_consistency\n产出\n- 待审清单（不裁决）+ 证据覆盖率 + 反向回读映射\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- claim-evidence-binding-skill\n- evidence-extraction-skill\n- provenance-binding-skill\n- conflict-detection-skill\n- claim-validation-skill\n- extraction-quality-audit-skill\n<!-- /skills:v1 -->",
+      "notes": "推演写作 · 证据绑定与质检\n\n【执行入口 · v2】python3 scripts/audit-numbers2.py --project <slug> && python3 scripts/writing-gate.py --project <slug> --all\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
       "conditions": [
         {
           "id": "c_f8ccad05",
@@ -540,12 +551,12 @@
         "x": 1376,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "max",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:42.351Z",
-      "updatedAt": "2026-11-03T07:12:56.028Z",
+      "updatedAt": "2026-11-05T10:32:36.548Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -553,7 +564,7 @@
       "id": "n_23e7fe3e",
       "title": "推演写作 · 交付与反向回读",
       "status": "todo",
-      "notes": "【工作流 B · 第 6 步】交付真实文件，正文可回读成节点\n程序\n- corpus_pipeline/instantiate.py · build_work_package · gate_check_draft\n- 导出 Word/PDF；客户改稿可反向回读为图谱节点\nSkill\n- graph-deductive-writing-skill · knowledge-generalization-skill（沉淀可复用形）\nMCP\n- kp-assembly.gate_check_draft · objective_verify · project_where_written · wp_get_facts\n- kp-library.library_publish（要进资产库才需要，需过 QG1/QG2/QG3）\n产出\n- 报告文件 + 回读映射（正文 ↔ Claim ↔ Evidence ↔ 原文定位）\n\n<!-- skills:v1 -->\n## Skill（系统已安装，按序使用）\n- graph-deductive-writing-skill\n- knowledge-generalization-skill\n- workdsh-word-design  ⚠（未在本机 skills 目录找到，确认是否由插件提供）\n<!-- /skills:v1 -->",
+      "notes": "推演写作 · 交付与反向回读\n\n【执行入口 · v2】python3 scripts/rebuild-draft.py --project <slug> && python3 scripts/annotate-numbers.py --project <slug> && python3 scripts/make-delivery-docx.py --md <report.md> --out-dir <dir>\n【契约】提示词七段含节点；返回 node_mentions；数值只引节点；覆盖率 ≥90%",
       "conditions": [
         {
           "id": "c_ea996fd4",
@@ -566,12 +577,12 @@
         "x": 1696,
         "y": 295
       },
-      "agentPreset": "wd-exp-expert-97703554b311-77617e2a77c4",
+      "agentPreset": "wd-exp-expert-f48bfcb333a4-de14ff6e9fdb",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "high",
       "schedule": null,
       "createdAt": "2026-11-03T04:50:42.637Z",
-      "updatedAt": "2026-11-03T07:12:57.664Z",
+      "updatedAt": "2026-11-05T10:32:39.245Z",
       "completedAt": null,
       "failedAt": null
     },
@@ -583,8 +594,8 @@
       "conditions": [],
       "sessions": [],
       "position": {
-        "x": 1376,
-        "y": -299
+        "x": -224,
+        "y": 295
       },
       "agentPreset": null,
       "model": null,
@@ -628,7 +639,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 416,
+        "y": 493
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -651,7 +665,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1056,
+        "y": 493
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -674,7 +691,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1056,
+        "y": -101
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -697,7 +717,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2016,
+        "y": 295
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -720,7 +743,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1696,
+        "y": 493
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -743,7 +769,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 1696,
+        "y": -101
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -766,7 +795,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2336,
+        "y": -101
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -789,7 +821,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2656,
+        "y": 97
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -812,7 +847,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2336,
+        "y": 295
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -820,29 +858,6 @@
       "createdAt": "2026-11-03T11:28:41.177Z",
       "updatedAt": "2026-11-03T11:29:46.684Z",
       "completedAt": "2026-11-03T11:29:46.684Z",
-      "failedAt": null
-    },
-    {
-      "id": "n_812e1cbd",
-      "title": "G-S8b · 条款溯源闭环",
-      "status": "todo",
-      "notes": "【环节门禁 · S8b】判据：条款号 + 条款原文 + 标准号三件套齐备\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S8b\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
-      "conditions": [
-        {
-          "id": "c_d20c7a89",
-          "title": "S6 质量登记（冲突待审 + 缺口四问） 完成",
-          "createdAt": "2026-11-03T11:28:41.279Z"
-        }
-      ],
-      "sessions": [],
-      "position": null,
-      "agentPreset": "standard",
-      "model": "deepseek-official/deepseek-flash",
-      "reasoningEffort": "low",
-      "schedule": null,
-      "createdAt": "2026-11-03T11:28:41.279Z",
-      "updatedAt": "2026-11-03T11:31:46.717Z",
-      "completedAt": null,
       "failedAt": null
     },
     {
@@ -858,7 +873,10 @@
         }
       ],
       "sessions": [],
-      "position": null,
+      "position": {
+        "x": 2656,
+        "y": 295
+      },
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
@@ -869,38 +887,32 @@
       "failedAt": null
     },
     {
-      "id": "n_01989c81",
-      "title": "G-S10 · 装配闭环",
+      "id": "n_d78c9958",
+      "title": "写作 · 新项目信息导入（上传页）",
       "status": "todo",
-      "notes": "【环节门禁 · S10】判据：装配产物引用的资产全部存在（悬空=0）\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S10\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
-      "conditions": [
-        {
-          "id": "c_07facd3b",
-          "title": "装配与写作（借形不借值 → 报告正文） 完成",
-          "createdAt": "2026-11-03T11:28:42.021Z"
-        }
-      ],
+      "notes": "【写作工作流入口 · 与知识处理产线无关】把客户材料收进 projects/<slug>/\n怎么开（任选）\n- 点本节点「交接新会话」，让 agent 起上传页：\n  python3 scripts/inbox-server.py --project <slug> --open\n- 或自己双击工作区里的「打开导入窗口.command」（默认团队知识库；写作项目用上面命令带 --project）\n- 端口默认 8899，被占用会自动换端口，以脚本打印的 http://127.0.0.1:<port>/ 为准\n页面能力\n- 点选文件 / 点选文件夹 / 拖拽文件或文件夹（多级子目录），支持 docx/xlsx/pdf/zip/md/txt\n- 上传后自动归一化，页面显示 源 / 已归一化 / 失败 与批次目录\n产物\n- 原件：projects/<slug>/inbox/<批次>/<原相对路径>\n- 归一化：projects/<slug>/batches/<批次>/{raw, normalized, manifest.json}\n下一步\n- 本节点完成后解锁「推演写作 · 需求与文体识别」；后续按写作工作流六步走\n边界\n- 只负责收集与归一化项目材料；不建知识图谱、不跑七道工序（那是知识处理产线）\n- 同一项目重复上传：新批次独立存放，按 manifest 的 sha256 去重",
+      "conditions": [],
       "sessions": [],
       "position": null,
       "agentPreset": "standard",
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
       "schedule": null,
-      "createdAt": "2026-11-03T11:28:42.021Z",
-      "updatedAt": "2026-11-03T11:31:54.905Z",
+      "createdAt": "2026-11-04T05:01:25.873Z",
+      "updatedAt": "2026-11-04T05:01:25.945Z",
       "completedAt": null,
       "failedAt": null
     },
     {
-      "id": "n_10c53164",
-      "title": "G-S11 · 全书闭环·题注",
-      "status": "todo",
-      "notes": "【环节门禁 · S11】判据：图表题注齐全；正文引用与图表一一对应\n怎么跑\n- python3 scripts/mcp-gate.py --package <语料包> --tool stage --stage S11\n- 或 python3 scripts/run-gates.py --package <语料包>（批量跑 13 条并回写状态）\n三态\n- pass → 本节点标 done，放行下游\n- review → 放行但标待审（需人工裁决）\n- FAIL / invalid → 本节点标 failed / 保持待开始，阻断下游；invalid 表示探针未过标定，不得输出「无误」\n边界\n- 只读产物，不改产物；判定权归编排器，不由 agent 自判\n- 细粒度 51 条门禁仍在 gates/gate_registry.yaml，由本节点内部循环",
+      "id": "n_19480c00",
+      "title": "W-G1 · 文体与需求闭环",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG1】判据：brief.yaml：doc_type/audience/format 齐备，outline ≥3 条\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG1\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
       "conditions": [
         {
-          "id": "c_8f5054b0",
-          "title": "装配与写作（借形不借值 → 报告正文） 完成",
-          "createdAt": "2026-11-03T11:28:42.278Z"
+          "id": "c_b9353e21",
+          "title": "推演写作 · 需求与文体识别 完成",
+          "createdAt": "2026-11-04T06:01:21.055Z"
         }
       ],
       "sessions": [],
@@ -909,9 +921,181 @@
       "model": "deepseek-official/deepseek-flash",
       "reasoningEffort": "low",
       "schedule": null,
-      "createdAt": "2026-11-03T11:28:42.278Z",
-      "updatedAt": "2026-11-03T11:32:00.852Z",
+      "createdAt": "2026-11-04T06:01:21.055Z",
+      "updatedAt": "2026-11-04T06:50:28.801Z",
+      "completedAt": "2026-11-04T06:50:28.801Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_a89cae9f",
+      "title": "W-G2 · 本体注册闭环",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG2】判据：ontology.yaml：types/relations/constraints 均非空\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG2\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
+      "conditions": [
+        {
+          "id": "c_ae10d622",
+          "title": "推演写作 · 资料解析与本体建模 完成",
+          "createdAt": "2026-11-04T06:01:21.146Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:01:21.146Z",
+      "updatedAt": "2026-11-04T06:50:36.224Z",
+      "completedAt": "2026-11-04T06:50:36.224Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_2ae85a72",
+      "title": "W-G3 · 抽取建图闭环",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG3】判据：claims：类型四类、falsifiable_by 缺失 ≤10%、证据绑定 ≥60%\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG3\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
+      "conditions": [
+        {
+          "id": "c_5ce0c716",
+          "title": "推演写作 · 抽取与建图 完成",
+          "createdAt": "2026-11-04T06:01:21.203Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:01:21.203Z",
+      "updatedAt": "2026-11-04T06:50:39.188Z",
+      "completedAt": "2026-11-04T06:50:39.188Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_d0d2e264",
+      "title": "W-G4 · 推演闭合",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG4】判据：derivation：每条规则要么有 output 要么显式 unresolved\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG4\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
+      "conditions": [
+        {
+          "id": "c_b8b6892e",
+          "title": "推演写作 · 推演生成 完成",
+          "createdAt": "2026-11-04T06:01:21.266Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:01:21.266Z",
+      "updatedAt": "2026-11-04T06:50:44.530Z",
+      "completedAt": "2026-11-04T06:50:44.530Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_8534e22a",
+      "title": "W-G5 · 质检待审闭环",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG5】判据：冲突全部标待审；证据覆盖率 ≥60%\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG5\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
+      "conditions": [
+        {
+          "id": "c_dcf6b481",
+          "title": "推演写作 · 证据绑定与质检 完成",
+          "createdAt": "2026-11-04T06:01:23.161Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:01:23.161Z",
+      "updatedAt": "2026-11-05T08:03:55.863Z",
+      "completedAt": "2026-11-05T08:03:55.863Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_8d09635e",
+      "title": "W-G6 · 交付回读闭环",
+      "status": "done",
+      "notes": "【写作环节门禁 · WG6】判据：draft 正文 + readback 映射数 ≥ claims×50%\n怎么跑\n- python3 scripts/writing-gate.py --project <slug> --gate WG6\n- 批量：python3 scripts/writing-gate.py --project <slug> --all\n三态\n- pass → 本节点 done，放行下游\n- invalid（缺产物）→ 保持待开始，不算通过；「没跑」不等于「通过」\n- FAIL（跑过但不达标）→ 标 failed，阻断下游\n边界\n- 只读 projects/<slug>/ 下的产物，不改产物；判定权归编排器，不由写作 agent 自判\n- 与知识处理产线的 S0–S9 门禁互不复用（两条线独立）",
+      "conditions": [
+        {
+          "id": "c_c928dd21",
+          "title": "推演写作 · 交付与反向回读 完成",
+          "createdAt": "2026-11-04T06:01:27.024Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:01:27.024Z",
+      "updatedAt": "2026-11-04T06:50:51.849Z",
+      "completedAt": "2026-11-04T06:50:51.849Z",
+      "failedAt": null
+    },
+    {
+      "id": "n_97c106a3",
+      "title": "写作 · 形包导入（来自知识处理）",
+      "status": "todo",
+      "notes": "【写作前置 · 必须先有形，再写文】\n作用\n- 把知识处理产线产出的形包（42 文件：ontology 12 / skeleton 3 / templates 6 / gates 2 / lineage 8 / functions 2 / 根 9）导入写作项目\n- 写作只「借形」：继承结构、规则、模板、门禁、术语；不继承任何数值与实体名\n命令\n- 从语料包导入：python3 scripts/import-shape.py --project <slug> --from-package chain/<run>/<doc>\n- 直接给形包目录：python3 scripts/import-shape.py --project <slug> --shape <形包目录>\n产物\n- projects/<slug>/shape/（原样复制）+ shape/PROVENANCE.json（来源、文件数、分层计数、借形不借值声明）\n校验\n- python3 scripts/writing-gate.py --project <slug> --gate WG2  # 没导入形包时 WG2 判 invalid\n边界\n- 只导形不导值；形包版本变化时用 --force 重新导入并记录 PROVENANCE",
+      "conditions": [],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-04T06:50:07.515Z",
+      "updatedAt": "2026-11-04T06:50:08.585Z",
       "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_23efc86f",
+      "title": "W-G7 · 节点覆盖闭环",
+      "status": "todo",
+      "notes": "【执行入口】python3 scripts/audit-numbers2.py --project <slug>\n【判据】实质数字中 ≥95% 能追溯到 fact/derived/claim 节点；无源数字 = 0\n【产物】quality/audit-numbers.json（unique/chain/ambiguous/computed 四态）",
+      "conditions": [],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-05T07:42:18.512Z",
+      "updatedAt": "2026-11-05T07:42:18.512Z",
+      "completedAt": null,
+      "failedAt": null
+    },
+    {
+      "id": "n_ce56888f",
+      "title": "W-G8 · 数值闭包闭环",
+      "status": "done",
+      "notes": "【执行入口】python3 scripts/closure-check.py --project <slug>\n【判据】每节量化量位都有 事实/规则/标准条款 实现路径；覆盖率 ≥90%（目标 100%）\n【产物】quality/closure-report.json",
+      "conditions": [
+        {
+          "id": "c_2ab2576b",
+          "title": "推演写作 · 推演生成 完成",
+          "createdAt": "2026-11-05T07:42:27.196Z"
+        }
+      ],
+      "sessions": [],
+      "position": null,
+      "agentPreset": "standard",
+      "model": "deepseek-official/deepseek-flash",
+      "reasoningEffort": "low",
+      "schedule": null,
+      "createdAt": "2026-11-05T07:42:27.196Z",
+      "updatedAt": "2026-11-05T07:45:00.037Z",
+      "completedAt": "2026-11-05T07:45:00.037Z",
       "failedAt": null
     }
   ],
@@ -1085,28 +1269,64 @@
       "conditionId": "c_e890b599"
     },
     {
-      "id": "e_d0581386",
-      "from": "n_8a257a5a",
-      "to": "n_812e1cbd",
-      "conditionId": "c_d20c7a89"
-    },
-    {
       "id": "e_5c57d1f7",
       "from": "n_81691b25",
       "to": "n_cea55a0d",
       "conditionId": "c_62443ffa"
     },
     {
-      "id": "e_9fefe074",
-      "from": "n_03cee7ea",
-      "to": "n_01989c81",
-      "conditionId": "c_07facd3b"
+      "id": "e_9186dfe0",
+      "from": "n_d78c9958",
+      "to": "n_55407b3e",
+      "conditionId": "c_eb85cd3a"
     },
     {
-      "id": "e_6b587039",
-      "from": "n_03cee7ea",
-      "to": "n_10c53164",
-      "conditionId": "c_8f5054b0"
+      "id": "e_e32566f8",
+      "from": "n_55407b3e",
+      "to": "n_19480c00",
+      "conditionId": "c_b9353e21"
+    },
+    {
+      "id": "e_8e1b24bc",
+      "from": "n_a1266159",
+      "to": "n_a89cae9f",
+      "conditionId": "c_ae10d622"
+    },
+    {
+      "id": "e_44ffedaa",
+      "from": "n_3e3a6f48",
+      "to": "n_2ae85a72",
+      "conditionId": "c_5ce0c716"
+    },
+    {
+      "id": "e_63067076",
+      "from": "n_3eb67db5",
+      "to": "n_d0d2e264",
+      "conditionId": "c_b8b6892e"
+    },
+    {
+      "id": "e_4e0d8723",
+      "from": "n_b9b8e81b",
+      "to": "n_8534e22a",
+      "conditionId": "c_dcf6b481"
+    },
+    {
+      "id": "e_40550eab",
+      "from": "n_23e7fe3e",
+      "to": "n_8d09635e",
+      "conditionId": "c_c928dd21"
+    },
+    {
+      "id": "e_a5ee8b9e",
+      "from": "n_97c106a3",
+      "to": "n_55407b3e",
+      "conditionId": "c_084fafdd"
+    },
+    {
+      "id": "e_2b95f9f9",
+      "from": "n_3eb67db5",
+      "to": "n_ce56888f",
+      "conditionId": "c_2ab2576b"
     }
   ]
 }
