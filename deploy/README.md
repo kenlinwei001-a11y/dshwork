@@ -21,6 +21,7 @@
 | macOS 本机 | `deploy/scripts/setup-all.sh` | launchd | 原有流程 |
 
 三者都共用同一份存档（`deploy/config/`）与同一套安装脚本，装完数量一致。
+Web 预览的 `preview:install` 会随安装一并启用 `dshmarket`、`@cocofhu/skillhub` 与 `@xiaoso/dsh-workflow-lite`（轻量工作流），无需手动装插件。
 改了专家或技能后，推送前跑 `bash deploy/scripts/export-local-config.sh` 刷新存档。
 ## 目录内容
 

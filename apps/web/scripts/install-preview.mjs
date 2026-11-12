@@ -25,6 +25,10 @@ const marketSpec = `dshmarket@${marketVersion}`;
 // without it the tab is visible but every request answers 405 with an empty body.
 const skillHubVersion = '0.2.16';
 const skillHubSpec = `@cocofhu/skillhub@${skillHubVersion}`;
+// The lightweight workflow editor is part of the requested preview feature set.
+// Pin it with the other third-party plugins so a fresh deploy sees it enabled.
+const workflowLiteVersion = '0.9.0';
+const workflowLiteSpec = `@xiaoso/dsh-workflow-lite@${workflowLiteVersion}`;
 const groupVersion = rootManifest.pnpm?.overrides?.['@deepseek-ai/cordis-plugin-group'];
 if (typeof groupVersion !== 'string') throw new Error('Missing exact Cordis group pin.');
 const cliVersion = JSON.parse(await readFile(join(root, 'node_modules/@deepseek-ai/dsh/package.json'), 'utf8')).version;
@@ -92,13 +96,18 @@ if (normalizedManifest) {
 // bundle list alone does not upgrade the packages that provide newly added Web
 // surfaces such as Terminal and archived-session recovery.
 const currentDependencies = JSON.parse(await readFile(previewManifestPath, 'utf8')).dependencies ?? {};
+// pnpm may persist the exact spec or a caret range depending on the manager path;
+// both are satisfied by the pinned workflow-lite version.
+const workflowLiteDependency = currentDependencies['@xiaoso/dsh-workflow-lite'];
+const workflowLiteMatches = workflowLiteDependency === workflowLiteVersion || workflowLiteDependency === `^${workflowLiteVersion}`;
 const layersMatch = currentDependencies['@deepseek-ai/dsh-base'] === baseVersion
   && currentDependencies['@deepseek-ai/dsh-web-app'] === webAppVersion
   && currentDependencies.dshmarket === marketVersion
   && currentDependencies['@cocofhu/skillhub'] === skillHubVersion
+  && workflowLiteMatches
   && packages.every(({ manifest }, index) => currentDependencies[manifest.name] === `file:${tarballs[index]}`);
 if (!layersMatch) {
-  await run('@deepseek-ai/dsh/lib/bin.js', ['plugin', '--profile', 'preview', 'add', baseSpec, webAppSpec, marketSpec, skillHubSpec, ...tarballs]);
+  await run('@deepseek-ai/dsh/lib/bin.js', ['plugin', '--profile', 'preview', 'add', baseSpec, webAppSpec, marketSpec, skillHubSpec, workflowLiteSpec, ...tarballs]);
 }
 // Boot and ConfigEditor share module-local registration in dsh-app-boot.
 // Keep the official CLI in the Profile dependency graph as well: launching the
@@ -169,13 +178,19 @@ const installedWebApp = JSON.parse(await readFile(join(home, 'profiles/preview/n
 if (installedWebApp.version !== webAppVersion) throw new Error(`Installed @deepseek-ai/dsh-web-app ${installedWebApp.version} does not match pinned ${webAppVersion}.`);
 const installedSkillHub = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@cocofhu/skillhub/package.json'), 'utf8'));
 if (installedSkillHub.version !== skillHubVersion) throw new Error(`Installed @cocofhu/skillhub ${installedSkillHub.version} does not match pinned ${skillHubVersion}.`);
-// Desktop adds both third-party plugins to the Profile bundle list explicitly.
-// Do the same here so the Skills page's SkillHub tab has a loaded backend rather
-// than a route that answers without one.
+const installedWorkflowLite = JSON.parse(await readFile(join(home, 'profiles/preview/node_modules/@xiaoso/dsh-workflow-lite/package.json'), 'utf8'));
+if (installedWorkflowLite.version !== workflowLiteVersion) throw new Error(`Installed @xiaoso/dsh-workflow-lite ${installedWorkflowLite.version} does not match pinned ${workflowLiteVersion}.`);
+// Desktop adds the third-party plugins to the Profile bundle list explicitly.
+// Do the same here so third-party surfaces are loaded, not just installed.
 const bundledManifest = JSON.parse(await readFile(previewManifestPath, 'utf8'));
 const currentBundles = bundledManifest.dsh?.profile?.bundles ?? [];
 if (!currentBundles.includes('@cocofhu/skillhub')) {
   bundledManifest.dsh.profile.bundles = [...currentBundles, '@cocofhu/skillhub'];
+  await writeFile(previewManifestPath, `${JSON.stringify(bundledManifest, null, 2)}\n`);
+}
+const bundlesWithSkillHub = bundledManifest.dsh?.profile?.bundles ?? [];
+if (!bundlesWithSkillHub.includes('@xiaoso/dsh-workflow-lite')) {
+  bundledManifest.dsh.profile.bundles = [...bundlesWithSkillHub, '@xiaoso/dsh-workflow-lite'];
   await writeFile(previewManifestPath, `${JSON.stringify(bundledManifest, null, 2)}\n`);
 }
 // DSH scopes are module-instance local. Installing only the Web bundle
