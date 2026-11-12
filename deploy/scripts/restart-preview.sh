@@ -23,11 +23,23 @@ fi
 STAMP=$(stat -f '%z' "$LOG" 2>/dev/null || echo 0)
 echo "== 停 =="
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
-sleep 3
+# 等旧任务真正卸载，避免 bootstrap 撞上还在退出的同一个 label
+for _ in $(seq 1 20); do
+  launchctl print "gui/$(id -u)/$LABEL" >/dev/null 2>&1 || break
+  sleep 1
+done
 echo "== 起 =="
-launchctl bootstrap "gui/$(id -u)" "$PLIST" 2>/dev/null \
-  || launchctl kickstart -k "gui/$(id -u)/$LABEL" 2>/dev/null \
-  || launchctl load -w "$PLIST" 2>/dev/null || true
+if ! launchctl bootstrap "gui/$(id -u)" "$PLIST"; then
+  # bootstrap 偶尔会输给仍在收尾的旧任务；稍等重试一次，并保留错误输出
+  sleep 2
+  { launchctl bootstrap "gui/$(id -u)" "$PLIST" \
+      || launchctl kickstart -k "gui/$(id -u)/$LABEL" \
+      || launchctl load -w "$PLIST"; } || true
+fi
+if ! launchctl print "gui/$(id -u)/$LABEL" >/dev/null 2>&1; then
+  echo "启动失败：launchd 没有加载 $LABEL" >&2
+  exit 1
+fi
 
 for _ in $(seq 1 60); do
   lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1 && break
@@ -52,7 +64,8 @@ echo "== 访问地址 =="
 if [ -n "$TOKEN" ]; then
   echo "$TOKEN" | cut -d: -f2-
 else
-  echo "新 token 还没打印（可能仍在启动）；请查看 $LOG 最后一条 dsh web:"
+  echo "新 token 还没打印（懒打印，可能还要几分钟）。下面这条是旧 token，通常已失效："
   grep -a 'dsh web:' "$LOG" 2>/dev/null | tail -1 || true
+  echo "已有 30 天登录 cookie 的浏览器可直接刷新；被登出时等日志出现新的 dsh web: 再取。"
 fi
 echo "浏览器如果还开着旧页面，打开上面的地址并强制刷新（Cmd+Shift+R）。"
