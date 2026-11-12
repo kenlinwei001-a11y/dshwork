@@ -3,6 +3,7 @@
 #
 # 什么时候必须跑：
 #   - `dsh plugin add/update dsh-mcp-connector` 之后（node_modules 被重装 ⇒ 侧栏入口会重新冒出来）
+#   - `dsh plugin add/update @xiaoso/dsh-workflow-lite` 之后（左侧导航/右侧面板入口会消失）
 #   - 重装 preview profile 之后
 # 用法：
 #   bash deploy/scripts/reapply-local-patches.sh [DSH_HOME] [profile 名]
@@ -14,6 +15,22 @@ DSH_HOME="${1:-$HOME/workdsh/.test-runtime/preview}"
 PROFILE="${2:-preview}"
 PKG="$DSH_HOME/profiles/$PROFILE/node_modules/dsh-mcp-connector"
 PATCH_FILE="$HERE/patches/dsh-mcp-connector-hide-sidebar-entry.patch"
+
+echo "== @xiaoso/dsh-workflow-lite：左侧导航 + 右侧面板入口 =="
+WL="$DSH_HOME/profiles/$PROFILE/node_modules/@xiaoso/dsh-workflow-lite/lib/client.js"
+if [ ! -f "$WL" ]; then
+  echo "  跳过：找不到 $WL"
+else
+  node "$HERE/patches/workflow-lite/patch-workflow-lite-dock.mjs" "$WL"
+  node "$HERE/patches/workflow-lite/patch-workflow-lite-nav.mjs" "$WL"
+  for marker in workflow-lite-nav workflow-lite-dock; do
+    if grep -q "$marker" "$WL"; then
+      echo "  ✓ $marker"
+    else
+      echo "  ✗ $marker 未生效，请人工检查 $WL"; exit 1
+    fi
+  done
+fi
 
 echo "== dsh-mcp-connector：隐藏侧栏入口的补丁 =="
 if [ ! -d "$PKG" ]; then
@@ -50,6 +67,6 @@ fi
 
 cat <<'EOF'
 
-提醒：这个补丁改的是第三方包，每次插件升级都会没；升级后重跑本脚本即可。
+提醒：这些补丁改的是第三方包（dsh-mcp-connector / @xiaoso/dsh-workflow-lite），每次插件升级都会没；升级后重跑本脚本即可。
 另：semantica 的补丁在 venv 里，升级 semantica 后需重跑 install-semantica-mcp.sh。
 EOF
