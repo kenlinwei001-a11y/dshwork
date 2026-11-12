@@ -27,7 +27,7 @@ description: 把技术标准解构为可执行要素、判定规则与图谱，�
 | 5 | 参数提升（阈值成节点） | parameters | 每个阈值带 unit + 来源三元组（表/行/列/页） |
 | 6 | 公式与数值自洽 | formula_cards + 反算校验 | 反算全中；量纲闭合 |
 | 7 | 图转拓扑 | procedure_graph | 节点带参数与完成判据；边带语义 |
-| 8 | 规则化（C1–C8 + P1–P8 原语） | audit_rule_cards | 每条有 primitives[]、on_missing、定位线索 |
+| 8 | 规则化（C1–C8 + 算子集合，见规则卡规范 §3） | audit_rule_cards | 每条有 predicate.op 或 qualitative_check、on_missing、定位线索 |
 | 9 | 图型编译 | graph（nodes/edges/AST） | 每条边有 operator；规则 AST 可求值 |
 | 10 | 求值回归 | exec-trace | golden case 全绿 |
 | 11 | **报告侧绑定** | 字段别名/证据位置/勾选映射/计算链规则 | ≥20% 规则能绑定到真实材料 |
@@ -38,7 +38,7 @@ description: 把技术标准解构为可执行要素、判定规则与图谱，�
 ## 硬性口径
 
 1. **先过闸，再抽取**。没进载体清单的内容不抽；抽了也不进运行层。
-2. **规则不分级，只分类**（C1–C8）；每张卡至少 1 个判定原语（P1–P8）。
+2. **规则不分级，只分类**（C1–C8）；每张卡至少 1 个可判定谓词（predicate.op 取规范 §3 枚举）或 qualitative_check 三档。
 3. **缺证不默认通过**；`on_missing` 必须写死（FAIL / UNVERIFIABLE）。
 4. **三层分离**：verbatim / derived / convention；derived 必写 derive_from。
 5. **未上传的引用不得凭记忆补全**；未上传的实验室文件不得假设等效。
@@ -137,6 +137,23 @@ description: 把技术标准解构为可执行要素、判定规则与图谱，�
 
 **数值来源只认图像**：表格入库前必须逐格图像核读；OCR 只做定位，且每格标 `value_source=IMAGE|OCR`。
 
+## 工具段与能力注册表（v1.1 新增）
+
+图只保留语义节点；取字、指标、合并、图谱由 `scripts/run_all.py` 统一调度，能力定义在 `scripts/registry/capabilities.json`。
+
+| 能力 | 执行器 | 用途 |
+|---|---|---|
+| `text.probe` | tool | 取字路由与指纹 |
+| `ocr.engine` | tool | OCR 引擎选择（`apple-vision` / `user-model` / `fallback-none`）+ dpi + endpoint，带 fallback 链 |
+| `clause.split` | tool | 目次驱动条款切分（仅干净文本） |
+| `audit.lint` | tool | 规则卡一致性检查 |
+| `audit.ontology` | tool | 本体校验（v1.1：predicate 与 qualitative_check 二选一） |
+| `merge.ses` | tool | 确定性合并 01/02/03 + audit_result → ses.json |
+| `graph.semantica` | mcp | 只读共享图摘要；写入未挂载，只做命名空间 dry-run |
+| `llm.semantic` | llm | 语义节点（角色/要素/规则），schema + validator 约束 |
+
+硬规则：工具段产物必须附 `runner-*.json` 执行记录（能力/版本/exit/stdout 哈希）；缺记录视为未经脚本，按未完成处理。
+
 ## 交付前检查（确定性）
 
 | 检查 | 判据 |
@@ -161,7 +178,8 @@ description: 把技术标准解构为可执行要素、判定规则与图谱，�
 - `references/handoff-contract.md`：审核侧契约（结果记录、span、换版）
 - `references/standard-store.md`：落库与多标准/多报告模型
 - `scripts/ontology.json`：轻本体（6 类 / 21 关系 / 7 不变式，只做约束不做推理）
-- `scripts/`：能力件 12 个（见上表）+ 标准库脚本（建库/导入/查询/导出/检索）
+- `scripts/`：能力件 12 个（见上表）+ 标准库脚本（建库/导入/查询/导出/检索）+ runner/run_all/verify/merge/semantica
+- `CHANGES.md`：v1.1 契约变更与验收
 
 ## 一句话
 

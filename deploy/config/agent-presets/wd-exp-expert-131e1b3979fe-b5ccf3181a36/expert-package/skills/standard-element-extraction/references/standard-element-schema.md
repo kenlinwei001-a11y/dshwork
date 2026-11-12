@@ -83,7 +83,7 @@ source_fingerprint 至少含文件 SHA-256 前 12 位与页数；同一份文件
 | family | enum | 是 | META/SCOPE/PRIN/SAMP/PROC/APPA/MATL/INTR/CALC/QC/PERF/RISK |
 | statement | string | 是 | 原文要求，保留数值与模态 |
 | parameters | object[] | 否 | {name, value, unit, tolerance?, op?} |
-| obligation | enum | 是 | MUST / SHOULD / MAY / MUST_NOT |
+| obligation | enum | 是 | MUST / SHOULD / MAY / MUST_NOT / INFO（资料性要素用 INFO，表示无义务） |
 | applicability | string | 否 | 基质/浓度/仪器/批次条件 |
 | evidence | string[] | 是 | 应出现的数据、记录或附件 |
 | source_layer | enum | 是 | STANDARD / REF_STANDARD / LAB_SOP / QC_PROCEDURE / INSTRUMENT_MANUAL / CONVENTION |

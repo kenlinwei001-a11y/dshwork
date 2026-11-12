@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1.0",
   "purpose": "轻本体：只做可执行的类型与约束，不做推理。用于拒绝不合规的抽取产物。",
   "classes": {
     "Standard": {
@@ -69,7 +69,8 @@
           "MUST",
           "SHOULD",
           "MAY",
-          "MUST_NOT"
+          "MUST_NOT",
+          "INFO"
         ]
       }
     },
@@ -81,7 +82,6 @@
         "clause",
         "title",
         "requirement",
-        "predicate",
         "evidence_required",
         "check_targets",
         "on_missing",
@@ -120,9 +120,9 @@
       "key": "gap_id",
       "required": [
         "type",
-        "desc",
-        "affects",
-        "min_request"
+        "description",
+        "affected_clauses",
+        "request"
       ]
     }
   },
@@ -232,6 +232,8 @@
     "Element.origin=derived 时必须有 derive_from",
     "Parameter 为数值时必须有 unit（无量纲写 1）",
     "图内每条边的两端节点必须存在，且 operator 在 relations 中",
-    "Element.obligation 为空 ⇒ 其锚定条款必须为 informative；非空 ⇒ 必须为四种模态之一"
+    "Element.obligation 为空 ⇒ 其锚定条款必须为 informative；非空 ⇒ 必须为四种模态之一",
+    "Rule.predicate 与 Rule.qualitative_check 严格二选一（契约 §1/§4）；定性卡不得带 predicate",
+    "Gap 字段名以 SES 规范 §11 为准：description / affected_clauses / request（旧名 desc / affects / min_request 退役）"
   ]
 }

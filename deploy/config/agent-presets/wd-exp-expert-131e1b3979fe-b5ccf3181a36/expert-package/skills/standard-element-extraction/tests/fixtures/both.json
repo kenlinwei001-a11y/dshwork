@@ -1,0 +1,53 @@
+{
+  "standard_id": "TEST-2026",
+  "clause_registry": [],
+  "elements": [],
+  "audit_rule_cards": [
+    {
+      "rule_id": "ARC-C7-11.2-04",
+      "category": "C7",
+      "clause": "11.2",
+      "title": "t",
+      "requirement": "r",
+      "evidence_required": [
+        "原始记录"
+      ],
+      "on_missing": "FAIL",
+      "anchor": {
+        "standard": "TEST-2026",
+        "clause": "11.2",
+        "page": 6,
+        "quote": "q"
+      },
+      "check_targets": [
+        {
+          "target_type": "report_field",
+          "doc_type": "原始记录",
+          "field": "f",
+          "match_hints": [
+            "f"
+          ],
+          "locator_strategy": "field_label"
+        }
+      ],
+      "predicate": {
+        "field": "x",
+        "op": ">=",
+        "value": 1,
+        "unit": "1"
+      },
+      "qualitative_check": {
+        "question": "q",
+        "acceptable": [
+          "a"
+        ],
+        "needs_review": [
+          "b"
+        ],
+        "unacceptable": [
+          "c"
+        ]
+      }
+    }
+  ]
+}

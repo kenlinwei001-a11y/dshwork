@@ -85,13 +85,14 @@ def check_elements(ses, sid):
         t = cl_type.get(anchor, "")
         if ob is None and not str(t).startswith("informative"):
             err(f"{sid}/{e.get('element_id')}: 锚定条款 {anchor}（type={t}）为规范型，但 obligation 为空")
-        if ob is not None and ob not in ("MUST","SHOULD","MAY","MUST_NOT"):
+        if ob is not None and ob not in ("MUST","SHOULD","MAY","MUST_NOT","INFO"):
             warn(f"{sid}/{e.get('element_id')}: obligation={ob} 非标准模态")
 
 def check_gaps(ses, sid):
     for g in ses.get("gaps") or []:
-        if not (g.get("affects") or []):
-            err(f"{sid}/{g.get('gap_id')}: affects 为空")
+        # 契约 v1.1：字段名以 SES 规范 §11 为准，旧名 affects 兼容
+        if not (g.get("affected_clauses") or g.get("affects") or []):
+            err(f"{sid}/{g.get('gap_id')}: affected_clauses 为空")
 
 def check_graph(path):
     g = json.load(open(path, encoding="utf-8"))
@@ -111,6 +112,22 @@ def check_graph(path):
             a = (n.get("attrs") or {}).get("anchor") or {}
             if not a.get("quote"): err(f"{os.path.basename(path)}: 规则节点无 anchor {n['id']}")
 
+
+def check_rule_predicate_xor(ses, sid):
+    """Rule: predicate 与 qualitative_check 严格二选一（契约 §1/§4）。"""
+    for r in ses.get("audit_rule_cards") or []:
+        rid = r.get("rule_id", "?")
+        has_p = bool(r.get("predicate"))
+        has_q = bool(r.get("qualitative_check"))
+        if has_p and has_q:
+            err(f"{sid}/{rid}: predicate 与 qualitative_check 不得并存")
+        elif not has_p and not has_q:
+            err(f"{sid}/{rid}: 缺 predicate 或 qualitative_check")
+        if has_q:
+            for f in ("question", "acceptable", "needs_review", "unacceptable"):
+                if not (r["qualitative_check"].get(f) or []):
+                    err(f"{sid}/{rid}: qualitative_check 缺 {f}")
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ses", nargs="+", default=[])
@@ -123,7 +140,7 @@ def main():
             if not items:
                 continue
             check_class(name, items, sid)
-        check_rule_extra(ses, sid); check_params(ses, sid)
+        check_rule_extra(ses, sid); check_rule_predicate_xor(ses, sid); check_params(ses, sid)
         check_elements(ses, sid); check_gaps(ses, sid)
     for p in a.graph:
         check_graph(p)

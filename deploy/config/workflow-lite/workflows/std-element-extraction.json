@@ -1,43 +1,6 @@
 {
   "nodes": [
     {
-      "id": "res-ironclad",
-      "type": "wfResource",
-      "position": {
-        "x": 80,
-        "y": 761
-      },
-      "data": {
-        "label": "抽取铁律",
-        "description": "每一步都适用的抽取口径与红线（10 条）",
-        "items": [
-          {
-            "kind": "text",
-            "value": "1 只抽正文写明的；没有的不猜。每个数值、阈值、单位必须能在标准原文检索命中（条款+页码+引文）。\n2 模态照原文：应/须→MUST，宜→SHOULD，可→MAY，不应/不得→MUST_NOT，背景与注→INFO；不得升级或降级。\n3 来源三层：verbatim（原文）/ derived（由原文参数推出，必写 derive_from）/ convention（行业惯例，必写来源与前提）。规则默认只采信前两层。\n4 要素按 SE-12 族抽；每条要素带 element_id、obligation、evidence、source_layer、anchor{standard,clause,page,quote}、origin。\n5 规则不分级只分类 C1–C8；每张卡带 category、predicate 或 qualitative_check、evidence_required、check_targets、on_missing、anchor。\n6 缺证不默认通过：on_missing 只能是 FAIL 或 UNVERIFIABLE。\n7 引用闭包：规范性引用文件（含被引文件自身再引用的）逐一登记；未上传标 PENDING_UPLOAD 并进 gaps；公告/前言里的标准号只作背景、不扩围，但写明理由。\n8 实验室文件未提供时，lab_alignment 全部 PENDING_DOC：规则按标准判，注明「内部落地待核」。\n9 check_targets.doc_type 只用这 7 类：检测报告 / 原始记录 / 前处理记录 / 仪器使用记录 / 试剂配制记录 / 质控记录 / 样品流转单。\n10 反算、量纲、区间端点、分档衔接一律用 python3 算，不心算；数字用半角，单位与精度保留原文。\n11 中文交付，字段名与枚举用英文；不签发报告合格结论，只给判据与口径。"
-          }
-        ]
-      }
-    },
-    {
-      "id": "res-kit",
-      "type": "wfResource",
-      "position": {
-        "x": 304,
-        "y": 761
-      },
-      "data": {
-        "label": "抽取规范",
-        "description": "SES 字段规范、规则卡语法、准入闸、交接契约与端到端范例",
-        "items": [
-          {
-            "kind": "folder",
-            "value": "std-extract-kit/",
-            "note": "按需读：ses-schema.md（字段/ID/校验/图算子）、rule-card-spec.md（规则卡 C1–C8 与 predicate 语法）、scope-gate.md（准入闸四指标）、handoff-contract.md（交接与判定枚举）、worked-example-hj671.md（HJ 671 范例：学结构，不抄数值）"
-          }
-        ]
-      }
-    },
-    {
       "id": "res-standard",
       "type": "wfResource",
       "position": {
@@ -45,13 +8,13 @@
         "y": 761
       },
       "data": {
-        "label": "标准原文",
-        "description": "本次抽取的标准正文（文本层导出，带页码标记）",
+        "label": "标准文本库",
+        "description": "标准文本库：已取字的各标准正文 + 取字记录",
         "items": [
           {
-            "kind": "file",
-            "value": "hj535/HJ535.txt",
-            "note": "`===== PAGE n =====` 是页码标记，page 取 n。缺省取此文件；输入节点（标准文本路径）给了别的路径时以输入为准，并把实际路径写进产出。"
+            "kind": "folder",
+            "value": "standards/",
+            "note": "每个标准两份：`<slug>.txt`（正文，`===== PAGE n =====` 为页码标记）与 `<slug>.source.json`（取字记录：来源 PDF、指纹、页数、引擎/dpi、每页置信度、不可辨区 caveat）。本次读哪一份由输入节点给出的路径决定，图里不绑定任何具体标准。取字质量归输入侧，图只消费与登记。"
           }
         ]
       }
@@ -65,10 +28,10 @@
       },
       "data": {
         "label": "解构与引用",
-        "description": "标准建档、条款登记、引用闭包、方法族与初始缺口",
+        "description": "技能第 1–3 步：建档、条款登记、引用闭包",
         "icon": "idea",
         "color": "blue",
-        "prompt": "目标：把标准正文变成可校验的条款登记册、引用闭包与方法族，产出 01-clauses.json。完成标准：每条编号条款都已登记，且每条 quote 都能在原文检索命中。\n\nA 建档\n- 用 shasum -a 256 取文件指纹前 12 位；页数取 `===== PAGE n =====` 的最大 n；standard_id 用「标准号-年号」半角写法（如 HJ 535-2009），与封面核对；记录 published / effective / superseded_by。\n- 先读目次，解析「章号→章标题→角色」（范围/引用/原理/干扰/试剂/仪器/样品/步骤/计算/精密度/质控/注意），角色表写进 section_roles。不要按章号假设角色。\n\nB 条款登记\n- 逐条登记 clause、parent、heading、page、quote、modality、type；页码取 PAGE 标记。\n- 合并排版的多条款（如一行里排了 4.6–4.12）按标准自身编号拆开，各自给 quote，不许概括。\n- 注、脚注、图注也登记，modality=INFO、type=informative。\n\nC 引用闭包\n- 第 2 章规范性引用 + 正文提到的引用文件逐一登记。\n- 工作区只有本标准 → 未上传的写 PENDING_UPLOAD，写清影响哪些条款与最小补充请求。\n- 公告/前言里提到的标准号（如被替代的旧标准）只进 background_refs，写明「不扩围」理由。\n\nD 方法族与缺口\n- method_family：本方法与同族方法的参数口径差异；未上传的方法只登记 PENDING_UPLOAD，不填数值。\n- gaps：已发现的 GAP-REF / GAP-DATA / GAP-AMB / GAP-CONFLICT 登记（gap_id、type、description、affected_clauses、request、owner）。\n\nE 交付\n- 回复给出：标准号、页数、指纹、条款数、normative 数、引用数与待上传数、缺口数、方法族条目数、产出路径。\n- 口径不清的写进 gaps，不替标准做决定。"
+        "prompt": "范围：本步只做技能「第 1–3 步」——建档与取字登记、条款登记、引用闭包；产出 01-clauses.json。\n\n做法：先加载技能 `standard-element-extraction`，按它的执行顺序、硬性口径与 schema 做；本步不重复抄口径。\n- 输入：标准文本路径与 `/standards/<slug>.source.json`（取字记录）由输入节点给出。\n- 章节角色从目次解析，不按章号假设。\n- 引用：库里已有的标 PROVIDED；未上传的 PENDING_UPLOAD 并落 GAP-REF。\n- 方法族与众数同族标准只记差异，未上传的不填数值。\n- 本次标准类型（METHOD/PRODUCT/MANAGEMENT/LIMIT）要在产物里写明判定与依据。\n\n交付：按技能 schema 的字段写 01-clauses.json（结构见资源说明）；回复给标准号、类型、页数、指纹、条款数、normative 数、引用/待上传数、缺口数、产出路径。"
       }
     },
     {
@@ -79,11 +42,12 @@
         "y": 198
       },
       "data": {
+        "label": "条款登记册",
         "items": [
           {
             "kind": "file",
             "value": "01-clauses.json",
-            "note": "结构固定（JSON，只写这些顶层键）：standard_id / title / source_fingerprint{sha256_12,pages} / status{published,effective,superseded_by} / section_roles[{chapter,heading,role}] / clause_registry[] / reference_register[] / background_refs[] / method_family[] / gaps[] / counts{clauses,normative,refs,pending_refs,gaps}。\n- clause_registry 每条：clause,parent,heading,page,quote(≤200字,原文连续片段),modality,type。\n- reference_register 每条：ref_id,standard_no,title,referenced_by,scope,status,affected_clauses,depth,request。\n- background_refs 每条：standard_no,mentioned_in,reason（为何不扩围）。\n- gaps 每条：gap_id,type,description,affected_clauses,request,owner。\n只写本次这一份标准；不保留上一次内容；UTF-8、2 空格缩进。"
+            "note": "按技能 schema（references/standard-element-schema.md）的字段与必检项输出；本图额外要求 standard_slug、standard_type{kind,reason}、source_text（取自同目录 <slug>.source.json）、section_roles。\n只写本次这一份标准；UTF-8、2 空格缩进；ID 不重编。"
           }
         ]
       }
@@ -97,10 +61,10 @@
       },
       "data": {
         "label": "要素与计算",
-        "description": "SE-12 要素、参数、公式卡与流程拓扑",
+        "description": "技能第 4–7 步：要素、参数、公式、拓扑（大标准分片）",
         "icon": "target",
         "color": "green",
-        "prompt": "目标：把条款登记册变成 SE-12 要素包、公式卡与流程拓扑，产出 02-elements.json。完成标准：每个 normative 条款至少 1 个要素或写明「无要素」理由；12 族各有交代；数值全部能回原文。\n\nA 要素\n- 逐条款抽要素，族别按内容定（META/SCOPE/PRIN/SAMP/PROC/APPA/MATL/INTR/CALC/QC/PERF/RISK）。\n- 表格逐格抽：标准溶液浓度与配制、试剂等级与保存期、精密度/准确度分档——保留原文单位与精度，不合并行。\n- 图转拓扑：有流程/装置图就转成节点+边+通道参数；图与正文冲突登记 GAP-CONFLICT。\n- 每条要素写全：element_id、family、statement、parameters[{name,value,unit,op}]、obligation、applicability、evidence、source_layer、anchor、origin（derived 写 derive_from）。\n\nB 公式与自洽\n- formula_cards：expression、symbols（含义/单位/量纲）、applicability、rounding、self_check（用 python3 按标准数据反算，写 inputs/expected/computed/pass）、anchor。\n- 交叉核对量程端点、稀释倍数、结果位数、单位是否处处一致；不一致登记 GAP-CONFLICT，不擅自改。\n- 标准未给的性能阈值 → 进 gaps（GAP-PERF），不造数。\n\nC 流程\n- procedure_graph：步骤节点（id/type/label/clause/params/evidence）+ 边（from/to/operator）。operator 只用 schema 枚举；每条边要写得出可执行含义，否则不入图。\n- dependency_graph：结果 ← 公式 ← 校准 ← 试剂/仪器 ← 环境/质控 的反向链（computes/gates/requires/traces）。\n\nD 交付\n- 回复给出：要素数（各族分布）、公式卡数与自检通过数、图节点/边数、新增缺口数、空族及理由、产出路径。"
+        "prompt": "范围：本步只做技能「第 4–7 步」——要素（SE-12）、参数提升、公式与数值自洽、图转拓扑；产出 02-elements.json。\n\n做法：加载技能，按它的族模板、表格逐格、图转拓扑、公式卡与反算规则做；口径不在本步重复。\n- 表格逐格抽，保留原文单位与精度；图转拓扑（节点带参数与完成判据）。\n- 每条要素带 anchor 与 origin；derived 写 derive_from。\n- 反算与量纲用 python3 算，不心算；不一致登记 GAP-CONFLICT。\n- 标准未给的性能阈值进 GAP-PERF，不造数。\n- **大标准分片**：条款多于 40 条时按条款区间分 3 批写临时分片（如 parts/elements-a.json），每批写完即落盘，最后合并成 02-elements.json 并删分片；不要一次性憋到最后。\n\n交付：要素数（族分布）、公式卡与自检通过数、图节点/边数、新增缺口数、空族及理由、产出路径。"
       }
     },
     {
@@ -111,11 +75,12 @@
         "y": 353
       },
       "data": {
+        "label": "要素包",
         "items": [
           {
             "kind": "file",
             "value": "02-elements.json",
-            "note": "结构固定（JSON）：elements[] / formula_cards[] / procedure_graph{nodes,edges} / dependency_graph{nodes,edges} / family_coverage[{family,count,note}] / gaps[] / counts{elements,formulas,gaps} / revision_log[]。\n- elements 每条必带：element_id,family,statement,parameters,obligation,applicability,evidence,source_layer,anchor,origin。\n- formula_cards 每条必带：formula_id,clause,expression,symbols,applicability,rounding,self_check,anchor。\n- 覆盖 12 族；某族 no 内容就写 count:0 且 note 给理由。\n- revision_log 初次为 []；回修时每行一个对象：{\"round\":1,\"audit_issue\":\"B-01\",\"change\":\"改了什么\"}。\n只写本次结果；quote ≤200 字，不搬原文大段。"
+            "note": "按技能 schema 输出 elements / formula_cards / procedure_graph / dependency_graph / family_coverage / gaps；revision_log 供回修追加一行（round、audit_issue、change）。\n只写本次结果；quote ≤200 字；不搬原文大段。"
           }
         ]
       }
@@ -129,10 +94,10 @@
       },
       "data": {
         "label": "规则与依赖",
-        "description": "规则卡、覆盖矩阵、依赖图与实验室对齐",
+        "description": "技能第 8–9 步：规则卡、覆盖矩阵、依赖图、实验室对齐",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "目标：把要素变成可判定规则卡、覆盖矩阵、依赖图与实验室对齐，产出 03-rules.json。完成标准：每条可判定要求都有一张卡；每张卡都有 anchor 与 on_missing。\n\nA 规则卡\n- 逐条可判定要求 → 规则卡：rule_id（ARC-{分类}-{条款}-{序号}）、title、category C1–C8、clause、modality、requirement、predicate{field,op,value,unit,window} 或 qualitative_check、applicability、evidence_required、check_targets、on_missing、on_fail、source_layer、anchor。\n- 有数值阈值的写成谓词；纯定性要求写 qualitative_check（acceptable / needs_review / unacceptable），标「需人工确认」，不自动判 PASS。\n- 标准没给阈值的要求降级为记录性检查，notes 写「标准未给阈值」并进 GAP-PERF；不造阈值。\n- 每条规则至少一种 locator_strategy 能在真实报告里命中（field_label > table_header > keyword > quote_search）；match_hints 写报告里真会出现的字样。\n\nB 覆盖矩阵\n- coverage_matrix 一行一条条款：clause、elements、rules、judgeable（yes/no）、gap_ids、note（无规则时写理由）。\n- 核对 C1–C8 每类都有规则，或写明本方法该类不适用及理由。\n\nC 依赖与对齐\n- dependency_graph：结果 ← 公式 ← 校准 ← 试剂/仪器 ← 质控门；每条边带 operator 与可执行含义。\n- lab_alignment：按输入节点给的实验室文件情况处理；没有文件 → 全部 PENDING_DOC，decision 写「按标准判，内部落地待核」。\n- gaps 合并去重，补 GAP-EXTERNAL / GAP-PERF。\n\nD 交付\n- 回复给出：规则数、C1–C8 分布、可判定条款占比、定性规则数、coverage_matrix 行数、缺口数、产出路径。"
+        "prompt": "范围：本步只做技能「第 8–9 步」——规则化（C1–C8）与图型编译，外加方法族对照与实验室文件对齐；产出 03-rules.json。\n\n做法：加载技能，按规则卡规范、谓词/原语、定位契约做；口径不在本步重复。\n- 先读 01 的标准类型，按类型调整权重；缺类写明「本类型不涉及」，不硬凑。\n- 每条卡带 anchor、on_missing、check_targets；谓词数值必须能在该条款原文命中。\n- 定性要求写 qualitative_check，不自动判 PASS；标准未给阈值降级为记录性并进 GAP-PERF。\n- lab_alignment：按输入节点给的实验室文件情况；无文件则全部 PENDING_DOC。\n- PENDING_UPLOAD 未落 GAP-REF 的在此补齐。\n\n交付：规则数、C1–C8 分布、可判定条款占比、定性规则数、覆盖矩阵行数、缺口数、产出路径。"
       }
     },
     {
@@ -143,11 +108,12 @@
         "y": 227
       },
       "data": {
+        "label": "规则卡",
         "items": [
           {
             "kind": "file",
             "value": "03-rules.json",
-            "note": "结构固定（JSON）：audit_rule_cards[] / coverage_matrix[] / dependency_graph{nodes,edges} / lab_alignment[] / gaps[] / counts{rules,by_category,judgeable_clauses,gaps} / revision_log[]。\n- 规则卡必带：rule_id,title,category,clause,modality,requirement,predicate 或 qualitative_check,applicability,evidence_required,check_targets,on_missing,on_fail,source_layer,anchor。\n- coverage_matrix 一行一条条款。\n- lab_alignment 每条：alignment_id,requirement,requirement_text,lab_doc,lab_doc_type,lab_clause,status,difference,decision。\n- revision_log 初次为 []；回修时每行 {\"round\":1,\"audit_issue\":\"B-01\",\"change\":\"...\"}。\n只写本次结果；不写过程分析。"
+            "note": "按技能规则卡规范与 schema 输出 audit_rule_cards / coverage_matrix / dependency_graph / lab_alignment / gaps。\n- 每张卡必须有**顶层** `clause`、`page`（与 anchor.page 一致）、`anchor.quote`、`check_targets`、`on_missing`——这四项是技能 `cap.py lint` 的必检项，缺一会报 anchor_complete/locator_present。\n- revision_log 供回修追加一行。\n只写本次结果。"
           }
         ]
       }
@@ -161,10 +127,10 @@
       },
       "data": {
         "label": "质量审计",
-        "description": "独立质量审计与判定（VERDICT: pass/fail 选边）",
+        "description": "审计：复核 + 产出 audit_result.json（指标来自工具段）",
         "icon": "bug",
         "color": "coral",
-        "prompt": "目标：独立复核 01/02/03 与标准原文，判定这批抽取能不能交给审核专家。只做审计，不改上游文件。\n\nA 复核（以原文为准，不信上游自述）\n- 用 python3/grep 逐条核每个 anchor.quote 能否在标准文本命中（去空白后），算出命中率。\n- 覆盖率：每条编号条款是否都有要素/规则或写明理由；normative 条款缺要素即阻塞。\n- 引用闭包：第 2 章与正文引用是否全部登记；PENDING_UPLOAD 是否都进了 gaps。\n- 防编造：随机抽 12 个数值回原文核对（条款+页码），有一处原文没有 → 阻塞。\n- 另核：单位与量纲、模态映射、ID 唯一性、on_missing 取值、check_targets 完整性、C1–C8 分类完整。\n\nB 判定\n- 阻塞（B-xx）：会让审核判错的——锚不命中、覆盖缺口、编造数值、谓词缺单位、on_missing 为空、规则指向不存在的条款。\n- 非阻塞（W-xx）：可改进的——措辞、match_hints 偏少、缺口描述不具体。\n- 通过仅当：阻塞 0 条 且 quote 命中率 100% 且 normative 条款覆盖 100%。否则不通过。\n\nC 交付\n- 04-audit.md 按资源说明写，其中「## 判定」一节的结论写 PASS 或 FAIL。\n- 回复末尾单独一行写 `VERDICT: pass` 或 `VERDICT: fail`（英文小写、原样，插件按这一行选下一步方向），前面给阻塞数、命中率与覆盖数。\n- 不改任何上游文件；发现的问题只写进审计记录。"
+        "prompt": "范围：本步只做技能「第 13 步（质量审计）」与「交付前检查」——独立复核 01/02/03 与标准原文，判定这批抽取能不能交给审核专家。\n\n前置（工具段，不在图内）：`out/audit_metrics.json` 必须存在（由 `run_all.py --stages metrics` 生成，含 lint/ontology 的 exit 与 stdout 哈希）。缺失则先运行该命令；仍失败就停线，不得手写指标。\n\n做法：加载技能，按它的确定性检查项逐项复核；`audit_metrics.json` 是输入之一，但不作为裁决——逐项复核后才下结论。只信原文与产出文件，不采信作者自述。\n- 三级判定：B 阻塞（会让审核判错）/ D 待裁决（需人定）/ W 非阻塞。\n- 通过仅当：阻塞 0 且锚命中 100% 且 normative 覆盖 100%。\n\n产出：\n1. `04-audit.md`（结构见资源说明）；\n2. `out/audit_result.json`：{verdict, blockers, pending, warnings, counts}，供工具段 package 读取；缺它 package 会停线。\n3. 回复末尾单独一行 `VERDICT: pass` 或 `VERDICT: fail`。"
       }
     },
     {
@@ -175,11 +141,12 @@
         "y": 227
       },
       "data": {
+        "label": "审计记录",
         "items": [
           {
             "kind": "file",
             "value": "04-audit.md",
-            "note": "Markdown，≤ 60 行，结构固定，节标题照抄：\n## 指标（表：条款覆盖 / quote 命中率 / 要素数 / 规则数 / 定性规则数 / 缺口数）\n## 阻塞 B-xx（每条一行：编号 · 位置（文件+条目+条款）· 问题 · 依据原文行）\n## 非阻塞 W-xx（同上）\n## 判定（一句话 + PASS/FAIL）\n只写本次审计结论；不复述三份 JSON；每格 ≤ 60 字；详细核对过程写在回复里。"
+            "note": "Markdown，≤ 70 行，结构固定，节标题照抄：\n## 指标（表：条款覆盖 / quote 命中率 / 谓词数值落点 / 要素数 / 规则数 / 定性规则数 / 缺口数）\n## 阻塞 B-xx（每条一行：编号 · 位置（文件+条目+条款）· 问题 · 依据原文行）\n## 待裁决 D-xx（同上：需人定的口径，不擅自裁决）\n## 非阻塞 W-xx（同上）\n## 判定（一句话 + PASS/FAIL）\n只写本次审计结论；不复述三份 JSON；每格 ≤ 60 字；详细核对过程写在回复里。"
           }
         ]
       }
@@ -193,10 +160,10 @@
       },
       "data": {
         "label": "回修",
-        "description": "按审计阻塞清单回修要素与规则，再交回审计",
+        "description": "按阻塞清单回修，待裁决项只登记不改判",
         "icon": "fix",
         "color": "coral",
-        "prompt": "目标：按审计的阻塞清单回修 02-elements.json 与 03-rules.json，使下一轮审计通过。完成标准：B-xx 每条都有处置（改掉，或升级为缺口并说明为什么不能改）。\n\nA 回修\n- 先读 04-audit.md 的阻塞清单，逐条定位到文件与条目，按原文修；改完自己用 grep 复核 quote 命中。\n- 只改被点名的条目及其直接依赖（如改了阈值要同步 coverage_matrix 的 judgeable）；不动没被点到的部分。\n- 属于标准自身问题的（表述含糊、条款矛盾、未给阈值）→ 登记或升级 gaps，在回复里说明为何不能改。\n\nB 记录\n- 两份文件就地更新：保持原结构与顺序，不整份重写；在各自 revision_log 追加一行（round、audit_issue、change）。\n- 不引入原文没有的数值；不为了过审计删条目。\n\nC 交付\n- 回复：每条 B-xx 的处置（fixed / gaps / need-user）、改了哪些字段、还剩什么风险、两份文件路径。"
+        "prompt": "范围：按 04-audit.md 的阻塞清单回修 02-elements.json 与 03-rules.json，使下一轮审计通过；D-xx 不自行裁决。\n\n做法：加载技能，按它的硬性口径改；只改被点名条目及其直接依赖，不动其余部分。\n- B-xx 每条都要有处置：改掉，或升级为 gaps 并说明为什么不能改。\n- D-xx 只做两件事：转成 gaps，或在该条目上标 conflict_pending 供人工裁决；不改模态、不改阈值。\n- 两份文件就地更新，保持结构；在 revision_log 追加一行（round、audit_issue、change）。\n- 不引入原文没有的数值，不为过审删条目。\n\n交付：每条 B-xx 的处置、D-xx 的落点、改了哪些字段、剩余风险、两份文件路径。"
       }
     },
     {
@@ -208,10 +175,10 @@
       },
       "data": {
         "label": "打包交接",
-        "description": "合并 SES 包、接手说明与看板",
+        "description": "只写接手说明与看板（ses.json 来自工具段）",
         "icon": "test",
         "color": "teal",
-        "prompt": "目标：把 01/02/03 与审计结论打包成下游可直接消费的 SES 包、接手说明和一张看板。完成标准：ses.json 顶层字段齐全、缺口可追、审核专家照 handoff 就能开工。\n\nA SES 包\n- 合并成 ses.json：standard_id、title、source_fingerprint、status、extraction、clause_registry、reference_register、elements、formula_cards、procedure_graph、dependency_graph、lab_alignment、method_family、audit_rule_cards、coverage_matrix、gaps、rule_set_id（RS-{standard_id}）。\n- 去重保序，ID 不重编；缺口带 affected_rules；审计指出的非阻塞问题在 handoff 里如实列出，不粉饰。\n\nB 接手说明\n- 05-handoff.md：标准身份与指纹、交付清单（文件→消费方）、覆盖统计、C1–C8 分布、缺口与待上传（含最小补充请求与责任方）、审核侧读取顺序与判定枚举、定位契约（quote 必须命中，命中不了标 UNLOCATED）、未完成事项。\n\nC 看板\n- dashboard.html：数据只从 ses.json 读，回答「这批抽取能不能交给审核」。自己生成，不引外网资源。\n\nD 交付\n- 回复：ses.json 路径、条款/要素/规则/缺口计数、审计判定、待上传文件清单、handoff 路径。"
+        "prompt": "范围：技能第 14 步的「说明与看板」部分。ses.json 由工具段生成，本步只写说明与看板。\n\n前置（工具段，不在图内）：`out/ses.json` 必须存在（`run_all.py --stages package`，需 audit_result.json）；缺失则先运行工具段，不得手写或手改 ses.json。\n\n输入：`ses.json`（只读，计数取 ses.counts）、`04-audit.md`、`01/02/03`；若存在 `semantica-ingest.json` 一并引用。\n产出：\n- `05-handoff.md`（≤80 行，七节照资源说明）；\n- `dashboard.html`（按 skill `workflow-board`，数据从 ses.json 来）。\n\n规则：不重算计数；不签发报告合格结论；D/W 项如实列出；图谱一栏写明「仅 dry-run、未写入共享图」；不写抽取过程。"
       }
     },
     {
@@ -222,11 +189,12 @@
         "y": 359
       },
       "data": {
+        "label": "SES 包",
         "items": [
           {
             "kind": "file",
             "value": "ses.json",
-            "note": "结构与字段按 std-extract-kit/ses-schema.md 的顶层结构；必填 standard_id、source_fingerprint、clause_registry、elements、audit_rule_cards。\n- 从 01/02/03 合并，去重保序，ID 不重编；追加 extraction{scope,date,extractor,schema_version} 与 rule_set_id。\n- gaps 合并三份与审计发现，每条带 affected_rules。\n- UTF-8、2 空格缩进；不写 Markdown、不写注释。"
+            "note": "按技能 references/standard-element-schema.md 的顶层结构合并；必带 standard_id、standard_slug、standard_type、source_fingerprint；rule_set_id=RS-{standard_slug}；gaps 合并并带 affected_rules。\n只写本次；UTF-8、2 空格缩进；ID 不重编。"
           }
         ]
       }
@@ -277,10 +245,9 @@
         "y": 100
       },
       "data": {
-        "question": "这次抽哪份标准？填工作区里的文本路径",
-        "default": "hj535/HJ535.txt",
-        "placeholder": "如 hj535/HJ535.txt",
-        "hint": "PDF 先导出带页码标记的文本；不确定就保留默认",
+        "question": "本次抽取哪份标准？填文本路径",
+        "placeholder": "standards/<slug>.txt",
+        "hint": "填工作区里的标准文本路径（如 standards/HJ84-2016.txt）；PDF 先取字成带页码标记的 txt。本图不预置任何标准，每次都要填。",
         "required": true
       }
     },
@@ -297,6 +264,41 @@
         "default": "暂无：lab_alignment 全部标 PENDING_DOC，按标准判并注明「内部落地待核」",
         "placeholder": "如 docs/SOP-001.docx、仪器说明书路径",
         "hint": "有就写路径或贴要点；不确定保留默认"
+      }
+    },
+    {
+      "id": "res-skill",
+      "type": "wfResource",
+      "position": {
+        "x": 248,
+        "y": 967
+      },
+      "data": {
+        "label": "专家技能",
+        "description": "本图唯一的口径源：标准要素抽取专家技能（字段、判据、ID、校验项、交付契约全在里面）",
+        "items": [
+          {
+            "kind": "skill",
+            "value": "standard-element-extraction"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-toolchain",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "description": "图外工具段的调用命令与前置条件（由技能 scripts/run_all.py 执行）",
+        "items": [
+          {
+            "kind": "text",
+            "value": "工具段不在图里，由技能目录 scripts/run_all.py 统一调度；图只保留语义节点。\n1 取字：run_all.py --stages provenance --pdf <标准 PDF> → 00-provenance.json\n2 指标：run_all.py --stages metrics（需 03-rules.json）→ audit_metrics.json\n3 合并：run_all.py --stages package（需 audit_result.json）→ ses.json\n4 图谱：run_all.py --stages semantica（dry-run，需 ses.json）→ semantica-*.jsonl\n硬规则：工具段产物必须附 runner-*.json 执行记录（能力/版本/exit/stdout 哈希）；缺记录视为未经脚本，按未完成处理，不得手写产物。\n能力清单与配置 schema 在技能目录 scripts/registry/capabilities.json，不在工作区另存副本。"
+          }
+        ]
       }
     }
   ],
@@ -326,13 +328,6 @@
       "id": "audit->res-04-audit",
       "source": "audit",
       "target": "res-04-audit",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "handoff->res-ses",
-      "source": "handoff",
-      "target": "res-ses",
       "sourceHandle": null,
       "targetHandle": null
     },
@@ -423,19 +418,6 @@
       "data": {
         "handoff": {
           "note": "修完再跑一轮审计，只认新一份阻塞清单。"
-        }
-      }
-    },
-    {
-      "id": "audit->handoff#pass",
-      "source": "audit",
-      "target": "handoff",
-      "sourceHandle": null,
-      "targetHandle": null,
-      "data": {
-        "when": "pass",
-        "handoff": {
-          "note": "判定通过，按三份 JSON 打包；审计的非阻塞问题在第 7 节如实列出。"
         }
       }
     },
@@ -552,23 +534,23 @@
       "targetHandle": null
     },
     {
-      "id": "fix->res-02-elements",
-      "source": "fix",
-      "target": "res-02-elements",
+      "id": "res-ses->handoff",
+      "source": "res-ses",
+      "target": "handoff",
       "sourceHandle": null,
-      "targetHandle": null,
-      "data": {
-        "update": true
-      }
+      "targetHandle": null
     },
     {
-      "id": "fix->res-03-rules",
-      "source": "fix",
-      "target": "res-03-rules",
+      "id": "audit->handoff#pass",
+      "source": "audit",
+      "target": "handoff",
       "sourceHandle": null,
       "targetHandle": null,
       "data": {
-        "update": true
+        "when": "pass",
+        "handoff": {
+          "note": "判定通过，交 handoff 写说明与看板；ses.json 已由工具段生成，不要重新合并。"
+        }
       }
     }
   ],
@@ -579,7 +561,7 @@
   },
   "settings": {
     "outputRoot": ".workflow-lite/runs/{instance}/out",
-    "mode": "subagent",
+    "mode": "team",
     "runState": true
   }
 }

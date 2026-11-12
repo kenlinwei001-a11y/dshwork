@@ -106,7 +106,8 @@ def lint(ses_list):
                                         "detail": dup or "ok"})
         # 2 锚完整
         bad = [r["rule_id"] for r in rules
-               if not (r.get("clause") and r.get("page") and (r.get("anchor") or {}).get("quote"))]
+               if not (r.get("clause") and (r.get("page") or (r.get("anchor") or {}).get("page"))
+                       and (r.get("anchor") or {}).get("quote"))]
         (errs if bad else info).append({"check": "anchor_complete", "standard": sid, "detail": bad or "ok"})
         # 3 定位线索
         bad = [r["rule_id"] for r in rules if not r.get("check_targets")]
