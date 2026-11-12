@@ -36,3 +36,10 @@ cap.py lint --ses HJ84.ses            → errors=0 warnings=0 ok=True
 
 - 是否给 Rule 增加顶层 `page`（当前结论：不设，避免同一事实两处）
 - P1–P8 若未来要做"谓词级统计"，需以 `predicate.op` 为准升 v1.2，而不是恢复 primitives
+
+
+## v1.2 决策（2026-11-12）
+
+1. **审计标准形态 = 轻量审计**：`audit.findings`（1.1 KB / 0.23 s）工具算 + 审计员抽 5 样本 + 判 B/D/W（≤60 行），不重读全文。
+2. **semantica 写入 = 队列制**：MCP 仅有只读资源，写入先生成 `semantica-queue/`（命名空间 `std:<slug>`），`--apply` 明确返回 applied:false，待工具挂载后推送。
+3. 看门狗：单步 15 分钟无产物 → 中止并转 Lead/分片（待写入契约执行细则）。

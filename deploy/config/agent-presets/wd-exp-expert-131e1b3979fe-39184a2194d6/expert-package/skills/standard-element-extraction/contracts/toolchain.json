@@ -1,0 +1,16 @@
+{
+  "inputs": [
+    "{out}/03-rules.json"
+  ],
+  "steps": [
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/run_all.py --out {out} --stages metrics --text {text}"
+    },
+    {
+      "run": "gate",
+      "cmd": "python3 {skill}/scripts/validate_node.py --node toolchain --out {out}"
+    }
+  ],
+  "id": "toolchain"
+}

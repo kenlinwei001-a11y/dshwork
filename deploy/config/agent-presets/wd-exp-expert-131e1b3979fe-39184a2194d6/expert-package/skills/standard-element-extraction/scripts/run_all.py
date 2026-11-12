@@ -21,18 +21,32 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', required=True)
     ap.add_argument('--stages', default='provenance,metrics,package')
-    ap.add_argument('--pdf'); ap.add_argument('--slug')
+    ap.add_argument('--pdf'); ap.add_argument('--slug'); ap.add_argument('--text')
     a = ap.parse_args(); out = os.path.abspath(a.out)
     rc = 0
     for s in [x.strip() for x in a.stages.split(',') if x.strip()]:
         if s == 'provenance':
             if not a.pdf: print('skip provenance: 缺 --pdf'); rc = 2; continue
             rc |= run('text.probe', {'pdf': a.pdf}, out, 'provenance')
+            rec_p = os.path.join(out, 'runner-provenance.json')
+            if os.path.exists(rec_p):
+                rec = json.load(open(rec_p, encoding='utf-8'))
+                try: probe = json.loads(rec.get('stdout') or '{}')
+                except Exception: probe = {}
+                doc = {'capability': rec['capability'], 'version': rec['version'], 'config': rec['config'],
+                       'cmd': rec['cmd'], 'exit': rec['exit'], 'seconds': rec['seconds'],
+                       'stdout_sha12': rec['stdout_sha12'], 'route': probe.get('route'),
+                       'pages': probe.get('pages'), 'fonts': probe.get('fonts'), 'images': probe.get('images'),
+                       'note': probe.get('note'), 'source_pdf': a.pdf}
+                json.dump(doc, open(os.path.join(out, '00-provenance.json'), 'w', encoding='utf-8'),
+                          ensure_ascii=False, indent=2)
+                print('00-provenance.json route=%s pages=%s' % (doc['route'], doc['pages']))
         elif s == 'metrics':
             f = os.path.join(out, '03-rules.json')
             if not os.path.exists(f): print('skip metrics: 03-rules.json 未就绪'); rc = 2; continue
             rc |= run('audit.lint', {'ses': f}, out, 'metrics-lint')
             rc |= run('audit.ontology', {'ses': f}, out, 'metrics-ontology')
+            rc |= run('audit.findings', {'out': out, 'text': a.text or ''}, out, 'metrics-findings')
             recs = [json.load(open(os.path.join(out, f'runner-{n}.json'), encoding='utf-8'))
                     for n in ('metrics-lint', 'metrics-ontology')]
             gate = 'PASS' if all(r['exit'] == 0 for r in recs) else 'FAIL'

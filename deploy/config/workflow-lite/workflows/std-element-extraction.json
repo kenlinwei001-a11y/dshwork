@@ -28,10 +28,10 @@
       },
       "data": {
         "label": "解构与引用",
-        "description": "技能第 1–3 步：建档、条款登记、引用闭包",
+        "description": "契约引用：clauses",
         "icon": "idea",
         "color": "blue",
-        "prompt": "范围：本步只做技能「第 1–3 步」——建档与取字登记、条款登记、引用闭包；产出 01-clauses.json。\n\n做法：先加载技能 `standard-element-extraction`，按它的执行顺序、硬性口径与 schema 做；本步不重复抄口径。\n- 输入：标准文本路径与 `/standards/<slug>.source.json`（取字记录）由输入节点给出。\n- 章节角色从目次解析，不按章号假设。\n- 引用：库里已有的标 PROVIDED；未上传的 PENDING_UPLOAD 并落 GAP-REF。\n- 方法族与众数同族标准只记差异，未上传的不填数值。\n- 本次标准类型（METHOD/PRODUCT/MANAGEMENT/LIMIT）要在产物里写明判定与依据。\n\n交付：按技能 schema 的字段写 01-clauses.json（结构见资源说明）；回复给标准号、类型、页数、指纹、条款数、normative 数、引用/待上传数、缺口数、产出路径。"
+        "prompt": "契约：技能 `contracts/clauses.json`（`run_contract.py --node clauses`）。\nLLM 只在 `run: llm` 步出场，按该步 schema 输出；其余由 runner 执行。节点内不写步骤与口径。"
       }
     },
     {
@@ -61,10 +61,10 @@
       },
       "data": {
         "label": "要素与计算",
-        "description": "技能第 4–7 步：要素、参数、公式、拓扑（大标准分片）",
+        "description": "契约引用：elements（读 rows）",
         "icon": "target",
         "color": "green",
-        "prompt": "范围：本步只做技能「第 4–7 步」——要素（SE-12）、参数提升、公式与数值自洽、图转拓扑；产出 02-elements.json。\n\n做法：加载技能，按它的族模板、表格逐格、图转拓扑、公式卡与反算规则做；口径不在本步重复。\n- 表格逐格抽，保留原文单位与精度；图转拓扑（节点带参数与完成判据）。\n- 每条要素带 anchor 与 origin；derived 写 derive_from。\n- 反算与量纲用 python3 算，不心算；不一致登记 GAP-CONFLICT。\n- 标准未给的性能阈值进 GAP-PERF，不造数。\n- **大标准分片**：条款多于 40 条时按条款区间分 3 批写临时分片（如 parts/elements-a.json），每批写完即落盘，最后合并成 02-elements.json 并删分片；不要一次性憋到最后。\n\n交付：要素数（族分布）、公式卡与自检通过数、图节点/边数、新增缺口数、空族及理由、产出路径。"
+        "prompt": "契约：技能 `contracts/nodes.json` 的 `elements`（`run_contract.py --node elements`）。\nLLM 只读 `rows.json` 做判断，不读 01 原文；写 facts → 导出视图；门禁不过不得报完成。"
       }
     },
     {
@@ -94,10 +94,10 @@
       },
       "data": {
         "label": "规则与依赖",
-        "description": "技能第 8–9 步：规则卡、覆盖矩阵、依赖图、实验室对齐",
+        "description": "契约引用：rules（读 rows）",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "范围：本步只做技能「第 8–9 步」——规则化（C1–C8）与图型编译，外加方法族对照与实验室文件对齐；产出 03-rules.json。\n\n做法：加载技能，按规则卡规范、谓词/原语、定位契约做；口径不在本步重复。\n- 先读 01 的标准类型，按类型调整权重；缺类写明「本类型不涉及」，不硬凑。\n- 每条卡带 anchor、on_missing、check_targets；谓词数值必须能在该条款原文命中。\n- 定性要求写 qualitative_check，不自动判 PASS；标准未给阈值降级为记录性并进 GAP-PERF。\n- lab_alignment：按输入节点给的实验室文件情况；无文件则全部 PENDING_DOC。\n- PENDING_UPLOAD 未落 GAP-REF 的在此补齐。\n\n交付：规则数、C1–C8 分布、可判定条款占比、定性规则数、覆盖矩阵行数、缺口数、产出路径。"
+        "prompt": "契约：技能 `contracts/nodes.json` 的 `rules`（`run_contract.py --node rules`）。\nLLM 只读 `rows.json` 出卡片判定字段；覆盖矩阵由脚本派生，不写。"
       }
     },
     {
@@ -127,10 +127,10 @@
       },
       "data": {
         "label": "质量审计",
-        "description": "审计：复核 + 产出 audit_result.json（指标来自工具段）",
+        "description": "契约引用：audit",
         "icon": "bug",
         "color": "coral",
-        "prompt": "范围：本步只做技能「第 13 步（质量审计）」与「交付前检查」——独立复核 01/02/03 与标准原文，判定这批抽取能不能交给审核专家。\n\n前置（工具段，不在图内）：`out/audit_metrics.json` 必须存在（由 `run_all.py --stages metrics` 生成，含 lint/ontology 的 exit 与 stdout 哈希）。缺失则先运行该命令；仍失败就停线，不得手写指标。\n\n做法：加载技能，按它的确定性检查项逐项复核；`audit_metrics.json` 是输入之一，但不作为裁决——逐项复核后才下结论。只信原文与产出文件，不采信作者自述。\n- 三级判定：B 阻塞（会让审核判错）/ D 待裁决（需人定）/ W 非阻塞。\n- 通过仅当：阻塞 0 且锚命中 100% 且 normative 覆盖 100%。\n\n产出：\n1. `04-audit.md`（结构见资源说明）；\n2. `out/audit_result.json`：{verdict, blockers, pending, warnings, counts}，供工具段 package 读取；缺它 package 会停线。\n3. 回复末尾单独一行 `VERDICT: pass` 或 `VERDICT: fail`。"
+        "prompt": "契约：技能 `contracts/audit.json`（`run_contract.py --node audit`）。\nLLM 只读 findings、抽 5 样本、判 B/D/W；计算全部由脚本完成。"
       }
     },
     {
@@ -160,10 +160,10 @@
       },
       "data": {
         "label": "回修",
-        "description": "按阻塞清单回修，待裁决项只登记不改判",
+        "description": "契约引用：fix",
         "icon": "fix",
         "color": "coral",
-        "prompt": "范围：按 04-audit.md 的阻塞清单回修 02-elements.json 与 03-rules.json，使下一轮审计通过；D-xx 不自行裁决。\n\n做法：加载技能，按它的硬性口径改；只改被点名条目及其直接依赖，不动其余部分。\n- B-xx 每条都要有处置：改掉，或升级为 gaps 并说明为什么不能改。\n- D-xx 只做两件事：转成 gaps，或在该条目上标 conflict_pending 供人工裁决；不改模态、不改阈值。\n- 两份文件就地更新，保持结构；在 revision_log 追加一行（round、audit_issue、change）。\n- 不引入原文没有的数值，不为过审删条目。\n\n交付：每条 B-xx 的处置、D-xx 的落点、改了哪些字段、剩余风险、两份文件路径。"
+        "prompt": "契约：技能 `contracts/fix.json`（`run_contract.py --node fix`）。只改被点名条目。"
       }
     },
     {
@@ -175,10 +175,10 @@
       },
       "data": {
         "label": "打包交接",
-        "description": "只写接手说明与看板（ses.json 来自工具段）",
+        "description": "契约引用：handoff（取 derived）",
         "icon": "test",
         "color": "teal",
-        "prompt": "范围：技能第 14 步的「说明与看板」部分。ses.json 由工具段生成，本步只写说明与看板。\n\n前置（工具段，不在图内）：`out/ses.json` 必须存在（`run_all.py --stages package`，需 audit_result.json）；缺失则先运行工具段，不得手写或手改 ses.json。\n\n输入：`ses.json`（只读，计数取 ses.counts）、`04-audit.md`、`01/02/03`；若存在 `semantica-ingest.json` 一并引用。\n产出：\n- `05-handoff.md`（≤80 行，七节照资源说明）；\n- `dashboard.html`（按 skill `workflow-board`，数据从 ses.json 来）。\n\n规则：不重算计数；不签发报告合格结论；D/W 项如实列出；图谱一栏写明「仅 dry-run、未写入共享图」；不写抽取过程。"
+        "prompt": "契约：技能 `contracts/nodes.json` 的 `handoff`（`run_contract.py --node handoff`）。\n数字一律取自 `derived.json`；先跑 `handoff_state.py` 生成交接引用，不转述内容。"
       }
     },
     {
@@ -245,9 +245,9 @@
         "y": 100
       },
       "data": {
-        "question": "本次抽取哪份标准？填文本路径",
-        "placeholder": "standards/<slug>.txt",
-        "hint": "填工作区里的标准文本路径（如 standards/HJ84-2016.txt）；PDF 先取字成带页码标记的 txt。本图不预置任何标准，每次都要填。",
+        "question": "本次抽取哪份标准？填文本路径（交给 clauses、elements、rules、audit、fix）",
+        "placeholder": "standards/<标准号>.txt",
+        "hint": "填工作区里的标准文本路径（带页码标记的 txt）；PDF 先取字。本图不预置任何标准，每次都要填。",
         "required": true
       }
     },
@@ -288,15 +288,48 @@
       "id": "res-toolchain",
       "type": "wfResource",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 248,
+        "y": 1173
       },
       "data": {
-        "description": "图外工具段的调用命令与前置条件（由技能 scripts/run_all.py 执行）",
+        "label": "工具段契约",
+        "description": "指向技能契约，不在此重复步骤",
         "items": [
           {
             "kind": "text",
-            "value": "工具段不在图里，由技能目录 scripts/run_all.py 统一调度；图只保留语义节点。\n1 取字：run_all.py --stages provenance --pdf <标准 PDF> → 00-provenance.json\n2 指标：run_all.py --stages metrics（需 03-rules.json）→ audit_metrics.json\n3 合并：run_all.py --stages package（需 audit_result.json）→ ses.json\n4 图谱：run_all.py --stages semantica（dry-run，需 ses.json）→ semantica-*.jsonl\n硬规则：工具段产物必须附 runner-*.json 执行记录（能力/版本/exit/stdout 哈希）；缺记录视为未经脚本，按未完成处理，不得手写产物。\n能力清单与配置 schema 在技能目录 scripts/registry/capabilities.json，不在工作区另存副本。"
+            "value": "契约：技能 contracts/toolchain.json；执行 run_contract.py --node toolchain"
+          }
+        ]
+      }
+    },
+    {
+      "id": "toolchain",
+      "type": "wfNode",
+      "position": {
+        "x": 1472,
+        "y": 373
+      },
+      "data": {
+        "label": "工具段",
+        "description": "契约引用：toolchain",
+        "icon": "database",
+        "color": "pink",
+        "prompt": "契约：技能 `contracts/toolchain.json`（`run_contract.py --node toolchain`）。纯脚本，无 LLM。"
+      }
+    },
+    {
+      "id": "res-audit_metrics",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 491
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "audit_metrics.json",
+            "note": "JSON：{capabilities:[{id,version,exit,stdout_sha12,summary}], gate:\"PASS|FAIL\", skipped:[...], generated_by:\"run_all.py\"}。只写本次；数字来自命令输出，不手填。"
           }
         ]
       }
@@ -552,6 +585,40 @@
           "note": "判定通过，交 handoff 写说明与看板；ses.json 已由工具段生成，不要重新合并。"
         }
       }
+    },
+    {
+      "id": "toolchain->res-audit_metrics",
+      "source": "toolchain",
+      "target": "res-audit_metrics",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "rules->toolchain",
+      "source": "rules",
+      "target": "toolchain",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "toolchain->audit",
+      "source": "toolchain",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "res-audit_metrics->audit",
+      "source": "res-audit_metrics",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null
     }
   ],
   "viewport": {

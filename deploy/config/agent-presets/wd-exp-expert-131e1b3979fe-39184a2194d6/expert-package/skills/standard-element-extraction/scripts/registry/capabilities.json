@@ -279,7 +279,7 @@
         "ops": {
           "summary": "semantica://graph/summary",
           "decisions": "semantica://decisions/list",
-          "ingest": "BLOCKED_NO_TOOL"
+          "ingest": "QUEUE_ONLY（写 payload 到 out/semantica-queue/，待 graph.ingest 工具挂载后推送）"
         }
       },
       "config_schema": {
@@ -315,12 +315,46 @@
         "ingest": "dry-run only；命名空间 std:<slug>；写入工具未挂载（requires graph.ingest tool）"
       },
       "status": "OK",
-      "status_reason": "实测可读：2439 节点 / 26 决策 / graph_ready=true",
+      "status_reason": "读：summary 可用；写：MCP 未挂写入工具，改走队列",
       "owner": "semantica MCP（共享图）",
       "conformance": [
         "summary 可读且 graph_ready=true",
         "超时返回 unavailable 且不改变 gate"
       ]
+    },
+    "audit.findings": {
+      "kind": "tool",
+      "version": "1.0.0",
+      "impl": {
+        "runtime": "python3",
+        "entry": "${SKILL}/scripts/audit_findings.py",
+        "args": [
+          "--out",
+          "{out}",
+          "--text",
+          "{text}"
+        ]
+      },
+      "config_schema": {
+        "out": {
+          "type": "path"
+        },
+        "text": {
+          "type": "path"
+        }
+      },
+      "contract": {
+        "outputs": [
+          "audit_findings.json"
+        ],
+        "target_size_kb": 6
+      },
+      "owner": "standard-element-extraction",
+      "conformance": [
+        "HJ84: 0.16s / ~1KB；锚/覆盖/谓词/ID 一次算完"
+      ],
+      "status": "STANDARD",
+      "note": "轻量审计标准入口：审计员只读本文件 + 抽 5 样本，不重读全文"
     }
   },
   "skill_root": "${SKILL}",

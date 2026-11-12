@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    "{text}"
+  ],
+  "steps": [
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/cap.py probe {pdf}",
+      "when": "{pdf}"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/clause_split.py --text {text} --out {out}/_split.json"
+    },
+    {
+      "run": "llm",
+      "call": "clauses.judge",
+      "schema": "clause_registry.schema.json",
+      "chunk": "by_chapter",
+      "max_items": 20,
+      "instruction": "只改差异：补漏条款、判 modality/type、章节角色、引用状态、缺口分类"
+    },
+    {
+      "run": "gate",
+      "cmd": "python3 {skill}/scripts/validate_node.py --node clauses --out {out} --text {text}"
+    }
+  ],
+  "id": "clauses"
+}

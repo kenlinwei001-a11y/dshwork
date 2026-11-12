@@ -1,0 +1,29 @@
+{
+  "inputs": [
+    "{out}/01-clauses.json",
+    "{out}/02-elements.json"
+  ],
+  "steps": [
+    {
+      "run": "llm",
+      "call": "rules.cards",
+      "schema": "rule_card.schema.json",
+      "chunk": "by_category",
+      "max_items": 30,
+      "instruction": "只出卡片判定字段；覆盖矩阵不写"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/build_coverage.py --clauses {out}/01-clauses.json --rules {out}/03-rules.json --write"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/classify_gaps.py --rules {out}/03-rules.json --write"
+    },
+    {
+      "run": "gate",
+      "cmd": "python3 {skill}/scripts/validate_node.py --node rules --out {out} --text {text}"
+    }
+  ],
+  "id": "rules"
+}

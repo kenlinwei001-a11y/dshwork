@@ -1,0 +1,41 @@
+{
+  "inputs": [
+    "{out}/01-clauses.json"
+  ],
+  "steps": [
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/standard_store.py --clauses {out}/01-clauses.json --text {text} --db {out}/store.db"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/extract_candidates.py --clauses {out}/01-clauses.json --text {text} --out {out}/candidates.json"
+    },
+    {
+      "run": "llm",
+      "call": "elements.judge",
+      "schema": "judgments.schema.json",
+      "chunk": "by_family",
+      "max_items": 30,
+      "instruction": "只写判断：family/statement/obligation/applicability/origin；参数用 ref，不重抄数值"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/assemble_elements.py --clauses {out}/01-clauses.json --candidates {out}/candidates.json --judgments {out}/judgments.json --out {out}/02-elements.json"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/convert_refs.py --elements {out}/02-elements.json --db {out}/store-*.db --out {out}/02-elements.refs.json"
+    },
+    {
+      "run": "script",
+      "cmd": "python3 {skill}/scripts/resolve.py --elements {out}/02-elements.refs.json --db {out}/store-*.db --out {out}/02-elements.resolved.json",
+      "assert": "dangling==0"
+    },
+    {
+      "run": "gate",
+      "cmd": "python3 {skill}/scripts/validate_node.py --node elements --out {out} --text {text}"
+    }
+  ],
+  "id": "elements"
+}
