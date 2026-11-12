@@ -50,7 +50,7 @@ say "存档目录        : $SRC"
 say "模式            : $MODE"
 CHANGED=0
 
-step "1/4 专家（experts / preferences / revisions）"
+step "1/5 专家（experts / preferences / revisions）"
 mkdir -p "$SRC/experts"
 for sub in experts preferences revisions; do
   src_dir="$DSH_HOME/storages/workdsh_experts/$sub"
@@ -67,7 +67,7 @@ for sub in experts preferences revisions; do
   fi
 done
 
-step "2/4 Agent 预设（只导已发布修订引用的）"
+step "2/5 Agent 预设（只导已发布修订引用的）"
 # 预设有两个真实位置：系统读取的 DSH_HOME/.agent-presets，以及 agents 侧的编译产物目录
 PRESET_SRC_A="$DSH_HOME/.agent-presets"
 PRESET_SRC_B="$AGENTS_HOME/.workdsh-state/experts/presets"
@@ -120,7 +120,7 @@ else
   say "预设处理完成（目录：$SRC/agent-presets）"
 fi
 
-step "3/4 技能（用户根 -> skills，Profile 根 -> skills-profile）"
+step "3/5 技能（用户根 -> skills，Profile 根 -> skills-profile）"
 copy_skills() {
   from_dir="$1"; to_dir="$2"; label="$3"
   if [ ! -d "$from_dir" ]; then say "跳过 ${label}（不存在）"; return 0; fi
@@ -149,7 +149,7 @@ copy_skills() {
 copy_skills "$AGENTS_HOME/skills" "$SRC/skills" "用户根技能"
 copy_skills "$DSH_HOME/skills" "$SRC/skills-profile" "Profile 根技能"
 
-step "4/4 MCP 连接器定义"
+step "4/5 MCP 连接器定义"
 SRCD="$DSH_HOME/storages/workdsh_connectors/definitions"
 if [ -d "$SRCD" ]; then
   if [ "$MODE" = "check" ]; then
@@ -169,6 +169,42 @@ if [ -d "$SRCD" ]; then
   fi
 else
   say "跳过（没有 definitions 目录）"
+fi
+
+step "5/5 workflow-lite 工作流"
+WF_SRC="$DSH_HOME/workflow-lite/workflows"
+WF_DST="$SRC/workflow-lite/workflows"
+wf_count() {
+  local dir="$1" n=0 f
+  for f in "$dir"/*.json; do
+    [ -f "$f" ] || continue
+    # 「新工作流」是插件自带的起始模板，不是定制工作流
+    [ "$(basename "$f")" = "新工作流.json" ] && continue
+    n=$((n+1))
+  done
+  echo "$n"
+}
+if [ -d "$WF_SRC" ]; then
+  if [ "$MODE" = "check" ]; then
+    new_n=$(wf_count "$WF_SRC")
+    old_n=0
+    [ -d "$WF_DST" ] && old_n=$(wf_count "$WF_DST")
+    if [ "$new_n" != "$old_n" ]; then say "工作流数量不同：存档 $old_n / 本机 $new_n"; CHANGED=1; fi
+  else
+    if [ "$MODE" = "export" ]; then rm -rf "$WF_DST"; fi
+    mkdir -p "$WF_DST"
+    n=0; skipped=0
+    for f in "$WF_SRC"/*.json; do
+      [ -f "$f" ] || continue
+      b="$(basename "$f")"
+      if [ "$b" = "新工作流.json" ]; then skipped=$((skipped+1)); continue; fi
+      do_cp "$f" "$WF_DST/$b"
+      n=$((n+1))
+    done
+    say "工作流：$n 个（跳过插件默认模板 $skipped 个）"
+  fi
+else
+  say "跳过（没有 workflow-lite 数据目录）"
 fi
 
 step "结果"

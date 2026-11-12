@@ -70,7 +70,7 @@ echo "  MCP servers 根  : $MCP_SERVERS_ROOT"
 echo "  semantica venv  : $SEMANTICA_VENV"
 echo
 
-echo "== 1/4 技能 =="
+echo "== 1/5 技能 =="
 run mkdir -p "$AGENTS_HOME/skills"
 n=0
 for d in "$SRC/skills"/*/; do
@@ -98,7 +98,7 @@ if [ -d "$SRC/skills-profile" ]; then
   echo "  装了 $m 个 Profile 技能 -> $DSH_HOME/skills"
 fi
 
-echo "== 2/4 MCP 连接器 =="
+echo "== 2/5 MCP 连接器 =="
 DEST="$DSH_HOME/storages/workdsh_connectors/definitions"
 run mkdir -p "$DEST"
 warned=0
@@ -119,12 +119,12 @@ done
 echo "  已装到 ${DEST}（$warned 条命令缺失）"
 
 if [ "${SKIP_EXPERTS:-0}" = "1" ]; then
-  echo "== 3/4 专家 =="
+  echo "== 3/5 专家 =="
   echo "  [skip] SKIP_EXPERTS=1：保留目标里已有/已恢复的专家与预设"
-  echo "== 4/4 Agent 预设 =="
+  echo "== 4/5 Agent 预设 =="
   echo "  [skip] SKIP_EXPERTS=1"
 else
-  echo "== 3/4 专家 =="
+  echo "== 3/5 专家 =="
   run mkdir -p "$DSH_HOME/storages/workdsh_experts"
   for sub in experts preferences revisions; do
     [ -d "$SRC/experts/$sub" ] || continue
@@ -133,13 +133,31 @@ else
   echo "  已装 experts / preferences / revisions"
   echo "  跳过 bindings/：那是按会话绑定的状态，换机器后对应的会话不存在（装了也没用）"
 
-  echo "== 4/4 Agent 预设 =="
+  echo "== 4/5 Agent 预设 =="
   if [ -d "$SRC/agent-presets" ]; then
     run mkdir -p "$DSH_HOME/.agent-presets"
     run cp -R "$SRC/agent-presets/." "$DSH_HOME/.agent-presets/"
     rewrite_tree "$DSH_HOME/.agent-presets"
     echo "  已装到 $DSH_HOME/.agent-presets（已改写存档里的原机路径）"
   fi
+fi
+
+echo "== 5/5 workflow-lite 工作流 =="
+WF_SRC="$SRC/workflow-lite/workflows"
+WF_DST="$DSH_HOME/workflow-lite/workflows"
+if [ -d "$WF_SRC" ]; then
+  run mkdir -p "$WF_DST"
+  n=0; skipped=0
+  for f in "$WF_SRC"/*.json; do
+    [ -f "$f" ] || continue
+    b="$(basename "$f")"
+    if [ -e "$WF_DST/$b" ]; then skipped=$((skipped+1)); continue; fi
+    run cp -p "$f" "$WF_DST/$b"
+    n=$((n+1))
+  done
+  echo "  装了 $n 个工作流（跳过已存在 $skipped 个）-> $WF_DST"
+else
+  echo "  跳过（没有 workflow-lite 存档）"
 fi
 
 cat <<EOF

@@ -1,0 +1,585 @@
+{
+  "nodes": [
+    {
+      "id": "res-ironclad",
+      "type": "wfResource",
+      "position": {
+        "x": 80,
+        "y": 761
+      },
+      "data": {
+        "label": "抽取铁律",
+        "description": "每一步都适用的抽取口径与红线（10 条）",
+        "items": [
+          {
+            "kind": "text",
+            "value": "1 只抽正文写明的；没有的不猜。每个数值、阈值、单位必须能在标准原文检索命中（条款+页码+引文）。\n2 模态照原文：应/须→MUST，宜→SHOULD，可→MAY，不应/不得→MUST_NOT，背景与注→INFO；不得升级或降级。\n3 来源三层：verbatim（原文）/ derived（由原文参数推出，必写 derive_from）/ convention（行业惯例，必写来源与前提）。规则默认只采信前两层。\n4 要素按 SE-12 族抽；每条要素带 element_id、obligation、evidence、source_layer、anchor{standard,clause,page,quote}、origin。\n5 规则不分级只分类 C1–C8；每张卡带 category、predicate 或 qualitative_check、evidence_required、check_targets、on_missing、anchor。\n6 缺证不默认通过：on_missing 只能是 FAIL 或 UNVERIFIABLE。\n7 引用闭包：规范性引用文件（含被引文件自身再引用的）逐一登记；未上传标 PENDING_UPLOAD 并进 gaps；公告/前言里的标准号只作背景、不扩围，但写明理由。\n8 实验室文件未提供时，lab_alignment 全部 PENDING_DOC：规则按标准判，注明「内部落地待核」。\n9 check_targets.doc_type 只用这 7 类：检测报告 / 原始记录 / 前处理记录 / 仪器使用记录 / 试剂配制记录 / 质控记录 / 样品流转单。\n10 反算、量纲、区间端点、分档衔接一律用 python3 算，不心算；数字用半角，单位与精度保留原文。\n11 中文交付，字段名与枚举用英文；不签发报告合格结论，只给判据与口径。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-kit",
+      "type": "wfResource",
+      "position": {
+        "x": 304,
+        "y": 761
+      },
+      "data": {
+        "label": "抽取规范",
+        "description": "SES 字段规范、规则卡语法、准入闸、交接契约与端到端范例",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "std-extract-kit/",
+            "note": "按需读：ses-schema.md（字段/ID/校验/图算子）、rule-card-spec.md（规则卡 C1–C8 与 predicate 语法）、scope-gate.md（准入闸四指标）、handoff-contract.md（交接与判定枚举）、worked-example-hj671.md（HJ 671 范例：学结构，不抄数值）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-standard",
+      "type": "wfResource",
+      "position": {
+        "x": 528,
+        "y": 761
+      },
+      "data": {
+        "label": "标准原文",
+        "description": "本次抽取的标准正文（文本层导出，带页码标记）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "hj535/HJ535.txt",
+            "note": "`===== PAGE n =====` 是页码标记，page 取 n。缺省取此文件；输入节点（标准文本路径）给了别的路径时以输入为准，并把实际路径写进产出。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "clauses",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 80
+      },
+      "data": {
+        "label": "解构与引用",
+        "description": "标准建档、条款登记、引用闭包、方法族与初始缺口",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "目标：把标准正文变成可校验的条款登记册、引用闭包与方法族，产出 01-clauses.json。完成标准：每条编号条款都已登记，且每条 quote 都能在原文检索命中。\n\nA 建档\n- 用 shasum -a 256 取文件指纹前 12 位；页数取 `===== PAGE n =====` 的最大 n；standard_id 用「标准号-年号」半角写法（如 HJ 535-2009），与封面核对；记录 published / effective / superseded_by。\n- 先读目次，解析「章号→章标题→角色」（范围/引用/原理/干扰/试剂/仪器/样品/步骤/计算/精密度/质控/注意），角色表写进 section_roles。不要按章号假设角色。\n\nB 条款登记\n- 逐条登记 clause、parent、heading、page、quote、modality、type；页码取 PAGE 标记。\n- 合并排版的多条款（如一行里排了 4.6–4.12）按标准自身编号拆开，各自给 quote，不许概括。\n- 注、脚注、图注也登记，modality=INFO、type=informative。\n\nC 引用闭包\n- 第 2 章规范性引用 + 正文提到的引用文件逐一登记。\n- 工作区只有本标准 → 未上传的写 PENDING_UPLOAD，写清影响哪些条款与最小补充请求。\n- 公告/前言里提到的标准号（如被替代的旧标准）只进 background_refs，写明「不扩围」理由。\n\nD 方法族与缺口\n- method_family：本方法与同族方法的参数口径差异；未上传的方法只登记 PENDING_UPLOAD，不填数值。\n- gaps：已发现的 GAP-REF / GAP-DATA / GAP-AMB / GAP-CONFLICT 登记（gap_id、type、description、affected_clauses、request、owner）。\n\nE 交付\n- 回复给出：标准号、页数、指纹、条款数、normative 数、引用数与待上传数、缺口数、方法族条目数、产出路径。\n- 口径不清的写进 gaps，不替标准做决定。"
+      }
+    },
+    {
+      "id": "res-01-clauses",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 198
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "01-clauses.json",
+            "note": "结构固定（JSON，只写这些顶层键）：standard_id / title / source_fingerprint{sha256_12,pages} / status{published,effective,superseded_by} / section_roles[{chapter,heading,role}] / clause_registry[] / reference_register[] / background_refs[] / method_family[] / gaps[] / counts{clauses,normative,refs,pending_refs,gaps}。\n- clause_registry 每条：clause,parent,heading,page,quote(≤200字,原文连续片段),modality,type。\n- reference_register 每条：ref_id,standard_no,title,referenced_by,scope,status,affected_clauses,depth,request。\n- background_refs 每条：standard_no,mentioned_in,reason（为何不扩围）。\n- gaps 每条：gap_id,type,description,affected_clauses,request,owner。\n只写本次这一份标准；不保留上一次内容；UTF-8、2 空格缩进。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "elements",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 235
+      },
+      "data": {
+        "label": "要素与计算",
+        "description": "SE-12 要素、参数、公式卡与流程拓扑",
+        "icon": "target",
+        "color": "green",
+        "prompt": "目标：把条款登记册变成 SE-12 要素包、公式卡与流程拓扑，产出 02-elements.json。完成标准：每个 normative 条款至少 1 个要素或写明「无要素」理由；12 族各有交代；数值全部能回原文。\n\nA 要素\n- 逐条款抽要素，族别按内容定（META/SCOPE/PRIN/SAMP/PROC/APPA/MATL/INTR/CALC/QC/PERF/RISK）。\n- 表格逐格抽：标准溶液浓度与配制、试剂等级与保存期、精密度/准确度分档——保留原文单位与精度，不合并行。\n- 图转拓扑：有流程/装置图就转成节点+边+通道参数；图与正文冲突登记 GAP-CONFLICT。\n- 每条要素写全：element_id、family、statement、parameters[{name,value,unit,op}]、obligation、applicability、evidence、source_layer、anchor、origin（derived 写 derive_from）。\n\nB 公式与自洽\n- formula_cards：expression、symbols（含义/单位/量纲）、applicability、rounding、self_check（用 python3 按标准数据反算，写 inputs/expected/computed/pass）、anchor。\n- 交叉核对量程端点、稀释倍数、结果位数、单位是否处处一致；不一致登记 GAP-CONFLICT，不擅自改。\n- 标准未给的性能阈值 → 进 gaps（GAP-PERF），不造数。\n\nC 流程\n- procedure_graph：步骤节点（id/type/label/clause/params/evidence）+ 边（from/to/operator）。operator 只用 schema 枚举；每条边要写得出可执行含义，否则不入图。\n- dependency_graph：结果 ← 公式 ← 校准 ← 试剂/仪器 ← 环境/质控 的反向链（computes/gates/requires/traces）。\n\nD 交付\n- 回复给出：要素数（各族分布）、公式卡数与自检通过数、图节点/边数、新增缺口数、空族及理由、产出路径。"
+      }
+    },
+    {
+      "id": "res-02-elements",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 353
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "02-elements.json",
+            "note": "结构固定（JSON）：elements[] / formula_cards[] / procedure_graph{nodes,edges} / dependency_graph{nodes,edges} / family_coverage[{family,count,note}] / gaps[] / counts{elements,formulas,gaps} / revision_log[]。\n- elements 每条必带：element_id,family,statement,parameters,obligation,applicability,evidence,source_layer,anchor,origin。\n- formula_cards 每条必带：formula_id,clause,expression,symbols,applicability,rounding,self_check,anchor。\n- 覆盖 12 族；某族 no 内容就写 count:0 且 note 给理由。\n- revision_log 初次为 []；回修时每行一个对象：{\"round\":1,\"audit_issue\":\"B-01\",\"change\":\"改了什么\"}。\n只写本次结果；quote ≤200 字，不搬原文大段。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "rules",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 109
+      },
+      "data": {
+        "label": "规则与依赖",
+        "description": "规则卡、覆盖矩阵、依赖图与实验室对齐",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "目标：把要素变成可判定规则卡、覆盖矩阵、依赖图与实验室对齐，产出 03-rules.json。完成标准：每条可判定要求都有一张卡；每张卡都有 anchor 与 on_missing。\n\nA 规则卡\n- 逐条可判定要求 → 规则卡：rule_id（ARC-{分类}-{条款}-{序号}）、title、category C1–C8、clause、modality、requirement、predicate{field,op,value,unit,window} 或 qualitative_check、applicability、evidence_required、check_targets、on_missing、on_fail、source_layer、anchor。\n- 有数值阈值的写成谓词；纯定性要求写 qualitative_check（acceptable / needs_review / unacceptable），标「需人工确认」，不自动判 PASS。\n- 标准没给阈值的要求降级为记录性检查，notes 写「标准未给阈值」并进 GAP-PERF；不造阈值。\n- 每条规则至少一种 locator_strategy 能在真实报告里命中（field_label > table_header > keyword > quote_search）；match_hints 写报告里真会出现的字样。\n\nB 覆盖矩阵\n- coverage_matrix 一行一条条款：clause、elements、rules、judgeable（yes/no）、gap_ids、note（无规则时写理由）。\n- 核对 C1–C8 每类都有规则，或写明本方法该类不适用及理由。\n\nC 依赖与对齐\n- dependency_graph：结果 ← 公式 ← 校准 ← 试剂/仪器 ← 质控门；每条边带 operator 与可执行含义。\n- lab_alignment：按输入节点给的实验室文件情况处理；没有文件 → 全部 PENDING_DOC，decision 写「按标准判，内部落地待核」。\n- gaps 合并去重，补 GAP-EXTERNAL / GAP-PERF。\n\nD 交付\n- 回复给出：规则数、C1–C8 分布、可判定条款占比、定性规则数、coverage_matrix 行数、缺口数、产出路径。"
+      }
+    },
+    {
+      "id": "res-03-rules",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 227
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "03-rules.json",
+            "note": "结构固定（JSON）：audit_rule_cards[] / coverage_matrix[] / dependency_graph{nodes,edges} / lab_alignment[] / gaps[] / counts{rules,by_category,judgeable_clauses,gaps} / revision_log[]。\n- 规则卡必带：rule_id,title,category,clause,modality,requirement,predicate 或 qualitative_check,applicability,evidence_required,check_targets,on_missing,on_fail,source_layer,anchor。\n- coverage_matrix 一行一条条款。\n- lab_alignment 每条：alignment_id,requirement,requirement_text,lab_doc,lab_doc_type,lab_clause,status,difference,decision。\n- revision_log 初次为 []；回修时每行 {\"round\":1,\"audit_issue\":\"B-01\",\"change\":\"...\"}。\n只写本次结果；不写过程分析。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "audit",
+      "type": "wfNode",
+      "position": {
+        "x": 1472,
+        "y": 109
+      },
+      "data": {
+        "label": "质量审计",
+        "description": "独立质量审计与判定（VERDICT: pass/fail 选边）",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "目标：独立复核 01/02/03 与标准原文，判定这批抽取能不能交给审核专家。只做审计，不改上游文件。\n\nA 复核（以原文为准，不信上游自述）\n- 用 python3/grep 逐条核每个 anchor.quote 能否在标准文本命中（去空白后），算出命中率。\n- 覆盖率：每条编号条款是否都有要素/规则或写明理由；normative 条款缺要素即阻塞。\n- 引用闭包：第 2 章与正文引用是否全部登记；PENDING_UPLOAD 是否都进了 gaps。\n- 防编造：随机抽 12 个数值回原文核对（条款+页码），有一处原文没有 → 阻塞。\n- 另核：单位与量纲、模态映射、ID 唯一性、on_missing 取值、check_targets 完整性、C1–C8 分类完整。\n\nB 判定\n- 阻塞（B-xx）：会让审核判错的——锚不命中、覆盖缺口、编造数值、谓词缺单位、on_missing 为空、规则指向不存在的条款。\n- 非阻塞（W-xx）：可改进的——措辞、match_hints 偏少、缺口描述不具体。\n- 通过仅当：阻塞 0 条 且 quote 命中率 100% 且 normative 条款覆盖 100%。否则不通过。\n\nC 交付\n- 04-audit.md 按资源说明写，其中「## 判定」一节的结论写 PASS 或 FAIL。\n- 回复末尾单独一行写 `VERDICT: pass` 或 `VERDICT: fail`（英文小写、原样，插件按这一行选下一步方向），前面给阻塞数、命中率与覆盖数。\n- 不改任何上游文件；发现的问题只写进审计记录。"
+      }
+    },
+    {
+      "id": "res-04-audit",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 227
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "04-audit.md",
+            "note": "Markdown，≤ 60 行，结构固定，节标题照抄：\n## 指标（表：条款覆盖 / quote 命中率 / 要素数 / 规则数 / 定性规则数 / 缺口数）\n## 阻塞 B-xx（每条一行：编号 · 位置（文件+条目+条款）· 问题 · 依据原文行）\n## 非阻塞 W-xx（同上）\n## 判定（一句话 + PASS/FAIL）\n只写本次审计结论；不复述三份 JSON；每格 ≤ 60 字；详细核对过程写在回复里。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fix",
+      "type": "wfNode",
+      "position": {
+        "x": 1820,
+        "y": 109
+      },
+      "data": {
+        "label": "回修",
+        "description": "按审计阻塞清单回修要素与规则，再交回审计",
+        "icon": "fix",
+        "color": "coral",
+        "prompt": "目标：按审计的阻塞清单回修 02-elements.json 与 03-rules.json，使下一轮审计通过。完成标准：B-xx 每条都有处置（改掉，或升级为缺口并说明为什么不能改）。\n\nA 回修\n- 先读 04-audit.md 的阻塞清单，逐条定位到文件与条目，按原文修；改完自己用 grep 复核 quote 命中。\n- 只改被点名的条目及其直接依赖（如改了阈值要同步 coverage_matrix 的 judgeable）；不动没被点到的部分。\n- 属于标准自身问题的（表述含糊、条款矛盾、未给阈值）→ 登记或升级 gaps，在回复里说明为何不能改。\n\nB 记录\n- 两份文件就地更新：保持原结构与顺序，不整份重写；在各自 revision_log 追加一行（round、audit_issue、change）。\n- 不引入原文没有的数值；不为了过审计删条目。\n\nC 交付\n- 回复：每条 B-xx 的处置（fixed / gaps / need-user）、改了哪些字段、还剩什么风险、两份文件路径。"
+      }
+    },
+    {
+      "id": "handoff",
+      "type": "wfNode",
+      "position": {
+        "x": 1820,
+        "y": 241
+      },
+      "data": {
+        "label": "打包交接",
+        "description": "合并 SES 包、接手说明与看板",
+        "icon": "test",
+        "color": "teal",
+        "prompt": "目标：把 01/02/03 与审计结论打包成下游可直接消费的 SES 包、接手说明和一张看板。完成标准：ses.json 顶层字段齐全、缺口可追、审核专家照 handoff 就能开工。\n\nA SES 包\n- 合并成 ses.json：standard_id、title、source_fingerprint、status、extraction、clause_registry、reference_register、elements、formula_cards、procedure_graph、dependency_graph、lab_alignment、method_family、audit_rule_cards、coverage_matrix、gaps、rule_set_id（RS-{standard_id}）。\n- 去重保序，ID 不重编；缺口带 affected_rules；审计指出的非阻塞问题在 handoff 里如实列出，不粉饰。\n\nB 接手说明\n- 05-handoff.md：标准身份与指纹、交付清单（文件→消费方）、覆盖统计、C1–C8 分布、缺口与待上传（含最小补充请求与责任方）、审核侧读取顺序与判定枚举、定位契约（quote 必须命中，命中不了标 UNLOCATED）、未完成事项。\n\nC 看板\n- dashboard.html：数据只从 ses.json 读，回答「这批抽取能不能交给审核」。自己生成，不引外网资源。\n\nD 交付\n- 回复：ses.json 路径、条款/要素/规则/缺口计数、审计判定、待上传文件清单、handoff 路径。"
+      }
+    },
+    {
+      "id": "res-ses",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 359
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "ses.json",
+            "note": "结构与字段按 std-extract-kit/ses-schema.md 的顶层结构；必填 standard_id、source_fingerprint、clause_registry、elements、audit_rule_cards。\n- 从 01/02/03 合并，去重保序，ID 不重编；追加 extraction{scope,date,extractor,schema_version} 与 rule_set_id。\n- gaps 合并三份与审计发现，每条带 affected_rules。\n- UTF-8、2 空格缩进；不写 Markdown、不写注释。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-05-handoff",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 429
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "05-handoff.md",
+            "note": "Markdown，≤ 80 行，节标题照抄：\n## 1 标准身份与指纹 / ## 2 交付清单（表：文件·内容·消费方） / ## 3 覆盖统计（表：条款/要素/规则/可判定条款/缺口） / ## 4 规则分布 C1–C8（表） / ## 5 缺口与待上传（表：缺口 ID·类型·影响规则·最小补充请求·责任方） / ## 6 审核侧怎么用（读取顺序、判定枚举、定位契约、UNLOCATED 处置） / ## 7 未完成事项与风险\n只写本次交付；不写抽取过程与推导；每格 ≤ 40 字，不够就指到 ses.json。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-dashboard",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 499
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "dashboard.html",
+            "note": "单文件 HTML，内联 CSS/JS，不引外网资源；数据只从 ses.json 读，构建时把数字写进去。\n回答一个问题：这批抽取能不能交给审核。\n- 主数字：条款覆盖率（%）与规则总数；旁边：要素数、缺口数、待上传引用数、审计判定。\n- 完整版：C1–C8 分布柱、缺口表、待上传清单。\n- 中文；每次整份重新生成，不在旧文件上追加。"
+          }
+        ],
+        "view": {
+          "width": 320,
+          "height": 176
+        }
+      }
+    },
+    {
+      "id": "ask-standard",
+      "type": "wfInput",
+      "position": {
+        "x": 164,
+        "y": 100
+      },
+      "data": {
+        "question": "这次抽哪份标准？填工作区里的文本路径",
+        "default": "hj535/HJ535.txt",
+        "placeholder": "如 hj535/HJ535.txt",
+        "hint": "PDF 先导出带页码标记的文本；不确定就保留默认",
+        "required": true
+      }
+    },
+    {
+      "id": "ask-lab",
+      "type": "wfInput",
+      "position": {
+        "x": 860,
+        "y": 129
+      },
+      "data": {
+        "question": "实验室内部文件（SOP / 质控规程 / 仪器说明书）在哪？没有就保留默认",
+        "kind": "textarea",
+        "default": "暂无：lab_alignment 全部标 PENDING_DOC，按标准判并注明「内部落地待核」",
+        "placeholder": "如 docs/SOP-001.docx、仪器说明书路径",
+        "hint": "有就写路径或贴要点；不确定保留默认"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "clauses->res-01-clauses",
+      "source": "clauses",
+      "target": "res-01-clauses",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "elements->res-02-elements",
+      "source": "elements",
+      "target": "res-02-elements",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "rules->res-03-rules",
+      "source": "rules",
+      "target": "res-03-rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "audit->res-04-audit",
+      "source": "audit",
+      "target": "res-04-audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "handoff->res-ses",
+      "source": "handoff",
+      "target": "res-ses",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "handoff->res-05-handoff",
+      "source": "handoff",
+      "target": "res-05-handoff",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "handoff->res-dashboard",
+      "source": "handoff",
+      "target": "res-dashboard",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "clauses->elements",
+      "source": "clauses",
+      "target": "elements",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "条款登记册与方法族结论交给下一步：要素必须回指这些条款号，不另编编号。"
+        }
+      }
+    },
+    {
+      "id": "clauses->rules",
+      "source": "clauses",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "引用闭包与缺口在规则化时继续生效：引用了未上传文件的规则要标出受影响范围。"
+        }
+      }
+    },
+    {
+      "id": "elements->rules",
+      "source": "elements",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "elements->audit",
+      "source": "elements",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "rules->audit",
+      "source": "rules",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "audit->fix#fail",
+      "source": "audit",
+      "target": "fix",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "fail",
+        "handoff": {
+          "note": "按 B-xx 逐条修：每条都要有处置（改掉 / 升级为缺口），别顺手改没被点到的条目。"
+        }
+      }
+    },
+    {
+      "id": "fix->audit",
+      "source": "fix",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "修完再跑一轮审计，只认新一份阻塞清单。"
+        }
+      }
+    },
+    {
+      "id": "audit->handoff#pass",
+      "source": "audit",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "pass",
+        "handoff": {
+          "note": "判定通过，按三份 JSON 打包；审计的非阻塞问题在第 7 节如实列出。"
+        }
+      }
+    },
+    {
+      "id": "ask-standard->clauses",
+      "source": "ask-standard",
+      "target": "clauses",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-standard->elements",
+      "source": "ask-standard",
+      "target": "elements",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-standard->rules",
+      "source": "ask-standard",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-standard->audit",
+      "source": "ask-standard",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-standard->fix",
+      "source": "ask-standard",
+      "target": "fix",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-lab->rules",
+      "source": "ask-lab",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-01-clauses->elements",
+      "source": "res-01-clauses",
+      "target": "elements",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-01-clauses->rules",
+      "source": "res-01-clauses",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-01-clauses->handoff",
+      "source": "res-01-clauses",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-02-elements->rules",
+      "source": "res-02-elements",
+      "target": "rules",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-02-elements->audit",
+      "source": "res-02-elements",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-02-elements->handoff",
+      "source": "res-02-elements",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-03-rules->audit",
+      "source": "res-03-rules",
+      "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-03-rules->handoff",
+      "source": "res-03-rules",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-04-audit->fix",
+      "source": "res-04-audit",
+      "target": "fix",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-04-audit->handoff",
+      "source": "res-04-audit",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "fix->res-02-elements",
+      "source": "fix",
+      "target": "res-02-elements",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "fix->res-03-rules",
+      "source": "fix",
+      "target": "res-03-rules",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".workflow-lite/runs/{instance}/out",
+    "mode": "subagent",
+    "runState": true
+  }
+}

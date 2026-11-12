@@ -38,7 +38,7 @@ Web 预览的 `preview:install` 会随安装一并启用 `dshmarket`、`@cocofhu
 | `scripts/restart-preview.sh` | 稳妥重启预览，等待端口并打印本次启动的访问 URL | 更新、重建或重启后 |
 | `scripts/doctor.sh` | 一键巡检服务、文件句柄、数据量、专家预设和最近启动错误 | 启动前 / 定期 / 异常时 |
 | `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
-| `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
+| `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / workflow-lite 工作流 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
 | `mcp-servers/` | MCP 服务端程序包的 `package.json` + `package-lock.json` | 由 `install-mcp-servers.sh` 使用 |
 | `connectors/*.json` | MCP 连接器定义（部署里登记用） | 重建部署时 |
 | `launchd/com.workdsh.preview.plist.template` | launchd 服务模板（含 `KeepAlive`，进程挂了会自动拉起） | 新机器 |
@@ -77,7 +77,7 @@ bash deploy/scripts/install-mcp-servers.sh
 # 3. semantica MCP（建 venv + 装包 + 打上游 bug 补丁）
 bash deploy/scripts/install-semantica-mcp.sh
 
-# 4. 把存档的配置装进部署：技能 / 专家 / MCP 连接器 / Agent 预设
+# 4. 把存档的配置装进部署：技能 / 专家 / MCP 连接器 / Agent 预设 / workflow-lite 工作流
 #    —— 只克隆不跑这步，系统里看不到这些内容（deploy/config/ 只是存档，不会自动生效）
 bash deploy/scripts/install-local-config.sh [DSH_HOME] [DSH_AGENTS_HOME]
 #    会改写存档里写死的原作者路径；装完告警哪些 MCP 的命令不存在
@@ -109,6 +109,8 @@ bash deploy/scripts/reapply-local-patches.sh
 - `experts/bindings/` **不安装**：那是按会话 ID 绑定的状态，换机器后对应会话不存在。
   `plugin-manifest/` **也不安装**：里面的 package.json 写的是本机缓存 tarball 的绝对路径，
   属于安装产物，应由 `preview:install` 流程重新生成。
+- `workflow-lite/` 会由 `install-local-config.sh` 装进 `<DSH_HOME>/workflow-lite/workflows/`；
+  目标已有同名工作流时跳过，不覆盖。插件自带的「新工作流」起始模板不进存档。
 
 ### 会话记录（`../会话记录/`）是归档，不是可导入的会话
 
