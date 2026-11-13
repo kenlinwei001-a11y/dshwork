@@ -23,7 +23,7 @@ import re
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 NODE_ID_RE = re.compile(r"(N-[0-9a-f]{12})")
-VALUE_LINE_RE = re.compile(r"^\s{2}·\s")
+VALUE_LINE_RE = re.compile(r"^\s*·\s")
 
 VALUE_KINDS = {"fact", "quantity", "quantity_tolerance", "spec", "grade"}
 HARD_EFFECT = {"A（强制性）", "B（强）"}
@@ -125,7 +125,9 @@ def _ov(node: Dict[str, Any], overrides: Dict[str, Any]) -> Any:
     """what-if 覆盖：先按节点 ID，再按谓词（pred:xxx），便于「改一类值」而不用记 ID。"""
     if not overrides:
         return None
-    nid = node.get("id")
+    nid = str(node.get("id") or "")
+    if nid.startswith("EN-") or node.get("kind") == "reference_subject" or node.get("predicate") == "实体名":
+        return None          # 实体名不是量，不参与数值覆盖
     if nid in overrides:
         return overrides[nid]
     pred, subj = str(node.get("predicate") or ""), str(node.get("subject") or "")
@@ -133,12 +135,20 @@ def _ov(node: Dict[str, Any], overrides: Dict[str, Any]) -> Any:
         return overrides["pred:%s" % pred]
     if "pred:%s" % subj in overrides:
         return overrides["pred:%s" % subj]
+    # 标签覆盖：仅允许「同义后缀」命中（数量/合计/总计/值），避免 地上建筑面积 误伤 地上建筑面积缺口
+    ALLOWED_SUFFIX = ("数量", "合计", "总计", "值")
+    if node.get("kind") in ("reference_subject",) or pred == "实体名":
+        return None
     for key, val in overrides.items():
         if not key.startswith("pred:"):
             continue
         label = key[5:]
-        if len(label) >= 4 and (pred.startswith(label) or subj.startswith(label)):
-            return val
+        for field in (pred, subj):
+            if not field.startswith(label):
+                continue
+            rest = field[len(label):]
+            if rest == "" or rest in ALLOWED_SUFFIX or rest.lstrip("·").strip() in ALLOWED_SUFFIX:
+                return val
     return None
 
 
@@ -267,7 +277,8 @@ def _fmt_value(node: Dict[str, Any], overrides: Dict[str, Any]) -> str:
 def render_section(prompt_entry: Dict[str, Any], corpus: Dict[str, Any],
                    fills: Dict[str, Dict[str, Any]],
                    rules_res: Dict[str, Dict[str, Any]],
-                   overrides: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+                   overrides: Optional[Dict[str, Any]] = None,
+                   values_in_prompt: bool = True) -> Dict[str, Any]:
     overrides = overrides or {}
     nodes = corpus["nodes"]
     by_id = corpus["by_id"]
@@ -283,9 +294,16 @@ def render_section(prompt_entry: Dict[str, Any], corpus: Dict[str, Any],
     out_lines: List[str] = []
     value_rows: List[Dict[str, Any]] = []
     soft_tasks: List[Dict[str, Any]] = []
+    seen_nodes = set()
     for raw in text.splitlines():
+        if (not values_in_prompt) and VALUE_LINE_RE.match(raw) and re.search(r"〔(?:CL|EV|RS|TD)-", raw):
+            out_lines.append("  · {{论断或证据引文}}〔{{引文编号}}〕   # 引文属项目内容，见本节论断/证据表")
+            continue
         if VALUE_LINE_RE.match(raw) and NODE_ID_RE.search(raw):
             nid = NODE_ID_RE.search(raw).group(1)
+            if nid in seen_nodes:
+                continue
+            seen_nodes.add(nid)
             node = by_id.get(nid) or {}
             f = fills.get(nid) or {}
             mode, cons = f.get("fill_mode", "?"), f.get("constraint", "?")
@@ -320,24 +338,57 @@ def render_section(prompt_entry: Dict[str, Any], corpus: Dict[str, Any],
                     note = "   # ⚠️复算 %s 不符（%s），须重算或确认" % (rv, rid)
                 else:
                     note = "   # = %s 复算一致" % rid
-            line = "  · %s = %s ｜ %s〔%s〕%s%s" % (
-                node.get("subject") or "?", _fmt_value(node, overrides), _loc(node), nid, tag, note)
+            if values_in_prompt:
+                line = "  · %s = %s ｜ %s〔%s〕%s%s" % (
+                    node.get("subject") or "?", _fmt_value(node, overrides), _loc(node), nid, tag, note)
+            else:
+                subj = str(node.get("subject") or "?")
+                try:
+                    from .prompt_hygiene import PROJECT_ENTITIES
+                except Exception:
+                    PROJECT_ENTITIES = ()
+                if any(e in subj for e in PROJECT_ENTITIES):
+                    subj = "{{项目主体}}"
+                line = "  · 节点 %s ｜ %s·%s ｜%s ｜ 取值见本节事实表" % (
+                    nid, subj, node.get("predicate") or "?", tag)
             out_lines.append(line)
             value_rows.append({"node": nid, "tag": tag, "value": _fmt_value(node, overrides)})
+        elif re.match(r"本节原文约\s*\d+\s*字符", raw) and not values_in_prompt:
+            out_lines.append("本节篇幅与切片数：见本节工作包（不在提示词内固化）。")
         elif re.match(r"^\s{2}·\s*另\s*\d+\s*条见本节事实表", raw):
             out_lines.append("  · 另 %d 条见本节事实表。" % max(0, int(prompt_entry.get("facts_count") or 0) - len(value_rows)))
         elif re.match(r"^\s{2}·\s*R-[^\s:：]+\s*[:：]", raw):
             rid = re.search(r"(R-[^\s:：]+)", raw)
             if rid and rid.group(1) in rules_res:
                 rr = rules_res[rid.group(1)]
-                status = {"ok": "可复算 ⇒ %s" % rr.get("value"),
-                          "undefined": "缺输入 ⇒ undefined（%s）" % "、".join(rr.get("missing") or []),
-                          "expr_error": "算式错误 ⇒ %s" % rr.get("error")}.get(rr.get("status"), rr.get("status"))
+                if values_in_prompt:
+                    status = {"ok": "可复算 ⇒ %s" % rr.get("value"),
+                              "undefined": "缺输入 ⇒ undefined（%s）" % "、".join(rr.get("missing") or []),
+                              "expr_error": "算式错误 ⇒ %s" % rr.get("error")}.get(rr.get("status"), rr.get("status"))
+                else:
+                    status = {"ok": "可复算（结果见事实表）",
+                              "undefined": "缺输入 ⇒ undefined（%s）" % "、".join(rr.get("missing") or []),
+                              "expr_error": "算式待修"}.get(rr.get("status"), rr.get("status"))
                 out_lines.append("%s   # %s" % (raw, status))
             else:
                 out_lines.append(raw)
-        elif raw.strip().startswith("·") and ("待审冲突" in raw or "确认后" in raw or "strong" in raw):
-            out_lines.append("%s   # 冲突随输入变化：输入改动后须重新确认，不得沿用旧判定" % raw)
+        elif raw.strip().startswith("·") and ("／" in raw or "待审冲突" in raw or "确认后" in raw or "strong" in raw):
+            if values_in_prompt:
+                out_lines.append("%s   # 冲突随输入变化：输入改动后须重新确认，不得沿用旧判定" % raw)
+            else:
+                out_lines.append("  · 待审冲突：见本节冲突表（并列值不裁决；输入改动后须重新确认）")
+        elif (not values_in_prompt) and re.match(r"^\s*·\s*\[[a-z_]+\]", raw):
+            out_lines.append("  · [{{claim_type}}] {{论断原文（取值走节点槽位，见本节论断表）}}")
+        elif (not values_in_prompt) and VALUE_LINE_RE.match(raw) and "=" in raw \
+                and not raw.strip().startswith("· R-") and "／" not in raw:
+            m2 = re.match(r"^\s*·\s*([^=｜]+?)\s*=", raw)
+            label = (m2.group(1).strip() if m2 else "{{主体}}")
+            from .prompt_hygiene import PROJECT_ENTITIES as _PE
+            if any(e in label for e in _PE):
+                label = "{{项目主体}}"
+            out_lines.append("  · %s = 取值见本节事实表 ｜ 约束见本节事实表 ｜ 绑定 {{节点}}" % label)
+        elif raw.startswith("本章证据等级分布：") and not values_in_prompt:
+            out_lines.append("本章证据等级分布：见本节事实表（E1 必须注明提供方与日期；E2 必须带标准号+条款号）")
         else:
             out_lines.append(raw)
 
@@ -393,10 +444,12 @@ def _matching_rule(node: Dict[str, Any], targets: List[Tuple[str, str]],
     return None
 
 
-def render_all(corpus: Dict[str, Any], overrides: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+def render_all(corpus: Dict[str, Any], overrides: Optional[Dict[str, Any]] = None,
+               values_in_prompt: bool = True) -> List[Dict[str, Any]]:
     fills = classify_all(corpus["nodes"])
     rules_res = recompute(corpus["rules"], corpus["nodes"], overrides, corpus.get("binds"))
-    return [render_section(p, corpus, fills, rules_res, overrides) for p in corpus["prompts"]]
+    return [render_section(p, corpus, fills, rules_res, overrides, values_in_prompt)
+            for p in corpus["prompts"]]
 
 
 def audit(corpus: Dict[str, Any]) -> Dict[str, Any]:
