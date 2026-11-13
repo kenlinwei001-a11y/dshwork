@@ -1,0 +1,262 @@
+{
+  "nodes": [
+    {
+      "id": "ask-run",
+      "type": "wfInput",
+      "position": {
+        "x": 164,
+        "y": 100
+      },
+      "data": {
+        "question": "本次证据抽取针对哪个运行目录？",
+        "placeholder": "runs/<实例>/out",
+        "hint": "填本次审核的运行目录（含 machine/ 与本批报告文件）；本图不预置报告。",
+        "required": true
+      }
+    },
+    {
+      "id": "plan",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 80
+      },
+      "data": {
+        "label": "分派与计划",
+        "description": "按文档类型分派 profile",
+        "icon": "plan",
+        "color": "violet",
+        "prompt": "分派：按 `machine/audit_tasks.jsonl` 的 doc_type 选 profile（P1–P10），产出 `machine/doc_plan.json`（哪些槽去哪份文档、用什么定位策略）。\n口径见技能 `lab-evidence-playbook` 与 `references/document-profiles.md`。只读 machine/，禁读 human/。"
+      }
+    },
+    {
+      "id": "fill",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 80
+      },
+      "data": {
+        "label": "填槽与定位",
+        "description": "分批填槽与定位",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "填槽：按 plan 逐槽定位取值，写 `machine/report_slots.json` 与 `machine/report_spans.json`（page+quote）。\n**≤10 槽/次、每批落盘**；ND 原样保留；不可辨标 unlocated；不判 PASS/FAIL。"
+      }
+    },
+    {
+      "id": "res-report_slots",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 198
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/report_slots.json",
+            "note": "{slot: value}，缺值为 null；不猜"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-report_spans",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 268
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/report_spans.json",
+            "note": "{slot: {page, quote, method}}，quote 必须可检索命中；不可辨写 unlocated:true"
+          }
+        ]
+      }
+    },
+    {
+      "id": "verify",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 80
+      },
+      "data": {
+        "label": "校验与交付",
+        "description": "确定性校验证据包 + 接口契约",
+        "icon": "target",
+        "color": "green",
+        "prompt": "校验：`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/verify_slots.py --out <产出目录> --report-text <报告txt> --strict`\n`python3 skill-update/scripts/check_interfaces.py --out <产出目录>`\n\n查五件：槽覆盖、有值必有 quote、quote 能在原文连续命中、number 槽可解析、空槽登记原因；再查接口契约（产物齐不齐、字段齐不齐、有没有\"假 0\"）。\n**不判 PASS/FAIL**（判定归审核专家）。不通过就回 fill 重填，不要标完成。产出 `machine/verify_report.json`。"
+      }
+    },
+    {
+      "id": "res-verify_report",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/verify_report.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-doc_plan",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/doc_plan.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "parse",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "解析（表格 / OCR）",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "解析（脚本，不叫模型）：\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/extract_tables.py --out <产出目录> --report-text <报告txt>`\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/ocr_step.py --out <产出目录> --images <图片...>`\n\n产出：`machine/tables.json`（行×列，每格带 page/quote/method）、`machine/report_tables_ref.json`、`machine/ocr_status.json`。\n**OCR 引擎未部署时必须是 BLOCKED + 每张图一条 GAP-DATA**，不许把图交给模型猜字。"
+      }
+    },
+    {
+      "id": "res-tables",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/tables.json"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "fill->res-report_slots",
+      "source": "fill",
+      "target": "res-report_slots",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "fill->res-report_spans",
+      "source": "fill",
+      "target": "res-report_spans",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "fill->verify",
+      "source": "fill",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-run->plan",
+      "source": "ask-run",
+      "target": "plan",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-report_slots->verify",
+      "source": "res-report_slots",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-report_spans->verify",
+      "source": "res-report_spans",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "verify->res-verify_report",
+      "source": "verify",
+      "target": "res-verify_report",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "plan->res-doc_plan",
+      "source": "plan",
+      "target": "res-doc_plan",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-doc_plan->fill",
+      "source": "res-doc_plan",
+      "target": "fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "parse->res-tables",
+      "source": "parse",
+      "target": "res-tables",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "plan->parse",
+      "source": "plan",
+      "target": "parse",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "按 doc_plan 解析对应文档：表格逐格抽出、图片走 OCR（未部署则 BLOCKED + GAP-DATA）。"
+        }
+      }
+    },
+    {
+      "id": "parse->fill",
+      "source": "parse",
+      "target": "fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-tables->fill",
+      "source": "res-tables",
+      "target": "fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  }
+}

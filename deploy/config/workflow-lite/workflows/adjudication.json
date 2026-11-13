@@ -1,0 +1,177 @@
+{
+  "nodes": [
+    {
+      "id": "prepare",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 80
+      },
+      "data": {
+        "label": "准备（脚本 --check）",
+        "description": "脚本做确定性合并与自检",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "准备：`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --check`\n脚本做确定性合并（报告线 + 过程线 + eval_slots），优先级、计数、只升不降、假通过降级全在脚本里；有阻塞就报出来。\n**不读 md**；合并结果写 `machine/adjudication.json`。"
+      }
+    },
+    {
+      "id": "res-adjudication",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 198
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/adjudication.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "judge",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 80
+      },
+      "data": {
+        "label": "补判（一致性/方法/整改）",
+        "description": "只补脚本判不了的四件事",
+        "icon": "target",
+        "color": "green",
+        "prompt": "补判：只看脚本报出来的、它判不了的部分——方法 mismatch、跨文档一致性、两线结论打架、整改建议。\n**不许改** 脚本已定的 verdict；要改必须写 `override{from,to,reason,evidence}`，且只能升不能降（假通过除外）。\n产出 `machine/adjudication_final.json`：`{verdict, items, conflicts, method_mismatch, actions, owners}`。"
+      }
+    },
+    {
+      "id": "res-adjudication_final",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 198
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/adjudication_final.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "verify",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 80
+      },
+      "data": {
+        "label": "校验（脚本 --verify）",
+        "description": "脚本校验只升不降与 owner 对齐",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "校验：`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --verify`\n脚本查四件：没有把 FAIL/UNVERIFIABLE 降成 PASS、假通过已全部降级、每条 UNVERIFIABLE 有 pending_class 与对得上的 owner、counts 与明细一致且两套来源不重复计入。\n不过就回上一步修，不许标完成。"
+      }
+    },
+    {
+      "id": "res-adjudication_verify",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 198
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/adjudication_verify.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ask-run",
+      "type": "wfInput",
+      "position": {
+        "x": 164,
+        "y": 100
+      },
+      "data": {
+        "question": "本次裁定针对哪个运行目录（需含报告线与过程线的 findings）？",
+        "required": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "prepare->res-adjudication",
+      "source": "prepare",
+      "target": "res-adjudication",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "judge->res-adjudication_final",
+      "source": "judge",
+      "target": "res-adjudication_final",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "verify->res-adjudication_verify",
+      "source": "verify",
+      "target": "res-adjudication_verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-run->prepare",
+      "source": "ask-run",
+      "target": "prepare",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "prepare->judge",
+      "source": "prepare",
+      "target": "judge",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "脚本已定的 verdict 不许改；只补它判不了的四件事。"
+        }
+      }
+    },
+    {
+      "id": "res-adjudication->judge",
+      "source": "res-adjudication",
+      "target": "judge",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "judge->verify",
+      "source": "judge",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-adjudication_final->verify",
+      "source": "res-adjudication_final",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  }
+}

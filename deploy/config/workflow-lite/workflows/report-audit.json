@@ -1,0 +1,180 @@
+{
+  "nodes": [
+    {
+      "id": "prepare",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 80
+      },
+      "data": {
+        "label": "准备与确定性判定",
+        "description": "脚本筛 C1/C6 并确定性判定",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "执行：`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --check` 看缺什么；齐了就 `--out <产出目录>`。\n脚本做完全部确定性工作：筛 C1/C6、采信 eval_slots、三条假通过降级、生成 `machine/report_findings.json`，并列出 `pending_human`。\n**不读 md**，路径以本行为准。"
+      }
+    },
+    {
+      "id": "res-report_audit_input",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 212
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/report_audit_input.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "judge",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 136
+      },
+      "data": {
+        "label": "补判（只看 pending_human）",
+        "description": "只补脚本判不了的部分",
+        "icon": "target",
+        "color": "green",
+        "prompt": "补判：只处理脚本列出的 `pending_human`（定性卡三档：符合 / 不符合 / 缺证）与方法 mismatch。\n逐条改 `machine/report_findings.json` 里对应项的 `verdict` 与 `message`，并在 `basis` 写 `manual_qualitative` 或 `method_mismatch`，附 `report_span`。\n**不许改** 脚本已定的判定与 `downgraded` 记录；缺证仍判 UNVERIFIABLE，不得升 FAIL。"
+      }
+    },
+    {
+      "id": "res-report_findings",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 254
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/report_findings.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "verify",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 136
+      },
+      "data": {
+        "label": "校验（脚本 --verify）",
+        "description": "脚本自校验结论完整性",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "校验：`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --verify --strict`\n脚本自查五件：每条有 std_anchor.clause、PASS 必有 report_span.quote、判定枚举合法、counts 与明细一致、downgraded 都能对应到 UNVERIFIABLE。\n不过就回上一步修，**不许标完成**。"
+      }
+    },
+    {
+      "id": "res-report_audit_verify",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 254
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/report_audit_verify.json"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ask-run",
+      "type": "wfInput",
+      "position": {
+        "x": 164,
+        "y": 100
+      },
+      "data": {
+        "question": "本次审核针对哪个运行目录（含 machine/ 与 library/）？",
+        "required": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "judge->res-report_findings",
+      "source": "judge",
+      "target": "res-report_findings",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "verify->res-report_audit_verify",
+      "source": "verify",
+      "target": "res-report_audit_verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "prepare->judge",
+      "source": "prepare",
+      "target": "judge",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "只判 C1/C6 的槽；谓词结论直接采信，不重算。"
+        }
+      }
+    },
+    {
+      "id": "res-report_audit_input->judge",
+      "source": "res-report_audit_input",
+      "target": "judge",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "judge->verify",
+      "source": "judge",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-report_findings->verify",
+      "source": "res-report_findings",
+      "target": "verify",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "ask-run->prepare",
+      "source": "ask-run",
+      "target": "prepare",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "prepare->res-report_findings",
+      "source": "prepare",
+      "target": "res-report_findings",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  }
+}

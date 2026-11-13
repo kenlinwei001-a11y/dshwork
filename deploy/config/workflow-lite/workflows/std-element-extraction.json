@@ -28,10 +28,10 @@
       },
       "data": {
         "label": "解构与引用",
-        "description": "契约引用：clauses",
+        "description": "契约引用：clauses（含切片）",
         "icon": "idea",
         "color": "blue",
-        "prompt": "契约：技能 `contracts/clauses.json`（`run_contract.py --node clauses`）。\nLLM 只在 `run: llm` 步出场，按该步 schema 输出；其余由 runner 执行。节点内不写步骤与口径。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node clauses`；门禁：`python3 skill-update/scripts/validate_node.py --node clauses`。\n开跑前 `--util check --node clauses`（输出可直接执行的命令）；完成前 `--util verify --node clauses`。\n要点：脚本切骨架 → LLM 只改差异 → facts/rows → `build_spans` 产切片与 span_refs。**不读 md。**"
       }
     },
     {
@@ -64,7 +64,7 @@
         "description": "契约引用：elements（读 rows）",
         "icon": "target",
         "color": "green",
-        "prompt": "契约：技能 `contracts/nodes.json` 的 `elements`（`run_contract.py --node elements`）。\nLLM 只读 `rows.json` 做判断，不读 01 原文；写 facts → 导出视图；门禁不过不得报完成。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node elements`；门禁：`python3 skill-update/scripts/validate_node.py --node elements`。\n开跑前 `--util check --node elements`；完成前 `--util verify --node elements`。\n要点：LLM 只读 `machine/rows.json` 做判断；写 facts → 导出视图 → `--util backfill_spans` 回填切片。"
       }
     },
     {
@@ -97,7 +97,7 @@
         "description": "契约引用：rules（读 rows）",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "契约：技能 `contracts/nodes.json` 的 `rules`（`run_contract.py --node rules`）。\nLLM 只读 `rows.json` 出卡片判定字段；覆盖矩阵由脚本派生，不写。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node rules`；门禁：`python3 skill-update/scripts/validate_node.py --node rules`。\n开跑前 `--util check --node rules`；完成前 `--util verify --node rules`。\n要点：LLM 只读 `machine/rows.json` 出卡片判定字段；覆盖矩阵由脚本反推，不手填。"
       }
     },
     {
@@ -130,7 +130,7 @@
         "description": "契约引用：audit",
         "icon": "bug",
         "color": "coral",
-        "prompt": "契约：技能 `contracts/audit.json`（`run_contract.py --node audit`）。\nLLM 只读 findings、抽 5 样本、判 B/D/W；计算全部由脚本完成。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node audit`；门禁：`python3 skill-update/scripts/validate_node.py --node audit`。\n开跑前 `--util check --node audit`；完成前 `--util verify --node audit`。\n要点：LLM 只读 findings、抽 5 样本、判 B/D/W；计算全部由脚本完成。最后一行必须给 `VERDICT: pass|fail`。"
       }
     },
     {
@@ -163,7 +163,7 @@
         "description": "契约引用：fix",
         "icon": "fix",
         "color": "coral",
-        "prompt": "契约：技能 `contracts/fix.json`（`run_contract.py --node fix`）。只改被点名条目。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node fix`；门禁：`python3 skill-update/scripts/validate_node.py --node fix`。\n开跑前 `--util check --node fix`；完成前 `--util verify --node fix`。\n要点：只改被点名条目，`revision_log` 加一行；没被点名的不动。无 blocker 时用 `--util fix_log` 由 audit_result 派生记录。"
       }
     },
     {
@@ -178,7 +178,7 @@
         "description": "契约引用：handoff（取 derived）",
         "icon": "test",
         "color": "teal",
-        "prompt": "契约：技能 `contracts/nodes.json` 的 `handoff`（`run_contract.py --node handoff`）。\n数字一律取自 `derived.json`；先跑 `handoff_state.py` 生成交接引用，不转述内容。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node handoff`；门禁：`python3 skill-update/scripts/validate_node.py --node handoff`。\n开跑前 `--util check --node handoff`；完成前 `--util verify --node handoff`。\n要点：数字取自 `derived.json`；产出 `ses.json` + `05-handoff.md` + `dashboard.html`（md/html 只给人看）。"
       }
     },
     {
@@ -297,7 +297,7 @@
         "items": [
           {
             "kind": "text",
-            "value": "契约：技能 contracts/toolchain.json；执行 run_contract.py --node toolchain"
+            "value": "契约：`python3 skill-update/scripts/run_contract.py --node toolchain`（契约内嵌于该文件，无需单独 contracts/*.json）。纯脚本、无 LLM，数字来自命令输出。"
           }
         ]
       }
@@ -314,7 +314,7 @@
         "description": "契约引用：toolchain",
         "icon": "database",
         "color": "pink",
-        "prompt": "契约：技能 `contracts/toolchain.json`（`run_contract.py --node toolchain`）。纯脚本，无 LLM。"
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node toolchain`；门禁：`python3 skill-update/scripts/validate_node.py --node toolchain`。\n开跑前 `--util check --node toolchain`；完成前 `--util verify --node toolchain`。\n要点：纯脚本无 LLM；数字来自命令输出，不手填。"
       }
     },
     {
@@ -330,6 +330,37 @@
             "kind": "file",
             "value": "audit_metrics.json",
             "note": "JSON：{capabilities:[{id,version,exit,stdout_sha12,summary}], gate:\"PASS|FAIL\", skipped:[...], generated_by:\"run_all.py\"}。只写本次；数字来自命令输出，不手填。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sop",
+      "type": "wfNode",
+      "position": {
+        "x": 1472,
+        "y": 637
+      },
+      "data": {
+        "label": "SOP 图与落库（sop）",
+        "description": "建图、挂规则、落库",
+        "icon": "chart",
+        "color": "olive",
+        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node sop`；门禁：`python3 skill-update/scripts/validate_node.py --node sop`。\n开跑前 `--util check --node sop`；完成前 `--util verify --node sop`。\n要点：建图 + 落库（nodes/edges/rule_node）；每条规则必须挂到节点，挂不上的写 `machine/graph_gaps.json`，**不许造节点**（justification/analyte 永不接收规则）。"
+      }
+    },
+    {
+      "id": "res-sop-graph-2",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 755
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "sop-graph.json"
           }
         ]
       }
@@ -617,6 +648,42 @@
       "id": "res-audit_metrics->audit",
       "source": "res-audit_metrics",
       "target": "audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "rules->sop",
+      "source": "rules",
+      "target": "sop",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "规则卡与要素交给建图：每条规则按条款与类型偏好挂到节点，挂不上的登记缺口，不许造节点。"
+        }
+      }
+    },
+    {
+      "id": "sop->handoff",
+      "source": "sop",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "sop->res-sop-graph-2",
+      "source": "sop",
+      "target": "res-sop-graph-2",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-sop-graph-2->handoff",
+      "source": "res-sop-graph-2",
+      "target": "handoff",
       "sourceHandle": null,
       "targetHandle": null
     }
