@@ -1,6 +1,17 @@
-# 节点契约（v1.1）
+# 节点契约（v1.12）· 审计文档
 
-本文件是「节点怎么执行」的唯一口径。工作流图里的节点只写「按本文件某节执行」，不复制内容。
+> **agent 不要读本文件。** 这一份是给人审计、给改契约的人对照用的溯源材料。
+> agent 的唯一入口是执行器直接吐出的指令：
+>
+> ~~~bash
+> python3 scripts/run_contract.py --util check --node <name> --out <out>   # 必做命令 + 缺失前置输入
+> python3 scripts/run_contract.py --node <name> --out <out>                # 按契约跑
+> python3 scripts/run_contract.py --util verify --node <name> --out <out>  # 写留痕
+> python3 scripts/validate_node.py --node <name> --out <out>               # 门禁
+> ~~~
+>
+> `check` 输出的命令已展开为可直接复制的形式（绝对路径、`--text` 已定位），**不需要 agent 读 md 再拼命令**。契约改了但 `check` 没跟着变 = 契约写错。
+
 每个节点四个要素：**执行清单（伪代码）· 输出 schema · 门禁 · 语义判断点**。
 
 门禁统一入口：`python3 scripts/validate_node.py --node <name> --out <out目录> [--text <正文>]`；
@@ -247,3 +258,64 @@
 **开跑前自检**：`run_contract.py --util check --node <node>` 打印该节点必须运行的命令与判据。
 **完成前校验**：`run_contract.py --util verify --node <node>`，写 `verify` 记录；**没有 verify 记录，门禁判 FAIL，不得标 done**。
 `validate_node` 已内置 `trail_present` 检查。
+
+## OCR 接入（待部署，v1.10）
+
+**原则**：有文本层不调 OCR；无文本层且 MCP 已部署才调；两者都不可用则登记 GAP-DATA 并要文本，**绝不猜字**。
+
+1. **探测**：`cap.py probe <pdf>` 返回 `PDF_TEXT` 或 `OCR`。
+2. **配置**：`out/ocr.config.json`（或技能内默认）：
+   ```json
+   {"enabled": true, "mcp": {"server": "<MCP 名>", "tool": "<工具名>"},
+    "dpi": 600, "lang": "chi_sim+eng", "min_conf": 0.5}
+   ```
+3. **调用**：`run_contract.py --util ocr_plan --out <out> --step <slug>` 打印方案；agent 按配置调 MCP，逐页落 `out/ocr-pages/page-NNN.txt`（可附 `page-NNN.json` 带 confidence）。
+4. **汇总**：`--util ocr_ingest --out <out> --pages <out>/ocr-pages --slug <slug>` → `standards/<slug>.txt`（带 `===== PAGE n =====`）+ `source.json`（route、页数、sha、均值置信度、低置信页）。
+5. **降级**：`ocr.to_text` 状态 `PENDING_DEPLOY` 时，`ocr_plan` 明确输出“未配置”，并登记 GAP-DATA；下游只能标 UNVERIFIABLE。
+
+能力注册：`registry/capabilities.json` 的 `ocr.to_text`（kind=mcp，status=PENDING_DEPLOY）。
+
+## 图进库与挂载门禁（v1.11）
+
+**图是执行骨架，不是附图。** `sop-graph.json` 只是生成物；下游按 `node_id` 分组、沿 `requires/uses/verifies` 边找记录，一律查库。
+
+1. **落库**：`--util load_library` 除结构表外，另写三张表——
+   - `nodes(node_id, type, step, clauses, params, done_when, basis, usage, payload)`
+   - `edges(src, dst, type)`
+   - `rule_node(rule_id, node_id, link)`，`link ∈ {criteria, qualitative}`，由节点的 `criteria/qualitative` **反查**得到（派生索引，不新增事实）
+   幂等：先按 `standard_id` 清这三张表再写；`findings` 同 standard 覆写不新增行。
+2. **读**：`--util graph_lookup --rule <id>` → 该规则的节点与边；`--rule` 命中但 `mapped=false` 表示"规则存在但图上无落点"（区别于"该标准没有这条规则"）。`--util graph_index` 打印每个标准的 nodes/edges/rules_mapped/rules_unmapped。
+3. **门禁**：`validate_node --node sop` 与 `--node handoff` 都跑 `graph_link_check`——
+   - 规则全部有落点 → OK；
+   - 有未挂规则，但都在 `machine/graph_gaps.json` 里登记 → OK（缺口可见，不静默）；
+   - 有未挂且未登记 → **FAIL**；
+   - `sop-graph.json` 缺失或节点为 0 → **FAIL**（图缺失，不许用 gaps 掩盖）。
+4. **`sop` 契约**：`CONTRACTS['sop']` = `sop_graph` → `load_library` → gate。此前只有门禁没有契约，`--util verify --node sop` 会 KeyError，该门禁结构上不可过，属缺陷，已补。
+5. **自动留痕**：`run_contract.py --node <n>` 每跑完一个非 gate 步骤，自动追加 trail（`auto:true`），`step` 取 `--util` 后的名字。**不再依赖 agent 手动 `--util trail`**——忘了写 trail 会让门禁不可过，属于设计缺陷而非执行失误。
+   手动 `--util trail` 仍可用于契约之外的步骤。
+
+已知现状：
+
+| 标准 | 节点 | 边 | 规则落点 | 未挂 | 不变量 |
+|---|---|---|---|---|---|
+| HJ 84-2016 | 86 | 142 | 53/53 | 0 | 0 |
+| HJ 671-2013 | 76 | 105 | 82/84 | 2（已登记 `ONLY_JUSTIFICATION_NODE`） | 0 |
+
+**HJ 84 的 16 条曾判为"缺 record/仪器/试剂节点"，是错的**：图里本来就有 record 10 / instrument 12 / reagent 28。真因是**要素节点只挂带 predicate 的规则，定性规则被丢掉**（procedure 步骤节点挂了两类，要素节点漏了 qualitative）。已加兜底挂载步（⑦）：没被接住的规则按 `(条款, 类型偏好)` 挂到唯一节点，C8 在该条款无 record 节点时派生 record 节点并接 `records` 边；条款本身无任何节点才留空。
+
+类型偏好 `CAT2TYPE`：C1→constraint/step/failure_mode，C2/C5→step，C3→instrument，C4→reagent，C6→result/constraint，C7→qc_gate，C8→record。
+
+**justification / analyte 节点永不接收规则**（依据不得当判据）。若某条款只抽出 PERF 依据类要素，其 C8 规则无处可挂——这不是可以造节点补的洞，登记为 `ONLY_JUSTIFICATION_NODE`，要么在要素层补 constraint，要么确认它属报告红线另找承载。
+
+**verify 语义（v1.12 已修，此前是弱项）**：旧实现把 `script`/`gate` 从必备步骤里排除，导致"契约步骤全是脚本"的节点（如 handoff）在 trail 为空时也 verify PASS——这是"门禁永远过不了"的镜像缺陷："门禁永远过得去"。
+
+现行规则三条：
+
+1. **只认带 `node` 标记的留痕**：契约执行时自动写 `{"step":..., "node":<契约 id>, "exit":..., "auto":true}`；无标记的旧记录不参与判定。
+2. **按 step 名称计次**：`need = Counter(非 llm、非 gate 步骤名)`，`done = Counter(本节点 exit=0 的 step)`，不足即 FAIL（如 `script×2(已1)`）。gate 步骤不计入——它由 `validate_node` 单独执行。
+3. **门禁只认最后一次 verify**：`trail_ok` 取该节点最后一条 verify 记录，旧的成功记录不能掩盖新的失败。
+
+负例（已实测）：trail 只有 `sop_graph` → `verify FAIL missing=["load_library×1(已0)"]` → 门禁 `FAIL 最后一次 verify 未通过`；空 trail → `FAIL script×2(已0)`。
+
+
+
