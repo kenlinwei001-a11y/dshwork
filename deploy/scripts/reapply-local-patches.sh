@@ -3,7 +3,7 @@
 #
 # 什么时候必须跑：
 #   - `dsh plugin add/update dsh-mcp-connector` 之后（node_modules 被重装 ⇒ 侧栏入口会重新冒出来）
-#   - `dsh plugin add/update @xiaoso/dsh-workflow-lite` 之后（左侧导航/右侧面板入口会消失）
+#   - `dsh plugin add/update @xiaoso/dsh-workflow-lite` 之后（左侧导航/右侧面板入口、rule 宽容补丁会消失）
 #   - 重装 preview profile 之后
 # 用法：
 #   bash deploy/scripts/reapply-local-patches.sh [DSH_HOME] [profile 名]
@@ -30,6 +30,15 @@ else
       echo "  ✗ $marker 未生效，请人工检查 $WL"; exit 1
     fi
   done
+  WL_INDEX="$DSH_HOME/profiles/$PROFILE/node_modules/@xiaoso/dsh-workflow-lite/lib/index.mjs"
+  if [ -f "$WL_INDEX" ]; then
+    node "$HERE/patches/workflow-lite/patch-workflow-lite-rule.mjs" "$WL_INDEX"
+    if grep -q "rule_object" "$WL_INDEX"; then
+      echo "  ✓ rule_object"
+    else
+      echo "  ✗ rule_object 未生效，请人工检查 $WL_INDEX"; exit 1
+    fi
+  fi
 fi
 
 echo "== dsh-mcp-connector：隐藏侧栏入口的补丁 =="

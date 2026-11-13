@@ -29,7 +29,7 @@ Web 预览的 `preview:install` 会随安装一并启用 `dshmarket`、`@cocofhu
 | --- | --- | --- |
 | `patches/semantica-0.7.0-graph-analytics.patch` | 修 semantica 0.7.0 `get_graph_analytics` 的三个上游 bug | 装/升级 semantica 后 |
 | `patches/dsh-mcp-connector-hide-sidebar-entry.patch` | 让 `dsh-mcp-connector` 不再往左侧栏塞「MCP连接器」入口 | **每次插件升级后** |
-| `patches/workflow-lite/` | 给「轻量工作流」加左侧导航与右侧面板入口（幂等 Node 补丁） | 每次重装/升级 `@xiaoso/dsh-workflow-lite` 后（reapply 会自动跑） |
+| `patches/workflow-lite/` | 给「轻量工作流」加左侧导航与右侧面板入口；`write_node` 的 `rule` 支持纯文本/对象（幂等 Node 补丁） | 每次重装/升级 `@xiaoso/dsh-workflow-lite` 后（reapply 会自动跑） |
 | `scripts/install-mcp-servers.sh` | 装 MCP 服务端程序包（playwright / filesystem / sequential-thinking） | 新机器（不跑则这两条 MCP 连不上） |
 | `scripts/install-semantica-mcp.sh` | 建 venv + 装 semantica + 打补丁 + 生成连接器定义 | 新机器 / 升级 semantica |
 | `scripts/install-local-config.sh` | 把 `config/` 装进部署（技能/专家/MCP/预设），并改写写死的路径 | 新机器、配置有更新后 |
@@ -38,7 +38,7 @@ Web 预览的 `preview:install` 会随安装一并启用 `dshmarket`、`@cocofhu
 | `scripts/archive-audit-events.py` | 按时间归档审计事件（默认保留 30 天，旧事件按月打包） | 审计文件数增长时 / 每日自动 |
 | `scripts/restart-preview.sh` | 稳妥重启预览，等待端口并打印本次启动的访问 URL | 更新、重建或重启后 |
 | `scripts/doctor.sh` | 一键巡检服务、文件句柄、数据量、专家预设和最近启动错误 | 启动前 / 定期 / 异常时 |
-| `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（dsh-mcp-connector 侧栏、workflow-lite 导航/面板；可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
+| `scripts/reapply-local-patches.sh` | 重打"会被升级冲掉"的补丁（dsh-mcp-connector 侧栏、workflow-lite 导航/面板/rule 宽容；可重复执行） | `dsh plugin add/update` 或重装 profile 后 |
 | `config/` | 技能(30) / 专家 / MCP 连接器 / Agent 预设 / workflow-lite 工作流 / 插件清单的**存档** | 由 `install-local-config.sh` 安装 |
 | `mcp-servers/` | MCP 服务端程序包的 `package.json` + `package-lock.json` | 由 `install-mcp-servers.sh` 使用 |
 | `connectors/*.json` | MCP 连接器定义（部署里登记用） | 重建部署时 |
@@ -55,6 +55,7 @@ Web 预览的 `preview:install` 会随安装一并启用 `dshmarket`、`@cocofhu
 **`dsh-mcp-connector` 的侧栏入口**：插件支持的开关读的是设置命名空间 `mcp-connector`，而该命名空间在 dsh 0.2.0 下不被服务 ⇒ 客户端取不到值、按代码回落到"显示"。所以只能改包内默认值。
 
 **「轻量工作流」的导航/面板入口**：原版插件只提供画布主体；本机的 `deploy/patches/workflow-lite/` 补丁给它加左侧导航入口和右侧面板 tab。补丁改的是 `node_modules/@xiaoso/dsh-workflow-lite/lib/client.js`，重装或升级插件后会消失；`reapply-local-patches.sh` 会幂等重打，bootstrap 新机器时也会自动跑。
+同一目录下的 `patch-workflow-lite-rule.mjs` 修改 `lib/index.mjs`：`write_node` 的 `outputs[].rule` 继续接受纯文本，并新增 `rule_object`（对象）由插件转成文本，避免模型把 JSON 塞进字符串导致工具参数坏掉。
 
 ## 一条必须记住的规则
 
