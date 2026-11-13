@@ -9,10 +9,10 @@
       },
       "data": {
         "label": "准备与确定性判定",
-        "description": "脚本筛 C1/C6 并确定性判定",
+        "description": "先验上游门禁，再确定性判定",
         "icon": "idea",
         "color": "blue",
-        "prompt": "执行：`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --check` 看缺什么；齐了就 `--out <产出目录>`。\n脚本做完全部确定性工作：筛 C1/C6、采信 eval_slots、三条假通过降级、生成 `machine/report_findings.json`，并列出 `pending_human`。\n**不读 md**，路径以本行为准。"
+        "prompt": "开工前硬检查（不过就停，不许带着不全的证据往下跑）：\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node lab-evidence --require machine/report_slots.json machine/report_spans.json`\n\n通过后再执行：\n`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --check` 看缺什么；齐了就跑 `--out <产出目录>`。\n脚本做完全部确定性工作：筛 C1/C6、采信 eval_slots、三条假通过降级、生成 `machine/report_findings.json`，并列出 `pending_human`。"
       }
     },
     {
@@ -70,11 +70,11 @@
         "y": 136
       },
       "data": {
-        "label": "校验（脚本 --verify）",
-        "description": "脚本自校验结论完整性",
+        "label": "校验（脚本 --verify + 门禁）",
+        "description": "脚本自校验 + 硬门禁",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "校验：`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --verify --strict`\n脚本自查五件：每条有 std_anchor.clause、PASS 必有 report_span.quote、判定枚举合法、counts 与明细一致、downgraded 都能对应到 UNVERIFIABLE。\n不过就回上一步修，**不许标完成**。"
+        "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 skill-update-audit/skills/report-audit-playbook/scripts/report_audit.py --out <产出目录> --verify --strict`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node report-audit --require machine/report_findings.json`\n\n脚本查五件（锚/枚举/counts/downgraded/假通过），并把结果**写进 trail.jsonl**；门禁只认该节点**最后一条** verify 记录，无记录或 pass=false 一律 exit 1。\n若 `machine/tables.json` 存在，另跑 `eval_sample_slots.py --verify` 并过 `--node sample-eval` 门禁。\n**门禁不过不得标完成。**"
       }
     },
     {

@@ -9,10 +9,10 @@
       },
       "data": {
         "label": "准备（脚本 --check）",
-        "description": "脚本做确定性合并与自检",
+        "description": "先验两线门禁，再确定性合并",
         "icon": "idea",
         "color": "blue",
-        "prompt": "准备：`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --check`\n脚本做确定性合并（报告线 + 过程线 + eval_slots），优先级、计数、只升不降、假通过降级全在脚本里；有阻塞就报出来。\n**不读 md**；合并结果写 `machine/adjudication.json`。"
+        "prompt": "开工前硬检查（两条线都必须已过门禁，否则不许合并）：\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node report-audit --require machine/report_findings.json`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node process-audit --require machine/process_findings.json`\n\n通过后再执行：\n`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --report <报告号> --report-method <方法号> --check`\n脚本做确定性合并（优先级、计数、只升不降、假通过降级）；合并结果写 `machine/adjudication.json`。"
       }
     },
     {
@@ -70,11 +70,11 @@
         "y": 80
       },
       "data": {
-        "label": "校验（脚本 --verify）",
-        "description": "脚本校验只升不降与 owner 对齐",
+        "label": "校验（脚本 --verify + 门禁）",
+        "description": "脚本自校验 + 硬门禁",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "校验：`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --verify`\n脚本查四件：没有把 FAIL/UNVERIFIABLE 降成 PASS、假通过已全部降级、每条 UNVERIFIABLE 有 pending_class 与对得上的 owner、counts 与明细一致且两套来源不重复计入。\n不过就回上一步修，不许标完成。"
+        "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --verify`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node adjudication --require adjudication.json`\n\n脚本查四件（只升不降/假通过降级/owner 对齐/counts），并把结果**写进 trail.jsonl**（每条留痕必须带 node）；门禁只认该节点**最后一条** verify 记录。\n**门禁不过不得标完成。**"
       }
     },
     {

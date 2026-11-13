@@ -87,10 +87,10 @@
       },
       "data": {
         "label": "校验与交付",
-        "description": "确定性校验证据包 + 接口契约",
+        "description": "证据校验 + 硬门禁 + 契约",
         "icon": "target",
         "color": "green",
-        "prompt": "校验：`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/verify_slots.py --out <产出目录> --report-text <报告txt> --strict`\n`python3 skill-update/scripts/check_interfaces.py --out <产出目录>`\n\n查五件：槽覆盖、有值必有 quote、quote 能在原文连续命中、number 槽可解析、空槽登记原因；再查接口契约（产物齐不齐、字段齐不齐、有没有\"假 0\"）。\n**不判 PASS/FAIL**（判定归审核专家）。不通过就回 fill 重填，不要标完成。产出 `machine/verify_report.json`。"
+        "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/verify_slots.py --out <产出目录> --report-text <报告txt> --record-text <记录txt...> --strict`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node lab-evidence --require machine/report_slots.json machine/report_spans.json`\n`python3 skill-update/scripts/check_interfaces.py --out <产出目录>`\n\n查五件：槽覆盖、有值必有 quote、quote 能在**报告或记录**原文连续命中、number 槽可解析、空槽登记原因；**证据包内出现 verdict 字段即失败**（判定越权）。结果写进 trail.jsonl。\n**门禁不过不得标完成。**产出 `machine/verify_report.json`。"
       }
     },
     {
