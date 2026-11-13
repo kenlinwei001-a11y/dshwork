@@ -8,6 +8,20 @@ import { PlateDocService, docIdParam } from './service.js';
 import { slateJson } from './storage.js';
 import { importDocx } from './docx.js';
 import { z } from 'zod';
+import { createSlateEditor, BaseParagraphPlugin } from 'platejs';
+import { MarkdownPlugin } from '@platejs/markdown';
+import {
+  BaseBasicMarksPlugin,
+  BaseBasicBlocksPlugin,
+  BaseBoldPlugin,
+  BaseItalicPlugin,
+  BaseUnderlinePlugin,
+  BaseStrikethroughPlugin,
+  BaseCodePlugin,
+  BaseHeadingPlugin,
+  BaseBlockquotePlugin,
+  BaseHorizontalRulePlugin,
+} from '@platejs/basic-nodes';
 
 export const name = 'workdsh-plate';
 export const inject = ['llm', 'agentDefaultModel', 'connection', 'tools', 'systemPrompt'];
@@ -46,7 +60,7 @@ const requestShape = z.discriminatedUnion('endpoint', [
 const plateGuide = `NexusAI live document writing (the default document editor is NexusAI):
 When the user asks you to write a document, report, or Word-style document, use the plate_* tools to write in the live Plate editor on the right. Do NOT use content_* tools for this kind of request; content_* remains only for PPT, Excel, PDF and HTML requests.
 First call plate_open with a title and a unique operationId; this immediately opens an empty Plate document on the right. Do this before lengthy planning. Reuse the same operationId on retries. Do not compose the entire report in chat first.
-Then call plate_edit to write the title and first useful paragraph, and continue in small meaningful batches so the user sees progress. plate_edit REPLACES the entire document: every call must submit the complete Slate JSON — all previous content plus this batch — never a fragment. Content is Slate editor JSON: an array of nodes, e.g. [{"type":"p","children":[{"text":"标题"}]}]; paragraphs use type "p", headings type "h1".."h3", lists/blocks optional. Keep a single edit under roughly 1 MiB; embedded images are base64 data URLs inside the JSON and count toward the 6 MB document limit, so prefer small images. After a human edit, call plate_read first and re-read the latest content before the next plate_edit; never guess the existing text. Do not fabricate citations, claims or figures.
+Then call plate_edit to write the title and first useful paragraph, and continue in small meaningful batches so the user sees progress. plate_edit REPLACES the entire document: every call must submit the COMPLETE document — all previous content plus this batch — never a fragment. Prefer the markdown parameter: pass the complete Markdown string (headings #/##, paragraphs separated by blank lines, bold/lists as needed); text accepts plain paragraphs. The legacy content parameter (Slate JSON) remains only for cases where you already have Slate JSON — do not hand-write nested Slate JSON for normal writing. Keep a single edit under roughly 1 MiB; embedded images (base64 data URLs) count toward the 6 MB document limit. After a human edit, call plate_read first and re-read the latest content before the next plate_edit; never guess the existing text. Do not fabricate citations, claims or figures.
 The deliverable is the live Plate document itself. After finishing, tell the user it is open in the right Plate editor where they can keep editing. Do not claim a file was delivered, offer no download, and do not use Bash/Python or a file-generation skill to build the document; there is no export step for Plate documents.`;
 
 // Tool 参数/输出 schema（镜像 office：string = {type:'string', required:true}）。
@@ -56,6 +70,57 @@ const slateContentSchema = {
   required: true,
   items: { type: 'object', additionalProperties: true },
 } as const;
+// Optional variants: defineTool treats "required: true" as a literal, so an
+// optional parameter is expressed by omitting the field entirely.
+const optionalSlateContentSchema = {
+  type: 'array',
+  items: { type: 'object', additionalProperties: true },
+} as const;
+
+// Markdown → Slate on the host side. Same plugin set as the client's Markdown
+// editor, so headings/marks/lists deserialize into the schema the client renders.
+const markdownEditorPlugins = [
+  BaseParagraphPlugin,
+  BaseBasicMarksPlugin,
+  BaseBasicBlocksPlugin,
+  BaseBoldPlugin,
+  BaseItalicPlugin,
+  BaseUnderlinePlugin,
+  BaseStrikethroughPlugin,
+  BaseCodePlugin,
+  BaseHeadingPlugin,
+  BaseBlockquotePlugin,
+  BaseHorizontalRulePlugin,
+  MarkdownPlugin,
+];
+
+function markdownToSlate(markdown: string): z.infer<typeof slateJson> {
+  const editor = createSlateEditor({ plugins: markdownEditorPlugins });
+  return editor.api.markdown.deserialize(markdown) as unknown as z.infer<typeof slateJson>;
+}
+
+function plainTextToSlate(text: string): z.infer<typeof slateJson> {
+  const paragraphs = text.split(/\n\s*\n/).map(part => part.trim()).filter(Boolean);
+  return (paragraphs.length > 0 ? paragraphs : ['']).map(part => ({ type: 'p', children: [{ text: part }] })) as unknown as z.infer<typeof slateJson>;
+}
+
+function editContent(args: { content?: unknown; markdown?: string; text?: string }): z.infer<typeof slateJson> {
+  const hasContent = Array.isArray(args.content);
+  const hasMarkdown = typeof args.markdown === 'string' && args.markdown.length > 0;
+  const hasText = typeof args.text === 'string' && args.text.length > 0;
+  if (Number(hasContent) + Number(hasMarkdown) + Number(hasText) !== 1) {
+    throw new Error('plate_edit: provide exactly one of content, markdown, or text');
+  }
+  if (hasMarkdown) {
+    if (Buffer.byteLength(args.markdown!, 'utf8') > 1_000_000) throw new Error('plate_edit: markdown exceeds 1 MiB');
+    return markdownToSlate(args.markdown!);
+  }
+  if (hasText) {
+    if (Buffer.byteLength(args.text!, 'utf8') > 1_000_000) throw new Error('plate_edit: text exceeds 1 MiB');
+    return plainTextToSlate(args.text!);
+  }
+  return args.content as z.infer<typeof slateJson>;
+}
 const render = (_args: unknown, value: unknown) => [
   { type: 'text' as const, text: JSON.stringify(value) },
 ];
@@ -110,14 +175,20 @@ function registerTools(ctx: Context) {
   ctx.effect(() => ctx.tools.register(defineTool({
     name: 'plate_edit',
     description:
-      'Replace the ENTIRE content of a Plate document in one commit: submit the complete Slate JSON — all previous content plus this batch — never a fragment. Use after plate_read, in small meaningful batches (title and first paragraph first), so the user sees progress. Paragraphs are {"type":"p","children":[{"text":"..."}]}; headings {"type":"h1".."h3","children":[...]}. Keep one edit under roughly 1 MiB; the whole document must stay under 6 MB (embedded images are base64 data URLs).',
-    parameters: { documentId: string, content: slateContentSchema },
+      'Replace the ENTIRE content of a Plate document in one commit. Prefer the markdown parameter: pass the complete Markdown string (headings, paragraphs, bold, lists) — no nested Slate JSON needed; text accepts plain paragraphs; content (Slate JSON) remains for backward compatibility. Submit the complete document — all previous content plus this batch — never a fragment. Use after plate_read, in small meaningful batches; keep one edit under ~1 MiB and the whole document under 6 MB (embedded images are base64 data URLs).',
+    parameters: {
+      documentId: string,
+      content: optionalSlateContentSchema,
+      markdown: { type: 'string' },
+      text: { type: 'string' },
+    },
     output: permissiveOutput,
     execute: async (args, exec) => {
       exec.signal.throwIfAborted();
+      const content = editContent(args as { content?: unknown; markdown?: string; text?: string });
       const { doc, head } = await ctx.workdshPlate.appendRevision(
         args.documentId,
-        args.content as unknown as z.infer<typeof slateJson>,
+        content,
         'ai',
       );
       return { documentId: doc.id, revision: head.seq };
