@@ -1,0 +1,684 @@
+{
+  "nodes": [
+    {
+      "id": "res-facts",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "facts.yaml",
+            "note": "整份写出。结构固定：\nfacts:\n  - 量名: <与提示词「须覆盖「X」」逐字一致>\n    值: '<纯数值或短文本，不带单位；数字请加引号避免前导零被吞>'\n    单位: <㎡ / 万元 / 人 / 米 / % ，无则空串>\n    约束: <硬|软>\n    证据等级: <E0–E5>\n    来源: <文件+页码/表号/URL；E1 必须写提供方与日期>\n    冲突组: <C-01…，无则不写>\n只写这一次的解析结果，不保留上一版。行数上限：与提示词量名数同级（约 200 行）。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-parse-report",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "parse-report.md",
+            "note": "整份写出，≤ 80 行。四节固定：\n§1 统计（已解析 / 缺量 / 冲突组 / 待确认，四个数字）\n§2 缺量清单（量名，一行一个，≤ 100 行时全列，超出只列前 50 并给总数）\n§3 冲突组（组号 | 量名 | 值A | 值B | 来源A | 来源B）\n§4 量名待确认（客户材料里的量名 | 疑似对应）\n不写解析过程与命令日志。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "inject",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "注入：事实表 → 提示词",
+        "description": "量名匹配注入，产出填充后提示词与注入报告",
+        "icon": "target",
+        "color": "green",
+        "prompt": "把事实表注入提示词，产出「每节带值」的写作指令。\n\n目标：让写作步骤拿到的是「已填值的提示词」，不是模板，也不是纯事实表。\n\n做法：\n1. 用工程里的注入器跑一遍（工具已存在，不要手写注入逻辑）：\n   python3 knowledge/knowledge-processing-expert/tools/fill_prompts.py <提示词包> <facts.yaml> <out/提示词-已注入.md>\n   它按**量名逐字相等**匹配，不做同义词、不做相似度。\n2. 读它生成的 .report.json：覆盖率、缺值量名、事实表里没被任何节引用的量、冲突组。\n3. 覆盖率低于 60% 时不要直接放行：在回复里明确指出缺的是哪一类量（面积/投资/工期/单位概况），交主理人决定是继续写还是先补料。\n\n完成标准：\n- 已注入提示词里，每个「须覆盖「X」」行要么带值（含单位、约束、证据、来源），要么标 ⚠️ 缺值；\n- 冲突组的量在提示词里并列呈现并标「待审」；\n- 注入报告给出四个数字：量名总数 / 已注入 / 缺值 / 覆盖率。\n\n回复里给出：两份产物路径、四个数字、缺值里最影响本项目的 3 个量名。"
+      }
+    },
+    {
+      "id": "res-提示词-已注入",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "提示词-已注入.md",
+            "note": "整份写出，由注入器生成，不手改。每节保留原有结构，只把「须覆盖「X」」行改为带值行；缺值行标 ⚠️ 缺值。不删节、不改算式。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-注入报告",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "注入报告.json",
+            "note": "注入器自带 .report.json，原样保存为本文件。含：量名总数、已注入、缺值、覆盖率、缺值量名清单、事实表里未被引用的量、冲突组。不手写、不补充。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "write",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "逐节写作",
+        "description": "逐节写作，产出 drafts 目录与回执",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "按节写正文，产出每节的正文与回执。\n\n目标：每一节都按「已注入提示词 + 本节事实 + 文体基线」写出可验收的正文。\n\n做法（逐节循环）：\n1. 取本节在已注入提示词里的那一段，连同本节涉及的 facts 行。\n2. 按提示词里的「须覆盖」逐项写；每个数值都写成〔量名〕引用，不写裸数字。\n3. 文体按 style-pack 与提示词内的骨架示例：句长不超 P90（80 字）、段长不超 216 字、第三人称、数字格式统一。\n4. 缺值：硬约束缺值 → 正文留白并标「待补充」；软约束缺值 → 标「待核」，不要编。\n5. 冲突：并列呈现并标「待审」，不裁决、不二选一。\n6. 每节交回四件：正文、node_mentions（用了哪些量）、new_claims（新判断）、unresolved（缺哪些量）。\n\n完成标准：\n- 每节一个 md，命名「章号-节号-标题.md」；\n- 正文里没有裸数字（数字都在〔〕里）；\n- 每节 unresolved 与注入报告的缺值一致，不得少报。\n\n回复里给出：完成节数 / 跳过节数及原因 / unresolved 总数 / 最需补料的 3 节。"
+      }
+    },
+    {
+      "id": "review",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "总审验收",
+        "description": "六项判据的独立验收，出 pass/fail 判定与退改指令",
+        "icon": "review",
+        "color": "amber",
+        "prompt": "独立验收：只判定，不改稿。\n\n目标：对每一节给出通过或不通过，并给可执行的退改指令。\n\n判据（六项，缺一项即不通过）：\n① 覆盖：本节「须覆盖」的量，是否有对应段落；node_mentions 是否覆盖本节全部量。\n② 深度：每项是否走完「是什么→依据→取值→校核/比选→结论」；只有形容词的段落逐句摘出。\n③ 篇幅：不少于「必写项数 × 150 字」。\n④ 可复算：涉及技术函数的节，有算式且复算一致；只给结果不给算式即不通过。\n⑤ 文体：句长超 80 字未拆、段长超 216 字、使用第三人称以外的人称、数字格式不统一、出现与示例完全相同的数字（判搬运）。\n⑥ 取值来源：硬约束位出现检索来的值；软约束位写「符合规范」却无来源与状态；待审冲突被写成单值——三者任一即不通过。\n\n完成标准：\n- 每条 finding 带位置（节号 + 段落序号或原句摘录）与期望；\n- 给出总判定；\n- 不通过时给出「补哪节、补哪条量、算式写成什么形式」的具体指令，不写「再丰富一些」。\n\n回复最后一行必须是判定词，二选一，不得省略：\n- 全部通过：`VERDICT: pass`\n- 存在任一不通过：`VERDICT: fail`"
+      }
+    },
+    {
+      "id": "res-审核记录",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "审核记录.md",
+            "note": "整份写出，≤ 120 行。结构固定：\n§0 结论：pass | reject（一行）\n§1 逐节判定表：| 节 | 判定 | 命中判据 | 位置 | 期望 |（只列不通过的节 + 3 条最弱通过项）\n§2 退改指令：按节分组，每条写「补什么、补哪条量、写成什么形式」\n§3 缺证与待核：unresolved 汇总 + 待审冲突清单\n不写过程叙述，不重贴正文。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "final",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "统稿与交付",
+        "description": "合并终稿、四项一致性核查、出待确认清单",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "统稿并交付。\n\n目标：把通过验收的各节合成一份可交付报告，并给出交付清单。\n\n做法：\n1. 按章节顺序合并 drafts，统一编号、表题（表N-）、术语与单位写法；删掉节与节之间重复的过渡句。\n2. 四项跨章一致性核查，逐项给结论：\n   - 同源取值一致：同一量在总论与详章取值相同；总论只复述、不产出新值；\n   - 金额闭环：规模→投资→招标三章口径一致，分项之和 = 合计；\n   - 冲突未单值化：待审冲突在各章呈现一致，无一处私自拍定；\n   - 结论章零新数：结论与建议不出现全篇别处没有的数。\n3. 汇总 unresolved 与待审冲突，写成「待客户确认清单」，按影响大小排序。\n4. 产出交付包清单：终稿、审核记录、待确认清单、注入报告，逐项给路径与字数。\n\n完成标准：\n- 终稿章节完整、编号连续、无重复段落；\n- 四项一致性各有明确结论（一致 / 不一致 + 位置）；\n- 待确认清单里每条都写明「缺什么、影响哪节、谁给」；\n- 回复最后给出终稿路径、总字数、不一致项数、待确认条数。"
+      }
+    },
+    {
+      "id": "res-终稿",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "终稿.md",
+            "note": "整份写出。结构：按章号顺序，每节一个二级标题（## <节号> <标题>），正文沿用 drafts 并通过验收的版本；不写入任何未通过验收的节（缺节在 §末尾「未完成节」列出）。不保留版本对比说明。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-待客户确认清单",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "待客户确认清单.md",
+            "note": "整份写出，≤ 60 行。表格固定四列：\n| # | 缺什么/冲突什么 | 影响节 | 谁给 |\n按影响大小排序；缺值与待审冲突分开两段；每条 ≤ 40 字。不写建议结论。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cust-input",
+      "type": "wfInput",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "question": "客户材料放在哪个目录？（每份材料一个文件，表格请给 xlsx/docx 原件）",
+        "default": "客户输入/",
+        "placeholder": "例如 客户输入/某某项目/",
+        "hint": "不确定就保留默认；留空或不存在时，第一步会先列出工作区里的候选目录让你选",
+        "required": true
+      }
+    },
+    {
+      "id": "res-客户材料",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "客户材料",
+        "description": "客户提供的原始材料（每份一个文件）",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "客户输入/",
+            "note": "逐份解析：xlsx 用原生表格、docx 用表格网格、pdf 用文字层。表格禁止拍平成 markdown 后猜列名。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-通用-可研写作提示词包",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "description": "写作侧的输入件：提示词包、填充协议、文体基线、总审判据",
+        "items": [
+          {
+            "kind": "file",
+            "value": "output/handoff-新项目/通用-可研写作提示词包.md",
+            "note": "项目无关写作提示词包：12 族写作逻辑 + 119 节覆盖量名与函数算式。写作与注入都读它，不改它。"
+          },
+          {
+            "kind": "file",
+            "value": "output/handoff-新项目/填充协议-新项目事实表.md",
+            "note": "事实表字段协议：量名/值/单位/约束/证据/来源/冲突组，以及三条铁律。生成 facts.yaml 时照它。"
+          },
+          {
+            "kind": "file",
+            "value": "output/handoff-新项目/style-pack.yaml",
+            "note": "文体基线：60 个可复用术语、句式起手、段首段尾、格式规则、机检入口。写作时照此对齐，不改它。"
+          },
+          {
+            "kind": "file",
+            "value": "output/总审-系统提示词.md",
+            "note": "总审的系统提示词（六项判据 + 跨章一致性）。审核步骤照它判，不改它。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-逐节正文与回执",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "逐节正文与回执",
+        "description": "逐节正文与回执（写步骤产出，审核与统稿读）",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "drafts/",
+            "note": "每节一个 md，命名「<章号>-<节号>-<标题>.md」；文件结构固定：正文 + node_mentions + new_claims + unresolved。每次整份重写，不保留上一轮。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "parse",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "① 文档解析（原生表格）",
+        "description": "原生表格解析，产出结构化 IR（不做字段映射）",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "把客户材料解析成结构化 IR，表格必须是原生结构。\n\n目标：拿到每一份材料的结构化内容，供后续字段映射使用；**不在这一步判断量名，也不填值**。\n\n做法：\n1. 逐份材料识别类型后解析：\n   - xlsx：openpyxl 读单元格 + 合并单元格范围，保留 sheet/行/列坐标；\n   - docx：读 <w:tbl> 网格，保留行列索引与表题；\n   - pdf：优先文字层（pdfplumber），无文字层才判为扫描件并标注「需 OCR」；\n   - 其余：按文本读。\n2. 表格**禁止拍平成 markdown**：markdown 会丢失列名与单元格的对应关系，后续映射必然错位。每个表输出为「表头行 + 数据行 + 坐标」的 JSON。\n3. 每份材料写一份解析件：`parsed/<材料名>.json`，含 blocks/表格/段落，并记录页码或表号。\n4. 无法解析的文件单独列出，写明原因（加密/扫描件/格式不支持），不静默跳过。\n\n完成标准：\n- 每份材料都有对应解析件，或明确列进「未解析」；\n- 每个表格都带表头与坐标，没有以 markdown 形式落盘；\n- 解析件里不出现任何「量名」判断。\n\n回复里给出：材料数 / 解析件数 / 未解析数及原因 / 表格总数。"
+      }
+    },
+    {
+      "id": "map",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "② 字段映射（列名→量名）",
+        "description": "列名→量名映射，出映射表与待确认清单",
+        "icon": "test",
+        "color": "teal",
+        "prompt": "把解析件里的列名/字段映射到提示词的量名。\n\n目标：产出一张「来源字段 → 量名」的映射表，并对映射不上的字段给出处置建议；**这一步不改数值**。\n\n做法：\n1. 读解析件里的表头、字段名、段落小标题。\n2. 读提示词包里的量名清单（「须覆盖「X」」里的 X），作为目标词表。\n3. 逐条映射，只允许三种结论：\n   - `matched`：来源字段与量名**语义等价**（如「总建筑面积」「建筑面积合计」→ 总建筑面积）；\n   - `ambiguous`：可能对应多个量名，列出候选（≤3 个），交人工定；\n   - `unmapped`：找不到对应量，保留原文，进「量名待确认」。\n4. 每条映射写明依据（字段全名 / 表题 / 同表相邻字段），不要只写「看起来像」。\n5. 数值与单位原样引用坐标（文件+表号+行列），本步不换算。\n\n完成标准：\n- 映射表覆盖解析件里所有含数值的字段（漏一个都算未完成）；\n- ambiguous 与 unmapped 各自成段，条数写明；\n- 每条 mapped 都能回指到解析件里的坐标。\n\n回复里给出：字段总数 / matched / ambiguous / unmapped，以及最影响写作的 3 个 unmapped。"
+      }
+    },
+    {
+      "id": "res-字段映射表",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "字段映射表.md",
+            "note": "整份写出，≤ 150 行。三节固定：\n§1 已映射（| 量名 | 来源字段 | 坐标（文件/表号/行列） | 依据 |）\n§2 歧义（| 来源字段 | 候选量名（≤3） | 依据 |）\n§3 未映射（| 来源字段 | 原值 | 坐标 | 处置建议（补量名/弃用/待确认） |）\n每条依据 ≤ 30 字；不写换算结果（那是下一步）。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "normalize",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "③ 值规整（单位/量纲）",
+        "description": "单位与量纲规整，产出可比的规整值表",
+        "icon": "database",
+        "color": "pink",
+        "prompt": "把已映射字段的值规整成统一口径。\n\n目标：单位、量纲、数量级一致，供冲突检测直接比对；**这一步不改数值语义，只做确定性换算与去噪**。\n\n做法：\n1. 只处理映射表 §1 的 matched 条目；ambiguous / unmapped 跳过，留给人工。\n2. 单位换算按固定规则，不做四舍五入以外的近似：\n   - 金额：元 ↔ 万元（÷10000），统一万元、保留 2 位小数；\n   - 面积：㎡ / 平方米 / m² 统一 ㎡；亩 → ㎡ 按 666.67 换算并标注换算；\n   - 长度：米 / m 统一 米；\n   - 百分比：0.55 与 55% 统一为百分数写法，并记录原始写法。\n3. 数值去噪：千分位、全角数字、单位后缀（如「1210㎡」）剥成纯数值 + 单位两栏；前导零数字按字符串保留（如编号 0012）。\n4. 每个值都保留：原始值、原始单位、规整值、规整单位、坐标。换算过的标 `converted: true`。\n5. 无法安全换算的（如「约 1.2 万」「几十米」）不硬换，标 `unparsed` 并写原文。\n\n完成标准：\n- 每个 matched 字段都有一条规整记录，或标 unparsed 并给原文；\n- 所有换算都有 `converted` 标记和换算式；\n- 数量级异常（如面积 3 ㎡ 或金额 5 元）单列「可疑量级」段，交人工。\n\n回复里给出：条目数 / 换算数 / unparsed 数 / 可疑量级数。"
+      }
+    },
+    {
+      "id": "res-规整值",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "规整值.yaml",
+            "note": "整份写出。结构固定：\nnormalized:\n  - 量名: <映射表 §1 的量名>\n    原值: '<原始字符串>'\n    原单位: <原始单位>\n    值: '<规整后的纯数值或文本>'\n    单位: <规整单位>\n    converted: <true|false>\n    换算: <如 元/10000 → 万元；无则空串>\n    坐标: <文件/表号/行列>\nunparsed:\n  - 量名: …\n    原文: …\n    原因: <为何不硬换>\n可疑量级:\n  - 量名: …\n    值: …\n    疑点: …\n不保留上一版；所有换算必须可逆（写清算式）。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "conflict",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "④ 冲突检测与事实表组装",
+        "description": "同量多值检测与编号，组装 facts.yaml 与解析报告",
+        "icon": "chart",
+        "color": "olive",
+        "prompt": "检测同一量名的并列值，编冲突组，并组装成 facts.yaml。\n\n目标：把规整值表变成可直接注入的事实表；同一量出现多个不同值时**并列保留、不裁决**。\n\n做法：\n1. 按量名分组；组内值相同（数值与单位都一致）则合并去重，保留最先来源并记录其余来源。\n2. 组内出现 ≥2 个不同值 → 建冲突组 C-01、C-02…（连续编号），每组的两个（或以上）值全部保留，写明各自来源与坐标，并判断强度：\n   - `strong`：同一口径下直接矛盾（如总建筑面积 18219 vs 18319）；\n   - `weak`：口径不同（如全校 vs 本校区），需在「口径说明」里写清。\n3. 组装 facts.yaml：每行含量名、值、单位、约束（按填充协议判：数值/金额/面积/人数/日期/文号→硬；规范/背景/术语→软）、证据等级（按来源判 E0–E5）、来源、冲突组。\n4. 提示词包里有、规整值里没有的量 → 进「缺量清单」，不估不补零。\n5. 数量级可疑的条目单独列「待核」，不直接进 facts.yaml 的正式行。\n\n完成标准：\n- 每个量名在 facts.yaml 里只有一行（冲突组只体现在「冲突组」字段，不拆成两行）；\n- 冲突组编号连续，组内每个值都有来源；\n- 缺量清单与规整值表对得上（没有凭空多出来的量）；\n- 解析报告四个数字齐：已解析 / 缺量 / 冲突组 / 待确认。\n\n回复里给出：facts.yaml 与解析报告路径、四个数字、强度为 strong 的冲突组列表。"
+      }
+    },
+    {
+      "id": "res-parsed",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "description": "解析件（原生表格 JSON，保留表头与坐标）",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "parsed/",
+            "note": "每份材料一个 JSON：blocks/表格/段落 + 表头行 + 行列坐标 + 页码或表号。禁止以 markdown 形式落盘。"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "inject->res-提示词-已注入",
+      "source": "inject",
+      "target": "res-提示词-已注入",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "inject->res-注入报告",
+      "source": "inject",
+      "target": "res-注入报告",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "review->res-审核记录",
+      "source": "review",
+      "target": "res-审核记录",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "final->res-终稿",
+      "source": "final",
+      "target": "res-终稿",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "final->res-待客户确认清单",
+      "source": "final",
+      "target": "res-待客户确认清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "map->res-字段映射表",
+      "source": "map",
+      "target": "res-字段映射表",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "normalize->res-规整值",
+      "source": "normalize",
+      "target": "res-规整值",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "cust-input->parse",
+      "source": "cust-input",
+      "target": "parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-客户材料->parse",
+      "source": "res-客户材料",
+      "target": "parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "parse->res-parsed",
+      "source": "parse",
+      "target": "res-parsed",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "parse->map",
+      "source": "parse",
+      "target": "map",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "res-parsed->map",
+      "source": "res-parsed",
+      "target": "map",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-通用-可研写作提示词包->map",
+      "source": "res-通用-可研写作提示词包",
+      "target": "map",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "map->normalize",
+      "source": "map",
+      "target": "normalize",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-字段映射表->normalize",
+      "source": "res-字段映射表",
+      "target": "normalize",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-parsed->normalize",
+      "source": "res-parsed",
+      "target": "normalize",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "normalize->conflict",
+      "source": "normalize",
+      "target": "conflict",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-规整值->conflict",
+      "source": "res-规整值",
+      "target": "conflict",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-字段映射表->conflict",
+      "source": "res-字段映射表",
+      "target": "conflict",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "conflict->res-facts",
+      "source": "conflict",
+      "target": "res-facts",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "conflict->res-parse-report",
+      "source": "conflict",
+      "target": "res-parse-report",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-facts->inject",
+      "source": "res-facts",
+      "target": "inject",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "conflict->inject",
+      "source": "conflict",
+      "target": "inject",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-通用-可研写作提示词包->inject",
+      "source": "res-通用-可研写作提示词包",
+      "target": "inject",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-parse-report->final",
+      "source": "res-parse-report",
+      "target": "final",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "inject->write",
+      "source": "inject",
+      "target": "write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-提示词-已注入->write",
+      "source": "res-提示词-已注入",
+      "target": "write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-通用-可研写作提示词包->write",
+      "source": "res-通用-可研写作提示词包",
+      "target": "write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-facts->write",
+      "source": "res-facts",
+      "target": "write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "write->res-逐节正文与回执",
+      "source": "write",
+      "target": "res-逐节正文与回执",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "write->review",
+      "source": "write",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-逐节正文与回执->review",
+      "source": "res-逐节正文与回执",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-提示词-已注入->review",
+      "source": "res-提示词-已注入",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-facts->review",
+      "source": "res-facts",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-通用-可研写作提示词包->review",
+      "source": "res-通用-可研写作提示词包",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-注入报告->review",
+      "source": "res-注入报告",
+      "target": "review",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "review->write#fail",
+      "source": "review",
+      "target": "write",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "fail",
+        "handoff": {
+          "note": "按不通过的节与退改指令逐条改；指令没点到的节不动。"
+        }
+      }
+    },
+    {
+      "id": "review->final#pass",
+      "source": "review",
+      "target": "final",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "pass"
+      }
+    },
+    {
+      "id": "res-审核记录->final",
+      "source": "res-审核记录",
+      "target": "final",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-逐节正文与回执->final",
+      "source": "res-逐节正文与回执",
+      "target": "final",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "reuse": "reuse",
+    "runState": true
+  }
+}
