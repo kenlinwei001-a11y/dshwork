@@ -37,11 +37,11 @@
         "y": 80
       },
       "data": {
-        "label": "填槽与定位",
-        "description": "分批填槽与定位",
+        "label": "填槽（只判歧义，切片）",
+        "description": "歧义候选切片后逐条判定",
         "icon": "idea",
         "color": "blue",
-        "prompt": "填槽：按 plan 逐槽定位取值，写 `machine/report_slots.json` 与 `machine/report_spans.json`（page+quote）。\n**≤10 槽/次、每批落盘**；ND 原样保留；不可辨标 unlocated；不判 PASS/FAIL。"
+        "prompt": "填槽（模型只判歧义，不读整份）：\n1. 扫描时加 `--emit-pending`：`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --emit-pending` → `machine/slot_hits_pending.jsonl`（只含 AMBIGUOUS/MISS）\n2. `python3 toolchain/run.py std.split_rows --in machine/slot_hits_pending.jsonl --size 15` → `machine/slot_hits_pending-slices/0001.json…`\n3. 模型**一次一片**，每条只给 `{\"clause\",\"doc_item\",\"pick\":<该片内命中的那条原文>,\"value\":<数值或 null>}`；`value` 只能来自该片里出现的原文数字\n4. HIT 的直接落 `machine/report_slots.json` / `report_spans.json`（quote 已是原文连续片段）\n\n**禁止**整份读 `slot_hits.jsonl`；**禁止**给该片里没出现的值；ND 原样保留，不改 0。"
       }
     },
     {
@@ -133,10 +133,11 @@
         "y": 476
       },
       "data": {
-        "label": "解析（表格 / OCR）",
+        "label": "解析（候选槽扫描 / 表格）",
+        "description": "候选槽扫描 + 表格抽取（确定性）",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "解析（脚本，不叫模型）：\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/extract_tables.py --out <产出目录> --report-text <报告txt>`\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/ocr_step.py --out <产出目录> --images <图片...>`\n\n产出：`machine/tables.json`（行×列，每格带 page/quote/method）、`machine/report_tables_ref.json`、`machine/ocr_status.json`。\n**OCR 引擎未部署时必须是 BLOCKED + 每张图一条 GAP-DATA**，不许把图交给模型猜字。"
+        "prompt": "解析（脚本，不叫模型）：\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <报告txt> --doc-type 检测报告 --write`\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --write`\n`python3 toolchain/run.py ev.extract_tables --out <产出目录> --report-text <报告txt> --write-slots`\n\n产出：`machine/slot_hits.jsonl`（候选槽命中/歧义/未命中）、`machine/tables.json`（行×列，带 page/quote）、`machine/report_tables_ref.json`。\n命中强度 = 命中 hint 数 + 行标签命中×3 + 条款号邻近 +1；**低于阈值记 AMBIGUOUS，不猜**。\n**只有 MISS / AMBIGUOUS 才交给模型**，且只给它这一段与这个词，不通读全文。"
       }
     },
     {
@@ -154,6 +155,41 @@
           }
         ]
       }
+    },
+    {
+      "id": "res-slot_hits",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "machine/slot_hits.jsonl"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-候选槽（146-条）",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "候选槽（146 条）",
+        "description": "由脱敏后的对应表派生，跨报告复用",
+        "items": [
+          {
+            "kind": "file",
+            "value": "contracts/derived/slots_candidate.jsonl",
+            "note": "146 条：doc_type / clause / requirement / predicate_hint / match_hints。按 doc_type 过滤后再扫。"
+          }
+        ]
+      }
     }
   ],
   "edges": [
@@ -161,13 +197,6 @@
       "id": "fill->res-report_slots",
       "source": "fill",
       "target": "res-report_slots",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "fill->res-report_spans",
-      "source": "fill",
-      "target": "res-report_spans",
       "sourceHandle": null,
       "targetHandle": null
     },
@@ -221,13 +250,6 @@
       "targetHandle": null
     },
     {
-      "id": "parse->res-tables",
-      "source": "parse",
-      "target": "res-tables",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
       "id": "plan->parse",
       "source": "plan",
       "target": "parse",
@@ -249,6 +271,27 @@
     {
       "id": "res-tables->fill",
       "source": "res-tables",
+      "target": "fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "parse->res-slot_hits",
+      "source": "parse",
+      "target": "res-slot_hits",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-候选槽（146-条）->parse",
+      "source": "res-候选槽（146-条）",
+      "target": "parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-slot_hits->fill",
+      "source": "res-slot_hits",
       "target": "fill",
       "sourceHandle": null,
       "targetHandle": null

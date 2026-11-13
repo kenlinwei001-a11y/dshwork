@@ -39,11 +39,11 @@
         "y": 80
       },
       "data": {
-        "label": "补判（一致性/方法/整改）",
-        "description": "只补脚本判不了的四件事",
+        "label": "裁定判定（单条 + 脚本合并）",
+        "description": "裁定冲突：三段式",
         "icon": "target",
         "color": "green",
-        "prompt": "补判：只看脚本报出来的、它判不了的部分——方法 mismatch、跨文档一致性、两线结论打架、整改建议。\n**不许改** 脚本已定的 verdict；要改必须写 `override{from,to,reason,evidence}`，且只能升不能降（假通过除外）。\n产出 `machine/adjudication_final.json`：`{verdict, items, conflicts, method_mismatch, actions, owners}`。"
+        "prompt": "合并裁定（模型只判单条冲突，不改 findings）：\n1. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --export --split 10`\n2. 模型**一次一片**判冲突/方法 mismatch，每条 `{\"rule_id\",\"verdict\",\"reason\"}` → `machine/judged/00N.jsonl`\n3. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --merge machine/judged/all.jsonl`\n4. 脚本产出 `machine/adjudication_final.json`\n\n合并校验：只升不降；`method_mismatch` 未比较时写 `NOT_CHECKED`，不写 0。模型不得直接编辑 adjudication.json。"
       }
     },
     {

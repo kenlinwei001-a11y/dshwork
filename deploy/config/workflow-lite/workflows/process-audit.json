@@ -43,11 +43,11 @@
         "y": 136
       },
       "data": {
-        "label": "补判（pending_human / 冲突）",
-        "description": "只补脚本判不了的定性卡与冲突",
+        "label": "冲突与人裁（单条 + 脚本合并）",
+        "description": "过程线定性卡：三段式",
         "icon": "target",
         "color": "green",
-        "prompt": "补判：只处理脚本列出的 `pending_human`（定性三档）与 `CONFLICT_PENDING`（是否需要人裁、并列解释）。\n逐条改 `machine/process_findings.json` 对应项的 `verdict` / `message`，`basis` 写 `manual_qualitative` 或 `conflict_review`，保留两侧原文。\n**不许改** 脚本已定的判定；缺证仍 UNVERIFIABLE，不得升 FAIL。"
+        "prompt": "冲突与人裁（模型只判单条，不改 findings）：\n1. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/process_findings.json --export --split 10`\n2. 模型**一次一片**，每条只给 `{\"rule_id\",\"verdict\",\"reason\"}` 写 `machine/judged/00N.jsonl`\n3. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/process_findings.json --merge machine/judged/all.jsonl`\n\n合并校验：只能判原本存疑项、不得降级。模型不得直接编辑 `process_findings.json`。\n冲突项两侧必须都有 page+quote，只有一侧是缺证，不是冲突。"
       }
     },
     {

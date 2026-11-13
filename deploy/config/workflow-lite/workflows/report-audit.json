@@ -39,11 +39,11 @@
         "y": 136
       },
       "data": {
-        "label": "补判（只看 pending_human）",
-        "description": "只补脚本判不了的部分",
+        "label": "定性判定（单条 + 脚本合并）",
+        "description": "定性卡：导出→切片→模型逐条判→脚本合并",
         "icon": "target",
         "color": "green",
-        "prompt": "补判：只处理脚本列出的 `pending_human`（定性卡三档：符合 / 不符合 / 缺证）与方法 mismatch。\n逐条改 `machine/report_findings.json` 里对应项的 `verdict` 与 `message`，并在 `basis` 写 `manual_qualitative` 或 `method_mismatch`，附 `report_span`。\n**不许改** 脚本已定的判定与 `downgraded` 记录；缺证仍判 UNVERIFIABLE，不得升 FAIL。"
+        "prompt": "定性判定（模型只判单条，不改 findings）：\n1. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --export` → `machine/pending_human.jsonl`\n2. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --split 10` → `machine/pending/00N.json`\n3. 模型**一次一片**，每条只给 `{\"rule_id\",\"verdict\":\"PASS|FAIL|UNVERIFIABLE\",\"reason\"}`，写 `machine/judged/00N.jsonl`\n4. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --merge machine/judged/all.jsonl`\n\n合并由脚本做，带校验：**只能判原本存疑的项；不得把 FAIL 改成 PASS**。模型不得直接编辑 `report_findings.json`。"
       }
     },
     {

@@ -9,13 +9,13 @@
     },
     "origin": "personal",
     "availability": "enabled",
-    "revision": "r-e47123ae-ddea-46a7-993e-132063902cac",
-    "draftRevision": "9c72b2dee88b",
+    "revision": "r-2ac6d824-d752-492f-9f2e-8ef77c626a8b",
+    "draftRevision": "bb77caeb299d",
     "publishedRevisionRef": {
       "expertId": "expert-86f3e846af69",
-      "revisionId": "rev-9ba77b9d077e"
+      "revisionId": "rev-69d3db643633"
     },
     "createdAt": "2026-10-22T03:26:12.561Z",
-    "updatedAt": "2026-11-13T11:52:54.252Z"
+    "updatedAt": "2026-11-13T12:32:59.584Z"
   }
 }

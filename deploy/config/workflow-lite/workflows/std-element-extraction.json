@@ -60,11 +60,11 @@
         "y": 235
       },
       "data": {
-        "label": "要素与计算",
-        "description": "契约引用：elements（读 rows）",
+        "label": "要素抽（切片判定）",
+        "description": "切片后逐片判定，脚本合并",
         "icon": "target",
         "color": "green",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node elements`；门禁：`python3 skill-update/scripts/validate_node.py --node elements`。\n开跑前 `--util check --node elements`；完成前 `--util verify --node elements`。\n要点：LLM 只读 `machine/rows.json` 做判断；写 facts → 导出视图 → `--util backfill_spans` 回填切片。"
+        "prompt": "要素抽（模型只判、不读整份）：\n1. `python3 toolchain/run.py std.split_rows --in machine/rows.json --size 20` → `machine/rows-slices/0001.json…` + `index.json`\n2. 模型**一次只读一片**（≤20 行），输出该片的要素判定（族/statement/参数/模态/anchor），写到 `machine/elt_judged/<片号>.json`\n3. 脚本合并并回填切片锚：`python3 toolchain/run.py std.run_contract --util backfill_spans --out <产出目录>`\n\n**禁止**让模型读整份 rows.json，也禁止模型直接改 02-elements.json。覆盖矩阵由脚本反推，不手填。"
       }
     },
     {
@@ -93,11 +93,11 @@
         "y": 109
       },
       "data": {
-        "label": "规则与依赖",
-        "description": "契约引用：rules（读 rows）",
+        "label": "规则卡（切片判定）",
+        "description": "切片后逐片出规则卡字段",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node rules`；门禁：`python3 skill-update/scripts/validate_node.py --node rules`。\n开跑前 `--util check --node rules`；完成前 `--util verify --node rules`。\n要点：LLM 只读 `machine/rows.json` 出卡片判定字段；覆盖矩阵由脚本反推，不手填。"
+        "prompt": "规则卡（模型只判、不读整份）：\n1. `python3 toolchain/run.py std.split_rows --in machine/rows.json --size 20`\n2. 模型**一次一片**读，为每行给出 `category(C1–C8)/predicate(op,value,unit)/on_missing/check_targets`\n3. 写 `machine/rule_judged/<片号>.json`，由 `std.run_contract --util fix_log` 合并成 `03-rules.json`\n\n`predicate_hint` 可从 `contracts/derived/slots_candidate.jsonl` 取（29 条已带谓词），模型只校对，不从零生成。\n覆盖矩阵由脚本反推；**禁止**模型手填矩阵或直接改 03-rules.json。"
       }
     },
     {
@@ -126,11 +126,11 @@
         "y": 109
       },
       "data": {
-        "label": "质量审计",
-        "description": "契约引用：audit",
+        "label": "质量审计（5 条抽样）",
+        "description": "质量审计：脚本抽样、模型只判 5 条",
         "icon": "bug",
         "color": "coral",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node audit`；门禁：`python3 skill-update/scripts/validate_node.py --node audit`。\n开跑前 `--util check --node audit`；完成前 `--util verify --node audit`。\n要点：LLM 只读 findings、抽 5 样本、判 B/D/W；计算全部由脚本完成。最后一行必须给 `VERDICT: pass|fail`。"
+        "prompt": "质量审计（模型只读 5 条样本，不读整份）：\n1. `python3 toolchain/run.py std.sample_findings --out <产出目录> --n 5` → `machine/audit_samples.json`（脚本随机抽样，固定 seed）\n2. 模型**只读这 5 条**，逐条判 B/D/W（Best / Deficient / Wrong），每条给一句理由\n3. 计算（通过率、缺陷率、模态一致性）全部由脚本完成；模型不产出数字\n4. 最后一行必须给 `VERDICT: pass|fail`（脚本据此判定本节点通不通过）\n\n**禁止**读整份 findings / audit_results；**禁止**由模型统计任何比例。"
       }
     },
     {
@@ -174,11 +174,11 @@
         "y": 241
       },
       "data": {
-        "label": "打包交接",
-        "description": "契约引用：handoff（取 derived）",
+        "label": "交付与交接（占位符渲染）",
+        "description": "交接：占位符渲染，裸数字拒绝",
         "icon": "test",
         "color": "teal",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node handoff`；门禁：`python3 skill-update/scripts/validate_node.py --node handoff`。\n开跑前 `--util check --node handoff`；完成前 `--util verify --node handoff`。\n要点：数字取自 `derived.json`；产出 `ses.json` + `05-handoff.md` + `dashboard.html`（md/html 只给人看）。"
+        "prompt": "交付与交接（数字由脚本写，模型只写带占位符的结论段）：\n1. `python3 toolchain/run.py std.run_contract --util handoff_state --out <产出目录>` → `machine/handoff_state.json`（规则数/节点数/边数/缺口数/覆盖率，全部脚本统计）\n2. 模型写 `machine/handoff.model.md`：**只准用 `{{rule_count}}` `{{node_count}}` `{{edge_count}}` `{{gap_count}}` `{{coverage}}` 这类占位符，不准写裸数字**（①②③ 序号可用）\n3. `python3 toolchain/run.py std.render_handoff --out <产出目录>` → `05-handoff.md`\n\n渲染器会校验：模型段出现裸数字 → **exit 3 拒绝渲染**（实测：写「共 53 条」被判违规，bare=[53,87]）；占位符在 state 里不存在 → exit 2。\n4. `python3 toolchain/run.py std.check_gate --out <产出目录> --node handoff --require ses.json"
       }
     },
     {
