@@ -97,8 +97,8 @@
       "id": "res-verify_report",
       "type": "wfResource",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 1208,
+        "y": 198
       },
       "data": {
         "items": [
@@ -113,8 +113,8 @@
       "id": "res-doc_plan",
       "type": "wfResource",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 512,
+        "y": 198
       },
       "data": {
         "items": [
@@ -129,8 +129,8 @@
       "id": "parse",
       "type": "wfNode",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 776,
+        "y": 476
       },
       "data": {
         "label": "解析（表格 / OCR）",
@@ -143,8 +143,8 @@
       "id": "res-tables",
       "type": "wfResource",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 860,
+        "y": 594
       },
       "data": {
         "items": [
