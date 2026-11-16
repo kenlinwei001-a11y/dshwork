@@ -3,7 +3,7 @@
 自 2026-11-13 起，标准要素抽取的**全部可执行脚本只有一个副本**，位于工作区：
 
 ```
-skill-update/scripts/            ← 唯一执行体
+scripts/            ← 唯一执行体
   run_contract.py                契约执行器（8 个节点，含 --util check / verify）
   validate_node.py               8 道门禁（含 trail_present）
   graph_index.py                 SOP 图落库与反查
@@ -17,8 +17,8 @@ skill-update/scripts/            ← 唯一执行体
 但它**从未被任何工作流节点调用**——节点写的是工作区路径：
 
 ```
-python3 skill-update/scripts/run_contract.py --node <name> --out <运行目录>
-python3 skill-update/scripts/validate_node.py --node <name> --out <运行目录>
+python3 scripts/run_contract.py --node <name> --out <运行目录>
+python3 scripts/validate_node.py --node <name> --out <运行目录>
 ```
 
 留着旧副本的唯一后果是让人误以为在跑它（工作区版本 76.2KB，包内 55.6KB，差 20KB）。

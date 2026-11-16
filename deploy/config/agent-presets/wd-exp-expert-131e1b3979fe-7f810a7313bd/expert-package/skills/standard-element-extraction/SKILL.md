@@ -3,7 +3,7 @@ name: standard-element-extraction
 description: 把技术标准解构为可执行要素、判定规则与图谱，供审核智能体判报告。用于标准条款抽取、抽取准入闸、引用闭包、实验室文件对齐、规则化与方法族对照。
 ---
 
-> **agent 入口是脚本，不是本文。** `python3 skill-update/scripts/run_contract.py --util check --node <name> --out <产出目录>`
+> **agent 入口是脚本，不是本文。** `python3 scripts/run_contract.py --util check --node <name> --out <产出目录>`
 > 本文供人阅读：说明每一步在做什么、口径为什么这样。执行以门禁 exit 码与 verify 留痕为准，md 不作为判据。
 
 # 标准要素抽取（执行手册）
@@ -12,15 +12,17 @@ description: 把技术标准解构为可执行要素、判定规则与图谱，�
 
 ## 一、怎么跑（agent 唯一入口）
 
-> **单源说明**：执行入口只有工作区的脚本；本文只说明调用方式，命令里的脚本路径统一指向工作区。
+> **自包含说明**：脚本随专家作品包安装。先 `cd <专家作品资源目录>/skills/standard-element-extraction`（系统提示里会给出该目录），再执行下面的命令；不要依赖工作区 `skill-update/`。
+
+> **单源说明**：执行入口只有专家作品包里的脚本；本文只说明调用方式，命令里的路径统一指向包内 skills/standard-element-extraction。
 
 **不读文档，只读指令。** 执行器直接把该跑什么吐出来：
 
 ```bash
-python3 skill-update/scripts/run_contract.py --util check  --node <name> --out <out>   # 必做命令（路径已展开）+ 缺失前置输入
-python3 skill-update/scripts/run_contract.py --node <name>  --out <out>                # 按契约跑，成功即自动留痕
-python3 skill-update/scripts/run_contract.py --util verify --node <name> --out <out>   # 写留痕（只认本节点带 node 标记的记录）
-python3 skill-update/scripts/validate_node.py --node <name> --out <out>                # 门禁，exit≠0 不得标完成
+python3 scripts/run_contract.py --util check  --node <name> --out <out>   # 必做命令（路径已展开）+ 缺失前置输入
+python3 scripts/run_contract.py --node <name>  --out <out>                # 按契约跑，成功即自动留痕
+python3 scripts/run_contract.py --util verify --node <name> --out <out>   # 写留痕（只认本节点带 node 标记的记录）
+python3 scripts/validate_node.py --node <name> --out <out>                # 门禁，exit≠0 不得标完成
 ```
 
 节点顺序：`clauses → elements → rules → sop → toolchain → audit →（fix 循环）→ handoff`。

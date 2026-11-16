@@ -1,0 +1,878 @@
+{
+  "version": 1,
+  "note": "规则模式库：从条款文本自动起草候选规则。predicate 是草案，必须人工裁剪与锚定后才可进规则集。",
+  "patterns": [
+    {
+      "id": "P-LIMIT-DL",
+      "name": "检出限声明",
+      "category": "C1",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "检出限",
+        "方法检出限"
+      ],
+      "require": "numeric",
+      "extract": "检出限\\D{0,10}(\\d+(?:\\.\\d+)?)\\s*(mg/L|μg/L|μg/ml|mg/kg)",
+      "predicate": {
+        "field": "方法检出限",
+        "op": "==",
+        "value": "$1",
+        "unit": "$2"
+      },
+      "check_target": {
+        "field": "方法检出限",
+        "hints": [
+          "检出限",
+          "LOD",
+          "DL"
+        ],
+        "strategy": "field_label"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-LIMIT-RANGE",
+      "name": "测定范围",
+      "category": "C1",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "测定范围",
+        "测定下限",
+        "测定上限",
+        "量程"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+(?:\\.\\d+)?)\\s*[~～\\-]\\s*(\\d+(?:\\.\\d+)?)\\s*(mg/L|μg/L)",
+      "predicate": {
+        "field": "检测结果",
+        "op": "between",
+        "value": "$1..$2",
+        "unit": "$3"
+      },
+      "check_target": {
+        "field": "检测结果",
+        "hints": [
+          "检测结果",
+          "测定结果"
+        ],
+        "strategy": "table_header"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-SCOPE-MATRIX",
+      "name": "适用基质",
+      "category": "C1",
+      "primitives": [
+        "P2"
+      ],
+      "triggers": [
+        "适用于"
+      ],
+      "require": "matrix",
+      "extract": "适用于([^。]{0,40}?)的测定",
+      "predicate": {
+        "field": "样品类型",
+        "op": "in",
+        "value": "$1"
+      },
+      "check_target": {
+        "field": "样品类型",
+        "hints": [
+          "样品名称",
+          "样品类别"
+        ],
+        "strategy": "field_label"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-SAVE",
+      "name": "样品保存",
+      "category": "C2",
+      "primitives": [
+        "P5"
+      ],
+      "triggers": [
+        "保存",
+        "贮存",
+        "冷藏",
+        "冷冻",
+        "酸化"
+      ],
+      "require": "numeric",
+      "predicate": {
+        "field": "样品保存",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "样品保存",
+        "hints": [
+          "保存",
+          "酸化",
+          "pH"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-CONTAINER",
+      "name": "盛放容器",
+      "category": "C2",
+      "primitives": [
+        "P2"
+      ],
+      "triggers": [
+        "聚乙烯瓶",
+        "玻璃瓶",
+        "容器"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "容器材质",
+        "op": "in",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "采样容器",
+        "hints": [
+          "容器",
+          "聚乙烯",
+          "玻璃瓶"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-APPARATUS",
+      "name": "仪器配置与精度",
+      "category": "C3",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "天平",
+        "分光光度计",
+        "色谱仪",
+        "比色皿",
+        "超声",
+        "灭菌器",
+        "分析仪",
+        "滤膜",
+        "比色管",
+        "天平编号",
+        "检测池"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+(?:\\.\\d+)?)\\s*(mm|nm|kHz|g|mL|℃)",
+      "predicate": {
+        "field": "仪器",
+        "op": "contains",
+        "value": "$1 $2"
+      },
+      "check_target": {
+        "field": "仪器",
+        "hints": [
+          "仪器",
+          "型号",
+          "编号"
+        ],
+        "strategy": "table_header"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-REAGENT-SHELF",
+      "name": "试剂有效期",
+      "category": "C4",
+      "primitives": [
+        "P5"
+      ],
+      "triggers": [
+        "稳定",
+        "有效期",
+        "可保存",
+        "保存期"
+      ],
+      "require": "timeunit",
+      "extract": "(\\d+)\\s*(天|周|个月|月|年)",
+      "predicate": {
+        "field": "试剂有效期",
+        "op": "<=",
+        "value": "$1",
+        "unit": "$2"
+      },
+      "check_target": {
+        "field": "试剂有效期",
+        "hints": [
+          "有效期",
+          "稳定"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-REAGENT-PREP",
+      "name": "试剂配制",
+      "category": "C4",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "称取",
+        "量取",
+        "稀释至",
+        "定容"
+      ],
+      "require": "numeric",
+      "extract": "称取\\s*(\\d+(?:\\.\\d+)?)\\s*g",
+      "predicate": {
+        "field": "试剂配制",
+        "op": "exists",
+        "value": "配比记录"
+      },
+      "check_target": {
+        "field": "试剂",
+        "hints": [
+          "称取",
+          "配制"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-STD-SOLUTION",
+      "name": "标准溶液浓度",
+      "category": "C4",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "标准贮备液",
+        "标准使用液",
+        "标准溶液"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+(?:\\.\\d+)?)\\s*(mg/L|μg/mL|μg/ml)",
+      "predicate": {
+        "field": "标准溶液",
+        "op": "==",
+        "value": "$1",
+        "unit": "$2"
+      },
+      "check_target": {
+        "field": "标准溶液",
+        "hints": [
+          "标准贮备液",
+          "标准使用液"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-CURVE-POINTS",
+      "name": "曲线点数",
+      "category": "C5",
+      "primitives": [
+        "P6"
+      ],
+      "triggers": [
+        "标准系列",
+        "校准曲线",
+        "个浓度点",
+        "个点"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+)\\s*个\\s*(?:浓度点|点)",
+      "predicate": {
+        "field": "校准曲线点数",
+        "op": "==",
+        "value": "$1",
+        "unit": "点"
+      },
+      "check_target": {
+        "field": "校准曲线",
+        "hints": [
+          "校准曲线",
+          "标准系列"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-CURVE-R",
+      "name": "相关系数阈值",
+      "category": "C7",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "相关系数"
+      ],
+      "require": "numeric",
+      "extract": "(0\\.\\d{3})",
+      "predicate": {
+        "field": "相关系数",
+        "op": ">=",
+        "value": "$1",
+        "unit": "1"
+      },
+      "check_target": {
+        "field": "校准曲线相关系数",
+        "hints": [
+          "相关系数",
+          "r=",
+          "R="
+        ],
+        "strategy": "field_label"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-QC-BLANK",
+      "name": "空白频次",
+      "category": "C7",
+      "primitives": [
+        "P6"
+      ],
+      "triggers": [
+        "空白试验",
+        "空白样品",
+        "空白值",
+        "空白制备",
+        "空白试样"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+)\\s*个{0,1}\\s*空白",
+      "predicate": {
+        "field": "空白数量",
+        "op": ">=",
+        "value": "$1",
+        "unit": "个"
+      },
+      "check_target": {
+        "field": "质控-空白",
+        "hints": [
+          "空白"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-QC-PARALLEL",
+      "name": "平行双样",
+      "category": "C7",
+      "primitives": [
+        "P6"
+      ],
+      "triggers": [
+        "平行双样",
+        "平行样"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+)\\s*%",
+      "predicate": {
+        "field": "平行双样数量",
+        "op": ">=",
+        "value": "$1",
+        "unit": "%"
+      },
+      "check_target": {
+        "field": "质控-平行",
+        "hints": [
+          "平行",
+          "双样"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-QC-RECOVERY",
+      "name": "加标回收",
+      "category": "C7",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "加标",
+        "回收率"
+      ],
+      "require": "numeric",
+      "extract": "(\\d+(?:\\.\\d+)?)\\s*%\\s*[~～\\-]\\s*(\\d+(?:\\.\\d+)?)\\s*%",
+      "predicate": {
+        "field": "加标回收率",
+        "op": "between",
+        "value": "$1..$2",
+        "unit": "%"
+      },
+      "check_target": {
+        "field": "质控-回收率",
+        "hints": [
+          "加标",
+          "回收率"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-CALC-FORMULA",
+      "name": "计算公式",
+      "category": "C6",
+      "primitives": [
+        "P7"
+      ],
+      "triggers": [
+        "按式",
+        "公式",
+        "计算"
+      ],
+      "require": "formula",
+      "predicate": {
+        "field": "计算",
+        "op": "equals",
+        "value": "式(1)"
+      },
+      "check_target": {
+        "field": "检测结果",
+        "hints": [
+          "计算",
+          "公式"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-ROUND",
+      "name": "修约规则",
+      "category": "C6",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "保留",
+        "有效数字",
+        "小数点后"
+      ],
+      "require": "numeric",
+      "extract": "保留至?(小数点后\\S{0,3}|\\S{0,4}位有效数字)",
+      "predicate": {
+        "field": "结果位数",
+        "op": "regex",
+        "value": "$1"
+      },
+      "check_target": {
+        "field": "检测结果",
+        "hints": [
+          "mg/L",
+          "结果"
+        ],
+        "strategy": "table_header"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-REPORT-FIELD",
+      "name": "报告要素",
+      "category": "C8",
+      "primitives": [
+        "P3"
+      ],
+      "triggers": [
+        "报告",
+        "结果表示"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "报告要素",
+        "op": "exists",
+        "value": "原文指定"
+      },
+      "check_target": {
+        "field": "方法依据",
+        "hints": [
+          "依据",
+          "方法"
+        ],
+        "strategy": "field_label"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-METHOD-BASIS",
+      "name": "方法依据与版本",
+      "category": "C1",
+      "primitives": [
+        "P3"
+      ],
+      "triggers": [
+        "本标准规定了",
+        "本标准适用于",
+        "依据"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "方法依据",
+        "op": "exists",
+        "value": "标准号+年号"
+      },
+      "check_target": {
+        "field": "方法依据",
+        "hints": [
+          "方法依据",
+          "检测依据",
+          "HJ"
+        ],
+        "strategy": "field_label"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-PRETREAT",
+      "name": "样品前处理",
+      "category": "C2",
+      "primitives": [
+        "P2"
+      ],
+      "triggers": [
+        "余氯",
+        "絮凝",
+        "预蒸馏",
+        "过滤",
+        "预处理柱",
+        "净化",
+        "蒸馏"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "前处理",
+        "op": "contains_any",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "前处理",
+        "hints": [
+          "前处理",
+          "过滤",
+          "蒸馏"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-CONDITION",
+      "name": "分析条件一致性",
+      "category": "C5",
+      "primitives": [
+        "P7"
+      ],
+      "triggers": [
+        "基线稳定",
+        "相同条件",
+        "相同的色谱条件",
+        "按与",
+        "同条件",
+        "仪器条件",
+        "色谱条件",
+        "测定条件"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "仪器条件",
+        "op": "exists",
+        "value": "与曲线同条件"
+      },
+      "check_target": {
+        "field": "仪器条件",
+        "hints": [
+          "基线",
+          "条件",
+          "一致"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-SEPARATION",
+      "name": "分离度",
+      "category": "C3",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "分离度"
+      ],
+      "require": "numeric",
+      "extract": "分离度[^0-9]{0,6}(\\d+(?:\\.\\d+)?)",
+      "predicate": {
+        "field": "分离度",
+        "op": ">=",
+        "value": "$1",
+        "unit": "1"
+      },
+      "check_target": {
+        "field": "分离度",
+        "hints": [
+          "分离度",
+          "Resolution"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-PURITY",
+      "name": "试剂纯度与等级",
+      "category": "C4",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "优级纯",
+        "分析纯",
+        "纯度",
+        "含氮量",
+        "基准试剂"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "试剂等级",
+        "op": "in",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "试剂",
+        "hints": [
+          "优级纯",
+          "纯度",
+          "含氮量"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-BLANK-ABS",
+      "name": "空白吸光度阈值",
+      "category": "C7",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "空白",
+        "吸光度"
+      ],
+      "require": "numeric",
+      "extract": "(?:不超过|小于|＜|<)\\s*(0\\.\\d+)",
+      "predicate": {
+        "field": "空白吸光度",
+        "op": "<",
+        "value": "$1",
+        "unit": "1"
+      },
+      "check_target": {
+        "field": "质控-空白",
+        "hints": [
+          "空白",
+          "吸光度"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-DILUTION",
+      "name": "稀释与超范围",
+      "category": "C5",
+      "primitives": [
+        "P4"
+      ],
+      "triggers": [
+        "超出",
+        "稀释",
+        "稀释倍数"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "稀释倍数 f",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "稀释倍数",
+        "hints": [
+          "稀释倍数",
+          "稀释"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-REPORT-EXPR",
+      "name": "结果表述口径",
+      "category": "C8",
+      "primitives": [
+        "P3"
+      ],
+      "triggers": [
+        "以N计",
+        "以P计",
+        "以离子计",
+        "保留",
+        "有效数字",
+        "不得报出"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "结果表述",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "结果表述",
+        "hints": [
+          "以N计",
+          "以P计",
+          "保留"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "FAIL"
+    },
+    {
+      "id": "P-SAFETY",
+      "name": "安全防护",
+      "category": "C8",
+      "primitives": [
+        "P3"
+      ],
+      "triggers": [
+        "警告",
+        "剧毒",
+        "有害",
+        "防护"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "安全防护",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "安全防护",
+        "hints": [
+          "防护",
+          "剧毒",
+          "警告"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-WASTE",
+      "name": "废物处理",
+      "category": "C8",
+      "primitives": [
+        "P3"
+      ],
+      "triggers": [
+        "废液",
+        "废物",
+        "废渣"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "废液处置",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "废液处置",
+        "hints": [
+          "废液",
+          "处理"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-ENV",
+      "name": "环境条件",
+      "category": "C5",
+      "primitives": [
+        "P1"
+      ],
+      "triggers": [
+        "无氨",
+        "室温",
+        "温度控制",
+        "环境"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "环境条件",
+        "op": "exists",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "环境条件",
+        "hints": [
+          "室温",
+          "环境",
+          "无氨"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    },
+    {
+      "id": "P-SAMPLE-PREP",
+      "name": "试样制备与调节",
+      "category": "C2",
+      "primitives": [
+        "P4"
+      ],
+      "triggers": [
+        "调至",
+        "调节 pH",
+        "调节pH",
+        "中和"
+      ],
+      "require": "none",
+      "predicate": {
+        "field": "前处理",
+        "op": "between",
+        "value": "见原文"
+      },
+      "check_target": {
+        "field": "前处理",
+        "hints": [
+          "pH",
+          "调节",
+          "中和"
+        ],
+        "strategy": "keyword"
+      },
+      "on_missing": "UNVERIFIABLE"
+    }
+  ]
+}
