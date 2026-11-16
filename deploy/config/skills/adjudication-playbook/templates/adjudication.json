@@ -1,0 +1,16 @@
+{
+  "report_id": "R-YYYY-NNN",
+  "standards": ["HJ 84-2016"],
+  "generated_at": "2026-11-13T00:00:00",
+  "verdict": "FAIL",
+  "counts": {"PASS": 0, "FAIL": 0, "UNVERIFIABLE": 0, "CONFLICT_PENDING": 0, "NOT_APPLICABLE": 0},
+  "findings": [
+    {"rule_id": "ARC-C6-11.2-01", "slot": "S0xx", "label": "校准曲线相关系数",
+     "verdict": "FAIL", "reason": null,
+     "std_span_id": "3fdd1592d59a:7361-7401",
+     "report_span": {"page": 3, "quote": "r=0.9987"},
+     "message": "0.9987 < 0.995", "basis": "10.1 精密度数据（SE-PERF-101）", "owner": "实验室"}
+  ],
+  "method_mismatch": [], "conflicts": [], "missing": [],
+  "override_policy": {"mode": "escalate_only", "allow_override": false}
+}
