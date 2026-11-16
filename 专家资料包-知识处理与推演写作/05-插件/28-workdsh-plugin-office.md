@@ -5,7 +5,7 @@
 | 字段 | 值 |
 |---|---|
 | 名称 | workdsh-plugin-office |
-| 版本 | 0.1.0-alpha.10 |
+| 版本 | 0.1.0-alpha.11 |
 | 类型 | WorkDSH 功能插件 |
 | 是否在 bundles | 是 |
 | 安装目录 | /Users/apple/workdsh/.test-runtime/preview/profiles/preview/node_modules/workdsh-plugin-office |
