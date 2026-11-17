@@ -1,0 +1,69 @@
+# 规范字段词汇表（证据侧共享）—— 环境监测通用，与具体标准无关
+# 每字段：id / 语义 / 类型 / 单位 / 聚合 / 抽取模式 / 适用介质 / 时点
+# 规则只声明 requires: [字段]，不写"去哪份文档搜什么词"
+version: 2.0
+domains: [水, 废水, 土壤, 底泥, 固废, 环境空气, 废气, 生物]
+
+fields:
+  # ── 校准 ───────────────────────────────────────────────
+  CAL.相关系数:      {type: ratio,   unit: '1',  agg: last,  patterns: ['相关系数[^\d]{0,14}([01]\.\d{3,6})', '[Rrγx]\s*[=＝]\s*([01]\.\d{3,6})', '判定系数[^\d]{0,6}(9\d\.\d{1,4})%']}
+  CAL.校准点数:      {type: count,   unit: 个,   agg: last,  patterns: ['(\d+)\s*个浓度点', '#数据点\s*\|\s*(\d+)']}
+  CAL.斜率:          {type: number,  unit: '1',  agg: last,  patterns: ['斜率[^\d]{0,8}([\d.]+)', '斜率\(C1\)\s*\|\s*([\d.-]+)']}
+  CAL.截距:          {type: number,  unit: '1',  agg: last,  patterns: ['截距[^\d-]{0,8}(-?[\d.]+)', '截距\(C0\)\s*\|\s*(-?[\d.]+)']}
+  CAL.判定系数:      {type: percent, unit: '%',  agg: last,  patterns: ['判定系数%?\s*\|\s*(\d+\.\d+)', '判定系数[^\d]{0,6}(\d+\.\d+)']}
+  # ── 质控 ───────────────────────────────────────────────
+  QC.空白值:         {type: number,  unit: auto, agg: first, patterns: ['空白[^\n|]{0,14}\|?[^\n|]{0,14}(-?\d+\.\d+)', '平均值\s*Ab[:：]\s*([01]\.\d{3})']}
+  QC.空白个数:       {type: count,   unit: 个,   agg: max,   patterns: ['空白样品\s*(\d)', '至少做?\s*(\d+)\s*个?空白', '(\d+)\s*个实验室空白']}
+  QC.平行偏差:       {type: percent, unit: '%',  agg: max,   keep_all: true, patterns: ['相对偏差[:：]?\s*([\d.]+)\s*%', '相对标准偏差[:：]?\s*([\d.]+)\s*%', 'RPD\s*[:=]\s*([\d.]+)']}
+  QC.加标回收率:     {type: percent, unit: '%',  agg: [min,max], keep_all: true, patterns: ['(?:加标)?回收率[:：]?\s*([\d.]+)\s*%', '回收率[^\d]{0,8}([\d.]+)\s*%', 'P\s*=\s*([\d.]+)\s*%']}
+  QC.中间点误差:     {type: percent, unit: '%',  agg: max,   patterns: ['(?:中间点|中间浓度)[^\n]{0,40}?(?:相对误差|相对偏差)[:：]?\s*([\d.]+)\s*%']}
+  QC.精密度RSD:      {type: percent, unit: '%',  agg: max,   patterns: ['相对标准偏差[^\d]{0,10}([\d.]+)\s*%', 'RSD\s*[:=]\s*([\d.]+)']}
+  # ── 适用域 ─────────────────────────────────────────────
+  SCOPE.检出限:      {type: number,  unit: auto, agg: min,   patterns: ['检出限[^\d]{0,14}([\d.]+)\s*(mg/L|μg/L|ug/L|mg/kg|μg/kg|ng/L)', '方法检出限\s*\|\s*([\d.]+)']}
+  SCOPE.测定下限:    {type: number,  unit: auto, agg: min,   patterns: ['测定下限[^\d]{0,14}([\d.]+)']}
+  SCOPE.测定范围:    {type: interval,unit: auto, agg: last,  patterns: ['测定范围[^\d]{0,10}([\d.]+)\s*[～~\-]\s*([\d.]+)']}
+  SCOPE.光程:        {type: number,  unit: mm,   agg: last,  patterns: ['(\d{2})\s*mm\s*(?:比色皿|石英)', '光程[^\d]{0,6}(\d+)\s*mm']}
+  # ── 样品与流转 ─────────────────────────────────────────
+  SAMP.保存pH:       {type: range,   unit: pH,   agg: last,  patterns: ['pH\s*[≤<]\s*([\d.]+)', '加(?:硫酸|硝酸|盐酸)[^\n]{0,20}pH\s*([\d.]+)\s*[～~\-]\s*([\d.]+)']}
+  SAMP.保存温度:     {type: range,   unit: ℃,    agg: last,  patterns: ['([-\d]+)\s*[～~\-]\s*([-\d]+)\s*℃', '冷藏\s*([\d]+)\s*[～~\-]\s*([\d]+)']}
+  SAMP.保存时限:     {type: duration,unit: d,    agg: min,   patterns: ['(\d+)\s*d\s*内', '(\d+)\s*[dD]\s*内(?:测定|分析)', '保存(?:期|时间)[^\d]{0,8}(\d+)\s*(d|天|h|小时|个月)', '(\d+)\s*个月', '(\d+)\s*(?:h|小时)内']}
+  SAMP.固定剂:       {type: enum,    unit: '1',  agg: first, patterns: ['加(硫酸|硝酸|盐酸|氢氧化钠|抗坏血酸|硫代硫酸钠)']}
+  SAMP.采样容器:     {type: enum,    unit: '1',  agg: first, patterns: ['(聚乙烯|玻璃|聚四氟乙烯|棕色玻璃)瓶']}
+  # ── 仪器与试剂 ─────────────────────────────────────────
+  APPA.仪器编号:     {type: id,      unit: '1',  agg: first, normalize: [strip_dash, upper], patterns: ['仪器编号[:：]?\s*([A-Z]-?\d+)']}
+  APPA.校准有效期:   {type: date,    unit: d,    agg: last,  patterns: ['(?:有效期|校准日期)[^\n]{0,20}(20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2})']}
+  CHEM.标准溶液浓度: {type: number,  unit: auto, agg: last,  patterns: ['(?:标准)?(?:贮备|储备|使用|工作)液?[^\d]{0,20}([\d.]+)\s*(mg/L|μg/L|ug/mL|μg/mL|mg/mL)', '(?:ρ|浓度)[^\d]{0,10}([\d.]+)\s*(mg/L|μg/L|mol/L)']}
+  CHEM.试剂有效期: {type: duration,unit: d,    agg: min,   patterns: ['有效期[^\d]{0,8}(\d+)\s*(d|天|个月|周)']}
+  # ── 流程时序（批次级）─────────────────────────────────
+  PROC.曲线批次时间: {type: date,  unit: '1', agg: min, patterns: ['检测日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
+  PROC.样品批次时间: {type: date,  unit: '1', agg: min, patterns: ['检测日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
+  PROC.空白批次数:   {type: count, unit: 个,  agg: max, patterns: ['空白样品\\s*(\\d)', '至少做?\\s*(\\d+)\\s*个?空白']}
+  PROC.加标批次时间: {type: date,  unit: '1', agg: min, patterns: ['检测日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
+  PROC.进样时间:     {type: date,  unit: '1', agg: last, patterns: ['进样日期/时间[:：]\\s*([^\\n|]{0,24})']}
+  # ── 流动注射/色谱类补充字段（HJ671/HJ84 等）────────────
+  CHEM.实验用水电导率: {type: number, unit: 'mS/cm', agg: max, patterns: ['电导率[^\d]{0,10}([\\d.]+)\\s*mS/cm']}
+  CHEM.试剂等级:       {type: enum,   unit: '1', agg: first, patterns: ['(优级纯|分析纯|色谱纯|化学纯)']}
+  APPA.检测波长:       {type: number, unit: nm, agg: last, patterns: ['(\\d{3})\\s*nm']}
+  APPA.环境温度:       {type: range,  unit: ℃, agg: last, patterns: ['室温[^\\d]{0,10}([\\d.]+)\\s*℃\\s*±\\s*([\\d.]+)', '(20℃|20\\s*℃)[^。]{0,8}±\\s*([\\d.]+)']}
+  APPA.流速:           {type: number, unit: 'mL/min', agg: last, patterns: ['流速[^\\d]{0,10}([\\d.]+)\\s*ml/min']}
+  APPA.进样量:         {type: number, unit: μL, agg: last, patterns: ['进样量[^\\d]{0,10}([\\d.]+)\\s*[μu]l']}
+  APPA.消解温度:       {type: range,  unit: ℃, agg: last, patterns: ['(1[0-9]{2})\\s*[～~\\-]\\s*(1[0-9]{2})\\s*℃']}
+  SCOPE.基质:          {type: enum,    unit: '1', agg: first, patterns: ['(地表水|地下水|工业废水|生活污水|废水|海水|饮用水)']}
+  APPA.分离度:         {type: number,  unit: '1', agg: last,  patterns: ['分离度[^\\d]{0,10}([\\d.]+)', '分辨率[^\\d]{0,10}([\\d.]+)']}
+  SCOPE.粒径上限:      {type: number, unit: μm, agg: last, patterns: ['粒径[^\\d]{0,10}([\\d.]+)\\s*[μu]m']}
+  QC.加标比例:         {type: percent, unit: '%', agg: last, patterns: ['(\\d+)\\s*%\\s*的?加标']}
+  REC.报告要素:        {type: enum,   unit: '1', agg: first, patterns: ['报告须载明', '被测物表述为']}
+  # ── 计算与记录 ─────────────────────────────────────────
+  CAL.仪器读数:      {type: number,  unit: auto, agg: last,  patterns: ['仪器读数[:：]?\s*([\d.]+)', '样品量\s*mg/L[^\d]{0,20}([\d.]+)']}
+  SCOPE.上限:        {type: number,  unit: auto, agg: max,   patterns: ['测定范围[^\d]{0,10}[\d.]+\s*[～~\-]\s*([\d.]+)', '上限[^\d]{0,6}([\d.]+)']}
+  CALC.稀释倍数:     {type: number,  unit: 倍,   agg: last,  patterns: ['稀释倍数[:：]?\s*(\d+)', '稀释\s*(\d+)\s*倍']}
+  CALC.结果值:       {type: number,  unit: auto, agg: last,  patterns: ['报告值[:：]?\s*([\d.]+)', '测定值[:：]?\s*([\d.]+)']}
+  REC.检测人:        {type: name,    unit: '1',  agg: first, patterns: ['检测人[:：]\s*(\S{2,4})']}
+  REC.审核人:        {type: name,    unit: '1',  agg: first, patterns: ['审核人[:：]\s*(\S{2,4})']}
+
+# 介质特定字段（按 domains 启用）
+by_domain:
+  土壤: {SAMP.采样深度: {type: number, unit: cm}, PREP.风干筛分: {type: enum, unit: '1'}, PREP.含水率: {type: percent, unit: '%'}}
+  固废: {PREP.浸出液: {type: enum, unit: '1'}, PREP.破碎粒径: {type: number, unit: mm}}
+  环境空气: {APPA.标况体积: {type: number, unit: 'm³'}, APPA.流量: {type: number, unit: 'L/min'}, SAMP.采样时长: {type: duration, unit: min}}
+  废气: {APPA.标况体积: {type: number, unit: 'm³'}, APPA.含湿量: {type: percent, unit: '%'}, APPA.氧含量: {type: percent, unit: '%'}}

@@ -1,177 +1,177 @@
 {
-  "nodes": [
-    {
-      "id": "prepare",
-      "type": "wfNode",
-      "position": {
-        "x": 428,
-        "y": 80
-      },
-      "data": {
-        "label": "准备（脚本 --check）",
-        "description": "先验两线门禁，再确定性合并",
-        "icon": "idea",
-        "color": "blue",
-        "prompt": "开工前硬检查（两条线都必须已过门禁，否则不许合并）：\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node report-audit --require machine/report_findings.json`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node process-audit --require machine/process_findings.json`\n\n通过后再执行：\n`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --report <报告号> --report-method <方法号> --check`\n脚本做确定性合并（优先级、计数、只升不降、假通过降级）；合并结果写 `machine/adjudication.json`。"
-      }
-    },
-    {
-      "id": "res-adjudication",
-      "type": "wfResource",
-      "position": {
-        "x": 512,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/adjudication.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "judge",
-      "type": "wfNode",
-      "position": {
-        "x": 776,
-        "y": 80
-      },
-      "data": {
-        "label": "裁定判定（单条 + 脚本合并）",
-        "description": "裁定冲突：三段式",
-        "icon": "target",
-        "color": "green",
-        "prompt": "合并裁定（模型只判单条冲突，不改 findings）：\n1. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --export --split 10`\n2. 模型**一次一片**判冲突/方法 mismatch，每条 `{\"rule_id\",\"verdict\",\"reason\"}` → `machine/judged/00N.jsonl`\n3. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --merge machine/judged/all.jsonl`\n4. 脚本产出 `machine/adjudication_final.json`\n\n合并校验：只升不降；`method_mismatch` 未比较时写 `NOT_CHECKED`，不写 0。模型不得直接编辑 adjudication.json。"
-      }
-    },
-    {
-      "id": "res-adjudication_final",
-      "type": "wfResource",
-      "position": {
-        "x": 860,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/adjudication_final.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "verify",
-      "type": "wfNode",
-      "position": {
-        "x": 1124,
-        "y": 80
-      },
-      "data": {
-        "label": "校验（脚本 --verify + 门禁）",
-        "description": "脚本自校验 + 硬门禁",
-        "icon": "terminal",
-        "color": "amber",
-        "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 skill-update-audit/skills/adjudication-playbook/scripts/adjudicate.py --dir <产出目录> --verify`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node adjudication --require adjudication.json`\n\n脚本查四件（只升不降/假通过降级/owner 对齐/counts），并把结果**写进 trail.jsonl**（每条留痕必须带 node）；门禁只认该节点**最后一条** verify 记录。\n**门禁不过不得标完成。**"
-      }
-    },
-    {
-      "id": "res-adjudication_verify",
-      "type": "wfResource",
-      "position": {
-        "x": 1208,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/adjudication_verify.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "ask-run",
-      "type": "wfInput",
-      "position": {
-        "x": 164,
-        "y": 100
-      },
-      "data": {
-        "question": "本次裁定针对哪个运行目录（需含报告线与过程线的 findings）？",
-        "required": true
-      }
-    }
-  ],
-  "edges": [
-    {
-      "id": "prepare->res-adjudication",
-      "source": "prepare",
-      "target": "res-adjudication",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "judge->res-adjudication_final",
-      "source": "judge",
-      "target": "res-adjudication_final",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "verify->res-adjudication_verify",
-      "source": "verify",
-      "target": "res-adjudication_verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "ask-run->prepare",
-      "source": "ask-run",
-      "target": "prepare",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "prepare->judge",
-      "source": "prepare",
-      "target": "judge",
-      "sourceHandle": null,
-      "targetHandle": null,
-      "data": {
-        "handoff": {
-          "note": "脚本已定的 verdict 不许改；只补它判不了的四件事。"
-        }
-      }
-    },
-    {
-      "id": "res-adjudication->judge",
-      "source": "res-adjudication",
-      "target": "judge",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "judge->verify",
-      "source": "judge",
-      "target": "verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-adjudication_final->verify",
-      "source": "res-adjudication_final",
-      "target": "verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    }
-  ],
-  "viewport": {
-    "x": 0,
-    "y": 0,
-    "zoom": 1
+ "nodes": [
+  {
+   "id": "prepare",
+   "type": "wfNode",
+   "position": {
+    "x": 428,
+    "y": 80
+   },
+   "data": {
+    "label": "准备（脚本 --check）",
+    "description": "先验两线门禁，再确定性合并",
+    "icon": "idea",
+    "color": "blue",
+    "prompt": "开工前硬检查（两条线都必须已过门禁，否则不许合并）：\n`python3 toolchain/run.py std.check_gate --out <产出目录> --node report-audit --require machine/report_findings.json`\n`python3 toolchain/run.py std.check_gate --out <产出目录> --node process-audit --require machine/process_findings.json`\n\n通过后再执行：\n`python3 toolchain/run.py ad.adjudicate --dir <产出目录> --report <报告号> --report-method <方法号> --check`\n脚本做确定性合并（优先级、计数、只升不降、假通过降级）；合并结果写 `machine/adjudication.json`。"
+   }
+  },
+  {
+   "id": "res-adjudication",
+   "type": "wfResource",
+   "position": {
+    "x": 512,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/adjudication.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "judge",
+   "type": "wfNode",
+   "position": {
+    "x": 776,
+    "y": 80
+   },
+   "data": {
+    "label": "裁定判定（单条 + 脚本合并）",
+    "description": "裁定冲突：三段式",
+    "icon": "target",
+    "color": "green",
+    "prompt": "合并裁定（模型只判单条冲突，不改 findings）：\n1. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --export --split 10`\n2. 模型**一次一片**判冲突/方法 mismatch，每条 `{\"rule_id\",\"verdict\",\"reason\"}` → `machine/judged/00N.jsonl`\n3. `python3 toolchain/run.py ad.judge_tools --out <产出目录> --findings machine/adjudication.json --merge machine/judged/all.jsonl`\n4. 脚本产出 `machine/adjudication_final.json`\n\n合并校验：只升不降；`method_mismatch` 未比较时写 `NOT_CHECKED`，不写 0。模型不得直接编辑 adjudication.json。"
+   }
+  },
+  {
+   "id": "res-adjudication_final",
+   "type": "wfResource",
+   "position": {
+    "x": 860,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/adjudication_final.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "verify",
+   "type": "wfNode",
+   "position": {
+    "x": 1124,
+    "y": 80
+   },
+   "data": {
+    "label": "校验（脚本 --verify + 门禁）",
+    "description": "脚本自校验 + 硬门禁",
+    "icon": "terminal",
+    "color": "amber",
+    "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 toolchain/run.py ad.adjudicate --dir <产出目录> --verify`\n`python3 toolchain/run.py std.check_gate --out <产出目录> --node adjudication --require adjudication.json`\n\n脚本查四件（只升不降/假通过降级/owner 对齐/counts），并把结果**写进 trail.jsonl**（每条留痕必须带 node）；门禁只认该节点**最后一条** verify 记录。\n**门禁不过不得标完成。**"
+   }
+  },
+  {
+   "id": "res-adjudication_verify",
+   "type": "wfResource",
+   "position": {
+    "x": 1208,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/adjudication_verify.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "ask-run",
+   "type": "wfInput",
+   "position": {
+    "x": 164,
+    "y": 100
+   },
+   "data": {
+    "question": "本次裁定针对哪个运行目录（需含报告线与过程线的 findings）？",
+    "required": true
+   }
   }
+ ],
+ "edges": [
+  {
+   "id": "prepare->res-adjudication",
+   "source": "prepare",
+   "target": "res-adjudication",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "judge->res-adjudication_final",
+   "source": "judge",
+   "target": "res-adjudication_final",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "verify->res-adjudication_verify",
+   "source": "verify",
+   "target": "res-adjudication_verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "ask-run->prepare",
+   "source": "ask-run",
+   "target": "prepare",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "prepare->judge",
+   "source": "prepare",
+   "target": "judge",
+   "sourceHandle": null,
+   "targetHandle": null,
+   "data": {
+    "handoff": {
+     "note": "脚本已定的 verdict 不许改；只补它判不了的四件事。"
+    }
+   }
+  },
+  {
+   "id": "res-adjudication->judge",
+   "source": "res-adjudication",
+   "target": "judge",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "judge->verify",
+   "source": "judge",
+   "target": "verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-adjudication_final->verify",
+   "source": "res-adjudication_final",
+   "target": "verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  }
+ ],
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ }
 }

@@ -101,15 +101,31 @@ def main():
                         'owner': x.get('owner')}
         return out
 
+    _pa = []
     fmap = _load_findings('machine/report_findings.json', 'report')
     for k, v in _load_findings('machine/process_findings.json', 'process').items():
         fmap.setdefault(k, v)   # 同一 rule 只计一次
 
     gaps = {g.get('gap_id'): g for g in (ses.get('gaps') or [])}
-    findings = []; counts = {'PASS': 0, 'FAIL': 0, 'UNVERIFIABLE': 0, 'CONFLICT_PENDING': 0, 'NOT_APPLICABLE': 0}
+    _jfp = os.path.join(D, 'machine', 'judge_findings.json')
+    _jf2 = load(_jfp, {}) or {}
+    _auth = {i['rule_id']: i['verdict'] for i in (_jf2.get('items') or []) if i.get('verdict')}
+    _pend = {x['rule_id'] for x in (_jf2.get('needs_agent') or []) if x.get('rule_id')}
+    findings = []; counts = {'PASS': 0, 'FAIL': 0, 'UNVERIFIABLE': 0, 'CONFLICT_PENDING': 0,
+                             'NOT_APPLICABLE': 0, 'PENDING_JUDGE': 0}
     seen = set()
     for r in results:
         v = r.get('verdict'); rid = r.get('rule_id'); reason = None
+        if rid in _pend:
+            # 定性卡未判：单列，不计入缺证
+            counts['PENDING_JUDGE'] = counts.get('PENDING_JUDGE', 0) + 1
+            _pa.append({'rule_id': rid, 'slot': r.get('slot'), 'category': r.get('category'),
+                        'clause': (r.get('anchor') or {}).get('clause'),
+                        'verdict': 'PENDING_JUDGE'})
+            seen.add(rid)
+            continue
+        if rid in _auth:
+            v = _auth[rid]; reason = '采信 judge_findings（索引检索判定）'
         f = fmap.get(rid)
         if f and f.get('verdict'):
             seen.add(rid)
@@ -143,6 +159,17 @@ def main():
                          'std_span_id': None, 'report_span': f.get('report_span'),
                          'message': f.get('message'), 'basis': f.get('basis'),
                          'owner': f.get('owner') or owner_of(f.get('pending_class'))})
+    # judge_findings（检索式判定）：verdict 项作为覆盖源；needs_agent 单列不计分
+    _jf = load(os.path.join(D, 'machine', 'judge_findings.json'), {}) or {}
+    for it in _jf.get('items') or []:
+        rid = it.get('rule_id')
+        if rid and it.get('verdict'):
+            fmap.setdefault(rid, {'verdict': it['verdict'], 'line': 'judge_findings',
+                                  'message': it.get('message'), 'basis': it.get('basis'),
+                                  'owner': it.get('owner'),
+                                  'pending_class': it.get('pending_class'),
+                                  'report_span': it.get('report_span')})
+
     # C8 文档清单完整性：来自 std.doc_gap 的 c8_result（标准强制记录 vs 实有文档）
     _dg = load(os.path.join(D, 'machine', 'doc_gap.json'), {}) or {}
     _c8 = _dg.get('c8_result')
@@ -159,13 +186,15 @@ def main():
                              'uncategorized': _c8.get('uncategorized', 0)})
             seen.add(_rid)
 
-    order = ['FAIL', 'CONFLICT_PENDING', 'UNVERIFIABLE', 'NOT_APPLICABLE', 'PASS']
+    order = ['FAIL', 'CONFLICT_PENDING', 'UNVERIFIABLE', 'PENDING_JUDGE', 'NOT_APPLICABLE', 'PASS']
     verdict = next((x for x in order if counts.get(x)), 'PASS')
     if method_mismatch: verdict = 'FAIL'
+    _pending_agent = _pa
     out = {'report_id': a.report, 'standards': [ses.get('standard_id')],
            'generated_at': datetime.datetime.now().isoformat(timespec='seconds'),
            'verdict': verdict, 'counts': counts, 'findings': findings,
            'report_method': a.report_method or None,
+           'pending_agent': _pending_agent,
            'method_mismatch': (method_mismatch if a.report_method else 'NOT_CHECKED'),
            'conflicts': [], 'missing': [],
            'override_policy': {'mode': 'escalate_only', 'allow_override': a.allow_override},

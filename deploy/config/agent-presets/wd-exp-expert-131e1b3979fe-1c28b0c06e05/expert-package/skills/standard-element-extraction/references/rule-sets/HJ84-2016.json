@@ -1,0 +1,3111 @@
+{
+ "_meta": {
+  "standard": "HJ84-2016",
+  "count": 63,
+  "contains": [
+   "predicate",
+   "requires",
+   "check_targets",
+   "kind",
+   "impact",
+   "criticality",
+   "missing_kind",
+   "recompute"
+  ],
+  "source": "手写增强规则集"
+ },
+ "standard_id": "HJ84-2016",
+ "audit_rule_cards": [
+  {
+   "rule_id": "ARC-C1-1-01",
+   "category": "C1",
+   "clause": "1",
+   "covers_clauses": [
+    "1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "报告声明的样品基质须为地表水、地下水、工业废水或生活污水之一；被测物须为 8 种可溶性无机阴离子（F-、Cl-、NO2-、Br-、NO3-、PO4^3-、SO3^2-、SO4^2-）之一或组合",
+   "predicate": {
+    "op": "in",
+    "value": [
+     "地表水",
+     "地下水",
+     "工业废水",
+     "生活污水"
+    ],
+    "unit": "1"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S001",
+    "doc_type": "检测报告",
+    "match_hints": [
+     "样品类型",
+     "基质",
+     "地表水",
+     "地下水",
+     "工业废水",
+     "生活污水"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": "一致性校验修正",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "requires": [
+    "SCOPE.基质"
+   ]
+  },
+  {
+   "rule_id": "ARC-C1-13.2-01",
+   "category": "C1",
+   "clause": "13.2",
+   "covers_clauses": [
+    "13.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "所用预处理柱应能有效去除疏水性化合物、重金属或过渡金属离子，同时对测定的阴离子不发生吸附；须有柱效或回收验证",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S053",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "预处理柱",
+     "吸附",
+     "回收",
+     "验证"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C1-4.1-01",
+   "category": "C1",
+   "clause": "4.1",
+   "covers_clauses": [
+    "4.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "样品含疏水性化合物（影响分离效果或色谱柱寿命）时，前处理应过 RP 柱或 C18 柱（6.5）或等效措施，并在记录中载明",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S005",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "RP",
+     "C18",
+     "预处理柱",
+     "过柱"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "procedure",
+   "impact": "record_gap",
+   "kind_basis": "步骤存在或顺序"
+  },
+  {
+   "rule_id": "ARC-C1-4.2-01",
+   "category": "C1",
+   "clause": "4.2",
+   "covers_clauses": [
+    "4.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "样品含重金属或过渡金属时，前处理应过 H 型或 Na 型强酸性阳离子交换柱（6.5）或等效措施，并记录",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S006",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "H柱",
+     "Na柱",
+     "阳离子交换",
+     "预处理柱"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "procedure",
+   "impact": "record_gap",
+   "kind_basis": "步骤存在或顺序"
+  },
+  {
+   "rule_id": "ARC-C1-4.3-01",
+   "category": "C1",
+   "clause": "4.3",
+   "covers_clauses": [
+    "4.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "两种保留时间相近的阴离子浓度相差较大影响低浓度离子测定时，应通过稀释、调节流速或改用氢氧根淋洗消除/减少干扰，并在记录中说明",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S007",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "稀释",
+     "调节流速",
+     "氢氧根",
+     "分离度"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CALC.稀释倍数"
+   ],
+   "requires_source": "关键词",
+   "kind": "not_judgeable",
+   "impact": "none",
+   "kind_basis": "原理/范围/引用/说明",
+   "recompute": {
+    "field": "CALC.稀释倍数",
+    "expr": "f = 报告值 / 仪器读数（稀释前）",
+    "inputs": [
+     "报告值",
+     "仪器读数"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C1-4.4-01",
+   "category": "C1",
+   "clause": "4.4",
+   "covers_clauses": [
+    "4.4"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "选用碳酸钠-碳酸氢钠淋洗液且水负峰干扰 F- 测定时，样品与标准溶液应分别加入适量相同浓度、等体积的淋洗液",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S008",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "负峰",
+     "淋洗液",
+     "F-",
+     "氟"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "not_judgeable",
+   "impact": "none",
+   "kind_basis": "原理/范围/引用/说明"
+  },
+  {
+   "rule_id": "ARC-C1-8.3-01",
+   "category": "C1",
+   "clause": "8.3",
+   "covers_clauses": [
+    "8.3",
+    "8.1",
+    "8.2"
+   ],
+   "anchor_notes": "稀释倍数与色谱条件/步骤分别见 8.1、8.2",
+   "judge_ceiling": null,
+   "requirement": "测定结果超出标准曲线范围时，应将样品稀释后重新测定；预稀释倍数应在记录中载明（标准示例为 100 倍）",
+   "predicate": {
+    "op": "<=",
+    "value": 100,
+    "unit": "倍"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S041",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "稀释",
+     "倍数",
+     "超出范围",
+     "重测"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CALC.稀释倍数"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CALC.稀释倍数",
+    "expr": "f = 报告值 / 仪器读数（稀释前）",
+    "inputs": [
+     "报告值",
+     "仪器读数"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C2-7.1-01",
+   "category": "C2",
+   "clause": "7.1",
+   "covers_clauses": [
+    "7.1",
+    "2"
+   ],
+   "anchor_notes": "采样/保存条件由第 2 章引用的 HJ 494、HJ/T 91、HJ/T 164 规定",
+   "judge_ceiling": "引用完整性检查",
+   "requirement": "样品采集应按 HJ 494、HJ/T 91、HJ/T 164 的规定执行；三份引用文件未上传时本项只能判「缺证」",
+   "predicate": {
+    "op": "in",
+    "value": [
+     "HJ 494",
+     "HJ/T 91",
+     "HJ/T 164"
+    ],
+    "unit": "1"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S027",
+    "doc_type": "样品流转单",
+    "match_hints": [
+     "HJ 494",
+     "HJ/T91",
+     "HJ/T 164",
+     "采样"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": "rejected",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C2-7.1-02",
+   "category": "C2",
+   "clause": "7.1",
+   "covers_clauses": [
+    "7.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "测定 SO3^2- 时，样品采集后须立即加入 0.1% 甲醛固定，并在流转单记录固定剂与加入量",
+   "predicate": {
+    "op": "==",
+    "value": 0.1,
+    "unit": "%"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S028",
+    "doc_type": "样品流转单",
+    "match_hints": [
+     "甲醛",
+     "固定",
+     "SO3",
+     "亚硫酸"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C2-7.1-03",
+   "category": "C2",
+   "clause": "7.1",
+   "covers_clauses": [
+    "7.1"
+   ],
+   "anchor_notes": "表2 盛放容器的材质（逐离子）；已从原文表格逐格抽取",
+   "judge_ceiling": null,
+   "requirement": "样品盛放容器材质应符合表2：F⁻ 用聚乙烯瓶；其余 7 种离子用硬质玻璃瓶或聚乙烯瓶",
+   "predicate": {
+    "op": "==",
+    "value": "by_analyte",
+    "unit": "1",
+    "limit_from": "表2 容器材质"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S029",
+    "doc_type": "样品流转单",
+    "match_hints": [
+     "保存温度",
+     "4℃",
+     "冷藏",
+     "运输"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "已有数值谓词",
+   "requires": [
+    "SAMP.采样容器"
+   ],
+   "parameters_by_analyte": {
+    "F-": {
+     "container": "聚乙烯瓶"
+    },
+    "Cl-": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "NO2-": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "Br-": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "NO3-": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "PO4": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "SO3": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    },
+    "SO4": {
+     "container": "硬质玻璃瓶或聚乙烯瓶"
+    }
+   },
+   "origin": "verbatim",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "样品流转单",
+     "field": "容器材质",
+     "match_hints": [
+      "容器",
+      "瓶",
+      "聚乙烯",
+      "玻璃"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ]
+  },
+  {
+   "rule_id": "ARC-C2-7.1-04",
+   "category": "C2",
+   "clause": "7.1",
+   "covers_clauses": [
+    "7.1"
+   ],
+   "anchor_notes": "表2 保存时间（逐离子，天）",
+   "judge_ceiling": null,
+   "requirement": "样品保存时间不得超过表2 规定：F⁻14 d、Cl⁻30 d、NO₂⁻2 d、Br⁻2 d、NO₃⁻7 d、PO₄³⁻2 d、SO₃²⁻7 d、SO₄²⁻30 d",
+   "predicate": {
+    "op": "<=",
+    "value": "by_analyte",
+    "unit": "d",
+    "limit_from": "表2 保存时间"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S030",
+    "doc_type": "样品流转单",
+    "match_hints": [
+     "保存时间",
+     "天",
+     "容器",
+     "聚乙烯",
+     "硬质玻璃"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "定性要求，需人判",
+   "requires": [
+    "SAMP.保存时限"
+   ],
+   "parameters_by_analyte": {
+    "F-": {
+     "days": 14,
+     "unit": "d"
+    },
+    "Cl-": {
+     "days": 30,
+     "unit": "d"
+    },
+    "NO2-": {
+     "days": 2,
+     "unit": "d"
+    },
+    "Br-": {
+     "days": 2,
+     "unit": "d"
+    },
+    "NO3-": {
+     "days": 7,
+     "unit": "d"
+    },
+    "PO4": {
+     "days": 2,
+     "unit": "d"
+    },
+    "SO3": {
+     "days": 7,
+     "unit": "d"
+    },
+    "SO4": {
+     "days": 30,
+     "unit": "d"
+    }
+   },
+   "origin": "verbatim",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "样品流转单",
+     "field": "保存时间",
+     "match_hints": [
+      "保存",
+      "天",
+      "采样日期"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "recompute": {
+    "field": "SAMP.保存时限",
+    "expr": "t = 测定日期 − 采样日期（天）",
+    "inputs": [
+     "采样日期",
+     "测定日期"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C2-7.2-01",
+   "category": "C2",
+   "clause": "7.2",
+   "covers_clauses": [
+    "7.2",
+    "6.2"
+   ],
+   "anchor_notes": "过滤孔径 0.45 μm 出自 6.2（抽气过滤装置），7.2 只规定“经抽气过滤装置过滤”",
+   "judge_ceiling": null,
+   "requirement": "清洁水样经抽气过滤装置（6.2）或带 0.45 μm 滤膜的针筒过滤器（6.3）+一次性注射器（6.4）过滤后进样；含干扰物质的复杂水样须先用相应预处理柱（6.5）去除后再进样",
+   "predicate": {
+    "op": "<=",
+    "value": 0.45,
+    "unit": "um"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S032",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "0.45",
+     "滤膜",
+     "过滤",
+     "针筒"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C2-7.3-01",
+   "category": "C2",
+   "clause": "7.3",
+   "covers_clauses": [
+    "7.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "以实验用水代替样品，按与试样制备（7.2）相同的步骤制备实验室空白试样，并单独编号记录",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S033",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "空白",
+     "实验用水",
+     "制备"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "QC.空白值"
+   ],
+   "requires_source": "关键词",
+   "kind": "not_judgeable",
+   "impact": "none",
+   "kind_basis": "无判定语义",
+   "recompute": {
+    "field": "QC.空白值",
+    "expr": "Ab = 批内各空白测定值算术平均",
+    "inputs": [
+     "各空白逐次测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C3-6.1-01",
+   "category": "C3",
+   "clause": "6.1",
+   "covers_clauses": [
+    "6.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "应使用由离子色谱仪主机、操作软件及所需附件组成的分析系统；报告/记录须能对应到具体仪器编号与检定状态",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S020",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "离子色谱",
+     "仪器编号",
+     "型号"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "APPA.仪器编号"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C3-6.1.1-01",
+   "category": "C3",
+   "clause": "6.1.1",
+   "covers_clauses": [
+    "6.1.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "应使用规定的阴离子分离柱与保护柱，一次进样测定 8 种阴离子，峰的分离度不低于 1.5",
+   "predicate": {
+    "op": ">=",
+    "value": 1.5,
+    "unit": "1"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S021",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "分离度",
+     "1.5",
+     "色谱柱",
+     "保护柱"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": "一致性校验修正",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "requires": [
+    "APPA.分离度"
+   ]
+  },
+  {
+   "rule_id": "ARC-C3-6.1.2-01",
+   "category": "C3",
+   "clause": "6.1.2",
+   "covers_clauses": [
+    "6.1.2",
+    "6.1.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "仪器应配阴离子抑制器与电导检测器（6.1.3）；记录须体现抑制方式与检测器参数",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S022",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "抑制器",
+     "电导检测器",
+     "背景电导"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C3-6.2-01",
+   "category": "C3",
+   "clause": "6.2",
+   "covers_clauses": [
+    "6.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "抽气过滤装置应配孔径≤0.45 μm 的醋酸纤维或聚乙烯滤膜",
+   "predicate": {
+    "op": "<=",
+    "value": 0.45,
+    "unit": "um"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S023",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "0.45",
+     "滤膜",
+     "抽气过滤"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C3-6.3-01",
+   "category": "C3",
+   "clause": "6.3",
+   "covers_clauses": [
+    "6.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "一次性水系微孔滤膜针筒过滤器的孔径应为 0.45 μm",
+   "predicate": {
+    "op": "==",
+    "value": 0.45,
+    "unit": "um"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S024",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "针筒过滤器",
+     "0.45",
+     "水系"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C3-6.4-01",
+   "category": "C3",
+   "clause": "6.4",
+   "covers_clauses": [
+    "6.4"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "一次性注射器规格应为 1 ml~10 ml",
+   "predicate": {
+    "op": "<=",
+    "value": 10,
+    "unit": "ml"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S025",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "注射器",
+     "1ml",
+     "10 ml"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C3-6.5-01",
+   "category": "C3",
+   "clause": "6.5",
+   "covers_clauses": [
+    "6.5"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "预处理柱应为：聚苯乙烯-二乙烯基苯基质 RP 柱或硅胶基质键合 C18 柱（去疏水性化合物）；H 型或 Na 型强酸性阳离子交换柱（去重金属与过渡金属）；须记录柱型、批号与活化/过柱体积",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S026",
+    "doc_type": "前处理记录",
+    "match_hints": [
+     "预处理柱",
+     "RP",
+     "C18",
+     "H型",
+     "Na型",
+     "活化"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C3-8.1-01",
+   "category": "C3",
+   "clause": "8.1",
+   "covers_clauses": [
+    "8.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "应根据仪器使用说明书优化测量条件或参数，可按实际样品基体与组成优化淋洗液浓度；标准所列条件供参考，**不得据此判 FAIL**",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S034",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "流速",
+     "进样量",
+     "柱温",
+     "淋洗液浓度",
+     "条件"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C3-8.1.1-01",
+   "category": "C3",
+   "clause": "8.1.1",
+   "covers_clauses": [
+    "8.1.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "参考条件 1：碳酸盐淋洗液Ⅰ流速 1.0 ml/min（或淋洗液Ⅱ 0.7 ml/min）、抑制型电导检测、进样量 25 μl；属参考条件，只核记录完整性，不作判定",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S036",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "流速",
+     "1.0 ml/min",
+     "25",
+     "进样量"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作"
+  },
+  {
+   "rule_id": "ARC-C3-8.1.2-01",
+   "category": "C3",
+   "clause": "8.1.2",
+   "covers_clauses": [
+    "8.1.2"
+   ],
+   "anchor_notes": "表3 氢氧根淋洗液梯度程序（时间/A 水/B 100 mmol·L⁻¹ NaOH）",
+   "judge_ceiling": null,
+   "requirement": "参考条件 2：氢氧根淋洗液 1.2 mL/min、柱温与梯度按表3 执行（0 min 90%→10%、25 min 40%→60%、25.1 min 回 90%、30 min 结束）；进样量 25 μL",
+   "predicate": {
+    "op": "==",
+    "value": "by_row",
+    "unit": "1",
+    "limit_from": "表3 梯度程序"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S037",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "梯度",
+     "1.2 ml/min",
+     "25",
+     "氢氧根"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": "一致性校验修正",
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作",
+   "requires": [
+    "APPA.流速"
+   ],
+   "gradient_program": [
+    {
+     "t_min": "0",
+     "A_H2O": "90%",
+     "B_NaOH": "10%"
+    },
+    {
+     "t_min": "25",
+     "A_H2O": "40%",
+     "B_NaOH": "60%"
+    },
+    {
+     "t_min": "25.1",
+     "A_H2O": "90%",
+     "B_NaOH": "10%"
+    },
+    {
+     "t_min": "30",
+     "A_H2O": "90%",
+     "B_NaOH": "10%"
+    }
+   ],
+   "origin": "verbatim",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "原始记录",
+     "field": "梯度程序",
+     "match_hints": [
+      "梯度",
+      "淋洗液",
+      "NaOH",
+      "流速"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ]
+  },
+  {
+   "rule_id": "ARC-C4-5-01",
+   "category": "C4",
+   "clause": "5",
+   "covers_clauses": [
+    "5"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "除另有说明外应使用符合国家标准的分析纯（或以上）试剂；实验用水为电阻率≥18 MΩ·cm(25℃)、经 0.45 μm 膜过滤的去离子水",
+   "predicate": {
+    "op": ">=",
+    "value": 18,
+    "unit": "MΩ·cm"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S003",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "电阻率",
+     "18",
+     "去离子水",
+     "超纯水"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C4-5.1-01",
+   "category": "C4",
+   "clause": "5.1",
+   "covers_clauses": [
+    "5.1",
+    "5.2",
+    "5.3",
+    "5.5",
+    "5.6",
+    "5.9",
+    "5.10"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "氟化钠、氯化钠、溴化钾、硝酸钾、磷酸二氢钾、无水硫酸钠、碳酸钠使用前应于 105℃±5℃ 干燥恒重后置干燥器保存；须有干燥温度与恒重记录",
+   "predicate": {
+    "op": "==",
+    "value": 105,
+    "unit": "℃"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S009",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "105",
+     "干燥",
+     "恒重",
+     "干燥器"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": "rejected",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C4-5.12-01",
+   "category": "C4",
+   "clause": "5.12",
+   "covers_clauses": [
+    "5.12"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "氢氧化钠（NaOH）应为优级纯，用于 100 mmol/L 淋洗液配制",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S012",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "氢氧化钠",
+     "优级纯",
+     "NaOH"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C4-5.13-01",
+   "category": "C4",
+   "clause": "5.13",
+   "covers_clauses": [
+    "5.13",
+    "5.14",
+    "5.15",
+    "5.16",
+    "5.17",
+    "5.18",
+    "5.19",
+    "5.20"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "F-、Cl-、Br-、NO2-、NO3-、PO4^3-、SO3^2-、SO4^2- 标准贮备液的质量浓度均应为 1000 mg/L，并注明有效期",
+   "predicate": {
+    "op": "==",
+    "value": 1000,
+    "unit": "mg/L"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S013",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "1000 mg/L",
+     "贮备液",
+     "标准溶液"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CHEM.标准溶液浓度"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C4-5.13-02",
+   "category": "C4",
+   "clause": "5.13",
+   "covers_clauses": [
+    "5.13",
+    "5.14",
+    "5.15",
+    "5.16",
+    "5.17",
+    "5.18",
+    "5.19",
+    "5.20"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "各单标贮备液的称样量与定容体积应与 5.13–5.20 逐条一致（如 F- 2.2100 g/1000 ml、Cl- 1.6485 g、Br- 1.4875 g、NO2- 1.4997 g、NO3- 1.6304 g、PO4^3- 1.4316 g、SO3^2- 1.5750 g、SO4^2- 1.4792 g），并按",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S014",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "称取",
+     "g",
+     "1000 ml",
+     "定容"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作"
+  },
+  {
+   "rule_id": "ARC-C4-5.21-01",
+   "category": "C4",
+   "clause": "5.21",
+   "covers_clauses": [
+    "5.21"
+   ],
+   "anchor_notes": "5.21 各单标移取体积与定容体积（1000 mL），配成 8 种离子浓度见 parameters_by_analyte",
+   "judge_ceiling": null,
+   "requirement": "混合标准使用液（5.21）由 8 种单标贮备液按定比移取定容制得，浓度应为：F⁻10、Cl⁻200、Br⁻10、NO₂⁻10、NO₃⁻100、PO₄³⁻50、SO₃²⁻50、SO₄²⁻200 mg/L（移取体积 10/200/10/10/100/50/50/200 mL 定容至 1000 mL）",
+   "predicate": {
+    "op": "==",
+    "value": "by_analyte",
+    "unit": "mg/L",
+    "limit_from": "5.21 混合标准使用液"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S016",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "混合标准",
+     "移取",
+     "定容",
+     "使用液"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作",
+   "requires": [
+    "CHEM.标准溶液浓度"
+   ],
+   "parameters_by_analyte": {
+    "F-": {
+     "conc": 10,
+     "unit": "mg/L"
+    },
+    "Cl-": {
+     "conc": 200,
+     "unit": "mg/L"
+    },
+    "Br-": {
+     "conc": 10,
+     "unit": "mg/L"
+    },
+    "NO2-": {
+     "conc": 10,
+     "unit": "mg/L"
+    },
+    "NO3-": {
+     "conc": 100,
+     "unit": "mg/L"
+    },
+    "PO4": {
+     "conc": 50,
+     "unit": "mg/L"
+    },
+    "SO3": {
+     "conc": 50,
+     "unit": "mg/L"
+    },
+    "SO4": {
+     "conc": 200,
+     "unit": "mg/L"
+    }
+   },
+   "origin": "verbatim",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "试剂配制记录",
+     "field": "混合标准使用液浓度",
+     "match_hints": [
+      "混合标准使用液",
+      "移取",
+      "定容",
+      "mg/L"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ]
+  },
+  {
+   "rule_id": "ARC-C4-5.22-01",
+   "category": "C4",
+   "clause": "5.22",
+   "covers_clauses": [
+    "5.22"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "淋洗液应根据仪器型号及色谱柱说明书使用条件配制；标准所列淋洗液条件供参考，只核是否按说明书执行，不判浓度是否等于参考值",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S017",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "淋洗液",
+     "说明书",
+     "色谱柱",
+     "配制"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C4-5.22.1-01",
+   "category": "C4",
+   "clause": "5.22.1",
+   "covers_clauses": [
+    "5.22.1",
+    "5.22.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "碳酸盐淋洗液Ⅰ：c(Na2CO3)=6.0 mmol/L、c(NaHCO3)=5.0 mmol/L（称 1.2720 g + 0.8480 g 定容 2000 ml）；Ⅱ：3.2 mmol/L + 1.0 mmol/L（0.6784 g + 0.1680 g 定容 2000 ml）。属参考条件，只核记录完整性",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S018",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "mmol/L",
+     "碳酸钠",
+     "碳酸氢钠",
+     "2000 ml"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作"
+  },
+  {
+   "rule_id": "ARC-C4-5.22.3-01",
+   "category": "C4",
+   "clause": "5.22.3",
+   "covers_clauses": [
+    "5.22.3",
+    "5.22.3.1",
+    "5.22.3.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "氢氧根淋洗液可由淋洗液自动电解发生器在线生成（5.22.3.1），或按 5.22.3.2 手工配制 c(NaOH)=100 mmol/L（称 100.0 g 加水溶解、聚乙烯瓶静置 24 h）；须记录来源与关键参数",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S019",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "氢氧根",
+     "在线生成",
+     "100 mmol/L",
+     "静置"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "SAMP.采样容器"
+   ],
+   "requires_source": "关键词",
+   "kind": "parameter",
+   "impact": "process_deviation",
+   "kind_basis": "数值+操作动作"
+  },
+  {
+   "rule_id": "ARC-C4-5.4-01",
+   "category": "C4",
+   "clause": "5.4",
+   "covers_clauses": [
+    "5.4",
+    "5.7",
+    "5.11"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "亚硝酸钠、亚硫酸钠、碳酸氢钠使用前应置于干燥器中平衡 24 h；须有平衡时间记录",
+   "predicate": {
+    "op": ">=",
+    "value": 24,
+    "unit": "h"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S010",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "24 h",
+     "平衡",
+     "干燥器"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C4-5.8-01",
+   "category": "C4",
+   "clause": "5.8",
+   "covers_clauses": [
+    "5.8"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "甲醛（CH2O）纯度应为 40%；用于 SO3^2- 固定与贮备液配制，须记录批号与纯度",
+   "predicate": {
+    "op": "==",
+    "value": 40,
+    "unit": "%"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S011",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "甲醛",
+     "40%",
+     "纯度"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires_source": null,
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C5-8.2-01",
+   "category": "C5",
+   "clause": "8.2",
+   "covers_clauses": [
+    "8.2"
+   ],
+   "anchor_notes": "表4 阴离子标准系列质量浓度（逐离子 6 点）",
+   "judge_ceiling": null,
+   "requirement": "标准系列 6 点浓度按表4 逐离子配制：F⁻ 0~2.00、Cl⁻ 0~40.0、NO₂⁻ 0~2.00、Br⁻ 0~2.00、NO₃⁻ 0~20.0、PO₄³⁻ 0~10.0、SO₃²⁻ 0~10.0、SO₄²⁻ 0~40.0 mg/L；记录须逐点可核",
+   "predicate": {
+    "op": "==",
+    "value": "by_analyte",
+    "unit": "mg/L",
+    "limit_from": "表4 标准系列"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S038",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "0.00",
+     "1.00",
+     "2.00",
+     "5.00",
+     "10.0",
+     "20.0",
+     "100 ml"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": "一致性校验修正",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "数值+操作动作",
+   "requires": [
+    "CAL.校准点数"
+   ],
+   "series_by_analyte": {
+    "F-": {
+     "points": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0
+     ]
+    },
+    "Cl-": {
+     "points": [
+      0.0,
+      2.0,
+      4.0,
+      10.0,
+      20.0,
+      40.0
+     ]
+    },
+    "NO2-": {
+     "points": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0
+     ]
+    },
+    "Br-": {
+     "points": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0
+     ]
+    },
+    "NO3-": {
+     "points": [
+      0.0,
+      1.0,
+      2.0,
+      5.0,
+      10.0,
+      20.0
+     ]
+    },
+    "PO4": {
+     "points": [
+      0.0,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ]
+    },
+    "SO3": {
+     "points": [
+      0.0,
+      0.5,
+      1.0,
+      2.5,
+      5.0,
+      10.0
+     ]
+    },
+    "SO4": {
+     "points": [
+      0.0,
+      2.0,
+      4.0,
+      10.0,
+      20.0,
+      40.0
+     ]
+    }
+   },
+   "origin": "verbatim",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "原始记录",
+     "field": "标准系列浓度",
+     "match_hints": [
+      "标准系列",
+      "浓度点",
+      "mg/L"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ],
+   "recompute": {
+    "field": "CAL.校准点数",
+    "expr": "计数：校准系列浓度点个数",
+    "inputs": [
+     "校准系列浓度点"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C5-8.3-01",
+   "category": "C5",
+   "clause": "8.3",
+   "covers_clauses": [
+    "8.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "按与绘制标准曲线相同的色谱条件（8.1）和步骤（8.2）将试样（7.2）注入离子色谱仪测定，以保留时间定性、仪器响应值定量",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S042",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "进样",
+     "保留时间",
+     "色谱条件"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "process_deviation",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C5-8.4-01",
+   "category": "C5",
+   "clause": "8.4",
+   "covers_clauses": [
+    "8.4"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "按与试样测定（8.3）相同的色谱条件和步骤，将空白试样（7.3）注入离子色谱仪测定，以保留时间定性、响应值定量",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S043",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "空白",
+     "响应值",
+     "进样序列"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "QC.空白值"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "process_deviation",
+   "kind_basis": "定性要求，需人判",
+   "recompute": {
+    "field": "QC.空白值",
+    "expr": "Ab = 批内各空白测定值算术平均",
+    "inputs": [
+     "各空白逐次测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C6-8.2-02",
+   "category": "C6",
+   "clause": "8.2",
+   "covers_clauses": [
+    "8.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "标准系列各点响应值、回归方程（斜率 b、截距 a）与相关系数须完整记录；曲线应覆盖样品测定浓度范围",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S039",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "回归",
+     "斜率",
+     "截距",
+     "相关系数",
+     "曲线"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CAL.相关系数"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判",
+   "recompute": {
+    "field": "CAL.相关系数",
+    "expr": "r：以校准系列（浓度, 响应值）最小二乘回归求得",
+    "inputs": [
+     "6 个浓度点",
+     "各点响应值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C6-9.1-01",
+   "category": "C6",
+   "clause": "9.1",
+   "covers_clauses": [
+    "9.1"
+   ],
+   "anchor_notes": "9.1 结果计算 公式(1)（按 9.1 符号说明还原）",
+   "judge_ceiling": null,
+   "requirement": "样品中阴离子质量浓度按公式(1) 计算：ρ = (h − h₀ − a)/b × f，其中 h 为峰高(或峰面积)、h₀ 为空白、a 截距、b 斜率、f 稀释倍数",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S044",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "复算",
+     "响应值",
+     "斜率",
+     "截距",
+     "稀释倍数"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CAL.斜率",
+    "CAL.截距",
+    "CALC.稀释倍数"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "定性要求，需人判",
+   "origin": "derived",
+   "recompute": {
+    "field": "CAL.斜率",
+    "expr": "b：校准系列回归斜率",
+    "inputs": [
+     "6 个浓度点",
+     "各点响应值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C6-9.2-01",
+   "category": "C6",
+   "clause": "9.2",
+   "covers_clauses": [
+    "9.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "样品含量＜1 mg/L 时结果保留至小数点后三位；≥1 mg/L 时保留三位有效数字",
+   "predicate": {
+    "op": ">=",
+    "value": 1,
+    "unit": "mg/L"
+   },
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S045",
+    "doc_type": "检测报告",
+    "match_hints": [
+     "保留",
+     "三位",
+     "小数点",
+     "mg/L"
+    ]
+   },
+   "qualitative": false,
+   "result_format": [
+    {
+     "range": [
+      0,
+      1
+     ],
+     "rule": "三位小数",
+     "exclusive_upper": true
+    },
+    {
+     "range": [
+      1,
+      null
+     ],
+     "rule": "三位有效数字"
+    }
+   ],
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "CALC.结果值"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CALC.结果值",
+    "expr": "ρ = (y − a) / b × f（或按标准公式卡）",
+    "inputs": [
+     "响应值 y",
+     "斜率 b",
+     "截距 a",
+     "稀释倍数 f"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C6-9.2-02",
+   "category": "C6",
+   "clause": "9.2",
+   "covers_clauses": [
+    "9.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "结果表述须与 9.2 一致：＜1 mg/L 保留三位小数（如 0.023 mg/L）；≥1 mg/L 保留三位有效数字（如 1.23 mg/L）；不得提前修约或位数不足",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S046",
+    "doc_type": "检测报告",
+    "match_hints": [
+     "三位小数",
+     "三位有效数字",
+     "mg/L"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "CALC.结果值"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "数值+阈值关系",
+   "recompute": {
+    "field": "CALC.结果值",
+    "expr": "ρ = (y − a) / b × f（或按标准公式卡）",
+    "inputs": [
+     "响应值 y",
+     "斜率 b",
+     "截距 a",
+     "稀释倍数 f"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.1-01",
+   "category": "C7",
+   "clause": "11.1",
+   "covers_clauses": [
+    "11.1"
+   ],
+   "anchor_notes": "11.1 空白个数",
+   "judge_ceiling": null,
+   "requirement": "每批次（≤20个）样品应至少做2个实验室空白试验，并逐一登记",
+   "predicate": {
+    "op": ">=",
+    "value": 2,
+    "unit": "个"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S047",
+    "doc_type": "质控记录",
+    "match_hints": [
+     "空白",
+     "2个",
+     "批次",
+     "20个"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "QC.空白值"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.空白值",
+    "expr": "Ab = 批内各空白测定值算术平均",
+    "inputs": [
+     "各空白逐次测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.1-02",
+   "category": "C7",
+   "clause": "11.1",
+   "covers_clauses": [
+    "11.1"
+   ],
+   "anchor_notes": "11.1 无阈值；限值取表1 方法检出限（NO3⁻0.016/PO4³⁻0.051 mg/L，逐离子见表1）",
+   "judge_ceiling": null,
+   "requirement": "空白试验结果应低于该离子的方法检出限（原文未给数值，按表1 检出限执行：NO3⁻ 0.016、PO4³⁻ 0.051 mg/L）；超过时应查明原因重新分析",
+   "predicate": {
+    "op": "<=",
+    "value": "by_analyte",
+    "unit": "mg/L",
+    "limit_from": "SCOPE.检出限"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S047",
+    "doc_type": "质控记录",
+    "match_hints": [
+     "空白",
+     "2个",
+     "批次",
+     "20个"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "ND": "低于检出限 → 满足上限类阈值（推定）"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "qualitative_check": false,
+   "requires": [
+    "QC.空白值"
+   ],
+   "origin": "derived",
+   "parameters_by_analyte": {
+    "NO3-": {
+     "lod": 0.016,
+     "unit": "mg/L"
+    },
+    "PO4": {
+     "lod": 0.051,
+     "unit": "mg/L"
+    }
+   },
+   "criticality": "KEY",
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.空白值",
+    "expr": "Ab = 批内各空白测定值算术平均",
+    "inputs": [
+     "各空白逐次测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.2-01",
+   "category": "C7",
+   "clause": "11.2",
+   "covers_clauses": [
+    "11.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "标准曲线的相关系数应≥0.995，否则应重新绘制标准曲线",
+   "predicate": {
+    "op": ">=",
+    "value": 0.995,
+    "unit": "1"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S049",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "相关系数",
+     "γ",
+     "r=",
+     "0.995"
+    ]
+   },
+   "qualitative": false,
+   "instrument_field_map": {
+    "instrument_field": "判定系数%",
+    "transform": "sqrt(x/100)",
+    "note": "仪器给 r²×100；标准要 γ。禁止直接比较 99.98 与 0.995"
+   },
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CAL.相关系数"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CAL.相关系数",
+    "expr": "r：以校准系列（浓度, 响应值）最小二乘回归求得",
+    "inputs": [
+     "6 个浓度点",
+     "各点响应值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.3-01",
+   "category": "C7",
+   "clause": "11.3",
+   "covers_clauses": [
+    "11.3"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "每批次（≤20 个）样品应分析一个标准曲线中间点浓度的标准溶液，其测定结果与该点浓度之间的相对误差应≤10%，否则应重新绘制标准曲线",
+   "predicate": {
+    "op": "<=",
+    "value": 10,
+    "unit": "%"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S050",
+    "doc_type": "质控记录",
+    "match_hints": [
+     "中间点",
+     "相对误差",
+     "10%",
+     "连续校准"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "QC.中间点误差"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.中间点误差",
+    "expr": "RE = (实测值 − 标称值) / 标称值 × 100%",
+    "inputs": [
+     "中间点标称浓度",
+     "中间点实测值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.4-01",
+   "category": "C7",
+   "clause": "11.4",
+   "covers_clauses": [
+    "11.4"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "每批次（≤20 个）样品应至少测定 10% 的平行双样；样品数量少于 10 个时至少测定一个平行双样；平行双样测定结果的相对偏差应≤10%",
+   "predicate": {
+    "op": "<=",
+    "value": 10,
+    "unit": "%"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S051",
+    "doc_type": "质控记录",
+    "match_hints": [
+     "平行",
+     "相对偏差",
+     "10%",
+     "双样"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "batch_definition": {
+    "standard_says": "每批",
+    "observed_in_records": "按检测日期分页 → 一页一批",
+    "origin": "derived",
+    "risk": "若跨日算作一批，质控数量将不足"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "QC.平行偏差"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.平行偏差",
+    "expr": "RPD = |x₁ − x₂| / ((x₁ + x₂)/2) × 100%",
+    "inputs": [
+     "平行样1测定值",
+     "平行样2测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-11.5-01",
+   "category": "C7",
+   "clause": "11.5",
+   "covers_clauses": [
+    "11.5",
+    "9.1"
+   ],
+   "anchor_notes": "加标回收率计算式见 9.1 式(1) 附注",
+   "judge_ceiling": null,
+   "requirement": "每批次（≤20 个）样品应至少做 1 个加标回收率测定，实际样品的加标回收率应控制在 80%~120% 之间",
+   "predicate": {
+    "op": "between",
+    "value": [
+     80,
+     120
+    ],
+    "unit": "%"
+   },
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S052",
+    "doc_type": "质控记录",
+    "match_hints": [
+     "加标",
+     "回收率",
+     "80%",
+     "120%"
+    ]
+   },
+   "qualitative": false,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "QC.加标回收率"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.加标回收率",
+    "expr": "P = (加标样测定值 − 原样测定值) / 加标量 × 100%",
+    "inputs": [
+     "加标量",
+     "加标样测定值",
+     "原样测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C8-1-01",
+   "category": "C8",
+   "clause": "1",
+   "covers_clauses": [
+    "1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "报告「方法依据」须写 HJ 84—2016（2016-07-26 发布、2016-10-01 实施，代替 HJ/T 84—2001）；不得引用已废止的 HJ/T 84—2001",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S002",
+    "doc_type": "检测报告",
+    "match_hints": [
+     "HJ 84",
+     "2016",
+     "HJ/T 84",
+     "方法依据"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C8-12-01",
+   "category": "C8",
+   "clause": "12",
+   "covers_clauses": [
+    "12"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "实验中产生的废液应集中收集、妥善保管，并委托有资质的单位处理；须有收集与移交记录",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S004",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "废液",
+     "收集",
+     "处置",
+     "资质"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C8-5.13-03",
+   "category": "C8",
+   "clause": "5.13",
+   "covers_clauses": [
+    "5.13",
+    "5.21"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "标准贮备液与混合使用液配制后应有标签（名称、浓度、配制日期、有效期、配制人），并在有效期内使用",
+   "predicate": null,
+   "on_missing": "FAIL",
+   "target": {
+    "slot": "S015",
+    "doc_type": "试剂配制记录",
+    "match_hints": [
+     "有效期",
+     "配制日期",
+     "标签",
+     "标准溶液"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "CHEM.试剂有效期"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判",
+   "gaps": [
+    "严重度提升：无溯源性记录→关键（标准溶液无溯源，数据不可溯源）"
+   ]
+  },
+  {
+   "rule_id": "ARC-C8-7.1-05",
+   "category": "C8",
+   "clause": "7.1",
+   "covers_clauses": [
+    "7.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "样品流转单应记录：样品编号、采样时间、基质、容器材质、固定剂（SO3^2- 为甲醛）、保存温度、接收与测定时间",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S031",
+    "doc_type": "样品流转单",
+    "match_hints": [
+     "流转单",
+     "采样时间",
+     "容器",
+     "固定剂",
+     "保存温度"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "process_deviation",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C8-8.1-02",
+   "category": "C8",
+   "clause": "8.1",
+   "covers_clauses": [
+    "8.1"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "仪器使用记录应能与当次进样序列对应：仪器编号、色谱柱、淋洗液、流速、进样量、分析日期与操作人",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S035",
+    "doc_type": "仪器使用记录",
+    "match_hints": [
+     "仪器使用",
+     "柱",
+     "流速",
+     "进样量",
+     "操作人"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "DOC_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "APPA.仪器编号"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "process_deviation",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C8-8.2-03",
+   "category": "C8",
+   "clause": "8.2",
+   "covers_clauses": [
+    "8.2"
+   ],
+   "anchor_notes": null,
+   "judge_ceiling": null,
+   "requirement": "原始记录须含标准系列 6 点的浓度/移取体积与响应值、回归方程、相关系数，可与报告结果逐项复核",
+   "predicate": null,
+   "on_missing": "UNVERIFIABLE",
+   "target": {
+    "slot": "S040",
+    "doc_type": "原始记录",
+    "match_hints": [
+     "标准系列",
+     "响应值",
+     "回归",
+     "原始记录"
+    ]
+   },
+   "qualitative": true,
+   "null_semantics": {
+    "n.a.": "不适用",
+    "/": "无此项",
+    "ND": "低于检出限",
+    "-": "未发生"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires": [
+    "CAL.相关系数"
+   ],
+   "requires_source": "关键词",
+   "kind": "qualitative",
+   "impact": "process_deviation",
+   "kind_basis": "定性要求，需人判",
+   "recompute": {
+    "field": "CAL.相关系数",
+    "expr": "r：以校准系列（浓度, 响应值）最小二乘回归求得",
+    "inputs": [
+     "6 个浓度点",
+     "各点响应值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C6-3-02",
+   "category": "C6",
+   "clause": "3",
+   "covers_clauses": [
+    "3",
+    "8.3"
+   ],
+   "requirement": "以保留时间定性、峰高或峰面积定量；人工誊写的仪器读数应与仪器导出区样品量一致",
+   "predicate": null,
+   "qualitative_check": true,
+   "on_missing": "UNVERIFIABLE",
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "原始记录",
+     "field": "仪器读数一致性",
+     "match_hints": [
+      "仪器读数",
+      "样品量",
+      "保留时间",
+      "峰面积"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ],
+   "cross_check": {
+    "left": {
+     "block": "人工誊写区",
+     "field": "仪器读数(mg/L)"
+    },
+    "right": {
+     "block": "仪器导出区",
+     "field": "样品量mg/L"
+    },
+    "tolerance": 0.01,
+    "on_mismatch": "CONFLICT_PENDING"
+   },
+   "source_layer": "STANDARD",
+   "origin": "verbatim",
+   "anchor_notes": "第3章定量方式 + 仪器导出区交叉校验",
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "NORMAL",
+   "requires_source": null,
+   "kind": "qualitative",
+   "impact": "record_gap",
+   "kind_basis": "定性要求，需人判"
+  },
+  {
+   "rule_id": "ARC-C1-1-04",
+   "category": "C1",
+   "clause": "1",
+   "covers_clauses": [
+    "1",
+    "表1"
+   ],
+   "requirement": "测定结果应不低于该离子的方法检出限/测定下限；低于检出限以 ND 报出",
+   "predicate": {
+    "op": ">=",
+    "value": "by_analyte",
+    "unit": "mg/L"
+   },
+   "parameters_by_analyte": {
+    "F-": {
+     "lod": 0.006,
+     "loq": 0.024,
+     "upper": 2.0,
+     "unit": "mg/L"
+    },
+    "Cl-": {
+     "lod": 0.007,
+     "loq": 0.028,
+     "upper": 40.0,
+     "unit": "mg/L"
+    },
+    "NO2-": {
+     "lod": 0.016,
+     "loq": 0.064,
+     "upper": 2.0,
+     "unit": "mg/L"
+    },
+    "Br-": {
+     "lod": 0.016,
+     "loq": 0.064,
+     "upper": 2.0,
+     "unit": "mg/L"
+    },
+    "NO3-": {
+     "lod": 0.016,
+     "loq": 0.064,
+     "upper": 20.0,
+     "unit": "mg/L"
+    },
+    "PO4": {
+     "lod": 0.051,
+     "loq": 0.204,
+     "upper": 10.0,
+     "unit": "mg/L"
+    },
+    "SO3": {
+     "lod": 0.046,
+     "loq": 0.184,
+     "upper": 10.0,
+     "unit": "mg/L"
+    },
+    "SO4": {
+     "lod": 0.018,
+     "loq": 0.072,
+     "upper": 40.0,
+     "unit": "mg/L"
+    }
+   },
+   "check_targets": [
+    {
+     "target_type": "report_field",
+     "doc_type": "检测报告",
+     "field": "结果值",
+     "match_hints": [
+      "NO3",
+      "PO4",
+      "mg/L",
+      "ND"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ],
+   "on_missing": "FAIL",
+   "qualitative_check": false,
+   "source_layer": "STANDARD",
+   "origin": "verbatim",
+   "anchor_notes": "表1 检出限/测定下限 + 表4 标准系列最高点",
+   "gaps": [],
+   "null_semantics": {
+    "ND": "低于检出限，按上限类推定满足"
+   },
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires": [
+    "SCOPE.检出限"
+   ],
+   "requires_source": "关键词",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "SCOPE.检出限",
+    "expr": "按标准/附录给定公式（如 3.14×s 或空白标准偏差法）",
+    "inputs": [
+     "空白或低浓度重复测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C1-8.3-02",
+   "category": "C1",
+   "clause": "8.3",
+   "covers_clauses": [
+    "8.3",
+    "8.2",
+    "表4"
+   ],
+   "requirement": "仪器读数（稀释前）不得超过该离子标准系列上限；超出时应稀释后重新测定，并在记录中载明稀释倍数",
+   "requires": [
+    "CAL.仪器读数"
+   ],
+   "predicate": {
+    "op": "<=",
+    "value": "by_analyte",
+    "unit": "mg/L",
+    "field": "CAL.仪器读数"
+   },
+   "upper_by_analyte": {
+    "F-": 2.0,
+    "Cl-": 40.0,
+    "NO2-": 2.0,
+    "Br-": 2.0,
+    "NO3-": 20.0,
+    "PO4": 10.0,
+    "SO3": 10.0,
+    "SO4": 40.0
+   },
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "原始记录",
+     "field": "仪器读数/稀释倍数",
+     "match_hints": [
+      "稀释倍数",
+      "仪器读数",
+      "报告值"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ],
+   "cross_check": {
+    "expr": "报告值 ≈ 仪器读数 × 稀释倍数",
+    "tolerance": 0.02,
+    "on_violation": "若仪器读数>系列上限 且 稀释倍数=1 → 违反 8.3"
+   },
+   "on_missing": "FAIL",
+   "qualitative_check": false,
+   "source_layer": "STANDARD",
+   "origin": "verbatim",
+   "anchor_notes": "8.3 注1 + 表4 标准系列上限",
+   "missing_kind": "FIELD_ABSENT",
+   "criticality": "KEY",
+   "requires_source": "predicate.field",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词"
+  },
+  {
+   "rule_id": "ARC-C7-10.2-01",
+   "category": "C7",
+   "family": "PERF",
+   "clause": "10.2",
+   "covers_clauses": [
+    "10.2"
+   ],
+   "requirement": "实验室加标回收率应落在方法准确度范围 81.7%～118.3% 内；超出提示基质干扰或前处理损失",
+   "predicate": {
+    "op": "between",
+    "value": [
+     81.7,
+     118.3
+    ],
+    "unit": "%"
+   },
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "质控记录",
+     "field": "加标回收率",
+     "match_hints": [
+      "加标回收率",
+      "回收率"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "on_missing": "FAIL",
+   "criticality": "KEY",
+   "qualitative_check": false,
+   "source_layer": "STANDARD",
+   "origin": "verbatim",
+   "anchor_notes": "10.2 准确度：7 家实验室加标回收率 81.7%~118.3%",
+   "missing_kind": "FIELD_ABSENT",
+   "requires": [
+    "QC.加标回收率"
+   ],
+   "requires_source": "auto_high",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.加标回收率",
+    "expr": "P = (加标样测定值 − 原样测定值) / 加标量 × 100%",
+    "inputs": [
+     "加标量",
+     "加标样测定值",
+     "原样测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-C7-10.1-01",
+   "category": "C7",
+   "family": "PERF",
+   "clause": "10.1",
+   "covers_clauses": [
+    "10.1"
+   ],
+   "requirement": "平行双样相对偏差应与方法精密度相当（实验室内 RSD 0.1%～5.7%）；显著超出提示操作不稳",
+   "predicate": {
+    "op": "<=",
+    "value": 5.7,
+    "unit": "%"
+   },
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "质控记录",
+     "field": "相对偏差",
+     "match_hints": [
+      "相对偏差",
+      "平行"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "on_missing": "FAIL",
+   "criticality": "KEY",
+   "qualitative_check": false,
+   "source_layer": "STANDARD",
+   "origin": "verbatim",
+   "anchor_notes": "10.1 精密度：实验室内 RSD 0.1%~5.7%",
+   "missing_kind": "FIELD_ABSENT",
+   "requires": [
+    "QC.平行偏差"
+   ],
+   "requires_source": "关键词+单位",
+   "kind": "result",
+   "impact": "data_invalid",
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "QC.平行偏差",
+    "expr": "RPD = |x₁ − x₂| / ((x₁ + x₂)/2) × 100%",
+    "inputs": [
+     "平行样1测定值",
+     "平行样2测定值"
+    ],
+    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
+  },
+  {
+   "rule_id": "ARC-EXT-INS-01",
+   "category": "C3",
+   "clause": "仪器",
+   "kind": "parameter",
+   "impact": "record_gap",
+   "requirement": "仪器使用记录应载明当次运行的仪器状态与关键参数（正常工作/异常、柱压/基线/波长等），以证明数据由受控状态仪器产生",
+   "predicate": null,
+   "check_targets": [
+    {
+     "target_type": "instrument_record",
+     "doc_type": "仪器使用记录",
+     "field": "仪器状态",
+     "match_hints": [
+      "运行",
+      "状态",
+      "基线",
+      "柱压"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "on_missing": "UNVERIFIABLE",
+   "criticality": "KEY",
+   "source_layer": "LAB_QM",
+   "origin": "convention",
+   "gaps": [
+    "标准未规定，按实验室计量/环境管理要求补充（source_layer=LAB_QM）"
+   ],
+   "missing_kind": "DOC_ABSENT",
+   "requires_source": "一致性校验判定：无形量字段"
+  },
+  {
+   "rule_id": "ARC-EXT-INS-02",
+   "category": "C3",
+   "clause": "仪器",
+   "kind": "parameter",
+   "impact": "record_gap",
+   "requirement": "仪器维护记录应可查（清洗/更换耗材/故障处理），维护周期与内容应与仪器说明书一致",
+   "predicate": null,
+   "check_targets": [
+    {
+     "target_type": "process_record",
+     "doc_type": "仪器使用记录",
+     "field": "维护记录",
+     "match_hints": [
+      "维护",
+      "清洗",
+      "更换",
+      "保养"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "on_missing": "UNVERIFIABLE",
+   "criticality": "NORMAL",
+   "source_layer": "LAB_QM",
+   "origin": "convention",
+   "gaps": [
+    "标准未规定，按实验室计量/环境管理要求补充（source_layer=LAB_QM）"
+   ],
+   "missing_kind": "DOC_ABSENT",
+   "requires_source": "一致性校验判定：无形量字段"
+  },
+  {
+   "rule_id": "ARC-EXT-CAL-01",
+   "category": "C3",
+   "clause": "仪器",
+   "kind": "parameter",
+   "impact": "data_invalid",
+   "requirement": "仪器校准/检定证书应在有效期内；超期或缺失时数据不具备计量溯源性",
+   "requires": [
+    "APPA.校准有效期"
+   ],
+   "predicate": null,
+   "check_targets": [
+    {
+     "target_type": "attachment",
+     "doc_type": "校准证书",
+     "field": "有效期",
+     "match_hints": [
+      "有效期",
+      "校准日期",
+      "下次校准"
+     ],
+     "locator_strategy": "field_label"
+    }
+   ],
+   "on_missing": "PENDING_EVIDENCE",
+   "criticality": "KEY",
+   "source_layer": "LAB_QM",
+   "origin": "convention",
+   "gaps": [
+    "标准未规定，按实验室计量/环境管理要求补充（source_layer=LAB_QM）"
+   ],
+   "missing_kind": "DOC_ABSENT"
+  },
+  {
+   "rule_id": "ARC-EXT-CAL-02",
+   "category": "C3",
+   "clause": "仪器",
+   "kind": "parameter",
+   "impact": "record_gap",
+   "requirement": "校准证书应载明校准依据（如 JJG 178）与所用标准器的溯源信息，形成\"标准器→仪器\"溯源链",
+   "requires": [
+    "APPA.校准有效期"
+   ],
+   "predicate": null,
+   "check_targets": [
+    {
+     "target_type": "attachment",
+     "doc_type": "校准证书",
+     "field": "校准依据/标准器",
+     "match_hints": [
+      "JJG",
+      "检定规程",
+      "标准器",
+      "溯源"
+     ],
+     "locator_strategy": "keyword"
+    }
+   ],
+   "on_missing": "UNVERIFIABLE",
+   "criticality": "KEY",
+   "source_layer": "LAB_QM",
+   "origin": "convention",
+   "gaps": [
+    "标准未规定，按实验室计量/环境管理要求补充（source_layer=LAB_QM）"
+   ],
+   "missing_kind": "DOC_ABSENT"
+  },
+  {
+   "rule_id": "ARC-EXT-CAL-03",
+   "category": "C3",
+   "clause": "仪器",
+   "kind": "parameter",
+   "impact": "data_invalid",
+   "requirement": "校准结果页的技术指标（波长误差、透射比误差、杂散光等）应符合该仪器检定规程规定的允差",
+   "requires": [
+    "APPA.校准有效期"
+   ],
+   "predicate": null,
+   "check_targets": [
+    {
+     "target_type": "attachment",
+     "doc_type": "校准证书",
+     "field": "技术指标",
+     "match_hints": [
+      "波长误差",
+      "透射比",
+      "杂散光",
+      "允差"
+     ],
+     "locator_strategy": "table_header"
+    }
+   ],
+   "on_missing": "UNVERIFIABLE",
+   "criticality": "KEY",
+   "source_layer": "LAB_QM",
+   "origin": "convention",
+   "gaps": [
+    "标准未规定，按实验室计量/环境管理要求补充（source_layer=LAB_QM）"
+   ],
+   "missing_kind": "DOC_ABSENT"
+  }
+ ]
+}

@@ -1,9 +1,0 @@
-{
-  "note": "路径相对 --root（默认当前目录）。换成你自己的标准包即可。",
-  "standards": [
-    {"id": "HJ 84-2016",  "ses": "hj84-2016/ses/HJ84-2016.ses.json"},
-    {"id": "HJ 535-2009", "ses": "hj535/HJ535-2009.ses.json"},
-    {"id": "HJ 671-2013", "ses": "hj671_files/HJ671-2013.ses.json"},
-    {"id": "HJ 636-2012", "ses": "hj636_files/HJ636-2012.ses.json"}
-  ]
-}

@@ -39,15 +39,34 @@ def main():
             n+=1; json.dump(pend[i:i+a.split],open(os.path.join(d,f'{n:03d}.json'),'w',encoding='utf-8'),ensure_ascii=False,indent=1)
         print(json.dumps({'pending':len(pend),'slices':n,'dir':'machine/pending'})); return 0
 
+    MAP={'符合':'PASS','不符合':'FAIL','缺证':'UNVERIFIABLE'}
     if a.merge:
         judged={}
         for line in open(a.merge,encoding='utf-8'):
             if not line.strip(): continue
             j=json.loads(line)
-            if j.get('verdict') not in ('PASS','FAIL','UNVERIFIABLE'): continue
+            if j.get('verdict') not in ('PASS','FAIL','UNVERIFIABLE','符合','不符合','缺证'): continue
             judged[j['rule_id']]=j
         allowed={'UNVERIFIABLE'}   # 只有原本存疑的项可被判；不得改已定的 PASS/FAIL
         changed=refused=0
+        # ① 处理待判项（needs_agent → items）
+        na = f.get('needs_agent') or []
+        keep = []
+        for p in na:
+            j = judged.get(p.get('rule_id'))
+            if j and j.get('verdict') in MAP:
+                items.append({'rule_id': p['rule_id'], 'category': p.get('category'),
+                              'slot': (p.get('target') or {}).get('slot'),
+                              'verdict': MAP[j['verdict']],
+                              'message': j.get('reason') or f"人工三档：{j['verdict']}",
+                              'std_anchor': p.get('anchor'), 'basis': 'manual_qualitative',
+                              'report_span': {'quote': j.get('quote')} if j.get('quote') else None,
+                              'judged_by': '审核专家'})
+                changed += 1
+            else:
+                keep.append(p)
+        f['needs_agent'] = keep
+        # ② 处理已有 items 的改判（只升不降）
         for x in items:
             rid=x.get('rule_id'); j=judged.get(rid)
             if not j: continue
@@ -59,6 +78,7 @@ def main():
             x['basis']='manual_qualitative'; x['judged_by']='审核专家'; changed+=1
         cnt={}
         for x in items: cnt[x['verdict']]=cnt.get(x['verdict'],0)+1
+        cnt['PENDING_JUDGE']=len(f['needs_agent'])
         f['counts']=cnt
         json.dump(f,open(fp,'w',encoding='utf-8'),ensure_ascii=False,indent=2)
         print(json.dumps({'merged':changed,'refused':refused,'counts':cnt},ensure_ascii=False)); return 0

@@ -27,11 +27,11 @@
         "y": 80
       },
       "data": {
-        "label": "解构与引用",
+        "label": "解构与引用（含文本归一化）",
         "description": "契约引用：clauses（含切片）",
         "icon": "idea",
         "color": "blue",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node clauses`；门禁：`python3 skill-update/scripts/validate_node.py --node clauses`。\n开跑前 `--util check --node clauses`（输出可直接执行的命令）；完成前 `--util verify --node clauses`。\n要点：脚本切骨架 → LLM 只改差异 → facts/rows → `build_spans` 产切片与 span_refs。**不读 md。**"
+        "prompt": "契约：**一条命令**跑完标准抽取的确定性链，内部已含文本归一化。\n\n```\npython3 toolchain/run.py std.run_graph --out <本次产出目录> --text <标准文本路径> --standard <编号> --mode extract\n```\n\n它依次执行：clean_std_text（去目录行、识别介质与分析物）→ route → clause_preclassify → clause_merge → bootstrap_rules → sop_graph → build_slots → pack_graph。每步失败即停，写入 `trail.jsonl`。\n\n产出必须齐（缺一即本节点不通过）：\n`00-provenance.json`、`01-clauses.json`、`02-elements.json`、`03-rules.json`、`sop-graph.json`、`audit_tasks.jsonl`、`slots.schema.json`、`machine/sop-graph.packed.yaml`、`standards/<编号>.meta.json`（介质/分析物/表与附录清单）、`trail.jsonl`。\n\n门禁：\n```\npython3 toolchain/run.py std.run_contract --util verify --out <产出目录> --node clauses\n```\n\n**验收三条（缺一不得标完成）**：\n1. `01-clauses.json` 的 quote 不含目录行（`....页号`）；含则为 0 条才算过。\n2. `03-rules.json` 每条 `requirement` 非空且不以 `## 数字` 开头者需人工确认。\n3. `standards/*.meta.json` 里 `media` 非空、`analytes.count` 或 `items` 至少一项有值。\n\n引用闭包：`01-clauses.json` 的 `reference_register` 必须登记第 2 章全部文件；未上传标 `PENDING_UPLOAD` 并落 GAP-REF。"
       }
     },
     {
@@ -64,7 +64,7 @@
         "description": "切片后逐片判定，脚本合并",
         "icon": "target",
         "color": "green",
-        "prompt": "要素抽（模型只判、不读整份）：\n1. `python3 toolchain/run.py std.split_rows --in machine/rows.json --size 20` → `machine/rows-slices/0001.json…` + `index.json`\n2. 模型**一次只读一片**（≤20 行），输出该片的要素判定（族/statement/参数/模态/anchor），写到 `machine/elt_judged/<片号>.json`\n3. 脚本合并并回填切片锚：`python3 toolchain/run.py std.run_contract --util backfill_spans --out <产出目录>`\n\n**禁止**让模型读整份 rows.json，也禁止模型直接改 02-elements.json。覆盖矩阵由脚本反推，不手填。"
+        "prompt": "要素抽（模型只判、不读整份）：\n1. `python3 toolchain/run.py std.rows_split --out <产出目录> --size 20` → `machine/rows-slices/0001.json…` + `index.json`\n2. 模型**一次只读一片**（≤20 行），输出该片的要素判定（族/statement/参数/模态/anchor），写到 `machine/elt_judged/<片号>.json`\n3. 脚本合并并回填切片锚：`python3 toolchain/run.py std.backfill_slices --out <产出目录>` + `python3 toolchain/run.py std.merge_judged --out <产出目录>`\n\n**禁止**让模型读整份 rows.json，也禁止模型直接改 02-elements.json。覆盖矩阵由脚本反推，不手填。"
       }
     },
     {
@@ -93,11 +93,11 @@
         "y": 113
       },
       "data": {
-        "label": "规则卡（切片判定）",
+        "label": "规则卡（切片+模板+分类+确认闸+可复算）",
         "description": "切片后逐片出规则卡字段",
         "icon": "terminal",
         "color": "amber",
-        "prompt": "规则卡（模型只判、不读整份）：\n1. `python3 toolchain/run.py std.split_rows --in machine/rows.json --size 20`\n2. 模型**一次一片**读，为每行给出 `category(C1–C8)/predicate(op,value,unit)/on_missing/check_targets`\n3. 写 `machine/rule_judged/<片号>.json`，由 `std.run_contract --util fix_log` 合并成 `03-rules.json`\n\n`predicate_hint` 可从 `contracts/derived/slots_candidate.jsonl` 取（29 条已带谓词），模型只校对，不从零生成。\n覆盖矩阵由脚本反推；**禁止**模型手填矩阵或直接改 03-rules.json。"
+        "prompt": "规则卡：切片判定 → 模板实例化 → 分类 → 建议/确认闸 → 可复算声明。\n\n```\n# ① 切片判定（模型只读一片 ≤20 行）\npython3 toolchain/run.py std.rows_split --out <产出目录> --size 20\n#    → machine/rows-slices/*.json + index.json；模型判完写 machine/elt_judged/<片号>.json\npython3 toolchain/run.py std.backfill_slices --out <产出目录>\npython3 toolchain/run.py std.merge_judged  --out <产出目录>\n\n# ② 模板实例化（14 个参数级子模板，省一半手写）\npython3 toolchain/run.py std.instantiate_rules --packs <产出目录> \\\n  --templates contracts/templates/rules.yaml --out <产出目录>\n#    → machine/template_rules.jsonl：READY / PARAM_MISSING / PARAM_IN_TABLE_GAP\n\n# ③ 判定语义分类（result / parameter / procedure / qualitative / not_judgeable）\npython3 toolchain/run.py std.classify_predicate --packs <产出目录> --write\n\n# ④ requires 建议 + 人工确认（MEDIUM/LOW 永不自动写）\npython3 toolchain/run.py std.suggest_requires --packs <产出目录> --fields contracts/fields.yaml --out <产出目录>\npython3 toolchain/run.py std.confirm_requires --packs <产出目录> \\\n  --suggestions <产出目录>/machine/requires_suggestions.jsonl --accept-high\n\n# ⑤ 谓词建议 + 人工确认（QUALITATIVE 永不造阈值）\npython3 toolchain/run.py std.suggest_predicate --packs <产出目录> --out <产出目录>\npython3 toolchain/run.py std.confirm_predicate --packs <产出目录> \\\n  --suggestions <产出目录>/machine/predicate_suggestions.jsonl --accept-high\n\n# ⑥ 可复算声明：算出来的量必须写明公式与所需原始输入\npython3 toolchain/run.py std.declare_recompute --packs <产出目录> --write\n```\n\n**⑥ 为什么必须做**：审核时最常见的问题是「记录只写结果、没有可复算的中间量」。\n凡是由数据算出来的字段（加标回收率、平行偏差、中间点误差、相关系数、斜率/截距、结果值、稀释倍数、保存时限、检出限、空白值、RSD）——规则里必须给出：\n\n```\nrecompute.expr     公式（如 P=(加标样−原样)/加标量×100%）\nrecompute.inputs   所需原始输入清单\nrecompute.verdict_rule  缺任一输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）\n```\n\n**验收（缺一不得标完成）**：\n1. 每条规则有 `kind`；`not_judgeable` 必须写 `kind_basis` 理由。\n2. `confirm_requires` 后 requires 覆盖 ≥40%。\n3. `PARAM_IN_TABLE_GAP` 条目必须进 GAP-DATA 清单，不得当「缺参」放着。\n4. **可复算型字段（数据算出来的）必须有 `recompute`，占可判型规则 ≥40%。**\n\n**禁止**：模型直接改 `rules.jsonl`；MEDIUM/LOW 建议不得批量写入；不得给 enum/id 类字段硬套公式。"
       }
     },
     {
@@ -126,11 +126,11 @@
         "y": 394
       },
       "data": {
-        "label": "质量审计（5 条抽样）",
+        "label": "质量审计（五项标准侧门禁 + 汇总）",
         "description": "质量审计：脚本抽样、模型只判 5 条",
         "icon": "bug",
         "color": "coral",
-        "prompt": "质量审计（模型只读 5 条样本，不读整份）：\n1. `python3 toolchain/run.py std.sample_findings --out <产出目录> --n 5` → `machine/audit_samples.json`（脚本随机抽样，固定 seed）\n2. 模型**只读这 5 条**，逐条判 B/D/W（Best / Deficient / Wrong），每条给一句理由\n3. 计算（通过率、缺陷率、模态一致性）全部由脚本完成；模型不产出数字\n4. 最后一行必须给 `VERDICT: pass|fail`（脚本据此判定本节点通不通过）\n\n**禁止**读整份 findings / audit_results；**禁止**由模型统计任何比例。"
+        "prompt": "工序：五道确定性校验 + 一个汇总，**全部只针对「标准侧产物」**，不读报告、不读记录。\n\n```\n# ① 章节覆盖：每章必须有规则，或已在豁免表登记理由\npython3 toolchain/run.py std.coverage_gate --packs <产出目录> --std-dir <标准md目录> --waivers contracts/coverage_waivers.json --strict\n\n# ② 阈值原文回检：C=仅见他标准(污染) / D=各标准皆无(编造)，出现即失败\npython3 toolchain/run.py std.check_threshold_support --packs <产出目录> --std-dir <标准md目录> --strict\n\n# ③ 可审核性准入：kind + requires + 证据定位 + 条款锚，四条件\npython3 toolchain/run.py std.admissibility_gate --packs <产出目录> --fields contracts/fields.yaml --out <产出目录>\n\n# ④ 字段-原文一致性：requires 指向的字段，语义词必须出现在规则原文里\npython3 toolchain/run.py std.check_requires_consistency --packs <产出目录> --strict\n\n# ⑤ 抽取器自测：字段正例/反例（反例误报必须为 0）\npython3 toolchain/run.py std.field_selftest --fields contracts/fields.yaml\n\n# ⑥ 汇总（唯一产物）\npython3 toolchain/run.py std.audit_summary --out <产出目录> --std-dir <标准md目录> --fields contracts/fields.yaml --strict\n```\n\n处置口径：\n\n| 门禁 | 失败含义 | 处置 |\n|---|---|---|\n| coverage_gate | 有章无规则且未豁免 | 补规则或逐章登记豁免理由 |\n| check_threshold_support | C/D 级阈值 | C 级回原文改 derived；D 级必须删 |\n| admissibility_gate | 应入判定规则不满足四条件 | 回 rules 节点补 requires/check_targets |\n| **check_requires_consistency** | **字段与原文语义不符**（如「天平精度」映射到「检测波长」） | 改字段或清空 requires；**错配比缺证更危险** |\n| field_selftest | 反例误报 >0 | 修正则，不得带病上线 |\n\n**准入率基线 40%**，低于基线 `audit_summary` 判 FAIL。\n\n**边界**：本节点**不读报告/记录**。曲线量级、批次顺序、跨源一致性属审核侧（`process-audit-playbook`），不在此处跑。"
       }
     },
     {
@@ -163,7 +163,7 @@
         "description": "契约引用：fix",
         "icon": "fix",
         "color": "coral",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node fix`；门禁：`python3 skill-update/scripts/validate_node.py --node fix`。\n开跑前 `--util check --node fix`；完成前 `--util verify --node fix`。\n要点：只改被点名条目，`revision_log` 加一行；没被点名的不动。无 blocker 时用 `--util fix_log` 由 audit_result 派生记录。"
+        "prompt": "契约：`python3 toolchain/run.py std.run_contract --node fix`；门禁：`python3 toolchain/run.py std.run_contract --util verify --node fix`。\n开跑前 `--util check --node fix`；完成前 `--util verify --node fix`。\n要点：只改被点名条目，`revision_log` 加一行；没被点名的不动。无 blocker 时用 `--util fix_log` 由 audit_result 派生记录。"
       }
     },
     {
@@ -297,7 +297,7 @@
         "items": [
           {
             "kind": "text",
-            "value": "契约：`python3 skill-update/scripts/run_contract.py --node toolchain`（契约内嵌于该文件，无需单独 contracts/*.json）。纯脚本、无 LLM，数字来自命令输出。"
+            "value": "契约：`python3 toolchain/run.py std.run_contract --node toolchain`（契约内嵌于该文件，无需单独 contracts/*.json）。纯脚本、无 LLM，数字来自命令输出。"
           }
         ]
       }
@@ -310,11 +310,11 @@
         "y": 295
       },
       "data": {
-        "label": "工具段",
+        "label": "工具段（字段覆盖 + 方法族 + 门禁）",
         "description": "契约引用：toolchain",
         "icon": "database",
         "color": "pink",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node toolchain`；门禁：`python3 skill-update/scripts/validate_node.py --node toolchain`。\n开跑前 `--util check --node toolchain`；完成前 `--util verify --node toolchain`。\n要点：纯脚本无 LLM；数字来自命令输出，不手填。"
+        "prompt": "工具段：字段覆盖核对 + 方法族对照 + 契约门禁。\n\n```\n# ① 方法族对照（防跨方法混用；同被测物多标准时必跑）\npython3 toolchain/run.py std.method_family_diff --packs <产出目录...> --out <产出目录>\n#    → machine/method_family.json：各方法 lod/range/cell/QC 阈值 + CONFLICT 列表 + PENDING_UPLOAD\n\n# ② 契约与门禁\npython3 toolchain/run.py std.run_contract --node toolchain --out <产出目录>\npython3 toolchain/run.py std.check_gate --out <产出目录> --node toolchain\n```\n\n自检必须回答三个问题：\n\n1. `standards/<编号>.meta.json` 是否存在（介质/分析物）——没有说明没走 `clean_std_text`。\n2. `references/fields.yaml` 能否覆盖本标准的字段——缺字段则判定必然大量跳过。\n3. **方法族是否冲突**：同一被测物若有 ≥2 个方法标准，`method_family.json` 的 `conflicts` 必须逐条说明「按报告声明的方法取哪一套」，不得混用参数。\n\n产出：`machine/toolchain_check.json`（三项数值 + 缺失清单 + 方法族冲突数）。"
       }
     },
     {
@@ -346,7 +346,7 @@
         "description": "建图、挂规则、落库",
         "icon": "chart",
         "color": "olive",
-        "prompt": "契约：`python3 skill-update/scripts/run_contract.py --node sop`；门禁：`python3 skill-update/scripts/validate_node.py --node sop`。\n开跑前 `--util check --node sop`；完成前 `--util verify --node sop`。\n要点：建图 + 落库（nodes/edges/rule_node）；每条规则必须挂到节点，挂不上的写 `machine/graph_gaps.json`，**不许造节点**（justification/analyte 永不接收规则）。"
+        "prompt": "契约：`python3 toolchain/run.py std.run_contract --node sop`；门禁：`python3 toolchain/run.py std.run_contract --util verify --node sop`。\n开跑前 `--util check --node sop`；完成前 `--util verify --node sop`。\n要点：建图 + 落库（nodes/edges/rule_node）；每条规则必须挂到节点，挂不上的写 `machine/graph_gaps.json`，**不许造节点**（justification/analyte 永不接收规则）。"
       }
     },
     {
@@ -363,6 +363,20 @@
             "value": "sop-graph.json"
           }
         ]
+      }
+    },
+    {
+      "id": "judge",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "抽取验收（不出判定结论）",
+        "icon": "globe",
+        "color": "violet",
+        "prompt": "抽取验收：**证明抽出来的规则能被判据驱动跑通，不出 PASS/FAIL。**\n\n```\npython3 toolchain/run.py std.extraction_acceptance --packs <产出目录> --fields contracts/fields.yaml --out <产出目录>\n#    → machine/extraction_acceptance.json\n```\n\n只回答三个问题：\n\n| 指标 | 含义 | 判据 |\n|---|---|---|\n| 可判定条数 | kind∈{result,parameter} 且 requires+predicate+证据定位+条款锚 四条件齐 | 越高越好 |\n| 跳过率 | requires 缺失或字段未定义导致无法取值 | >50% 需回 rules 节点补 |\n| 字段缺口 | 规则要求的字段在 `fields.yaml` 里没有定义 | **必须为 0**，否则先补字段表 |\n\n**禁区（越界即错）**：\n- 不得输出 PASS / FAIL / 缺证等 verdict —— 判定归审核侧三个专家。\n- 不得读报告/记录取值 —— 那是 `report-audit-playbook` / `process-audit-playbook` 的活。\n- 不得把抽样结果当审核结论写进 handoff。\n\n**交接**：本节点的产出与规则集、准入率、未覆盖章节清单一并交给 handoff，由审核侧按 `requires` 取值、按 `predicate` 比对。"
       }
     }
   ],
@@ -686,6 +700,31 @@
       "target": "handoff",
       "sourceHandle": null,
       "targetHandle": null
+    },
+    {
+      "id": "judge->handoff",
+      "source": "judge",
+      "target": "handoff",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "judge_result.json 与规则集一并交给 handoff 打包。"
+        }
+      }
+    },
+    {
+      "id": "audit->judge#pass",
+      "source": "audit",
+      "target": "judge",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "pass",
+        "handoff": {
+          "note": "审计三道门禁全过才进判定；审计失败走 fix 回修，不出判定结论。"
+        }
+      }
     }
   ],
   "viewport": {

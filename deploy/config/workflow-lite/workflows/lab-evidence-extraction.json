@@ -1,305 +1,305 @@
 {
-  "nodes": [
-    {
-      "id": "ask-run",
-      "type": "wfInput",
-      "position": {
-        "x": 164,
-        "y": 100
-      },
-      "data": {
-        "question": "本次证据抽取针对哪个运行目录？",
-        "placeholder": "runs/<实例>/out",
-        "hint": "填本次审核的运行目录（含 machine/ 与本批报告文件）；本图不预置报告。",
-        "required": true
-      }
-    },
-    {
-      "id": "plan",
-      "type": "wfNode",
-      "position": {
-        "x": 428,
-        "y": 80
-      },
-      "data": {
-        "label": "分派与计划",
-        "description": "按文档类型分派 profile",
-        "icon": "plan",
-        "color": "violet",
-        "prompt": "分派：按 `machine/audit_tasks.jsonl` 的 doc_type 选 profile（P1–P10），产出 `machine/doc_plan.json`（哪些槽去哪份文档、用什么定位策略）。\n口径见技能 `lab-evidence-playbook` 与 `references/document-profiles.md`。只读 machine/，禁读 human/。"
-      }
-    },
-    {
-      "id": "fill",
-      "type": "wfNode",
-      "position": {
-        "x": 776,
-        "y": 80
-      },
-      "data": {
-        "label": "填槽（只判歧义，切片）",
-        "description": "歧义候选切片后逐条判定",
-        "icon": "idea",
-        "color": "blue",
-        "prompt": "填槽（模型只判歧义，不读整份）：\n1. 扫描时加 `--emit-pending`：`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --emit-pending` → `machine/slot_hits_pending.jsonl`（只含 AMBIGUOUS/MISS）\n2. `python3 toolchain/run.py std.split_rows --in machine/slot_hits_pending.jsonl --size 15` → `machine/slot_hits_pending-slices/0001.json…`\n3. 模型**一次一片**，每条只给 `{\"clause\",\"doc_item\",\"pick\":<该片内命中的那条原文>,\"value\":<数值或 null>}`；`value` 只能来自该片里出现的原文数字\n4. HIT 的直接落 `machine/report_slots.json` / `report_spans.json`（quote 已是原文连续片段）\n\n**禁止**整份读 `slot_hits.jsonl`；**禁止**给该片里没出现的值；ND 原样保留，不改 0。"
-      }
-    },
-    {
-      "id": "res-report_slots",
-      "type": "wfResource",
-      "position": {
-        "x": 860,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/report_slots.json",
-            "note": "{slot: value}，缺值为 null；不猜"
-          }
-        ]
-      }
-    },
-    {
-      "id": "res-report_spans",
-      "type": "wfResource",
-      "position": {
-        "x": 860,
-        "y": 268
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/report_spans.json",
-            "note": "{slot: {page, quote, method}}，quote 必须可检索命中；不可辨写 unlocated:true"
-          }
-        ]
-      }
-    },
-    {
-      "id": "verify",
-      "type": "wfNode",
-      "position": {
-        "x": 1124,
-        "y": 80
-      },
-      "data": {
-        "label": "校验与交付",
-        "description": "证据校验 + 硬门禁 + 契约",
-        "icon": "target",
-        "color": "green",
-        "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 skill-update-lab/skills/lab-evidence-playbook/scripts/verify_slots.py --out <产出目录> --report-text <报告txt> --record-text <记录txt...> --strict`\n`python3 skill-update/scripts/check_gate.py --out <产出目录> --node lab-evidence --require machine/report_slots.json machine/report_spans.json`\n`python3 skill-update/scripts/check_interfaces.py --out <产出目录>`\n\n查五件：槽覆盖、有值必有 quote、quote 能在**报告或记录**原文连续命中、number 槽可解析、空槽登记原因；**证据包内出现 verdict 字段即失败**（判定越权）。结果写进 trail.jsonl。\n**门禁不过不得标完成。**产出 `machine/verify_report.json`。"
-      }
-    },
-    {
-      "id": "res-verify_report",
-      "type": "wfResource",
-      "position": {
-        "x": 1208,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/verify_report.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "res-doc_plan",
-      "type": "wfResource",
-      "position": {
-        "x": 512,
-        "y": 198
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/doc_plan.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "parse",
-      "type": "wfNode",
-      "position": {
-        "x": 776,
-        "y": 476
-      },
-      "data": {
-        "label": "解析（候选槽扫描 / 表格）",
-        "description": "候选槽扫描 + 表格抽取（确定性）",
-        "icon": "terminal",
-        "color": "amber",
-        "prompt": "解析（脚本，不叫模型）：\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <报告txt> --doc-type 检测报告 --write`\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --write`\n`python3 toolchain/run.py ev.extract_tables --out <产出目录> --report-text <报告txt> --write-slots`\n\n产出：`machine/slot_hits.jsonl`（候选槽命中/歧义/未命中）、`machine/tables.json`（行×列，带 page/quote）、`machine/report_tables_ref.json`。\n命中强度 = 命中 hint 数 + 行标签命中×3 + 条款号邻近 +1；**低于阈值记 AMBIGUOUS，不猜**。\n**只有 MISS / AMBIGUOUS 才交给模型**，且只给它这一段与这个词，不通读全文。"
-      }
-    },
-    {
-      "id": "res-tables",
-      "type": "wfResource",
-      "position": {
-        "x": 860,
-        "y": 594
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/tables.json"
-          }
-        ]
-      }
-    },
-    {
-      "id": "res-slot_hits",
-      "type": "wfResource",
-      "position": {
-        "x": 0,
-        "y": 0
-      },
-      "data": {
-        "items": [
-          {
-            "kind": "file",
-            "value": "machine/slot_hits.jsonl"
-          }
-        ]
-      }
-    },
-    {
-      "id": "res-候选槽（146-条）",
-      "type": "wfResource",
-      "position": {
-        "x": 0,
-        "y": 0
-      },
-      "data": {
-        "label": "候选槽（146 条）",
-        "description": "由脱敏后的对应表派生，跨报告复用",
-        "items": [
-          {
-            "kind": "file",
-            "value": "contracts/derived/slots_candidate.jsonl",
-            "note": "146 条：doc_type / clause / requirement / predicate_hint / match_hints。按 doc_type 过滤后再扫。"
-          }
-        ]
-      }
-    }
-  ],
-  "edges": [
-    {
-      "id": "fill->res-report_slots",
-      "source": "fill",
-      "target": "res-report_slots",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "fill->verify",
-      "source": "fill",
-      "target": "verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "ask-run->plan",
-      "source": "ask-run",
-      "target": "plan",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-report_slots->verify",
-      "source": "res-report_slots",
-      "target": "verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-report_spans->verify",
-      "source": "res-report_spans",
-      "target": "verify",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "verify->res-verify_report",
-      "source": "verify",
-      "target": "res-verify_report",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "plan->res-doc_plan",
-      "source": "plan",
-      "target": "res-doc_plan",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-doc_plan->fill",
-      "source": "res-doc_plan",
-      "target": "fill",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "plan->parse",
-      "source": "plan",
-      "target": "parse",
-      "sourceHandle": null,
-      "targetHandle": null,
-      "data": {
-        "handoff": {
-          "note": "按 doc_plan 解析对应文档：表格逐格抽出、图片走 OCR（未部署则 BLOCKED + GAP-DATA）。"
-        }
-      }
-    },
-    {
-      "id": "parse->fill",
-      "source": "parse",
-      "target": "fill",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-tables->fill",
-      "source": "res-tables",
-      "target": "fill",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "parse->res-slot_hits",
-      "source": "parse",
-      "target": "res-slot_hits",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-候选槽（146-条）->parse",
-      "source": "res-候选槽（146-条）",
-      "target": "parse",
-      "sourceHandle": null,
-      "targetHandle": null
-    },
-    {
-      "id": "res-slot_hits->fill",
-      "source": "res-slot_hits",
-      "target": "fill",
-      "sourceHandle": null,
-      "targetHandle": null
-    }
-  ],
-  "viewport": {
+ "nodes": [
+  {
+   "id": "ask-run",
+   "type": "wfInput",
+   "position": {
+    "x": 164,
+    "y": 100
+   },
+   "data": {
+    "question": "本次证据抽取针对哪个运行目录？",
+    "placeholder": "runs/<实例>/out",
+    "hint": "填本次审核的运行目录（含 machine/ 与本批报告文件）；本图不预置报告。",
+    "required": true
+   }
+  },
+  {
+   "id": "plan",
+   "type": "wfNode",
+   "position": {
+    "x": 428,
+    "y": 80
+   },
+   "data": {
+    "label": "分派与计划",
+    "description": "按文档类型分派 profile",
+    "icon": "plan",
+    "color": "violet",
+    "prompt": "分派：按 `machine/audit_tasks.jsonl` 的 doc_type 选 profile（P1–P10），产出 `machine/doc_plan.json`（哪些槽去哪份文档、用什么定位策略）。\n口径见技能 `lab-evidence-playbook` 与 `references/document-profiles.md`。只读 machine/，禁读 human/。"
+   }
+  },
+  {
+   "id": "fill",
+   "type": "wfNode",
+   "position": {
+    "x": 776,
+    "y": 80
+   },
+   "data": {
+    "label": "填槽（只判歧义，切片）",
+    "description": "歧义候选切片后逐条判定",
+    "icon": "idea",
+    "color": "blue",
+    "prompt": "填槽（模型只判歧义，不读整份）：\n1. 扫描时加 `--emit-pending`：`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --emit-pending` → `machine/slot_hits_pending.jsonl`（只含 AMBIGUOUS/MISS）\n2. `python3 toolchain/run.py std.split_rows --in machine/slot_hits_pending.jsonl --size 15` → `machine/slot_hits_pending-slices/0001.json…`\n3. 模型**一次一片**，每条只给 `{\"clause\",\"doc_item\",\"pick\":<该片内命中的那条原文>,\"value\":<数值或 null>}`；`value` 只能来自该片里出现的原文数字\n4. HIT 的直接落 `machine/report_slots.json` / `report_spans.json`（quote 已是原文连续片段）\n\n**禁止**整份读 `slot_hits.jsonl`；**禁止**给该片里没出现的值；ND 原样保留，不改 0。"
+   }
+  },
+  {
+   "id": "res-report_slots",
+   "type": "wfResource",
+   "position": {
+    "x": 860,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/report_slots.json",
+      "note": "{slot: value}，缺值为 null；不猜"
+     }
+    ]
+   }
+  },
+  {
+   "id": "res-report_spans",
+   "type": "wfResource",
+   "position": {
+    "x": 860,
+    "y": 268
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/report_spans.json",
+      "note": "{slot: {page, quote, method}}，quote 必须可检索命中；不可辨写 unlocated:true"
+     }
+    ]
+   }
+  },
+  {
+   "id": "verify",
+   "type": "wfNode",
+   "position": {
+    "x": 1124,
+    "y": 80
+   },
+   "data": {
+    "label": "校验与交付",
+    "description": "证据校验 + 硬门禁 + 契约",
+    "icon": "target",
+    "color": "green",
+    "prompt": "校验（两条都要跑，第二条是硬门禁）：\n`python3 toolchain/run.py ev.verify_slots --out <产出目录> --report-text <报告txt> --record-text <记录txt...> --strict`\n`python3 toolchain/run.py std.check_gate --out <产出目录> --node lab-evidence --require machine/report_slots.json machine/report_spans.json`\n`python3 toolchain/run.py std.check_interfaces --out <产出目录>`\n\n查五件：槽覆盖、有值必有 quote、quote 能在**报告或记录**原文连续命中、number 槽可解析、空槽登记原因；**证据包内出现 verdict 字段即失败**（判定越权）。结果写进 trail.jsonl。\n**门禁不过不得标完成。**产出 `machine/verify_report.json`。"
+   }
+  },
+  {
+   "id": "res-verify_report",
+   "type": "wfResource",
+   "position": {
+    "x": 1208,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/verify_report.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "res-doc_plan",
+   "type": "wfResource",
+   "position": {
+    "x": 512,
+    "y": 198
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/doc_plan.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "parse",
+   "type": "wfNode",
+   "position": {
+    "x": 776,
+    "y": 476
+   },
+   "data": {
+    "label": "解析（候选槽扫描 / 表格）",
+    "description": "候选槽扫描 + 表格抽取（确定性）",
+    "icon": "terminal",
+    "color": "amber",
+    "prompt": "解析（脚本，不叫模型）：\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <报告txt> --doc-type 检测报告 --write`\n`python3 toolchain/run.py ev.scan_candidates --out <产出目录> --text <记录txt...> --doc-type 原始记录 --min-hints 3 --write`\n`python3 toolchain/run.py ev.extract_tables --out <产出目录> --report-text <报告txt> --write-slots`\n\n产出：`machine/slot_hits.jsonl`（候选槽命中/歧义/未命中）、`machine/tables.json`（行×列，带 page/quote）、`machine/report_tables_ref.json`。\n命中强度 = 命中 hint 数 + 行标签命中×3 + 条款号邻近 +1；**低于阈值记 AMBIGUOUS，不猜**。\n**只有 MISS / AMBIGUOUS 才交给模型**，且只给它这一段与这个词，不通读全文。"
+   }
+  },
+  {
+   "id": "res-tables",
+   "type": "wfResource",
+   "position": {
+    "x": 860,
+    "y": 594
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/tables.json"
+     }
+    ]
+   }
+  },
+  {
+   "id": "res-slot_hits",
+   "type": "wfResource",
+   "position": {
     "x": 0,
-    "y": 0,
-    "zoom": 1
+    "y": 0
+   },
+   "data": {
+    "items": [
+     {
+      "kind": "file",
+      "value": "machine/slot_hits.jsonl"
+     }
+    ]
+   }
+  },
+  {
+   "id": "res-候选槽（146-条）",
+   "type": "wfResource",
+   "position": {
+    "x": 0,
+    "y": 0
+   },
+   "data": {
+    "label": "候选槽（146 条）",
+    "description": "由脱敏后的对应表派生，跨报告复用",
+    "items": [
+     {
+      "kind": "file",
+      "value": "contracts/derived/slots_candidate.jsonl",
+      "note": "146 条：doc_type / clause / requirement / predicate_hint / match_hints。按 doc_type 过滤后再扫。"
+     }
+    ]
+   }
   }
+ ],
+ "edges": [
+  {
+   "id": "fill->res-report_slots",
+   "source": "fill",
+   "target": "res-report_slots",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "fill->verify",
+   "source": "fill",
+   "target": "verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "ask-run->plan",
+   "source": "ask-run",
+   "target": "plan",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-report_slots->verify",
+   "source": "res-report_slots",
+   "target": "verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-report_spans->verify",
+   "source": "res-report_spans",
+   "target": "verify",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "verify->res-verify_report",
+   "source": "verify",
+   "target": "res-verify_report",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "plan->res-doc_plan",
+   "source": "plan",
+   "target": "res-doc_plan",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-doc_plan->fill",
+   "source": "res-doc_plan",
+   "target": "fill",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "plan->parse",
+   "source": "plan",
+   "target": "parse",
+   "sourceHandle": null,
+   "targetHandle": null,
+   "data": {
+    "handoff": {
+     "note": "按 doc_plan 解析对应文档：表格逐格抽出、图片走 OCR（未部署则 BLOCKED + GAP-DATA）。"
+    }
+   }
+  },
+  {
+   "id": "parse->fill",
+   "source": "parse",
+   "target": "fill",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-tables->fill",
+   "source": "res-tables",
+   "target": "fill",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "parse->res-slot_hits",
+   "source": "parse",
+   "target": "res-slot_hits",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-候选槽（146-条）->parse",
+   "source": "res-候选槽（146-条）",
+   "target": "parse",
+   "sourceHandle": null,
+   "targetHandle": null
+  },
+  {
+   "id": "res-slot_hits->fill",
+   "source": "res-slot_hits",
+   "target": "fill",
+   "sourceHandle": null,
+   "targetHandle": null
+  }
+ ],
+ "viewport": {
+  "x": 0,
+  "y": 0,
+  "zoom": 1
+ }
 }
