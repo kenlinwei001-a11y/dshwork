@@ -2,6 +2,8 @@
  "_meta": {
   "standard": "HJ671-2013",
   "count": 84,
+  "recompute": 38,
+  "preparation": 19,
   "contains": [
    "predicate",
    "requires",
@@ -10,9 +12,9 @@
    "impact",
    "criticality",
    "missing_kind",
-   "recompute"
+   "recompute(expr/inputs/input_fields/verdict_rule)"
   ],
-  "source": "手写增强规则集"
+  "source": "手写增强规则集 v4"
  },
  "standard_id": "HJ671-2013",
  "audit_rule_cards": [
@@ -555,6 +557,10 @@
      "6 个浓度点",
      "各点响应值"
     ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -961,7 +967,21 @@
    "kind_basis": "已有数值谓词",
    "requires": [
     "CHEM.试剂等级"
-   ]
+   ],
+   "recompute": {
+    "field": "CHEM.试剂等级",
+    "kind": "preparation",
+    "expr": "实际用量 m = m / (p/100)   （按纯度折算称样量）",
+    "inputs": [
+     "称样量",
+     "纯度"
+    ],
+    "input_fields": [
+     "CHEM.称样量",
+     "CHEM.纯度"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.13-01",
@@ -1000,12 +1020,19 @@
    "kind_basis": "已有数值谓词",
    "recompute": {
     "field": "CALC.稀释倍数",
-    "expr": "f = 报告值 / 仪器读数（稀释前）",
+    "kind": "preparation",
+    "expr": "c₂ = c₁ × V₁ / V₂（按体积稀释；V₂ 为定容体积）",
     "inputs": [
-     "报告值",
-     "仪器读数"
+     "母液浓度",
+     "移取体积",
+     "定容体积"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.母液浓度",
+     "CHEM.移取体积",
+     "CHEM.定容体积"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1042,7 +1069,23 @@
    "requires_source": "关键词",
    "kind": "result",
    "impact": "data_invalid",
-   "kind_basis": "已有数值谓词"
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "SAMP.固定剂",
+    "kind": "preparation",
+    "expr": "c₂ = c₁ × V₁ / V₂（按体积稀释；V₂ 为定容体积）",
+    "inputs": [
+     "母液浓度",
+     "移取体积",
+     "定容体积"
+    ],
+    "input_fields": [
+     "CHEM.母液浓度",
+     "CHEM.移取体积",
+     "CHEM.定容体积"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.15-01",
@@ -1079,7 +1122,21 @@
    "kind_basis": "已有数值谓词",
    "requires": [
     "APPA.环境温度"
-   ]
+   ],
+   "recompute": {
+    "field": "APPA.环境温度",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
+    "inputs": [
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.16-01",
@@ -1119,12 +1176,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1165,12 +1227,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1211,12 +1278,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1257,12 +1329,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1303,12 +1380,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1349,12 +1431,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1395,12 +1482,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1430,7 +1522,21 @@
    "requires_source": "一致性校验判定：无形量字段",
    "kind": "parameter",
    "impact": "process_deviation",
-   "kind_basis": "数值+操作动作"
+   "kind_basis": "数值+操作动作",
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "Δt = 使用日期 − 配制日期 = 0（现配现用，不得贮存）",
+    "inputs": [
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.23注-01",
@@ -1500,12 +1606,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1546,12 +1657,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1592,12 +1708,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1627,7 +1748,21 @@
    "requires_source": null,
    "kind": "not_judgeable",
    "impact": "none",
-   "kind_basis": "无判定语义"
+   "kind_basis": "无判定语义",
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "Δt = 使用日期 − 配制日期 = 0（现配现用，不得贮存）",
+    "inputs": [
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.28-01",
@@ -1667,12 +1802,17 @@
    ],
    "recompute": {
     "field": "SAMP.保存时限",
-    "expr": "t = 测定日期 − 采样日期（天）",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
     "inputs": [
-     "采样日期",
-     "测定日期"
+     "配制日期",
+     "使用日期"
     ],
-    "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
   {
@@ -1981,6 +2121,9 @@
     "inputs": [
      "校准系列浓度点"
     ],
+    "input_fields": [
+     "CAL.浓度点"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2026,7 +2169,23 @@
    "kind_basis": "已有数值谓词",
    "requires": [
     "CHEM.标准溶液浓度"
-   ]
+   ],
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "c_i = c_母液 × V_i / V_定容（逐点）",
+    "inputs": [
+     "母液浓度",
+     "移取体积",
+     "定容体积"
+    ],
+    "input_fields": [
+     "CHEM.母液浓度",
+     "CHEM.移取体积",
+     "CHEM.定容体积"
+    ],
+    "verdict_rule": "缺任一点移取或定容体积 → 该点浓度不可复算 → UNVERIFIABLE"
+   }
   },
   {
    "rule_id": "ARC-C5-8.2.2-01",
@@ -2058,7 +2217,21 @@
    "kind_basis": "步骤存在或顺序",
    "requires": [
     "CHEM.标准溶液浓度"
-   ]
+   ],
+   "recompute": {
+    "field": "CAL.响应值",
+    "kind": "calc",
+    "expr": "逐点 (c_i, A_i) 完整记录；缺任一点不足以拟合复算 r",
+    "inputs": [
+     "6 个浓度点",
+     "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
+    ],
+    "verdict_rule": "任一浓度点或响应值缺失 → 曲线不可复算 → UNVERIFIABLE"
+   }
   },
   {
    "rule_id": "ARC-C5-8.3-01",
@@ -2125,6 +2298,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2170,6 +2346,10 @@
     "inputs": [
      "6 个浓度点",
      "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2240,6 +2420,10 @@
     "inputs": [
      "报告值",
      "仪器读数"
+    ],
+    "input_fields": [
+     "CALC.结果值",
+     "CAL.仪器读数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2316,6 +2500,12 @@
      "截距 a",
      "稀释倍数 f"
     ],
+    "input_fields": [
+     "CAL.响应值",
+     "CAL.斜率",
+     "CAL.截距",
+     "CALC.稀释倍数"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2358,6 +2548,12 @@
      "斜率 b",
      "截距 a",
      "稀释倍数 f"
+    ],
+    "input_fields": [
+     "CAL.响应值",
+     "CAL.斜率",
+     "CAL.截距",
+     "CALC.稀释倍数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2439,6 +2635,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2483,6 +2682,10 @@
     "inputs": [
      "平行样1测定值",
      "平行样2测定值"
+    ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2529,6 +2732,10 @@
      "中间点标称浓度",
      "中间点实测值"
     ],
+    "input_fields": [
+     "QC.中间点标称值",
+     "QC.中间点实测值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2574,6 +2781,10 @@
      "平行样1测定值",
      "平行样2测定值"
     ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2614,6 +2825,10 @@
     "inputs": [
      "平行样1测定值",
      "平行样2测定值"
+    ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2699,6 +2914,11 @@
      "加标量",
      "加标样测定值",
      "原样测定值"
+    ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2797,7 +3017,21 @@
    "requires_source": "一致性校验判定：无形量字段",
    "kind": "result",
    "impact": "data_invalid",
-   "kind_basis": "已有数值谓词"
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
+    "inputs": [
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C7-11.5注-01",
@@ -2904,6 +3138,9 @@
     "expr": "按标准/附录给定公式（如 3.14×s 或空白标准偏差法）",
     "inputs": [
      "空白或低浓度重复测定值"
+    ],
+    "input_fields": [
+     "QC.空白测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -3012,6 +3249,11 @@
      "加标样测定值",
      "原样测定值"
     ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -3095,6 +3337,10 @@
      "采样日期",
      "测定日期"
     ],
+    "input_fields": [
+     "SAMP.采样日期",
+     "SAMP.测定日期"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -3144,6 +3390,10 @@
      "6 个浓度点",
      "各点响应值"
     ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -3189,6 +3439,12 @@
      "斜率 b",
      "截距 a",
      "稀释倍数 f"
+    ],
+    "input_fields": [
+     "CAL.响应值",
+     "CAL.斜率",
+     "CAL.截距",
+     "CALC.稀释倍数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }

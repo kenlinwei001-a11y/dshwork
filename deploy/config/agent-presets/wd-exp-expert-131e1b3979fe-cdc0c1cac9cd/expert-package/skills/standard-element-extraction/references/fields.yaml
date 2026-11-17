@@ -53,6 +53,30 @@ fields:
   SCOPE.粒径上限:      {type: number, unit: μm, agg: last, patterns: ['粒径[^\\d]{0,10}([\\d.]+)\\s*[μu]m']}
   QC.加标比例:         {type: percent, unit: '%', agg: last, patterns: ['(\\d+)\\s*%\\s*的?加标']}
   REC.报告要素:        {type: enum,   unit: '1', agg: first, patterns: ['报告须载明', '被测物表述为']}
+  # ── 复算输入字段（审核侧按此取值，recompute.input_fields 绑定）────
+  CHEM.称样量:      {type: number, unit: mg, agg: last, patterns: ['称取[^\\d]{0,10}([\\d.]+)\\s*(g|mg)']}
+  CHEM.定容体积:    {type: number, unit: mL, agg: last, patterns: ['定容(?:至|为)?[^\\d]{0,10}([\\d.]+)\\s*(ml|mL|L)']}
+  CHEM.移取体积:    {type: number, unit: mL, agg: last, patterns: ['(?:移取|吸取|量取)[^\\d]{0,10}([\\d.]+)\\s*(ml|mL|μl|ul)']}
+  CHEM.纯度:        {type: percent, unit: '%', agg: last, patterns: ['纯度[^\\d]{0,6}([\\d.]+)\\s*%', '(\\d{2})\\s*%\\s*纯度']}
+  CHEM.摩尔质量:    {type: number, unit: 'g/mol', agg: last, patterns: ['摩尔质量[^\\d]{0,6}([\\d.]+)']}
+  CHEM.稀释比:      {type: ratio,  unit: '1',  agg: last, patterns: ['(\\d+)\\s*[:：]\\s*(\\d+)', '稀释(\\d+)倍']}
+  CHEM.配制日期:    {type: date, unit: '1', agg: first, patterns: ['配制日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
+  CHEM.使用日期:    {type: date, unit: '1', agg: last,  patterns: ['使用日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})', '开封日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
+  CHEM.母液浓度:    {type: number, unit: 'mg/L', agg: last, patterns: ['贮备液[^\\d]{0,20}([\\d.]+)\\s*(mg/L|μg/L)']}
+  CAL.浓度点:       {type: number, unit: 'mg/L', agg: last, patterns: ['(\\d+)\\s*个?\\s*(?:浓度点|校准点|标准系列)', '(\\d+)\\s*点']}
+  CAL.响应值:       {type: number, unit: '1',  agg: last, patterns: ['(?:峰面积|峰高|响应值|吸光度)[^\\d]{0,8}([\\d.]+)']}
+  CALC.结果值:      {type: number, unit: auto, agg: last, patterns: ['(?:报告值|结果)[^\\d]{0,8}([\\d.]+)']}
+  QC.加标量:        {type: number, unit: 'mg/L', agg: last, patterns: ['加标量[^\\d]{0,8}([\\d.]+)']}
+  QC.加标样测定值:  {type: number, unit: 'mg/L', agg: last, patterns: ['加标样[^\\d]{0,10}([\\d.]+)']}
+  QC.原样测定值:    {type: number, unit: 'mg/L', agg: last, patterns: ['(?:原样|样品)[^\\d]{0,10}([\\d.]+)\\s*mg/L']}
+  QC.平行样测定值1: {type: number, unit: auto, agg: last, patterns: ['平行(?:样)?\\s*1[^\\d]{0,8}([\\d.]+)']}
+  QC.平行样测定值2: {type: number, unit: auto, agg: last, patterns: ['平行(?:样)?\\s*2[^\\d]{0,8}([\\d.]+)']}
+  QC.中间点标称值:  {type: number, unit: auto, agg: last, patterns: ['中间点[^\\d]{0,10}([\\d.]+)', '中浓度[^\\d]{0,8}([\\d.]+)']}
+  QC.中间点实测值:  {type: number, unit: auto, agg: last, patterns: ['中间点(?:实测)?[^\\d]{0,14}([\\d.]+)']}
+  QC.空白测定值:    {type: number, unit: auto, agg: list, patterns: ['空白[^\\d]{0,10}(0\\.\\d{3,4})', 'Ab[^\\d]{0,6}(0\\.\\d{3,4})']}
+  QC.重复测定值:    {type: number, unit: auto, agg: list, patterns: ['(\\d+(?:\\.\\d+)?)\\s*(?:mg/L)?[^。]{0,4}重复']}
+  SAMP.采样日期:    {type: date,  unit: '1', agg: first, patterns: ['采样日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})', '(20\\d{2}-\\d{2}-\\d{2})']}
+  SAMP.测定日期:    {type: date,  unit: '1', agg: last,  patterns: ['检测日期[:：]?\\s*(20\\d{2}[.\\-/]\\d{1,2}[.\\-/]\\d{1,2})']}
   # ── 计算与记录 ─────────────────────────────────────────
   CAL.仪器读数:      {type: number,  unit: auto, agg: last,  patterns: ['仪器读数[:：]?\s*([\d.]+)', '样品量\s*mg/L[^\d]{0,20}([\d.]+)']}
   SCOPE.上限:        {type: number,  unit: auto, agg: max,   patterns: ['测定范围[^\d]{0,10}[\d.]+\s*[～~\-]\s*([\d.]+)', '上限[^\d]{0,6}([\d.]+)']}

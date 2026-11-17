@@ -2,6 +2,8 @@
  "_meta": {
   "standard": "HJ84-2016",
   "count": 63,
+  "recompute": 23,
+  "preparation": 3,
   "contains": [
    "predicate",
    "requires",
@@ -10,9 +12,9 @@
    "impact",
    "criticality",
    "missing_kind",
-   "recompute"
+   "recompute(expr/inputs/input_fields/verdict_rule)"
   ],
-  "source": "手写增强规则集"
+  "source": "手写增强规则集 v4"
  },
  "standard_id": "HJ84-2016",
  "audit_rule_cards": [
@@ -219,6 +221,10 @@
      "报告值",
      "仪器读数"
     ],
+    "input_fields": [
+     "CALC.结果值",
+     "CAL.仪器读数"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -308,6 +314,10 @@
     "inputs": [
      "报告值",
      "仪器读数"
+    ],
+    "input_fields": [
+     "CALC.结果值",
+     "CAL.仪器读数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -581,6 +591,10 @@
      "采样日期",
      "测定日期"
     ],
+    "input_fields": [
+     "SAMP.采样日期",
+     "SAMP.测定日期"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -667,6 +681,9 @@
     "expr": "Ab = 批内各空白测定值算术平均",
     "inputs": [
      "各空白逐次测定值"
+    ],
+    "input_fields": [
+     "QC.空白测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -1265,7 +1282,27 @@
    "requires_source": "关键词",
    "kind": "result",
    "impact": "data_invalid",
-   "kind_basis": "已有数值谓词"
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "c = m × p/100 ÷ V（称取 m g 定容至 V mL）；并须标注配制日期与有效期（t ≤ 有效期）",
+    "inputs": [
+     "称样量",
+     "定容体积",
+     "纯度",
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.称样量",
+     "CHEM.定容体积",
+     "CHEM.纯度",
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "缺称样量/定容体积/纯度或未标配制日期 → 浓度与有效期均不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.13-02",
@@ -1401,7 +1438,23 @@
      ],
      "locator_strategy": "keyword"
     }
-   ]
+   ],
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "c₂ = c₁ × V₁ / V₂（按体积稀释；V₂ 为定容体积）",
+    "inputs": [
+     "母液浓度",
+     "移取体积",
+     "定容体积"
+    ],
+    "input_fields": [
+     "CHEM.母液浓度",
+     "CHEM.移取体积",
+     "CHEM.定容体积"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-5.22-01",
@@ -1745,6 +1798,9 @@
     "inputs": [
      "校准系列浓度点"
     ],
+    "input_fields": [
+     "CAL.浓度点"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -1826,6 +1882,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -1874,6 +1933,10 @@
     "inputs": [
      "6 个浓度点",
      "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -1926,6 +1989,10 @@
     "inputs": [
      "6 个浓度点",
      "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -1998,6 +2065,12 @@
      "截距 a",
      "稀释倍数 f"
     ],
+    "input_fields": [
+     "CAL.响应值",
+     "CAL.斜率",
+     "CAL.截距",
+     "CALC.稀释倍数"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2046,6 +2119,12 @@
      "斜率 b",
      "截距 a",
      "稀释倍数 f"
+    ],
+    "input_fields": [
+     "CAL.响应值",
+     "CAL.斜率",
+     "CAL.截距",
+     "CALC.稀释倍数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2097,6 +2176,9 @@
     "expr": "Ab = 批内各空白测定值算术平均",
     "inputs": [
      "各空白逐次测定值"
+    ],
+    "input_fields": [
+     "QC.空白测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2159,6 +2241,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2216,6 +2301,10 @@
      "6 个浓度点",
      "各点响应值"
     ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2267,6 +2356,10 @@
     "inputs": [
      "中间点标称浓度",
      "中间点实测值"
+    ],
+    "input_fields": [
+     "QC.中间点标称值",
+     "QC.中间点实测值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2326,6 +2419,10 @@
      "平行样1测定值",
      "平行样2测定值"
     ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2382,6 +2479,11 @@
      "加标量",
      "加标样测定值",
      "原样测定值"
+    ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2499,7 +2601,23 @@
    "kind_basis": "定性要求，需人判",
    "gaps": [
     "严重度提升：无溯源性记录→关键（标准溶液无溯源，数据不可溯源）"
-   ]
+   ],
+   "recompute": {
+    "field": "CHEM.试剂有效期",
+    "kind": "preparation",
+    "expr": "t剩余 = 有效期 −(使用日期−配制日期)；标签三要素须齐",
+    "inputs": [
+     "配制日期",
+     "使用日期",
+     "母液浓度"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期",
+     "CHEM.母液浓度"
+    ],
+    "verdict_rule": "标签缺浓度或配制日期 → 有效期不可核 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C8-7.1-05",
@@ -2622,6 +2740,10 @@
     "inputs": [
      "6 个浓度点",
      "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -2776,6 +2898,9 @@
     "inputs": [
      "空白或低浓度重复测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2889,6 +3014,11 @@
      "加标样测定值",
      "原样测定值"
     ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -2938,6 +3068,10 @@
     "inputs": [
      "平行样1测定值",
      "平行样2测定值"
+    ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }

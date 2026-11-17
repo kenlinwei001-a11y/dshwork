@@ -2,6 +2,8 @@
  "_meta": {
   "standard": "HJ535-2009",
   "count": 23,
+  "recompute": 6,
+  "preparation": 1,
   "contains": [
    "predicate",
    "requires",
@@ -10,9 +12,9 @@
    "impact",
    "criticality",
    "missing_kind",
-   "recompute"
+   "recompute(expr/inputs/input_fields/verdict_rule)"
   ],
-  "source": "手写增强规则集"
+  "source": "手写增强规则集 v4"
  },
  "standard_id": "HJ535-2009",
  "audit_rule_cards": [
@@ -133,6 +135,10 @@
     "inputs": [
      "报告值",
      "仪器读数"
+    ],
+    "input_fields": [
+     "CALC.结果值",
+     "CAL.仪器读数"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -381,7 +387,21 @@
    "requires_source": "auto_high",
    "kind": "result",
    "impact": "data_invalid",
-   "kind_basis": "已有数值谓词"
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CHEM.试剂有效期",
+    "kind": "preparation",
+    "expr": "t = 使用日期 − 配制日期，应 ≤ 规定有效期",
+    "inputs": [
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "记录缺配制参数（称样量/体积/纯度/母液浓度/日期）→ 不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-4.4.1-01",
@@ -488,6 +508,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -559,6 +582,9 @@
     "inputs": [
      "各空白逐次测定值"
     ],
+    "input_fields": [
+     "QC.空白测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -600,6 +626,11 @@
      "加标量",
      "加标样测定值",
      "原样测定值"
+    ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -660,6 +691,9 @@
     "expr": "按标准/附录给定公式（如 3.14×s 或空白标准偏差法）",
     "inputs": [
      "空白或低浓度重复测定值"
+    ],
+    "input_fields": [
+     "QC.空白测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }

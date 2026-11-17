@@ -2,6 +2,8 @@
  "_meta": {
   "standard": "HJ636-2012",
   "count": 29,
+  "recompute": 8,
+  "preparation": 1,
   "contains": [
    "predicate",
    "requires",
@@ -10,9 +12,9 @@
    "impact",
    "criticality",
    "missing_kind",
-   "recompute"
+   "recompute(expr/inputs/input_fields/verdict_rule)"
   ],
-  "source": "手写增强规则集"
+  "source": "手写增强规则集 v4"
  },
  "standard_id": "HJ636-2012",
  "audit_rule_cards": [
@@ -135,6 +137,9 @@
     "expr": "按标准/附录给定公式（如 3.14×s 或空白标准偏差法）",
     "inputs": [
      "空白或低浓度重复测定值"
+    ],
+    "input_fields": [
+     "QC.空白测定值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -426,7 +431,29 @@
    "requires_source": "关键词",
    "kind": "result",
    "impact": "data_invalid",
-   "kind_basis": "已有数值谓词"
+   "kind_basis": "已有数值谓词",
+   "recompute": {
+    "field": "CHEM.标准溶液浓度",
+    "kind": "preparation",
+    "expr": "c = m × p/100 ÷ V；k=(c_set−c_blank)/c_std 应≥0.99；临用现配 Δt=0",
+    "inputs": [
+     "称样量",
+     "定容体积",
+     "纯度",
+     "母液浓度",
+     "配制日期",
+     "使用日期"
+    ],
+    "input_fields": [
+     "CHEM.称样量",
+     "CHEM.定容体积",
+     "CHEM.纯度",
+     "CHEM.母液浓度",
+     "CHEM.配制日期",
+     "CHEM.使用日期"
+    ],
+    "verdict_rule": "缺称样量/定容体积/纯度任一 → 浓度不可复算 → UNVERIFIABLE（不得判 PASS）"
+   }
   },
   {
    "rule_id": "ARC-C4-6.2-01",
@@ -502,6 +529,9 @@
     "inputs": [
      "校准系列浓度点"
     ],
+    "input_fields": [
+     "CAL.浓度点"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -575,6 +605,10 @@
     "inputs": [
      "6 个浓度点",
      "各点响应值"
+    ],
+    "input_fields": [
+     "CAL.浓度点",
+     "CAL.响应值"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
@@ -657,6 +691,10 @@
      "平行样1测定值",
      "平行样2测定值"
     ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -701,6 +739,10 @@
      "中间点标称浓度",
      "中间点实测值"
     ],
+    "input_fields": [
+     "QC.中间点标称值",
+     "QC.中间点实测值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -743,12 +785,18 @@
    "impact": "data_invalid",
    "kind_basis": "已有数值谓词",
    "recompute": {
-    "expr": "(加标样品测定值-原样测定值)/加标量×100%",
-    "inputs": [
-     "QC.加标回收率"
-    ],
-    "note": "记录须给出加标量与实测值，可复算",
     "field": "QC.加标回收率",
+    "expr": "P = (加标样测定值 − 原样测定值) / 加标量 × 100%",
+    "inputs": [
+     "加标量",
+     "加标样测定值",
+     "原样测定值"
+    ],
+    "input_fields": [
+     "QC.加标量",
+     "QC.加标样测定值",
+     "QC.原样测定值"
+    ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }
   },
@@ -862,6 +910,10 @@
     "inputs": [
      "平行样1测定值",
      "平行样2测定值"
+    ],
+    "input_fields": [
+     "QC.平行样测定值1",
+     "QC.平行样测定值2"
     ],
     "verdict_rule": "记录缺任一原始输入 → 不可复算 → UNVERIFIABLE（不得判 PASS）"
    }

@@ -27,11 +27,11 @@
         "y": 80
       },
       "data": {
-        "label": "解构与引用（含文本归一化）",
+        "label": "条款（归一化 + 抽取主链）",
         "description": "契约引用：clauses（含切片）",
         "icon": "idea",
         "color": "blue",
-        "prompt": "契约：**一条命令**跑完标准抽取的确定性链，内部已含文本归一化。\n\n```\npython3 toolchain/run.py std.run_graph --out <本次产出目录> --text <标准文本路径> --standard <编号> --mode extract\n```\n\n它依次执行：clean_std_text（去目录行、识别介质与分析物）→ route → clause_preclassify → clause_merge → bootstrap_rules → sop_graph → build_slots → pack_graph。每步失败即停，写入 `trail.jsonl`。\n\n产出必须齐（缺一即本节点不通过）：\n`00-provenance.json`、`01-clauses.json`、`02-elements.json`、`03-rules.json`、`sop-graph.json`、`audit_tasks.jsonl`、`slots.schema.json`、`machine/sop-graph.packed.yaml`、`standards/<编号>.meta.json`（介质/分析物/表与附录清单）、`trail.jsonl`。\n\n门禁：\n```\npython3 toolchain/run.py std.run_contract --util verify --out <产出目录> --node clauses\n```\n\n**验收三条（缺一不得标完成）**：\n1. `01-clauses.json` 的 quote 不含目录行（`....页号`）；含则为 0 条才算过。\n2. `03-rules.json` 每条 `requirement` 非空且不以 `## 数字` 开头者需人工确认。\n3. `standards/*.meta.json` 里 `media` 非空、`analytes.count` 或 `items` 至少一项有值。\n\n引用闭包：`01-clauses.json` 的 `reference_register` 必须登记第 2 章全部文件；未上传标 `PENDING_UPLOAD` 并落 GAP-REF。"
+        "prompt": "契约：**一条命令**跑完标准抽取的确定性链，内部已含文本归一化。\n\n```\n# ① 文本归一化（独立可跑，也可由 ② 内部调用）\npython3 toolchain/run.py std.clean_std_text --text <标准文本路径> --out <产出目录> --slug <编号>\n#    → standards/<编号>.clean.md（去目录行 + LaTeX 数字转文本）+ <编号>.meta.json（介质/分析物/表/附录）\n\n# ② 抽取主链\npython3 toolchain/run.py std.run_graph --out <本次产出目录> --text <标准文本路径> --standard <编号> --mode extract\n```\n\n`run_graph` 依次执行：clean_std_text → route → clause_preclassify → clause_merge → bootstrap_rules → sop_graph → build_slots → pack_graph。每步失败即停，写入 `trail.jsonl`。\n\n**归一化为什么单列**：LaTeX 数字若不先归一，`$105^{\\circ}$ C ± $5^{\\circ}$ C`、`$\\rho(\\mathrm{F}^{-})=1000\\ \\mathrm{mg/L}$`、`$\\geqslant 0.995$` 三类写法一个都抽不出数——阈值、浓度、相关系数会集体丢失。`clean_std_text` 的 `math_to_text()` 就是解决这个的，必须先用或确认已被调用。\n\n产出必须齐（缺一即本节点不通过）：\n`00-provenance.json`、`01-clauses.json`、`02-elements.json`、`03-rules.json`、`sop-graph.json`、`audit_tasks.jsonl`、`slots.schema.json`、`machine/sop-graph.packed.yaml`、`standards/<编号>.meta.json`、`trail.jsonl`。\n\n门禁：\n```\npython3 toolchain/run.py std.run_contract --util verify --out <产出目录> --node clauses\n```\n\n**验收四条（缺一不得标完成）**：\n1. `01-clauses.json` 的 quote 不含目录行（`....页号`）；含则为 0 条才算过。\n2. `03-rules.json` 每条 `requirement` 非空且不以 `## 数字` 开头者需人工确认。\n3. `standards/*.meta.json` 里 `media` 非空、`analytes.count` 或 `items` 至少一项有值。\n4. **归一化生效**：`03-rules.json` 的 requirement 中不得残留 `$...$` / `\\mathrm` / `\\circ` / `\\geqslant`。\n\n引用闭包：`01-clauses.json` 的 `reference_register` 必须登记第 2 章全部文件；未上传标 `PENDING_UPLOAD` 并落 GAP-REF。"
       }
     },
     {
@@ -310,11 +310,11 @@
         "y": 295
       },
       "data": {
-        "label": "工具段（字段覆盖 + 方法族 + 门禁）",
+        "label": "工具段（图谱一致性 + 字段覆盖 + 方法族）",
         "description": "契约引用：toolchain",
         "icon": "database",
         "color": "pink",
-        "prompt": "工具段：字段覆盖核对 + 方法族对照 + 契约门禁。\n\n```\n# ① 方法族对照（防跨方法混用；同被测物多标准时必跑）\npython3 toolchain/run.py std.method_family_diff --packs <产出目录...> --out <产出目录>\n#    → machine/method_family.json：各方法 lod/range/cell/QC 阈值 + CONFLICT 列表 + PENDING_UPLOAD\n\n# ② 契约与门禁\npython3 toolchain/run.py std.run_contract --node toolchain --out <产出目录>\npython3 toolchain/run.py std.check_gate --out <产出目录> --node toolchain\n```\n\n自检必须回答三个问题：\n\n1. `standards/<编号>.meta.json` 是否存在（介质/分析物）——没有说明没走 `clean_std_text`。\n2. `references/fields.yaml` 能否覆盖本标准的字段——缺字段则判定必然大量跳过。\n3. **方法族是否冲突**：同一被测物若有 ≥2 个方法标准，`method_family.json` 的 `conflicts` 必须逐条说明「按报告声明的方法取哪一套」，不得混用参数。\n\n产出：`machine/toolchain_check.json`（三项数值 + 缺失清单 + 方法族冲突数）。"
+        "prompt": "工具段：图谱一致性 + 字段覆盖 + 方法族对照 + 契约门禁。\n\n```\n# ① 图 × 注册表一致性（改图后必跑；只对 owner=extraction 判）\npython3 toolchain/run.py std.graph_atom_check --strict\n#    → extraction 原子必须全在图里；图用原子必须全注册；图里不得混入 audit 原子\n\n# ② 方法族对照（防跨方法混用；同被测物多标准时必跑）\npython3 toolchain/run.py std.method_family_diff --packs <产出目录...> --out <产出目录>\n#    → machine/method_family.json：各方法 lod/range/cell/QC 阈值 + CONFLICT 列表 + PENDING_UPLOAD\n\n# ③ 契约与门禁\npython3 toolchain/run.py std.run_contract --node toolchain --out <产出目录>\npython3 toolchain/run.py std.check_gate --out <产出目录> --node toolchain\n```\n\n自检必须回答四个问题：\n\n1. **图与注册表是否一致**——`graph_atom_check` 三项全 0。任何一项非 0 说明「图写的命令跑不了」或「能力没被编排」，必须修图或补注册，不得放过。\n2. `standards/<编号>.meta.json` 是否存在（介质/分析物）——没有说明没走 `clean_std_text`。\n3. `references/fields.yaml` 能否覆盖本标准的字段——缺字段则判定必然大量跳过。\n4. **方法族是否冲突**：同一被测物若有 ≥2 个方法标准，`method_family.json` 的 `conflicts` 必须逐条说明「按报告声明的方法取哪一套」，不得混用参数。\n\n产出：`machine/toolchain_check.json`（四项结果 + 缺失清单 + 方法族冲突数 + 图原子一致性三项计数）。"
       }
     },
     {
