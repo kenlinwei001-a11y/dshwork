@@ -20,6 +20,13 @@ if [ -f "$CHECK" ] && command -v node >/dev/null 2>&1; then
     echo "  详情：node $CHECK --home <DSH_HOME> --agents <AGENTS_HOME>" >&2
   fi
 fi
+# 重打会被插件升级冲掉的本地补丁：moki 任务台用 0.2.2 的路由写法，0.2.1 需要兼容垫片。
+MOKI_PATCH="$(cd "$(dirname "$0")/.." && pwd)/patches/moki-taskboard/patch-moki-route.mjs"
+if [ -f "$MOKI_PATCH" ] && command -v node >/dev/null 2>&1; then
+  node "$MOKI_PATCH" \
+    --home "${WORKDSH_PREVIEW_HOME:-${DSH_HOME:-$HOME/workdsh/.test-runtime/preview}}" \
+    --quiet || echo "⚠ moki 兼容补丁未应用（不阻断启动）" >&2
+fi
 STAMP=$(stat -f '%z' "$LOG" 2>/dev/null || echo 0)
 echo "== 停 =="
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true

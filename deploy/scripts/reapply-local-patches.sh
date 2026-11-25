@@ -74,8 +74,25 @@ else
   echo "  ⚠ 回落分支未见 : false; —— 入口可能仍会显示，请人工检查"
 fi
 
+echo "== dsh-moki-taskboard：0.2.1 路由兼容垫片 =="
+MOKI_HOST="$DSH_HOME/profiles/$PROFILE/node_modules/dsh-moki-taskboard/dist/host.mjs"
+if [ ! -f "$MOKI_HOST" ]; then
+  echo "  跳过：找不到 $MOKI_HOST"
+else
+  if node "$HERE/patches/moki-taskboard/patch-moki-route.mjs" --home "$DSH_HOME" --profile "$PROFILE"; then
+    if grep -q 'route.resource(req, admitted.peer)' "$MOKI_HOST"; then
+      echo "  ✓ moki route shim"
+    else
+      echo "  ✗ moki route shim 未生效，请人工检查 $MOKI_HOST"; exit 1
+    fi
+  else
+    echo "  ⚠ moki route shim 未应用（插件布局未知？不阻断）"
+  fi
+fi
+
 cat <<'EOF'
 
-提醒：这些补丁改的是第三方包（dsh-mcp-connector / @xiaoso/dsh-workflow-lite），每次插件升级都会没；升级后重跑本脚本即可。
+提醒：这些补丁改的是第三方包（dsh-mcp-connector / @xiaoso/dsh-workflow-lite / dsh-moki-taskboard），每次插件升级都会没；
+重跑本脚本即可；moki 另有 launchd 看守会每隔几十秒自动重打，正常升级后无需手工处理。
 另：semantica 的补丁在 venv 里，升级 semantica 后需重跑 install-semantica-mcp.sh。
 EOF
