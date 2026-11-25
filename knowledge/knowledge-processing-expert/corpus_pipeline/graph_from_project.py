@@ -57,6 +57,34 @@ def _rid(rule: str) -> str:
     return "R" + hashlib.md5(str(rule).encode("utf-8")).hexdigest()[:6]
 
 
+# 客户根章节（一/二/…）→ 骨架节号。**不按数字前缀猜**（客户 5.2 ≠ 骨架 5.2）
+CLIENT_TO_SKELETON = {
+    "一": ["1.1", "1.2"], "二": ["3.2"], "三": ["3.1"], "四": ["3.1"],
+    "五": ["7.1", "7.3"], "六": ["5.3"], "七": ["5.3"], "八": ["5.3"], "九": ["5.3"],
+    "十": ["8.4"], "十一": ["5.6"], "十二": ["9.1", "9.2"],
+}
+_CN = "一二三四五六七八九十"
+
+
+def _client_root(sec):
+    """5.2建安... → 五；六、用水量 → 六"""
+    import re as _re
+    s = str(sec or "").lstrip("§")
+    m = _re.match(r"^(\d+)(\.|、|$)", s)
+    if m:
+        n = int(m.group(1))
+        return _CN[n - 1] if 1 <= n <= len(_CN) else None
+    m = _re.match(r"^([一二三四五六七八九十]+)、", s)
+    return m.group(1) if m else None
+
+
+def _attach_skeleton_section(facts):
+    """给每个 fact 打骨架节号（可多个）。"""
+    for f in facts:
+        r = _client_root(f.get("section"))
+        f["skeleton_section"] = CLIENT_TO_SKELETON.get(r or "", [])
+
+
 def build_graph(project_dir: str | Path, *, meta: dict | None = None,
                 provided: list | None = None) -> dict:
     pd = Path(project_dir)
@@ -85,6 +113,12 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
             "status": st,
             "lifecycle_state": "active",
             "mapping": None,          # 口径锚定（由 fsm 回填，见下）
+            # ★ 四正交标签（instantiate._inject_labels 注入，这里透传）
+            "source_type": n.get("source_type") or "",
+            "node_role": n.get("node_role") or "",
+            "must_input": bool(n.get("must_input")),
+            "constraint_type": n.get("constraint_type") or "",
+            "standard_id": n.get("standard_id") or "",
         }
         if n.get("rule"):
             f["rule"] = n["rule"]
@@ -153,7 +187,7 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
         _cj = _cc(str(c.get("subject")), c.get("provided"), c.get("recomputed"), _fsm) if _cc else {}
         conflicts.append({
             "id": "CF%d" % i,
-            "type": "口径差异" if (_cj.get("kind") == "caliber_difference") else "数字一致性",
+            "type": "口径/单位" if (_cj.get("kind") == "caliber_difference") else "数字",
             "caliber_verdict": _cj.get("kind"),
             "caliber_reason": _cj.get("reason"),
             "severity": "高" if abs(float(c.get("recomputed") or 0) - float(c.get("provided") or 0)) > 100 else "中",
@@ -202,33 +236,24 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
     entities, _ent_rels = _derive_ent(facts, rules, rels, _m)
 
     # ---------------- relations（函数关系 = inputs → output）----------------
-    relations = list(_ent_rels or [])   # 先并入实体关系（has_part / measured_by / bounded_by）
-    for i, r in enumerate(reasoning, start=1):
-        out = r.get("output")
-        if not out:
-            continue
-        for src in (r.get("inputs") or []):
-            relations.append({
-                "id": "RL%03d" % (len(relations) + 1),
-                "from": src, "to": out, "type": "computed_from",
-                "subject": r.get("rule_id"),
-                "payload": {"rule_id": r.get("rule_id"), "formula": r.get("formula"),
-                            "result": r.get("result")},
-                "source": {"kind": "derivation"},
-            })
-        # 同一规则多输入时补一条聚合边，便于图查询
-        if len(r.get("inputs") or []) > 1:
-            relations.append({
-                "id": "RL%03d" % (len(relations) + 1),
-                "from": "PRJ",
-                "to": out, "type": "produces",
-                "subject": r.get("rule_id"),
-                "payload": {"rule_id": r.get("rule_id"), "input_count": len(r["inputs"])},
-                "source": {"kind": "derivation"},
-            })
+    # schema 硬要求：relations.from/to 必须指向 entities.id
+    # 因此只保留「实体→实体」的边；「事实→事实」的推导关系已在 reasoning.inputs/output 里
+    relations = [x for x in (_ent_rels or [])
+                 if x.get("type") in ("has_part", "part_of")]
+    # 「事实→事实」的推导关系不入 relations（schema 要求 relations.from/to 指向 entities.id）
+    # 该信息已在 reasoning[].inputs / reasoning[].output 里，写作时按那里推演
+
+    # 父子加总校验（在 conflicts 已有基础上追加）
+    try:
+        _psc = _parent_sum_check(facts, reasoning, relations)
+        if _psc:
+            conflicts.extend(_psc)
+    except Exception:
+        pass
 
     # ---------------- claims / validations ----------------
     claims, validations = [], []
+    _attach_skeleton_section(facts)
     computed = [f for f in facts if f.get("status") == "computed"]
     for i, f in enumerate(computed, start=1):   # A4：全量产出 claim，不再只取前 5 个
         cid = "CL%d" % i
@@ -261,7 +286,7 @@ def build_graph(project_dir: str | Path, *, meta: dict | None = None,
         "meta": {
             "title": meta.get("title") or pmeta.get("title") or "",
             "data_cutoff": meta.get("data_cutoff") or pmeta.get("data_cutoff") or "",
-            "compiled_at": meta.get("compiled_at") or "",
+            "compiled_at": meta.get("compiled_at") or __import__("datetime").datetime.now().isoformat(timespec="seconds"),
             "compiled_by": "corpus_pipeline.graph_from_project",
             "based_on": pmeta.get("based_on") or {},
             # 分片能力在编译时就记录下来，写作侧不用再探一次

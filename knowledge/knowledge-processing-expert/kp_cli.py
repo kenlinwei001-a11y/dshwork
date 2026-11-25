@@ -96,6 +96,215 @@ def cmd_enrich(a):
     return 0
 
 
+def cmd_eval(a):
+    """抽取精度评测（标注集 → precision/recall/F1，不达标不放行）。"""
+    from corpus_pipeline.evo_eval import evaluate
+    r = evaluate(a.workspace, a.version or "", gold_inputs=a.gold)
+    print("  抽取精度评测 %s @ %s" % (a.workspace, r["version"]))
+    print("    金标准 %d / 我抽 %d / 重叠 %d" % (r["gold_count"], r["mine_count"], r["overlap"]))
+    print("    TP %d / FP %d / FN %d" % (r["tp"], r["fp"], r["fn"]))
+    print()
+    for k in ("precision", "recall", "f1"):
+        print("    %-10s %5.1f%%  %-4s  (阈值 %.0f%%)"
+              % (k, r[k] * 100, r["verdicts"][k], r["thresholds"][k] * 100))
+    print()
+    if r["fn_detail"]:
+        print("    漏抽: %s" % r["fn_detail"][:8])
+    print("  %s" % ("✓ 全部达标，可放行" if r["ok"] else "✗ 未达标，不放行"))
+    return 0 if r["ok"] else 1
+
+
+def cmd_eval_ext(a):
+    """扩展评估 P0–P2：语义对位 / 跨节一致 / 标准时效 / 术语 / 证据链 / 可读性。"""
+    from corpus_pipeline.evo_eval_ext import evaluate_all
+    sections = [s.strip() for s in a.sections.split(",") if s.strip()]
+    r = evaluate_all(a.project, sections, source_chunks=a.source,
+                     restored_texts=None)
+    s = r["summary"]
+    print("  扩展评估 %s  sections=%s" % (a.project, ",".join(sections)))
+    print("    P0-1 语义对位  avg=%s" % s["P0-1_semantic_alignment"]["avg_scores"])
+    print("                   min=%s  order=%s  unmatched_src=%d"
+          % (s["P0-1_semantic_alignment"]["min_scores"],
+             s["P0-1_semantic_alignment"]["order_ok"],
+             s["P0-1_semantic_alignment"]["unmatched_src_total"]))
+    print("    P0-2 跨节一致  concepts=%d consistent=%d inconsistent=%d"
+          % (s["P0-2_cross_section"]["total_concepts"],
+             s["P0-2_cross_section"]["consistent_count"],
+             s["P0-2_cross_section"]["inconsistent_count"]))
+    print("    P1   标准时效  expired=%d superseded=%d unknown=%d"
+          % (s["P1_standard_currency"]["expired_total"],
+             s["P1_standard_currency"]["superseded_total"],
+             s["P1_standard_currency"]["unknown_total"]))
+    print("    P2-1 术语一致  groups=%d hits=%d inconsistent=%d"
+          % (s["P2-1_term_consistency"]["groups_checked"],
+             s["P2-1_term_consistency"]["groups_with_hits"],
+             s["P2-1_term_consistency"]["inconsistent_count"]))
+    print("    P2-2 证据链    sentences_with_number=%s unbound=%d"
+          % (s["P2-2_evidence_completeness"]["sentences_with_number"],
+             s["P2-2_evidence_completeness"]["unbound_total"]))
+    print("    P2-3 可读性    repeated=%s severe=%d transition=%s"
+          % (s["P2-3_readability"]["repeated_opening_count"],
+             s["P2-3_readability"]["severe_repeat_total"],
+             s["P2-3_readability"]["transition_ratio"]))
+    if s["failed_dimensions"]:
+        print("    未通过维度：%s" % "、".join(s["failed_dimensions"]))
+    else:
+        print("    全部维度通过")
+    print("    等级：%s  %s" % (r["grade"], "✓ 通过" if r["pass"] else "✗ 未通过"))
+    if a.out:
+        out = Path(a.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(r, ensure_ascii=False, indent=2), encoding="utf-8")
+        print("    → %s" % out)
+    return 0 if r["pass"] else 1
+
+
+def cmd_locator(a):
+    """给 term 补细粒度 locator（quote + hash）。"""
+    from corpus_pipeline.evo_locator import attach
+    r = attach(a.workspace, a.version or "", a.chunks, out_version=a.out_version or None)
+    if r.get("error"):
+        print("  ✗ %s" % r["error"]); return 2
+    print("  locator 补齐 %s → %s" % (a.workspace, r["version"]))
+    print("    terms %d / 定位成功 %d / 无法定位 %d"
+          % (r["total"], r["located"], r["unlocatable"]))
+    print("    按类型 %s" % r["by_type"])
+    return 0
+
+
+def cmd_causal_claim(a):
+    """把论证性因果文本落地为 causal_claim 节点。"""
+    from corpus_pipeline.evo_epistemic import build_causal_claims
+    r = build_causal_claims(a.workspace, a.version or "",
+                            out_version=a.out_version or None)
+    print("  causal_claim 落地 → %s" % r.get("version"))
+    print("    新建 %d 个（全部 status=unverified，mechanism/conditions 为空）" % r["created"])
+    for n in r.get("nodes", [])[:6]:
+        print("      %-38s %s" % (str(n["id"])[:38], n.get("causal_verbs")))
+    return 0
+
+
+def cmd_epistemic(a):
+    """实体有效性五关 / fact-claim-rule 三分 / 因果判定。"""
+    from corpus_pipeline.evo_epistemic import audit
+    r = audit(a.workspace, a.version or "")
+    ev = r["entity_validity"]; ep = r["epistemic"]; ca = r["causality"]
+    print("  认知审计 %s @ %s" % (a.workspace, r["version"]))
+    print()
+    print("  ① 实体有效性五关")
+    print("     状态: %s" % ev["stats"])
+    print("     五关全过 %d / %d" % (ev["pass_all_five"], len(ev["assessed"])))
+    print("     重名 %d / 悬空关系 %d" % (ev["problems"]["duplicate_names"],
+                                        ev["problems"]["dangling_relations"]))
+    print()
+    print("  ② fact / claim / rule 三分")
+    for k, v in sorted(ep["by_kind"].items(), key=lambda x: -x[1]):
+        print("     %-14s %d" % (k, v))
+    print()
+    print("  ③ 因果判定")
+    print("     真因果边 %d 条" % ca["causal_edge_count"])
+    print("     claim 含因果词 %d 条（应降级 causal_claim）" % ca["causal_words_in_claim"])
+    print("     排除的非因果关系类型 %d 种" % len(ca["excluded_relation_types"]))
+    if ca["need_downgrade"]:
+        for x in ca["need_downgrade"][:5]:
+            print("       %-32s %s" % (str(x["id"])[:32], x["causal_words"]))
+    return 0
+
+
+def cmd_enrich_evo(a):
+    """第1+2步：回填 connection_condition + 生成 requires 边。"""
+    from corpus_pipeline.evo_enrich import enrich
+    r = enrich(a.workspace, a.version or "", out_version=a.out_version or None)
+    print("  富化 %s → %s" % (a.workspace, r["version"]))
+    print("    connection_condition 回填  %d 条" % r["cc_filled"])
+    print("    requires 边新增            %d 条" % r["requires_added"])
+    print("    非计算类跳过（不硬造）      %d 条" % r["skipped_noncalc"])
+    print("    关系总数 %d → %d" % (r["relations_before"], r["relations_after"]))
+    return 0
+
+
+def cmd_gate_inputs(a):
+    """导出 gate_inputs.json（值从 workspace 抽，可手动覆盖）。"""
+    from corpus_pipeline.evo_gate_engine import build_gate_inputs
+    r = build_gate_inputs(a.workspace, a.version or "", out=a.out)
+    print("  gate_inputs: %d 个指标" % r["count"])
+    print("    来源: %s" % {s: sum(1 for v in r["sources"].values() if v == s)
+                            for s in set(r["sources"].values())})
+    if r.get("out"): print("    → %s" % r["out"])
+    return 0
+
+
+def cmd_gate_run(a):
+    """真跑 gate.expression（零 LLM，AST 白名单求值）。"""
+    from corpus_pipeline.evo_gate_engine import run_gates
+    r = run_gates(a.workspace, a.version or "", gate_inputs=a.inputs or None)
+    print("  门禁实跑 %s @ %s" % (a.workspace, r["version"]))
+    print("    变量 %d / PASS %d / FAIL %d / UNVERIFIABLE %d / ERROR %d / CONFLICT %d（共 %d）"
+          % (r["env_size"], r["passed"], r["failed"], r.get("unverifiable", 0),
+             r["errors"], r.get("conflicts", 0), r["total"]))
+    if a.verbose:
+        for x in r["results"]:
+            print("    [%s] %-42s %s" % (x["status"], x["gate_id"],
+                  (x.get("reason") or x.get("expr") or "")[:70]))
+    return 0 if r["failed"] == 0 and r["errors"] == 0 else 1
+
+
+def cmd_distill(a):
+    """第二步工序：含值本体 → 形包（去值留形，零 LLM）。"""
+    from corpus_pipeline.evo_distill import distill
+    r = distill(a.workspace, a.version or "", out_dir=a.out or None)
+    s = r["stats"]
+    print("  第 2 步·去值留形: %s @ %s" % (a.workspace, r["source"]["version"]))
+    print("    terms_in     %d" % s["terms_in"])
+    print("    masked       %d 处值被替换" % s["masked"])
+    print("    by_type      %s" % ", ".join("%s %d" % (k, v)
+          for k, v in sorted(s["by_type"].items(), key=lambda x: -x[1])))
+    print("    relations    %d 种" % s["relations_out"])
+    print("    evidence     %d 类验证方法" % s["evidence_out"])
+    clean = not r["still_has_value"]
+    print("\n    %s 终检: %s" % ("✓" if clean else "✗",
+          "0 项目值" if clean else "残留 %s" % r["still_has_value"][:5]))
+    if s.get("out"): print("    → %s" % s["out"])
+    return 0 if clean else 1
+
+
+def cmd_evo(a):
+    """graph.json ⇄ EvoOntology workspace 双向桥接。"""
+    import json
+    from pathlib import Path
+    from corpus_pipeline import evo_bridge as B
+    act = a.action
+    if act == "export":
+        gp = Path(a.graph)
+        if not gp.exists():
+            print("  ✗ graph 不存在: %s" % gp, file=sys.stderr); return 2
+        g = json.loads(gp.read_text(encoding="utf-8"))
+        n = B.graph_to_evo(g, a.workspace, a.version or "graph_v1")
+        print("  ✔ graph → workspace %s / %s" % (a.workspace, a.version or "graph_v1"))
+        for k, v in n.items():
+            print("    %-12s %d" % (k, v))
+        return 0
+    if act == "import":
+        g = B.evo_to_graph(a.workspace, a.version or "", project_id=a.project or "",
+                           title=a.title or "")
+        out = Path(a.out or "graph-from-evo.json")
+        out.write_text(json.dumps(g, ensure_ascii=False, indent=1), encoding="utf-8")
+        print("  ✔ workspace → %s" % out)
+        for k, v in g["stats"].items():
+            print("    %-12s %d" % (k, v))
+        return 0
+    if act == "check":
+        r = B.evo_health(a.workspace, a.version or "")
+        print("  version %s" % r["version"])
+        print("  counts: %s" % r["counts"])
+        for k, (n, sample) in r["problems"].items():
+            flag = "✓" if n == 0 else "✗"
+            print("  %s %-20s %d %s" % (flag, k, n, sample if n else ""))
+        print("\n  %s" % ("全部通过" if r["ok"] else "有问题"))
+        return 0 if r["ok"] else 1
+    return 2
+
+
 def cmd_prompt(a):
     """生成章节写作提示词（从 graph 注入值到 templates/section-prompt-template.yaml）。"""
     import json
@@ -139,9 +348,29 @@ def cmd_release_check(a):
     #    无 manifest = 项目工作目录（轻量产物），不是待发布资产 → 不适用，非失败
     mp = root / "manifest.yaml"
     if not mp.exists():
-        print("  ⊘ 不适用：%s 无 manifest.yaml" % root)
-        print("    这是项目工作目录（轻量产物），不是待发布的资产包。")
-        print("    发版检查只对「形包」与「语料包」有意义。")
+        # 无 manifest = 项目工作目录。但**若有 .evoontology，gate 仍然该跑**
+        evo_ws0 = root if (root/"active.json").exists() else (root/".evoontology")
+        if (evo_ws0/"active.json").exists():
+            try:
+                from corpus_pipeline.evo_gate_engine import run_gates
+                gr = run_gates(evo_ws0)
+                print("  ⊘ 无 manifest.yaml（项目工作目录，跳过版本/数值/引用检查）")
+                print("  → 但检测到 .evoontology，执行 gate 实跑：")
+                print("     变量 %d / PASS %d / FAIL %d / SKIP %d / ERROR %d"
+                      % (gr["env_size"], gr["passed"], gr["failed"],
+                         gr["skipped"], gr["errors"]))
+                if gr["failed"] or gr["errors"]:
+                    for x in gr["results"]:
+                        if x["status"] in ("FAIL", "ERROR"):
+                            print("     ✗ [%s] %s  %s" % (x["status"], x["gate_id"],
+                                  (x.get("reason") or x.get("expr") or "")[:60]))
+                    return 1
+                print("  ✓ gate 全部通过（%d 条 SKIP 属空槽/缺值，不拦）" % gr["skipped"])
+                return 0
+            except Exception as e:
+                print("  ⊘ gate 实跑失败：%s" % type(e).__name__)
+                return 0
+        print("  ⊘ 不适用：%s 既无 manifest.yaml 也无 .evoontology" % root)
         return 0
     m = yaml.safe_load(mp.read_text(encoding="utf-8")) or {}
     if m.get("status") not in ("validated", "published"):
@@ -205,6 +434,23 @@ def cmd_release_check(a):
             notes.append("分片索引新鲜（>= nodes.yaml）")
     elif nodes_yaml.exists() and not shard_idx.exists():
         notes.append("分片索引未建（可选；建了写作侧快 800 倍）")
+
+    # ⑧ gate 实跑（有 .evoontology 就跑；FAIL/ERROR 拒绝发布，SKIP 不拦）
+    evo_ws = root if (root/"active.json").exists() else (root/".evoontology")
+    if (evo_ws/"active.json").exists():
+        try:
+            from corpus_pipeline.evo_gate_engine import run_gates
+            gr = run_gates(evo_ws)
+            if gr["failed"] or gr["errors"]:
+                fails.append("gate 实跑: FAIL %d / ERROR %d（%d 条通过 / %d 条跳过）"
+                             % (gr["failed"], gr["errors"], gr["passed"], gr["skipped"]))
+            else:
+                notes.append("gate 实跑: %d PASS / 0 FAIL / %d SKIP（%d 变量）"
+                             % (gr["passed"], gr["skipped"], gr["env_size"]))
+        except Exception as e:
+            notes.append("gate 实跑: 跳过（%s）" % type(e).__name__)
+    else:
+        notes.append("gate 实跑: 不适用（无 .evoontology）")
 
     # ⑦ skill 渐进式披露
     try:
@@ -403,10 +649,79 @@ def main(argv=None):
     s.add_argument("-o", "--out")
     s.set_defaults(fn=cmd_slots)
 
+    ev2 = sub.add_parser("eval", help="抽取精度评测（precision/recall/F1）")
+    ev2.add_argument("--workspace", required=True)
+    ev2.add_argument("--version")
+    ev2.add_argument("--gold", required=True, help="金标准 gate_inputs.json")
+    ev2.set_defaults(fn=cmd_eval)
+
+    ee = sub.add_parser("eval-ext", help="扩展评估 P0–P2（6 维：语义/跨节/标准/术语/证据/可读性）")
+    ee.add_argument("--project", required=True, help="工作区（含还原正文-*.md）")
+    ee.add_argument("--sections", required=True, help="逗号分隔，如 1.1,7.2.2,13.3")
+    ee.add_argument("--source", help="原文 normalized.md / chunks.jsonl；缺省自动找")
+    ee.add_argument("-o", "--out", help="完整 JSON 输出路径")
+    ee.set_defaults(fn=cmd_eval_ext)
+
+    lc = sub.add_parser("locator", help="补细粒度 locator（quote + hash）")
+    lc.add_argument("--workspace", required=True)
+    lc.add_argument("--version")
+    lc.add_argument("--chunks", required=True, help="原 chunks.jsonl 路径")
+    lc.add_argument("--out-version")
+    lc.set_defaults(fn=cmd_locator)
+
+    cc = sub.add_parser("causal-claim", help="论证性因果文本 → causal_claim 节点")
+    cc.add_argument("--workspace", required=True)
+    cc.add_argument("--version")
+    cc.add_argument("--out-version")
+    cc.set_defaults(fn=cmd_causal_claim)
+
+    ep = sub.add_parser("epistemic", help="实体有效性/fact-claim-rule/因果 三合一审计")
+    ep.add_argument("--workspace", required=True)
+    ep.add_argument("--version")
+    ep.set_defaults(fn=cmd_epistemic)
+
     en = sub.add_parser("enrich", help="第八道工序：给节点补新规范标签（确定性，零 LLM）")
     en.add_argument("project_dir")
     en.add_argument("--dry-run", action="store_true", help="只统计不写盘")
     en.set_defaults(fn=cmd_enrich)
+
+    # 注：eval / locator / causal-claim / epistemic 已在上面注册过一次；
+    # 这里原先重复注册同名 parser，导致 argparse 的 choices 出现重复项。
+    # enrich 有两个不同实现：cmd_enrich（第八道工序）与 cmd_enrich_evo（回填边），
+    # 后者改名为 enrich-evo 保留，避免丢失能力。
+    en = sub.add_parser("enrich-evo", help="第1+2步：回填 connection_condition + requires 边")
+    en.add_argument("--workspace", required=True)
+    en.add_argument("--version")
+    en.add_argument("--out-version")
+    en.set_defaults(fn=cmd_enrich_evo)
+
+    gi = sub.add_parser("gate-inputs", help="导出 gate_inputs.json")
+    gi.add_argument("--workspace", required=True)
+    gi.add_argument("--version")
+    gi.add_argument("-o", "--out")
+    gi.set_defaults(fn=cmd_gate_inputs)
+
+    gr = sub.add_parser("gate-run", help="真跑 gate.expression（AST 白名单求值）")
+    gr.add_argument("--workspace", required=True)
+    gr.add_argument("--version")
+    gr.add_argument("-v", "--verbose", action="store_true")
+    gr.add_argument("--inputs", help="外部 gate_inputs.json（覆盖从 workspace 抽的值）")
+    gr.set_defaults(fn=cmd_gate_run)
+
+    ds = sub.add_parser("distill", help="第2步：含值本体 → 形包（去值留形）")
+    ds.add_argument("--workspace", required=True, help="EvoOntology workspace")
+    ds.add_argument("--version", help="版本名")
+    ds.add_argument("-o", "--out", help="输出目录")
+    ds.set_defaults(fn=cmd_distill)
+
+    ev = sub.add_parser("evo", help="graph.json ⇄ EvoOntology 双向桥接")
+    ev.add_argument("action", choices=["export", "import", "check"])
+    ev.add_argument("--graph", help="export 时：graph.json 路径")
+    ev.add_argument("--workspace", required=True, help="EvoOntology workspace（含 active.json）")
+    ev.add_argument("--version", help="版本名")
+    ev.add_argument("-o", "--out", help="import 时：输出 graph.json")
+    ev.add_argument("--project"); ev.add_argument("--title")
+    ev.set_defaults(fn=cmd_evo)
 
     pm = sub.add_parser("prompt", help="生成章节写作提示词（从 graph 注入值）")
     pm.add_argument("graph", help="graph.json 路径")

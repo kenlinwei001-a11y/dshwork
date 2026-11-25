@@ -183,6 +183,127 @@ def read_any(path: str | Path):
 
 
 # ---------------------------------------------------------------- 表格 → 事实
+def _label_ok(label: str) -> bool:
+    """label 合法性：必须是「名」不是「数」也不是算式。
+
+    拒绝：
+      - 纯数字 / 纯数字+单位（235 / 9,540）
+      - 含 = + - × ÷ 的算式片段（9,540 + 320）
+      - 注释标记开头（注：/ 说明：/ 合计：）
+      - 长度 < 2
+    """
+    s = str(label or "").strip()
+    if len(s) < 2:
+        return False
+    if re.fullmatch(r"[\d,\.\s%]+[A-Za-z㎡]{0,4}", s):
+        return False
+    if re.search(r"[=+×÷]|(?<!^)-\s*\d", s):
+        return False
+    if re.match(r"^(注|说明|合计|小计|备注|总计)[：: ]", s):
+        return False
+    # 至少要有一个中文或 2 个字母
+    if not (re.search(r"[\u4e00-\u9fa5]", s) or re.search(r"[A-Za-z]{2,}", s)):
+        return False
+    return True
+
+
+# 列名里的量词/语义 → 可作独立事实列的判据
+_VALUE_COL_HINTS = ("人", "面积", "金额", "数量", "台数", "个数", "万元", "㎡", "比例",
+                    "系数", "指标", "率", "容量", "负荷", "用量", "耗量")
+# 纯描述列（不抽）
+_DESC_COL_HINTS = ("名称", "说明", "备注", "用途", "编号", "序号", "备注")
+
+
+def _multi_column_facts(rows, section_map=None):
+    """表头感知的多列抽取（**全表扫描**，不只看前两行）。
+
+    `| {子系统1} | 名称 | 85 | 320 |` → `{子系统1}·规划科研人员=85` + `{子系统1}·规划研究生...=320`
+
+    ## 为什么
+
+    原实现假设「rows[0] 是表头」，但工作簿/md 里有多张表，分中心表可能在几十行之后。
+    只取前两行 → 复合表后续列全丢 → 下游报「缺输入」并去问用户（而数据其实已给）。
+
+    ## 表头判据
+
+    扫描每一行 i，若：
+      - 该行 >= 3 列
+      - 该行含 >= 1 个值列关键词（人/面积/金额/率/指标…），且非全描述列
+      - 该行本身数字很少（不是数据行）
+      - 下一行首列像标签（有内容、非纯数字）
+    则把它当表头，收集后续连续数据行直到某行首列为空/合计/表头式。
+    """
+    import re as _re
+    out = []
+    if not rows:
+        return out
+
+    def _cells(r):
+        return [_clean(c) for c in (r.get("cells") or [])] if isinstance(r, dict) \
+               else [_clean(c) for c in (r if isinstance(r, list) else [])]
+
+    def _value_cols(header):
+        cols = []
+        for i, h in enumerate(header):
+            if i == 0 or not h:
+                continue
+            if any(d in h for d in _DESC_COL_HINTS):
+                continue
+            if any(v in h for v in _VALUE_COL_HINTS):
+                cols.append(i)
+        return cols
+
+    n = len(rows)
+    i = 0
+    while i < n - 1:
+        header = _cells(rows[i])
+        if len(header) < 3:
+            i += 1
+            continue
+        vc = _value_cols(header)
+        # 表头不能是数据行：数字占比过高就跳过
+        if not vc or sum(1 for c in header if _num(c) is not None) >= len(header) / 2:
+            i += 1
+            continue
+        # 下一行首列必须像标签
+        nxt = _cells(rows[i + 1])
+        if not nxt or not nxt[0] or _num(nxt[0]) is not None:
+            i += 1
+            continue
+        # 收集数据行
+        j = i + 1
+        consumed = 0
+        while j < n:
+            c = _cells(rows[j])
+            if not c or not c[0] or len(c) <= max(vc):
+                break
+            head = c[0]
+            if head.startswith("**合计") or head in ("合计", "小计", "总计"):
+                j += 1
+                continue
+            if not _label_ok(head):
+                break
+            got = False
+            for ci in vc:
+                v = _num(c[ci])
+                if v is None:
+                    continue
+                col = _re.sub(r"[（(].*?[）)]", "", header[ci]).strip()
+                if not col:
+                    continue
+                out.append({"label": "%s·%s" % (head, col), "value": v, "unit": "",
+                            "form": "table_multi",
+                            "where": "| " + " | ".join(c[:4]) + " |",
+                            "section": None})
+                got = True
+            if not got:
+                break
+            consumed += 1
+            j += 1
+        i = j if consumed else i + 1
+    return out
+
+
 def facts_from_rows(rows, section_map=None):
     """从原生表格行提 (label, value, unit)。支持三列式与多列扫描式。
 
@@ -192,6 +313,9 @@ def facts_from_rows(rows, section_map=None):
     for r in rows:
         # 不依赖上游是否清洗：这里再过一次 _clean（幂等）
         cells = [_clean(c) for c in (r.get("cells") or [])]
+        # 注释/算式行不抽取（如「注：9,540 + 320 + 85 + 235 = 10,180」）
+        if cells and not _label_ok(cells[0]):
+            continue
         if len(cells) < 2:
             continue
         label = cells[0]
@@ -279,6 +403,172 @@ def facts_from_text(text, want_section=True):
     return out
 
 
+# ---------------------------------------------------------------- 文本事实
+# 旧实现只抽数字（facts_from_rows 找第一个数字单元格；facts_from_text 只匹配数字），
+# 导致「项目名称/建设单位/建设地点/编制单位」等文本事实在抽取阶段就丢失，
+# 下游误判为「客户未提供」并反向索取。下面三个分支专门补文本事实。
+_TEXT_VALUE_SKIP = {"", "—", "-", "–", "见上文", "待计算", "待判定", "待补充", "待算",
+                    "值", "数值", "单位", "说明", "备注", "无"}
+_TEXT_LABEL_SKIP = {"项", "项目", "序号", "合计", "小计", "总计", "备注", "说明",
+                    "指标", "内容", "名称", "事实位", "类别", "表头", "栏位"}
+_TEXT_HDR_HINTS = ("名称", "依据", "方式", "来源", "地点", "时间", "编号", "类型",
+                   "用途", "标准", "等级", "目标", "条款", "规范")
+_TEXT_HDR_SKIP = ("序号", "说明", "备注", "单位")
+# 元数据章节不是客户事实：事实位分类、章节映射、使用指引等
+_META_SECTION_HINTS = ("章节映射", "导入后", "完整性自评", "事实位分类", "使用指引",
+                       "规范派生", "纯客户输入", "纯推演", "需专业判断", "二维总表")
+# markdown 残片 / 结构词，不是事实
+_TEXT_LABEL_SKIP |= {"本文章节", "一句话", "注意", "用房类型", "读法", "说明"}
+_NUM_WITH_UNIT = re.compile(r"^[\d,，.]+\s*[A-Za-z㎡m³%·/（）()一-龥]{0,16}$")
+
+
+def _meta_section(sec) -> bool:
+    s = str(sec or "")
+    return any(h in s for h in _META_SECTION_HINTS)
+
+
+def _looks_numeric_with_unit(v) -> bool:
+    """「1,320 ㎡」「9,540万元」这类是数值事实的另一种写法，不重复当文本事实。"""
+    s = str(v or "").strip()
+    return bool(_NUM_WITH_UNIT.fullmatch(s)) and bool(re.search(r"\d", s))
+
+
+def _is_unit_like(s: str) -> bool:
+    s = str(s or "").strip()
+    if not s:
+        return False
+    # 已知单位表优先
+    if re.fullmatch(_UNIT_RE, s):
+        return True
+    # 宽松匹配只用于「含单位符号/斜杠/数字」的短串；
+    # 纯中文短串（华东理工大学 / 上海同济工程咨询有限公司）是名称，不是单位。
+    if re.search(r"[A-Za-z0-9%·²³/（）()]", s) and len(s) <= 12 and _UNIT_LOOSE.fullmatch(s):
+        return True
+    return False
+
+
+def _text_clean(v) -> str:
+    return _clean(v).replace("**", "").strip()
+
+
+def _text_ok(v) -> bool:
+    s = _text_clean(v)
+    if not s or s in _TEXT_VALUE_SKIP:
+        return False
+    if _num(s) is not None or _looks_numeric_with_unit(s):
+        return False
+    if _is_unit_like(s):
+        return False
+    if s.startswith("**") or s.startswith("|"):
+        return False
+    if len(s) < 2 or len(s) > 100:
+        return False
+    return True
+
+
+def facts_from_rows_text(rows, section_map=None):
+    """从原生表格行抽文本事实（键值表 + 表头感知的文本属性列）。
+
+    与 facts_from_rows 互补：后者只取数字，本函数只取非数字事实。
+    """
+    out = []
+    rows = list(rows or [])
+
+    def _cells(r):
+        return [_clean(c) for c in (r.get("cells") or [])]
+
+    # ① 表头感知的多列文本属性（如「名称」「依据」列）
+    i = 0
+    while i < len(rows) - 1:
+        header = _cells(rows[i])
+        if len(header) < 2:
+            i += 1
+            continue
+        text_cols = [ci for ci, h in enumerate(header)
+                     if ci > 0 and h and any(x in h for x in _TEXT_HDR_HINTS)
+                     and not any(x in h for x in _TEXT_HDR_SKIP)]
+        if not text_cols or sum(1 for c in header if _num(c) is not None) >= len(header) / 2:
+            i += 1
+            continue
+        j = i + 1
+        consumed = 0
+        while j < len(rows):
+            c = _cells(rows[j])
+            if not c or not c[0] or len(c) <= max(text_cols):
+                break
+            head = c[0]
+            if not _label_ok(head) or "`" in head:
+                break
+            if _meta_section((section_map or {}).get(rows[j].get("row"))):
+                j += 1
+                continue
+            if head in ("合计", "小计", "总计") or head.startswith("**合计"):
+                j += 1
+                continue
+            got = False
+            for ci in text_cols:
+                v = c[ci]
+                if not _text_ok(v):
+                    continue
+                col = re.sub(r"[（(].*?[）)]", "", header[ci]).strip()
+                if not col:
+                    continue
+                out.append({"label": "%s·%s" % (head, col), "value": _text_clean(v), "unit": "",
+                            "form": "table_text_multi",
+                            "where": rows[j].get("raw", "")[:120],
+                            "section": (section_map or {}).get(rows[j].get("row"))})
+                got = True
+            if not got:
+                break
+            consumed += 1
+            j += 1
+        i = j if consumed else i + 1
+
+    # ② 键值行：label | 文本值 [| 单位]
+    for r in rows:
+        cells = _cells(r)
+        if len(cells) < 2:
+            continue
+        lab = cells[0]
+        if not _label_ok(lab) or lab in _TEXT_LABEL_SKIP or "`" in lab:
+            continue
+        if _meta_section((section_map or {}).get(r.get("row"))):
+            continue
+        if len(cells) == 2:
+            cand = cells[1]
+        elif len(cells) == 3 and _is_unit_like(cells[2]):
+            cand = cells[1]
+        else:
+            continue
+        if not _text_ok(cand):
+            continue
+        out.append({"label": lab, "value": _text_clean(cand), "unit": "",
+                    "form": "table_text_kv",
+                    "where": r.get("raw", "")[:120],
+                    "section": (section_map or {}).get(r.get("row"))})
+    return out
+
+
+def facts_from_text_values(text):
+    """从叙述行抽「标签：文本值」（只取非数字值，避免与数字事实重复）。"""
+    out = []
+    for line in (text or "").splitlines():
+        s = line.strip()
+        if not s or s.startswith(("|", "#", ">", "```", "- `", "* ")):
+            continue
+        m = re.match(r"^\*{0,2}([一-龥A-Za-z0-9（）()·/\-]{2,24})\*{0,2}\s*[：:]\s*(\S.{0,80})$", s)
+        if not m:
+            continue
+        lab, val = _clean(m.group(1)), _clean(m.group(2))
+        if not _label_ok(lab) or lab in _TEXT_LABEL_SKIP or "`" in lab:
+            continue
+        if not _text_ok(val) or val == lab:
+            continue
+        out.append({"label": lab, "value": _text_clean(val), "unit": "",
+                    "form": "inline_text", "where": s[:120], "section": None})
+    return out
+
+
 # ---------------------------------------------------------------- 主入口
 def to_provided_facts(path: str | Path, *, as_of: str = "",
                       default_caliber: str = "客户提供") -> dict:
@@ -287,9 +577,20 @@ def to_provided_facts(path: str | Path, *, as_of: str = "",
     _ls = _line_sections(text) if kind in ("md", "text", "txt", "markdown") else {}
     _sec_map = {r.get("row"): _ls.get(r.get("row")) for r in rows} if _ls else {}
     tf = facts_from_rows(rows, section_map=_sec_map)
+    # 表头感知的多列抽取（复合表后续列不再丢）
+    try:
+        tf = tf + _multi_column_facts(rows, section_map=_sec_map)
+    except Exception:
+        pass
     inf = facts_from_text(text)
+    # 文本事实：补「项目名称/建设单位/建设地点/编制单位」等非数字事实。
+    text_tf = facts_from_rows_text(rows, section_map=_sec_map)
+    text_inf = facts_from_text_values(text)
     allf = tf + inf
 
+    # ★ 最外层兜底：label 不合法的一律丢弃（纯数字/算式/注释）
+    dropped = [f for f in allf if not _label_ok(f.get("label"))]
+    allf = [f for f in allf if _label_ok(f.get("label"))]
     by_label: dict[str, list] = {}
     for f in allf:
         by_label.setdefault(ALIAS.get(f["label"], f["label"]), []).append(f)
@@ -313,13 +614,33 @@ def to_provided_facts(path: str | Path, *, as_of: str = "",
             rec["unit_conversion"] = note
         provided.append(rec)
 
+    # 文本事实：同名以数值事实为准；label 仍走 ALIAS 归一。
+    text_provided = []
+    seen_text = set()
+    for f in text_tf + text_inf:
+        if not _label_ok(f.get("label")):
+            continue
+        lab = ALIAS.get(f["label"], f["label"])
+        if lab in by_label or lab in seen_text:
+            continue
+        seen_text.add(lab)
+        text_provided.append({
+            "label": lab, "value": str(f["value"]), "unit": "",
+            "caliber": default_caliber, "as_of": as_of,
+            "kind": "provided_text", "form": f.get("form"),
+            "section": f.get("section"), "where": f.get("where", "")[:120],
+        })
+    provided = provided + text_provided
+
     return {
         "provided_facts": provided,
         "conflicts": conflicts,
         "warnings": warnings,
         "stats": {"source_kind": kind, "chars": len(text or ""),
                   "native_rows": len(rows), "table_facts": len(tf), "inline_facts": len(inf),
+                  "text_facts": len(text_provided),
                   "unique_labels": len(by_label), "provided": len(provided),
+                  "dropped_bad_labels": len(dropped),
                   "conflicts": len(conflicts), "warnings": len(warnings),
                   "meta": meta},
     }

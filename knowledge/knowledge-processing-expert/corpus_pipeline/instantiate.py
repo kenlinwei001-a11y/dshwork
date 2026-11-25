@@ -118,6 +118,102 @@ def _num(v):
         return None
 
 
+def _load_label_maps(corpus_dir):
+    """加载三张标签表：source_type / role。**多路径查找**。
+
+    标签在「形包」的 ontology/ 下，不一定在语料包目录里。
+    实测：语料包 SHUFE-BDC-2019-001/ontology 不存在，标签在形包。
+    """
+    import yaml as _y
+    from pathlib import Path as _P
+    cands = []
+    c = _P(corpus_dir)
+    cands += [c / "ontology", c / "形-可复用知识资产-v1.0" / "ontology"]
+    # 同级/上级找形包
+    for base in (c.parent, c.parent.parent, _P.cwd()):
+        if base and base.is_dir():
+            cands.append(base / "形-可复用知识资产-v1.0" / "ontology")
+            cands.append(base / "ontology")
+    onto = None
+    for x in cands:
+        if x.is_dir() and (x / "fact_source_map.yaml").exists():
+            onto = x
+            break
+    fsm, ivd = {}, {}
+    if onto is None:
+        return fsm, ivd
+    try:
+        d = _y.safe_load((onto / "fact_source_map.yaml").read_text(encoding="utf-8")) or {}
+        for x in (d.get("facts") or []):
+            if x.get("fact"):
+                fsm[str(x["fact"])] = x
+    except Exception:
+        pass
+    try:
+        d = _y.safe_load((onto / "input_vs_derived.yaml").read_text(encoding="utf-8")) or {}
+        for x in (d.get("facts") or []):
+            if x.get("fact"):
+                ivd[str(x["fact"])] = x
+    except Exception:
+        pass
+    return fsm, ivd
+
+
+def _inject_labels(nodes, fsm, ivd):
+    """给每个节点注入四正交标签：source_type / node_role / must_input / constraint_type。
+
+    ## 为什么必须在建图时注入
+
+    用户明确要求「每个节点都要有标签，是硬约束还是软约束，判断哪些是用户必须输入的、
+    哪些是去 web 检索的、哪些是推演的结果」。这些标签在形包里齐备（fact_source_map 134、
+    input_vs_derived 134），但原实现建图时全部丢弃，导致下游无法判断「该问谁要」。
+
+    ## 四正交定义
+
+    source_type    CUSTOMER / CUSTOMER_PRIMARY / STANDARD / COMPUTED / JUDGMENT / PUBLIC
+    node_role      INPUT / INTERMEDIATE / DERIVED_LEAF
+    must_input     True 当 source_type ∈ {CUSTOMER, CUSTOMER_PRIMARY, JUDGMENT} 且 role=INPUT
+    constraint_type  HARD_INPUT / SOFT_INPUT / DERIVED / JUDGMENT / RETRIEVABLE
+    """
+    HARD = {"CUSTOMER", "CUSTOMER_PRIMARY", "JUDGMENT"}
+    for n in nodes:
+        lab = str(n.get("label") or n.get("subject") or "")
+        st = (fsm.get(lab) or {}).get("source_type")
+        role = (ivd.get(lab) or {}).get("role")
+        # 未登记在 fact_source_map 的（如新抽出的复合表事实）按 status 兜底推断
+        if not st:
+            kind = str(n.get("kind") or n.get("status") or "")
+            if kind == "provided":
+                st = "CUSTOMER"
+            elif kind == "computed":
+                st = "COMPUTED"
+            else:
+                st = "UNREGISTERED"
+        n["source_type"] = st
+        n["node_role"] = role or ""
+        n["must_input"] = bool(st in HARD and (role in (None, "INPUT")))
+        # constraint_type：五态互斥
+        if st == "STANDARD":
+            n["constraint_type"] = "RETRIEVABLE"
+        elif st in ("CUSTOMER", "CUSTOMER_PRIMARY"):
+            n["constraint_type"] = "HARD_INPUT" if n["must_input"] else "SOFT_INPUT"
+        elif st == "JUDGMENT":
+            n["constraint_type"] = "JUDGMENT"
+        elif st == "COMPUTED" or role in ("INTERMEDIATE", "DERIVED_LEAF"):
+            n["constraint_type"] = "DERIVED"
+        else:
+            n["constraint_type"] = ""
+        # 标准号（从 fact_source_map 的 standard_basis 抽）
+        basis = (fsm.get(lab) or {}).get("standard_basis")
+        if basis:
+            import re as _re
+            m = _re.search(r"(GB/?T?\s?\d+[\d\-]*|JGJ\s?\d+[\d\-]*|DGJ\s?[\d\-]+|建标\s?\d+)", str(basis))
+            n["standard_id"] = m.group(1).replace(" ", "") if m else ""
+        else:
+            n["standard_id"] = ""
+    return nodes
+
+
 def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[dict], meta: dict | None = None,
                         old_schema: dict | None = None, new_schema: dict | None = None) -> dict:
     cdir = Path(corpus_dir)
@@ -406,6 +502,15 @@ def instantiate_project(corpus_dir: str, project_dir: str, provided_facts: list[
             bindings[n["id"]] = {"label": lbl, "new_node_id": None, "status": "undefined",
                                  "note": "新项目未提供该事实，写作时按缺值守卫处理"}
     _jw(pdir / "bindings.yaml", {"bindings": bindings})
+
+    # ★ 四正交标签注入（source_type / node_role / must_input / constraint_type / standard_id）
+    try:
+        _fsm, _ivd = _load_label_maps(cdir)
+        _inject_labels(nodes, _fsm, _ivd)
+    except Exception as _e:
+        _label_err = str(_e)
+    else:
+        _label_err = ""
 
     _jw(pdir / "graph" / "nodes.yaml", nodes)
     _jw(pdir / "graph" / "rules.yaml", rebound_rules)
