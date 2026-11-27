@@ -108,7 +108,21 @@ export async function registerExpertPreset(ctx: Context, presetId: string, expec
   if (!pending.has(presetId)) {
     const definition = JSON.parse(text) as PresetDefinition;
     if (definition.id !== presetId) throw Object.assign(new Error('专家预设内容已变化，请重新发布。'), { code: 'experts/preset-drift' });
-    const promise = ctx.agentPresets.register(definition).then(dispose => { ctx.effect(() => dispose); });
+    const promise = (async () => {
+      // The preset registry is shared by every Context. A previous failed publish
+      // (or another owner) may already have registered this content-addressed
+      // preset; reuse it instead of failing with "Duplicate agent preset".
+      const existing = await ctx.agentPresets.list().catch(() => [] as { id: string }[]);
+      if (existing.some(row => row.id === presetId)) return;
+      try {
+        const dispose = await ctx.agentPresets.register(definition);
+        ctx.effect(() => dispose);
+      } catch (error) {
+        // Two contexts may race between list() and register(); the loser reuses
+        // the winner's registration when the content id is identical.
+        if (!(error instanceof Error) || error.message !== `Duplicate agent preset: ${presetId}`) throw error;
+      }
+    })();
     pending.set(presetId, promise);
     promise.catch(() => { pending!.delete(presetId); });
   }
