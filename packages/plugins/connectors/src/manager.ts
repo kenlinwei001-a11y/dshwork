@@ -68,8 +68,12 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
   }
 
   async list(signal?: AbortSignal): Promise<readonly ConnectorSummary[]> {
-    signal?.throwIfAborted(); const rows: ConnectorSummary[] = [];
-    for (const [, definition] of this.table().entries()) rows.push(await this.summary(definition, signal));
+    signal?.throwIfAborted();
+    // Enumerating tool schemas walks every tool's JSON schema; do it once per
+    // list instead of once per connector row.
+    const allToolNames = this.ctx.tools.schemas().map(tool => tool.name);
+    const rows: ConnectorSummary[] = [];
+    for (const [, definition] of this.table().entries()) rows.push(await this.summary(definition, signal, allToolNames));
     return rows.sort((a, b) => a.title.localeCompare(b.title, 'zh-CN'));
   }
 
@@ -181,18 +185,19 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
     if (child) await child.dispose(); runtime.state = remainsEnabled ? 'offline' : 'disabled';
   }
 
-  private async summary(definition: ConnectorDefinition, signal?: AbortSignal): Promise<ConnectorSummary> {
-    const health = await this.health(definition, signal);
+  private async summary(definition: ConnectorDefinition, signal?: AbortSignal, allToolNames?: readonly string[]): Promise<ConnectorSummary> {
+    const health = await this.health(definition, signal, allToolNames);
     return { id: definition.id, title: definition.title, description: definition.description, serverName: definition.serverName,
       transport: definition.transport, scope: 'shared', enabled: definition.enabled, state: health.state, toolNames: health.toolNames,
       resourceCount: health.resourceCount, resourceTemplateCount: health.resourceTemplateCount, lastCheckedAt: new Date().toISOString(),
       ...(health.diagnostic ? { diagnostic: health.diagnostic } : {}) };
   }
 
-  private async health(definition: ConnectorDefinition, signal?: AbortSignal): Promise<{ state: ConnectorState; toolNames: string[]; resourceCount: number; resourceTemplateCount: number; diagnostic?: string }> {
+  private async health(definition: ConnectorDefinition, signal?: AbortSignal, allToolNames?: readonly string[]): Promise<{ state: ConnectorState; toolNames: string[]; resourceCount: number; resourceTemplateCount: number; diagnostic?: string }> {
     const runtime = this.runtime(definition.id);
     if (!definition.enabled) return { state: 'disabled', toolNames: [], resourceCount: 0, resourceTemplateCount: 0 };
-    const prefix = `mcp__${definition.serverName}__`; const toolNames = this.ctx.tools.schemas().map(tool => tool.name).filter(name => name.startsWith(prefix));
+    const prefix = `mcp__${definition.serverName}__`;
+    const toolNames = (allToolNames ?? this.ctx.tools.schemas().map(tool => tool.name)).filter(name => name.startsWith(prefix));
     if (!runtime.child) return { state: runtime.state, toolNames, resourceCount: 0, resourceTemplateCount: 0, ...(runtime.diagnostic ? { diagnostic: runtime.diagnostic } : {}) };
     if (!toolNames.length) return { state: 'discovering', toolNames, resourceCount: 0, resourceTemplateCount: 0 };
     try {
@@ -246,16 +251,22 @@ export class ConnectorManager extends Service implements ConnectorManagementServ
   private runtime(id: string): Runtime { let row = this.runtimes.get(id); if (!row) { row = { state: 'disabled' }; this.runtimes.set(id, row); } return row; }
   private table(): KvTable<string, ConnectorDefinition> { if (!this.definitions) throw new Error('connector/unavailable'); return this.definitions; }
   private selectionTable(): KvTable<string, ConnectorSelection> { if (!this.selections) throw new Error('connector/unavailable'); return this.selections; }
-  private applyRestriction(agent: Agent): void {
+  private applyRestriction(agent: Agent, allToolNames?: readonly string[]): void {
     this.restrictions.get(agent)?.();
     this.restrictions.delete(agent);
     const selected = new Set(this.selectionTable().get(String(agent.id))?.connectorIds ?? []);
+    const names = allToolNames ?? this.ctx.tools.schemas().map(tool => tool.name);
     const denied = [...this.table().entries()]
       .filter(([id]) => !selected.has(id))
-      .flatMap(([, definition]) => this.ctx.tools.schemas().map(tool => tool.name).filter(name => name.startsWith(`mcp__${definition.serverName}__`)));
+      .flatMap(([, definition]) => names.filter(name => name.startsWith(`mcp__${definition.serverName}__`)));
     if (denied.length) this.restrictions.set(agent, agent.ctx.tools.restrict({ deny: denied }));
   }
-  private reapplyRestrictions(): void { for (const agent of this.ctx.agents.list()) this.applyRestriction(agent); }
+  private reapplyRestrictions(): void {
+    const agents = this.ctx.agents.list();
+    if (!agents.length) return;
+    const allToolNames = this.ctx.tools.schemas().map(tool => tool.name);
+    for (const agent of agents) this.applyRestriction(agent, allToolNames);
+  }
   private async removeFromSelections(connectorId: string): Promise<void> {
     for (const [sessionId, selection] of this.selectionTable().entries()) {
       if (!selection.connectorIds.includes(connectorId)) continue;

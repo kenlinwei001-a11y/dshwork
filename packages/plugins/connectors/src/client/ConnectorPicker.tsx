@@ -35,13 +35,18 @@ export function ConnectorPicker({ management, openManagement, sessionId }: Props
   useEffect(() => {
     // Missing persisted selection already means none; opening an existing blank
     // Session must not erase the user's explicit choice.
+    // Initial load only. Every visible conversation mounts this picker, so
+    // polling while the popover is closed multiplied schema work per tab.
+    void refresh();
+  }, [management, refresh, sessionId]);
+  useEffect(() => {
+    if (!open) return;
     void refresh();
     const timer = window.setInterval(() => { if (!document.hidden) void refresh(); }, 5_000);
     const visible = () => { if (!document.hidden) void refresh(); };
     document.addEventListener('visibilitychange', visible);
     return () => { window.clearInterval(timer); document.removeEventListener('visibilitychange', visible); };
-  }, [management, refresh, sessionId]);
-  useEffect(() => { if (open) void refresh(); }, [open, refresh]);
+  }, [open, refresh]);
   useEffect(() => {
     if (!open) return;
     const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
