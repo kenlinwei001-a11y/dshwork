@@ -1,0 +1,401 @@
+{
+  "nodes": [
+    {
+      "id": "w_write",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【Agent】逐章扩写 + 脚本校验入库",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n按任务书写正文。**读取、校验、入库全部跑命令；只有写句子是语义工作。**\n\n## A 逐节落笔（语义）\n对目标批次每节：\n1. 读 `任务书/<节号>.md`——其中 §2 已填充节点**来自数据库**（结构化字段），§5 字数栏为 `〔待人工填写〕`\n2. 读 `人工卡片/第N章.md` 该节行，取人工填的目标字数与重点\n3. 写句子：\n   - `值型` → 值 + 单位 + 〔pid〕\n   - `推演` → 算式 + 结果 + 〔pid〕；**若该行标 blocked，必须写「待推演确认」，不得当已确认值**\n   - `检索` → 点名 `cited` 里的文件全称\n   - `不适用` → 「本项目不涉及X，理由是Y（rule_id）」\n   - `缺口` → 「gap_item 未提供（责任方 gap_owner，gap_stage）」\n   - `说明` → 按 `scope` 界定范围\n4. 因果句必须与 `因果链.yaml` 的声明一致，不得自编\n\n## B 写完立即跑校验（命令）\n```bash\ncd \"$WORKSPACE\"\n\n# B1 十二维 + 内容闸门（逐节）\nfor s in <本批节号>; do\n  a=$(python3 -c \"import yaml;d=yaml.safe_load(open('outline-2023/section-line-index.yaml'))['index'].get('${s#GAP-}') or {};print(d.get('start',1),d.get('end',2))\")\n  set -- $a\n  python3 corpus_pipeline/evo_section_score.py --section \"$s\" --body \"teams/write/$s.md\" \\\n    --old-start \"$1\" --old-end \"$2\" --slots \"prompt-templates-v4/_slots-$s.json\" || exit 1\n  python3 corpus_pipeline/evo_content_gate.py --section \"$s\" --body \"teams/write/$s.md\" || exit 1\ndone\n\n# B2 入库 + 重建图谱 + 补关系（让下一节继承）\nfor s in <本批节号>; do python3 corpus_pipeline/evo_context_db.py --update \"$s\"; done\npython3 corpus_pipeline/evo_diff.py --build\npython3 corpus_pipeline/evo_relations.py --build\n```\n\n## 完成标准（脚本输出即判据）\n- 每节 `evo_section_score.py` 的 `ready=true`（D2 文体按阶段设置忽略）\n- 每节 `evo_content_gate.py` 输出 PASS\n- 每节已 `--update` 入库\n- 正文数值与库中同 P-id 值一致\n\n## 判定行（抄脚本结果）\n```\nWRITE-OK sections=<数> ready=<数> gate=<数> blocked_written=<引用了blocked的节数>\n```\n失败：`WRITE-FAIL section=<节号> failed=<维度> reason=<原因>`\n\n## 硬规则\n- 缺信息先 `web_search`；查不到才标缺并写明渠道+检索词\n- 冲突两侧并列 + 「本节不裁决」；判断不越界\n- **不改 handoff / 填充表 / 验收标准**；提示词不合理就停下回报\n- **不得自编因果链**：因果句必须与 `因果链.yaml` 一致\n- `blocked` 的推演值必须标注「待推演确认」"
+      }
+    },
+    {
+      "id": "res-写作就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/写作就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "w_edit",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【脚本】统稿一致性（幂等可验）",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n全篇一致性处理。**所有动作跑脚本；只有\"要不要改这一处\"是判断。**\n\n## 命令（按顺序）\n```bash\ncd \"$WORKSPACE\"\n\n# 1 术语替换（幂等：连跑两次正文哈希不变）\npython3 corpus_pipeline/evo_editor_fix.py --chapter <章号> --apply\npython3 corpus_pipeline/evo_editor_fix.py --chapter <章号> --apply\n\n# 2 幂等自检：正文哈希两次一致才算过\npython3 - <<'EOF'\nimport glob, hashlib\nfrom pathlib import Path\ndef h():\n    x=hashlib.sha256()\n    for f in sorted(glob.glob('teams/write/*.md')): x.update(Path(f).read_bytes())\n    return x.hexdigest()\nprint(\"HASH\", h())\nEOF\n\n# 3 章级一致性\npython3 corpus_pipeline/evo_consistency.py --chapter <章号>\n```\n\n## 完成标准（可判）\n- `evo_editor_fix.py` 连跑两次后**正文哈希不变**（幂等）\n- 术语表里每个正名在正文中只以正名出现（别名 = 0）\n- 同 P-id 数值写法一致；跨节矛盾 = 0\n- `evo_consistency.py` 的适用项全 PASS\n\n## 判定行\n```\nEDIT-OK chapter=<章> idem=<yes|no> c_pass=<通过>/<适用>\n```\n失败：`EDIT-FAIL reason=<原因>`\n\n## 硬规则\n- **不得改写内容**（补数据/加论断/改结论）——那是写作步骤的事\n- **不得为过检查而抹平真实冲突**：冲突两侧并列 + 不裁决\n- 自动替换必须正名占位 + 别名最长优先，否则产出「公共服务公共服务配套用房」类叠加污染\n- 改完必须逐节回检，不得只抽查"
+      }
+    },
+    {
+      "id": "res-统稿改动清单",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/统稿改动清单.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-任务书",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "任务书",
+            "note": "每节一份 <节号>.md，抽取专家产出。含 §0 动态上下文（前序结论/已定数值/冲突两侧）、§2 已填充节点、§5 形与字数。**不得改内容**；若发现提示词不合理，停下来回报，不得自行改写填充表"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-正文",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "teams/write",
+            "note": "每节一份 <节号>.md，必须以 `<!-- BODY:START -->` 与 `<!-- BODY:END -->` 包住正文，否则评分脚本读不到。正文只用中文全角标点；数值不带千分位；每个数值后紧接〔P-id〕。不写评分结果与自检内容"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-全局规约",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "全局写作规约.md",
+            "note": "十二禁令、缺信息两路径、十二维自检、反例表、语体基线。**只读一次，不要每节重读**"
+          },
+          {
+            "kind": "file",
+            "value": "阶段设置.yaml",
+            "note": "当前阶段：ignore_dimensions=[D2_文体]；判据分级也在这里"
+          },
+          {
+            "kind": "file",
+            "value": "判据来源登记-D1D10.yaml",
+            "note": "D1–D10 判据来源：PDF/CASE/ENGINE 可阻断，SELF 只参考"
+          },
+          {
+            "kind": "file",
+            "value": "原则与案例-结论与建议.yaml",
+            "note": "原则（304 原文）与案例（写法举例）分层"
+          },
+          {
+            "kind": "file",
+            "value": "LOOP-当前阶段.md",
+            "note": "当前阶段唯一操作依据"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-术语",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "术语口径表.yaml",
+            "note": "正名/别名表。替换器必须正名占位 + 别名最长优先 + 幂等自检，否则产出叠加污染"
+          },
+          {
+            "kind": "file",
+            "value": "禁用词.yaml",
+            "note": "禁用词单一来源。已排除「本节不裁决」与法定术语「风险可控性」"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-推演规约",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "语义推演规约-Semantica.md",
+            "note": "写「因为…所以…」前必须 get_causal_chain 取链；取值必须 query_graph；不得自编因果链。Semantica 不可用时停下来报告。"
+          },
+          {
+            "kind": "skill",
+            "value": "graph-deductive-writing-skill",
+            "note": "需要沿推理链前向推演、把论断绑定证据与溯源链时加载"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-数据桥",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "上下文库：每节写完 `--update <节号>` 让下一节继承；写作前可 `--brief <节号>` 看前序已定结论与数值"
+          },
+          {
+            "kind": "file",
+            "value": "关联图谱.db",
+            "note": "关联图谱：写作取因果链与派生事实；每节写完重建一次"
+          }
+        ]
+      }
+    },
+    {
+      "id": "in_wordcount",
+      "type": "wfInput",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "question": "本批各节的目标字数怎么定？",
+        "kind": "choice",
+        "options": [
+          "按上财同节原文汉字数为基准（±20%）",
+          "各节统一指定字数（我在卡片里逐节填）",
+          "先不设上限，写完看内容再定",
+          "由我从卡片逐节判断（不要你推荐）"
+        ],
+        "hint": "这一步会生成卡片文件，逐节列出「目标字数」等待填字段。你可以先在这里定本批的字数口径，卡片里的具体数值由你逐节填。",
+        "other": true
+      }
+    },
+    {
+      "id": "w_card",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【脚本】生成卡片·推送人工定字数",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 目标\n生成写作人工卡片并交人工判断。**字数等要求不在抽取阶段预设，在此处推送给人定。**\n\n## 做什么\n```bash\ncd \"$WORKSPACE\"\npython3 corpus_pipeline/evo_card.py --chapter <章号>      # 生成该章空卡片\npython3 corpus_pipeline/evo_card.py --status               # 看哪些已填\n```\n1. 卡片位于 `人工卡片/第<章>.md`，七列：节号 | 标题 | **目标字数** | 本节重点 | 必强调 | 必回避 | 补充资料 | 结论口径\n2. **把卡片路径与表格内容摘要回报给用户**，请其逐节填写\n3. 用户回复填写结果后，用上一步输入节点的字数口径去校验卡片是否合理：\n   - 卡片「目标字数」为空 → 该节按输入节点口径取值，并在回报中说明\n   - 卡片字数与上财同节原文差距 >2 倍 → 提示用户确认，不擅自改\n4. 人工要求注入提示词：\n```bash\npython3 corpus_pipeline/evo_card.py --inject <节号>      # 单节预览注入内容\n```\n注入由写作步骤读取（任务书 §7 会带上人工要求）\n\n## 完成标准\n- `人工卡片/第<章>.md` 已生成\n- 目标批次的「目标字数」字段**全部有值**（人工填或按输入口径推导，且已声明来源）\n- `--status` 显示已填节数 = 目标批次数\n\n## 判定行\n`CARD-OK chapter=<章> filled=<已填节数>/<目标数> by=<人工|口径>` 或 `CARD-FAIL reason=<原因>`\n\n## 硬规则\n- **不得替人决定字数**：卡片空着就停下问，不许自己填一个数\n- 卡片是给人看的，格式要能直接抄；不要把机器字段塞进去\n- 人工填了但明显异常（如 50 字/5000 字）→ 提示，不擅自改"
+      }
+    },
+    {
+      "id": "res-人工卡片",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "人工卡片",
+            "note": "每章一份 第<章>.md。七列：节号 | 标题 | 目标字数 | 本节重点 | 必强调 | 必回避 | 补充资料 | 结论口径。**空着 = 不设要求**。字数由人工填，脚本不预设。填完由 evo_card.py --inject 注入任务书 §7"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "w_write->res-写作就绪",
+      "source": "w_write",
+      "target": "res-写作就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_edit->res-统稿改动清单",
+      "source": "w_edit",
+      "target": "res-统稿改动清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_write->w_edit",
+      "source": "w_write",
+      "target": "w_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-任务书->w_write",
+      "source": "res-任务书",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-全局规约->w_write",
+      "source": "res-全局规约",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-推演规约->w_write",
+      "source": "res-推演规约",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-数据桥->w_write",
+      "source": "res-数据桥",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_write->res-正文",
+      "source": "w_write",
+      "target": "res-正文",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_write->res-数据桥",
+      "source": "w_write",
+      "target": "res-数据桥",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-写作就绪->w_edit",
+      "source": "res-写作就绪",
+      "target": "w_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-正文->w_edit",
+      "source": "res-正文",
+      "target": "w_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_edit->res-正文",
+      "source": "w_edit",
+      "target": "res-正文",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-术语->w_edit",
+      "source": "res-术语",
+      "target": "w_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_card->w_write",
+      "source": "w_card",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "按输入节点给定的字数口径与卡片中人工填写的具体数值执行。卡片为空且口径也未覆盖时，先补问再写，不得自行假定字数。"
+        }
+      }
+    },
+    {
+      "id": "in_wordcount->w_card",
+      "source": "in_wordcount",
+      "target": "w_card",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "w_card->res-人工卡片",
+      "source": "w_card",
+      "target": "res-人工卡片",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-人工卡片->w_write",
+      "source": "res-人工卡片",
+      "target": "w_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-数据桥->w_edit",
+      "source": "res-数据桥",
+      "target": "w_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".",
+    "mode": "subagent",
+    "runState": true
+  }
+}

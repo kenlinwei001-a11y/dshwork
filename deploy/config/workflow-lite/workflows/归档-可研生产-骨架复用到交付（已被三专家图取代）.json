@@ -1,0 +1,979 @@
+{
+  "nodes": [
+    {
+      "id": "s1_skel",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 110
+      },
+      "data": {
+        "label": "【脚本】复用骨架 + 建上下文库",
+        "description": "从形包复用法定条目/规则/案例节树，建空上下文库",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n把「形」从历史资产复用到本项目，并建一个空的上下文库作为后续所有步骤的桥。\n\n## 做什么（全部跑脚本，不要手工拼）\n```bash\ncd \"$WORKSPACE\"\n# 1 复用骨架：法定条目 / 适用性规则 / 阈值缺位 / 案例节树 / 句式骨架 / 三类关系\npython3 corpus_pipeline/evo_checks.py                 # 判据自测，必须 ALL PASS\npython3 corpus_pipeline/evo_ns.py --audit             # 节号命名空间检查，混用须为 0\npython3 corpus_pipeline/evo_content_map.py --verify   # 内容映射：法定节↔案例节，须每条有 evidence\n# 2 建上下文库（本次执行的数据桥）\npython3 corpus_pipeline/evo_context_db.py --build\npython3 corpus_pipeline/evo_context_db.py --stats\n```\n\n## 完成标准（可核对）\n- `evo_checks.py` 输出 `SELF-TEST ALL PASS`\n- `evo_ns.py --audit` 报告的混用处 = 0\n- 内容映射里 `status=gap` 的法定节已标出，且每条 covered 都有 evidence\n- `报告上下文.db` 生成，`sections` 表行数 = 本项目节数\n\n## 判定行（最后一行）\n`SKEL-OK sections=<数> gap=<数> ns_mixed=<数>` 或 `SKEL-FAIL reason=<原因>`\n\n## 硬规则\n- 判据自测不通过时**立即停**，不得继续——判据不可信时后面所有判定都无效\n- 骨架只借「形」（结构/规则/句式），**绝不继承案例项目的数值**"
+      }
+    },
+    {
+      "id": "res-骨架就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 228
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/骨架就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s2_parse",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 255
+      },
+      "data": {
+        "label": "【Agent·ReAct】解析新项目文档入图",
+        "description": "解析新项目文档为事实节点并入上下文库",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n把新项目的客户资料抽成事实节点写入图中，并全部入上下文库。这是「新项目信息进入图」的唯一入口。\n\n## 做什么（ReAct：先检索，再标缺）\n\n### A 抽取事实（读客户资料）\n- **数值型**：面积/投资/人数/工期/造价指标，每条能追到原文位置\n- **属性型**：项目名称、单位、地点、性质（政府投资/非经营性）、资金来源\n- **约束型**：只用客户文档明确写的，**不得推演生成**\n- **关系型**：包含/派生/冲突（同一量两种口径即冲突）\n\n### B 写入 Semantica 图（必做，不是可选）\n```\n每个事实 → mcp__semantica__add_entity（带 value / unit / source）\n每对关系 → mcp__semantica__add_relationship（包含 / 派生 / 冲突）\n冲突 → 两侧各一条边指向同一冲突节点，不选一个\n```\n批量的用 `extract_entities` / `extract_relations` 先抽，**人工核一遍再入图**。\n\n### C 缺什么先检索\n政策文件全称、标准号、行业指标 → `web_search`，必要时 `web_fetch` 核实；查到点名，查不到才标缺。\n\n### D 入上下文库\n```bash\npython3 corpus_pipeline/evo_context_db.py --build\npython3 corpus_pipeline/evo_context_db.py --stats\n```\n\n## 完成标准\n- Semantica 图：`mcp__semantica__get_graph_summary` 的节点数 ≥ 客户资料可抽事实数\n- 每条数值事实都有来源定位，且能在图里 `query_graph` 查到\n- 冲突已登记且两侧值都在图里\n- 缺口写成「缺什么 + 责任方 + 阶段」三要素\n- `报告上下文.db` 的 `facts` 表条数与 Semantica 图节点数一致\n\n## 判定行\n`PARSE-OK facts=<数> semantica_nodes=<数> conflicts=<数> gaps=<数>` 或 `PARSE-FAIL reason=<原因>`\n\n## 硬规则\n- **不得编造**：设备台数单价、征收补偿标准、注册资本、信用代码、法定代表人、股东、运营成本金额\n- 检索到的公开信息只能作为「政策依据」点名，**不得冒充客户提供的事实**\n- **Semantica 不可用时停下来报告**，不得只在本地写 dict 冒充已入图\n- 数值矛盾两侧并列，不裁决"
+      }
+    },
+    {
+      "id": "res-项目事实清单",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 373
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/项目事实清单.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s3_fill",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 255
+      },
+      "data": {
+        "label": "【Agent】填充到骨架（六类·推演走 Semantica）",
+        "description": "按六类把项目事实填充到骨架槽位",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 目标\n把项目事实按「六类」填进每一节的槽位，落成填充表。**推演类槽位必须用 Semantica 推出，不得手算。**\n\n## 做什么\n对目标批次每一节：\n1. 读该节 handoff（槽位表）与本节适用性规则\n2. 逐个 own 槽位判定**六类之一**：\n\n   | 类型 | 怎么填 | 依据 |\n   |---|---|---|\n   | `值型` | 值 + 单位 + P-id | `query_graph` 取值 |\n   | **`推演`** | **`run_reasoning` 推出派生事实**，用其输出作值 | **Semantica 输出，不是手算** |\n   | `检索` | 点名文件全称或标准号 | 真检索过 |\n   | `不适用` | 「本项目不涉及X，理由是Y（规则号）」 | 适用性规则 |\n   | `缺口` | 「缺什么 + 责任方 + 阶段」 | 客户未提供 |\n   | `说明` | 界定范围或口径 | — |\n\n3. **推演类槽位的固定流程**：\n   ```\n   ① 确认输入事实已在 Semantica 图里（没有就先 add_entity）\n   ② mcp__semantica__run_reasoning 跑前向链，得到派生事实\n   ③ 派生事实的 id 写进填充表 trace\n   ④ 算式照样写进 filled（人要看懂：280×16=4480㎡）\n   ```\n   `trace` 写成 `semantica:run_reasoning:<派生事实id>`，**只写算式不写这个 trace 视为未推演**。\n\n4. 写盘后逐节校验：\n```bash\npython3 corpus_pipeline/evo_fill_check.py --section <节号>\n```\n\n## 完成标准\n- 目标批次每节都有 `节点填充/<节号>.yaml`\n- 每个 own 槽位都有 type 与 trace\n- **每条推演槽位的 trace 都指向 Semantica 派生事实**（可 `query_graph` 回查）\n- 每条目恰一个 own（无重复 own）\n- `evo_fill_check.py` 对该节判 PASS\n\n## 判定行\n`FILL-OK sections=<数> slots=<数> derived=<推演数> gaps=<数>` 或 `FILL-FAIL section=<节号> slot=<槽位> reason=<原因>`\n\n## 硬规则\n- **推演不得手算**：`280×16=4480` 这种也必须走 `run_reasoning`；手算的结果不可复现、不可审计\n- **Semantica 不可用时停下来报告**，不得把推演槽位改成「说明」或「缺口」蒙过去\n- 语义赋值不可脚本化：脚本只能出草稿（实测仅覆盖 23%），六类判定必须你逐条做\n- 值型不得填成范围或「约」；检索类必须真检索过\n- 不适用必须给理由 + 规则号，不能只写「不涉及」\n- 缺口三要素齐全，**阶段不得用资料时点替代**\n- 不得改变 handoff 的槽位、shape、验收标准"
+      }
+    },
+    {
+      "id": "res-填充批次",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 373
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "日志记录/填充批次.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s4_prompt",
+      "type": "wfNode",
+      "position": {
+        "x": 1472,
+        "y": 255
+      },
+      "data": {
+        "label": "【脚本】入库 + 合成完整提示词",
+        "description": "入库生动态上下文并合成完整提示词",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "## 目标\n把填充表 + 上下文库合成「本节提示词」，并把新写内容入库，供后续节继承。**这一步是数据库桥的核心。**\n\n## 做什么（全部跑脚本）\n```bash\ncd \"$WORKSPACE\"\n# 1 已写过的节入库（让后续节能继承本节结论与数值）\nfor s in <本批已写节号>; do python3 corpus_pipeline/evo_context_db.py --update \"$s\"; done\n# 2 生成本节提示词（内含动态上下文：全篇位置/前序结论/已定数值/冲突两侧）\nfor s in <本批待写节号>; do python3 corpus_pipeline/evo_taskbook.py \"$s\"; done\n# 3 出「骨架+提示词」展示件供用户审核修改\npython3 corpus_pipeline/evo_show.py --chapter <章号>\n# 4 工序门禁：填充表必须先过\nfor s in <本批待写节号>; do python3 corpus_pipeline/evo_fill_check.py --section \"$s\"; done\n```\n\n## 完成标准\n- 每个待写节都有 `任务书/<节号>.md`，且**包含 §0 动态上下文**（前序结论 + 已定数值 + 冲突项）\n- 提示词规模：本节层 ≤ 800 汉字（全局规则已抽到 `全局写作规约.md`，不重复）\n- `evo_fill_check.py` 对待写节全部 PASS\n- 展示件已生成，路径回报给用户\n\n## 判定行\n`PROMPT-OK prompts=<数> avg_cn=<均值> ctx=<有动态上下文的节数>` 或 `PROMPT-FAIL section=<节号> reason=<原因>`\n\n## 硬规则\n- **先入库再出提示词**：顺序反了，后续节就继承不到前面刚定的结论\n- 提示词里的数值表来自库，**不得手工改**；要改先改库或改填充表\n- `evo_fill_check` 未过的节**不得出提示词**，否则会拿通用模板顶替"
+      }
+    },
+    {
+      "id": "res-提示词就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 373
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/提示词就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s5_write",
+      "type": "wfNode",
+      "position": {
+        "x": 1820,
+        "y": 410
+      },
+      "data": {
+        "label": "【Agent】推演写作·逐章扩写（取 Semantica 链）",
+        "description": "推演写作专家按任务书逐章扩写",
+        "icon": "test",
+        "color": "teal",
+        "prompt": "## 目标\n推演写作专家按任务书逐节扩写正文。**逐章推进**——前一节写完入库存证，再写下一节。**涉及推演的地方取 Semantica 的链，不自行编排。**\n\n## 做什么\n对目标批次每一节：\n1. 读该节 `任务书/<节号>.md`（§0 动态上下文、§2 已填充节点、§3 适用性、§4 句式参照、§5 字数）\n2. 读 `全局写作规约.md`（只读一次）与 `语义推演规约-Semantica.md`\n3. 按填充表把内容写成合规矩的句子：\n   - 值型照抄并绑 P-id；不适用写「不涉及 + 理由」；缺口写三要素\n   - **不得改变填充表已定的内容**，只负责写成句子\n4. **推演类内容必须与图里的链一致**：\n   - 要写「因为…所以…」时，先 `mcp__semantica__get_causal_chain` 取该节点的因果链，按链的顺序写\n   - 取值先 `mcp__semantica__query_graph`，不从提示词抄、不自算\n   - 派生值用填充表 trace 指向的那个派生事实，**不得改口径重算**\n5. 未闭合事项：写「待X主体判定」或附条件表述，不得预判\n6. 写盘后自检：\n```bash\npython3 corpus_pipeline/evo_section_score.py --section <节号> --body teams/write/<节号>.md \\\n  --old-start <上财起行> --old-end <上财止行> --slots prompt-templates-v4/_slots-<键>.json\npython3 corpus_pipeline/evo_content_gate.py --section <节号> --body teams/write/<节号>.md\n```\n7. 本节通过后立即入库，让下一节继承：\n```bash\npython3 corpus_pipeline/evo_context_db.py --update <节号>\n```\n\n## 完成标准\n- 目标批次每节都有正文，且 `ready=true`（D2 文体按阶段设置不计入）\n- 内容闸门 PASS\n- 每节写完已 `--update` 入库\n- 与库中已定数值一致：同一 P-id 用同一个值\n- **正文里的每条因果与每个派生值都能在 Semantica 图里找到出处**\n\n## 判定行\n`WRITE-OK sections=<数> ready=<数> gate=<数> causal=<引用因果链数>` 或 `WRITE-FAIL section=<节号> failed=<维度> reason=<原因>`\n\n## 硬规则\n- 缺信息先 `web_search` 检索，查不到才标缺并写明渠道+检索词\n- 冲突两侧并列 + 「本节不裁决」；判断不越界\n- 不得跨节指路「详见§X」（案例全文仅个位数引用且几乎全是节内「详见下表」）\n- 同值可多节复用，禁的是同值不同写法\n- 与库中前序结论冲突时不得静默改口径\n- **不得自编因果链**：写「由于…导致…」必须有 Semantica 的边或链支撑\n- **Semantica 不可用时停下来报告**，不得靠语言组织能力编出看似合理的因果"
+      }
+    },
+    {
+      "id": "res-写作就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 528
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/写作就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s6_edit",
+      "type": "wfNode",
+      "position": {
+        "x": 2168,
+        "y": 584
+      },
+      "data": {
+        "label": "【Agent】统稿·一致性处理",
+        "description": "统稿专家做全篇一致性与术语统一",
+        "icon": "database",
+        "color": "pink",
+        "prompt": "## 目标\n统稿专家在**审核之前**完成全篇一致性处理。统稿必须在审核前——统稿改文会让已冻结判定的哈希失效，顺序反了等于白做。\n\n## 做什么\n1. 读全批次正文 + `术语口径表.yaml` + `禁用词.yaml` + `全局写作规约.md`\n2. 只做四类确定性/半确定性处理，**不做内容改写**：\n   - **术语统一**：同一概念用同一个词（读术语表，正名占位 + 别名最长优先 + 幂等）\n   - **数值口径统一**：同一 P-id 的写法一致（千分位/单位/小数位）；不同 P-id 的相同数值不合并\n   - **跨节矛盾排查**：同一事实在不同节表述相反（如一处说「已定」另一处说「未提供」）\n   - **称谓与序号**：节号引用、图表编号连续、称谓统一\n3. 每处改动必须留痕：改了什么节、原句、新句、依据\n4. 跑校验确认没改坏：\n```bash\npython3 corpus_pipeline/evo_editor_fix.py --check          # 幂等与子串自检\npython3 corpus_pipeline/evo_consistency.py --chapter <章>  # 章级一致性\n```\n\n## 完成标准\n- 术语表里的每个正名在正文中只以正名出现（别名 = 0）\n- 同 P-id 数值写法一致；跨节矛盾 = 0\n- `evo_editor_fix.py --check` 幂等自检通过（再跑一遍无新改动）\n- 改动清单已写入产出\n\n## 判定行\n`EDIT-OK terms=<改动数> nums=<改动数> conflicts=<修掉数>` 或 `EDIT-FAIL reason=<原因>`\n\n## 硬规则\n- **不得改写内容**（补数据、加论断、改结论）——那是写作步骤的事\n- **不得为了让检查通过而抹平真实冲突**：冲突应两侧并列 + 不裁决\n- 自动替换必须做正名占位，否则会产出「公共服务公共服务配套用房」这类叠加污染\n- 改完必须逐节回检，不得只抽查"
+      }
+    },
+    {
+      "id": "res-统稿改动清单",
+      "type": "wfResource",
+      "position": {
+        "x": 2252,
+        "y": 702
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/统稿改动清单.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s7_audit",
+      "type": "wfNode",
+      "position": {
+        "x": 2516,
+        "y": 792
+      },
+      "data": {
+        "label": "【Agent】审核·独立判定",
+        "description": "审核专家独立判定R1-R7与P1-P6",
+        "icon": "chart",
+        "color": "olive",
+        "prompt": "## 目标\n独立判定。**裁定者不是写作者，也不看写作过程的推理**，只看正文与判据。\n\n## 做什么\n逐节判定：\n1. 只读：正文、客户资料、`standards/` 两份 PDF、`判据来源登记`、`阶段设置.yaml`、`原则与案例-结论与建议.yaml`\n2. 按两级判据判：\n   - **结果审核**：形（段/表/字数）、语域、大纲符合（法定条目落点或不适用声明）、值可靠、冲突披露、空话、关系推演\n   - **过程审核**：溯源可回读（抽 ≥5 数值沿 P-id 回读原文）、派生可复算、冲突登记完整、缺口未被静默填、分层合规、写作决策可追\n3. 判据来源分级：**PDF/CASE/ENGINE 可作 blocker；SELF（自创阈值）只作参考不得判负**\n4. 文体会话：按 `阶段设置.yaml`，D2 文体不计入 blocker\n5. 写判定并校验：\n```bash\npython3 corpus_pipeline/evo_eval_record.py --section <节号> --body teams/write/<节号>.md \\\n  --evaluator \"审核专家\" --verdict PASS|FAIL --blockers '<json>' --findings <文件> \\\n  --criteria-rev \"R1-R7+P1-P6@v2\"\npython3 corpus_pipeline/evo_eval_record.py --verify <判定文件>\n```\n\n## 完成标准\n- 目标批次每节都有判定文件，且 `--verify` 对 PASS 判定返回 `ok=true`\n- 每个 FAIL 的 blocker 都写明：位置 + 问题 + 证据（引正文原句）\n- 无「无产物可查」被默认 PASS——无产物一律记 `cannot_audit`（同等不通过）\n\n## 判定行\n`AUDIT-OK pass=<数> fail=<数>` 或 `AUDIT-FAIL section=<节号> blocker=<数> reason=<原因>`\n\n## 硬规则\n- **不得以低分代替「没执行」**：无产物 = 未执行，不是低分\n- **六类 blocker 之外的不得判 blocker**：编造｜判断越界｜声称-实质不一致｜冲突只给一侧且未声明不涉及｜法定条目缺且未标注｜跨节语义矛盾\n- 「下了结论」不是 blocker——304 要求提出项目是否可行的结论；只有「正文全待定却说可行」才算不一致\n- 「风险可控性」是 304 七维度法定术语，不得按空泛断言禁用词判\n- 同一单元**连续 2 次 FAIL 且 blocker 不同**时，在判定里明确写「疑似标准或方法问题」并说明理由"
+      }
+    },
+    {
+      "id": "res-审核判定汇总",
+      "type": "wfResource",
+      "position": {
+        "x": 2600,
+        "y": 910
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/审核判定汇总.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s8_settle",
+      "type": "wfNode",
+      "position": {
+        "x": 2864,
+        "y": 792
+      },
+      "data": {
+        "label": "【脚本】结算·冻结 + 判定入图",
+        "description": "结算器判定与冻结，输出真实状态",
+        "icon": "globe",
+        "color": "violet",
+        "prompt": "## 目标\n结算与冻结，并把判定结果写回 Semantica 图留痕。**只看结算器真实状态**，不看任何汇总、不看冻结历史。\n\n## 做什么（全部跑脚本 + 入图）\n```bash\ncd \"$WORKSPACE\"\npython3 corpus_pipeline/evo_unit_ledger.py --check       # 唯一真值\npython3 corpus_pipeline/evo_pipeline.py --status\npython3 corpus_pipeline/evo_probe.py\npython3 corpus_pipeline/evo_consistency.py --chapter <章号>\npython3 corpus_pipeline/evo_unit_ledger.py --freeze <节号>\n```\n再把本节判定写回图：\n```\nmcp__semantica__record_decision\n  每节一条：section / verdict / blockers 摘要 / body_sha256 / 时间\n```\n\n## 冻结条件（全部满足才可 --freeze，脚本会拒绝不满足的）\n```\npassed = 独立判定 PASS\n       + 绑定 body_sha256（哈希与当前正文一致）\n       + 判定时间晚于正文 mtime\n       + criteria_rev 为有效版本\n       + S1–S8 工序门禁全绿\n```\n\n## 完成标准\n- 目标批次每节 `passed` 且已 `freeze`\n- 章级清单 C1–C11 中适用项全 PASS（C10 仅全篇判定）\n- **每节判定已 `record_decision` 入图**，`query_decisions` 能查到\n- 产出写出：`passed 数 / 总数`、未通过节的 blocker 摘要\n\n## 判定行\n`SETTLE-OK passed=<数>/<总数> frozen=<数> recorded=<入图数>` 或 `SETTLE-FAIL section=<节号> blocker=<数> rounds_without_progress=<数>`\n\n## 硬规则\n- **不得降级为自评**：未过独立判定的节不得写 passed\n- **不得用汇总数代替真值**：一切以 `--check` 输出为准\n- 同一节连续 3 轮 blocker 无减少 → 报 `rounds_without_progress=3` 并停下报告阻塞\n- 冻结失败不得手工改台账\n- 落判据时用 `find_precedents` 查同类历史判定，避免同一问题判法不一致"
+      }
+    },
+    {
+      "id": "res-结算状态",
+      "type": "wfResource",
+      "position": {
+        "x": 2948,
+        "y": 910
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/结算状态.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s9_done",
+      "type": "wfNode",
+      "position": {
+        "x": 3212,
+        "y": 792
+      },
+      "data": {
+        "label": "【脚本】汇总·交付真值（含图规模）",
+        "description": "汇总本次执行真实状态并交付",
+        "icon": "chat",
+        "color": "slate",
+        "prompt": "## 目标\n汇总本次执行的真实状态，交给用户可核对的结果。不写新内容，只报数。\n\n## 做什么（全部跑脚本 + 查图）\n```bash\ncd \"$WORKSPACE\"\npython3 corpus_pipeline/evo_unit_ledger.py --check\npython3 corpus_pipeline/evo_probe.py\npython3 corpus_pipeline/evo_pipeline.py --status\npython3 corpus_pipeline/evo_context_db.py --stats\n```\n再取图规模：`mcp__semantica__get_graph_summary`\n\n## 完成标准\n产出里必须包含五项真实数字：\n1. `passed / 总数`（以 `--check` 为准）\n2. 本次冻结的节号清单\n3. 未通过节的 blocker 摘要（每节一行）\n4. 上下文库计数（节/结论/节点值/关系）\n5. **Semantica 图规模**（节点数/决策数）——证明推演确实走了图\n\n## 判定行\n`DONE passed=<数>/<总数> frozen=<数> blocked=<数> graph_nodes=<数>`\n\n## 硬规则\n- 只报真实状态，不宣称「已完成」除非结算器判 passed 且已 freeze\n- 存在连续 3 轮无进展的节时必须单列「阻塞」一节\n- 图规模为 0 或与 `facts` 表严重不符时，须明确写「推演链路未建立」，不得报为正常"
+      }
+    },
+    {
+      "id": "res-交付汇总",
+      "type": "wfResource",
+      "position": {
+        "x": 3296,
+        "y": 910
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/交付汇总.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-上下文库",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 298
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "跨步骤、跨执行的数据桥。所有步骤都读写它：抽取步骤 `--build` 建库；写作每节写完 `--update <节号>` 入库；出提示词前 `--brief <节号>` 取动态上下文；结算 `--stats` 核对计数。表：sections（节）/ conclusions（已定结论）/ facts（节点值）/ links（承接与冲突）。**不得手工编辑该库**；要改数据就改源文件后重建。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-形包",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 80
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "法定条目-304.yaml",
+            "note": "361 条法定条目（逐句拆、留原句），骨架的根本"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/applicability-rules.yaml",
+            "note": "52 条适用性规则（condition / action / else_action / severity / applies_to）"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/legal-thresholds.yaml",
+            "note": "8 项阈值缺位登记 + 3 护栏 + 7 计算要求 + 8 结构检查"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/内容映射-重建.yaml",
+            "note": "法定节↔案例节内容映射（每条有 evidence，含 gap 标记），**按标题与内容匹配，禁止按编号**"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/section-line-index.yaml",
+            "note": "案例节行区间与标题（仅借形，绝不继承案例项目的数值）"
+          },
+          {
+            "kind": "file",
+            "value": "项目属性.yaml",
+            "note": "项目属性（政府投资/非经营性/无债务等），适用性解析的输入"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-项目资料",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 390
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "事实输入-新项目-华东理工AI研究院.md",
+            "note": "新项目客户资料：项目基本信息、建设规模、投资构成、资金来源、进度、现状条件。**唯一的事实来源**；客户没写的一律标缺，不得凭常识补"
+          },
+          {
+            "kind": "file",
+            "value": "GRAPH-新项目-华东理工AI研究院-clean.json",
+            "note": "从客户资料抽出的图谱（节点/关系/冲突/证据），已登记 CF1–CF11 待审冲突"
+          },
+          {
+            "kind": "folder",
+            "value": "inbox/samples",
+            "note": "客户提供的附件与扫描件（图纸、批文、表格）。解析后的文本在 inbox/parsed/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-全局规约",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 535
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "全局写作规约.md",
+            "note": "十二禁令、缺信息两条路径、十二维自检、反例表、语体基线。**写手只读一次，不要每节重读**；本节提示词与本文件冲突时以本节提示词为准"
+          },
+          {
+            "kind": "file",
+            "value": "阶段设置.yaml",
+            "note": "当前阶段设置：ignore_dimensions=[D2_文体]，以及为何忽略的说明。判据分级也在这里"
+          },
+          {
+            "kind": "file",
+            "value": "判据来源登记-D1D10.yaml",
+            "note": "D1–D10 判据来源登记：PDF/CASE/ENGINE 可阻断，SELF 只作参考不得判负"
+          },
+          {
+            "kind": "file",
+            "value": "原则与案例-结论与建议.yaml",
+            "note": "原则（304 大纲原文）与案例（上财写法）分层：结论章必读"
+          },
+          {
+            "kind": "file",
+            "value": "LOOP-当前阶段.md",
+            "note": "当前阶段唯一操作依据：工序/判据分级/失败处置/教训→机制"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-节点填充",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 443
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "节点填充",
+            "note": "每节一份 <节号>.yaml。结构：section / _rule / slots[]。每个 slot：name（与 handoff 一致）/ type（值型·推演·检索·不适用·缺口·说明）/ filled / unit / trace（必须有）/ note。六类之外不接受；trace 为空视为未填。不写：正文句子、评审意见"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-任务书",
+      "type": "wfResource",
+      "position": {
+        "x": 1556,
+        "y": 443
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "任务书",
+            "note": "每节一份 <节号>.md，由 evo_taskbook.py 生成，**不得手改**。必含：§0 动态上下文（全篇位置/本章前序节/前序已定结论/全篇已定数值表/冲突两侧）/ §1 本节要写什么 / §2 已填充节点 / §3 适用性 / §4 句式参照 / §5 形与字数 / §6 本节特别注意。全局规则不重复进本节（在全局写作规约.md）。目标 ≤800 汉字"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-正文",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 598
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "teams/write",
+            "note": "每节一份 <节号>.md，必须以 `<!-- BODY:START -->` 与 `<!-- BODY:END -->` 包住正文，否则评分脚本读不到。正文只用中文全角标点；数值不带千分位；每个数值后紧接〔P-id〕。不写评分结果与自检内容"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-术语",
+      "type": "wfResource",
+      "position": {
+        "x": 1904,
+        "y": 690
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "术语口径表.yaml",
+            "note": "正名/别名表。替换器必须做正名占位 + 别名最长优先 + 幂等自检，否则会产出叠加污染"
+          },
+          {
+            "kind": "file",
+            "value": "禁用词.yaml",
+            "note": "禁用词单一来源（32 词）。已排除「本节不裁决」（自相矛盾）与法定术语「风险可控性」（304 七维度之一）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-判定",
+      "type": "wfResource",
+      "position": {
+        "x": 2600,
+        "y": 980
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "evaluation",
+            "note": "每节每次判定一份 <节号>-<时间戳>.json，由 evo_eval_record.py 写入，**不得手改**。必须含：verdict、blockers[]（id/level/where/what/evidence）、body_sha256、evaluated_at、criteria_rev。无产物可查时记 cannot_audit，不得默认 PASS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-标准",
+      "type": "wfResource",
+      "position": {
+        "x": 2252,
+        "y": 794
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "standards/发改投资规2023-304号-可研通用大纲.md",
+            "note": "《政府投资项目可行性研究报告编写通用大纲》发改投资规〔2023〕304号（PDF 文本版）。判据的唯一来源"
+          },
+          {
+            "kind": "file",
+            "value": "standards/发改投资规2023-304号-大纲说明.md",
+            "note": "《关于投资项目可行性研究报告编写大纲的说明》。适用性规则主要来源"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-推演规约",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 540
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "语义推演规约-Semantica.md",
+            "note": "**节点推演必须走 Semantica**：派生值/包含汇总/因果链/冲突两侧/判断传导/影响传播 六类都算推演，必须用 run_reasoning 或 get_causal_chain 得出，不得 LLM 自行推演。工具不可用时停下来报告，不得降级为「说明」或「缺口」。"
+          },
+          {
+            "kind": "skill",
+            "value": "graph-deductive-writing-skill",
+            "note": "当需要沿推理链前向推演、把论断绑定证据与溯源链时先加载它，按其中的推演方法做"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "s1_skel->res-骨架就绪",
+      "source": "s1_skel",
+      "target": "res-骨架就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s2_parse->res-项目事实清单",
+      "source": "s2_parse",
+      "target": "res-项目事实清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s3_fill->res-填充批次",
+      "source": "s3_fill",
+      "target": "res-填充批次",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s4_prompt->res-提示词就绪",
+      "source": "s4_prompt",
+      "target": "res-提示词就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s5_write->res-写作就绪",
+      "source": "s5_write",
+      "target": "res-写作就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s6_edit->res-统稿改动清单",
+      "source": "s6_edit",
+      "target": "res-统稿改动清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s7_audit->res-审核判定汇总",
+      "source": "s7_audit",
+      "target": "res-审核判定汇总",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s8_settle->res-结算状态",
+      "source": "s8_settle",
+      "target": "res-结算状态",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s1_skel->s2_parse",
+      "source": "s1_skel",
+      "target": "s2_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s2_parse->s3_fill",
+      "source": "s2_parse",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s3_fill->s4_prompt",
+      "source": "s3_fill",
+      "target": "s4_prompt",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s4_prompt->s5_write",
+      "source": "s4_prompt",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s5_write->s6_edit",
+      "source": "s5_write",
+      "target": "s6_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s6_edit->s7_audit",
+      "source": "s6_edit",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s7_audit->s8_settle",
+      "source": "s7_audit",
+      "target": "s8_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s8_settle->s3_fill#fail",
+      "source": "s8_settle",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "fail",
+        "handoff": {
+          "note": "按审核 blocker 逐条返工填充表：只改 blocker 点到的槽位，未点到的槽位不动。若 blocker 是内容缺失而非填错，先按「缺信息两路径」检索或标缺，不得编造。"
+        }
+      }
+    },
+    {
+      "id": "s9_done->res-交付汇总",
+      "source": "s9_done",
+      "target": "res-交付汇总",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s8_settle->s9_done#pass",
+      "source": "s8_settle",
+      "target": "s9_done",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "pass",
+        "handoff": {
+          "note": "本批已全部冻结，把冻结清单与未通过项交给汇总步骤，按真实状态报数，不得宣称完成。"
+        }
+      }
+    },
+    {
+      "id": "res-形包->s1_skel",
+      "source": "res-形包",
+      "target": "s1_skel",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目资料->s2_parse",
+      "source": "res-项目资料",
+      "target": "s2_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s1_skel->res-上下文库",
+      "source": "s1_skel",
+      "target": "res-上下文库",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-上下文库->s3_fill",
+      "source": "res-上下文库",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-形包->s3_fill",
+      "source": "res-形包",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s3_fill->res-节点填充",
+      "source": "s3_fill",
+      "target": "res-节点填充",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-节点填充->s4_prompt",
+      "source": "res-节点填充",
+      "target": "s4_prompt",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s4_prompt->res-上下文库",
+      "source": "s4_prompt",
+      "target": "res-上下文库",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s4_prompt->res-任务书",
+      "source": "s4_prompt",
+      "target": "res-任务书",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-任务书->s5_write",
+      "source": "res-任务书",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-全局规约->s5_write",
+      "source": "res-全局规约",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-上下文库->s5_write",
+      "source": "res-上下文库",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s5_write->res-正文",
+      "source": "s5_write",
+      "target": "res-正文",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s5_write->res-上下文库",
+      "source": "s5_write",
+      "target": "res-上下文库",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-正文->s6_edit",
+      "source": "res-正文",
+      "target": "s6_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-术语->s6_edit",
+      "source": "res-术语",
+      "target": "s6_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s6_edit->res-正文",
+      "source": "s6_edit",
+      "target": "res-正文",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-正文->s7_audit",
+      "source": "res-正文",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-标准->s7_audit",
+      "source": "res-标准",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-全局规约->s7_audit",
+      "source": "res-全局规约",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s7_audit->res-判定",
+      "source": "s7_audit",
+      "target": "res-判定",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-判定->s8_settle",
+      "source": "res-判定",
+      "target": "s8_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-上下文库->s8_settle",
+      "source": "res-上下文库",
+      "target": "s8_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-上下文库->s9_done",
+      "source": "res-上下文库",
+      "target": "s9_done",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目资料->s3_fill",
+      "source": "res-项目资料",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目资料->s7_audit",
+      "source": "res-项目资料",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-骨架就绪->s2_parse",
+      "source": "res-骨架就绪",
+      "target": "s2_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目事实清单->s3_fill",
+      "source": "res-项目事实清单",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-填充批次->s4_prompt",
+      "source": "res-填充批次",
+      "target": "s4_prompt",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-提示词就绪->s5_write",
+      "source": "res-提示词就绪",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-写作就绪->s6_edit",
+      "source": "res-写作就绪",
+      "target": "s6_edit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-统稿改动清单->s7_audit",
+      "source": "res-统稿改动清单",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-审核判定汇总->s8_settle",
+      "source": "res-审核判定汇总",
+      "target": "s8_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-结算状态->s9_done",
+      "source": "res-结算状态",
+      "target": "s9_done",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s2_parse->res-上下文库",
+      "source": "s2_parse",
+      "target": "res-上下文库",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-推演规约->s2_parse",
+      "source": "res-推演规约",
+      "target": "s2_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-推演规约->s3_fill",
+      "source": "res-推演规约",
+      "target": "s3_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-推演规约->s5_write",
+      "source": "res-推演规约",
+      "target": "s5_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-推演规约->s7_audit",
+      "source": "res-推演规约",
+      "target": "s7_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".",
+    "mode": "subagent",
+    "reuse": "fresh",
+    "runState": true
+  }
+}

@@ -369,8 +369,8 @@
       "id": "judge",
       "type": "wfNode",
       "position": {
-        "x": 0,
-        "y": 0
+        "x": 2168,
+        "y": 922
       },
       "data": {
         "label": "抽取验收（不出判定结论）",

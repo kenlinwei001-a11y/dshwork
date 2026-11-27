@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-5f2caaded8c0",
+    "revisionId": "rev-40bfad1ef974",
+    "definition": {
+      "agentDocument": "# 投资与综合撰稿\n\n执笔 1.x-2.x、6.x-10.x 与附录；具备解析、抽取、推演能力。",
+      "name": "投资与综合撰稿",
+      "description": "执笔投资估算、财务、政策、运营、风险与社会评价章节",
+      "role": "投资与综合章节撰稿人",
+      "methodology": "① 逐项展开 must_cover，每项按五步展开（现状→依据→推导→校核→影响措施），每项 150-300 字；② 投资财务量调用规则，保留两位小数与单位；③ 冲突并列待确认；④ 自检覆盖度与篇幅。",
+      "boundaries": "不写工程方案；不发布语料包。；不得以拉长句式充篇幅",
+      "deliverables": "章节正文、规则使用清单、待确认事项",
+      "tags": [
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "graph-deductive-writing-skill"
+        },
+        {
+          "name": "knowledge-asset-consumption"
+        },
+        {
+          "name": "feasibility-report-edu-research"
+        },
+        {
+          "name": "document-parsing-skill"
+        },
+        {
+          "name": "fact-extraction-skill"
+        }
+      ],
+      "futureRequirements": []
+    },
+    "definitionDigest": "22cfeb48d96cf42ee7ac3c1ed844e03c626ba42450e13154bd2783d1e9843e83",
+    "dependencyLock": [
+      {
+        "skillId": "graph-deductive-writing-skill",
+        "revisionId": "rev-b6aaa60d650237a9cd4911c9",
+        "name": "graph-deductive-writing-skill",
+        "contentDigest": "b6aaa60d650237a9cd4911c96eb198811c29d176c285c0264487572888fecbee"
+      },
+      {
+        "skillId": "knowledge-asset-consumption",
+        "revisionId": "rev-a28c0cb010fd4906590fc545",
+        "name": "knowledge-asset-consumption",
+        "contentDigest": "a28c0cb010fd4906590fc545d371bedeebd1e7c6c43ed9ff40782b712a6bac1e"
+      },
+      {
+        "skillId": "feasibility-report-edu-research",
+        "revisionId": "rev-2d2f549a5adb1dbeba70fbac",
+        "name": "feasibility-report-edu-research",
+        "contentDigest": "2d2f549a5adb1dbeba70fbace4b0b5bd61bd3866de892869572a5ceb10625447"
+      },
+      {
+        "skillId": "document-parsing-skill",
+        "revisionId": "rev-b3cb732ed6cac43d422a92ee",
+        "name": "document-parsing-skill",
+        "contentDigest": "b3cb732ed6cac43d422a92ee633ec6694fe11207d3b41ecad194f47c8676ceee"
+      },
+      {
+        "skillId": "fact-extraction-skill",
+        "revisionId": "rev-7fe8c23ad89a328841592eb1",
+        "name": "fact-extraction-skill",
+        "contentDigest": "7fe8c23ad89a328841592eb177cec895038e6239fbde88d88216252ebd6cac7c"
+      }
+    ],
+    "dependencyLockDigest": "4d1b3cd5e483026ded82a3cf43fa2472f0494c76b57a635723afae44b70c25ea",
+    "presetRevisionRef": "wd-exp-member-5f2caaded8c0-07fba2f3ae2f",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "4c695b1922ef0c198ef329739638e1e6fa7a5c2c5c03df55e62fe7c6b2a02100",
+    "publishedAt": "2026-11-20T10:38:08.567Z",
+    "publishedBy": "local-user"
+  }
+}

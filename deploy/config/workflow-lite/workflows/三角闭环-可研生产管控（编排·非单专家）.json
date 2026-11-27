@@ -1,0 +1,238 @@
+{
+  "nodes": [
+    {
+      "id": "c_extract",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "① 抽取专家（委派 W1）",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n调用 **《抽取专家-建图与填充》** 工作流，产出本批目标节的填充表与提示词。\n\n## 做什么\n1. 用 `workflow_lite` 的 `read`（不给 node）读《抽取专家-建图与填充》的计划，按它的步骤顺序执行：\n   - `a_reuse`【脚本】复用骨架 + 建两个数据桥\n   - `a_parse`【Agent·ReAct】解析项目资料入图（Semantica add_entity / add_relationship）\n   - `a_fill`【Agent】填充六类（推演走 `run_reasoning`）\n   - `a_prompt`【脚本】入库 + 合成提示词 + 出展示件\n2. 每步产出照那份计划里的路径写，不要另起目录\n3. **出展示件后停下来交用户确认**（用户可能改提示词）\n\n## 完成标准\n- `节点填充/<节号>.yaml` 覆盖本批全部目标节，每个 own 槽位有 type 与 trace\n- 推演槽位的 trace 形如 `semantica:run_reasoning:<id>`\n- `任务书/<节号>.md` 含 §0 动态上下文\n- `evo_fill_check.py` 对全部目标节 PASS\n- 展示件路径已回报，等用户确认\n\n## 判定行\n`EXTRACT-OK sections=<数> slots=<数> derived=<数> prompts=<数>` 或 `EXTRACT-FAIL section=<节号> reason=<原因>`\n\n## 硬规则\n- 抽取侧**不写正文**、**不出判定**\n- 推演不得手算；Semantica 不可用时停下报告\n- 事实 ID 一律 `F-<hash>` 全局唯一，不得带章节前缀"
+      }
+    },
+    {
+      "id": "res-阶段1-抽取",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/阶段1-抽取.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c_write",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "② 写作专家团（委派 W2）",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n调用 **《写作专家团-逐章扩写与统稿》** 工作流，产出本批目标节的正文。\n\n## 做什么\n1. `workflow_lite` 的 `read`（不给 node）读《写作专家团-逐章扩写与统稿》的计划，按它的步骤执行：\n   - `w_write`【Agent】逐章扩写（取 Semantica 因果链，不自编）\n   - `w_edit`【Agent】统稿一致性处理\n2. **逐节推进**：一节写完 `--update` 入库存证，再写下一节\n3. 每节写完自检 `evo_section_score.py` + `evo_content_gate.py`\n\n## 完成标准\n- 本批每节都有 `teams/write/<节号>.md`，含 `<!-- BODY:START/END -->`\n- 每节 `ready=true`、内容闸门 PASS\n- 每节已 `--update` 入库\n- 统稿后术语别名 = 0、同 P-id 写法一致、跨节矛盾 = 0\n\n## 判定行\n`WRITE-OK sections=<数> ready=<数> gate=<数>` 或 `WRITE-FAIL section=<节号> failed=<维度> reason=<原因>`\n\n## 硬规则\n- 写作侧**不改 handoff / 填充表 / 验收标准**；提示词不合理就停下回报\n- **不得自编因果链**：写「因为…所以…」必须有 Semantica 边或链支撑\n- 统稿在审核之前完成——统稿改文会让已冻结判定哈希失效\n- 与库中前序结论冲突时不得静默改口径"
+      }
+    },
+    {
+      "id": "res-阶段2-写作",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/阶段2-写作.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c_audit",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "③ 审核专家（委派 W3·判定出口）",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 目标\n调用 **《审核专家-判定与冻结》** 工作流，独立判定并结算。**这一步决定三角闭环往哪走。**\n\n## 做什么\n1. `workflow_lite` 的 `read`（不给 node）读《审核专家-判定与冻结》的计划，按它的步骤执行：\n   - `r_audit`【Agent】独立判定（blocker 必须标 `back_to`）\n   - `r_check`【脚本】章级清单 C1–C11 + 工序门禁\n   - `r_settle`【脚本】结算冻结 + 判定入图\n2. 汇总本批的判定结果，**按 back_to 分类计数**\n\n## 完成标准\n- 本批每节都有判定文件，`--verify` 对 PASS 返回 `ok=true`\n- 每个 blocker 都带 `back_to = write | extract`\n- `evo_unit_ledger.py --check` 报出真实 passed 数\n- passed 的节已 `--freeze`\n\n## 判定行（三选一，必须是最后一行）\n- 全部通过：`VERDICT: pass passed=<数>/<总数> frozen=<数>`\n- 写作问题为主：`VERDICT: fail back_to=write sections=<节号列表>`\n- 抽取问题为主：`VERDICT: fail back_to=extract sections=<节号列表>`\n\n判定规则：`back_to=extract` 的 blocker 数 ≥ `back_to=write` 的 → 判 fail 回抽取；否则回写作。\n\n## 硬规则\n- **不得自评**：审核侧不写正文、不改正文\n- **不得降级**：未过独立判定的节不得写 passed\n- 归因必须准确：写作问题退回抽取会白改填充表，抽取问题退回写作会反复改句子却改不掉根因\n- 同一节连续 3 轮 blocker 无减少 → 判定行加 `rounds_without_progress=3`，停下报告"
+      }
+    },
+    {
+      "id": "res-阶段3-审核",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/阶段3-审核.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c_report",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "④ 汇总·交付真值",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "## 目标\n汇总本次执行的真实状态，交给用户可核对的结果。不写新内容，只报数。\n\n## 做什么（全部跑脚本 + 查图）\n```bash\ncd \"$WORKSPACE\"\npython3 corpus_pipeline/evo_unit_ledger.py --check\npython3 corpus_pipeline/evo_probe.py\npython3 corpus_pipeline/evo_pipeline.py --status\npython3 corpus_pipeline/evo_context_db.py --stats\npython3 corpus_pipeline/evo_diff.py --stats\n```\n再取图规模：`mcp__semantica__get_graph_summary`\n\n## 完成标准（六项真实数字，缺一不可）\n1. `passed / 总数`（以 `--check` 为准）\n2. 本次冻结的节号清单\n3. 未通过节的 blocker 摘要 + **退回目标**\n4. 上下文库计数（节/结论/节点值/关系）\n5. 关联图谱计数（事实/论断/多节引用事实数）\n6. **Semantica 图规模**（节点数/决策数）——证明推演确实走了图\n\n## 判定行\n`DONE passed=<数>/<总数> frozen=<数> blocked=<数> graph_nodes=<入图数>`\n\n## 硬规则\n- 只报真实状态，不宣称「已完成」除非结算器判 passed 且已 freeze\n- 存在连续 3 轮无进展的节时必须单列「阻塞」一节\n- 图规模为 0 或与 `facts` 表严重不符时，明确写「推演链路未建立」，不得报为正常"
+      }
+    },
+    {
+      "id": "res-交付汇总",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/交付汇总.md"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "c_extract->res-阶段1-抽取",
+      "source": "c_extract",
+      "target": "res-阶段1-抽取",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_write->res-阶段2-写作",
+      "source": "c_write",
+      "target": "res-阶段2-写作",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_audit->res-阶段3-审核",
+      "source": "c_audit",
+      "target": "res-阶段3-审核",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_report->res-交付汇总",
+      "source": "c_report",
+      "target": "res-交付汇总",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_extract->c_write",
+      "source": "c_extract",
+      "target": "c_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_write->c_audit",
+      "source": "c_write",
+      "target": "c_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "c_audit->c_write#back_to=write",
+      "source": "c_audit",
+      "target": "c_write",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "back_to=write",
+        "handoff": {
+          "note": "本批写作问题返工。按 blocker 逐条改正文：只改 blocker 点到的句子，未点到的段落不动；不得改填充表（那是抽取侧的事）。改完重跑十二维与内容闸门，再交审核。"
+        }
+      }
+    },
+    {
+      "id": "c_audit->c_extract#back_to=extract",
+      "source": "c_audit",
+      "target": "c_extract",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "back_to=extract",
+        "handoff": {
+          "note": "本批抽取问题返工。按 blocker 回到填充表：漏填的补、类型判错的改、值填错的回图谱取值、推演没走 Semantica 的重跑 run_reasoning。改完重新出提示词，再交写作。"
+        }
+      }
+    },
+    {
+      "id": "c_audit->c_report#VERDICT: pass",
+      "source": "c_audit",
+      "target": "c_report",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "when": "VERDICT: pass",
+        "handoff": {
+          "note": "本批全部达到 passed 且已冻结，把冻结清单与未通过项交给汇总步骤，按真实状态报数，不得宣称完成。"
+        }
+      }
+    },
+    {
+      "id": "res-阶段1-抽取->c_write",
+      "source": "res-阶段1-抽取",
+      "target": "c_write",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-阶段2-写作->c_audit",
+      "source": "res-阶段2-写作",
+      "target": "c_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-阶段3-审核->c_report",
+      "source": "res-阶段3-审核",
+      "target": "c_report",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".",
+    "mode": "subagent",
+    "runState": true
+  }
+}

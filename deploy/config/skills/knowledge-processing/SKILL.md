@@ -82,31 +82,9 @@ description: "把文档/语料（docx/pdf/md）经七道工序处理为结构化
 
 代码工程：`/Users/apple/Desktop/workdsh/knowledge/knowledge-processing-expert/`（kp_toolkit、corpus_pipeline、mcp/server.py）。
 
-## 工序依赖与门禁总表
+## 工序依赖与门禁总表（已下沉）
 
-```
-S1 归一化 ──┬─→ S1b 表格解析 ──┐
-            └─→ S2 骨架 ──→ S3 切块 ──┴─→ S4 本体抽取
-                                              ↓
-                                        S5 推演回放
-                                              ↓
-                                        S6 质量登记
-                                              ↓
-                                        S7 脱敏索引
-```
-
-| 门禁 | 不通过的后果 |
-|---|---|
-| S1 归一化 | 回不到原文，溯源链断 |
-| **S1b 表格** | **列名丢失，subject 退化** |
-| S2 大纲 | 法定章节漏写 |
-| S3 切块 | 切块丢失内容 |
-| S4 抽取 | 论断/证据分类错，写作口径错 |
-| S5 派生 | 规则静默跳过，数值无来源 |
-| S6 质量 | 假缺泛滥，公信力崩塌 |
-| S7 脱敏 | 跨项目复用失效 |
-
-**任何一项 covered < total → 装配侧拒绝发布。**
+见 `references/`。
 
 ## 运行方式
 
@@ -313,3 +291,69 @@ for 每个量位:
 - limit 解析率 100%（待抽取项须列出所需原件）
 - 推演 undefined 仅限「真缺事实 / 标准待抽取」，不得为表达式错误
 - 跨项目回归 ≥2 个项目，无源数字 = 0
+
+
+
+
+
+
+## 建图分两步（不可合并）
+
+```
+第 1 步  EvoOntology build/evolve → 含值本体
+         terms / mappings / relations / constraints / evidence
+         ★ 必须含值 —— 不含值抽不出关系（13032 = 11188+1171+618+55）
+
+第 2 步  kp_cli.py distill --workspace <ws> --version <v> -o <out>
+         含值本体 → 形包（0 项目值）
+         ★ 必须去值 —— 不去值无法跨项目复用
+```
+
+**判据（写死在 `corpus_pipeline/evo_distill.py`）**：
+
+| 去（值） | 留（形） |
+|---|---|
+| 项目名/编号/地点/单位 | **9 种术语类型** |
+| 金额/面积/人数/工期/负荷 | **11 种关系类型** |
+| definition 里的数字 | `{NUM}` `{UNIT}` `{DATE}` `{项目}` 骨架 |
+| evidence 的 source/result | `validation_method` 类别（7 类） |
+| 具体 id | id 模式（`<snake_case>`） |
+| — | **标准号本身**（建标191-2018 是形） |
+
+**实测（ontology_v3 → 形包）**：
+```
+terms_in 439 → masked 1276 处 → gate_shapes 39 / limit_shapes 29
+guard_shapes 19 / clause_shapes 81 / 约束形 19 / 关系 11 种
+✓ 终检 0 项目值（id 编号 210 + 章节号 239 = 形，不计）
+```
+
+**硬要求**：终检不过退出码 1；去不掉的标 `UNKNOWN`，不猜。
+详见 `references/evoontology-mcp.md`。
+
+## 节点四属性（下游必备）
+
+EvoOntology 的 term 没有「必须客户给」的标记 —— 桥接补四个正交字段：
+
+`source_type`（值从哪来）/ `node_role`（怎么产生）/ **`must_input`**（是否必填）/ **`caliber_status`**（口径唯一性）
+
+**判据**：`status=undefined` → `must_input=true`；`computed + calibers` → `INTERMEDIATE + ambiguous`。
+
+**下游**：`must_input=true` 向客户要（不猜）；`ambiguous` 算完标待审；`DERIVED` 绝不问客户要。
+
+完整判据表、4 个实测分布、EvoOntology 侧写法 → `references/node-attributes.md`。
+## 本体层 MCP：`evoontology` v1.1.1（本机调整版）
+
+**每次必传 `workspace`**（1.1.1 不用 `--store`）：
+`/Users/apple/Desktop/项目/中咨国际/上财大数据研究中心-可研本体/.evoontology`
+
+**扩展**：关系类型 5→**11 种**。受控 5 + 扩展 6：`reasoning` `reuse` `citation` `has_limit` `tests` `guards`。
+`validate_semantics` 不校验 relation_type 取值，只查引用完整性。
+
+**分工**：术语/门禁/限值/证据 → `evoontology`；实体/事实/Claim → `graph.json`；可复用形 → 形包。
+
+```python
+browse_semantics(workspace="<ws>", query="总投资", kind="term", limit=5)
+resolve_semantics(workspace="<ws>", mentions=["总投资","gate_xxx"])   # ≤5
+```
+
+详见 `references/evoontology-mcp.md`。

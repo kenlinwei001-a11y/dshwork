@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "id": "f_pkg",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 110
+      },
+      "data": {
+        "label": "【脚本】自检+判据冻结+形包+槽位可定向+三库+推演",
+        "description": "跑自检、判据冻结校验、形包校验、槽位可定向、三库与推演，产出骨架就绪",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n跑前置自检、判据冻结校验、形包校验、槽位可定向校验、候选抽取与三个数据桥，产出「骨架就绪」。**本步全是命令，退出码即判据。**\n\n**本步属于「形包制造侧」：只处理形包与规范，不碰客户新项目资料。** 客户资料解析属下游「客户信息输入抽取专家」。\n\n## 命令（任一条 exit≠0 立即停）\n```bash\ncd \"$WORKSPACE\"\n\n# 1 判据自测 —— 判据不可信时后面所有判定作废\npython3 corpus_pipeline/evo_checks.py || exit 1\n\n# 2 判据冻结校验 —— 判据被改动须先 --log 记录原因再 --freeze\npython3 corpus_pipeline/evo_freeze_criteria.py --verify || exit 1\n\n# 3 形包完整性 —— 两份 PDF 的产物指纹与覆盖缺口登记\npython3 corpus_pipeline/evo_pkg.py --verify || exit 1\n\n# 4 节号命名空间\npython3 corpus_pipeline/evo_ns.py --audit || exit 1\n\n# 5 槽位可定向（A15）—— 每个槽位必须有 evidence/kind/forbid/calc\npython3 corpus_pipeline/evo_slots_enrich.py --check || exit 1\n\n# 6 主体/因果候选自动抽取（产出候选，人工确认后 promote）\npython3 corpus_pipeline/evo_autospec.py --entities\npython3 corpus_pipeline/evo_autospec.py --causes\npython3 corpus_pipeline/evo_autospec.py --status\n\n# 7 三个数据桥\npython3 corpus_pipeline/evo_context_db.py --build\npython3 corpus_pipeline/evo_diff.py --build\npython3 corpus_pipeline/evo_relations.py --build\npython3 corpus_pipeline/evo_unify.py --verify || exit 1\n\n# 8 抽取结果入库（结构化槽位，供下游写作/抽取直取）\npython3 corpus_pipeline/evo_store.py --build\npython3 corpus_pipeline/evo_store.py --check || exit 1\n```\n\n## 完成标准（脚本输出即判据）\n- `evo_checks.py` 含 `SELF-TEST ALL PASS`\n- `evo_freeze_criteria.py --verify` 输出 `CRITERIA-VERIFY OK`\n- `evo_pkg.py --verify` 输出 `PKG-VERIFY OK`\n- `evo_slots_enrich.py --check` 输出 `SLOT-CHECK OK`（evidence 完整率 ≥95%）\n- `evo_unify.py --verify` 输出 `UNIFY-VERIFY OK`\n- `evo_store.py --check` 输出「一致 ✓」\n\n## 判定行\n```\nPKGREADY-OK slots=<槽位数> evidence_rate=<完整率> pkg_products=<产物数> criteria_v=<版本>\n```\n失败：`PKGREADY-FAIL step=<号> exit=<码>`\n\n## 硬规则\n- **判据冻结后不得静默修改**：要改先 `--log \"ID|原问题|改法\"` 再 `--freeze`\n- **误报必须登记**：判 FAIL 但事后证明判据错 → `--fp <ID> <原因>`；误报率 >30% 的判据会在报表里标 needs_review\n- **形包只借形不借值**：案例的校名/校区/建筑/场地/周边道路/机构名/关键数值一律不得进入形包\n- **槽位必须可定向**：只有 name+status 的槽位不得交付——下游只能猜，等于无目标抽取\n- **必须复用已有资产**：71 个 `evo_*.py` 已有能力直接用，不另写；能力不足时报缺口\n- 推演**不在本步**：推演消费客户数据，属下游「客户信息输入抽取专家」"
+      }
+    },
+    {
+      "id": "res-形包（本专家唯一交付物）",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 80
+      },
+      "data": {
+        "label": "形包（本专家唯一交付物）",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "prompt-templates-v4",
+            "note": "每节一份 <节号>.json。每槽必须含 name / kind（L1_single 单值 · L2_item 多项 · L3_argument 论证）/ slot / evidence（去哪找）/ forbid（禁填什么）/ calc（能否推演）/ status（own/ref）。**只有 name+status 的槽位不可交付**——下游无法定向抽取。"
+          },
+          {
+            "kind": "file",
+            "value": "法定条目-304.yaml",
+            "note": "361 条法定条目（逐句拆、留原句）"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/applicability-rules.yaml",
+            "note": "52 条适用性规则（condition/action/else_action/severity）"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/legal-thresholds.yaml",
+            "note": "8 项阈值缺位 + 3 护栏 + 7 计算要求 + 8 结构检查"
+          },
+          {
+            "kind": "file",
+            "value": "法定节名.yaml",
+            "note": "38 个法定节名（GAP 节标题唯一来源，**不得剥 GAP- 前缀查案例索引**）"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/内容映射-重建.yaml",
+            "note": "法定节↔案例节内容映射（每条有 evidence，含 gap）。**按标题与内容匹配，禁止按编号**"
+          },
+          {
+            "kind": "file",
+            "value": "形包清单.yaml",
+            "note": "形包清单：产物 + sha256 指纹 + 覆盖度 + 缺口登记"
+          },
+          {
+            "kind": "file",
+            "value": "形包-禁区.yaml",
+            "note": "案例专有信息禁区：校名/校区/建筑/场地/周边道路/机构名/关键数值。脱敏必须在取句源头做"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-骨架就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 228
+      },
+      "data": {
+        "label": "骨架就绪",
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/骨架就绪.md",
+            "note": "本步产出：形包与槽位校验全部通过的凭据。**下游「客户信息输入抽取专家-定向抽取」的入口校验（E6）读这个文件**：evidence 完整率 <95% 时下游应拒接。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-数据桥",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 312
+      },
+      "data": {
+        "label": "数据桥",
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "**上下文库**：跨步骤、跨专家共享。表 sections/conclusions/facts/links。抽取侧 `--build` 建库、写作每节写完 `--update` 入库、出提示词前 `--brief` 取动态上下文。不得手工编辑。"
+          },
+          {
+            "kind": "file",
+            "value": "关联图谱.db",
+            "note": "**关联图谱**：事实（P-全局唯一）/论断（S-节-C-hash）/边（uses·asserts·depends·inconflict）。用于 diff 影响传播与因果追溯。**事实 ID 不得带章节前缀**。"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "res-形包（本专家唯一交付物）->f_pkg",
+      "source": "res-形包（本专家唯一交付物）",
+      "target": "f_pkg",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "f_pkg->res-骨架就绪",
+      "source": "f_pkg",
+      "target": "res-骨架就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "f_pkg->res-数据桥",
+      "source": "f_pkg",
+      "target": "res-数据桥",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": "."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-fe647cca16ab",
+    "revisionId": "rev-0a4c41226be3",
+    "definition": {
+      "name": "ch05-scheme",
+      "description": "第5章「项目建设方案」写作专家：只写本章，按 skill ch05-scheme 执行，独立 agent（fresh）。",
+      "role": "我是「第5章 项目建设方案」写作专家，**只写本章**。\n\n**本章实测**：6 节 · 10 个推演 · 上下文约 47 KB（峰值）。\n\n槽位最多（56）、推演最多（10）；用电/用水/暖通/消防逐项算。",
+      "methodology": "开工前**必须先加载 skill `ch05-scheme`**，严格按其执行。\n\n**你是独立 agent**：全局靠查库重建。\n\n**写作输入从写作输入包与数据库取**；从资源①取第3章定的规模口径。\n\n**推演必走 Semantica**（10 个，全篇最多）：`evo_derive.py --sections GAP-5.3`。\n\n**写完必跑 `--autopilot`**；**变更待办是二次写作入口**。",
+      "boundaries": "不写其他章；不产出判定；对 `evaluation/` 只读；\n**不编造**（设备报价未提供不得估算金额）；**标准无原文只写标准名与编号**，不编造条款号与限值；**判断不越界**；\n冲突两侧并列不裁决；**推演不得手算**。",
+      "deliverables": "本章各节正文；每节写完入库；本章 `self_check.json`。细则见 skill `ch05-scheme`。",
+      "tags": [
+        "政府投资",
+        "可研",
+        "写作",
+        "第5章"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "ch05-scheme"
+        }
+      ],
+      "futureRequirements": []
+    },
+    "definitionDigest": "4dd1fd3f2344f63aadc3d81e7ee9e149fb04218cde8d6818c11bfa80fae1387c",
+    "dependencyLock": [
+      {
+        "skillId": "ch05-scheme",
+        "revisionId": "rev-e4e08a80fb3081d07fa9f7a2",
+        "name": "ch05-scheme",
+        "contentDigest": "e4e08a80fb3081d07fa9f7a2f9a52cb1bb615ef87dbfed46865edf0053a42f70"
+      }
+    ],
+    "dependencyLockDigest": "c98df1d50ea235711c9c12f976d16e4036131b2ca0e3b936f8289e2ac74652fc",
+    "presetRevisionRef": "wd-exp-member-fe647cca16ab-2a62de16408c",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "29cb5f6f45a2de656d66c3e79638957d63fd10d53ff3cae39bf1955af40f2d75",
+    "publishedAt": "2026-11-27T07:42:20.841Z",
+    "publishedBy": "local-user"
+  }
+}

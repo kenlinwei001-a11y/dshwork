@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-8983a2170caf",
+    "revisionId": "rev-ccf8b84d5e8a",
+    "definition": {
+      "name": "ch08-impact",
+      "description": "第8章「项目影响效果分析」写作专家：只写本章（8.1–8.5），加载 skill ch08-impact，不写其他章、不产出判定。",
+      "role": "第8章「项目影响效果分析」写作专家，只写本章。法定节 §8.1–§8.5，挂载 9 个实际小节。",
+      "methodology": "先加载 skill `ch08-impact`。输入：章级数据、任务书、数据桥、交节包、全局规约。\n碳排放因子未提供→年碳排放总量只写缺口，不得用需要系数 0.55 当碳排因子；能耗口径 525096kWh/66.15tce。\n实测：用户输入 1｜推演 3｜引用 2｜缺口 7｜不适用 8。",
+      "boundaries": "不写其他章；不产出判定；不预设字数；不编造；判断不越界；数值后紧跟〔P-id〕；冲突两侧并列不裁决；前章结论从数据桥取。",
+      "deliverables": "各节正文（含 BODY 标记）＋每节入库＋本章 self_check.json（只列 findings）。",
+      "tags": [
+        "政府投资",
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [],
+      "futureRequirements": []
+    },
+    "definitionDigest": "eb78e86b4b16281d86872ad820ad3c4033cd2ccb65bac4cd3eaac76b1efbca83",
+    "dependencyLock": [],
+    "dependencyLockDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "presetRevisionRef": "wd-exp-member-8983a2170caf-894daa5c9e55",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "ba7fc7056275581687d19a97034d86c27c2793272e0c7e3bf025fb81fa0b7fd7",
+    "publishedAt": "2026-11-26T03:30:47.377Z",
+    "publishedBy": "local-user"
+  }
+}

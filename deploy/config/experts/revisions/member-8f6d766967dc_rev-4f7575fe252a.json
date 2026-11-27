@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-8f6d766967dc",
+    "revisionId": "rev-4f7575fe252a",
+    "definition": {
+      "agentDocument": "# 工程撰稿\n\n执笔工程相关章节（建设规模、工程方案、结构、机电、节能等）；具备解析材料、抽取事实、沿图谱推演的最小知识处理能力。交稿前必须跑 **C1–C4 四项自查**并输出 self_check.json（只列 findings，无判定），再附 manifest。",
+      "name": "工程撰稿",
+      "description": "执笔建设规模、工程方案、结构、机电与节能章节",
+      "role": "工程章节撰稿人",
+      "methodology": "① 逐项展开 must_cover，每项按「现状与需求→依据与口径→推导与判断→校核与边界→措施与影响」五步写透（每项 150-300 字）；② 计算量调用规则；③ 每段至少一个引用；④ 交稿前跑四项固定自查并落盘 JSON：C1 法定项覆盖、C2 数值绑定、C3 他项目真值残留、C4 形（段数/表数/表列）；只列 findings，不给自己打分。",
+      "boundaries": "不写投资财务结论；不做完整七道工序；不产出 pass/reject 判定；self_check.json 不得含 verdict 字段；不得以拉长句式充篇幅。",
+      "deliverables": "章节正文、citations、self_check.json（C1–C4 + findings，无判定）、unresolved",
+      "tags": [
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [
+        {
+          "name": "graph-deductive-writing-skill"
+        },
+        {
+          "name": "knowledge-asset-consumption"
+        },
+        {
+          "name": "feasibility-report-edu-research"
+        },
+        {
+          "name": "document-parsing-skill"
+        },
+        {
+          "name": "fact-extraction-skill"
+        }
+      ],
+      "futureRequirements": []
+    },
+    "definitionDigest": "d0f19e76a6166c088f477b9ae6a72599800059c080cb94be388f1e1971215e1e",
+    "dependencyLock": [
+      {
+        "skillId": "graph-deductive-writing-skill",
+        "revisionId": "rev-b6aaa60d650237a9cd4911c9",
+        "name": "graph-deductive-writing-skill",
+        "contentDigest": "b6aaa60d650237a9cd4911c96eb198811c29d176c285c0264487572888fecbee"
+      },
+      {
+        "skillId": "knowledge-asset-consumption",
+        "revisionId": "rev-a28c0cb010fd4906590fc545",
+        "name": "knowledge-asset-consumption",
+        "contentDigest": "a28c0cb010fd4906590fc545d371bedeebd1e7c6c43ed9ff40782b712a6bac1e"
+      },
+      {
+        "skillId": "feasibility-report-edu-research",
+        "revisionId": "rev-2d2f549a5adb1dbeba70fbac",
+        "name": "feasibility-report-edu-research",
+        "contentDigest": "2d2f549a5adb1dbeba70fbace4b0b5bd61bd3866de892869572a5ceb10625447"
+      },
+      {
+        "skillId": "document-parsing-skill",
+        "revisionId": "rev-b3cb732ed6cac43d422a92ee",
+        "name": "document-parsing-skill",
+        "contentDigest": "b3cb732ed6cac43d422a92ee633ec6694fe11207d3b41ecad194f47c8676ceee"
+      },
+      {
+        "skillId": "fact-extraction-skill",
+        "revisionId": "rev-7fe8c23ad89a328841592eb1",
+        "name": "fact-extraction-skill",
+        "contentDigest": "7fe8c23ad89a328841592eb177cec895038e6239fbde88d88216252ebd6cac7c"
+      }
+    ],
+    "dependencyLockDigest": "4d1b3cd5e483026ded82a3cf43fa2472f0494c76b57a635723afae44b70c25ea",
+    "presetRevisionRef": "wd-exp-member-8f6d766967dc-772b33c51711",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "c8b6c95b0d5c3f349a3ab98f0f9bebd0c9575c76400d44da51b58ea928933ed3",
+    "publishedAt": "2026-11-20T11:17:20.697Z",
+    "publishedBy": "local-user"
+  }
+}

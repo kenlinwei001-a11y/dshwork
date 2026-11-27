@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "record": {
+    "id": "member-34347b0592c4",
+    "teamParentId": "expert-f48bfcb333a4",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "personal",
+    "availability": "enabled",
+    "revision": "da1ea8915c867b9f080ff54efe0d076336107d755f0ded3257bd2ab7a6df3433",
+    "draftRevision": "da1ea8915c867b9f080ff54efe0d076336107d755f0ded3257bd2ab7a6df3433",
+    "publishedRevisionRef": {
+      "expertId": "member-34347b0592c4",
+      "revisionId": "rev-8af2c76e462c"
+    },
+    "createdAt": "2026-11-27T10:31:22.255Z",
+    "updatedAt": "2026-11-27T10:31:22.255Z"
+  }
+}

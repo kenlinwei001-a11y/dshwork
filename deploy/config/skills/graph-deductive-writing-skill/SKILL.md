@@ -229,13 +229,10 @@ hypothesis 写成既成事实 → 「施工将影响师生出行」应为「若�
 
 见 `references/与既有skill的组合.md`。**一句话**：建图（knowledge-processing）→
 读包（knowledge-asset-consumption）→ 写作（本 skill），三者不重叠。
-## 边界与不适用
+## 边界与不适用（已下沉）
 
-- 不做：不越界做深度语义抽取（隐性事实、跨段推理、专名消歧交 document-parsing / fact-extraction / entity-resolution）。
-- 不做：不自动裁决冲突，conflicts 一律「待审」，不补数字、不改口径凑平。
-- 不做：不捏造事实，派生结论必须能由 formula 反推并绑定证据。
-- 不做：不丢弃溯源，未溯源改动必须显式标注。
-- 缺输入：没有 graph.json 且用户未给材料时，先要材料或先建图，不臆造节点。
+见 `references/边界与不适用.md`。
+
 ## 资源清单
 
 - `scripts/validate_graph.py` — 图谱确定性校验（结构 + 悬空引用），写作前必跑。
@@ -289,52 +286,25 @@ hypothesis 写成既成事实 → 「施工将影响师生出行」应为「若�
 - `references/阶段-1建图.md` — 1 节
 - `references/复用与交互.md` — 3 节
 - `references/写作深度规则.md` — 13 节
-## 数值闭包与节点核实（v2 增补）
+## 数值闭包与节点核实（已下沉）
 
-> 本节补充「写之前」和「写之后」两道工序。缺少它们时，报告会出现大量无来源数字，事后无法补救。
+见 `references/数值闭包与节点核实.md`。
 
-### 写之前：三查（任一不过就不得开始生成）
 
-1. **量位闭包**：本节 must_cover 里的每个量位，必须有「事实 / 规则 / 标准条款」之一作为实现路径；缺口必须显式列出，不得默认模型会补。
-2. **规则可执行**：涉及计算的量位必须能落到具体规则 id（`R-…`），并给出 deps 与单位；缺依赖的规则输出 undefined，不允许模型自算。
-3. **标准可解析**：`limit@标准号#条款` 必须能解析到值；解析不到时标「待抽取（需规范原件）」，不得猜数。
 
-### 数值纪律（写进每节提示词）
+## 本体层 MCP：`evoontology` v1.1.1（本机调整版）
 
-- 正文所有数字只能来自已绑定节点；不得自行相乘、相加、换算或估算；
-- 确需计算时只写算式与所引节点，结果写入 `unresolved`，正文不写该结果；
-- 缺值只允许一句「本项资料待客户补充」，不得展开解释充篇幅；
-- 冲突两个值都写出并标「待确认」，不得裁决。
+**每次必传 `workspace`**（1.1.1 不用 `--store`）：
+`/Users/apple/Desktop/项目/中咨国际/上财大数据研究中心-可研本体/.evoontology`
 
-### 返回契约（硬要求）
+**扩展**：关系类型 5→**11 种**。受控 5 + 扩展 6：`reasoning` `reuse` `citation` `has_limit` `tests` `guards`。
+`validate_semantics` 不校验 relation_type 取值，只查引用完整性。
 
-```json
-{"body": "正文 Markdown", "node_mentions": ["F-…", "D-R-…", "C-…"], "new_claims": [], "unresolved": []}
+**分工**：术语/门禁/限值/证据 → `evoontology`；实体/事实/Claim → `graph.json`；可复用形 → 形包。
+
+```python
+browse_semantics(workspace="<ws>", query="总投资", kind="term", limit=5)
+resolve_semantics(workspace="<ws>", mentions=["总投资","gate_xxx"])   # ≤5
 ```
 
-- `node_mentions` 必须列出正文实际引用的全部节点 id；
-- 生成后按 `required ∩ mentioned / required` 计算覆盖率，≥90% 才通过。
-
-### 写之后：数字-节点核实（必须做）
-
-对正文每个数字判定四态：
-
-| 状态 | 含义 | 处理 |
-|---|---|---|
-| unique | 唯一对应一个节点 | 通过 |
-| chain | 同时命中事实与派生节点（链式） | 通过 |
-| ambiguous | 同值多主体 | 按单位/上下文消歧，消不掉则人工确认 |
-| computed / unsupported | 无任何节点 | **必须消除**：补规则、补事实或删改正文 |
-
-验收：无源数字 = 0；有节点支撑率 ≥95%。
-
-### 提示词必须使用形包七段模板
-
-`依据 / 标签 / 篇幅 / 事实节点 / 函数与算式 / 待审冲突 / 返回契约`，并附 `节规范`（must_cover / rules_required / 证据要求 / 写法）与 `结构`（本节目的 → 事实与分析 → 结论与建议，3-6 段）。不得写作侧自造提示词。
-
-### 门禁阈值（建议写进质量门禁）
-
-- WG：提示词含节点 100%；返回 node_mentions ≥80% 节；节点覆盖率 ≥90%；
-- WG：数值闭包覆盖率 ≥90%（建议 100%）；
-- WG：数字-节点核实 ≥95%，无源数字 = 0；
-- 任一项不达标，报告不得标「完成」。
+详见 `references/evoontology-mcp.md`。

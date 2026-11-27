@@ -1,0 +1,562 @@
+{
+  "nodes": [
+    {
+      "id": "a_parse",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 422
+      },
+      "data": {
+        "label": "【Agent·ReAct】解析项目资料 + 脚本写图",
+        "description": "脚本：解析与建图、跑判据自测",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n解析客户资料，把事实/实体/关系写进图。**语义抽取由你做；写图与校验一律跑脚本。**\n\n## A 语义抽取（你来做）\n读客户资料，逐类抽：\n- **数值型**：面积/投资/人数/工期/造价指标，每条能追到原文位置\n- **属性型**：项目名称、单位、地点、性质、资金来源、建设标准\n- **约束型**：只用客户文档明确写的，**不得推演生成**\n- **关系型**：包含/派生/冲突（同一量两种口径即冲突）\n- **主体**：项目/建设单位/下属机构/校区/主管部门/参建方（六类，缺一不可）\n\n## B 写图（跑脚本，不要手写 Python）\n```bash\ncd \"$WORKSPACE\"\n\n# B1 主体与关系：按声明式清单幂等写入（不靠手写脚本）\n#    若客户资料出现清单外的主体，先补 主体清单.yaml 再跑\npython3 corpus_pipeline/evo_graph_seed.py --apply\npython3 corpus_pipeline/evo_graph_seed.py --verify\n\n# B2 事实入上下文库 + 关联图谱\npython3 corpus_pipeline/evo_context_db.py --build\npython3 corpus_pipeline/evo_diff.py --build\npython3 corpus_pipeline/evo_context_db.py --stats\npython3 corpus_pipeline/evo_diff.py --stats\n```\n\n## C 缺什么先检索\n```bash\n# 政策文件全称/标准号/行业指标 → 用 web_search 检索（工具调用，不是命令）\n# 查到点名；查不到才标缺，格式：<要素>未检索到（已查 <渠道>，检索词 <关键词>；责任方 <主体>，<阶段>）\n```\n\n## 完成标准（脚本可判）\n- `evo_graph_seed.py --verify` 输出 `SEED-VERIFY-OK`（六类主体全覆盖、关系类型 ≥3、has_part ≤60%）\n- `evo_context_db.py --stats` 的 facts 行数 ≥ 客户资料可抽事实数\n- 冲突已登记且两侧值都在图里\n- 检索类缺口写明渠道与检索词\n\n## 判定行（抄脚本结果）\n```\nPARSE-OK entities=<verify 的 entities> relations=<verify 的 relations> facts=<diff 的 facts> conflicts=<数>\n```\n失败：`PARSE-FAIL at=<B1|B2|C> reason=<原因>`\n\n## 硬规则\n- **不得编造**：设备台数单价、征收补偿标准、注册资本、信用代码、法定代表人、股东、运营成本金额\n- 检索所得只能作「政策依据」点名，**不得冒充客户提供的事实**\n- 主体清单外的实体：补 `主体清单.yaml` 后重跑，**不得直接改图谱 JSON**\n- 冲突两侧并列，不裁决"
+      }
+    },
+    {
+      "id": "a_fill",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 570
+      },
+      "data": {
+        "label": "【Agent】填形包载体（六类判定 + 缺口三要素）",
+        "description": "填形包载体：kind 判定、值/算式/缺口三要素、推演走 Semantica",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n**把客户资料填进形包载体。** 语义判定由你做；推演取值、校验、入库一律跑脚本。\n\n## 载体在哪\n`形包-填充载体.yaml`（在 res-形包 里）——这是解析→写作的**唯一中间态**。\n\n结构：`sections[法定节] → slots[]`，每个槽位：\n\n| 字段 | 谁填 | 说明 |\n|---|---|---|\n| `name` / `from` / `points` / `evidence` | **不许动** | 形包定义的「写什么」 |\n| `kind` | **由你判**（值型/推演/检索/缺口/不适用） | 判错会连带写作侧写错 |\n| `filled` | 你填 | 值 + 单位；缺口写缺什么；不适用写「本项目不涉及X，理由Y」 |\n| `unit` `calc` `trace` | 你填 | `calc` 是算式；`trace` 必须是 `semantica:run_reasoning:<id>` |\n| `status` | 你填 | `filled` / `gap` / `na` / 保持 `pending` |\n| `owner` `stage` `searched` | 缺口必填 | `searched` 写「已查哪里」 |\n| `ap` | 不适用必填 | 规则号 |\n\n## A 逐节填（你来做）\n```bash\npython3 corpus_pipeline/evo_form_carrier.py --report   # 看待填清单（当前 58/89）\n```\n对每一节，读 `形包-填充载体.yaml` 的 slots 与客户资料，逐槽位定六类：\n\n| 类型 | 你写什么 | 校验 |\n|---|---|---|\n| 值型 | 值 + 单位 | `filled` 非空 |\n| 推演 | 算式（值取自 Semantica） | `derived_id`/`trace` 非空 |\n| 检索 | 点名文件全称/标准号 | 条款库有对应条目，无原文只写《标准名》（编号） |\n| 不适用 | 「本项目不涉及X，理由是Y（AP-xxx）」 | `ap` 非空 |\n| 缺口 | 缺什么 + 责任方 + 阶段 | `owner`/`stage`/`searched` 非空 |\n\n**推演槽位的固定四步**（缺一步即 blocked）：\n1. 确认输入事实已在图（没有就先 `add_entity`）\n2. Semantica 前向链推出派生事实（`run_reasoning`）\n3. 派生事实 id 写进 `trace`，格式 `semantica:run_reasoning:<id>`\n4. 算式写进 `calc`（人要看懂）\n\n## B 写盘后跑脚本校验\n```bash\ncd \"$WORKSPACE\"\npython3 corpus_pipeline/evo_form_carrier.py --fill     # 幂等：不覆盖已填\npython3 corpus_pipeline/evo_form_carrier.py --check    # 载体 ↔ pkg_slots 对账\npython3 corpus_pipeline/evo_store.py --check\n```\n\n## 完成标准\n- `--report` 的待填从 31 降到剩余项**全部有 disposition**（filled 或 gap 或 na），不留裸 pending\n- `--check` 的 `unmapped` 每一条都能说明「形包原句没覆盖 / 该内容属他节 / 属项目特有冲突」\n- 缺口的三要素齐全，`阶段`不得用资料时点替代\n- 推演项 `trace` 全部以 `semantica:` 开头\n\n## 判定行\n```\nFILL-OK filled=<n>/89 gap=<n> na=<n> pending=<n> unmapped=<n>\n```\n\n## 硬规则\n- **推演不得手算**：`280×16=4480` 也必须走 `run_reasoning`；手算不可复现、不可审计\n- **Semantica 不可用时停下来报告**，不得把推演槽位改成「说明」或「缺口」蒙过去\n- 不得改 `name`/`from`/`points`——形包是资产，槽位定义不归解析改\n- 缺口「阶段」写设计阶段（初步设计/施工图/批复前），不得写「资料时点」"
+      }
+    },
+    {
+      "id": "a_prompt",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 570
+      },
+      "data": {
+        "label": "【脚本】入库+提示词+展示件+卡片+本图自检",
+        "description": "入库+提示词+展示件+卡片+本图三步自检",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 目标\n入库 + 合成提示词 + 出展示件。**本步全是命令，不含判断。**\n\n**本步是「客户信息输入抽取专家」的最后一公里**：把前两步填好的槽位变成写作侧可直接消费的任务书。形包侧校验（自检/判据冻结/形包/槽位可定向）已在上一张图「形包制造专家-造形包」完成，本步不重复。\n\n## 命令（按顺序）\n```bash\ncd \"$WORKSPACE\"\n\n# 1 已写节入库（让后续节继承结论与数值）\nfor s in <本批已写节号>; do python3 corpus_pipeline/evo_context_db.py --update \"$s\"; done\n\n# 2 生成本节提示词（含 §0 动态上下文：全篇索引/上一节概要/下一节关键点/本节数值/冲突）\nfor s in <本批待写节号>; do python3 corpus_pipeline/evo_taskbook.py \"$s\"; done\n\n# 3 刷新关联图谱（供写作取因果链）\npython3 corpus_pipeline/evo_diff.py --build\n\n# 4 出「骨架+提示词」展示件（供用户审核修改，改完才扩写）\npython3 corpus_pipeline/evo_show.py --chapter <章号>\n\n# 5 生成人工卡片（字数等要求由人填，抽取阶段只留槽位）\npython3 corpus_pipeline/evo_card.py --chapter <章号>\n\n# 6 本图三步达标自检（只核本专家负责的部分）\npython3 corpus_pipeline/evo_wf_check.py --wf W1 --sections <本批节号>\n```\n\n## 完成标准（脚本可判）\n- 每个待写节都有 `任务书/<节号>.md`，且含「本节在全篇中的位置」段\n- 任务书 §5 含 `目标字数：〔待人工填写〕`（抽取阶段不预设字数）\n- `evo_wf_check.py --wf W1` 中**属于本专家职责**的判据全 PASS：\n  `A1 槽位全覆盖`、`A2 六类判定正确`、`A2b 不适用带规则号`、`A4 事实ID全局唯一`、`A6 展示件先出`\n- 展示件与卡片已生成，路径回报用户\n\n## 判据归属（重要，防止越界）\n| 判据 | 归属 |\n|---|---|\n| A1/A2/A2b/A4/A6 | **本专家**（填充表与提示词） |\n| A3 推演走 Semantica | 本专家（a_fill 已完成，本步只回报结果） |\n| A5 提示词合规 | **本专家** |\n| A7/A8/A9 实体·关系·类型 | 本专家（a_parse 已完成） |\n| A10 ID 统一 / A11 A14 禁区 | 本专家 |\n| **A12 形包完整可追 / A13 判据已冻结 / A15 槽位可定向** | **上游形包制造专家**——本步只读 `logs/骨架就绪.md`，不重跑 |\n\n## 判定行（抄脚本结果）\n```\nPROMPT-OK prompts=<数> own_pass=<本专家判据通过数>/<可核数> upstream=<骨架就绪是否有效> card=<章号>\n```\n失败：`PROMPT-FAIL check=<未过的判据号> reason=<原因>`\n\n## 硬规则\n- **先入库再出提示词**：顺序反了后续节继承不到前面刚定的结论\n- 提示词里的数值表来自库，**不得手工改**\n- 字数槽位留空，**不得预填任何数值**\n- 展示件未经用户确认不得进入扩写\n- **A3 未 PASS 时必须如实报出**（推演未走 Semantica），不得写成已通过\n- **上游 `logs/骨架就绪.md` 缺失或 evidence 完整率 <95% 时停下报告**，不得跳过入口校验硬做"
+      }
+    },
+    {
+      "id": "res-骨架就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 507
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/骨架就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-项目事实清单",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 540
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/项目事实清单.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-填充批次",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 688
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "日志记录/填充批次.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-提示词就绪",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 688
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/提示词就绪.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-节点填充",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 758
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "节点填充",
+            "note": "每节一份 <节号>.yaml。结构：section / _rule / slots[]。每个 slot：name（与 handoff 一致）/ type（值型·推演·检索·不适用·缺口·说明）/ filled / unit / trace（必须有）/ note。**推演类的 trace 必须写成 semantica:run_reasoning:<派生事实id>**；trace 为空视为未填。不写：正文句子、评审意见"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-任务书",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 758
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "任务书",
+            "note": "每节一份 <节号>.md，由 evo_taskbook.py 生成，**不得手改**。必含 §0 动态上下文（全篇位置/本章前序节/前序已定结论/全篇已定数值表/冲突两侧）/ §1 本节要写什么 / §2 已填充节点 / §3 适用性 / §4 句式参照 / §5 形与字数 / §6 特别注意。本节层 ≤800 汉字；全局规则不重复进（在 全局写作规约.md）。本资源的产出要交用户审核修改后才扩写"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-数据桥",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 610
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "**上下文库**：跨步骤、跨专家共享。表 sections/conclusions/facts/links。抽取侧 `--build` 建库、写作每节写完 `--update` 入库、出提示词前 `--brief` 取动态上下文。不得手工编辑。"
+          },
+          {
+            "kind": "file",
+            "value": "关联图谱.db",
+            "note": "**关联图谱**：事实（F-全局唯一）/论断（S-节-C-hash）/边（uses·asserts·depends·inconflict）。用于 diff 影响传播与因果追溯。**事实 ID 不得带章节前缀**。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-形包",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 80
+      },
+      "data": {
+        "label": "形包（304 骨架 + 槽位 + AP 规则）",
+        "description": "形包资产：304 骨架 + 槽位规格 + 填充载体 + 适用性规则",
+        "items": [
+          {
+            "kind": "file",
+            "value": "法定条目-304.yaml",
+            "note": "**法定骨架**：304 大纲 11 章 38 节 + 第11章（章级）的 361 条法定条目，逐句拆、留原句（from）。"
+          },
+          {
+            "kind": "file",
+            "value": "法定槽位-304.yaml",
+            "note": "**形包槽位规格（核心）**：按 slot.legal 归组后的 39 个写作单元，21 节有槽位（185）/ 18 节为缺口。每条含 name / from（原句）/ tier / status。\n\n2026-11-26 修正：原文件有 15 个案例节号被加 GAP- 前缀，已按 slot.legal 重新归组；第11章登记为章级。"
+          },
+          {
+            "kind": "file",
+            "value": "形包-填充载体.yaml",
+            "note": "**填充载体（解析→写作的唯一中间态）**。39 个写作单元 / **89 个可填槽位**（按原句归组，碎片归为 points）。\n\n每个槽位：name / kind（值型·推演·检索·缺口·不适用·说明）/ from / points / evidence / filled / unit / calc / trace / status / owner / stage / ap / searched。\n\n**解析只填 filled/unit/calc/trace/status/owner/stage/ap/searched，不得改 name/from/points**。\n\n**当前状态：填 61 / 不适用 22 / 缺口 6 / 待填 0**（全部处置完毕）。校验：`evo_form_carrier.py --report`。"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/applicability-rules.yaml",
+            "note": "**57 条适用性规则**（condition / action / else_action / severity），判不适用的唯一依据。\n\n2026-11-26 补 AP-053~057（非标设备 / 超限设备 / 专利与关键核心技术 / 以工代赈 / 委托第三方运营）——均从 304 原文提取，不是编的。"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/legal-thresholds.yaml",
+            "note": "8 项阈值缺位 + 3 护栏 + 7 计算要求 + 8 结构检查"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/内容映射-重建.yaml",
+            "note": "**法定节↔案例节内容映射**（86 个案例节，19 个一对多）。每条有 evidence，含 gap。\n\n**两个用途**：① 按标题与内容匹配，禁止按编号；② 变更传播时把 `evo_diff --impact` 返回的案例节号（13.2/11.4）映射成 GAP 法定节——宁多不漏，一对多全部保留。"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/section-line-index.yaml",
+            "note": "案例节行区间与标题（仅借形，不继承案例数值）"
+          },
+          {
+            "kind": "file",
+            "value": "项目属性.yaml",
+            "note": "项目属性（政府投资 / 非经营性 / 无债务等），适用性解析输入"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-项目资料",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 339
+      },
+      "data": {
+        "label": "项目资料（v2）",
+        "description": "客户资料（唯一事实来源，v2）与已抽取图谱",
+        "items": [
+          {
+            "kind": "file",
+            "value": "事实输入-新项目-华东理工AI研究院-v2.md",
+            "note": "**新项目客户资料（v2）——唯一事实来源**。539 行 / 17 个一级节，含「十三、待补充项」3 项与「十四、完整性自评」。客户没写的一律标缺，不得凭常识补。v1 已废止，不得再读。"
+          },
+          {
+            "kind": "file",
+            "value": "GRAPH-新项目-华东理工AI研究院-clean.json",
+            "note": "从客户资料抽出的图谱（节点/关系/冲突/证据），已登记 CF1–CF11 待审冲突。含 DF-* 派生事实 28 个与 origin=semantica 血缘边。"
+          },
+          {
+            "kind": "folder",
+            "value": "inbox/samples",
+            "note": "客户附件与扫描件（图纸/批文/表格）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-推演规约",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 738
+      },
+      "data": {
+        "description": "推演与传播的规约：工具、算式表、传播规则",
+        "items": [
+          {
+            "kind": "file",
+            "value": "语义推演规约-Semantica.md",
+            "note": "**推演必须走 Semantica**：派生值/包含汇总/因果链/冲突两侧/判断传导/影响传播 六类都算推演，必须用 `run_reasoning` 或 `get_causal_chain` 得出，不得 LLM 自行推演。工具不可用时停下来报告，不得降级为「说明」或「缺口」。"
+          },
+          {
+            "kind": "file",
+            "value": "推演算式.yaml",
+            "note": "**推演算式权威表（67 条）**。只有这里声明的槽位才能推演；表里没有的不猜、不手算。\n\n每条：section / slot / kind（numeric|qualitative）/ formula / result / unit。\n\n**口径坑（已修）**：百分比算式必须带 ×100；升→万m³ 除数必须是 10000000；金额保留两位。\n\n调用：`evo_derive.py --sections <节号>` → 自动读表 → run_reasoning → 写 trace → 比对结果。\n校验：`evo_derive.py --verify` → 当前 31/31 已推且一致。"
+          },
+          {
+            "kind": "file",
+            "value": "传播规则.yaml",
+            "note": "**变更传播规则（19 条）**。交给 Semantica `run_reasoning` 做**传播关系分析**：\n\n```\nfacts = [\"变更(总投资)\"]\nrules = [\"IF 变更(总投资) THEN 需重算(单位建筑面积投资)\", ...]\n→ derived_facts: 需重算(...) / 需同步(GAP-x.y)\n```\n\n每条触发项给 `then`（需重算的下游口径）+ `sections`（波及节）。覆盖 30 个下游口径 / 13 节。\n\n**为什么需要它**：图遍历只能找「引用过这个值的节」，传播规则能找「语义上必须重算的口径」——**包括图里没建边的隐式依赖**。\n\n主语需归一化：`本项目建筑面积` → `建筑面积`。"
+          },
+          {
+            "kind": "text",
+            "value": "推演与传播共用 Semantica；算式/规则表是唯一权威—表里没有就停报，不编不算。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-标准条款库（资产・增量补充）",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 237
+      },
+      "data": {
+        "label": "标准条款库（资产・增量补充）",
+        "description": "跨项目复用的标准条款库（资产层），可持续补充",
+        "items": [
+          {
+            "kind": "file",
+            "value": "standards/条款库.yaml",
+            "note": "**标准条款库（资产层）**。结构：standards{标准号: {title, source, source_status, pages, chars, note, clauses{条号: {text, mandatory, line}}}} + chapter_standards{法定节: {slot, claim, standards[], titles[], clause_refs{标准号: [条号]}}}。\n\n**四条硬规则**：\n① 只收能溯源到原文的条款，**无原文绝不编造条款正文**\n② source_status 必填：可用 / 文本乱码待重提取 / 仅PDF未提取 / 未取得原文 / 客户资料转引\n③ 引用时：可用→引条号+正文；无原文→只写《标准名》（编号）；转引→标「转引」\n④ 补充新标准时不得覆盖已有条目，只追加\n\n**当前状**：13 份标准 / 164 条款（强条 3）。只有 GB50189-2015 有可用原文（161 条），建标191-2018 为客户转引（3 条），其余 11 份待补。"
+          },
+          {
+            "kind": "folder",
+            "value": "standards/raw/",
+            "note": "标准原件与提取文本。提取失败的文件保留在此（如 DGJ08-107-2015.txt 是字体映射失败产物，需重提取）。"
+          },
+          {
+            "kind": "file",
+            "value": "config/standards-sources.yaml",
+            "note": "标准源清单：每份标准的 URL 与获取状态。补充新标准时先登记到这里。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "a_std_lib",
+      "type": "wfNode",
+      "position": {
+        "x": 453,
+        "y": 62
+      },
+      "data": {
+        "label": "【a_std_lib】标准条款库维护（增量补充，无原文不编造）",
+        "description": "标准条款库维护：提取条款→标状态→建节映射→增量补充",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "## 你是谁\n\n你是 **标准条款库维护节点**。任务是**把规范性文件变成可引用的条款**，供写作与审核使用。\n\n> 铁律：**只收能溯源到原文的条款；无原文绝不编造条款正文。**\n\n## 工作步骤\n\n### ① 查现状\n```bash\npython3 -c \"import yaml;d=yaml.safe_load(open('standards/条款库.yaml'));\\\nprint('标准',len(d['standards']),'条款',sum(len(v.get('clauses') or {}) for v in d['standards'].values()))\"\n```\n\n### ② 列出待补清单（按 source_status）\n\n| source_status | 处置 |\n|---|---|\n| `可用` | 已录条款，直接用 |\n| `文本乱码待重提取` | 原文存在但提取失败（字体映射）→ 用 PDF 库重提取；失败则保留状态，**不得手抄冒充原文** |\n| `仅PDF未提取` | 有 PDF 未转文本 → 提取后录条款 |\n| `未取得原文` | 无源 → 登记到 `config/standards-sources.yaml`，标 URL 待获取 |\n| `客户资料转引` | 非标准原文，可引用其值但标「转引」 |\n\n### ③ 提取条款（仅对有原文的）\n\n条款最小单元：`{条号: {text, mandatory, line}}`\n\n- **条号**：形如 `4.1.1`（章.节.条）\n- **正文**：从原文按条号锚点截取，保留「必须/严禁」等强条措辞\n- **mandatory**：正文含「必须」或「严禁」→ `true`（GB 强条）\n- **line**：原文行号，供回溯\n\n**必须清洗**：前言/废止说明/主编单位/批准部门/用词说明 不属于条款正文，读入时要过滤。\n\n### ④ 建立节→标准映射\n从 `pkg_slots` 的检索槽位反推：哪个法定节要求查什么标准。\n\n```sql\nSELECT section, slot, filled FROM pkg_slots WHERE cat='检索';\n```\n\n写入 `chapter_standards[法定节] = {slot, claim, standards[], titles[], clause_refs{}}`。\n\n**注意**：章级引用不能平摊成节级——若一份报告整章引用了 100 个标准，不能给该章每个节都塞 100 条，要按内容关键词**打分归位**。\n\n### ⑤ 增量写入（不覆盖）\n- 已有标准：只**补**缺失条款，不重写已有条目\n- 新标准：**追加**，不覆盖同号旧条目\n- 每次修改后更新 `_compiled` 日期\n\n## 硬约束\n\n1. **无原文不写条款正文**——这是最容易被抓的编造\n2. `source_status` 必填，不得留空\n3. 条款正文不得改写、缩写、润色——原样截取\n4. 强条标记必须准确（GB 系列以黑体字为强条，文本版只能靠「必须/严禁」判断，判断不确定时标 `mandatory: null` 并在 note 注明）\n5. 补充新标准前先在 `config/standards-sources.yaml` 登记来源\n\n## 输出\n\n- `standards/条款库.yaml`（更新）\n- `config/standards-sources.yaml`（新标准登记）\n- 本节点报告：`logs/标准库状态.md`，含每份标准的 source_status 与条款数\n\n## 当前状态（供你判断从哪继续）\n\n```\n13 份标准 / 164 条款（强条 3）\n  可用            GB50189-2015（161 条）\n  客户资料转引     建标191-2018（3 条）\n  文本乱码待重提取  DGJ08-107-2015\n  仅PDF未提取      GB50974-2014\n  未取得原文       其余 9 份（GB50034-2013 / GB50015 / GB50016 / GB3095 / GB3838 / GB3096 / GB/T2589 / JGJ91-2019 / JGJ16-2008）\n```\n\n## 判定行\n```\nSTDLIB-OK stds=<n> clauses=<n> available=<n> pending=<n> added=<n>\n```"
+      }
+    },
+    {
+      "id": "a_pkg",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 119
+      },
+      "data": {
+        "label": "【a_pkg】填好的形包 → 写作输入包（含标准预填充+manifest）",
+        "description": "从填好的形包载体出写作输入包（默认不覆盖，先旁路比对）",
+        "icon": "test",
+        "color": "teal",
+        "prompt": "## 你是谁\n\n你是 **写作输入包生成节点**。把**填好的形包载体**编译成写作侧唯一数据入口——`写作输入包/`。\n\n> 数据流：`形包-填充载体.yaml`（填好）→ 本节点 → `写作输入包/`（写作侧只认这个）\n\n## 输入\n\n| 序 | 输入 | 取什么 |\n|---|---|---|\n| 1 | `res-形包` → `形包-填充载体.yaml` | 89 个槽位及其 filled/kind/trace/owner/stage/ap/searched |\n| 2 | `res-标准条款库（资产・增量补充）` | 条款正文 + 节→标准映射 |\n| 3 | `res-数据桥` | 报告上下文.db 既有事实 |\n| 4 | `res-节点填充` | 逐节明细（兼容旧结构） |\n\n## 工作步骤\n\n### ① 从载体出章包\n```bash\npython3 corpus_pipeline/evo_form_carrier.py --emit          # → 写作输入包_形包派生/\npython3 corpus_pipeline/evo_form_carrier.py --emit --force  # → 写作输入包/（确认后才用）\n```\n**默认不覆盖 `写作输入包/`**，先出到旁路目录比对，核对无误再 `--force`。\n\n### ② 注入标准引用与预填充\n```bash\npython3 corpus_pipeline/evo_std_prefill.py      # → 写作输入包/_预填充/第N章-标准.md\n```\n合并三源：`std_cites`（历史实测引用）+ 条款库（条款正文）+ 载体检索槽位。\n\n### ③ 重建 manifest（指纹 + 自检）\n每章 `sha256`、`law_sections/our_sections` 条数、六类计数、自检结论。\n**自检硬指标**：`值型总数 == 客户资料纯客户输入数`。不等就是解析漏了或多了。\n\n### ④ 校验\n```bash\npython3 corpus_pipeline/evo_a16_check.py        # 缺口必须有 searched 证据\npython3 corpus_pipeline/evo_asset_purity.py     # 资产不得含项目值\npython3 corpus_pipeline/evo_wf_purity.py --selftest\npython3 corpus_pipeline/evo_form_carrier.py --check\n```\n\n## 硬约束\n\n1. **载体是唯一数据源**——不得绕过载体自己另建章包（曾出现两套并行、192 vs 89 只对上 2 个）\n2. **节号一律 304 法定节**（`GAP-<法定节>`；第11章为 `GAP-11.1`）\n3. 不适用必带 AP 号；缺口必带责任方+阶段+searched\n4. 载体里仍 `pending` 的槽位**如实留在包里并标 pending**，不得为了\"完整\"删除或臆测\n5. 项目值只能落章包，不得写进 skill / 成员定义 / 工作流节点正文 / 资源备注\n6. manifest 的 sha256 必须重算\n\n## 输出\n\n- `写作输入包/manifest.yaml`\n- `写作输入包/第N章-*.yaml` × 11\n- `写作输入包/_预填充/第N章-标准.md` × 11\n- 报告：`logs/写作输入包状态.md`\n\n## 判定行\n```\nPKG-OK chapters=<n> units=<n> slots=<n> filled=<n> pending=<n> prefilled=<n> selfcheck=<pass|fail>\n```"
+      }
+    },
+    {
+      "id": "res-写作输入包（写作侧唯一入口）",
+      "type": "wfResource",
+      "position": {
+        "x": 1208,
+        "y": 237
+      },
+      "data": {
+        "label": "写作输入包（v3 合并包・207 槽・89/89）",
+        "description": "写作侧唯一数据入口（v3 合并包）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "写作输入包/manifest.yaml",
+            "note": "**写作侧就绪检查入口**。含：版本（v3 合并包）、生成时间、11 章包的 sha256 指纹、各章六类条数、总计、**304 原句覆盖对账**、自检结论。\n\n**写作侧必读**：开工前先读它，本章不在章节包里＝解析未完成，报缺不得臆测。\n**自检硬指标**：值型 69=69；不适用缺 AP 0；缺口缺三要素 0；**304 原句 89/89 全覆盖**。"
+          },
+          {
+            "kind": "folder",
+            "value": "写作输入包/",
+            "note": "**11 章包（207 槽）**。每章：law_sections / our_sections（GAP-<法定节>）/ user_inputs / derived / retrieval / gaps（带 owner+stage+searched）/ na（带 AP 号）/ notes / references / formulas / standards / output_contract。\n\n**合并包特点**：每个槽位挂 `legal_sentence`（指向 304 原句）——于是细粒度写作定位与句子级完整性对账同时成立。\n\n**术语**：值型 69 / 推演 31 / 检索 28 / 缺口 51 / 不适用 25 / 说明 3。\n\n**项目动态数据只存这里**，skill / 成员定义 / 节点正文一律不得写项目值。"
+          },
+          {
+            "kind": "folder",
+            "value": "写作输入包/_预填充/",
+            "note": "**标准预填充（第N章-标准.md）**。合并三源：std_cites（历史实测引用）+ 条款库（条款正文）+ pkg_slots 检索槽位。\n\n写作侧取数层 **L1.5**，agent 直接引用，不得凭记忆写条款号与限值。实际体积 0–6 KB/章（共 5 章有条款库条目）。"
+          },
+          {
+            "kind": "file",
+            "value": "法律覆盖-多句.yaml",
+            "note": "**304 原句↔槽位 多对多映射（9 个槽位涉及多句）**。不进写作上下文，只供审计与对账。\n\n用途：审核对账时确认「一个不适用判定同时回应了哪几句 304 要求」——这是两套包切法差异的实质记录。"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "a_parse->a_fill",
+      "source": "a_parse",
+      "target": "a_fill",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "按上游给出的「缺失事实清单」判断哪些槽位可填值、哪些只能标缺口；不要把未提供的数据当作可填值。"
+        }
+      }
+    },
+    {
+      "id": "a_fill->a_prompt",
+      "source": "a_fill",
+      "target": "a_prompt",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": false
+      }
+    },
+    {
+      "id": "a_parse->res-项目事实清单",
+      "source": "a_parse",
+      "target": "res-项目事实清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_fill->res-填充批次",
+      "source": "a_fill",
+      "target": "res-填充批次",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_prompt->res-提示词就绪",
+      "source": "a_prompt",
+      "target": "res-提示词就绪",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目事实清单->a_fill",
+      "source": "res-项目事实清单",
+      "target": "a_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-填充批次->a_prompt",
+      "source": "res-填充批次",
+      "target": "a_prompt",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-骨架就绪->a_parse",
+      "source": "res-骨架就绪",
+      "target": "a_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_fill->res-节点填充",
+      "source": "a_fill",
+      "target": "res-节点填充",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-节点填充->a_prompt",
+      "source": "res-节点填充",
+      "target": "a_prompt",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_prompt->res-任务书",
+      "source": "a_prompt",
+      "target": "res-任务书",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_parse->res-数据桥",
+      "source": "a_parse",
+      "target": "res-数据桥",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "a_prompt->res-数据桥",
+      "source": "a_prompt",
+      "target": "res-数据桥",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-数据桥->a_fill",
+      "source": "res-数据桥",
+      "target": "a_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-形包->a_fill",
+      "source": "res-形包",
+      "target": "a_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目资料->a_parse",
+      "source": "res-项目资料",
+      "target": "a_parse",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-推演规约->a_fill",
+      "source": "res-推演规约",
+      "target": "a_fill",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-形包->a_std_lib",
+      "source": "res-形包",
+      "target": "a_std_lib",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_std_lib->res-标准条款库（资产・增量补充）",
+      "source": "a_std_lib",
+      "target": "res-标准条款库（资产・增量补充）",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_fill->a_pkg",
+      "source": "a_fill",
+      "target": "a_pkg",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_pkg->res-写作输入包（写作侧唯一入口）",
+      "source": "a_pkg",
+      "target": "res-写作输入包（写作侧唯一入口）",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-标准条款库（资产・增量补充）->a_pkg",
+      "source": "res-标准条款库（资产・增量补充）",
+      "target": "a_pkg",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "a_std_lib->a_pkg",
+      "source": "a_std_lib",
+      "target": "a_pkg",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": "."
+  }
+}

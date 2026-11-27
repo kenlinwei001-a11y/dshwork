@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "record": {
+    "id": "expert-d03714edbde8",
+    "owner": {
+      "organizationId": "local-personal",
+      "ownerPrincipalId": "local-user",
+      "scope": "personal"
+    },
+    "origin": "personal",
+    "availability": "enabled",
+    "revision": "r-a338e4e8-810f-46f5-a401-195f639cf5fa",
+    "draftRevision": "f32311ef72d4",
+    "createdAt": "2026-11-22T12:53:50.569Z",
+    "updatedAt": "2026-11-22T12:53:50.569Z"
+  }
+}

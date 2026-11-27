@@ -58,6 +58,29 @@ reference_graph[]: 10 条引用的 from→to、类型、取数方式
 | 有哪些坑 | `ontology/known-defects.yaml` |
 | 发布前要过什么关 | `gates/quality_gates.yaml` |
 
+
+## 本体层 MCP：`evoontology` v1.1.1（本机调整版）
+
+**每次调用必须传 `workspace`** —— 1.1.1 不再用 `--store` 默认值。当前工作区：
+
+```
+/Users/apple/Desktop/项目/中咨国际/上财大数据研究中心-可研本体/.evoontology
+```
+
+**v1.1.1 相对官方版的扩展**：关系类型从 5 种扩到 **11 种** ——
+受控 5：`association` / `hierarchy` / `composition` / `equivalence` / `derivation`
+扩展 6：`reasoning`（claim←guard/gate）、`reuse`（claim←规则/指标/限值）、`citation`（clause←标准）、
+`has_limit`（metric←限值）、`tests`（gate←计算函数）、`guards`（guard←gate）
+
+**分工**：查术语/门禁/限值/证据 → `evoontology`；查项目实体/事实/Claim → `graph.json`；查条款/限值/门禁的**可复用形** → 形包。
+
+```python
+browse_semantics(workspace="<ws>", query="总投资", kind="term", limit=5)
+resolve_semantics(workspace="<ws>", mentions=["总投资","gate_xxx","limit_xxx"])  # ≤5
+```
+
+`validate_semantics` **不校验 relation_type 取值**，只查引用完整性 —— 所以 264 条扩展关系合法。
+详见 `references/evoontology-mcp.md`。
 ## 第三步：沿引用链取数，遵守三铁律
 
 ### 铁律① 只引用 ID / 名称，不复制内容

@@ -50,6 +50,42 @@ description: "以工具加 LLM 分层做知识处理：确定性步骤走 kp_too
 - 证据充分性判断（claim-validation-skill）
 - 推演写作（graph-deductive-writing-skill）
 
+
+
+## 建图分两步（不可合并）
+
+```
+第 1 步  EvoOntology build/evolve → 含值本体（terms/relations/constraints/evidence）
+         ★ 必须含值，否则抽不出关系
+第 2 步  kp_cli.py distill → 形包
+         ★ 必须去值，否则无法跨项目复用
+```
+
+**判据**：值 = 项目名/金额/面积/人数/日期；形 = 术语类型/关系类型/句式骨架/验证方法类别/标准号。
+**工具**：`corpus_pipeline/evo_distill.py`（零 LLM，终检不过退出码 1）。
+详见 `references/evoontology-mcp.md`。
+## 本体层 MCP：`evoontology` v1.1.1（本机调整版）
+
+**每次调用必须传 `workspace`** —— 1.1.1 不再用 `--store` 默认值。当前工作区：
+
+```
+/Users/apple/Desktop/项目/中咨国际/上财大数据研究中心-可研本体/.evoontology
+```
+
+**v1.1.1 相对官方版的扩展**：关系类型从 5 种扩到 **11 种** ——
+受控 5：`association` / `hierarchy` / `composition` / `equivalence` / `derivation`
+扩展 6：`reasoning`（claim←guard/gate）、`reuse`（claim←规则/指标/限值）、`citation`（clause←标准）、
+`has_limit`（metric←限值）、`tests`（gate←计算函数）、`guards`（guard←gate）
+
+**分工**：查术语/门禁/限值/证据 → `evoontology`；查项目实体/事实/Claim → `graph.json`；查条款/限值/门禁的**可复用形** → 形包。
+
+```python
+browse_semantics(workspace="<ws>", query="总投资", kind="term", limit=5)
+resolve_semantics(workspace="<ws>", mentions=["总投资","gate_xxx","limit_xxx"])  # ≤5
+```
+
+`validate_semantics` **不校验 relation_type 取值**，只查引用完整性 —— 所以 264 条扩展关系合法。
+详见 `references/evoontology-mcp.md`。
 ## 工作流
 
 1. 判定任务与文档类型，确定领域本体。

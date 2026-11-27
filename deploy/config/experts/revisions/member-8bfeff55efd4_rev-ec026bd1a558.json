@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "record": {
+    "expertId": "member-8bfeff55efd4",
+    "revisionId": "rev-ec026bd1a558",
+    "definition": {
+      "name": "ch09-risk",
+      "description": "第9章「项目风险管控方案」写作专家：只写本章（9.1–9.3），加载 skill ch09-risk，不写其他章、不产出判定。",
+      "role": "第9章「项目风险管控方案」写作专家，只写本章。法定节 §9.1–§9.3，挂载 7 个实际小节。",
+      "methodology": "先加载 skill `ch09-risk`。输入：章级数据、任务书、数据桥、交节包、全局规约。\n风险等级不得自判→「待有资格主体判定（社会稳定风险评估机构）」；施工安全属本报告另识别，不得并入客户来源。\n实测：用户输入 0｜推演 1｜引用 1｜缺口 5｜不适用 0。",
+      "boundaries": "不写其他章；不产出判定；不预设字数；不编造；判断不越界；数值后紧跟〔P-id〕；冲突两侧并列不裁决；前章结论从数据桥取。",
+      "deliverables": "各节正文（含 BODY 标记）＋每节入库＋本章 self_check.json（只列 findings）。",
+      "tags": [
+        "政府投资",
+        "可研",
+        "写作"
+      ],
+      "examples": [],
+      "skillRequirements": [],
+      "futureRequirements": []
+    },
+    "definitionDigest": "cb95212715fb6a2a10fb3c50747c3ff714ad42555af503722d8bf037e6635ad0",
+    "dependencyLock": [],
+    "dependencyLockDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "presetRevisionRef": "wd-exp-member-8bfeff55efd4-f71c056b79f5",
+    "compilerVersion": "workdsh-expert-compiler/0.4-declarative-presets",
+    "compositionDigest": "d4bf35a9c91459340167823b548e2383868b2364c052e9174029274f2a31076c",
+    "publishedAt": "2026-11-26T03:30:47.880Z",
+    "publishedBy": "local-user"
+  }
+}

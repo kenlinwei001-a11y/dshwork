@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "id": "m_input",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【输入】确认输入合同：规范1–N＋主大纲＋真实案例＋类型名",
+        "description": "确认规范（1–N份，指定主大纲）+ 一份真实案例 + 报告类型名，锁死输入合同",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n确认本次要造的形包制造专家「造什么类型」，把输入合同固定下来。**本步不造东西，只把输入锁死。**\n\n## 输入契约（逐项确认，缺一项就停下问用户）\n| # | 输入 | 必需 | 校验 |\n|---|---|---|---|\n| I1 | 规范文件 **1–N 份** | 必需 | 必须**显式指定哪份是主大纲、哪份是说明/配套**；多份时说明优先级与冲突处置 |\n| I2 | **一份真实案例** | 必需 | 形包供体（节树/句式骨架/关系/槽位来源） |\n| I3 | 报告类型名与适用领域 | 必需 | 决定专家命名与领域术语 |\n| I4 | 已知雷区（可选） | 可选 | 该类型不得出现的内容 |\n\n## 输入纪律（硬）\n- **规范不得替代**：不能拿「我记得的标准」当规范源；只认用户给的文件\n- **官方说明未必逐节覆盖**：覆盖度须实测并分级（individual / grouped / embedded / cross_reference / absent）\n- **absent 的节用主大纲原文补齐并标来源等级**，不得推定、不得假装有官方依据\n- **案例只供形不供值**：案例的机构名/地名/建筑/数值/文号一律进禁区\n\n## 产出\n`logs/制造输入.md`：\n```yaml\ntarget_expert_name: <将造的形包制造专家名>\nreport_type: <报告类型>\nspecs:\n  - {file: <路径>, role: 主大纲|说明|配套, priority: 1}\ncase_file: <路径>\ndomains: [<领域关键词>]\nforbidden: [<已知雷区>]\ncoverage: {individual: n, grouped: n, embedded: n, cross_reference: n, absent: n}\n```\n\n## 判定行\n```\nMFG-INPUT-OK specs=<份数> main=<主大纲文件名> case=<案例文件> type=<类型名> absent=<absent节数>\n```\n失败：`MFG-INPUT-FAIL missing=<I1|I2|I3> reason=<原因>`\n\n## 硬规则\n- 输入不全就**停下问用户**，不得用常见做法补齐\n- 多份规范没指定主大纲时，**不得自己猜**哪份是主纲"
+      }
+    },
+    {
+      "id": "m_build",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【Agent】M1–M8 造专家：规范解析→案例解析→禁区→映射→槽位→判据→自检清单",
+        "description": "按 M1–M8 造出形包制造专家的 Agent MD、判据集与交付清单",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n按 M1–M8 造出一个**能造形包**的专家（不是造形包本身）。产出该专家的 Agent MD + 判据集 + 交付物清单。\n\n## M1 规范解析\n逐句拆法定条目（留原句）／抽适用性规则（含 blocker / must_state / can_simplify 分级）／登记阈值缺位（原文未给数值门槛的指标）／定法定节名。\n**每条必须可追回原句与位置。** 官方说明未覆盖的节 → 用主大纲原文补齐并标 `official_outline_only`。\n\n## M2 案例解析\n建节树与行区间／段功能序列／句式骨架／三类关系（复用·依据·引用）。\n**每节必须有行区间定位。**\n\n## M3 建禁区\n从案例抽专有信息：机构名／地名／建筑／场地／周边道路／关键数值／文号。\n**脱敏安排在取句源头执行**（下游只替换会漏网）。\n禁区清单须含「X路/X街/X大道」兜底。\n\n## M4 内容映射\n法定节 ↔ 案例节，**按标题与内容匹配，禁止按编号**。\n每条给 evidence；无对应内容判 `gap`，**不硬借形**。\n⚠ 同一编号在两个体系里可能是两回事（如法定 §2.3 与案例 §2.3）。\n⚠ **不得剥 GAP- 前缀**——GAP 节是法定概念，与同号案例节是两个不同章节。\n\n## M5 定槽位\n每条目一个 owner。案例有法定无 → `subdivision`；全 ref → `all_ref`。\n**own=0 必须显式声明原因**，否则下游无法区分「合法无内容」与「抽取遗漏」。\n\n## M6 槽位四字段（本步最容易偷工减料的地方）\n每槽必须有：\n- `evidence` —— 去哪找（该类数据在客户资料里的材料来源）\n- `kind` —— 抽多深（`L1_single` 单值 / `L2_item` 多项 / `L3_argument` 论证）\n- `forbid` —— 禁填什么\n- `calc` —— 能否用算式推演（不能就留空）\n\n**只有 name+status 的槽位不得交付**——下游只能猜，等于无目标抽取。\n**evidence 完整率必须 ≥95%**；按槽位名映射材料来源，**不得用兜底话（「客户提供的项目材料」）敷衍**。\n\n## M7 写判据 F1–F6 + 来源分级\n| 判据 | 内容 |\n|---|---|\n| F1 法定条目完整 | 与规范逐条对得上 |\n| F2 适用性规则完整 | 每条含分级与触发条件 |\n| F3 阈值缺位登记 | 缺位的只能查「是否计算/是否披露」，不得判达标 |\n| F4 法定节名 | GAP 节用法定真名，不得剥前缀 |\n| F5 槽位可定向 | evidence 完整率 ≥95% |\n| F6 禁区与指纹 | 禁区清单 + 逐产物 sha256 + 覆盖度 + 缺口登记 |\n\n每条判据标来源等级：**主大纲 / 说明 / 案例实测 / 自创**。自创项必须降为参考级，**不得当法定要求**。\n\n## M8 建自检与交付清单\n形包清单（sha256 + 覆盖度统计）／禁区清单／交付物路径表。**指纹必须与实物一致。**\n\n## 产出\n- `<新专家名>.md` —— 该专家的 Agent MD（含边界、工序 S1–S6、F1–F6 判据、自检清单、六条继承教训）\n- `logs/制造记录.md` —— M1–M8 每步的产物与证据\n- `logs/判据来源分级.md` —— 每条判据的来源等级\n\n## 判定行\n```\nMFG-BUILD-OK items=<法定条目数> rules=<适用性规则数> slots=<槽位数> evidence_rate=<完整率> criteria=<F1-F6是否齐> source_ratio=<有来源判据数>/6\n```\n失败：`MFG-BUILD-FAIL at=<M1..M8> reason=<原因>`\n\n## 六条必须原样继承的形包侧教训（不得精简掉）\n1. **不得剥 GAP- 前缀**\n2. **同号不同节**：禁止按编号对应，必须按标题与内容\n3. **无对应内容判 gap，不硬借形**\n4. **脱敏必须在取句源头做**\n5. **形包清单必须带指纹**：逐产物 sha256 + 覆盖度，追不到的登记为 gap\n6. **案例专有信息会污染图谱**：算式占位符里写案例机构名是常见污染\n\n## 硬规则\n- **不得用「改判据」回应「产出不合格」**：先查工序是否缺、输入是否不足\n- **不得把自创判据当法定要求**\n- **必须复用已有资产**：已有脚本（如 `evo_slots_enrich.py`、`evo_pkg.py`、`evo_formula_spec.py`）能用的直接用，不另写一套\n- 能力不足时报缺口，**不得悄悄降级**"
+      }
+    },
+    {
+      "id": "m_trial",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【Agent】M9 试跑验收 QG1–QG5（不可跳过）",
+        "description": "M9 试跑验收：让新专家实跑一次形包，用 QG1–QG5 判定是否合格",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 目标\n**M9 试跑验收**：让刚造出的形包制造专家**实际跑一遍**，用 QG1–QG5 判它是否合格。**造完不算完。**\n\n## 为什么不能跳过本步\n本项目实证：未试跑的规则导致下游返工 **7 轮**、单节最多重判 **19 次**。不试跑就交付，等于把缺陷留给下游。\n\n## QG1–QG5（逐项实测，不接受「应该没问题」）\n| 关 | 内容 | 怎么测 | 通过标志 |\n|---|---|---|---|\n| **QG1 可产出 F1–F6** | 让被造出的专家对那份案例实际试造一次形包 | 按它的工序真跑，不是走查 | F1–F6 全部产出且自检绿 |\n| **QG2 判据有来源** | 逐条查 F1–F6 的来源标注 | 读 `logs/判据来源分级.md` | 无「无来源判据」；自创项已降为参考级 |\n| **QG3 槽位可定向** | 抽 10 个槽位抽查 | 看是否都有 evidence/kind/forbid/calc | 完整率 ≥95%，且无兜底话敷衍 |\n| **QG4 禁区可执行** | 检查脱敏能否在取句源头运行 | 试跑后全文扫案例专有信息 | 无残留 |\n| **QG5 教训已继承** | 逐条比对 | 六条形包侧教训 | 缺一条即不合格 |\n\n## 试跑抽样（必须覆盖三类槽位）\n至少各抽 2 个：`L1_single` 单值槽 ／ `L2_item` 多项槽 ／ `L3_argument` 论证槽。\n**三类都跑过才算试跑完成**——只跑单值槽会漏掉多项与论证类缺陷。\n\n## 不合格时的处置（关键：不许改判据蒙过）\n| 失败形态 | 归因 | 处置 |\n|---|---|---|\n| 某类槽位系统性缺 evidence | **制造工序缺失**（M6 没做扎实） | 回 M6 补，不改判据 |\n| 判据无来源 / 自创当法定 | **M7 违规** | 回 M7 重标来源分级 |\n| 验收判据本身误报 | **判据错** | 先 `--log` 记原因再改，并登记误报 |\n| 个别槽位判断失误、其余正确 | 执行质量，非工序缺陷 | 不改工序，记为执行教训 |\n\n## 产出\n`logs/试跑验收.md`：\n```yaml\ntarget_expert: <新专家名>\nqg1: {f1_f6_emitted: true, self_check: PASS|FAIL, evidence: <路径>}\nqg2: {sourced: n, self_invented: n, downgraded: bool}\nqg3: {sampled: 10, with_4_fields: n, rate: 0.xx, boilerplate_found: bool}\nqg4: {sanitize_at_source: bool, residue: 0}\nqg5: {six_lessons: n/6}\nverdict: PASS|FAIL\nfail_traceback: <不合格时回哪一步>\n```\n\n## 判定行\n```\nMFG-TRIAL-OK qg1=PASS qg2=<有来源>/6 qg3=<完整率> qg4=0残留 qg5=6/6 verdict=PASS\n```\n失败：`MFG-TRIAL-FAIL qg=<QgN> reason=<原因> back_to=<M1..M8>`\n\n## 硬规则\n- **不得跳过试跑**——没试跑就交付视同未完成\n- **不得改判据让试跑过**——QG 不过先查 M1–M8 哪步没做扎实\n- **不得自评通过**——试跑结果须留下可复查的证据（产物路径 + 实际输出）\n- 试跑用的案例必须是 I2 那份**真实案例**，不得换一个更简单的"
+      }
+    },
+    {
+      "id": "res-制造输入（规范与案例）",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "制造输入（规范与案例）",
+        "items": [
+          {
+            "kind": "text",
+            "value": "target_expert_name / report_type"
+          },
+          {
+            "kind": "folder",
+            "value": "standards",
+            "note": "规范文件 1–N 份。**必须指定哪份是主大纲**；多份时说明优先级与冲突处置。只认用户给的文件，不得用「我记得的标准」代替。"
+          },
+          {
+            "kind": "folder",
+            "value": "inbox/case",
+            "note": "形包供体：节树 / 句式骨架 / 三类关系 / 槽位来源。**只供形，不供值**。"
+          },
+          {
+            "kind": "file",
+            "value": "领域参考.md",
+            "note": "报告类型与领域术语表（可选），用于定专家命名与领域用词"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-制造产出（新专家定义与验收）",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "制造产出（新专家定义与验收）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "agents/<新专家名>.md",
+            "note": "本图的唯一交付物：一个能被下游使用的「形包制造专家」定义。必含：边界 / 工序 S1–S6 / F1–F6 判据（每条标来源）/ 自检清单 / 六条形包侧教训。"
+          },
+          {
+            "kind": "file",
+            "value": "logs/制造记录.md",
+            "note": "M1–M8 每步的产物与证据（法定条目数、映射证据、槽位完整率…），供 M9 与人工复核"
+          },
+          {
+            "kind": "file",
+            "value": "logs/判据来源分级.md",
+            "note": "每条判据的来源等级：主大纲 / 说明 / 案例实测 / 自创。**自创项必须降为参考级**；无来源判据不得用于判定。"
+          },
+          {
+            "kind": "file",
+            "value": "logs/试跑验收.md",
+            "note": "M9 试跑验收结果（QG1–QG5 逐项），不合格时写 back_to 应退回哪一步"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "m_input->m_build",
+      "source": "m_input",
+      "target": "m_build",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "按上游锁定的输入合同开工：严格用「主大纲」那份当规范源，多份时按 priority 处理冲突；案例只供形不供值。"
+        }
+      }
+    },
+    {
+      "id": "m_build->m_trial",
+      "source": "m_build",
+      "target": "m_trial",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "拿上游造出的专家定义与判据集，按 M9 用同一份真实案例实跑一次；QG 不过时回传应退回哪一步（back_to）。"
+        }
+      }
+    },
+    {
+      "id": "res-制造输入（规范与案例）->m_input",
+      "source": "res-制造输入（规范与案例）",
+      "target": "m_input",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "m_build->res-制造产出（新专家定义与验收）",
+      "source": "m_build",
+      "target": "res-制造产出（新专家定义与验收）",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-制造产出（新专家定义与验收）->m_trial",
+      "source": "res-制造产出（新专家定义与验收）",
+      "target": "m_trial",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": "."
+  }
+}

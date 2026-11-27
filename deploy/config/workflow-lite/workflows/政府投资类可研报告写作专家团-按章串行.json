@@ -1,0 +1,745 @@
+{
+  "nodes": [
+    {
+      "id": "s01_ch01_draft",
+      "type": "wfNode",
+      "position": {
+        "x": 80,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch01-overview】独立agent·1.4留占位·查库定位·推演走Semantica",
+        "description": "第1章概述写作专家（独立agent+查库定位+两遍时序）",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 你是谁\n\n你是**第1章「概述」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n\n### ① 读 skill 与准入门\n```\nskill: ch01-overview          ← 本章法定节、取数序、写法、硬规则、判定行全在这里\n就绪检查: 写作输入包/manifest.yaml  ← 第1章不在包里即报缺，不臆测\n```\n\n### ② 查库定位（你是独立 agent，看不到其他章对话）\n```bash\n# 必读：DB 查询指南（3.5KB，含 8 个场景化 SQL + 16 种关系含义）\n# 本节在全文的位置 + 前后节\nsqlite3 关联图谱.db \"SELECT src,dst FROM typed_edges WHERE dst='S-GAP-1.1' AND rel='next_to';\"\n# 本章有哪些槽位\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=1;\"\n```\n**你是首章**：没有前章可查，不要去找不存在的上下文。\n\n### ③ 逐节写\n```\nL1 本章包（只读本节切片）→ L2 任务书/<节号>.md → 正文\n```\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 4（1.1–1.4） |\n| 槽位 | 20（值13 推2 检1 缺4） |\n| 推演 | 2 个：国拨资金占比、学校自筹占比 |\n| 上下文 | 约 31 KB |\n| 资源 | 不涉资源①（非定规模章）；读资源② |\n\n**本章分两遍**：\n- **初版（本节点）**：只写 1.1–1.3，**1.4 留占位**（`1.4 主要结论将在第2–9章写完后回填`）\n- 终版（s10_ch01_final）：回填 1.4，1.1–1.3 冻结\n\n**初版不得硬编结论**——若初版写死 1.4，终版回填会与前文矛盾。\n\n## 推演\n\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-1.1\n```\ntrace 形如 `semantica:run_reasoning:DF-*`。**不得手算**；工具不可用时停下报告 `blocked`，不得把推演改成「说明」或「缺口」。\n\n## 写完必做\n\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-1.1   # 逐节入库\n```\n**不入库，下游 agent 就查不到你写的东西。**\n\n## 判定行\n```\nCH01-OK sections=4 written=<n> blocked=<n> updates=<n>\n```\n\n## 硬规则\n- 不编造（设备单价/征收补偿/注册资本/信用代码/法人/股东/运营成本）\n- 判断不越界（风险等级/等保/高耗能/是否达标 → 待有资格主体）\n- 冲突两侧并列 + 「本报告不裁决」\n- 缺口写三要素；不适用写 AP 号；推演留 trace\n- 不跨节指路（越界判 D9）"
+      }
+    },
+    {
+      "id": "s02_ch02",
+      "type": "wfNode",
+      "position": {
+        "x": 428,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch02-background】独立agent·检索最重3槽·写资源②",
+        "description": "第2章背景与必要性（检索最重，逐一点名文号）",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 你是谁\n\n你是**第2章「项目建设背景和必要性」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n\n**① 读 skill `ch02-background`**（本章法定节、取数序、写法、硬规则、判定行全在 skill，本节点不重述）\n\n**② 查库定位**（你是独立 agent，看不到第1章的对话）\n```bash\n# 必读 布局-DB查询指南.md（3.5KB，8 个场景化 SQL + 16 种关系）\n# 本章槽位\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=2;\"\n# 前章定了什么（第1章是首章，只涉 1.1–1.3，1.4 还是占位）\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节 LIKE 'GAP-1.%';\"\n```\n\n**③ 逐节写** `L1 本章包切片 → L2 任务书/<节号>.md → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 3（2.1 / 2.2 / 2.3） |\n| 槽位 | 9（值1 推1 检3 缺3 NA1） |\n| 推演 | 1 个：项目服务对象规模（280+1100=1380 人） |\n| **检索** | **3 个，本章最重**：国家与上海市规划政策 / 规划符合性依据 / 必要性论证依据 |\n| 标准预填 | 1,820 字符（标准库 0 条，全是检索依据+历史引用） |\n| 上下文 | 约 28 KB |\n| 资源 | 不涉资源①；**写资源②**（本章结论进全篇汇总） |\n\n## 本章重点\n\n**检索最重**——3 个检索槽位必须逐一点名文件全称 + 文号：\n- 规划类：《上海市科技创新中心建设规划》等 → 查 `v_std_for_section` 与标准预填\n- **未核实的文号必须标「待核」**，不得编造规划名称\n\n**缺口 3 个**：立项背景与决策依据 / 规划符合性结论 / 必要性论证材料——三要素齐全。\n\n**不适用 1 个**：外商投资项目行业准入（AP-022）。\n\n## 推演\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-2.3\n```\n不得手算；工具不可用停报 `blocked`。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-2.1   # 逐节\n```\n\n## 判定行\n```\nCH02-OK sections=3 written=<n> blocked=<n>\n```\n\n## 硬规则\n不编造 / 判断不越界 / 冲突两侧并列不裁决 / 缺口三要素 / 不适用带 AP / 推演留 trace / 不跨节指路"
+      }
+    },
+    {
+      "id": "s03_ch03",
+      "type": "wfNode",
+      "position": {
+        "x": 776,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch03-demand】★定规模·写资源①·7推演·下游5章取数",
+        "description": "第3章需求分析与产出（定规模章，写资源①，7个推演）",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 你是谁\n\n你是**第3章「项目需求分析与产出方案」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n\n**① 读 skill `ch03-demand`**\n\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=3;\"\n# 前章（第2章）定了什么\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节 LIKE 'GAP-2.%';\"\n```\n\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 3（3.1 需求 / 3.2 内容规模 / 3.3 产出方案） |\n| 槽位 | 25（值9 推7 检2 缺5 NA2） |\n| **推演** | **7 个（第二多）** |\n| 标准预填 | 623 字符（标准库 1 条：建标191-2018 面积指标） |\n| 上下文 | 约 33 KB |\n| 资源 | **写资源①（定规模）**；写资源② |\n\n## 本章是「定规模章」——最关键的一章\n\n**本章定的面积与投资写入资源①，下游 4 章（s04/s05/s07/s08）和 s10 全从这里取数。**\n\n| 写什么 | 来源 |\n|---|---|\n| 科研人员规划人数 280、研究生 1100 | 客户资料 §三 |\n| 建筑面积指标 16㎡/人、8㎡/人、平面利用系数 0.8 | 建标191-2018（客户资料 §四 转引） |\n| 总规模 15600㎡、地上 13800、地下 1800 | 客户资料 §二 |\n| 用房构成 9600/2400/1320 | 客户资料 §二 |\n\n**任何后续章不得另立口径。** 下游取不到就报缺口，不得凭记忆填。\n\n## 推演 7 个（全走 Semantica）\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-3.1   # 需求面积类\npython3 corpus_pipeline/evo_derive.py --sections GAP-3.2   # 差额类\npython3 corpus_pipeline/evo_derive.py --verify\n```\n含：科研用房需求面积 280×16=4480、研究生等 1100×8=8800、总需求 14600、公共服务配套、用房构成合计 13320、地上与构成差额 480、设计规模与指标差额 1000。\n\n**不得手算**；工具不可用停报 `blocked`。\n\n## 本章要写明的两项差额（冲突不裁决）\n- 地上 13800 − 用房构成 13320 = **480㎡** 差额口径客户未说明\n- 设计 15600 − 指标测算 14600 = **1000㎡** 超指标理由客户未提供\n两侧并列 + 「本节不裁决」，列入缺口（责任方：建设单位/设计单位；阶段：初步设计阶段）。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-3.1   # 逐节\n```\n**你必须入库**：第3章写完闸门 `--after 3` 才放行，后续章全不启动。\n\n## 判定行\n```\nCH03-OK sections=3 written=<n> res1_written=<y|n> blocked=<n>\n```\n\n## 硬规则\n不编造 / 判断不越界 / 冲突两侧并列不裁决 / 缺口三要素 / 推演留 trace / 不跨节指路"
+      }
+    },
+    {
+      "id": "s04_ch04",
+      "type": "wfNode",
+      "position": {
+        "x": 1124,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch04-site】独立agent·缺口6+NA3最密·无推演·读资源①",
+        "description": "第4章选址与要素保障（缺口6+NA3最密，无推演）",
+        "icon": "bug",
+        "color": "coral",
+        "prompt": "## 你是谁\n\n你是**第4章「项目选址与要素保障」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n\n**① 读 skill `ch04-site`**\n\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=4;\"\n# 从资源①取第3章定的规模口径\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节='GAP-3.2';\"\n```\n\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 3（4.1 选址 / 4.2 建设条件 / 4.3 要素保障） |\n| 槽位 | 14（值1 推0 检4 缺6 NA3） |\n| **推演** | **0 个——本章不需要调 Semantica** |\n| 标准预填 | 342 字符（标准库 0 条） |\n| 上下文 | 约 30 KB |\n| 资源 | **读资源①**（第3章的面积与投资口径）；写资源② |\n\n## 本章特点：缺口 6 + 不适用 3，全篇最密\n\n**6 个缺口（三要素必须齐全）**：\n\n| 槽位 | 责任方 | 阶段 |\n|---|---|---|\n| 场地岩土勘察报告 | 建设单位/勘察单位 | 初步设计阶段 |\n| 施工条件 | 建设单位/施工单位 | 初步设计阶段 |\n| 国土空间规划 | 建设单位/规划主管部门 | 可行性研究阶段 |\n| 用地总体情况 | 建设单位/资产管理部门 | 可行性研究阶段 |\n| 水资源承载 | 建设单位/水务主管部门 | 可行性研究阶段 |\n| 自然环境条件 | 建设单位/勘察单位 | 初步设计阶段 |\n\n**3 个不适用（带 AP 号）**：耕地（AP-018）、永久基本农田（AP-019）、用海用岛（AP-020）\n\n## 本章要点\n\n- **不得把未取得的勘察报告写成「已具备」**——地质、地震、防洪参数没有就报缺口\n- 选址依据要写「既有校区存量用地」，不涉及新增用地报批、不占永久基本农田\n- 4 个检索槽位（交通运输条件 / 公用工程条件 / 自然环境条件 / 要素保障依据）要逐一点名依据\n\n## 本章无推演\n若写作中发现某处需要计算（如新增汇总项）→ **停下来报告**，不要自己算。由指挥方补 `推演算式.yaml` 声明后按四步执行。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-4.1   # 逐节\n```\n\n## 判定行\n```\nCH04-OK sections=3 written=<n> gaps=6 na=3 blocked=<n>\n```\n\n## 硬规则\n不编造 / 勘察未取得不得写成已具备 / 判断不越界 / 缺口三要素 / 不适用带 AP / 不跨节指路"
+      }
+    },
+    {
+      "id": "s05_ch05",
+      "type": "wfNode",
+      "position": {
+        "x": 1472,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch05-scheme】★最重章·56槽·10推演·59KB峰值·读资源①",
+        "description": "第5章建设方案（56槽位/10推演/59KB峰值，全篇最重）",
+        "icon": "test",
+        "color": "teal",
+        "prompt": "## 你是谁\n\n你是**第5章「项目建设方案」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n\n**① 读 skill `ch05-scheme`**\n\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=5;\"\n# 从资源①取第3章的规模（面积/构成/投资）\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节='GAP-3.2';\"\n# 本节涉及标准\nsqlite3 报告上下文.db \"SELECT 标准号,文件名,引用次数 FROM v_std_for_section WHERE 法定节 LIKE 'GAP-5.%';\"\n```\n\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点（全篇最重）\n\n| 项 | 值 | 全篇排名 |\n|---|---|---|\n| 节数 | 6（5.1–5.6） | 第二 |\n| 槽位 | **56**（值31 推10 检6 缺7 NA2） | **第一** |\n| 推演 | **10** | **第一** |\n| 标准预填 | **2,956 字符** | **第一** |\n| 上下文 | **59 KB** | **峰值** |\n| 资源 | **读资源①**；写资源② | |\n\n## 六节范围\n5.1 技术方案 / 5.2 设备方案 / 5.3 工程方案 / 5.4 用地用海征收补偿 / 5.5 数字化方案 / 5.6 建设管理方案\n\n## 推演 10 个（全走 Semantica）\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-5.3   # 8 个：负荷/耗电/用水/消防\npython3 corpus_pipeline/evo_derive.py --sections GAP-5.2   # 2 个：多联机冷量/单位面积冷负荷\npython3 corpus_pipeline/evo_derive.py --verify\n```\n含：多联机装机冷量 90×14+45×8+28×3=1704kW、总计算负荷、单位面积冷负荷 109.23、科研用房年耗电量 45.14万kWh、公共配套 2.61万kWh、年总耗电量 47.75万kWh、年用水量 2.43万m³、消防总用水量 576m³、空调计算负荷、照明及其他计算负荷。\n\n**不得手算**；工具不可用停报 `blocked`。\n\n## 本章两处必须并列不裁决\n- **年耗电量**：客户侧 52.51 万kWh〔P-bb3cb210ec2c〕 vs 分项重算 47.75 万kWh → 两侧并列\n- **年用水量**：客户 1.89 万m³〔P-acbdba83dfd9〕 vs 复算 2.43 万m³ → 两侧并列\n\n## 标准条款怎么取（本章标准最多）\n```bash\n# 只有 source_status=可用 才有条款正文\npython3 -c \"import yaml;d=yaml.safe_load(open('standards/条款库.yaml'));print(d['standards']['GB50189-2015']['source_status'])\"\n```\n- 可用（GB50189-2015，161 条）→ 可引条款号+正文（含 4.1.1 / 4.2.6 强条）\n- 无原文（DGJ08-107-2015 乱码 / GB50974 仅PDF）→ **只写《标准名》（编号）**，不编造条款号与限值\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-5.3   # 逐节\n```\n\n## 判定行\n```\nCH05-OK sections=6 written=<n> derived=10 blocked=<n>\n```\n\n## 硬规则\n不编造 / 设备报价未提供不得估算金额 / 判断不越界 / 冲突两侧并列不裁决 / 缺口三要素 / 不适用带 AP / 推演留 trace / 不跨节指路"
+      }
+    },
+    {
+      "id": "s06_ch06",
+      "type": "wfNode",
+      "position": {
+        "x": 1820,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch06-operation】独立agent·自主运营·成本不估算金额",
+        "description": "第6章运营方案（自主运营，成本不估算金额）",
+        "icon": "database",
+        "color": "pink",
+        "prompt": "## 你是谁\n\n你是**第6章「项目运营方案」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n**① 读 skill `ch06-operation`**\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=6;\"\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节 LIKE 'GAP-5.%' LIMIT 8;\"\n```\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 4（6.1 模式 / 6.2 组织 / 6.3 安全保障 / 6.4 绩效） |\n| 槽位 | 10（值1 推1 检3 缺4 NA1） |\n| 推演 | 1 个：运营期人员配置规模 280+1100=1380 人 |\n| 标准预填 | 908 字符（标准库 2 条：JGJ91-2019 运营类） |\n| 上下文 | 约 30 KB |\n| 资源 | 不涉资源①；写资源② |\n\n## 本章要点\n\n**运营模式**：学校自主运营，纳入统一管理——**不委托第三方**（AP-057 条件未触发）\n**组织**：机构设置、人员配置、培训计划——客户未提供编制与培训计划，报缺口\n**安全**：危险因素识别、安全生产责任制、数据/网络/供应链安全、应急预案\n**绩效**：304 全生命周期绩效指标 + 高校科研用房使用效率\n\n## 关键约束\n\n**运营成本未提供不得估算金额**——客户资料没有运营成本底数，只写成本构成与测算口径，不写具体金额（缺口：责任方 建设单位/财务部门，阶段 运营准备阶段）。\n\n推演：\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-6.2\n```\n不得手算；工具不可用停报 `blocked`。\n\n## 标准条款\nJGJ91-2019 目前 `source_status=未取得原文` → 只写《科研建筑设计标准》（JGJ91-2019），**不编造条款号与限值**。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-6.1   # 逐节\n```\n\n## 判定行\n```\nCH06-OK sections=4 written=<n> blocked=<n>\n```\n\n## 硬规则\n不编造 / 运营成本不估算金额 / 判断不越界 / 缺口三要素 / 不适用带 AP / 推演留 trace / 不跨节指路"
+      }
+    },
+    {
+      "id": "s07_ch07",
+      "type": "wfNode",
+      "position": {
+        "x": 2168,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch07-finance】非经营性AP-010·5推演·建安9860vs10180不裁决",
+        "description": "第7章投融资财务（非经营性AP-010，5推演，建安冲突）",
+        "icon": "chart",
+        "color": "olive",
+        "prompt": "## 你是谁\n\n你是**第7章「项目投融资与财务方案」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n**① 读 skill `ch07-finance`**\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=7;\"\n# 从资源①取第3章的规模与投资口径\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节='GAP-3.2';\"\n```\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 5（7.1 投资 / 7.2 盈利 / 7.3 融资 / 7.4 债务 / 7.5 财务可持续） |\n| 槽位 | 25（值9 推5 检2 缺6 NA3） |\n| 推演 | 5 个：投资构成合计、单位建筑面积投资、国拨资金占比、学校自筹占比、资产负债率 |\n| 标准预填 | 482 字符（标准库 0 条） |\n| 上下文 | 约 42 KB |\n| 资源 | 不涉资源①；**写资源②**；emit 8 项 → 第[8,9,10]章 |\n\n## 本章核心判断：非经营性 → 不做盈利能力分析\n\n按 **AP-010**：本项目为政府直接投资的非经营性项目，无营业收入 → **不测算 FIRR / FNPV / 投资回收期**，改做**全生命周期资金平衡分析**，并提出开源节流措施。\n\n7.2 里 3 个不适用槽位全部带 AP-010 / AP-011 号。\n\n## 推演 5 个\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-7.1\npython3 corpus_pipeline/evo_derive.py --sections GAP-7.3\npython3 corpus_pipeline/evo_derive.py --sections GAP-7.5\n```\n含：9860+1120+620+200=11800、118000000÷15600=7564.10、5500÷11800×100=46.61、6300÷11800×100=53.39、38600÷1485000×100=2.60。\n**不得手算**；工具不可用停报 `blocked`。\n\n## 本章两处必须并列不裁决（重要）\n1. **建安工程费用**：报表 9,860〔P-d3694a2d25c1〕 vs 分项加总 10,180〔P-ee4a81c9edb7〕，差 320 万 → 两侧并列 + 缺口（责任方：建设单位/造价咨询单位；阶段：初步设计概算阶段）\n2. **原建筑拆除**：仅给费用 200 万〔P-00bec8463399〕，无面积与结构底数 → 缺口\n\n## 7.3 融资方案\n政府直接投资（非资本金注入）：国拨 5500 + 自筹 6300 = 11800。\n不涉：资本金注入（AP-032）、专项债、公司信用类债券、REITs（AP-037，非基础设施项目）、银行贷款。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-7.1   # 逐节\n```\n\n## 判定行\n```\nCH07-OK sections=5 written=<n> emit=8 blocked=<n>\n```\n\n## 硬规则\n不编造 / 不测算盈利 / 判断不越界 / 冲突两侧并列不裁决 / 缺口三要素 / 不适用带 AP / 推演留 trace"
+      }
+    },
+    {
+      "id": "s08_ch08",
+      "type": "wfNode",
+      "position": {
+        "x": 2516,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch08-impact】独立agent·4推演·4标准·能耗8.07vs7.49不裁决",
+        "description": "第8章影响效果（4推演，标准最多，能耗两口径并列）",
+        "icon": "globe",
+        "color": "violet",
+        "prompt": "## 你是谁\n\n你是**第8章「项目影响效果分析」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n**① 读 skill `ch08-impact`**\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=8;\"\nsqlite3 报告上下文.db \"SELECT 标准号,文件名,引用次数 FROM v_std_for_section WHERE 法定节 LIKE 'GAP-8.%';\"\n```\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 5（8.1 经济 / 8.2 社会 / 8.3 生态 / 8.4 资源能源 / 8.5 碳达峰） |\n| 槽位 | 17（值2 推4 检3 缺6 NA2） |\n| 推演 | 4 个：受益人群规模、水耗折标煤、电耗折标煤、年综合能耗 |\n| **标准预填** | **1,535 字符（标准库 4 条，全篇最多）** |\n| 上下文 | 约 38 KB |\n| 资源 | 不涉资源①；写资源② |\n\n## 推演 4 个\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-8.4   # 3 个折标\npython3 corpus_pipeline/evo_derive.py --sections GAP-8.2   # 受益人群\n```\n含：1.89×0.857=1.62 tce、47.75×1.229÷10=5.87 tce、1.62+5.87=7.49 tce、280+1100=1380 人。\n**不得手算**；工具不可用停报 `blocked`。\n\n## 本章必须并列不裁决\n**年耗电量两口径**：\n- 客户侧 52.51 万kWh → 折标 6.45 tce → 综合能耗 8.07 tce\n- 分项重算 47.75 万kWh → 折标 5.87 tce → 综合能耗 7.49 tce\n两侧并列 + 「本节不裁决」，待正式能耗测算书确定口径。\n\n## 标准条款（本章 4 条最多）\n| 标准 | source_status | 怎么写 |\n|---|---|---|\n| GB50189-2015 | 可用（161 条） | 可引条款号+正文（含强条） |\n| GB3095 / GB3838 / GB3096 | 未取得原文 | 只写《环境空气质量标准》（GB3095）等，**不编造限值** |\n\n**排放因子与折标系数必须有来源**——客户未提供碳排放因子则报缺口，不得自造。\n\n## 本章要点\n- 8.3 环境质量现状、环评文件、碳排放因子均客户未提供 → 缺口三要素\n- 8.5 碳达峰碳中和：无碳排放总量核算底数 → 列缺口，不硬算\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-8.4   # 逐节\n```\n\n## 判定行\n```\nCH08-OK sections=5 written=<n> derived=4 blocked=<n>\n```\n\n## 硬规则\n不编造（因子/限值）/ 判断不越界 / 冲突两侧并列不裁决 / 缺口三要素 / 不适用带 AP / 推演留 trace"
+      }
+    },
+    {
+      "id": "s09_ch09",
+      "type": "wfNode",
+      "position": {
+        "x": 2864,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch09-risk】独立agent·风险等级不自判·4缺口·无推演",
+        "description": "第9章风险管控（风险等级不自判，4缺口，无推演）",
+        "icon": "chat",
+        "color": "slate",
+        "prompt": "## 你是谁\n\n你是**第9章「项目风险管控方案」写作专家**，独立 agent（fresh）。**只写本章，不写其他章，不产出判定。**\n\n## 开工三步\n**① 读 skill `ch09-risk`**\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter=9;\"\n# 客户已列明的风险因素\nsqlite3 报告上下文.db \"SELECT 名称,值 FROM v_section_facts WHERE 节='GAP-9.1';\"\n```\n**③ 逐节写** `L1 切片 → L2 任务书 → 正文`\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 3（9.1 识别评价 / 9.2 管控方案 / 9.3 应急预案） |\n| 槽位 | 8（值2 推0 检2 缺4 NA0） |\n| **推演** | **0 个——本章不需要调 Semantica** |\n| 标准预填 | 617 字符（标准库 0 条） |\n| 上下文 | 约 24 KB |\n| 资源 | 不涉资源①；**写资源②**；emit 1 项 → 第[1,10]章 |\n\n## 本章核心约束：风险等级不自判\n\n客户资料只给了：\n- 主要风险因素：**施工期噪声与扬尘、交通影响**\n- 措施后单因素风险是否可控：**是**\n- **风险等级：待判定**\n\n→ 正文写「风险等级待有资格主体判定」，**不得写「低风险」「风险可控等级」等结论**。\n\n## 4 个缺口（三要素齐全）\n| 槽位 | 责任方 | 阶段 |\n|---|---|---|\n| 风险等级判定 | 有资格的社会稳定风险评估机构 | 稳评阶段 |\n| 完整风险清单（需求/建设/运营/融资/财务/经济/社会/网络数据安全） | 建设单位/咨询单位 | 可行性研究阶段 |\n| 社会稳定风险调查分析（风险点/可能性/影响程度） | 建设单位/稳评机构 | 稳评阶段 |\n| 管控措施责任主体与时限 | 建设单位/施工单位 | 施工准备阶段 |\n\n## 2 个检索槽位（要点名依据）\n- 风险评价依据：《国家发展改革委重大固定资产投资项目社会稳定风险评估暂行办法》及上海市配套办法\n- 风险管控措施依据：GB12523-2011 施工噪声限值 / GB16297-1996 与上海市扬尘规定 / 道路交通安全法\n\n**标准均 `source_status=未取得原文` → 只写标准名与编号，不编造限值。**\n\n## 本章无推演\n若需计算（如风险值 = 可能性×影响程度）→ **停下来报告**，不要自己算。由指挥方补 `推演算式.yaml` 声明。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-9.1   # 逐节\n```\n\n## 判定行\n```\nCH09-OK sections=3 written=<n> gaps=4 blocked=<n>\n```\n**本章 emit 向第1章回传结论**——第1章终版回填 1.4 时要用。\n\n## 硬规则\n不编造 / **风险等级不自判** / 判断不越界 / 缺口三要素 / 检索要点名依据 / 不跨节指路"
+      }
+    },
+    {
+      "id": "s10_ch01_final",
+      "type": "wfNode",
+      "position": {
+        "x": 3212,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch01-overview·终版】⊕ 唯一反向流·只改1.4·七维度引用",
+        "description": "第1章终版（唯一反向流：读第2-9章结论回填1.4）",
+        "icon": "mail",
+        "color": "blue",
+        "prompt": "## 你是谁\n\n你是**第1章终版写作专家**（ch01-overview），独立 agent（fresh）。**只改 1.4 主要结论，1.1–1.3 冻结不动。**\n\n## 开工三步\n**① 读 skill `ch01-overview`**（注意：本章是第二遍，只做回填）\n\n**② 查全篇结论（关键步）**\n```bash\n# 第2–9章的结论汇总（资源②的物理载体）\nsqlite3 报告上下文.db \"SELECT 节,结论 FROM conclusions WHERE 节 LIKE 'GAP-%' ORDER BY 章;\"\n# 全篇已定事实\nsqlite3 报告上下文.db \"SELECT 名称,值,单位 FROM v_section_facts WHERE 节 IN ('GAP-2.3','GAP-3.2','GAP-7.1','GAP-9.1');\"\n# 待审冲突（回填时两侧并列）\nsqlite3 报告上下文.db \"SELECT * FROM v_conflicts;\"\n```\n\n**③ 只改 1.4**\n\n## 本章任务（唯一）\n\n**把 1.4 主要结论从占位回填为七维度结论**：\n\n| 维度 | 引用章 |\n|---|---|\n| 建设必要性 | 第2章 |\n| 要素保障性 | 第4章 |\n| 工程可行性 | 第5章 |\n| 运营有效性 | 第6章 |\n| 财务合理性 | 第7章 |\n| 影响可持续性 | 第8章 |\n| 风险可控性 | 第9章 |\n\n→ 七维度逐项简述，汇总为「项目是否可行」的总体结论。\n\n## 硬约束\n\n| 禁止 | 原因 |\n|---|---|\n| 动 1.1–1.3 | 已冻结，改会与初版矛盾 |\n| 自己推论新结论 | 1.4 只能引用第2–9章已定结论 |\n| 把缺口写成结论 | 缺项要如实写「因客户资料缺项无法给出确定结论」 |\n| 裁决冲突 | 两侧并列 + 「本报告不裁决」 |\n\n## 当前缺项（必须如实反映到结论）\n- 要素保障：场地勘察、市政接入条件函尚未取得\n- 运营方案：运营组织、人员编制、运维成本未提供\n- 影响量化：碳排放因子、环境质量现状、环评文件未提供\n- 风险评价：风险等级待有资格主体判定\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-1.4\n```\n\n## 判定行\n```\nCH01F-OK section=1.4 filled=7dims blocked=<n>\n```\n\n## 硬规则\n只改 1.4 / 七维度逐项引用 / 缺项如实 / 冲突不裁决 / 不跨节指路"
+      }
+    },
+    {
+      "id": "s11_ch10",
+      "type": "wfNode",
+      "position": {
+        "x": 3560,
+        "y": 80
+      },
+      "data": {
+        "label": "【ch10-conclusion】独立agent·兼管第11章·与1.4一致·emit=0",
+        "description": "第10章结论+第11章附表（兼管两章，与1.4一致）",
+        "icon": "rocket",
+        "color": "green",
+        "prompt": "## 你是谁\n\n你是**第10章「研究结论及建议」写作专家**（ch10-conclusion），**兼管第11章附表附图附件**，独立 agent（fresh）。**只写这两章，不产出判定。**\n\n## 开工三步\n**① 读 skill `ch10-conclusion`**\n**② 查库定位**\n```bash\nsqlite3 报告上下文.db \"SELECT section,slot,cat,filled FROM pkg_slots WHERE chapter IN (10,11);\"\n# 与第1章 1.4 结论必须一致\nsqlite3 报告上下文.db \"SELECT 名称,值 FROM v_section_facts WHERE 节='GAP-1.4';\"\n# 全部缺口清单（10.2 问题建议要用）\nsqlite3 报告上下文.db \"SELECT section,slot,owner,stage FROM pkg_slots WHERE cat='缺口';\"\n```\n**③ 逐节写**\n\n## 本章特点\n\n| 项 | 值 |\n|---|---|\n| 节数 | 3（10.1 结论 / 10.2 问题建议 / 11.1 附表附图附件） |\n| 槽位 | 4（值0 推1 检1 缺3 NA0） |\n| 推演 | 1 个：七维度结论汇总（3+4=7 项） |\n| 上下文 | 约 15 KB（最轻） |\n| 资源 | **读资源②**（第2–9章结论）；**emit=0**（终章不再向下传） |\n\n## 10.1 主要研究结论\n七维度逐个汇总，**必须与第1章 1.4 一致**（同一批数据、同一批缺项）。若发现不一致 → 报告冲突，不自行统一。\n\n推演：\n```bash\npython3 corpus_pipeline/evo_derive.py --sections GAP-10.1\n```\n\n## 10.2 问题与建议（用缺口清单）\n从数据库取全部缺口，按责任方归类成建议条目。**不得虚构建议，建议须对应真实缺口。**\n\n## 11.1 附表、附图和附件（第11章章级要求）\n304 第11章原文：**「根据项目实际情况和相关规范要求，研究确定并附具可行性研究报告必要的附表、附图和附件等」**（无子节）。\n\n按三类列清单：\n| 类 | 内容 |\n|---|---|\n| 附表 | 技术经济指标表、建设投资估算表、投资计划与资金筹措表、建筑面积与用房构成表、主要设备材料表 |\n| 附图 | 项目地理位置图、总平面布置图、各层平面图、主要立面与剖面图 |\n| 附件 | 项目建议书及批复、用地预审与选址意见书、资金来源证明/承诺函、规划部门意见、环评批复 |\n\n**客户未提供任何附件原件** → 每条标「未提供（责任方：建设单位；阶段：可行性研究批复前）」，**不得虚构文件名称与文号**。\n\n## 写完必做\n```bash\npython3 corpus_pipeline/evo_context_db.py --update GAP-10.1\npython3 corpus_pipeline/evo_context_db.py --update GAP-11.1\n```\n\n## 判定行\n```\nCH10-OK sections=3 written=<n> consistent_with_1_4=<y|n> blocked=<n>\n```\n\n## 硬规则\n与 1.4 一致 / 不虚构附件名 / 建议对应真实缺口 / 缺口三要素 / 不跨节指路"
+      }
+    },
+    {
+      "id": "res-跨章输出①建设规模与投资",
+      "type": "wfResource",
+      "position": {
+        "x": 860,
+        "y": 198
+      },
+      "data": {
+        "label": "跨章输出①建设规模与投资",
+        "description": "全篇唯一的建设规模与投资口径，由第3章定下供下游取用",
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db::pkg_slots（第3章写入部分）",
+            "note": "**建设规模与投资口径（全篇唯一）**。由第3章定下并写入，后续章只能取不能改。\n\n**本备注不写任何项目数值**——数值是项目动态数据，从以下两处取：\n- 交付包：`写作输入包/第3章-*.yaml` 的 user_inputs / derived\n- 数据库：`报告上下文.db` 的 `pkg_slots`（SQL: `SELECT 槽位,内容,单位 FROM v_pkg_slot WHERE 章=3 AND 类别 IN ('值型','推演')`）\n\n写方：ch03-demand。读方：ch04-site（定选址条件）、ch05-scheme（工程方案）、ch07-finance（投资估算）、ch08-impact（能耗与影响）、ch10-conclusion（结论引用）。\n\n**任何章不得另立数值**：取不到的报缺口，不得凭记忆填。"
+          },
+          {
+            "kind": "file",
+            "value": "章级状态.yaml#after-3",
+            "note": "第3章写完后必须跑 `evo_context_db.py --update <节号>`，否则闸门 `--after 3` 不过，后续全部不启动。本资源是「定规模→供下游取用」的物理载体。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "type": "wfResource",
+      "position": {
+        "x": 512,
+        "y": 798
+      },
+      "data": {
+        "label": "跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db::conclusions（第2–9章写入）",
+            "note": "**全篇各章结论汇总（反向输出载体）**。第2–9章每写完一章，就把「本章定下的事实与结论」写入本资源（同时 `evo_context_db.py --update` 入库）。**读方：** 第1章终版（回填 1.4 主要结论，按七维度逐项引用）；第10章（收口，需与 1.4 一致）。这是唯一一条**反向**数据流：第9章 → 第1章。"
+          },
+          {
+            "kind": "text",
+            "value": "1.4 回填约束：只改 1.4，1.1–1.3 冻结"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-变更登记（全篇·不连线即全局共享）",
+      "type": "wfResource",
+      "position": {
+        "x": 3992,
+        "y": 198
+      },
+      "data": {
+        "label": "变更登记（全篇·不连线即全局共享）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "变更分类/<节号>.yaml",
+            "note": "**全部章节的变更登记（全工作流共享）**。每一章写完或用户修改后，都把本章变更写入本资源：（节号、修改前文本、修改后文本）。这个资源**不连任何线**，因此对整张工作流可见——所有章节节点都能写它，变更中心节点能读它。"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_change_classify.py",
+            "note": "变更中心用这个脚本做分类：A类节点变化（值变/增/删，紧贴 P-id）、B类非节点变化（措辞）、C类裸数变化（数值变了但无 P-id，无法追溯）。"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_diff.py",
+            "note": "变更中心用这个脚本算影响面：A 类变化跑 `--impact <pid> --to <新值>`，输出引用节数、精确位置（章/节/段/偏移）、处置分类（SYNC 必改 / REVIEW 送审 / NOOP 不动）。"
+          },
+          {
+            "kind": "file",
+            "value": "报告上下文.db::fact_locations",
+            "note": "位置索引：fact → 章/节/段/偏移。由 `evo_fact_index.py --where <pid>` 查询，已建 766 条位置记录、覆盖 50 节。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "s_change_hub",
+      "type": "wfNode",
+      "position": {
+        "x": 3908,
+        "y": 80
+      },
+      "data": {
+        "label": "【s_change_hub·人工专用】变更传播·diff→Semantica→按章回推（不在写作串行链上）",
+        "description": "变更传播中心（人工专用入口·不在串行链上·Semantica传播推理）",
+        "icon": "gear",
+        "color": "amber",
+        "prompt": "## 你是变更传播中心\n\n> **⚠ 本节点是人工专用入口，不在写作串行链上。**\n> 全篇写作时**跳过本节点**；只有用户在 `q_diff_trigger` 选了节号、要传播某次改动时才执行它。\n> 它没有前置步骤——因为改动可以发生在任何时刻，不依赖「全部章节写完」。\n\n## 触发方式（唯一）\n\n```\nq_diff_trigger（人工在前端选节号）→ 本节点\n```\n\n不要因为「轮到我」就执行；**没收到触发信号就跳过**。\n\n## 链路五段（脚本全自动）\n\n```bash\npython3 corpus_pipeline/evo_change_propagate.py --propagate <节号>\npython3 corpus_pipeline/evo_change_propagate.py --scan-all      # 全部节\npython3 corpus_pipeline/evo_change_propagate.py --show <变更id>\npython3 corpus_pipeline/evo_change_propagate.py --verify\n```\n\n| 段 | 动作 | 产物 |\n|---|---|---|\n| ① diff | 正文 vs `正文快照/` 基线，抽变化的 P-id 与前后值 | `changed_pids` + before/after |\n| ② 图遍历 | `uses`/`depends`/`derives_from` 反查引用节（案例节→GAP 节映射，86 个、19 个一对多全保留） | 直接受影响节 |\n| ③ **Semantica 传播推理** | `run_reasoning` + `传播规则.yaml` 19 条 | 需重算口径 + 语义受影响节 |\n| ④ 合并分级 | SYNC 必改 / REVIEW 送审 / CAUSAL 因果 | 三级影响面 |\n| ⑤ 按章回推 | `evo_audit_dispatch` 同款去重（节号+等级） | `变更通知/` + `变更待办/待办-第N章.yaml` |\n\n## 为什么必须两条腿\n\n| 腿 | 只能发现 |\n|---|---|\n| 图遍历 | 「哪些节**曾经引用**过这个值」 |\n| **Semantica** | 「哪些下游口径**在语义上必须重算**」——包括图里没建边的隐式依赖 |\n\n**实测（总投资/总建筑面积类改动）**：图遍历 22–28 节；Semantica 再补 1–2 节（如改总建筑面积新增 GAP-5.3、GAP-8.4）。**只靠图遍历会漏。**\n\n## 你读什么、写什么\n\n| 读 | 写 |\n|---|---|\n| `res-变更登记`（11 章各自写入的改动）| `res-变更通知` → 各章 `变更待办/待办-第N章.yaml` |\n| `正文快照/` 基线 | `变更通知/CHG-<id>.yaml` |\n| `关联图谱.db` | Semantica decision 登记 |\n| `传播规则.yaml` | |\n\n## 三条铁律\n\n**① 变更登记必须存修改前文本**——没有 before 就无法 diff。\n\n**② 不裁决冲突取值**——两侧都合理时并列 + 「本报告不裁决」。\n\n**③ C 类裸数必须打回**——数值变了但无 P-id 绑定，打回作者补 P-id，不得猜它是哪个量。\n\n## 判定行\n```\nHUB-OK changes=<n> sync=<n> review=<n> causal=<n> recompute=<n> chapters=<n>\n```\n\n## 已知限制（如实报告）\n\n| 限制 | 现状 |\n|---|---|\n| P-id 取值方向 | 正文格式「数值〔P-xxx〕」，取 P-id 前 30 字符最后一个数 |\n| 案例节号映射 | 86 个案例节→法定节；19 个一对多全部保留（宁多不漏） |\n| 传播规则覆盖 | 19 条 / 30 个下游口径 / 13 节；未覆盖的靠图遍历兜底 |\n| 基线一致性 | 旧快照会造成全篇误报，必须先 `--baseline-all` 重建统一基线 |"
+      }
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）",
+      "type": "wfResource",
+      "position": {
+        "x": 3992,
+        "y": 408
+      },
+      "data": {
+        "label": "变更通知（变更中心→受影响章节）",
+        "description": "变更结果下发（hub 写 → 11 章读）",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "变更待办",
+            "note": "**按章拆分后的回改指令**。每章开工前**必读自己那一份**。\n\n```\n变更待办/待办-第1章.yaml … 待办-第10章.yaml\n变更待办/_重跑清单.md      ← 先读这个\n```\n\n**开工前必做**：查 `待办-第N章.yaml` 有无本章条目；有条目先处置再写新内容。\n\n每条：section｜level（SYNC 必改 / REVIEW 送审 / CAUSAL 因果核对）｜action｜before｜after\n\n处置后跑 `evo_change_propagate.py --autopilot <节号>` 确认待办清空。"
+          },
+          {
+            "kind": "file",
+            "value": "变更待办/_重跑清单.md",
+            "note": "**重跑清单（人工按序重派的依据）**。hub 每次传播后生成。\n\n含：需重派章表（按写作串行序）｜必改/送审/因果计数｜派发说明\n\n**为何需要它**：hub 是人工触发、不在串行链上，它的产出必须能被人工按序重派到章节 agent——否则传播结果只停在文件里。\n\n**顺序铁律**：定规模章（第3章）先于受它约束的章（第4/5/7/8章）。"
+          },
+          {
+            "kind": "folder",
+            "value": "变更通知",
+            "note": "**完整变更通知**（聚合，可追溯）。\n\n含：change_id｜trigger_section｜changed_pids｜before/after｜impact（SYNC/REVIEW/CAUSAL）｜chapters（章→条目映射）\n\n章节 agent 不需要通读，只看自己那份待办；本目录供主理人与审核追溯。"
+          },
+          {
+            "kind": "file",
+            "value": "传播规则.yaml",
+            "note": "**传播规则 26 条**（原 19 + 规划指标 7）。\n\n| 触发器类 | 例 |\n|---|---|\n| 投资类 | 总投资｜建安工程费用｜工程建设其他费用｜基本预备费 |\n| 资金类 | 国拨资金｜学校自筹 |\n| 规模类 | 总建筑面积｜地上建筑面积｜地下建筑面积 |\n| **规划指标** | **容积率｜建筑密度｜绿地率｜用地面积｜建筑限高｜退界｜消防车道与登高面** |\n| 规模输入 | 科研人员规划人数｜研究生规划人数 |\n| 能耗类 | 装机容量｜多联机装机冷量｜年耗电量｜年用水量｜水折标系数｜电力折标系数 |\n| 其他 | 建设工期｜项目名称或简称 |\n\n**2026-11-27 补的 7 条规划指标规则，解决的是「第4/5章的规划约束推翻第3章规模」——不靠回边，靠 diff + 传播推理。**"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_change_propagate.py",
+            "note": "**传播引擎**。\n\n```bash\n--baseline <节号>        拍基线\n--baseline-all          全篇统一重建\n--propagate <节号>      diff → 图遍历 → Semantica → 下发待办 → 生成重跑清单\n--autopilot <节号>      入库 → propagate → 重拍基线（章节 agent 收尾用）\n--scan-all              扫全篇找变化\n--show <变更id>         看某次变更详情\n--verify                链路完整性校验\n```\n\n**2026-11-27 修复**：原先不写 `变更登记/`（导致 hub 读到空），现已补上；并新增 `_重跑清单.md`。"
+          },
+          {
+            "kind": "file",
+            "value": "outline-2023/内容映射-重建.yaml",
+            "note": "**案例节号→法定节号映射**（86 个案例节，19 个一对多全部保留）。\n\n图遍历返回的是案例节号（如 13.2、11.4），必须经此映射才能定位到 GAP-* 节。宁多不漏。"
+          },
+          {
+            "kind": "text",
+            "value": "SYNC=必改（该值在本节被引用）｜REVIEW=送审（可能受影响需人工判断）｜CAUSAL=因果核对（语义上必须重算，如图里未建边）。C 类裸数必须打回作者补 P-id。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-数据桥（全篇上下文库）",
+      "type": "wfResource",
+      "position": {
+        "x": 164,
+        "y": 1008
+      },
+      "data": {
+        "label": "数据桥（全篇上下文库・ReAct 取数）",
+        "description": "每章独立 agent 自主查询的全篇知识库（ReAct 取数）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "布局-DB查询指南.md",
+            "note": "**每章 agent 上岗先读**。含：两个库的表/视图清单、必查三项（我在哪/本章槽位/前章定了什么）、8 个场景化 SQL、12 种结构关系含义、六条铁律。\n\n**为什么需要**：每章由独立 agent（fresh）写，彼此无共享内存。「我在哪、前后是谁、依赖谁、前章定了什么」必须从持久图谱重建，不能靠上下文残留。"
+          },
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "**跨章上下文库（全 11 节点读写）**。facts / conclusions / sections / links / pkg_slots / fact_locations / std_cites + 9 个视图。\n\n**写入**：每章写完跑 `evo_context_db.py --update <节号>`（全量入 facts/conclusions/位置）。\n**摘要**：`--brief <节号>` 给前章要点（非全文）。\n**明细**：agent 自行写 SQL 查（见指南）。"
+          },
+          {
+            "kind": "file",
+            "value": "关联图谱.db",
+            "note": "**关联图谱（节点与关系必须一直保持）**。\n\n· `nodes` 835：章 11 / 节 39 / 槽位 207 / 事实 155 / 派生 28 / 论断 395\n· `typed_edges` 2129：uses 516・asserts 399・depends 279・belongs_to 207・supported_by 155・derives_from 131・not_applicable_to 99・responsible_for 98・aggregates 87・next_to 38・computes 29・in_conflict_with 24・causes 14・cites 13・chapter_next 10・depends_on 30\n\n**这是独立 agent 重建全局的根据**：`next_to` 找前后节、`belongs_to` 从槽位找回节、`depends_on` 算影响面、`derives_from` 查推演血缘。\n\n修复命令：`evo_graph_structure.py --build / --verify`"
+          }
+        ]
+      }
+    },
+    {
+      "id": "q_diff_trigger",
+      "type": "wfInput",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "question": "要对哪一节触发变更传播？",
+        "kind": "choice",
+        "options": [
+          "GAP-1.1 项目概况",
+          "GAP-1.2 项目单位",
+          "GAP-1.3 编制依据",
+          "GAP-1.4 主要结论",
+          "GAP-2.1 规划政策",
+          "GAP-3.1 需求分析",
+          "GAP-3.2 建设规模",
+          "GAP-5.3 工程方案",
+          "GAP-7.1 投资估算",
+          "GAP-7.3 融资方案",
+          "GAP-8.4 资源能源",
+          "GAP-10.1 主要结论",
+          "全部节（扫描所有基线快照）"
+        ],
+        "hint": "选完后系统会：① 把正文和上一次基线比对出 diff → ② 图遍历找引用该值的节 → ③ Semantica 推理出必须重算的下游口径 → ④ 按章生成二次写作待办，推送给受影响章节的 agent。",
+        "required": true,
+        "other": true
+      }
+    },
+    {
+      "id": "res-审核待办（回改入口）+判据合法性",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "审核待办（回改入口）+判据合法性",
+        "description": "审核结果回推到章节 agent（改稿入口）+ 判据合法性",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "审核待办",
+            "note": "**审核后的回改入口**。审核专家判出 blocker 后写入，章节 agent 开工前先读。\n\n每条：section｜blocker_id｜dim｜where｜what｜suggestion｜back_to\n\n**与变更待办的区别**：\n· `变更待办` = 别的节改了、波及到我（被动同步）\n· `审核待办` = 我自己这节没过审（主动改）\n\n**只放 blocker，不放 warn**。"
+          },
+          {
+            "kind": "file",
+            "value": "审核建议-warn清单.yaml",
+            "note": "**只作参考、不阻断的提示**（severity=warn）。\n\n**不得作为返工依据**——章节 agent 自行判断。例：trace 未写进正文（属工程回读机制，非报告缺陷）。"
+          },
+          {
+            "kind": "file",
+            "value": "判据合法性表.yaml",
+            "note": "**判据合法性表**。把 R1–R7 / P1–P6 逐条对到 `判据来源登记-D1D10`，标清哪条可作 blocker。\n\n**为什么必须**（2026-11-27 教训）：曾把 ENGINE 级「溯源性工程要求」升级成报告 blocker（R7 要求正文带 trace），用真实合格可研（上财案例正文 0 trace）的写法去判，误判 13 节。\n\n**用法**：每批审核前先对一遍；SELF 与 ENGINE-工程 项不得阻断。"
+          },
+          {
+            "kind": "file",
+            "value": "判据更正记录.yaml",
+            "note": "**判据错误留痕**。已落盘判定哈希绑定不可改，判据错误通过本文件记录 + 重新判定/拆分 blocker 处置。当前 CORR-001（R7 trace 越界）。"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_defect_scan.py",
+            "note": "**缺陷模式全篇扫描**（修一处必全局搜同类）。九个检测器：AP_EXPANDED / AP_REF_MISMATCH / AP_CODE_COLLISION / RETRIEVAL_LOG / DUP_HEADING / FIG_NO_OBJ / ARITH_BREAK / CROSS_INCONSIST / TRACE_MISSING。"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "s01_ch01_draft->s02_ch02",
+      "source": "s01_ch01_draft",
+      "target": "s02_ch02",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第1章初版已定项目概况与编制依据。第2章写背景与必要性时，规模/投资/工期从数据桥 `--brief` 取，不得另立数值。"
+        }
+      }
+    },
+    {
+      "id": "s02_ch02->s03_ch03",
+      "source": "s02_ch02",
+      "target": "s03_ch03",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第2章已定背景与必要性。第3章需求分析要在其基础上定建设规模（面积），并入库供第5、7章取用。"
+        }
+      }
+    },
+    {
+      "id": "s03_ch03->s04_ch04",
+      "source": "s03_ch03",
+      "target": "s04_ch04",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第3章已定建设规模。第4章选址与要素保障需按此规模判断用地与资源环境条件。"
+        }
+      }
+    },
+    {
+      "id": "s04_ch04->s05_ch05",
+      "source": "s04_ch04",
+      "target": "s05_ch05",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第3章定规模、第4章定选址与要素条件。第5章写建设方案时，面积从数据桥取，设备数据须真实引用，不得另立数值。"
+        }
+      }
+    },
+    {
+      "id": "s05_ch05->s06_ch06",
+      "source": "s05_ch05",
+      "target": "s06_ch06",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第5章已定工程方案与设备配置。第6章运营方案需按此规模与配置写运营组织、安全保障与绩效。"
+        }
+      }
+    },
+    {
+      "id": "s06_ch06->s07_ch07",
+      "source": "s06_ch06",
+      "target": "s07_ch07",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第5章工程方案与第6章运营方案已定。第7章投资估算与财务方案须以第5章工程量为依据，总投资从数据桥取不重算。"
+        }
+      }
+    },
+    {
+      "id": "s07_ch07->s08_ch08",
+      "source": "s07_ch07",
+      "target": "s08_ch08",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第7章已定投资与财务口径。第8章影响效果分析须以同一投资数据为基础，能耗口径 525096kWh/66.15tce。"
+        }
+      }
+    },
+    {
+      "id": "s08_ch08->s09_ch09",
+      "source": "s08_ch08",
+      "target": "s09_ch09",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第8章已定影响效果。第9章风险识别须覆盖前八章暴露的风险点（工期/投资/技术/环境/社会）。"
+        }
+      }
+    },
+    {
+      "id": "s09_ch09->s10_ch01_final",
+      "source": "s09_ch09",
+      "target": "s10_ch01_final",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第2–9章已全部写完。回到第1章回填 1.4 主要结论：七维度结论一律从数据桥取，不得与前 9 章矛盾。1.1–1.3 不得改动。"
+        }
+      }
+    },
+    {
+      "id": "s10_ch01_final->s11_ch10",
+      "source": "s10_ch01_final",
+      "target": "s11_ch10",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "handoff": {
+          "note": "第1章终版已回填结论。第10章收口时按七维度逐项给结论，须与 1.4 一致；问题与建议一一对应；第11章只列清单。"
+        }
+      }
+    },
+    {
+      "id": "s03_ch03->res-跨章输出①建设规模与投资",
+      "source": "s03_ch03",
+      "target": "res-跨章输出①建设规模与投资",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-跨章输出①建设规模与投资->s04_ch04",
+      "source": "res-跨章输出①建设规模与投资",
+      "target": "s04_ch04",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-跨章输出①建设规模与投资->s05_ch05",
+      "source": "res-跨章输出①建设规模与投资",
+      "target": "s05_ch05",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s02_ch02->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s02_ch02",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s03_ch03->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s03_ch03",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s04_ch04->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s04_ch04",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s05_ch05->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s05_ch05",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s06_ch06->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s06_ch06",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s07_ch07->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s07_ch07",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s08_ch08->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s08_ch08",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "s09_ch09->res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "source": "s09_ch09",
+      "target": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "sourceHandle": null,
+      "targetHandle": null,
+      "data": {
+        "update": true
+      }
+    },
+    {
+      "id": "res-变更登记（全篇·不连线即全局共享）->s_change_hub",
+      "source": "res-变更登记（全篇·不连线即全局共享）",
+      "target": "s_change_hub",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "s_change_hub->res-变更通知（变更中心→受影响章节）",
+      "source": "s_change_hub",
+      "target": "res-变更通知（变更中心→受影响章节）",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s01_ch01_draft",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s01_ch01_draft",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s05_ch05",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s05_ch05",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s07_ch07",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s07_ch07",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s10_ch01_final",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s10_ch01_final",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s02_ch02",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s02_ch02",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s03_ch03",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s03_ch03",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s04_ch04",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s04_ch04",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s06_ch06",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s06_ch06",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s08_ch08",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s08_ch08",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s09_ch09",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s09_ch09",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-变更通知（变更中心→受影响章节）->s11_ch10",
+      "source": "res-变更通知（变更中心→受影响章节）",
+      "target": "s11_ch10",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "q_diff_trigger->s_change_hub",
+      "source": "q_diff_trigger",
+      "target": "s_change_hub",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）->s10_ch01_final",
+      "source": "res-跨章输出②全篇结论（反向：第2–9章→第1章终版）",
+      "target": "s10_ch01_final",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".",
+    "mode": "subagent",
+    "reuse": "fresh",
+    "runState": true
+  }
+}

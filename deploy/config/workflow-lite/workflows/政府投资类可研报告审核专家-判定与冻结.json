@@ -1,0 +1,436 @@
+{
+  "nodes": [
+    {
+      "id": "res-evaluation",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "evaluation",
+            "note": "每节每次判定一份 <节号>-<时间戳>Z.json，由 evo_eval_record.py 写入，**不得手改**。必含：verdict、blockers[]（id/level/where/what/evidence/back_to）、body_sha256、evaluated_at、criteria_rev。**每个 blocker 必须标 back_to=write|extract**，三角闭环靠它分叉。无产物可查时记 cannot_audit，不得默认 PASS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r_audit",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【r_audit】独立判定·禁读解析产物·哈希绑定·blocker标back_to",
+        "description": "审核判定（五合法输入+禁读清单+独立性铁律+哈希落盘）",
+        "icon": "terminal",
+        "color": "amber",
+        "prompt": "## 你是谁\n\n你是**独立审核判定者**（r_audit），不是写作者。判定对象是**待判正文**，不是你自己的产出。\n\n## 五个合法输入【只读这五样】\n\n| 序 | 输入 | 用途 |\n|---|---|---|\n| 1 | `teams/write/<节号>.md` 的 BODY 区间 | 待判正文 |\n| 2 | **客户资料 v2** | 判\"正文写的值是否客户提供\"的基准 |\n| 3 | **304 大纲 + 说明原文** | 判 R3 大纲符合性的唯一依据 |\n| 4 | **历史同节**（上财报告） | 只比形，不比值 |\n| 5 | `报告上下文.db` | 查真实状态（--check / --stats / SQL） |\n\n## 禁读清单【一律不读】\n\n| 禁读 | 为什么 |\n|---|---|\n| `写作输入包/` | 那是解析侧产物，读了就继承解析错误 |\n| `teams/extract/handoff/` | 同上 |\n| `节点填充/` | 同上 |\n| 写作侧的 `self_check.json` | 自查不能代替他查 |\n| **其他节的正文** | 跨节比较会造成连锁误判 |\n\n**对着解析结果判＝继承解析错误，这是假通过的根源。**\n\n## 判定内容\n\n### R1–R7（结果判）\nR1 形 / R2 文体≥0.90 / R3 大纲符合性 / R4 值可靠 / R5 冲突披露 / R6 空话 / R7 关系推演路径\n\n### P1–P6（过程判）\nP1 溯源 / P2 复算 / P3 冲突登记 / P4 缺口未静默填 / P5 分层 / P6 决策可追\n\n**P4 最容易出 blocker**：正文给了具体值但客户资料里没有 → 静默填值。\n\n## 确定性判据已脚本化（先跑脚本，再判语义）\n```bash\npython3 corpus_pipeline/evo_audit_deterministic.py --sections <节号>\n```\n已覆盖 P1 溯源 / P2 复算 / P4 缺口未静默填 / R4 绑 ID / R5 冲突披露。\n**脚本报的 findings 要逐条核实真假再采信**——误报要说明为什么是误报。\n\n## 独立性铁律\n\n```\n你 ≠ 写作者。若你的 evaluator 与 writer 相同，verdict 不能出 PASS。\n语义判据（R1/R2/R3/R6/R7/P3/P5/P6）需要独立判定者；不可得时记 CANNOT_AUDIT 并写明原因。\n```\n\n## 落盘（唯一写入口）\n```bash\npython3 corpus_pipeline/evo_eval_record.py --section <节号> --body teams/write/<节号>.md \\\n  --evaluator \"<你的身份>\" --verdict PASS|FAIL|CANNOT_AUDIT \\\n  --blockers <json路径> --findings <json路径> --criteria-rev \"R1-R7+P1-P6@v2\"\n```\n- PASS 时 blockers 必空\n- 每个 blocker 必标 `back_to=write|extract`（三角闭环靠它分叉）\n- 自动算 `body_sha256`：正文改一字旧判定失效\n\n## 判定行\n```\nAUDIT-OK section=<节号> verdict=<PASS|FAIL|CANNOT_AUDIT> blockers=<n> findings=<n> sha=<前8位>\n```"
+      }
+    },
+    {
+      "id": "res-审核判定汇总",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "description": "章级汇总 + 按章回推待办（回改入口）",
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/审核判定汇总.md",
+            "note": "**章级汇总**。由 `r_check` 汇总：逐节 verdict、blocker 数、按维度的失败分布。章级看全章是否齐。"
+          },
+          {
+            "kind": "file",
+            "value": "审核待办",
+            "note": "**按章回推的审核待办（章节 agent 的回改入口）**。\n\n分流规则（靠 blocker.back_to）：\n· `back_to=write` → 推给该节所属章的写作 agent（改正文）\n· `back_to=extract` → 推给抽取专家（改填充表），写入 `待办-抽取侧.yaml`\n\n每条含：section｜blocker_id｜dim｜where｜what｜suggestion\n\n读取方：第1–10 章写作节点（各自只看 `待办-第N章.yaml`）。\n\n**与变更待办的区别**：\n· `变更待办` = 别的节改了、波及到我（被动同步）\n· `审核待办` = 我自己这节没过审（主动改）"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_audit_dispatch.py",
+            "note": "**回推脚本**（从 evaluation/ 读判定，生成审核待办）。\n\n```bash\n--dispatch <节号|章号>   生成该章审核待办\n--dispatch --all        扫全部节\n--show <节号>           看该节最新判定与分流结果\n--verify                校验推送完整性\n```\n\n**两个已修缺陷**：\n① 原只按 mtime 取最新 → 确定性脚本最后跑，把 21 条真 blocker 全掩盖成 CANNOT_AUDIT；已改为**独立判定优先**\n② 原不认旧列表格式判定 → 已兼容两种格式"
+          },
+          {
+            "kind": "text",
+            "value": "判定文件在 res-evaluation；本资源只放汇总、待办与回推脚本。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r_check",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【脚本】章级清单+工序门禁+关系完整性",
+        "icon": "idea",
+        "color": "blue",
+        "prompt": "## 目标\n跑章级清单与工序门禁。**全是命令。**\n\n## 命令（任一条失败即停并报数）\n```bash\ncd \"$WORKSPACE\"\n\n# 1 判据自测（判据不可信则本步作废）\npython3 corpus_pipeline/evo_checks.py || exit 1\n\n# 2 章级清单 C1–C11\npython3 corpus_pipeline/evo_consistency.py --chapter <章号>\n\n# 3 工序门禁 S1–S8（逐节）\nfor s in <本批节号>; do python3 corpus_pipeline/evo_pipeline.py --gate \"$s\"; done\npython3 corpus_pipeline/evo_pipeline.py --status\n\n# 4 关系类型完整性（缺 causes 则推演无链可追）\npython3 corpus_pipeline/evo_relations.py --stats\n```\n\n## 完成标准\n- `evo_checks.py` 含 `SELF-TEST ALL PASS`\n- C1–C11 中适用项全 PASS（C10 仅全篇判定，单章跳过并注明）\n- 目标节 S1–S8 全绿；未绿的写明哪道工序、缺什么产物\n- `evo_relations.py --stats` 里 `causes` / `computes` / `derives_from` 非零\n\n## 判定行\n```\nCHECK-OK chapter=<章> c_pass=<通过>/<适用> gate_green=<绿节数>/<目标数> rel_types=<数>\n```\n失败：`CHECK-FAIL at=<清单|门禁|关系> item=<项> reason=<原因>`\n\n## 硬规则\n- 判据自测不过**立即停**\n- C4 引用真实：目标节未成文的计 pending，**不计失败**\n- C2 加总闭合：已登记 CF 的差额视为合规，**不得为闭合而抹平冲突**\n- 清单过不了不得进入冻结"
+      }
+    },
+    {
+      "id": "res-章级清单",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/章级清单.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "r_settle",
+      "type": "wfNode",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "【脚本】结算·冻结 + 三图达标核验",
+        "icon": "target",
+        "color": "green",
+        "prompt": "## 目标\n结算与冻结。**只看结算器真实状态；全是命令。**\n\n## 命令\n```bash\ncd \"$WORKSPACE\"\n\npython3 corpus_pipeline/evo_unit_ledger.py --check       # 唯一真值\npython3 corpus_pipeline/evo_probe.py                      # 进度/停滞\npython3 corpus_pipeline/evo_pipeline.py --status\npython3 corpus_pipeline/evo_context_db.py --stats\npython3 corpus_pipeline/evo_store.py --stats\npython3 corpus_pipeline/evo_relations.py --stats\npython3 corpus_pipeline/evo_wf_check.py --wf all --sections <本批节号>\n\n# 逐节冻结（脚本会拒绝不满足条件的）\nfor s in <本批节号>; do python3 corpus_pipeline/evo_unit_ledger.py --freeze \"$s\"; done\n```\n\n## 冻结条件（脚本强制校验）\n```\npassed = 独立判定 PASS\n       + 绑定 body_sha256（哈希与当前正文一致）\n       + 判定时间晚于正文 mtime\n       + criteria_rev 有效\n       + S1–S8 工序门禁全绿\n```\n\n## 完成标准\n- 目标批次每节 `passed` 且已 `freeze`\n- `evo_wf_check --wf all` 报出 W1/W2/W3 各判据通过数\n- 产出写出：`passed/总数`、冻结清单、未通过节 blocker 与 `back_to`\n\n## 判定行\n```\nSETTLE-OK passed=<数>/<总数> frozen=<数> blocked=<数> w=<W1通过>/<W2通过>/<W3通过>\n```\n失败：`SETTLE-FAIL section=<节号> blocker=<数> back_to=<write|extract> rounds_without_progress=<数>`\n\n## 硬规则\n- **不得降级为自评**：未过独立判定的节不得写 passed\n- **不得用汇总数代替真值**：一切以 `--check` 为准\n- 同一节连续 3 轮 blocker 无减少 → 报 `rounds_without_progress=3` 并停下\n- 冻结失败不得手工改台账"
+      }
+    },
+    {
+      "id": "res-结算状态",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "logs/结算状态.md"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-标准",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "description": "审核侧法定判据：304 原文 + 条款库 + 来源登记",
+        "items": [
+          {
+            "kind": "file",
+            "value": "standards/发改投资规2023-304号-可研通用大纲.md",
+            "note": "《政府投资项目可行性研究报告编写通用大纲》发改投资规〔2023〕304号（251 行）。**R3 大纲符合性的唯一依据**——直接从原文读出「本节应当写什么」，不拿抽取侧的法定条目当标准（那已过一层拆解，可能失真）。"
+          },
+          {
+            "kind": "file",
+            "value": "standards/发改投资规2023-304号-大纲说明.md",
+            "note": "《关于投资项目可行性研究报告编写大纲的说明》311 行。**适用性规则的直接来源**——含各类项目的适用条件与豁免情形，以及「不适用 ≠ 可不写」的区分依据。"
+          },
+          {
+            "kind": "file",
+            "value": "standards/条款库.yaml",
+            "note": "**条款库（13 标准 / 164 条款 / 3 强制）**。审核用它判「引用的条款号对不对」「限值有没有超」。\n\n**关键约束**：只有 `source_status=可用` 才能判条款正文对错（当前仅 GB50189-2015，161 条）；其余 12 个标准无原文，**只能判「标准号与名称是否对」，不能判「条款号与限值是否对」**。\n\n已标乱码/缺失：DGJ08-107-2015 文本乱码；GB50974-2014 仅 PDF 无提取文本。"
+          },
+          {
+            "kind": "file",
+            "value": "standards/index.yaml",
+            "note": "**标准索引**。一眼看清 13 个标准各自的可用状态、版本、适用范围。判定前先查这里，避免拿未取得原文的标准去判作者造假。"
+          },
+          {
+            "kind": "file",
+            "value": "config/standards-sources.yaml",
+            "note": "**标准源清单（在 config/ 不在 standards/）**。每份标准的获取渠道与状态。\n\n审核用途：追溯「这条判据从哪个文件来的」，并确认某个标准确实无原文（而不是漏提）。"
+          },
+          {
+            "kind": "text",
+            "value": "判据分级：PDF/原文可阻断；无原文只能判标准号与名称。不得因无原文判作者造假。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-正文",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "folder",
+            "value": "teams/write",
+            "note": "每节一份 <节号>.md，`<!-- BODY:START/END -->` 之间是正文。审核只读，**不得修改正文**（改稿是写作专家的事）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-判据",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "阶段设置.yaml",
+            "note": "当前阶段：D2 文体不计入 blocker；判据分级也在这里"
+          },
+          {
+            "kind": "file",
+            "value": "判据来源登记-D1D10.yaml",
+            "note": "D1–D10 判据来源：PDF/CASE/ENGINE 可阻断，**SELF 只作参考不得判负**"
+          },
+          {
+            "kind": "file",
+            "value": "原则与案例-结论与建议.yaml",
+            "note": "原则（304 原文：七维度 + 必须提出可否行的结论）与案例（上财写法）分层"
+          },
+          {
+            "kind": "file",
+            "value": "LOOP-当前阶段.md",
+            "note": "失败处置顺序：先查有没有执行 → 再查判据对不对 → 最后才查内容；六类 blocker 定义"
+          },
+          {
+            "kind": "file",
+            "value": "全局写作规约.md",
+            "note": "十二禁令、反例表（审核对照用）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-项目资料",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "res-项目资料（客户资料 v2）",
+        "description": "客户资料 v2 + 图谱：审核的基准事实源",
+        "items": [
+          {
+            "kind": "file",
+            "value": "事实输入-新项目-华东理工AI研究院-v2.md",
+            "note": "**客户资料 v2（官方版，539 行 / 17 一级节）**。审核时核「正文写的值是否客户提供」的基准，也是判「编造」的唯一依据。\n\n**v1 已废止**（`事实输入-新项目-华东理工AI研究院.md`），不得再用。\n\n含 3 项待补充，正文写缺口必须与此对得上；客户资料没有的值，正文出现就是静默填值（P4 blocker）。"
+          },
+          {
+            "kind": "file",
+            "value": "事实输入-新项目-华东理工AI研究院.md",
+            "note": "**客户资料 v1（已废止）**。仅留作追溯——如果发现正文引用的某个值来自 v1 而不是 v2，那就是审核发现。**不得以它作为判据基准。**"
+          },
+          {
+            "kind": "file",
+            "value": "GRAPH-新项目-华东理工AI研究院-clean.json",
+            "note": "**图谱（冲突登记与证据依据）**。含 155 条事实、395 条论断、冲突对。\n\n**用法**：核「正文宣称的推演路径是否与图谱一致」、「两侧并列的冲突是否真的都在图谱里登记」。（注：此文件与 `关联图谱.db` 不同，是早期导出快照；以 `报告上下文.db` / `关联图谱.db` 为准，本文件仅作交叉参考。）"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-数据桥",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "items": [
+          {
+            "kind": "file",
+            "value": "报告上下文.db",
+            "note": "上下文库：结算时 `--check` 与 `--stats` 核对真实状态"
+          },
+          {
+            "kind": "file",
+            "value": "关联图谱.db",
+            "note": "关联图谱：审核用 query_graph 回查派生事实；结算用 get_graph_summary 报图规模"
+          }
+        ]
+      }
+    },
+    {
+      "id": "res-审核小节包（39-份，材料预抽）",
+      "type": "wfResource",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "label": "审核小节包（39 份，材料预抽）",
+        "description": "审核小节包：每节一份，材料已预抽好",
+        "items": [
+          {
+            "kind": "folder",
+            "value": "audit-pack",
+            "note": "**每节一个审核包（39 份，平均 7KB）**。\n\n包内七段：\n① 304 法定要求（条目逐项 + 原句）\n② 待判正文（BODY 区间）\n③ 本节涉及的客户资料值\n④ 已登记缺口（责任方/阶段/已查哪里）\n⑤ 已判不适用的项（带 AP 号）\n⑥ 已登记冲突\n⑦ 判定任务说明\n\n**为何需要它**：原做法让判定者自己读 304 大纲（251 行）+ 客户资料（539 行）+ 13 份正文（七万行），**判定通道连续失败 4 次**。改成工具先切好包，判定者只读一个小包——试点 3 节一次成功。\n\n**生成**：`evo_audit_pack.py --all`（正文改动后必须重建，否则判的是旧正文）"
+          },
+          {
+            "kind": "file",
+            "value": "corpus_pipeline/evo_audit_pack.py",
+            "note": "**审核包的生成器**。\n\n关键改进：304 法定要求从 `法定条目-304.yaml` **结构化条目**直接取（11 章/38 节/361 条，每条带 from 原句），**不用正则切 markdown**——304 大纲用的是「七、（一）」中文编号，正则切不可靠。\n\n```bash\nevo_audit_pack.py --sections GAP-1.1,GAP-1.2   # 指定节\nevo_audit_pack.py --group 1                     # 按组（1/2/3，每组 13 节）\nevo_audit_pack.py --all                         # 全部 39 节\n```"
+          },
+          {
+            "kind": "file",
+            "value": "审核任务-语义判定.md",
+            "note": "**判定任务规格**。含：只读哪五样输入（禁读清单）、判哪 8 项语义维度、输出必须用 evo_eval_record.py、五条铁律。\n\n判定者上岗先读它。"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "r_audit->res-审核判定汇总",
+      "source": "r_audit",
+      "target": "res-审核判定汇总",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "r_check->res-章级清单",
+      "source": "r_check",
+      "target": "res-章级清单",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "r_settle->res-结算状态",
+      "source": "r_settle",
+      "target": "res-结算状态",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "r_audit->r_check",
+      "source": "r_audit",
+      "target": "r_check",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "r_check->r_settle",
+      "source": "r_check",
+      "target": "r_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-审核判定汇总->r_check",
+      "source": "res-审核判定汇总",
+      "target": "r_check",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-章级清单->r_settle",
+      "source": "res-章级清单",
+      "target": "r_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-审核判定汇总->r_settle",
+      "source": "res-审核判定汇总",
+      "target": "r_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "r_audit->res-evaluation",
+      "source": "r_audit",
+      "target": "res-evaluation",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-evaluation->r_settle",
+      "source": "res-evaluation",
+      "target": "r_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-正文->r_audit",
+      "source": "res-正文",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-标准->r_audit",
+      "source": "res-标准",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-判据->r_audit",
+      "source": "res-判据",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-项目资料->r_audit",
+      "source": "res-项目资料",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-数据桥->r_audit",
+      "source": "res-数据桥",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-数据桥->r_settle",
+      "source": "res-数据桥",
+      "target": "r_settle",
+      "sourceHandle": null,
+      "targetHandle": null
+    },
+    {
+      "id": "res-审核小节包（39-份，材料预抽）->r_audit",
+      "source": "res-审核小节包（39-份，材料预抽）",
+      "target": "r_audit",
+      "sourceHandle": null,
+      "targetHandle": null
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "settings": {
+    "outputRoot": ".",
+    "mode": "subagent",
+    "reuse": "fresh",
+    "runState": true
+  }
+}
